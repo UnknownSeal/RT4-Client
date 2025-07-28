@@ -155,7 +155,7 @@ public final class SignLink implements Runnable {
 							if (randomAccessFile != null) {
 								randomAccessFile.close();
 							}
-						} catch (@Pc(239) Exception exception) {
+						} catch (@Pc(239) Exception ignored) {
 						}
 					}
 				}
@@ -173,7 +173,7 @@ public final class SignLink implements Runnable {
 		try {
 			javaVendor = System.getProperty("java.vendor");
 			javaVersion = System.getProperty("java.version");
-		} catch (@Pc(43) Exception exception) {
+		} catch (@Pc(43) Exception ignored) {
 		}
 		try {
 			osNameRaw = System.getProperty("os.name");
@@ -196,14 +196,14 @@ public final class SignLink implements Runnable {
 			if (homeDir != null) {
 				homeDir = homeDir + "/";
 			}
-		} catch (@Pc(86) Exception exception) {
+		} catch (@Pc(86) Exception ignored) {
 		}
 		if (homeDir == null) {
 			homeDir = "~/";
 		}
 		try {
 			this.eventQueue = Toolkit.getDefaultToolkit().getSystemEventQueue();
-		} catch (@Pc(97) Throwable exception) {
+		} catch (@Pc(97) Throwable ignored) {
 		}
 		this.uid = new FileOnDisk(getFile(null, this.cacheId, "random.dat"), "rw", 25L);
 		this.cacheData = new FileOnDisk(getFile(this.cacheSubDir, this.cacheId, "main_file_cache.dat2"), "rw", 104857600L);
@@ -214,11 +214,11 @@ public final class SignLink implements Runnable {
 		}
 		try {
 			this.fullScreenManager = new FullScreenManager();
-		} catch (@Pc(239) Throwable exception) {
+		} catch (@Pc(239) Throwable ignored) {
 		}
 		try {
 			this.cursorManager = new CursorManager();
-		} catch (@Pc(246) Throwable exception) {
+		} catch (@Pc(246) Throwable ignored) {
 		}
 		@Pc(249) ThreadGroup rootGroup = Thread.currentThread().getThreadGroup();
 		for (@Pc(252) ThreadGroup group = rootGroup.getParent(); group != null; group = group.getParent()) {
@@ -282,11 +282,6 @@ public final class SignLink implements Runnable {
 		return this.enqueue(7, 0, frame, 0);
 	}
 
-	@OriginalMember(owner = "signlink!ll", name = "a", descriptor = "(ZLjava/net/URL;)Lsignlink!im;")
-	public final PrivilegedRequest openUrlStream(@OriginalArg(1) URL url) {
-		return this.enqueue(4, 0, url, 0);
-	}
-
 	@OriginalMember(owner = "signlink!ll", name = "a", descriptor = "(BLjava/lang/String;I)Lsignlink!im;")
 	public final PrivilegedRequest openSocket(@OriginalArg(1) String hostname, @OriginalArg(2) int port) {
 		System.out.println("openSocket(" + hostname + ":" + port + ")");
@@ -323,7 +318,7 @@ public final class SignLink implements Runnable {
 					}
 					try {
 						this.wait();
-					} catch (@Pc(33) InterruptedException local33) {
+					} catch (@Pc(33) InterruptedException ignored) {
 					}
 				}
 			}
@@ -447,18 +442,18 @@ public final class SignLink implements Runnable {
 		}
 		try {
 			this.thread.join();
-		} catch (@Pc(21) InterruptedException exception) {
+		} catch (@Pc(21) InterruptedException ignored) {
 		}
 		if (this.cacheData != null) {
 			try {
 				this.cacheData.close();
-			} catch (@Pc(39) IOException local39) {
+			} catch (@Pc(39) IOException ignored) {
 			}
 		}
 		if (this.cacheMasterIndex != null) {
 			try {
 				this.cacheMasterIndex.close();
-			} catch (@Pc(49) IOException exception) {
+			} catch (@Pc(49) IOException ignored) {
 			}
 		}
 		if (this.cacheIndexes != null) {
@@ -466,7 +461,7 @@ public final class SignLink implements Runnable {
 				if (this.cacheIndexes[i] != null) {
 					try {
 						this.cacheIndexes[i].close();
-					} catch (@Pc(79) IOException exception) {
+					} catch (@Pc(79) IOException ignored) {
 					}
 				}
 			}
@@ -474,7 +469,7 @@ public final class SignLink implements Runnable {
 		if (this.uid != null) {
 			try {
 				this.uid.close();
-			} catch (@Pc(93) IOException exception) {
+			} catch (@Pc(93) IOException ignored) {
 			}
 		}
 	}

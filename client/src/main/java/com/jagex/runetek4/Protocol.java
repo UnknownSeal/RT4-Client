@@ -27,116 +27,145 @@ import org.openrs2.deob.annotation.Pc;
 import java.io.IOException;
 
 public class Protocol {
+
     @OriginalMember(owner = "client!ag", name = "P", descriptor = "Lclient!i;")
     public static final PacketBit outboundBuffer = new PacketBit(5000);
+
     @OriginalMember(owner = "runetek4.client!eg", name = "e", descriptor = "Lclient!i;")
     public static final PacketBit inboundBuffer = new PacketBit(65536);
+
     @OriginalMember(owner = "runetek4.client!ef", name = "f", descriptor = "Lclient!na;")
     public static final JString DUELSTAKE = JString.parse(":duelstake:");
+
     @OriginalMember(owner = "client!en", name = "h", descriptor = "Lclient!na;")
     public static final JString CHALREQ = JString.parse(":chalreq:");
-    @OriginalMember(owner = "client!fb", name = "i", descriptor = "Lclient!na;")
-    public static final JString MAX_AGE = JString.parse("; Max)2Age=");
+
     @OriginalMember(owner = "runetek4.client!wb", name = "f", descriptor = "Lclient!wa;")
     public static final Packet CHAT_PACKET = new Packet(new byte[5000]);
+
     @OriginalMember(owner = "client!eb", name = "p", descriptor = "[I")
     public static final int[] removedIds = new int[1000];
+
     @OriginalMember(owner = "client!dh", name = "d", descriptor = "[I")
     public static final int[] extendedIds = new int[2048];
+
     @OriginalMember(owner = "runetek4.client!ta", name = "z", descriptor = "[I")
     public static final int[] PACKET_LENGTHS = new int[] { -1, 0, 8, 0, 2, 0, 0, 0, 0, 12, 0, 1, 0, 3, 7, 0, 15, 6, 0, 0, 4, 7, -2, -1, 2, 0, 2, 8, 0, 0, 0, 0, -2, 5, 0, 0, 8, 3, 6, 0, 0, 0, -1, 0, -1, 0, 0, 6, -2, 0, 12, 0, 0, 0, -1, -2, 10, 0, 0, 0, 3, 0, -1, 0, 0, 5, 6, 0, 0, 8, -1, -1, 0, 8, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 6, 2, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 5, 0, 0, -2, 0, 0, 0, 0, 0, 12, 2, 0, -2, -2, 20, 0, 0, 10, 0, 15, 0, -1, 0, 8, -2, 0, 0, 0, 8, 0, 12, 0, 0, 7, 0, 0, 0, 0, 0, -1, -1, 0, 4, 5, 0, 0, 0, 6, 0, 0, 0, 0, 8, 9, 0, 0, 0, 2, -1, 0, -2, 0, 4, 14, 0, 0, 0, 24, 0, -2, 5, 0, 0, 0, 10, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 6, 0, 0, 0, 2, 1, 0, 0, 2, -1, 1, 0, 0, 0, 0, 14, 0, 0, 0, 0, 10, 5, 0, 0, 0, 0, 0, -2, 0, 0, 9, 0, 0, 8, 0, 0, 0, 0, -2, 6, 0, 0, 0, -2, 0, 3, 0, 1, 7, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 3, 0, 0 };
+
     @OriginalMember(owner = "runetek4.client!tl", name = "f", descriptor = "Lclient!na;")
     public static final JString ASSIST = JString.parse(":assist:");
+
     @OriginalMember(owner = "runetek4.client!pl", name = "f", descriptor = "Lclient!na;")
     public static final JString TRADEREQ = JString.parse(":tradereq:");
+
     @OriginalMember(owner = "runetek4.client!lb", name = "s", descriptor = "Lclient!na;")
     public static final JString CLAN = JString.parse(":clan:");
+
     @OriginalMember(owner = "runetek4.client!ij", name = "a", descriptor = "Lclient!na;")
     public static final JString DUELFRIEND = JString.parse(":duelfriend:");
+
     @OriginalMember(owner = "runetek4.client!km", name = "Sc", descriptor = "Lclient!na;")
     public static final JString TRADE = JString.parse(":trade:");
+
     @OriginalMember(owner = "runetek4.client!pb", name = "x", descriptor = "[[[I")
     public static final int[][][] anIntArrayArrayArray18 = new int[4][13][13];
+
     @OriginalMember(owner = "client!fc", name = "f", descriptor = "Lclient!na;")
     public static final JString IMG0 = JString.parse("<img=0>");
-    @OriginalMember(owner = "runetek4.client!wd", name = "e", descriptor = "Lclient!na;")
-    public static final JString aClass100_989 = JString.parse("cookieprefix");
-    @OriginalMember(owner = "runetek4.client!u", name = "g", descriptor = "Lclient!na;")
-    public static final JString aClass100_1029 = JString.parse("cookiehost");
-    @OriginalMember(owner = "runetek4.client!lc", name = "m", descriptor = "Lclient!na;")
-    public static final JString aClass100_667 = JString.parse("settings=");
-    @OriginalMember(owner = "runetek4.client!wh", name = "n", descriptor = "Lclient!na;")
-    public static final JString aClass100_1095 = JString.parse("; version=1; path=)4; domain=");
-    @OriginalMember(owner = "runetek4.client!tm", name = "d", descriptor = "Lclient!na;")
-    public static final JString aClass100_1018 = JString.parse("; Expires=Thu)1 01)2Jan)21970 00:00:00 GMT; Max)2Age=0");
-    @OriginalMember(owner = "runetek4.client!vg", name = "h", descriptor = "Lclient!na;")
-    public static final JString aClass100_1082 = JString.parse("; Expires=");
-    @OriginalMember(owner = "runetek4.client!s", name = "g", descriptor = "Lclient!na;")
-    public static final JString aClass100_821 = JString.parse("document)3cookie=(R");
-    @OriginalMember(owner = "runetek4.client!sc", name = "f", descriptor = "Lclient!na;")
-    public static final JString aClass100_946 = JString.parse("(R");
+
     @OriginalMember(owner = "client!ch", name = "z", descriptor = "[I")
     public static final int[] cameraModifierCycle = new int[5];
+
     @OriginalMember(owner = "runetek4.client!pg", name = "db", descriptor = "Lclient!na;")
     public static final JString ASSISTREQ = JString.parse(":assistreq:");
+
     @OriginalMember(owner = "runetek4.client!rj", name = "ab", descriptor = "Lclient!na;")
     public static final JString CLANREQ = JString.parse(":clanreq:");
+
     @OriginalMember(owner = "runetek4.client!na", name = "cb", descriptor = "Lclient!na;")
     public static final JString ALLYREQ = JString.parse(":allyreq:");
+
     @OriginalMember(owner = "client!dh", name = "i", descriptor = "Lclient!na;")
     public static final JString IMG1 = JString.parse("<img=1>");
+
     @OriginalMember(owner = "runetek4.client!qi", name = "t", descriptor = "I")
     public static int anInt4762 = 0;
+
     @OriginalMember(owner = "runetek4.client!fe", name = "R", descriptor = "Z")
     public static boolean prevFocus = true;
+
     @OriginalMember(owner = "runetek4.client!dm", name = "q", descriptor = "I")
     public static int opcode4 = 0;
+
     @OriginalMember(owner = "runetek4.client!af", name = "k", descriptor = "I")
     public static int opcode3 = 0;
+
     @OriginalMember(owner = "runetek4.client!na", name = "l", descriptor = "I")
     public static int opcode = 0;
+
     @OriginalMember(owner = "runetek4.client!sj", name = "t", descriptor = "I")
     public static int opcode2 = 0;
+
     @OriginalMember(owner = "runetek4.client!pm", name = "ab", descriptor = "Z")
     public static boolean aBoolean228 = true;
+
     @OriginalMember(owner = "runetek4.client!pe", name = "a", descriptor = "I")
 	public static int verifyId = 0;
+
     @OriginalMember(owner = "runetek4.client!od", name = "i", descriptor = "I")
     public static int sceneDelta = 0;
+
     @OriginalMember(owner = "runetek4.client!cj", name = "n", descriptor = "Lsignlink!im;")
     public static PrivilegedRequest openUrlRequest;
+
     @OriginalMember(owner = "runetek4.client!na", name = "W", descriptor = "Z")
     public static boolean newTab;
+
     @OriginalMember(owner = "client!ck", name = "eb", descriptor = "Z")
     public static boolean verifyIdChanged = false;
+
     @OriginalMember(owner = "runetek4.client!kd", name = "ob", descriptor = "I")
     public static int anInt3251 = 0;
+
     @OriginalMember(owner = "runetek4.client!jk", name = "B", descriptor = "Lclient!ma;")
     public static BufferedSocket gameServerSocket;
+
     @OriginalMember(owner = "runetek4.client!dg", name = "h", descriptor = "Lclient!be;")
     public static Component aClass13_11;
+
     @OriginalMember(owner = "runetek4.client!kf", name = "l", descriptor = "I")
     public static int anInt5235 = 0;
+
     @OriginalMember(owner = "runetek4.client!t", name = "l", descriptor = "Lclient!ma;")
     public static BufferedSocket aClass95_4;
+
     @OriginalMember(owner = "runetek4.client!sc", name = "o", descriptor = "I")
     public static int packetSize = 0;
+
     @OriginalMember(owner = "runetek4.client!pb", name = "ab", descriptor = "I")
 	public static int anInt4422 = 0;
+
     @OriginalMember(owner = "client!fl", name = "C", descriptor = "Lsignlink!im;")
     public static PrivilegedRequest socketRequest;
+
     @OriginalMember(owner = "runetek4.client!jb", name = "m", descriptor = "I")
     public static int extendedCount = 0;
+
     @OriginalMember(owner = "runetek4.client!tg", name = "h", descriptor = "I")
     public static int removedCount = 0;
+
     @OriginalMember(owner = "client!bj", name = "r", descriptor = "I")
     public static int cameraOffsetZModifier = 2;
+
     @OriginalMember(owner = "runetek4.client!ld", name = "i", descriptor = "I")
     public static int cameraOffsetCycle = 0;
+
     @OriginalMember(owner = "client!vl", name = "k", descriptor = "I")
     public static int idleTimeout = 0;
+
     @OriginalMember(owner = "client!bf", name = "G", descriptor = "I")
     public static int anInt551 = 0;
+
     @OriginalMember(owner = "runetek4.client!rm", name = "c", descriptor = "I")
     public static int cameraOffsetYawModifier = 1;
 
@@ -2816,7 +2845,7 @@ public class Protocol {
             try {
                 client.uid.seek(0L);
                 client.uid.write(arg0.data, arg0.offset, 24);
-            } catch (@Pc(16) Exception local16) {
+            } catch (@Pc(16) Exception ignored) {
             }
         }
         arg0.offset += 24;

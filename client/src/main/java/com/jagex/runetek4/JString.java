@@ -3,8 +3,6 @@ package com.jagex.runetek4;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.io.UnsupportedEncodingException;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.core.datastruct.JagStringWrapper;
@@ -312,11 +310,6 @@ public final class JString implements StringInterface {
 		return local126;
 	}
 
-	@OriginalMember(owner = "runetek4.client!na", name = "a", descriptor = "(Z)Ljava/net/URL;")
-	public final URL method3107() throws MalformedURLException {
-		return new URL(new String(this.chars, 0, this.length));
-	}
-
 	@OriginalMember(owner = "runetek4.client!na", name = "a", descriptor = "(BLclient!na;)Z")
 	public final boolean strEquals(@OriginalArg(1) JString arg0) {
 		if (arg0 == null) {
@@ -424,6 +417,7 @@ public final class JString implements StringInterface {
 		if (arg0.length + this.length > this.chars.length) {
 			@Pc(31) int local31;
 			for (local31 = 1; local31 < arg0.length + this.length; local31 += local31) {
+				//TODO Why is this here?
 			}
 			@Pc(51) byte[] local51 = new byte[local31];
 			copy(this.chars, 0, local51, 0, this.length);
@@ -501,6 +495,7 @@ public final class JString implements StringInterface {
 			if (this.length + arg2 - arg1 > this.chars.length) {
 				@Pc(43) int local43;
 				for (local43 = 1; local43 < this.length + arg0.length; local43 += local43) {
+					// TODO Why is this here?
 				}
 				@Pc(63) byte[] local63 = new byte[local43];
 				copy(this.chars, 0, local63, 0, this.length);
@@ -607,11 +602,6 @@ public final class JString implements StringInterface {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!na", name = "a", descriptor = "(Ljava/net/URL;Z)Ljava/net/URL;")
-	public final URL method3127(@OriginalArg(0) URL arg0) throws MalformedURLException {
-		return new URL(arg0, new String(this.chars, 0, this.length));
-	}
-
 	@OriginalMember(owner = "runetek4.client!na", name = "a", descriptor = "(ZI)Lclient!na;")
 	public final JString concatChar(@OriginalArg(1) int arg0) {
 		if (arg0 <= 0 || arg0 > 255) {
@@ -670,6 +660,7 @@ public final class JString implements StringInterface {
 			@Pc(30) int local30;
 			if (arg0 > this.chars.length) {
 				for (local30 = 1; local30 < arg0; local30 += local30) {
+					// TODO Why is this here?
 				}
 				@Pc(45) byte[] local45 = new byte[local30];
 				copy(this.chars, 0, local45, 0, this.length);
@@ -867,9 +858,11 @@ public final class JString implements StringInterface {
 	public final JString trim() {
 		@Pc(17) int local17;
 		for (local17 = 0; local17 < this.length && (this.chars[local17] >= 0 && this.chars[local17] <= 32 || (this.chars[local17] & 0xFF) == 160); local17++) {
+			// TODO Why is this here?
 		}
 		@Pc(53) int local53;
 		for (local53 = this.length; local53 > local17 && (this.chars[local53 - 1] >= 0 && this.chars[local53 - 1] <= 32 || (this.chars[local53 - 1] & 0xFF) == 160); local53--) {
+			// TODO Why is this here?
 		}
 		if (local17 == 0 && this.length == local53) {
 			return this;
@@ -957,6 +950,7 @@ public final class JString implements StringInterface {
 		for (@Pc(51) int local51 = 0; local51 < matches; local51++) {
 			@Pc(68) int end;
 			for (end = 0; delim != this.chars[end + start]; end++) {
+				// TODO Why is this here?
 			}
 			parts[part++] = this.substring(start + end, start);
 			start += end + 1;
@@ -1008,6 +1002,7 @@ public final class JString implements StringInterface {
 			if (this.length == this.chars.length) {
 				@Pc(44) int local44;
 				for (local44 = 1; local44 <= this.length; local44 += local44) {
+					// TODO Why is this here?
 				}
 				@Pc(61) byte[] local61 = new byte[local44];
 				copy(this.chars, 0, local61, 0, this.length);

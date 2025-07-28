@@ -12,41 +12,9 @@ import java.io.IOException;
 import java.net.Socket;
 
 public class WorldList {
-    @OriginalMember(owner = "client!nd", name = "x", descriptor = "Lclient!na;")
-    public static final JString aClass100_783 = JString.parse(")4p=");
-
-    @OriginalMember(owner = "client!ja", name = "s", descriptor = "Lclient!na;")
-    public static final JString HTTP_PROTOCOL = JString.parse("http:)4)4");
-
-    @OriginalMember(owner = "client!wk", name = "x", descriptor = "Lclient!na;")
-    public static final JString aClass100_1107 = JString.parse(")4l=");
-
-    @OriginalMember(owner = "client!rc", name = "G", descriptor = "Lclient!na;")
-    public static final JString aClass100_230 = JString.parse("");
-
-    @OriginalMember(owner = "client!l", name = "d", descriptor = "Lclient!na;")
-    public static final JString aClass100_659 = JString.parse(")4j");
-
-    @OriginalMember(owner = "client!cg", name = "e", descriptor = "Lclient!na;")
-    public static final JString aClass100_184 = JString.parse("1");
-
-    @OriginalMember(owner = "client!vd", name = "F", descriptor = "Lclient!na;")
-    public static final JString aClass100_945 = JString.parse("0");
-
-    @OriginalMember(owner = "client!em", name = "u", descriptor = "Lclient!na;")
-    public static final JString aClass100_420 = JString.parse(")1o");
-
-    @OriginalMember(owner = "client!q", name = "a", descriptor = "Lclient!na;")
-    public static final JString aClass100_260 = JString.parse(")1a2)1m");
-
-    @OriginalMember(owner = "client!ch", name = "x", descriptor = "Lclient!na;")
-    public static final JString aClass100_193 = JString.parse(":");
 
     @OriginalMember(owner = "client!ii", name = "e", descriptor = "Lclient!na;")
     public static final JString aClass100_570 = JString.parse(")2");
-
-    @OriginalMember(owner = "client!ob", name = "o", descriptor = "Lclient!na;")
-    private static final JString aClass100_801 = JString.parse(")4a=");
 
     @OriginalMember(owner = "client!en", name = "A", descriptor = "Z")
     public static boolean loaded = false;
@@ -212,14 +180,14 @@ public class WorldList {
             }
             return true;
         } else {
-            @Pc(62) JString port = aClass100_230;
-            if (client.modeWhere != 0) {
-                port = JString.concatenate(new JString[] { aClass100_193, JString.parseInt(world.id + 7000) });
-            }
-            @Pc(89) JString settings = aClass100_230;
-            if (client.settings != null) {
-                settings = JString.concatenate(new JString[] { aClass100_783, client.settings});
-            }
+//            @Pc(62) JString port = aClass100_230;
+//            if (client.modeWhere != 0) {
+//                port = JString.concatenate(new JString[] { aClass100_193, JString.parseInt(world.id + 7000) });
+//            }
+//            @Pc(89) JString settings = aClass100_230;
+//            if (client.settings != null) {
+//                settings = JString.concatenate(new JString[] { aClass100_783, client.settings});
+//            }
 //            @Pc(182) JString url = JString.concatenate(new JString[] { HTTP_PROTOCOL, world.hostname, port, aClass100_1107, JString.parseInt(client.language), aClass100_801, JString.parseInt(client.affiliate), settings, aClass100_659, client.objectTag ? aClass100_184 : aClass100_945, aClass100_420, client.javaScript ? aClass100_184 : aClass100_945, aClass100_260, client.advertSuppressed ? aClass100_184 : aClass100_945 });
 //            try {
 //                client.instance.getAppletContext().showDocument(url.method3107(), "_self");

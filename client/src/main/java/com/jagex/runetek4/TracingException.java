@@ -1,15 +1,12 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.client.GameShell;
 import com.jagex.runetek4.util.SignLink;
-import com.jagex.runetek4.util.ThreadUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 import java.io.*;
-import java.net.URL;
 
 @OriginalClass("client!ld")
 public final class TracingException extends RuntimeException {
@@ -37,11 +34,7 @@ public final class TracingException extends RuntimeException {
 				message = message + suffix;
 			}
 			print(message);
-			message = replace(":", "%3a", message);
-			message = replace("@", "%40", message);
-			message = replace("&", "%26", message);
-			message = replace("#", "%23", message);
-		} catch (@Pc(135) Exception exception) {
+		} catch (@Pc(135) Exception ignored) {
 		}
 	}
 

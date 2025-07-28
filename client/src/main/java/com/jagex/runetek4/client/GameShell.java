@@ -2,8 +2,6 @@ package com.jagex.runetek4.client;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.lang.reflect.Method;
-import java.net.URL;
 
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.DisplayMode;
@@ -70,10 +68,6 @@ public abstract class GameShell extends Canvas implements Runnable, FocusListene
 	public static Thread thread;
 	@OriginalMember(owner = "client!fl", name = "w", descriptor = "J")
 	public static long killtime = 0L;
-	@OriginalMember(owner = "runetek4.client!da", name = "M", descriptor = "Z")
-	public static boolean openWindowJavaScript;
-	@OriginalMember(owner = "client!fi", name = "l", descriptor = "I")
-	public static int instances = 0;
 	@OriginalMember(owner = "runetek4.client!qe", name = "v", descriptor = "Lclient!s;")
 	public static Timer timer;
 	@OriginalMember(owner = "runetek4.client!sg", name = "p", descriptor = "I")
@@ -94,16 +88,6 @@ public abstract class GameShell extends Canvas implements Runnable, FocusListene
 	public static double subpixelX = 0.5d;
 
 	public static double subpixelY = 0.5d;
-
-	public static long updateDelta = 0;
-
-	public static long renderDelta = 0;
-
-	@OriginalMember(owner = "client!rc", name = "providesignlink", descriptor = "(Lsignlink!ll;)V")
-	public static void providesignlink(@OriginalArg(0) SignLink signlink) {
-		signLink = signlink;
-		TracingException.signLink = signlink;
-	}
 
 	@OriginalMember(owner = "client!la", name = "a", descriptor = "(Lsignlink!ll;Ljava/lang/Object;I)V")
 	public static void flush(@OriginalArg(0) SignLink signLink, @OriginalArg(1) Object source) {
@@ -221,7 +205,7 @@ public abstract class GameShell extends Canvas implements Runnable, FocusListene
 			if (local16 > 0) {
 				local77.fillRect(local61, local59 + frameHeight - local16, frameWidth, local16);
 			}
-		} catch (@Pc(132) Exception local132) {
+		} catch (@Pc(132) Exception ignored) {
 		}
 	}
 
@@ -260,11 +244,6 @@ public abstract class GameShell extends Canvas implements Runnable, FocusListene
 	@OriginalMember(owner = "client!rc", name = "windowClosed", descriptor = "(Ljava/awt/event/WindowEvent;)V")
 	@Override
 	public final void windowClosed(@OriginalArg(0) WindowEvent event) {
-	}
-
-	@OriginalMember(owner = "client!rc", name = "b", descriptor = "(I)Z")
-	protected final boolean isHostnameValid() {
-		return true;
 	}
 
 	@OriginalMember(owner = "client!rc", name = "b", descriptor = "(B)V")
@@ -360,26 +339,26 @@ public abstract class GameShell extends Canvas implements Runnable, FocusListene
 		}
 		try {
 			this.mainQuit();
-		} catch (@Pc(34) Exception local34) {
+		} catch (@Pc(34) Exception ignored) {
 		}
 		if (canvas != null) {
 			try {
 				canvas.removeFocusListener(this);
 				canvas.getParent().remove(canvas);
-			} catch (@Pc(45) Exception local45) {
+			} catch (@Pc(45) Exception ignored) {
 			}
 		}
 		if (signLink != null) {
 			try {
 				signLink.stop();
-			} catch (@Pc(53) Exception local53) {
+			} catch (@Pc(53) Exception ignored) {
 			}
 		}
 		this.reset();
 		if (frame != null) {
 			try {
 				System.exit(0);
-			} catch (@Pc(77) Throwable local77) {
+			} catch (@Pc(77) Throwable ignored) {
 			}
 		}
 		System.out.println("Shutdown complete - clean:" + clean);
@@ -401,6 +380,7 @@ public abstract class GameShell extends Canvas implements Runnable, FocusListene
 		}
 		this.mainloop();
 		if (local10 != 0L && local6 <= local10) {
+			// TODO why is this here?
 		}
 	}
 

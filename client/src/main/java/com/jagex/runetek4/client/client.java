@@ -64,198 +64,286 @@ public final class client extends GameShell {
 
 	@OriginalMember(owner = "runetek4.client!dk", name = "j", descriptor = "[Lclient!en;")
 	public static final BufferedFile[] cacheIndexes = new BufferedFile[28];
+
 	@OriginalMember(owner = "runetek4.client!d", name = "S", descriptor = "Ljava/util/Random;")
 	public static final Random aRandom1 = new Random();
+
 	@OriginalMember(owner = "runetek4.client!wa", name = "Eb", descriptor = "[Lclient!bg;")
 	public static final Js5CachedResourceProvider[] js5Providers = new Js5CachedResourceProvider[28];
+
 	@OriginalMember(owner = "runetek4.client!nh", name = "fb", descriptor = "[I")
 	public static final int[] JS5_ARCHIVE_WEIGHTS = new int[] { 4, 4, 1, 2, 6, 4, 2, 49, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
+
 	@OriginalMember(owner = "runetek4.client!si", name = "gb", descriptor = "Lclient!na;")
 	public static final JString aClass100_974 = JString.parse("<br>(X");
-	@OriginalMember(owner = "runetek4.client!sg", name = "e", descriptor = "Lclient!na;")
-	public static final JString SETTINGS = JString.parse("settings");
+
 	@OriginalMember(owner = "runetek4.client!km", name = "Mc", descriptor = "Lclient!na;")
 	public static final JString LOGINSCREEN = JString.parse("loginscreen");
+
 	@OriginalMember(owner = "runetek4.client!qk", name = "a", descriptor = "Lclient!na;")
 	public static final JString aClass100_899 = JString.parse("0(U");
+
 	@OriginalMember(owner = "runetek4.client!uh", name = "Y", descriptor = "Lclient!na;")
 	public static final JString HUFFMAN_GROUP = JString.parse("huffman");
+
 	@OriginalMember(owner = "runetek4.client!nb", name = "n", descriptor = "Lclient!na;")
 	public static final JString DETAILS = JString.parse("details");
-	@OriginalMember(owner = "runetek4.client!qk", name = "b", descriptor = "Lclient!na;")
-	public static final JString aClass100_900 = JString.parse("tbrefresh");
-	@OriginalMember(owner = "client!al", name = "r", descriptor = "Lclient!na;")
-	public static final JString aClass100_35 = JString.parse("showVideoAd");
+
 	@OriginalMember(owner = "runetek4.client!a", name = "e", descriptor = "Lclient!na;")
 	public static final JString TITLE_SONG = JString.parse("scape main");
+
 	@OriginalMember(owner = "runetek4.client!jm", name = "A", descriptor = "Lclient!na;")
 	static final JString aClass100_603 = JString.parse("");
+
 	@OriginalMember(owner = "runetek4.client!jm", name = "z", descriptor = "Lclient!na;")
 	public static JString mainLoadSecondaryText = aClass100_603;
+
 	@OriginalMember(owner = "client!gm", name = "T", descriptor = "Lclient!k;")
 	public static Js5CacheQueue js5CacheQueue;
+
 	@OriginalMember(owner = "client!id", name = "l", descriptor = "Lclient!jb;")
 	public static Js5NetQueue js5NetQueue;
+
 	@OriginalMember(owner = "client!gj", name = "b", descriptor = "I")
 	public static int modeWhere = 0;
+
 	@OriginalMember(owner = "client!ld", name = "k", descriptor = "Ljava/lang/String;")
 	public static String worldListHostname;
+
 	@OriginalMember(owner = "client!hi", name = "g", descriptor = "I")
 	public static int worldListAlternatePort;
+
 	@OriginalMember(owner = "client!ud", name = "K", descriptor = "I")
 	public static int worldListDefaultPort;
+
 	@OriginalMember(owner = "client!pb", name = "Q", descriptor = "I")
 	public static int worldListId = 1;
+
 	@OriginalMember(owner = "client!jg", name = "c", descriptor = "Lclient!en;")
 	public static BufferedFile uid;
+
 	@OriginalMember(owner = "client!nj", name = "f", descriptor = "Lclient!en;")
 	public static BufferedFile cacheData;
+
 	@OriginalMember(owner = "client!pf", name = "f", descriptor = "Lclient!en;")
 	public static BufferedFile cacheMasterIndex;
+
 	@OriginalMember(owner = "client!li", name = "l", descriptor = "Lclient!ge;")
 	public static Cache masterCache;
+
 	@OriginalMember(owner = "runetek4.client!fk", name = "q", descriptor = "Lclient!uc;")
 	public static MouseWheel mouseWheel;
+
 	@OriginalMember(owner = "runetek4.client!rh", name = "j", descriptor = "Lclient!runetek4.client;")
 	public static client instance;
+
 	@OriginalMember(owner = "runetek4.client!qi", name = "C", descriptor = "Lclient!ei;")
 	public static MixerPcmStream soundStream;
+
 	@OriginalMember(owner = "runetek4.client!uc", name = "c", descriptor = "Lclient!ve;")
 	public static Js5 js5Archive4;
+
 	@OriginalMember(owner = "runetek4.client!ef", name = "p", descriptor = "Lclient!vj;")
 	public static PcmResampler pcmResampler;
+
 	@OriginalMember(owner = "runetek4.client!gj", name = "d", descriptor = "I")
 	public static int loop = 0;
+
 	@OriginalMember(owner = "runetek4.client!sg", name = "k", descriptor = "Lclient!ve;")
 	public static Js5 js5Archive23;
+
 	@OriginalMember(owner = "runetek4.client!gg", name = "U", descriptor = "I")
 	public static int modeWhat = 0;
+
 	@OriginalMember(owner = "runetek4.client!ud", name = "S", descriptor = "Z")
 	public static boolean advertSuppressed = false;
+
 	@OriginalMember(owner = "runetek4.client!lb", name = "v", descriptor = "I")
 	public static int language = 0;
+
 	@OriginalMember(owner = "runetek4.client!t", name = "x", descriptor = "Z")
 	public static boolean javaScript = false;
+
 	@OriginalMember(owner = "runetek4.client!lk", name = "U", descriptor = "Z")
 	public static boolean objectTag = false;
+
 	@OriginalMember(owner = "runetek4.client!vk", name = "n", descriptor = "I")
 	public static int game = 0;
+
 	@OriginalMember(owner = "runetek4.client!wk", name = "w", descriptor = "I")
 	public static int country;
+
 	@OriginalMember(owner = "runetek4.client!od", name = "n", descriptor = "Z")
 	public static boolean haveIe6 = false;
+
 	@OriginalMember(owner = "runetek4.client!qi", name = "r", descriptor = "I")
 	public static int affiliate = 0;
+
 	@OriginalMember(owner = "runetek4.client!dk", name = "h", descriptor = "Lclient!na;")
 	public static JString settings = null;
+
 	@OriginalMember(owner = "client!ba", name = "D", descriptor = "Lclient!vh;")
 	public static AudioChannel musicChannel;
+
 	@OriginalMember(owner = "runetek4.client!lh", name = "s", descriptor = "Lclient!vh;")
 	public static AudioChannel soundChannel;
+
 	@OriginalMember(owner = "runetek4.client!tl", name = "d", descriptor = "I")
 	public static int gameState = 0;
+
 	@OriginalMember(owner = "runetek4.client!id", name = "f", descriptor = "Z")
 	public static boolean clean = false;
+
 	@OriginalMember(owner = "client!bl", name = "P", descriptor = "I")
 	public static int js5ConnectDelay = 0;
+
 	@OriginalMember(owner = "runetek4.client!wc", name = "c", descriptor = "I")
 	public static int defaultPort;
+
 	@OriginalMember(owner = "runetek4.client!ee", name = "g", descriptor = "I")
 	public static int alternatePort;
+
 	@OriginalMember(owner = "runetek4.client!ra", name = "s", descriptor = "I")
 	public static int port;
+
 	@OriginalMember(owner = "runetek4.client!r", name = "f", descriptor = "I")
 	public static int worldListPort;
+
 	@OriginalMember(owner = "runetek4.client!v", name = "f", descriptor = "Lclient!al;")
 	public static Js5MasterIndex js5MasterIndex;
+
 	@OriginalMember(owner = "runetek4.client!re", name = "B", descriptor = "Lclient!ve;")
 	public static Js5 js5Archive0;
+
 	@OriginalMember(owner = "runetek4.client!ud", name = "J", descriptor = "Lclient!ve;")
 	public static Js5 js5Archive1;
+
 	@OriginalMember(owner = "runetek4.client!wf", name = "g", descriptor = "Lclient!ve;")
 	public static Js5 js5Archive2;
+
 	@OriginalMember(owner = "runetek4.client!dc", name = "z", descriptor = "Lclient!ve;")
 	public static Js5 js5Archive3;
+
 	@OriginalMember(owner = "runetek4.client!kc", name = "w", descriptor = "Lclient!ve;")
 	public static Js5 js5Archive6;
+
 	@OriginalMember(owner = "runetek4.client!vl", name = "g", descriptor = "Lclient!ve;")
 	public static Js5 js5Archive7;
+
 	@OriginalMember(owner = "runetek4.client!ra", name = "K", descriptor = "Lclient!ve;")
 	public static Js5 js5Archive8;
+
 	@OriginalMember(owner = "runetek4.client!pk", name = "Z", descriptor = "Lclient!ve;")
 	public static Js5 js5Archive9;
+
 	@OriginalMember(owner = "runetek4.client!ol", name = "U", descriptor = "Lclient!ve;")
 	public static Js5 js5Archive10;
+
 	@OriginalMember(owner = "runetek4.client!rg", name = "z", descriptor = "Lclient!ve;")
 	public static Js5 js5Archive11;
+
 	@OriginalMember(owner = "client!bf", name = "s", descriptor = "Lclient!ve;")
 	public static Js5 js5Archive12;
+
 	@OriginalMember(owner = "runetek4.client!ve", name = "l", descriptor = "Lclient!ve;")
 	public static Js5 js5Archive13;
+
 	@OriginalMember(owner = "runetek4.client!kl", name = "r", descriptor = "Lclient!ve;")
 	public static Js5 js5Archive14;
+
 	@OriginalMember(owner = "runetek4.client!km", name = "Oc", descriptor = "Lclient!ve;")
 	public static Js5 js5Archive15;
+
 	@OriginalMember(owner = "runetek4.client!wl", name = "s", descriptor = "Lclient!ve;")
 	public static Js5 js5Archive16;
+
 	@OriginalMember(owner = "runetek4.client!km", name = "Nc", descriptor = "Lclient!ve;")
 	public static Js5 js5Archive17;
+
 	@OriginalMember(owner = "runetek4.client!nj", name = "l", descriptor = "Lclient!ve;")
 	public static Js5 js5Archive18;
+
 	@OriginalMember(owner = "runetek4.client!ni", name = "k", descriptor = "Lclient!ve;")
 	public static Js5 js5Archive19;
+
 	@OriginalMember(owner = "runetek4.client!ui", name = "cb", descriptor = "Lclient!ve;")
 	public static Js5 js5Archive20;
+
 	@OriginalMember(owner = "runetek4.client!jh", name = "p", descriptor = "Lclient!ve;")
 	public static Js5 js5Archive21;
+
 	@OriginalMember(owner = "runetek4.client!mf", name = "W", descriptor = "Lclient!ve;")
 	public static Js5 js5Archive22;
+
 	@OriginalMember(owner = "runetek4.client!uj", name = "J", descriptor = "Lclient!ve;")
 	public static Js5 js5Archive24;
+
 	@OriginalMember(owner = "client!cd", name = "B", descriptor = "Lclient!ve;")
 	public static Js5 js5Archive25;
+
 	@OriginalMember(owner = "runetek4.client!nd", name = "t", descriptor = "Lclient!ve;")
 	public static Js5 js5Archive26;
+
 	@OriginalMember(owner = "runetek4.client!sf", name = "b", descriptor = "Lclient!ve;")
 	public static Js5 js5Archive27;
+
 	@OriginalMember(owner = "runetek4.client!qc", name = "P", descriptor = "I")
 	public static int mainLoadPercentage = 10;
+
 	@OriginalMember(owner = "runetek4.client!nc", name = "j", descriptor = "I")
 	public static int mainLoadState = 0;
+
 	@OriginalMember(owner = "runetek4.client!li", name = "v", descriptor = "Lclient!va;")
 	public static MidiPcmStream musicStream;
+
 	@OriginalMember(owner = "runetek4.client!t", name = "F", descriptor = "I")
 	public static int js5PrevErrors = 0;
+
 	@OriginalMember(owner = "runetek4.client!em", name = "v", descriptor = "Ljava/lang/String;")
 	public static String hostname;
+
 	@OriginalMember(owner = "runetek4.client!vc", name = "db", descriptor = "[S")
 	public static short[] aShortArray88;
+
 	@OriginalMember(owner = "runetek4.client!f", name = "T", descriptor = "[S")
 	public static short[] aShortArray19 = new short[256];
+
 	@OriginalMember(owner = "runetek4.client!sm", name = "l", descriptor = "[S")
 	public static short[] aShortArray74 = new short[256];
+
 	@OriginalMember(owner = "runetek4.client!vc", name = "bb", descriptor = "[S")
 	public static short[] aShortArray87 = new short[256];
+
 	@OriginalMember(owner = "runetek4.client!cm", name = "f", descriptor = "Lsignlink!im;")
 	public static PrivilegedRequest js5SocketRequest;
+
 	@OriginalMember(owner = "runetek4.client!qk", name = "g", descriptor = "Lclient!ma;")
 	public static BufferedSocket js5Socket;
+
 	@OriginalMember(owner = "runetek4.client!ac", name = "c", descriptor = "I")
 	public static int js5ConnectState = 0;
+
 	@OriginalMember(owner = "runetek4.client!rj", name = "Y", descriptor = "J")
 	public static long js5ConnectTime;
+
 	@OriginalMember(owner = "runetek4.client!nm", name = "Y", descriptor = "J")
 	public static long firstGc = 0L;
+
 	@OriginalMember(owner = "runetek4.client!mj", name = "A", descriptor = "J")
 	public static long prevGc = 0L;
+
 	@OriginalMember(owner = "runetek4.client!wj", name = "e", descriptor = "Lclient!na;")
 	public static JString mainLoadPrimaryText = null;
+
 	@OriginalMember(owner = "runetek4.client!sj", name = "p", descriptor = "I")
 	public static int anInt5150 = 1;
+
 	@OriginalMember(owner = "runetek4.client!cn", name = "B", descriptor = "I")
 	public static int anInt1196 = 1;
+
 	@OriginalMember(owner = "client!ah", name = "t", descriptor = "I")
 	public static int anInt986;
+
 	@OriginalMember(owner = "client!ca", name = "Z", descriptor = "Lclient!ve;")
 	public static Js5 js5Archive5;
 
@@ -286,7 +374,7 @@ public final class client extends GameShell {
 			try {
 				@Pc(63) byte[] local63 = arg0[2].getBytes("ISO-8859-1");
 				local15 = LangUtils.method2053(JString.decodeString(local63, local63.length, 0));
-			} catch (@Pc(74) Exception local74) {
+			} catch (@Pc(74) Exception ignored) {
 			}
 			if (local15 != -1) {
 				language = local15;
@@ -899,7 +987,7 @@ public final class client extends GameShell {
 			if (uid != null) {
 				uid.method1455();
 			}
-		} catch (@Pc(129) IOException local129) {
+		} catch (@Pc(129) IOException ignored) {
 		}
 	}
 

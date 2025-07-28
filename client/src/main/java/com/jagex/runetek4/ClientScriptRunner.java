@@ -46,196 +46,286 @@ public final class ClientScriptRunner {
 
 	@OriginalMember(owner = "client!bm", name = "p", descriptor = "Lclient!na;")
 	public static final JString aClass100_133 = JString.parse("(U1");
+
 	@OriginalMember(owner = "runetek4.client!wh", name = "u", descriptor = "Lclient!na;")
 	public static final JString aClass100_1097 = JString.parse("(U2");
+
 	@OriginalMember(owner = "runetek4.client!mj", name = "g", descriptor = "Lclient!na;")
 	public static final JString aClass100_761 = JString.parse("(U3");
+
 	@OriginalMember(owner = "runetek4.client!hh", name = "a", descriptor = "Lclient!na;")
 	public static final JString aClass100_520 = JString.parse("(U4");
+
 	@OriginalMember(owner = "runetek4.client!tb", name = "P", descriptor = "Lclient!na;")
 	public static final JString aClass100_1002 = JString.parse("(U5");
+
 	@OriginalMember(owner = "runetek4.client!jh", name = "g", descriptor = "Lclient!na;")
 	public static final JString aClass100_591 = JString.parse("(Udns");
+
 	@OriginalMember(owner = "runetek4.client!lh", name = "z", descriptor = "Lclient!na;")
 	public static final JString aClass100_672 = JString.parse("(U (X");
+
 	@OriginalMember(owner = "client!bd", name = "b", descriptor = "Lclient!na;")
 	public static final JString aClass100_80 = JString.parse("(U(Y");
+
 	@OriginalMember(owner = "runetek4.client!oj", name = "p", descriptor = "I")
 	public static final int anInt4306 = 2301979;
+
 	@OriginalMember(owner = "runetek4.client!ec", name = "l", descriptor = "I")
 	public static final int anInt1704 = 5063219;
+
 	@OriginalMember(owner = "runetek4.client!rl", name = "Z", descriptor = "I")
 	public static final int anInt4938 = 7759444;
+
 	@OriginalMember(owner = "client!bj", name = "V", descriptor = "I")
 	public static final int anInt671 = 3353893;
+
 	@OriginalMember(owner = "runetek4.client!pg", name = "V", descriptor = "I")
 	public static final int anInt4504 = 50;
 
 	@OriginalMember(owner = "runetek4.client!ab", name = "j", descriptor = "[Lclient!na;")
 	public static final JString[] scriptStringValues = new JString[1000];
+
 	@OriginalMember(owner = "runetek4.client!uj", name = "t", descriptor = "[I")
 	public static final int[] scriptIntValues = new int[1000];
+
 	@OriginalMember(owner = "client!fl", name = "Q", descriptor = "Lclient!na;")
 	public static final JString EMPTY_STRING = JString.parse("");
+
 	@OriginalMember(owner = "client!bb", name = "A", descriptor = "Lclient!na;")
 	public static final JString aClass100_74 = JString.parse("::");
+
 	@OriginalMember(owner = "client!be", name = "ib", descriptor = "Lclient!na;")
 	public static final JString EVENT_OPBASE = JString.parse("event_opbase");
+
 	@OriginalMember(owner = "client!da", name = "O", descriptor = "Lclient!na;")
 	public static final JString aClass100_253 = JString.parse("(U0a )2 via: ");
+
 	@OriginalMember(owner = "client!fl", name = "H", descriptor = "Lclient!na;")
 	public static final JString aClass100_446 = JString.parse("<img=0>");
+
 	@OriginalMember(owner = "runetek4.client!nd", name = "b", descriptor = "Lclient!na;")
 	public static final JString aClass100_780 = JString.parse("Clientscript error in: ");
+
 	@OriginalMember(owner = "runetek4.client!hm", name = "R", descriptor = "Lclient!na;")
 	public static final JString aClass100_537 = JString.parse("<img=1>");
+
 	@OriginalMember(owner = "runetek4.client!hn", name = "K", descriptor = "Ljava/util/Calendar;")
 	public static final Calendar aCalendar2 = Calendar.getInstance();
+
 	@OriginalMember(owner = "runetek4.client!kk", name = "m", descriptor = "Lclient!na;")
 	public static final JString CS_ERROR = JString.parse("Clientscript error )2 check log for details");
+
 	@OriginalMember(owner = "client!fe", name = "nc", descriptor = "[Lclient!hj;")
 	public static final GoSubFrame[] callStack = new GoSubFrame[50];
+
 	@OriginalMember(owner = "client!ee", name = "j", descriptor = "[I")
 	public static final int[] anIntArray140 = new int[5];
+
 	@OriginalMember(owner = "runetek4.client!oe", name = "i", descriptor = "[[I")
 	public static final int[][] anIntArrayArray33 = new int[5][5000];
+
 	@OriginalMember(owner = "runetek4.client!rl", name = "eb", descriptor = "Lclient!na;")
 	public static final JString aClass100_928 = JString.parse("(U0a )2 in: ");
+
 	@OriginalMember(owner = "client!fe", name = "I", descriptor = "Lclient!na;")
 	public static final JString aClass100_639 = JString.parse(" ");
+
 	@OriginalMember(owner = "client!dc", name = "M", descriptor = "Lclient!na;")
 	public static final JString aClass100_268 = JString.parse(")4");
+
 	@OriginalMember(owner = "runetek4.client!he", name = "gb", descriptor = "Lclient!na;")
 	public static final JString aClass100_518 = JString.parse("www");
+
 	@OriginalMember(owner = "client!e", name = "Tc", descriptor = "Lclient!na;")
 	public static final JString aClass100_365 = JString.parse("www)2wtqa");
+
 	@OriginalMember(owner = "runetek4.client!lk", name = "J", descriptor = "Lclient!na;")
 	public static final JString aClass100_687 = JString.parse(")4p=");
+
 	@OriginalMember(owner = "client!en", name = "x", descriptor = "Lclient!na;")
 	public static final JString aClass100_424 = JString.parse("http:)4)4");
+
 	@OriginalMember(owner = "client!gf", name = "I", descriptor = "Lclient!na;")
 	public static final JString aClass100_886 = JString.parse(")3runescape)3com)4l=");
+
 	@OriginalMember(owner = "runetek4.client!v", name = "a", descriptor = "Lclient!na;")
 	public static final JString aClass100_98 = JString.parse(")4a=");
+
 	@OriginalMember(owner = "client!ch", name = "C", descriptor = "[[I")
 	public static final int[][] anIntArrayArray6 = new int[104][104];
+
 	@OriginalMember(owner = "runetek4.client!n", name = "e", descriptor = "Lclient!na;")
 	public static final JString aClass100_767 = JString.parse(")2");
-	@OriginalMember(owner = "client!je", name = "U", descriptor = "Lclient!na;")
-	public static final JString SHOWINGVIDEOAD = JString.parse("showingVideoAd");
+
 	@OriginalMember(owner = "runetek4.client!ob", name = "p", descriptor = "Lclient!na;")
 	public static final JString aClass100_802 = JString.parse("(U0a )2 non)2existant gosub script)2num: ");
+
 	@OriginalMember(owner = "runetek4.client!af", name = "m", descriptor = "Lclient!na;")
 	public static final JString aClass100_10 = JString.parse("<br>");
 
 	@OriginalMember(owner = "runetek4.client!em", name = "z", descriptor = "Z")
 	public static boolean aBoolean108 = false;
+
 	@OriginalMember(owner = "runetek4.client!d", name = "R", descriptor = "Lclient!be;")
 	public static Component aClass13_10 = null;
+
 	@OriginalMember(owner = "client!bi", name = "jb", descriptor = "Z")
 	public static boolean aBoolean43 = true;
+
 	@OriginalMember(owner = "runetek4.client!k", name = "m", descriptor = "Z")
 	public static boolean neverRemoveRoofs = false;
+
 	@OriginalMember(owner = "runetek4.client!ib", name = "e", descriptor = "Lclient!be;")
 	public static Component aClass13_14 = null;
+
 	@OriginalMember(owner = "runetek4.client!nm", name = "W", descriptor = "Lclient!na;")
 	public static JString url;
+
 	@OriginalMember(owner = "runetek4.client!th", name = "m", descriptor = "[Lclient!be;")
 	public static Component[] aClass13Array13;
+
 	@OriginalMember(owner = "runetek4.client!k", name = "j", descriptor = "I")
 	public static int anInt3126;
+
 	@OriginalMember(owner = "runetek4.client!gf", name = "K", descriptor = "I")
 	public static int anInt4696;
+
 	@OriginalMember(owner = "runetek4.client!ac", name = "p", descriptor = "Lclient!be;")
 	public static Component aClass13_1 = null;
+
 	@OriginalMember(owner = "runetek4.client!km", name = "pc", descriptor = "Z")
 	public static boolean aBoolean172 = false;
+
 	@OriginalMember(owner = "runetek4.client!gg", name = "db", descriptor = "I")
 	public static int anInt2225 = -1;
+
 	@OriginalMember(owner = "runetek4.client!nb", name = "d", descriptor = "I")
 	public static int anInt4035 = 0;
+
 	@OriginalMember(owner = "runetek4.client!kd", name = "Bb", descriptor = "I")
 	public static int anInt3260 = -1;
+
 	@OriginalMember(owner = "runetek4.client!hi", name = "a", descriptor = "I")
 	public static int anInt2503 = -1;
+
 	@OriginalMember(owner = "runetek4.client!ld", name = "c", descriptor = "I")
 	public static int anInt3484 = -1;
+
 	@OriginalMember(owner = "runetek4.client!lf", name = "k", descriptor = "I")
 	public static int anInt3502 = -1;
+
 	@OriginalMember(owner = "runetek4.client!mh", name = "X", descriptor = "I")
 	public static int anInt3851 = -1;
+
 	@OriginalMember(owner = "runetek4.client!ig", name = "b", descriptor = "I")
 	public static int anInt2882;
+
 	@OriginalMember(owner = "runetek4.client!ig", name = "f", descriptor = "I")
 	public static int anInt2884;
+
 	@OriginalMember(owner = "runetek4.client!hc", name = "P", descriptor = "I")
 	public static int anInt2428;
+
 	@OriginalMember(owner = "runetek4.client!u", name = "a", descriptor = "I")
 	public static int anInt5388 = 0;
+
 	@OriginalMember(owner = "runetek4.client!re", name = "y", descriptor = "I")
 	public static int anInt4851;
+
 	@OriginalMember(owner = "runetek4.client!me", name = "nb", descriptor = "I")
 	public static int anInt3751;
+
 	@OriginalMember(owner = "runetek4.client!em", name = "w", descriptor = "I")
 	public static int anInt1892;
+
 	@OriginalMember(owner = "runetek4.client!vg", name = "c", descriptor = "Z")
 	public static boolean aBoolean299 = false;
+
 	@OriginalMember(owner = "runetek4.client!wb", name = "c", descriptor = "I")
 	public static int anInt5794 = -1;
+
 	@OriginalMember(owner = "client!fc", name = "a", descriptor = "I")
 	public static int anInt1951 = -1;
+
 	@OriginalMember(owner = "runetek4.client!jh", name = "n", descriptor = "Lclient!bd;")
 	public static QuickChatPhrase activePhrase;
+
 	@OriginalMember(owner = "runetek4.client!wf", name = "j", descriptor = "Lclient!be;")
 	public static Component secondaryActiveComponent;
+
 	@OriginalMember(owner = "runetek4.client!sg", name = "i", descriptor = "Lclient!be;")
 	public static Component primaryActiveComponent;
+
 	@OriginalMember(owner = "runetek4.client!og", name = "g", descriptor = "[Lclient!na;")
 	public static JString[] stringLocals;
+
 	@OriginalMember(owner = "runetek4.client!rh", name = "a", descriptor = "[I")
 	public static int[] intLocals;
+
 	@OriginalMember(owner = "runetek4.client!km", name = "ad", descriptor = "I")
 	public static int fp = 0;
+
 	@OriginalMember(owner = "runetek4.client!od", name = "g", descriptor = "S")
 	public static short aShort25 = 256;
+
 	@OriginalMember(owner = "client!an", name = "db", descriptor = "S")
 	public static short aShort9 = 205;
+
 	@OriginalMember(owner = "runetek4.client!mc", name = "tb", descriptor = "S")
 	public static short aShort22 = 1;
+
 	@OriginalMember(owner = "runetek4.client!ac", name = "k", descriptor = "S")
 	public static short aShort1 = 32767;
+
 	@OriginalMember(owner = "runetek4.client!nc", name = "n", descriptor = "I")
 	public static int anInt4055 = 0;
+
 	@OriginalMember(owner = "runetek4.client!tm", name = "i", descriptor = "I")
 	public static int anInt5377 = 0;
+
 	@OriginalMember(owner = "client!bn", name = "eb", descriptor = "I")
 	public static int anInt773 = 0;
+
 	@OriginalMember(owner = "client!ah", name = "n", descriptor = "I")
 	public static int anInt983 = 0;
+
 	@OriginalMember(owner = "runetek4.client!sc", name = "p", descriptor = "I")
 	public static int anInt5029 = 0;
+
 	@OriginalMember(owner = "runetek4.client!kd", name = "yb", descriptor = "S")
 	public static short aShort21 = 32767;
+
 	@OriginalMember(owner = "client!ee", name = "f", descriptor = "S")
 	public static short aShort12 = 1;
+
 	@OriginalMember(owner = "runetek4.client!kk", name = "j", descriptor = "I")
 	public static int anInt3325 = 0;
+
 	@OriginalMember(owner = "runetek4.client!vk", name = "f", descriptor = "[[[B")
 	public static byte[][][] aByteArrayArrayArray15;
+
 	@OriginalMember(owner = "runetek4.client!vg", name = "b", descriptor = "S")
 	public static short aShort30 = 256;
+
 	@OriginalMember(owner = "runetek4.client!lj", name = "z", descriptor = "[I")
 	public static int[] anIntArray338 = new int[2];
+
 	@OriginalMember(owner = "runetek4.client!vl", name = "i", descriptor = "[I")
 	public static int[] anIntArray518 = new int[2];
+
 	@OriginalMember(owner = "runetek4.client!tk", name = "K", descriptor = "[I")
 	public static int[] anIntArray476 = new int[2];
+
 	@OriginalMember(owner = "client!e", name = "xc", descriptor = "[I")
 	public static int[] anIntArray134 = new int[2];
+
 	@OriginalMember(owner = "client!ge", name = "k", descriptor = "[I")
 	public static int[] anIntArray205 = new int[2];
+
 	@OriginalMember(owner = "client!bf", name = "B", descriptor = "I")
 	public static int anInt548 = -1;
+
 	@OriginalMember(owner = "runetek4.client!pb", name = "rb", descriptor = "S")
 	public static short aShort27 = 320;
 
@@ -350,7 +440,7 @@ public final class ClientScriptRunner {
 																@Pc(265) byte[] local265 = ((String) Player.lastLogAddress.result).getBytes("ISO-8859-1");
 																local246 = JString.decodeString(local265, local265.length, 0);
 															}
-														} catch (@Pc(274) UnsupportedEncodingException local274) {
+														} catch (@Pc(274) UnsupportedEncodingException ignored) {
 														}
 													}
 													string = JString.concatenate(new JString[] { string.substring(local14, 0), local246, string.substring(local14 + 4) });
@@ -4682,7 +4772,7 @@ public final class ClientScriptRunner {
 																	@Pc(8281) byte[] local8281 = ((String) Player.lastLogAddress.result).getBytes("ISO-8859-1");
 																	chatTyped = JString.decodeString(local8281, local8281.length, 0);
 																}
-															} catch (@Pc(8290) UnsupportedEncodingException local8290) {
+															} catch (@Pc(8290) UnsupportedEncodingException ignored) {
 															}
 														}
 														scriptStringValues[ssp++] = chatTyped;

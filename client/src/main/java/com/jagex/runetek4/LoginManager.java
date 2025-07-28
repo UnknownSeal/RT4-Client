@@ -26,150 +26,213 @@ public class LoginManager {
     public static final BigInteger RSA_MODULUS = new BigInteger("7162900525229798032761816791230527296329313291232324290237849263501208207972894053929065636522363163621000728841182238772712427862772219676577293600221789");
     public static final BigInteger RSA_EXPONENT = new BigInteger("58778699976184461502525193738213253649000149147835990136706041084440742975821");
 
-
     @OriginalMember(owner = "client!bh", name = "C", descriptor = "Lclient!na;")
     public static final JString COMPLETE_PERCENT = JString.parse("<br>(X100(U(Y");
+
     @OriginalMember(owner = "runetek4.client!e", name = "Dc", descriptor = "Lclient!na;")
     public static final JString aClass100_363 = JString.parse("_labels");
-    @OriginalMember(owner = "client!ef", name = "h", descriptor = "Lclient!na;")
-    public static final JString UNZAP = JString.parse("unzap");
-    @OriginalMember(owner = "runetek4.client!nd", name = "r", descriptor = "Lclient!na;")
-    public static final JString ZAP = JString.parse("zap");
+
     @OriginalMember(owner = "runetek4.client!wj", name = "f", descriptor = "Lclient!na;")
     public static final JString aClass100_1103 = JString.parse("ul");
+
     @OriginalMember(owner = "runetek4.client!i", name = "ic", descriptor = "Lclient!na;")
     public static final JString aClass100_558 = JString.parse("m");
+
     @OriginalMember(owner = "runetek4.client!wb", name = "e", descriptor = "Lclient!na;")
     public static final JString aClass100_1090 = JString.parse("l");
+
     @OriginalMember(owner = "runetek4.client!oe", name = "o", descriptor = "Lclient!na;")
     public static final JString aClass100_807 = JString.parse("n");
+
     @OriginalMember(owner = "runetek4.client!nb", name = "a", descriptor = "Lclient!na;")
     public static final JString aClass100_772 = JString.parse("um");
+
     @OriginalMember(owner = "client!gm", name = "W", descriptor = "Lclient!na;")
     public static final JString UNDERSCORE = JString.parse("_");
+
     @OriginalMember(owner = "runetek4.client!rj", name = "Z", descriptor = "[I")
     public static final int[] anIntArray434 = new int[64];
+
     @OriginalMember(owner = "client!bg", name = "g", descriptor = "Lclient!i;")
     public static final PacketBit packet = new PacketBit(5000);
 
     @OriginalMember(owner = "runetek4.client!qi", name = "z", descriptor = "Lclient!qf;")
     public static Sprite aClass3_Sub2_Sub1_10;
+
     @OriginalMember(owner = "runetek4.client!d", name = "ib", descriptor = "Lclient!qf;")
     public static Sprite aClass3_Sub2_Sub1_1;
+
     @OriginalMember(owner = "runetek4.client!hd", name = "e", descriptor = "Lclient!qf;")
     public static Sprite aClass3_Sub2_Sub1_6;
+
     @OriginalMember(owner = "runetek4.client!nb", name = "i", descriptor = "Lclient!qf;")
     public static Sprite aClass3_Sub2_Sub1_8;
+
     @OriginalMember(owner = "runetek4.client!oi", name = "h", descriptor = "Lclient!qf;")
     public static Sprite aClass3_Sub2_Sub1_9;
+
     @OriginalMember(owner = "runetek4.client!qf", name = "M", descriptor = "I")
     public static int idleNetCycles = 0;
+
     @OriginalMember(owner = "runetek4.client!gk", name = "h", descriptor = "I")
     public static int mapFlagZ = 0;
+
     @OriginalMember(owner = "runetek4.client!ja", name = "n", descriptor = "I")
     public static int mapFlagX = 0;
+
     @OriginalMember(owner = "runetek4.client!nm", name = "U", descriptor = "I")
     public static int mapFilesMissingCount = 0;
+
     @OriginalMember(owner = "runetek4.client!wc", name = "g", descriptor = "I")
     public static int anInt5804 = 0;
+
     @OriginalMember(owner = "runetek4.client!ol", name = "V", descriptor = "I")
     public static int step = 0;
+
     @OriginalMember(owner = "runetek4.client!vk", name = "b", descriptor = "I")
     public static int reply = -2;
+
     @OriginalMember(owner = "runetek4.client!af", name = "c", descriptor = "I")
     public static int anInt39 = -1;
+
     @OriginalMember(owner = "runetek4.client!rl", name = "X", descriptor = "I")
     public static int autoStep = 0;
+
     @OriginalMember(owner = "runetek4.client!pl", name = "i", descriptor = "I")
     public static int anInt4587 = 0;
+
     @OriginalMember(owner = "client!bj", name = "Y", descriptor = "I")
     public static int anInt673 = 0;
+
     @OriginalMember(owner = "runetek4.client!qi", name = "A", descriptor = "I")
     public static int disallowResult = -1;
+
     @OriginalMember(owner = "runetek4.client!pg", name = "S", descriptor = "I")
     public static int staffModLevel = 0;
+
     @OriginalMember(owner = "runetek4.client!sd", name = "X", descriptor = "Z")
     public static boolean aBoolean247 = false;
+
     @OriginalMember(owner = "runetek4.client!qf", name = "X", descriptor = "Lclient!be;")
     public static Component aClass13_13 = null;
+
     @OriginalMember(owner = "runetek4.client!qg", name = "W", descriptor = "Z")
     public static boolean playerMember = false;
+
     @OriginalMember(owner = "runetek4.client!mf", name = "X", descriptor = "I")
     public static int loginScreenId;
+
     @OriginalMember(owner = "runetek4.client!t", name = "y", descriptor = "I")
     public static int loadingScreenState = 0;
+
     @OriginalMember(owner = "runetek4.client!sk", name = "ib", descriptor = "I")
     public static int hopTime = 0;
+
     @OriginalMember(owner = "runetek4.client!hd", name = "a", descriptor = "I")
     public static int loops = 0;
+
     @OriginalMember(owner = "runetek4.client!wh", name = "s", descriptor = "I")
     public static int errors = 0;
+
     @OriginalMember(owner = "runetek4.client!pi", name = "P", descriptor = "J")
     public static long serverKey = 0L;
+
     @OriginalMember(owner = "runetek4.client!ud", name = "O", descriptor = "I")
     public static int playerModLevel = 0;
+
     @OriginalMember(owner = "runetek4.client!jk", name = "G", descriptor = "Z")
     public static boolean playerUnderage = false;
+
     @OriginalMember(owner = "runetek4.client!ql", name = "c", descriptor = "Z")
     public static boolean parentalChatConsent = false;
+
     @OriginalMember(owner = "runetek4.client!aa", name = "l", descriptor = "Z")
     public static boolean membersWorld = false;
+
     @OriginalMember(owner = "client!gm", name = "bb", descriptor = "Z")
     public static boolean worldQuickChat = false;
+
     @OriginalMember(owner = "client!c", name = "hb", descriptor = "Z")
     public static boolean parentalAdvertConsent = false;
+
     @OriginalMember(owner = "runetek4.client!we", name = "H", descriptor = "[[B")
     public static byte[][] mapFilesBuffer;
+
     @OriginalMember(owner = "runetek4.client!mf", name = "O", descriptor = "[[B")
     public static byte[][] locationMapFilesBuffer;
+
     @OriginalMember(owner = "runetek4.client!cl", name = "V", descriptor = "[I")
     public static int[] underWaterLocationsMapFileIds;
+
     @OriginalMember(owner = "runetek4.client!pg", name = "jb", descriptor = "[[B")
     public static byte[][] npcSpawnsFilesBuffer;
+
     @OriginalMember(owner = "client!runetek4.client", name = "lb", descriptor = "[I")
     public static int[] mapFileIds;
+
     @OriginalMember(owner = "runetek4.client!pa", name = "L", descriptor = "[[B")
     public static byte[][] underWaterMapFilesBuffer;
+
     @OriginalMember(owner = "client!fl", name = "D", descriptor = "[[I")
     public static int[][] regionsXteaKeys;
+
     @OriginalMember(owner = "runetek4.client!te", name = "H", descriptor = "[I")
     public static int[] regionBitPacked;
+
     @OriginalMember(owner = "runetek4.client!nm", name = "P", descriptor = "[I")
     public static int[] npcSpawnsFileIds;
+
     @OriginalMember(owner = "runetek4.client!hk", name = "bb", descriptor = "[I")
     public static int[] underWaterMapFileIds;
+
     @OriginalMember(owner = "runetek4.client!nj", name = "j", descriptor = "[I")
     public static int[] locationsMapFileIds;
+
     @OriginalMember(owner = "client!bi", name = "Y", descriptor = "[[B")
     public static byte[][] underWaterLocationsMapFilesBuffer;
+
     @OriginalMember(owner = "runetek4.client!mh", name = "hb", descriptor = "Lclient!bn;")
     public static Map map;
+
     @OriginalMember(owner = "runetek4.client!tb", name = "X", descriptor = "Lclient!se;")
     public static MapElementList mapElementList;
+
     @OriginalMember(owner = "runetek4.client!sk", name = "lb", descriptor = "Z")
     public static boolean aBoolean252 = false;
+
     @OriginalMember(owner = "runetek4.client!mg", name = "Q", descriptor = "I")
     public static int anInt3811 = 0;
+
     @OriginalMember(owner = "runetek4.client!da", name = "ab", descriptor = "I")
     public static int anInt1275;
+
     @OriginalMember(owner = "client!ee", name = "c", descriptor = "I")
     public static int anInt1736;
+
     @OriginalMember(owner = "client!gl", name = "d", descriptor = "I")
     public static int anInt2261;
+
     @OriginalMember(owner = "runetek4.client!ii", name = "y", descriptor = "I")
     public static int anInt2910;
+
     @OriginalMember(owner = "runetek4.client!kk", name = "i", descriptor = "I")
     public static int anInt3324;
+
     @OriginalMember(owner = "runetek4.client!nf", name = "e", descriptor = "I")
     public static int anInt4073;
+
     @OriginalMember(owner = "runetek4.client!pk", name = "Y", descriptor = "I")
     public static int anInt4581;
+
     @OriginalMember(owner = "runetek4.client!sm", name = "b", descriptor = "I")
     public static int anInt5208;
+
     @OriginalMember(owner = "runetek4.client!ug", name = "p", descriptor = "I")
     public static int anInt5457;
+
     @OriginalMember(owner = "runetek4.client!uj", name = "E", descriptor = "I")
     public static int anInt5556;
+
     @OriginalMember(owner = "runetek4.client!vf", name = "c", descriptor = "I")
     public static int anInt5752;
 
@@ -538,6 +601,7 @@ public class LoginManager {
             i = Player.plane;
         }
         if (i < Player.plane - 1) {
+            // TODO why is this here?
         }
         if (SceneGraph.allLevelsAreVisible()) {
             SceneGraph.method2750(0);
