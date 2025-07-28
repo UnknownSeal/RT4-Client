@@ -1,9 +1,9 @@
 package com.jagex.runetek4.audio.midi;
 
-import com.jagex.runetek4.Song;
-import com.jagex.runetek4.SoundBank;
+import com.jagex.runetek4.audio.streaming.Song;
+import com.jagex.runetek4.audio.core.SoundBank;
 
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.data.js5.Js5;
 
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;

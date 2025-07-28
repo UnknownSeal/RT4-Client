@@ -1,10 +1,10 @@
 package com.jagex.runetek4.core.datastruct;
 
-import com.jagex.runetek4.node.Node;
+import com.jagex.runetek4.core.node.Node;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
-import com.jagex.runetek4.JString;
+import com.jagex.runetek4.util.string.JString;
 
 @OriginalClass("client!sj")
 public final class JagStringWrapper extends Node {

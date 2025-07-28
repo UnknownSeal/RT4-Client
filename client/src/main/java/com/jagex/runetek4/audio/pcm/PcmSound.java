@@ -1,6 +1,6 @@
 package com.jagex.runetek4.audio.pcm;
 
-import com.jagex.runetek4.Sound;
+import com.jagex.runetek4.audio.core.Sound;
 
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;

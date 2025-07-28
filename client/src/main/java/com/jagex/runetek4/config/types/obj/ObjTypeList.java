@@ -1,11 +1,11 @@
 package com.jagex.runetek4.config.types.obj;
 
-import com.jagex.runetek4.JString;
-import com.jagex.runetek4.LocalizedText;
-import com.jagex.runetek4.SoftwareFont;
+import com.jagex.runetek4.util.string.JString;
+import com.jagex.runetek4.util.string.LocalizedText;
+import com.jagex.runetek4.graphics.font.SoftwareFont;
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.js5.Js5;
-import com.jagex.runetek4.node.SoftLruHashTable;
+import com.jagex.runetek4.data.js5.Js5;
+import com.jagex.runetek4.core.node.SoftLruHashTable;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;

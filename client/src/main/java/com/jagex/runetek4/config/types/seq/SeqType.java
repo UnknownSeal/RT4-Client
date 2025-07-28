@@ -1,7 +1,10 @@
 package com.jagex.runetek4.config.types.seq;
 
-import com.jagex.runetek4.*;
+import com.jagex.runetek4.graphics.animation.AnimFrameset;
 import com.jagex.runetek4.core.io.Packet;
+import com.jagex.runetek4.graphics.gl.GlModel;
+import com.jagex.runetek4.graphics.gl.GlRenderer;
+import com.jagex.runetek4.graphics.model.Model;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;

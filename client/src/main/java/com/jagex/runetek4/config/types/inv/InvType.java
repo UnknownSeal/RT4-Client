@@ -4,7 +4,7 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
-import com.jagex.runetek4.node.SecondaryNode;
+import com.jagex.runetek4.core.node.SecondaryNode;
 import com.jagex.runetek4.core.io.Packet;
 
 @OriginalClass("client!md")
