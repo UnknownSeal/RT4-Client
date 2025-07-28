@@ -1,7 +1,7 @@
 package com.jagex.runetek4.network;
 
 import com.jagex.runetek4.*;
-import com.jagex.runetek4.data.cache.media.component.Wdiget;
+import com.jagex.runetek4.data.cache.media.component.Widget;
 import com.jagex.runetek4.ui.chat.Chat;
 import com.jagex.runetek4.client.GameShell;
 import com.jagex.runetek4.client.LoginManager;
@@ -35,7 +35,7 @@ public class ClientProt {
 
     @OriginalMember(owner = "runetek4.client!vg", name = "a", descriptor = "(Lclient!na;IIBI)V")
     public static void method4512(@OriginalArg(0) JString arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(4) int arg3) {
-        @Pc(8) Wdiget local8 = WidgetList.getCreatedComponent(arg3, arg1);
+        @Pc(8) Widget local8 = WidgetList.getCreatedComponent(arg3, arg1);
         if (local8 == null) {
             return;
         }

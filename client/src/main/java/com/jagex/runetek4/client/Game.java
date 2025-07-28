@@ -5,7 +5,7 @@ import com.jagex.runetek4.audio.core.SoundPlayer;
 import com.jagex.runetek4.audio.midi.MidiPlayer;
 import com.jagex.runetek4.audio.spatial.AreaSoundManager;
 import com.jagex.runetek4.audio.streaming.MusicPlayer;
-import com.jagex.runetek4.data.cache.media.component.Wdiget;
+import com.jagex.runetek4.data.cache.media.component.Widget;
 import com.jagex.runetek4.ui.chat.OverHeadChat;
 import com.jagex.runetek4.game.logic.PathFinder;
 import com.jagex.runetek4.game.locs.AttachLocRequest;
@@ -223,7 +223,7 @@ public class Game {
         PlayerList.updatePlayers();
         NpcList.updateNpcs();
         OverHeadChat.tickChatTimers(); // OverheadChat
-        if (WorldMap.wdiget != null) {
+        if (WorldMap.widget != null) {
             WorldMap.method447();
         }
         // VarpDomain
@@ -243,109 +243,109 @@ public class Game {
                 VarcDomain.varcstrs[i] = change.stringArg;
                 VarcDomain.updatedVarcstrs[VarcDomain.updatedVarcstrsWriterIndex++ & 0x1F] = i;
             } else {
-                @Pc(773) Wdiget wdiget;
+                @Pc(773) Widget widget;
                 if (samples == 3) {
-                    wdiget = WidgetList.getComponent(i);
-                    if (!change.stringArg.strEquals(wdiget.text)) {
-                        wdiget.text = change.stringArg;
-                        WidgetList.redraw(wdiget);
+                    widget = WidgetList.getComponent(i);
+                    if (!change.stringArg.strEquals(widget.text)) {
+                        widget.text = change.stringArg;
+                        WidgetList.redraw(widget);
                     }
                 } else if (samples == 4) {
-                    wdiget = WidgetList.getComponent(i);
+                    widget = WidgetList.getComponent(i);
                     x = change.intArg1;
                     dx = change.intArg2;
                     rand = change.intArg3;
-                    if (wdiget.modelType != x || wdiget.modelId != rand || dx != wdiget.anInt498) {
-                        wdiget.modelId = rand;
-                        wdiget.anInt498 = dx;
-                        wdiget.modelType = x;
-                        WidgetList.redraw(wdiget);
+                    if (widget.modelType != x || widget.modelId != rand || dx != widget.anInt498) {
+                        widget.modelId = rand;
+                        widget.anInt498 = dx;
+                        widget.modelType = x;
+                        WidgetList.redraw(widget);
                     }
                 } else if (samples == 5) {
-                    wdiget = WidgetList.getComponent(i);
-                    if (wdiget.modelSeqId != change.intArg1 || change.intArg1 == -1) {
-                        wdiget.anInt496 = 1;
-                        wdiget.anInt500 = 0;
-                        wdiget.modelSeqId = change.intArg1;
-                        wdiget.anInt510 = 0;
-                        WidgetList.redraw(wdiget);
+                    widget = WidgetList.getComponent(i);
+                    if (widget.modelSeqId != change.intArg1 || change.intArg1 == -1) {
+                        widget.anInt496 = 1;
+                        widget.anInt500 = 0;
+                        widget.modelSeqId = change.intArg1;
+                        widget.anInt510 = 0;
+                        WidgetList.redraw(widget);
                     }
                 } else if (samples == 6) {
                     y = change.intArg1;
                     x = y >> 10 & 0x1F;
                     dx = y & 0x1F;
                     rand = y >> 5 & 0x1F;
-                    @Pc(1189) Wdiget local1189 = WidgetList.getComponent(i);
+                    @Pc(1189) Widget local1189 = WidgetList.getComponent(i);
                     dy = (dx << 3) + (rand << 11) + (x << 19);
                     if (dy != local1189.color) {
                         local1189.color = dy;
                         WidgetList.redraw(local1189);
                     }
                 } else if (samples == 7) {
-                    wdiget = WidgetList.getComponent(i);
+                    widget = WidgetList.getComponent(i);
                     // todo: this should not be necessary, data/server-related?
-                    if (wdiget != null) {
+                    if (widget != null) {
                         @Pc(1145) boolean hidden = change.intArg1 == 1;
-                        if (hidden != wdiget.hidden) {
-                            wdiget.hidden = hidden;
-                            WidgetList.redraw(wdiget);
+                        if (hidden != widget.hidden) {
+                            widget.hidden = hidden;
+                            WidgetList.redraw(widget);
                         }
                     }
                 } else if (samples == 8) {
-                    wdiget = WidgetList.getComponent(i);
-                    if (change.intArg1 != wdiget.modelXAngle || wdiget.modelYAngle != change.intArg3 || change.intArg2 != wdiget.modelZoom) {
-                        wdiget.modelXAngle = change.intArg1;
-                        wdiget.modelZoom = change.intArg2;
-                        wdiget.modelYAngle = change.intArg3;
-                        if (wdiget.objId != -1) {
-                            if (wdiget.anInt451 > 0) {
-                                wdiget.modelZoom = wdiget.modelZoom * 32 / wdiget.anInt451;
-                            } else if (wdiget.baseWidth > 0) {
-                                wdiget.modelZoom = wdiget.modelZoom * 32 / wdiget.baseWidth;
+                    widget = WidgetList.getComponent(i);
+                    if (change.intArg1 != widget.modelXAngle || widget.modelYAngle != change.intArg3 || change.intArg2 != widget.modelZoom) {
+                        widget.modelXAngle = change.intArg1;
+                        widget.modelZoom = change.intArg2;
+                        widget.modelYAngle = change.intArg3;
+                        if (widget.objId != -1) {
+                            if (widget.anInt451 > 0) {
+                                widget.modelZoom = widget.modelZoom * 32 / widget.anInt451;
+                            } else if (widget.baseWidth > 0) {
+                                widget.modelZoom = widget.modelZoom * 32 / widget.baseWidth;
                             }
                         }
-                        WidgetList.redraw(wdiget);
+                        WidgetList.redraw(widget);
                     }
                 } else if (samples == 9) {
-                    wdiget = WidgetList.getComponent(i);
-                    if (change.intArg1 != wdiget.objId || wdiget.objCount != change.intArg3) {
-                        wdiget.objId = change.intArg1;
-                        wdiget.objCount = change.intArg3;
-                        WidgetList.redraw(wdiget);
+                    widget = WidgetList.getComponent(i);
+                    if (change.intArg1 != widget.objId || widget.objCount != change.intArg3) {
+                        widget.objId = change.intArg1;
+                        widget.objCount = change.intArg3;
+                        WidgetList.redraw(widget);
                     }
                 } else if (samples == 10) {
-                    wdiget = WidgetList.getComponent(i);
-                    if (wdiget.modelXOffset != change.intArg1 || change.intArg3 != wdiget.modelZOffset || wdiget.modelYOffset != change.intArg2) {
-                        wdiget.modelZOffset = change.intArg3;
-                        wdiget.modelYOffset = change.intArg2;
-                        wdiget.modelXOffset = change.intArg1;
-                        WidgetList.redraw(wdiget);
+                    widget = WidgetList.getComponent(i);
+                    if (widget.modelXOffset != change.intArg1 || change.intArg3 != widget.modelZOffset || widget.modelYOffset != change.intArg2) {
+                        widget.modelZOffset = change.intArg3;
+                        widget.modelYOffset = change.intArg2;
+                        widget.modelXOffset = change.intArg1;
+                        WidgetList.redraw(widget);
                     }
                 } else if (samples == 11) {
-                    wdiget = WidgetList.getComponent(i);
-                    wdiget.x = wdiget.baseX = change.intArg1;
-                    wdiget.yMode = 0;
-                    wdiget.xMode = 0;
-                    wdiget.y = wdiget.baseY = change.intArg3;
-                    WidgetList.redraw(wdiget);
+                    widget = WidgetList.getComponent(i);
+                    widget.x = widget.baseX = change.intArg1;
+                    widget.yMode = 0;
+                    widget.xMode = 0;
+                    widget.y = widget.baseY = change.intArg3;
+                    WidgetList.redraw(widget);
                 } else if (samples == 12) {
-                    wdiget = WidgetList.getComponent(i);
+                    widget = WidgetList.getComponent(i);
                     x = change.intArg1;
-                    if (wdiget != null && wdiget.type == 0) {
-                        if (x > wdiget.scrollMaxV - wdiget.height) {
-                            x = wdiget.scrollMaxV - wdiget.height;
+                    if (widget != null && widget.type == 0) {
+                        if (x > widget.scrollMaxV - widget.height) {
+                            x = widget.scrollMaxV - widget.height;
                         }
                         if (x < 0) {
                             x = 0;
                         }
-                        if (x != wdiget.scrollY) {
-                            wdiget.scrollY = x;
-                            WidgetList.redraw(wdiget);
+                        if (x != widget.scrollY) {
+                            widget.scrollY = x;
+                            WidgetList.redraw(widget);
                         }
                     }
                 } else if (samples == 13) {
-                    wdiget = WidgetList.getComponent(i);
-                    wdiget.modelRotationSpeed = change.intArg1;
+                    widget = WidgetList.getComponent(i);
+                    widget.modelRotationSpeed = change.intArg1;
                 }
             }
         }
@@ -357,56 +357,56 @@ public class Game {
             }
         }
         Protocol.sceneDelta++;
-        if (MiniMenu.pressedInventoryWdiget != null) {
+        if (MiniMenu.pressedInventoryWidget != null) {
             MiniMenu.anInt2043++;
             if (MiniMenu.anInt2043 >= 15) {
-                WidgetList.redraw(MiniMenu.pressedInventoryWdiget);
-                MiniMenu.pressedInventoryWdiget = null;
+                WidgetList.redraw(MiniMenu.pressedInventoryWidget);
+                MiniMenu.pressedInventoryWidget = null;
             }
         }
-        @Pc(1361) Wdiget wdiget;
-        if (WidgetList.clickedInventoryWdiget != null) {
-            WidgetList.redraw(WidgetList.clickedInventoryWdiget);
+        @Pc(1361) Widget widget;
+        if (WidgetList.clickedInventoryWidget != null) {
+            WidgetList.redraw(WidgetList.clickedInventoryWidget);
             if (WidgetList.clickedInventoryComponentX + 5 < Mouse.lastMouseX || Mouse.lastMouseX < WidgetList.clickedInventoryComponentX - 5 || WidgetList.clickedInventoryComponentY + 5 < Mouse.lastMouseY || WidgetList.clickedInventoryComponentY - 5 > Mouse.lastMouseY) {
                 WidgetList.draggingClickedInventoryObject = true;
             }
             WidgetList.lastItemDragTime++;
             if (Mouse.pressedButton == 0) {
                 if (WidgetList.draggingClickedInventoryObject && WidgetList.lastItemDragTime >= 5) {
-                    if (WidgetList.clickedInventoryWdiget == WidgetList.mouseOverInventoryInterface && WidgetList.selectedInventorySlot != MiniMenu.mouseInvInterfaceIndex) {
-                        wdiget = WidgetList.clickedInventoryWdiget;
+                    if (WidgetList.clickedInventoryWidget == WidgetList.mouseOverInventoryInterface && WidgetList.selectedInventorySlot != MiniMenu.mouseInvInterfaceIndex) {
+                        widget = WidgetList.clickedInventoryWidget;
                         @Pc(1363) byte moveItemInsertionMode = 0;
-                        if (VarpDomain.bankInsertMode == 1 && wdiget.contentType == 206) {
+                        if (VarpDomain.bankInsertMode == 1 && widget.contentType == 206) {
                             moveItemInsertionMode = 1;
                         }
-                        if (wdiget.invSlotObjId[MiniMenu.mouseInvInterfaceIndex] <= 0) {
+                        if (widget.invSlotObjId[MiniMenu.mouseInvInterfaceIndex] <= 0) {
                             moveItemInsertionMode = 0;
                         }
-                        if (WidgetList.getServerActiveProperties(wdiget).isObjReplaceEnabled()) {
+                        if (WidgetList.getServerActiveProperties(widget).isObjReplaceEnabled()) {
                             y = WidgetList.selectedInventorySlot;
                             x = MiniMenu.mouseInvInterfaceIndex;
-                            wdiget.invSlotObjId[x] = wdiget.invSlotObjId[y];
-                            wdiget.invSlotObjCount[x] = wdiget.invSlotObjCount[y];
-                            wdiget.invSlotObjId[y] = -1;
-                            wdiget.invSlotObjCount[y] = 0;
+                            widget.invSlotObjId[x] = widget.invSlotObjId[y];
+                            widget.invSlotObjCount[x] = widget.invSlotObjCount[y];
+                            widget.invSlotObjId[y] = -1;
+                            widget.invSlotObjCount[y] = 0;
                         } else if (moveItemInsertionMode == 1) {
                             x = MiniMenu.mouseInvInterfaceIndex;
                             y = WidgetList.selectedInventorySlot;
                             while (x != y) {
                                 if (y > x) {
-                                    wdiget.swapObjs(y - 1, y);
+                                    widget.swapObjs(y - 1, y);
                                     y--;
                                 } else if (x > y) {
-                                    wdiget.swapObjs(y + 1, y);
+                                    widget.swapObjs(y + 1, y);
                                     y++;
                                 }
                             }
                         } else {
-                            wdiget.swapObjs(MiniMenu.mouseInvInterfaceIndex, WidgetList.selectedInventorySlot);
+                            widget.swapObjs(MiniMenu.mouseInvInterfaceIndex, WidgetList.selectedInventorySlot);
                         }
                         Protocol.outboundBuffer.pIsaac1(231);
                         Protocol.outboundBuffer.p2(WidgetList.selectedInventorySlot);
-                        Protocol.outboundBuffer.p4_alt1(WidgetList.clickedInventoryWdiget.id);
+                        Protocol.outboundBuffer.p4_alt1(WidgetList.clickedInventoryWidget.id);
                         Protocol.outboundBuffer.p2_alt2(MiniMenu.mouseInvInterfaceIndex);
                         Protocol.outboundBuffer.p1_alt3(moveItemInsertionMode);
                     }
@@ -417,16 +417,16 @@ public class Game {
                 }
                 Mouse.clickButton = 0;
                 MiniMenu.anInt2043 = 10;
-                WidgetList.clickedInventoryWdiget = null;
+                WidgetList.clickedInventoryWidget = null;
             }
         }
         WidgetList.aBoolean174 = false;
         WidgetList.aClass13_12 = null;
         WidgetList.aBoolean83 = false;
         WidgetList.keyQueueSize = 0;
-        wdiget = WidgetList.aClass13_22;
+        widget = WidgetList.aClass13_22;
         WidgetList.aClass13_22 = null;
-        @Pc(1508) Wdiget local1508 = Protocol.aClass13_11;
+        @Pc(1508) Widget local1508 = Protocol.aClass13_11;
         Protocol.aClass13_11 = null;
         while (Keyboard.nextKey() && WidgetList.keyQueueSize < 128) {
             WidgetList.keyCodes[WidgetList.keyQueueSize] = Keyboard.keyCode;
@@ -434,15 +434,15 @@ public class Game {
             WidgetList.keyQueueSize++;
         }
         // WorldMap.component
-        WorldMap.wdiget = null;
+        WorldMap.widget = null;
         if (WidgetList.topLevelInterface != -1) {
             WidgetList.method1320(0, 0, 0, GameShell.canvasWidth, WidgetList.topLevelInterface, 0, GameShell.canvasHeigth);
         }
         WidgetList.transmitTimer++;
         while (true) {
             // todo: this is actually split up into low/medium/high
-            @Pc(1569) Wdiget highPriorityWdiget;
-            @Pc(1560) Wdiget highPrioritySource;
+            @Pc(1569) Widget highPriorityWidget;
+            @Pc(1560) Widget highPrioritySource;
             @Pc(1555) WidgetEvent highPriorityRequest;
             do {
                 highPriorityRequest = (WidgetEvent) WidgetList.highPriorityRequests.removeHead();
@@ -455,7 +455,7 @@ public class Game {
                                     do {
                                         highPriorityRequest = (WidgetEvent) WidgetList.lowPriorityRequests.removeHead();
                                         if (highPriorityRequest == null) {
-                                            if (WorldMap.wdiget == null) {
+                                            if (WorldMap.widget == null) {
                                                 WidgetList.anInt3337 = 0;
                                             }
                                             if (ClientScriptRunner.aClass13_14 != null) {
@@ -512,9 +512,9 @@ public class Game {
                                             }
                                             MiniMenu.clickTileX = -1;
                                             Protocol.method843();
-                                            if (WidgetList.aClass13_22 != wdiget) {
-                                                if (wdiget != null) {
-                                                    WidgetList.redraw(wdiget);
+                                            if (WidgetList.aClass13_22 != widget) {
+                                                if (widget != null) {
+                                                    WidgetList.redraw(widget);
                                                 }
                                                 if (WidgetList.aClass13_22 != null) {
                                                     WidgetList.redraw(WidgetList.aClass13_22);
@@ -642,8 +642,8 @@ public class Game {
                                         if (highPrioritySource.createdComponentId < 0) {
                                             break;
                                         }
-                                        highPriorityWdiget = WidgetList.getComponent(highPrioritySource.overlayer);
-                                    } while (highPriorityWdiget == null || highPriorityWdiget.createdWdigets == null || highPrioritySource.createdComponentId >= highPriorityWdiget.createdWdigets.length || highPrioritySource != highPriorityWdiget.createdWdigets[highPrioritySource.createdComponentId]);
+                                        highPriorityWidget = WidgetList.getComponent(highPrioritySource.overlayer);
+                                    } while (highPriorityWidget == null || highPriorityWidget.createdWidgets == null || highPrioritySource.createdComponentId >= highPriorityWidget.createdWidgets.length || highPrioritySource != highPriorityWidget.createdWidgets[highPrioritySource.createdComponentId]);
                                     ClientScriptRunner.run(highPriorityRequest);
                                 }
                             }
@@ -651,8 +651,8 @@ public class Game {
                             if (highPrioritySource.createdComponentId < 0) {
                                 break;
                             }
-                            highPriorityWdiget = WidgetList.getComponent(highPrioritySource.overlayer);
-                        } while (highPriorityWdiget == null || highPriorityWdiget.createdWdigets == null || highPriorityWdiget.createdWdigets.length <= highPrioritySource.createdComponentId || highPriorityWdiget.createdWdigets[highPrioritySource.createdComponentId] != highPrioritySource);
+                            highPriorityWidget = WidgetList.getComponent(highPrioritySource.overlayer);
+                        } while (highPriorityWidget == null || highPriorityWidget.createdWidgets == null || highPriorityWidget.createdWidgets.length <= highPrioritySource.createdComponentId || highPriorityWidget.createdWidgets[highPrioritySource.createdComponentId] != highPrioritySource);
                         ClientScriptRunner.run(highPriorityRequest);
                     }
                 }
@@ -660,8 +660,8 @@ public class Game {
                 if (highPrioritySource.createdComponentId < 0) {
                     break;
                 }
-                highPriorityWdiget = WidgetList.getComponent(highPrioritySource.overlayer);
-            } while (highPriorityWdiget == null || highPriorityWdiget.createdWdigets == null || highPrioritySource.createdComponentId >= highPriorityWdiget.createdWdigets.length || highPriorityWdiget.createdWdigets[highPrioritySource.createdComponentId] != highPrioritySource);
+                highPriorityWidget = WidgetList.getComponent(highPrioritySource.overlayer);
+            } while (highPriorityWidget == null || highPriorityWidget.createdWidgets == null || highPrioritySource.createdComponentId >= highPriorityWidget.createdWidgets.length || highPriorityWidget.createdWidgets[highPrioritySource.createdComponentId] != highPrioritySource);
             ClientScriptRunner.run(highPriorityRequest);
         }
     }

@@ -321,7 +321,7 @@ public final class DisplayMode {
 			ClientProt.sendWindowDetails();
 		}
 		for (@Pc(466) int local466 = 0; local466 < 100; local466++) {
-			WidgetList.aBooleanArray100[local466] = true;
+			WidgetList.widgetNeedsRedraw[local466] = true;
 		}
 		GameShell.fullredraw = true;
 	}

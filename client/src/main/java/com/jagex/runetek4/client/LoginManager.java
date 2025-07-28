@@ -5,7 +5,7 @@ import com.jagex.runetek4.audio.core.SoundPlayer;
 import com.jagex.runetek4.audio.spatial.AreaSoundManager;
 import com.jagex.runetek4.data.cache.CacheArchive;
 import com.jagex.runetek4.config.types.npc.NpcType;
-import com.jagex.runetek4.data.cache.media.component.Wdiget;
+import com.jagex.runetek4.data.cache.media.component.Widget;
 import com.jagex.runetek4.config.types.loc.LocTypeList;
 import com.jagex.runetek4.config.types.npc.NpcTypeList;
 import com.jagex.runetek4.config.types.obj.ObjTypeList;
@@ -66,46 +66,46 @@ public class LoginManager {
     public static final JString COMPLETE_PERCENT = JString.parse("<br>(X100(U(Y");
 
     @OriginalMember(owner = "runetek4.client!e", name = "Dc", descriptor = "Lclient!na;")
-    public static final JString aClass100_363 = JString.parse("_labels");
+    public static final JString labels = JString.parse("_labels");
 
     @OriginalMember(owner = "runetek4.client!wj", name = "f", descriptor = "Lclient!na;")
-    public static final JString aClass100_1103 = JString.parse("ul");
+    public static final JString ul = JString.parse("ul");
 
     @OriginalMember(owner = "runetek4.client!i", name = "ic", descriptor = "Lclient!na;")
-    public static final JString aClass100_558 = JString.parse("m");
+    public static final JString m = JString.parse("m");
 
     @OriginalMember(owner = "runetek4.client!wb", name = "e", descriptor = "Lclient!na;")
-    public static final JString aClass100_1090 = JString.parse("l");
+    public static final JString l = JString.parse("l");
 
     @OriginalMember(owner = "runetek4.client!oe", name = "o", descriptor = "Lclient!na;")
-    public static final JString aClass100_807 = JString.parse("n");
+    public static final JString n = JString.parse("n");
 
     @OriginalMember(owner = "runetek4.client!nb", name = "a", descriptor = "Lclient!na;")
-    public static final JString aClass100_772 = JString.parse("um");
+    public static final JString um = JString.parse("um");
 
     @OriginalMember(owner = "client!gm", name = "W", descriptor = "Lclient!na;")
     public static final JString UNDERSCORE = JString.parse("_");
 
     @OriginalMember(owner = "runetek4.client!rj", name = "Z", descriptor = "[I")
-    public static final int[] anIntArray434 = new int[64];
+    public static final int[] regionIndexLookup = new int[64];
 
     @OriginalMember(owner = "client!bg", name = "g", descriptor = "Lclient!i;")
     public static final PacketBit packet = new PacketBit(5000);
 
     @OriginalMember(owner = "runetek4.client!qi", name = "z", descriptor = "Lclient!qf;")
-    public static Sprite aClass3_Sub2_Sub1_10;
+    public static Sprite loginSprite1;
 
     @OriginalMember(owner = "runetek4.client!d", name = "ib", descriptor = "Lclient!qf;")
-    public static Sprite aClass3_Sub2_Sub1_1;
+    public static Sprite loginSprite2;
 
     @OriginalMember(owner = "runetek4.client!hd", name = "e", descriptor = "Lclient!qf;")
-    public static Sprite aClass3_Sub2_Sub1_6;
+    public static Sprite loginSprite3;
 
     @OriginalMember(owner = "runetek4.client!nb", name = "i", descriptor = "Lclient!qf;")
-    public static Sprite aClass3_Sub2_Sub1_8;
+    public static Sprite loginSprite4;
 
     @OriginalMember(owner = "runetek4.client!oi", name = "h", descriptor = "Lclient!qf;")
-    public static Sprite aClass3_Sub2_Sub1_9;
+    public static Sprite loginSprite5;
 
     @OriginalMember(owner = "runetek4.client!qf", name = "M", descriptor = "I")
     public static int idleNetCycles = 0;
@@ -150,7 +150,7 @@ public class LoginManager {
     public static boolean aBoolean247 = false;
 
     @OriginalMember(owner = "runetek4.client!qf", name = "X", descriptor = "Lclient!be;")
-    public static Wdiget aClass13_13 = null;
+    public static Widget hoveredWidget = null;
 
     @OriginalMember(owner = "runetek4.client!qg", name = "W", descriptor = "Z")
     public static boolean playerMember = false;
@@ -274,44 +274,44 @@ public class LoginManager {
 
     @OriginalMember(owner = "runetek4.client!j", name = "g", descriptor = "(I)V")
     public static void method4637() {
-        aClass3_Sub2_Sub1_8 = null;
-        aClass3_Sub2_Sub1_1 = null;
-        aClass3_Sub2_Sub1_6 = null;
-        aClass3_Sub2_Sub1_9 = null;
-        aClass3_Sub2_Sub1_10 = null;
+        loginSprite4 = null;
+        loginSprite2 = null;
+        loginSprite3 = null;
+        loginSprite5 = null;
+        loginSprite1 = null;
     }
 
     @OriginalMember(owner = "runetek4.client!ha", name = "a", descriptor = "(I)V")
     public static void method1841() {
-        if (!ClientScriptRunner.aBoolean108) {
-            if (MiniMenu.anInt3953 != 0) {
-                ClientScriptRunner.anInt3751 = Mouse.anInt5850;
-                ClientScriptRunner.anInt1892 = Mouse.anInt5895;
+        if (!ClientScriptRunner.menuVisible) {
+            if (MiniMenu.menuState != 0) {
+                ClientScriptRunner.scriptMouseX = Mouse.anInt5850;
+                ClientScriptRunner.scriptMouseY = Mouse.anInt5895;
             } else if (Mouse.clickButton == 0) {
-                ClientScriptRunner.anInt3751 = Mouse.lastMouseX;
-                ClientScriptRunner.anInt1892 = Mouse.lastMouseY;
+                ClientScriptRunner.scriptMouseX = Mouse.lastMouseX;
+                ClientScriptRunner.scriptMouseY = Mouse.lastMouseY;
             } else {
-                ClientScriptRunner.anInt3751 = Mouse.mouseClickX;
-                ClientScriptRunner.anInt1892 = Mouse.mouseClickY;
+                ClientScriptRunner.scriptMouseX = Mouse.mouseClickX;
+                ClientScriptRunner.scriptMouseY = Mouse.mouseClickY;
             }
             MiniMenu.menuActionRow = 1;
             MiniMenu.ops[0] = LocalizedText.CANCEL;
             MiniMenu.opBases[0] = JString.EMPTY;
             MiniMenu.actions[0] = 1005;
-            MiniMenu.cursors[0] = MiniMenu.anInt1092;
+            MiniMenu.cursors[0] = MiniMenu.defaultCursor;
         }
         if (WidgetList.topLevelInterface != -1) {
             WidgetList.method1949(WidgetList.topLevelInterface);
         }
-        @Pc(60) int local60;
-        for (local60 = 0; local60 < WidgetList.rectangles; local60++) {
-            if (WidgetList.aBooleanArray100[local60]) {
-                WidgetList.rectangleRedraw[local60] = true;
+        @Pc(60) int widgetIndex;
+        for (widgetIndex = 0; widgetIndex < WidgetList.rectangles; widgetIndex++) {
+            if (WidgetList.widgetNeedsRedraw[widgetIndex]) {
+                WidgetList.rectangleRedraw[widgetIndex] = true;
             }
-            WidgetList.aBooleanArray116[local60] = WidgetList.aBooleanArray100[local60];
-            WidgetList.aBooleanArray100[local60] = false;
+            WidgetList.widgetRedrawPrevious[widgetIndex] = WidgetList.widgetNeedsRedraw[widgetIndex];
+            WidgetList.widgetNeedsRedraw[widgetIndex] = false;
         }
-        aClass13_13 = null;
+        hoveredWidget = null;
         ClientScriptRunner.anInt2503 = -1;
         WidgetList.anInt5574 = -1;
         WidgetList.mouseOverInventoryInterface = null;
@@ -329,22 +329,22 @@ public class LoginManager {
             SoftwareRaster.resetBounds();
         }
         MiniMenu.sort();
-        if (ClientScriptRunner.aBoolean108) {
+        if (ClientScriptRunner.menuVisible) {
             if (WidgetList.aBoolean298) {
                 MiniMenu.drawB();
             } else {
                 MiniMenu.drawA();
             }
-        } else if (aClass13_13 != null) {
-            MiniMenu.method1207(aClass13_13, ClientScriptRunner.anInt3484, ClientScriptRunner.anInt3260);
+        } else if (hoveredWidget != null) {
+            MiniMenu.method1207(hoveredWidget, ClientScriptRunner.anInt3484, ClientScriptRunner.anInt3260);
         } else if (ClientScriptRunner.anInt2503 != -1) {
             MiniMenu.method1207(null, WidgetList.anInt5574, ClientScriptRunner.anInt2503);
         }
-        local60 = ClientScriptRunner.aBoolean108 ? -1 : method4044();
-        if (local60 == -1) {
-            local60 = ClientScriptRunner.anInt5794;
+        widgetIndex = ClientScriptRunner.menuVisible ? -1 : method4044();
+        if (widgetIndex == -1) {
+            widgetIndex = ClientScriptRunner.anInt5794;
         }
-        WidgetList.method1750(local60);
+        WidgetList.method1750(widgetIndex);
         if (MiniMenu.anInt3096 == 1) {
             MiniMenu.anInt3096 = 2;
         }
@@ -352,18 +352,18 @@ public class LoginManager {
             Protocol.anInt4422 = 2;
         }
         if (Cheat.rectDebug == 3) {
-            for (@Pc(189) int local189 = 0; local189 < WidgetList.rectangles; local189++) {
-                if (WidgetList.aBooleanArray116[local189]) {
+            for (@Pc(189) int rectIndex = 0; rectIndex < WidgetList.rectangles; rectIndex++) {
+                if (WidgetList.widgetRedrawPrevious[rectIndex]) {
                     if (GlRenderer.enabled) {
-                        GlRaster.fillRectAlpha(WidgetList.rectangleX[local189], WidgetList.rectangleY[local189], WidgetList.rectangleWidth[local189], WidgetList.rectangleHeight[local189], 16711935, 128);
+                        GlRaster.fillRectAlpha(WidgetList.rectangleX[rectIndex], WidgetList.rectangleY[rectIndex], WidgetList.rectangleWidth[rectIndex], WidgetList.rectangleHeight[rectIndex], 16711935, 128);
                     } else {
-                        SoftwareRaster.fillRectAlpha(WidgetList.rectangleX[local189], WidgetList.rectangleY[local189], WidgetList.rectangleWidth[local189], WidgetList.rectangleHeight[local189], 16711935, 128);
+                        SoftwareRaster.fillRectAlpha(WidgetList.rectangleX[rectIndex], WidgetList.rectangleY[rectIndex], WidgetList.rectangleWidth[rectIndex], WidgetList.rectangleHeight[rectIndex], 16711935, 128);
                     }
-                } else if (WidgetList.rectangleRedraw[local189]) {
+                } else if (WidgetList.rectangleRedraw[rectIndex]) {
                     if (GlRenderer.enabled) {
-                        GlRaster.fillRectAlpha(WidgetList.rectangleX[local189], WidgetList.rectangleY[local189], WidgetList.rectangleWidth[local189], WidgetList.rectangleHeight[local189], 16711680, 128);
+                        GlRaster.fillRectAlpha(WidgetList.rectangleX[rectIndex], WidgetList.rectangleY[rectIndex], WidgetList.rectangleWidth[rectIndex], WidgetList.rectangleHeight[rectIndex], 16711680, 128);
                     } else {
-                        SoftwareRaster.fillRectAlpha(WidgetList.rectangleX[local189], WidgetList.rectangleY[local189], WidgetList.rectangleWidth[local189], WidgetList.rectangleHeight[local189], 16711680, 128);
+                        SoftwareRaster.fillRectAlpha(WidgetList.rectangleX[rectIndex], WidgetList.rectangleY[rectIndex], WidgetList.rectangleWidth[rectIndex], WidgetList.rectangleHeight[rectIndex], 16711680, 128);
                     }
                 }
             }
@@ -394,11 +394,11 @@ public class LoginManager {
             for (@Pc(97) int local97 = (local23 - 6) / 8; local97 <= (local23 + 6) / 8; local97++) {
                 @Pc(115) int local115 = (local80 << 8) + local97;
                 regionBitPacked[local74] = local115;
-                mapFileIds[local74] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { aClass100_558, JString.parseInt(local80), UNDERSCORE, JString.parseInt(local97) }));
-                locationsMapFileIds[local74] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { aClass100_1090, JString.parseInt(local80), UNDERSCORE, JString.parseInt(local97) }));
-                npcSpawnsFileIds[local74] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { aClass100_807, JString.parseInt(local80), UNDERSCORE, JString.parseInt(local97) }));
-                underWaterMapFileIds[local74] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { aClass100_772, JString.parseInt(local80), UNDERSCORE, JString.parseInt(local97) }));
-                underWaterLocationsMapFileIds[local74] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { aClass100_1103, JString.parseInt(local80), UNDERSCORE, JString.parseInt(local97) }));
+                mapFileIds[local74] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] {m, JString.parseInt(local80), UNDERSCORE, JString.parseInt(local97) }));
+                locationsMapFileIds[local74] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] {l, JString.parseInt(local80), UNDERSCORE, JString.parseInt(local97) }));
+                npcSpawnsFileIds[local74] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] {n, JString.parseInt(local80), UNDERSCORE, JString.parseInt(local97) }));
+                underWaterMapFileIds[local74] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] {um, JString.parseInt(local80), UNDERSCORE, JString.parseInt(local97) }));
+                underWaterLocationsMapFileIds[local74] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] {ul, JString.parseInt(local80), UNDERSCORE, JString.parseInt(local97) }));
                 if (npcSpawnsFileIds[local74] == -1) {
                     mapFileIds[local74] = -1;
                     locationsMapFileIds[local74] = -1;
@@ -512,10 +512,10 @@ public class LoginManager {
             }
         }
         if (mapElementList == null) {
-            if (map == null || !Client.js5Archive23.isGroupNameValid(JString.concatenate(new JString[] { map.group, aClass100_363 }))) {
+            if (map == null || !Client.js5Archive23.isGroupNameValid(JString.concatenate(new JString[] { map.group, labels}))) {
                 mapElementList = new MapElementList(0);
-            } else if (Client.js5Archive23.isGroupReady(JString.concatenate(new JString[] { map.group, aClass100_363 }))) {
-                mapElementList = MapElementList.create(JString.concatenate(new JString[] { map.group, aClass100_363 }), Client.js5Archive23);
+            } else if (Client.js5Archive23.isGroupReady(JString.concatenate(new JString[] { map.group, labels}))) {
+                mapElementList = MapElementList.create(JString.concatenate(new JString[] { map.group, labels}), Client.js5Archive23);
             } else {
                 fileExists = false;
                 mapFilesMissingCount++;
@@ -694,8 +694,8 @@ public class LoginManager {
             for (@Pc(837) int local837 = chunkX - 1; local837 <= chunkZ + 1; local837++) {
                 for (@Pc(850) int local850 = local821 - 1; local850 <= local815 + 1; local850++) {
                     if (local837 < chunkX || local837 > chunkZ || local850 < local821 || local850 > local815) {
-                        Client.js5Archive5.prefetchGroup(JString.concatenate(new JString[] { aClass100_558, JString.parseInt(local837), UNDERSCORE, JString.parseInt(local850) }));
-                        Client.js5Archive5.prefetchGroup(JString.concatenate(new JString[] { aClass100_1090, JString.parseInt(local837), UNDERSCORE, JString.parseInt(local850) }));
+                        Client.js5Archive5.prefetchGroup(JString.concatenate(new JString[] {m, JString.parseInt(local837), UNDERSCORE, JString.parseInt(local850) }));
+                        Client.js5Archive5.prefetchGroup(JString.concatenate(new JString[] {l, JString.parseInt(local837), UNDERSCORE, JString.parseInt(local850) }));
                     }
                 }
             }
@@ -1084,7 +1084,7 @@ public class LoginManager {
     public static void reconnect() {
         Protocol.outboundBuffer.offset = 0;
         Protocol.opcode3 = -1;
-        ClientScriptRunner.aBoolean108 = false;
+        ClientScriptRunner.menuVisible = false;
         Protocol.packetSize = 0;
         mapFlagX = 0;
         MiniMenu.menuActionRow = 0;
@@ -1110,7 +1110,7 @@ public class LoginManager {
         Camera.cameraType = 1;
         Client.processGameStatus(30);
         for (i = 0; i < 100; i++) {
-            WidgetList.aBooleanArray100[i] = true;
+            WidgetList.widgetNeedsRedraw[i] = true;
         }
         ClientProt.sendWindowDetails();
     }
@@ -1368,13 +1368,13 @@ public class LoginManager {
             if (npcSpawnsFilesBuffer[local16] != null) {
                 @Pc(25) int local25 = -1;
                 for (@Pc(27) int local27 = 0; local27 < anInt3811; local27++) {
-                    if (anIntArray434[local27] == regionBitPacked[local16]) {
+                    if (regionIndexLookup[local27] == regionBitPacked[local16]) {
                         local25 = local27;
                         break;
                     }
                 }
                 if (local25 == -1) {
-                    anIntArray434[anInt3811] = regionBitPacked[local16];
+                    regionIndexLookup[anInt3811] = regionBitPacked[local16];
                     local25 = anInt3811++;
                 }
                 @Pc(67) int local67 = 0;

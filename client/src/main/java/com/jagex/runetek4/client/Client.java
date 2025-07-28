@@ -77,7 +77,7 @@ import com.jagex.runetek4.ui.widget.MiniMap;
 import com.jagex.runetek4.game.inventory.Inv;
 import com.jagex.runetek4.clientscript.DelayedStateChange;
 import com.jagex.runetek4.config.types.bas.BasTypeList;
-import com.jagex.runetek4.data.cache.media.component.Wdiget;
+import com.jagex.runetek4.data.cache.media.component.Widget;
 import com.jagex.runetek4.entity.entity.Npc;
 import com.jagex.runetek4.FloTypeList;
 import com.jagex.runetek4.entity.entity.PlayerAppearance;
@@ -472,7 +472,7 @@ public final class Client extends GameShell {
 		LightTypeList.removeSoft();
 		CursorTypeList.removeSoft();
 		PlayerAppearance.removeSoft();
-		Wdiget.removeSoft();
+		Widget.removeSoft();
 		HintArrowManager.removeSoft();
 		ShadowModelList.removeSoft();
 		HitBarList.hitBars.removeSoft();
@@ -509,7 +509,7 @@ public final class Client extends GameShell {
 		LightTypeList.clear();
 		CursorTypeList.clear();
 		PlayerAppearance.clear();
-		Wdiget.clear();
+		Widget.clear();
 		if (modeWhat != 0) {
 			for (@Pc(54) int i = 0; i < Player.aByteArrayArray8.length; i++) {
 				Player.aByteArrayArray8[i] = null;
@@ -597,11 +597,11 @@ public final class Client extends GameShell {
 		}
 		Fonts.load(js5Archive13, js5Archive8);
 		Sprites.load(js5Archive8);
-		LoginManager.aClass3_Sub2_Sub1_10 = null;
-		LoginManager.aClass3_Sub2_Sub1_1 = null;
-		LoginManager.aClass3_Sub2_Sub1_6 = null;
-		LoginManager.aClass3_Sub2_Sub1_8 = null;
-		LoginManager.aClass3_Sub2_Sub1_9 = null;
+		LoginManager.loginSprite1 = null;
+		LoginManager.loginSprite2 = null;
+		LoginManager.loginSprite3 = null;
+		LoginManager.loginSprite4 = null;
+		LoginManager.loginSprite5 = null;
 		if (gameState == 5) {
 			TitleScreen.load(js5Archive8);
 		}
@@ -635,7 +635,7 @@ public final class Client extends GameShell {
 			MiniMap.hintMapMarkers[i] = null;
 		}
 		MiniMenu.menuActionRow = 0;
-		ClientScriptRunner.aBoolean108 = false;
+		ClientScriptRunner.menuVisible = false;
 		Mouse.setIdleLoops(0);
 		for (i = 0; i < 100; i++) {
 			Chat.messages[i] = null;
@@ -703,7 +703,7 @@ public final class Client extends GameShell {
 		WidgetList.openInterfaces = new HashTable(8);
 		WidgetList.createComponentMemoryBuffer();
 		ClientScriptRunner.aClass13_10 = null;
-		ClientScriptRunner.aBoolean108 = false;
+		ClientScriptRunner.menuVisible = false;
 		MiniMenu.menuActionRow = 0;
 		PlayerAppearance.DEFAULT.set(new int[] { 0, 0, 0, 0, 0 }, -1, false, null, -1);
 		for (i = 0; i < 8; i++) {
@@ -714,7 +714,7 @@ public final class Client extends GameShell {
 		Inv.clear();
 		ClientScriptRunner.aBoolean43 = true;
 		for (i = 0; i < 100; i++) {
-			WidgetList.aBooleanArray100[i] = true;
+			WidgetList.widgetNeedsRedraw[i] = true;
 		}
 		ClanChat.size = 0;
 		ClanChat.members = null;
@@ -803,7 +803,7 @@ public final class Client extends GameShell {
 		LightTypeList.clean();
 		CursorTypeList.clean();
 		PlayerAppearance.clean();
-		Wdiget.clean();
+		Widget.clean();
 		HintArrowManager.clean();
 		ShadowModelList.clean();
 		HitBarList.hitBars.clean(5);
@@ -910,7 +910,7 @@ public final class Client extends GameShell {
 		}
 		if (GlRenderer.enabled) {
 			for (local80 = 0; local80 < 100; local80++) {
-				WidgetList.aBooleanArray100[local80] = true;
+				WidgetList.widgetNeedsRedraw[local80] = true;
 			}
 		}
 		if (gameState == 0) {
@@ -1135,6 +1135,7 @@ public final class Client extends GameShell {
 			worldListHostname = "127.0.0.1";
 			worldListAlternatePort = worldListId + 50000;
 			worldListDefaultPort = worldListId + 40000;
+
 		}
 		if (game == 1) {
 			Cheat.shiftClick = true;
@@ -1267,8 +1268,8 @@ public final class Client extends GameShell {
 		}
 		while (true) {
 			@Pc(374) WidgetEvent priorityRequest;
-			@Pc(379) Wdiget prioritySource;
-			@Pc(387) Wdiget priorityWdiget;
+			@Pc(379) Widget prioritySource;
+			@Pc(387) Widget priorityWidget;
 			do {
 				priorityRequest = (WidgetEvent) WidgetList.highPriorityRequests.removeHead();
 				if (priorityRequest == null) {
@@ -1300,8 +1301,8 @@ public final class Client extends GameShell {
 										if (prioritySource.createdComponentId < 0) {
 											break;
 										}
-										priorityWdiget = WidgetList.getComponent(prioritySource.overlayer);
-									} while (priorityWdiget == null || priorityWdiget.createdWdigets == null || priorityWdiget.createdWdigets.length <= prioritySource.createdComponentId || prioritySource != priorityWdiget.createdWdigets[prioritySource.createdComponentId]);
+										priorityWidget = WidgetList.getComponent(prioritySource.overlayer);
+									} while (priorityWidget == null || priorityWidget.createdWidgets == null || priorityWidget.createdWidgets.length <= prioritySource.createdComponentId || prioritySource != priorityWidget.createdWidgets[prioritySource.createdComponentId]);
 									ClientScriptRunner.run(priorityRequest);
 								}
 							}
@@ -1309,8 +1310,8 @@ public final class Client extends GameShell {
 							if (prioritySource.createdComponentId < 0) {
 								break;
 							}
-							priorityWdiget = WidgetList.getComponent(prioritySource.overlayer);
-						} while (priorityWdiget == null || priorityWdiget.createdWdigets == null || prioritySource.createdComponentId >= priorityWdiget.createdWdigets.length || prioritySource != priorityWdiget.createdWdigets[prioritySource.createdComponentId]);
+							priorityWidget = WidgetList.getComponent(prioritySource.overlayer);
+						} while (priorityWidget == null || priorityWidget.createdWidgets == null || prioritySource.createdComponentId >= priorityWidget.createdWidgets.length || prioritySource != priorityWidget.createdWidgets[prioritySource.createdComponentId]);
 						ClientScriptRunner.run(priorityRequest);
 					}
 				}
@@ -1318,8 +1319,8 @@ public final class Client extends GameShell {
 				if (prioritySource.createdComponentId < 0) {
 					break;
 				}
-				priorityWdiget = WidgetList.getComponent(prioritySource.overlayer);
-			} while (priorityWdiget == null || priorityWdiget.createdWdigets == null || priorityWdiget.createdWdigets.length <= prioritySource.createdComponentId || prioritySource != priorityWdiget.createdWdigets[prioritySource.createdComponentId]);
+				priorityWidget = WidgetList.getComponent(prioritySource.overlayer);
+			} while (priorityWidget == null || priorityWidget.createdWidgets == null || priorityWidget.createdWidgets.length <= prioritySource.createdComponentId || prioritySource != priorityWidget.createdWidgets[prioritySource.createdComponentId]);
 			ClientScriptRunner.run(priorityRequest);
 		}
 	}

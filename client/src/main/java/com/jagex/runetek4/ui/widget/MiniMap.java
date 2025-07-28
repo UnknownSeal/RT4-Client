@@ -6,7 +6,7 @@ import com.jagex.runetek4.client.LoginManager;
 import com.jagex.runetek4.config.types.npc.NpcType;
 import com.jagex.runetek4.data.cache.media.Font;
 import com.jagex.runetek4.data.cache.media.SoftwareSprite;
-import com.jagex.runetek4.data.cache.media.component.Wdiget;
+import com.jagex.runetek4.data.cache.media.component.Widget;
 import com.jagex.runetek4.client.Client;
 import com.jagex.runetek4.config.types.loc.LocTypeList;
 import com.jagex.runetek4.config.types.msi.MSITypeList;
@@ -100,7 +100,7 @@ public class MiniMap {
     public static int anInt5073 = -1;
 
     @OriginalMember(owner = "runetek4.client!em", name = "a", descriptor = "(Lclient!be;Lclient!qf;IIIBI)V")
-    public static void drawOnMinimap(@OriginalArg(0) Wdiget arg0, @OriginalArg(1) Sprite sprite, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(6) int arg5) {
+    public static void drawOnMinimap(@OriginalArg(0) Widget arg0, @OriginalArg(1) Sprite sprite, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(6) int arg5) {
         if (sprite == null) {
             return;
         }
@@ -124,7 +124,7 @@ public class MiniMap {
     }
 
     @OriginalMember(owner = "runetek4.client!ed", name = "a", descriptor = "(IBIILclient!be;)V")
-    public static void render(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) Wdiget arg3) {
+    public static void render(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) Widget arg3) {
         Client.audioLoop();
         if (GlRenderer.enabled) {
             GlRaster.setClip(arg2, arg1, arg2 + arg3.width, arg1 + arg3.height);
@@ -494,7 +494,7 @@ public class MiniMap {
     }
 
     @OriginalMember(owner = "runetek4.client!hi", name = "a", descriptor = "(IIIIILclient!be;Z)V")
-    public static void drawMinimapMark(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int mapX, @OriginalArg(4) int mapY, @OriginalArg(5) Wdiget arg5) {
+    public static void drawMinimapMark(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int mapX, @OriginalArg(4) int mapY, @OriginalArg(5) Widget arg5) {
         @Pc(13) int len = mapX * mapX + mapY * mapY;
         if (len > 360000) {
             return;
@@ -523,7 +523,7 @@ public class MiniMap {
     }
 
     @OriginalMember(owner = "runetek4.client!hi", name = "a", descriptor = "(Lclient!be;B)Lclient!na;")
-    public static JString getTargetVerb(@OriginalArg(0) Wdiget arg0) {
+    public static JString getTargetVerb(@OriginalArg(0) Widget arg0) {
         if (WidgetList.getServerActiveProperties(arg0).getTargetMask() == 0) {
             return null;
         } else if (arg0.optionCircumfix == null || arg0.optionCircumfix.trim().length() == 0) {

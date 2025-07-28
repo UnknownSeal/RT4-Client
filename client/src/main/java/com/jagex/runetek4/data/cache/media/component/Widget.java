@@ -25,7 +25,7 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("client!be")
-public final class Wdiget {
+public final class Widget {
 
 	@OriginalMember(owner = "runetek4.client!pf", name = "b", descriptor = "Lclient!n;")
 	public static final SoftLruHashTable sprites = new SoftLruHashTable(200);
@@ -142,7 +142,7 @@ public final class Wdiget {
 	public Object[] onMsg;
 
 	@OriginalMember(owner = "client!be", name = "lc", descriptor = "[Lclient!be;")
-	public Wdiget[] createdWdigets;
+	public Widget[] createdWidgets;
 
 	@OriginalMember(owner = "client!be", name = "mc", descriptor = "[B")
 	public byte[] aByteArray8;
@@ -466,7 +466,7 @@ public final class Wdiget {
 	public int shadowColor = 0;
 
 	@OriginalMember(owner = "client!be", name = "fd", descriptor = "Lclient!be;")
-	public Wdiget aClass13_5 = null;
+	public Widget aClass13_5 = null;
 
 	@OriginalMember(owner = "client!be", name = "od", descriptor = "I")
 	public int updatedStatsReaderIndex = 0;

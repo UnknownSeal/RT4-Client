@@ -54,10 +54,10 @@ public class Flames {
     public static int[] flameIntensity;
 
     @OriginalMember(owner = "runetek4.client!a", name = "i", descriptor = "I")
-    public static int anInt6 = 0;
+    public static int flameAnimationPhase = 0;
 
     @OriginalMember(owner = "runetek4.client!sf", name = "i", descriptor = "I")
-    public static int anInt5084 = 0;
+    public static int sparkGenerationCounter = 0;
 
     @OriginalMember(owner = "client!sk", name = "a", descriptor = "(Lclient!ve;I)Z")
     public static boolean isReady(@OriginalArg(0) Js5 archive) {
@@ -164,20 +164,20 @@ public class Flames {
             flameShiftX[local60] = flameShiftX[local60 + arg0];
         }
         for (local60 = 256 - arg0; local60 < 256; local60++) {
-            flameShiftX[local60] = (int) (Math.sin((double) anInt6 / 14.0D) * 16.0D + Math.sin((double) anInt6 / 15.0D) * 14.0D + Math.sin((double) anInt6 / 16.0D) * 12.0D);
-            anInt6++;
+            flameShiftX[local60] = (int) (Math.sin((double) flameAnimationPhase / 14.0D) * 16.0D + Math.sin((double) flameAnimationPhase / 15.0D) * 14.0D + Math.sin((double) flameAnimationPhase / 16.0D) * 12.0D);
+            flameAnimationPhase++;
         }
-        anInt5084 += arg0;
+        sparkGenerationCounter += arg0;
         local60 = (arg0 + (Client.loop & 0x1)) / 2;
         if (local60 <= 0) {
             return;
         }
-        for (local89 = 0; local89 < anInt5084; local89++) {
+        for (local89 = 0; local89 < sparkGenerationCounter; local89++) {
             local117 = (int) (Math.random() * 124.0D) + 2;
             local125 = (int) (Math.random() * 128.0D) + 128;
             flameIntensityBuffer[local117 + (local125 << 7)] = 192;
         }
-        anInt5084 = 0;
+        sparkGenerationCounter = 0;
         @Pc(290) int local290;
         for (local89 = 0; local89 < 256; local89++) {
             local125 = local89 * 128;

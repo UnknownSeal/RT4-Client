@@ -2,7 +2,7 @@ package com.jagex.runetek4.game.world;
 
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.data.cache.media.SoftwareSprite;
-import com.jagex.runetek4.data.cache.media.component.Wdiget;
+import com.jagex.runetek4.data.cache.media.component.Widget;
 import com.jagex.runetek4.client.GameShell;
 import com.jagex.runetek4.client.Client;
 import com.jagex.runetek4.config.types.flu.FluType;
@@ -89,7 +89,7 @@ public class WorldMap {
     public static int length;
 
     @OriginalMember(owner = "client!bn", name = "N", descriptor = "Lclient!be;")
-    public static Wdiget wdiget;
+    public static Widget widget;
 
     @OriginalMember(owner = "client!bc", name = "W", descriptor = "I")
     public static int anInt435;
@@ -197,7 +197,7 @@ public class WorldMap {
     public static void clear(@OriginalArg(1) boolean arg0) {
         aByteArrayArrayArray8 = null;
         underlayColors = null;
-        wdiget = null;
+        widget = null;
         aByteArrayArrayArray3 = null;
         overlayColors = null;
         aByteArrayArrayArray10 = null;
@@ -979,22 +979,22 @@ public class WorldMap {
     @OriginalMember(owner = "client!gf", name = "a", descriptor = "(BII)V")
     public static void method3616(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1) {
         anInt3482 = arg0 - originX;
-        @Pc(24) int local24 = anInt3482 - (int) ((float) wdiget.width / zoom);
-        @Pc(33) int local33 = anInt3482 + (int) ((float) wdiget.width / zoom);
+        @Pc(24) int local24 = anInt3482 - (int) ((float) widget.width / zoom);
+        @Pc(33) int local33 = anInt3482 + (int) ((float) widget.width / zoom);
         if (local24 < 0) {
-            anInt3482 = (int) ((float) wdiget.width / zoom);
+            anInt3482 = (int) ((float) widget.width / zoom);
         }
         anInt4901 = length + originZ - arg1 - 1;
-        @Pc(61) int local61 = (int) ((float) wdiget.height / zoom) + anInt4901;
-        @Pc(70) int local70 = anInt4901 - (int) ((float) wdiget.height / zoom);
+        @Pc(61) int local61 = (int) ((float) widget.height / zoom) + anInt4901;
+        @Pc(70) int local70 = anInt4901 - (int) ((float) widget.height / zoom);
         if (local33 > width) {
-            anInt3482 = width - (int) ((float) wdiget.width / zoom);
+            anInt3482 = width - (int) ((float) widget.width / zoom);
         }
         if (local70 < 0) {
-            anInt4901 = (int) ((float) wdiget.height / zoom);
+            anInt4901 = (int) ((float) widget.height / zoom);
         }
         if (length < local61) {
-            anInt4901 = length - (int) ((float) wdiget.height / zoom);
+            anInt4901 = length - (int) ((float) widget.height / zoom);
         }
     }
 

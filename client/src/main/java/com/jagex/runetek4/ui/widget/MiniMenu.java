@@ -7,7 +7,7 @@ import com.jagex.runetek4.config.types.npc.NpcType;
 import com.jagex.runetek4.config.types.obj.ObjType;
 import com.jagex.runetek4.data.cache.media.Font;
 import com.jagex.runetek4.data.cache.media.SoftwareSprite;
-import com.jagex.runetek4.data.cache.media.component.Wdiget;
+import com.jagex.runetek4.data.cache.media.component.Widget;
 import com.jagex.runetek4.client.Client;
 import com.jagex.runetek4.config.types.loc.LocTypeList;
 import com.jagex.runetek4.config.types.obj.ObjTypeList;
@@ -143,13 +143,13 @@ public class MiniMenu {
     @OriginalMember(owner = "runetek4.client!uf", name = "t", descriptor = "I")
     public static int anInt5444 = 0;
     @OriginalMember(owner = "runetek4.client!v", name = "b", descriptor = "Lclient!be;")
-    public static Wdiget pressedInventoryWdiget;
+    public static Widget pressedInventoryWidget;
     @OriginalMember(owner = "runetek4.client!aa", name = "a", descriptor = "I")
     public static int anInt7 = 0;
     @OriginalMember(owner = "runetek4.client!id", name = "k", descriptor = "I")
     public static int anInt2878;
     @OriginalMember(owner = "runetek4.client!cl", name = "Y", descriptor = "I")
-    public static int anInt1092 = -1;
+    public static int defaultCursor = -1;
     @OriginalMember(owner = "runetek4.client!jl", name = "v", descriptor = "I")
     public static int anInt3096 = 0;
     @OriginalMember(owner = "client!ck", name = "D", descriptor = "Lclient!na;")
@@ -163,7 +163,7 @@ public class MiniMenu {
     @OriginalMember(owner = "client!fl", name = "P", descriptor = "I")
     public static int anInt2043 = 0;
     @OriginalMember(owner = "runetek4.client!ml", name = "Q", descriptor = "I")
-    public static int anInt3953 = 0;
+    public static int menuState = 0;
     @OriginalMember(owner = "client!bh", name = "t", descriptor = "I")
     public static int mouseInvInterfaceIndex = 0;
 
@@ -254,7 +254,7 @@ public class MiniMenu {
     public static int anInt3902 = 0;
 
     @OriginalMember(owner = "runetek4.client!ud", name = "a", descriptor = "(ILclient!be;)Z")
-    public static boolean method4265(@OriginalArg(1) Wdiget arg0) {
+    public static boolean method4265(@OriginalArg(1) Widget arg0) {
         if (arg0.contentType == 205) {
             Protocol.idleTimeout = 250;
             return true;
@@ -268,7 +268,7 @@ public class MiniMenu {
         if (!aBoolean302) {
             return;
         }
-        @Pc(19) Wdiget local19 = WidgetList.getCreatedComponent(anInt2512, anInt506);
+        @Pc(19) Widget local19 = WidgetList.getCreatedComponent(anInt2512, anInt506);
         if (local19 != null && local19.onUseWith != null) {
             @Pc(29) WidgetEvent local29 = new WidgetEvent();
             local29.arguments = local19.onUseWith;
@@ -276,18 +276,18 @@ public class MiniMenu {
             ClientScriptRunner.run(local29);
         }
         aBoolean302 = false;
-        anInt1092 = -1;
+        defaultCursor = -1;
         WidgetList.redraw(local19);
     }
 
     @OriginalMember(owner = "runetek4.client!hj", name = "a", descriptor = "(IJBLclient!na;ISLclient!na;I)V")
     public static void addActionRow(@OriginalArg(0) int arg0, @OriginalArg(1) long arg1, @OriginalArg(3) JString arg2, @OriginalArg(4) int arg3, @OriginalArg(5) short arg4, @OriginalArg(6) JString arg5, @OriginalArg(7) int arg6) {
-        if (ClientScriptRunner.aBoolean108 || menuActionRow >= 500) {
+        if (ClientScriptRunner.menuVisible || menuActionRow >= 500) {
             return;
         }
         ops[menuActionRow] = arg5;
         opBases[menuActionRow] = arg2;
-        cursors[menuActionRow] = arg0 == -1 ? anInt1092 : arg0;
+        cursors[menuActionRow] = arg0 == -1 ? defaultCursor : arg0;
         actions[menuActionRow] = arg4;
         keys[menuActionRow] = arg1;
         intArgs1[menuActionRow] = arg3;
@@ -296,55 +296,55 @@ public class MiniMenu {
     }
 
     @OriginalMember(owner = "runetek4.client!va", name = "a", descriptor = "(IZILclient!be;)V")
-    public static void addComponentEntries(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) Wdiget wdiget) {
-        if (wdiget.buttonType == 1) {
-            addActionRow(-1, 0L, JString.EMPTY, 0, (short) 8, wdiget.option, wdiget.id);
+    public static void addComponentEntries(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) Widget widget) {
+        if (widget.buttonType == 1) {
+            addActionRow(-1, 0L, JString.EMPTY, 0, (short) 8, widget.option, widget.id);
         }
         @Pc(47) JString ops;
-        if (wdiget.buttonType == 2 && !aBoolean302) {
-            ops = MiniMap.getTargetVerb(wdiget);
+        if (widget.buttonType == 2 && !aBoolean302) {
+            ops = MiniMap.getTargetVerb(widget);
             if (ops != null) {
-                addActionRow(-1, 0L, JString.concatenate(new JString[] { GREEN, wdiget.optionSuffix}), -1, (short) 32, ops, wdiget.id);
+                addActionRow(-1, 0L, JString.concatenate(new JString[] { GREEN, widget.optionSuffix}), -1, (short) 32, ops, widget.id);
             }
         }
-        if (wdiget.buttonType == 3) {
-            addActionRow(-1, 0L, JString.EMPTY, 0, (short) 28, LocalizedText.CLOSE, wdiget.id);
+        if (widget.buttonType == 3) {
+            addActionRow(-1, 0L, JString.EMPTY, 0, (short) 28, LocalizedText.CLOSE, widget.id);
         }
-        if (wdiget.buttonType == 4) {
-            addActionRow(-1, 0L, JString.EMPTY, 0, (short) 59, wdiget.option, wdiget.id);
+        if (widget.buttonType == 4) {
+            addActionRow(-1, 0L, JString.EMPTY, 0, (short) 59, widget.option, widget.id);
         }
-        if (wdiget.buttonType == 5) {
-            addActionRow(-1, 0L, JString.EMPTY, 0, (short) 51, wdiget.option, wdiget.id);
+        if (widget.buttonType == 5) {
+            addActionRow(-1, 0L, JString.EMPTY, 0, (short) 51, widget.option, widget.id);
         }
-        if (wdiget.buttonType == 6 && ClientScriptRunner.aClass13_10 == null) {
-            addActionRow(-1, 0L, JString.EMPTY, -1, (short) 41, wdiget.option, wdiget.id);
+        if (widget.buttonType == 6 && ClientScriptRunner.aClass13_10 == null) {
+            addActionRow(-1, 0L, JString.EMPTY, -1, (short) 41, widget.option, widget.id);
         }
         @Pc(173) int local173;
         @Pc(171) int local171;
-        if (wdiget.type == 2) {
+        if (widget.type == 2) {
             local171 = 0;
-            for (local173 = 0; local173 < wdiget.baseHeight; local173++) {
-                for (@Pc(183) int local183 = 0; local183 < wdiget.baseWidth; local183++) {
-                    @Pc(195) int local195 = (wdiget.invMarginX + 32) * local183;
-                    @Pc(202) int local202 = (wdiget.invMarginY + 32) * local173;
+            for (local173 = 0; local173 < widget.baseHeight; local173++) {
+                for (@Pc(183) int local183 = 0; local183 < widget.baseWidth; local183++) {
+                    @Pc(195) int local195 = (widget.invMarginX + 32) * local183;
+                    @Pc(202) int local202 = (widget.invMarginY + 32) * local173;
                     if (local171 < 20) {
-                        local202 += wdiget.invOffsetY[local171];
-                        local195 += wdiget.invOffsetX[local171];
+                        local202 += widget.invOffsetY[local171];
+                        local195 += widget.invOffsetX[local171];
                     }
                     if (arg1 >= local195 && local202 <= arg0 && local195 + 32 > arg1 && local202 + 32 > arg0) {
-                        WidgetList.mouseOverInventoryInterface = wdiget;
+                        WidgetList.mouseOverInventoryInterface = widget;
                         mouseInvInterfaceIndex = local171;
-                        if (wdiget.invSlotObjId[local171] > 0) {
-                            @Pc(267) ServerActiveProperties local267 = WidgetList.getServerActiveProperties(wdiget);
-                            @Pc(276) ObjType local276 = ObjTypeList.get(wdiget.invSlotObjId[local171] - 1);
+                        if (widget.invSlotObjId[local171] > 0) {
+                            @Pc(267) ServerActiveProperties local267 = WidgetList.getServerActiveProperties(widget);
+                            @Pc(276) ObjType local276 = ObjTypeList.get(widget.invSlotObjId[local171] - 1);
                             if (anInt5014 == 1 && local267.isObjOpsEnabled()) {
-                                if (MiniMap.anInt5062 != wdiget.id || anInt4370 != local171) {
-                                    addActionRow(-1, (long) local276.id, JString.concatenate(new JString[] { aClass100_203, aClass100_947, local276.name}), local171, (short) 40, LocalizedText.USE, wdiget.id);
+                                if (MiniMap.anInt5062 != widget.id || anInt4370 != local171) {
+                                    addActionRow(-1, (long) local276.id, JString.concatenate(new JString[] { aClass100_203, aClass100_947, local276.name}), local171, (short) 40, LocalizedText.USE, widget.id);
                                 }
                             } else if (aBoolean302 && local267.isObjOpsEnabled()) {
                                 @Pc(596) ParamType local596 = anInt3039 == -1 ? null : ParamTypeList.get(anInt3039);
                                 if ((anInt4999 & 0x10) != 0 && (local596 == null || local276.getParam(local596.defaultInt, anInt3039) != local596.defaultInt)) {
-                                    addActionRow(anInt5393, (long) local276.id, JString.concatenate(new JString[] { aClass100_466, aClass100_947, local276.name}), local171, (short) 3, aClass100_545, wdiget.id);
+                                    addActionRow(anInt5393, (long) local276.id, JString.concatenate(new JString[] { aClass100_466, aClass100_947, local276.name}), local171, (short) 3, aClass100_545, widget.id);
                                 }
                             } else {
                                 @Pc(296) JString[] local296 = local276.iop;
@@ -361,12 +361,12 @@ public class MiniMenu {
                                             } else {
                                                 local334 = 58;
                                             }
-                                            addActionRow(-1, (long) local276.id, JString.concatenate(new JString[] { aClass100_32, local276.name}), local171, local334, local296[local309], wdiget.id);
+                                            addActionRow(-1, (long) local276.id, JString.concatenate(new JString[] { aClass100_32, local276.name}), local171, local334, local296[local309], widget.id);
                                         }
                                     }
                                 }
                                 if (local267.isObjUseEnabled()) {
-                                    addActionRow(MiniMap.anInt4075, (long) local276.id, JString.concatenate(new JString[] { aClass100_32, local276.name}), local171, (short) 22, LocalizedText.USE, wdiget.id);
+                                    addActionRow(MiniMap.anInt4075, (long) local276.id, JString.concatenate(new JString[] { aClass100_32, local276.name}), local171, (short) 22, LocalizedText.USE, widget.id);
                                 }
                                 if (local267.isObjOpsEnabled() && local296 != null) {
                                     for (local309 = 2; local309 >= 0; local309--) {
@@ -381,11 +381,11 @@ public class MiniMenu {
                                             if (local309 == 2) {
                                                 local334 = 43;
                                             }
-                                            addActionRow(-1, (long) local276.id, JString.concatenate(new JString[] { aClass100_32, local276.name}), local171, local334, local296[local309], wdiget.id);
+                                            addActionRow(-1, (long) local276.id, JString.concatenate(new JString[] { aClass100_32, local276.name}), local171, local334, local296[local309], widget.id);
                                         }
                                     }
                                 }
-                                local296 = wdiget.invOptions;
+                                local296 = widget.invOptions;
                                 if (aBoolean237) {
                                     local296 = annotateOps(local296);
                                 }
@@ -408,11 +408,11 @@ public class MiniMenu {
                                             if (local309 == 4) {
                                                 local334 = 13;
                                             }
-                                            addActionRow(-1, (long) local276.id, JString.concatenate(new JString[] { aClass100_32, local276.name}), local171, local334, local296[local309], wdiget.id);
+                                            addActionRow(-1, (long) local276.id, JString.concatenate(new JString[] { aClass100_32, local276.name}), local171, local334, local296[local309], widget.id);
                                         }
                                     }
                                 }
-                                addActionRow(MiniMap.anInt5073, (long) local276.id, JString.concatenate(new JString[] { aClass100_32, local276.name}), local171, (short) 1006, LocalizedText.EXAMINE, wdiget.id);
+                                addActionRow(MiniMap.anInt5073, (long) local276.id, JString.concatenate(new JString[] { aClass100_32, local276.name}), local171, (short) 1006, LocalizedText.EXAMINE, widget.id);
                             }
                         }
                     }
@@ -420,31 +420,31 @@ public class MiniMenu {
                 }
             }
         }
-        if (!wdiget.if3) {
+        if (!widget.if3) {
             return;
         }
         if (!aBoolean302) {
             for (local171 = 9; local171 >= 5; local171--) {
-                @Pc(765) JString local765 = WidgetList.getOp(wdiget, local171);
+                @Pc(765) JString local765 = WidgetList.getOp(widget, local171);
                 if (local765 != null) {
-                    addActionRow(getOpCursor(local171, wdiget), (long) (local171 + 1), wdiget.optionBase, wdiget.createdComponentId, (short) 1003, local765, wdiget.id);
+                    addActionRow(getOpCursor(local171, widget), (long) (local171 + 1), widget.optionBase, widget.createdComponentId, (short) 1003, local765, widget.id);
                 }
             }
-            ops = MiniMap.getTargetVerb(wdiget);
+            ops = MiniMap.getTargetVerb(widget);
             if (ops != null) {
-                addActionRow(-1, 0L, wdiget.optionBase, wdiget.createdComponentId, (short) 32, ops, wdiget.id);
+                addActionRow(-1, 0L, widget.optionBase, widget.createdComponentId, (short) 32, ops, widget.id);
             }
             for (local173 = 4; local173 >= 0; local173--) {
-                @Pc(828) JString local828 = WidgetList.getOp(wdiget, local173);
+                @Pc(828) JString local828 = WidgetList.getOp(widget, local173);
                 if (local828 != null) {
-                    addActionRow(getOpCursor(local173, wdiget), (long) (local173 + 1), wdiget.optionBase, wdiget.createdComponentId, (short) 9, local828, wdiget.id);
+                    addActionRow(getOpCursor(local173, widget), (long) (local173 + 1), widget.optionBase, widget.createdComponentId, (short) 9, local828, widget.id);
                 }
             }
-            if (WidgetList.getServerActiveProperties(wdiget).isResumePauseButtonEnabled()) {
-                addActionRow(-1, 0L, JString.EMPTY, wdiget.createdComponentId, (short) 41, LocalizedText.CONTINUE, wdiget.id);
+            if (WidgetList.getServerActiveProperties(widget).isResumePauseButtonEnabled()) {
+                addActionRow(-1, 0L, JString.EMPTY, widget.createdComponentId, (short) 41, LocalizedText.CONTINUE, widget.id);
             }
-        } else if (WidgetList.getServerActiveProperties(wdiget).isUseTarget() && (anInt4999 & 0x20) != 0) {
-            addActionRow(anInt5393, 0L, JString.concatenate(new JString[] { aClass100_466, aClass100_408, wdiget.optionBase}), wdiget.createdComponentId, (short) 12, aClass100_545, wdiget.id);
+        } else if (WidgetList.getServerActiveProperties(widget).isUseTarget() && (anInt4999 & 0x20) != 0) {
+            addActionRow(anInt5393, 0L, JString.concatenate(new JString[] { aClass100_466, aClass100_408, widget.optionBase}), widget.createdComponentId, (short) 12, aClass100_545, widget.id);
         }
     }
 
@@ -503,20 +503,20 @@ public class MiniMenu {
         @Pc(9) int local9 = WidgetList.anInt5138;
         @Pc(11) int local11 = WidgetList.anInt436;
         @Pc(13) int local13 = WidgetList.anInt761;
-        if (LoginManager.aClass3_Sub2_Sub1_1 == null || LoginManager.aClass3_Sub2_Sub1_9 == null) {
+        if (LoginManager.loginSprite2 == null || LoginManager.loginSprite5 == null) {
             if (Client.js5Archive8.isFileReady(LoginManager.anInt1736) && Client.js5Archive8.isFileReady(LoginManager.anInt4073)) {
-                LoginManager.aClass3_Sub2_Sub1_1 = SoftwareSprite.loadSoftwareAlphaSprite(Client.js5Archive8, LoginManager.anInt1736);
-                LoginManager.aClass3_Sub2_Sub1_9 = SoftwareSprite.loadSoftwareAlphaSprite(Client.js5Archive8, LoginManager.anInt4073);
+                LoginManager.loginSprite2 = SoftwareSprite.loadSoftwareAlphaSprite(Client.js5Archive8, LoginManager.anInt1736);
+                LoginManager.loginSprite5 = SoftwareSprite.loadSoftwareAlphaSprite(Client.js5Archive8, LoginManager.anInt4073);
                 if (GlRenderer.enabled) {
-                    if (LoginManager.aClass3_Sub2_Sub1_1 instanceof SoftwareAlphaSprite) {
-                        LoginManager.aClass3_Sub2_Sub1_1 = new GlAlphaSprite((SoftwareSprite) LoginManager.aClass3_Sub2_Sub1_1);
+                    if (LoginManager.loginSprite2 instanceof SoftwareAlphaSprite) {
+                        LoginManager.loginSprite2 = new GlAlphaSprite((SoftwareSprite) LoginManager.loginSprite2);
                     } else {
-                        LoginManager.aClass3_Sub2_Sub1_1 = new GlSprite((SoftwareSprite) LoginManager.aClass3_Sub2_Sub1_1);
+                        LoginManager.loginSprite2 = new GlSprite((SoftwareSprite) LoginManager.loginSprite2);
                     }
-                    if (LoginManager.aClass3_Sub2_Sub1_9 instanceof SoftwareAlphaSprite) {
-                        LoginManager.aClass3_Sub2_Sub1_9 = new GlAlphaSprite((SoftwareSprite) LoginManager.aClass3_Sub2_Sub1_9);
+                    if (LoginManager.loginSprite5 instanceof SoftwareAlphaSprite) {
+                        LoginManager.loginSprite5 = new GlAlphaSprite((SoftwareSprite) LoginManager.loginSprite5);
                     } else {
-                        LoginManager.aClass3_Sub2_Sub1_9 = new GlSprite((SoftwareSprite) LoginManager.aClass3_Sub2_Sub1_9);
+                        LoginManager.loginSprite5 = new GlSprite((SoftwareSprite) LoginManager.loginSprite5);
                     }
                 }
             } else if (GlRenderer.enabled) {
@@ -527,13 +527,13 @@ public class MiniMenu {
         }
         @Pc(112) int local112;
         @Pc(114) int local114;
-        if (LoginManager.aClass3_Sub2_Sub1_1 != null && LoginManager.aClass3_Sub2_Sub1_9 != null) {
-            local112 = local13 / LoginManager.aClass3_Sub2_Sub1_1.width;
+        if (LoginManager.loginSprite2 != null && LoginManager.loginSprite5 != null) {
+            local112 = local13 / LoginManager.loginSprite2.width;
             for (local114 = 0; local114 < local112; local114++) {
-                LoginManager.aClass3_Sub2_Sub1_1.render(local114 * LoginManager.aClass3_Sub2_Sub1_1.width + local3, local9);
+                LoginManager.loginSprite2.render(local114 * LoginManager.loginSprite2.width + local3, local9);
             }
-            LoginManager.aClass3_Sub2_Sub1_9.render(local3, local9);
-            LoginManager.aClass3_Sub2_Sub1_9.renderHorizontalFlip(local3 + local13 - LoginManager.aClass3_Sub2_Sub1_9.width, local9);
+            LoginManager.loginSprite5.render(local3, local9);
+            LoginManager.loginSprite5.renderHorizontalFlip(local3 + local13 - LoginManager.loginSprite5.width, local9);
         }
         Fonts.b12Full.renderLeft(LocalizedText.CHOOSE_OPTION, local3 + 3, local9 + 14, LoginManager.anInt4581, -1);
         if (GlRenderer.enabled) {
@@ -555,41 +555,41 @@ public class MiniMenu {
                 }
             }
         }
-        if ((LoginManager.aClass3_Sub2_Sub1_8 == null || LoginManager.aClass3_Sub2_Sub1_6 == null || LoginManager.aClass3_Sub2_Sub1_10 == null) && Client.js5Archive8.isFileReady(LoginManager.anInt2261) && Client.js5Archive8.isFileReady(LoginManager.anInt3324) && Client.js5Archive8.isFileReady(LoginManager.anInt5556)) {
-            LoginManager.aClass3_Sub2_Sub1_8 = SoftwareSprite.loadSoftwareAlphaSprite(Client.js5Archive8, LoginManager.anInt2261);
-            LoginManager.aClass3_Sub2_Sub1_6 = SoftwareSprite.loadSoftwareAlphaSprite(Client.js5Archive8, LoginManager.anInt3324);
-            LoginManager.aClass3_Sub2_Sub1_10 = SoftwareSprite.loadSoftwareAlphaSprite(Client.js5Archive8, LoginManager.anInt5556);
+        if ((LoginManager.loginSprite4 == null || LoginManager.loginSprite3 == null || LoginManager.loginSprite1 == null) && Client.js5Archive8.isFileReady(LoginManager.anInt2261) && Client.js5Archive8.isFileReady(LoginManager.anInt3324) && Client.js5Archive8.isFileReady(LoginManager.anInt5556)) {
+            LoginManager.loginSprite4 = SoftwareSprite.loadSoftwareAlphaSprite(Client.js5Archive8, LoginManager.anInt2261);
+            LoginManager.loginSprite3 = SoftwareSprite.loadSoftwareAlphaSprite(Client.js5Archive8, LoginManager.anInt3324);
+            LoginManager.loginSprite1 = SoftwareSprite.loadSoftwareAlphaSprite(Client.js5Archive8, LoginManager.anInt5556);
             if (GlRenderer.enabled) {
-                if (LoginManager.aClass3_Sub2_Sub1_8 instanceof SoftwareAlphaSprite) {
-                    LoginManager.aClass3_Sub2_Sub1_8 = new GlAlphaSprite((SoftwareSprite) LoginManager.aClass3_Sub2_Sub1_8);
+                if (LoginManager.loginSprite4 instanceof SoftwareAlphaSprite) {
+                    LoginManager.loginSprite4 = new GlAlphaSprite((SoftwareSprite) LoginManager.loginSprite4);
                 } else {
-                    LoginManager.aClass3_Sub2_Sub1_8 = new GlSprite((SoftwareSprite) LoginManager.aClass3_Sub2_Sub1_8);
+                    LoginManager.loginSprite4 = new GlSprite((SoftwareSprite) LoginManager.loginSprite4);
                 }
-                if (LoginManager.aClass3_Sub2_Sub1_6 instanceof SoftwareAlphaSprite) {
-                    LoginManager.aClass3_Sub2_Sub1_6 = new GlAlphaSprite((SoftwareSprite) LoginManager.aClass3_Sub2_Sub1_6);
+                if (LoginManager.loginSprite3 instanceof SoftwareAlphaSprite) {
+                    LoginManager.loginSprite3 = new GlAlphaSprite((SoftwareSprite) LoginManager.loginSprite3);
                 } else {
-                    LoginManager.aClass3_Sub2_Sub1_6 = new GlSprite((SoftwareSprite) LoginManager.aClass3_Sub2_Sub1_6);
+                    LoginManager.loginSprite3 = new GlSprite((SoftwareSprite) LoginManager.loginSprite3);
                 }
-                if (LoginManager.aClass3_Sub2_Sub1_10 instanceof SoftwareAlphaSprite) {
-                    LoginManager.aClass3_Sub2_Sub1_10 = new GlAlphaSprite((SoftwareSprite) LoginManager.aClass3_Sub2_Sub1_10);
+                if (LoginManager.loginSprite1 instanceof SoftwareAlphaSprite) {
+                    LoginManager.loginSprite1 = new GlAlphaSprite((SoftwareSprite) LoginManager.loginSprite1);
                 } else {
-                    LoginManager.aClass3_Sub2_Sub1_10 = new GlSprite((SoftwareSprite) LoginManager.aClass3_Sub2_Sub1_10);
+                    LoginManager.loginSprite1 = new GlSprite((SoftwareSprite) LoginManager.loginSprite1);
                 }
             }
         }
         @Pc(418) int local418;
-        if (LoginManager.aClass3_Sub2_Sub1_8 != null && LoginManager.aClass3_Sub2_Sub1_6 != null && LoginManager.aClass3_Sub2_Sub1_10 != null) {
-            local203 = local13 / LoginManager.aClass3_Sub2_Sub1_8.width;
+        if (LoginManager.loginSprite4 != null && LoginManager.loginSprite3 != null && LoginManager.loginSprite1 != null) {
+            local203 = local13 / LoginManager.loginSprite4.width;
             for (local219 = 0; local219 < local203; local219++) {
-                LoginManager.aClass3_Sub2_Sub1_8.render(local3 + LoginManager.aClass3_Sub2_Sub1_8.width * local219, local11 + local9 + -LoginManager.aClass3_Sub2_Sub1_8.height);
+                LoginManager.loginSprite4.render(local3 + LoginManager.loginSprite4.width * local219, local11 + local9 + -LoginManager.loginSprite4.height);
             }
-            local219 = (local11 - 20) / LoginManager.aClass3_Sub2_Sub1_6.height;
+            local219 = (local11 - 20) / LoginManager.loginSprite3.height;
             for (local418 = 0; local418 < local219; local418++) {
-                LoginManager.aClass3_Sub2_Sub1_6.render(local3, local9 + local418 * LoginManager.aClass3_Sub2_Sub1_6.height + 20);
-                LoginManager.aClass3_Sub2_Sub1_6.renderHorizontalFlip(local3 + local13 - LoginManager.aClass3_Sub2_Sub1_6.width, local9 + 20 + local418 * LoginManager.aClass3_Sub2_Sub1_6.height);
+                LoginManager.loginSprite3.render(local3, local9 + local418 * LoginManager.loginSprite3.height + 20);
+                LoginManager.loginSprite3.renderHorizontalFlip(local3 + local13 - LoginManager.loginSprite3.width, local9 + 20 + local418 * LoginManager.loginSprite3.height);
             }
-            LoginManager.aClass3_Sub2_Sub1_10.render(local3, local11 + local9 - LoginManager.aClass3_Sub2_Sub1_10.height);
-            LoginManager.aClass3_Sub2_Sub1_10.renderHorizontalFlip(local3 + local13 - LoginManager.aClass3_Sub2_Sub1_10.width, local9 - -local11 + -LoginManager.aClass3_Sub2_Sub1_10.height);
+            LoginManager.loginSprite1.render(local3, local11 + local9 - LoginManager.loginSprite1.height);
+            LoginManager.loginSprite1.renderHorizontalFlip(local3 + local13 - LoginManager.loginSprite1.width, local9 - -local11 + -LoginManager.loginSprite1.height);
         }
         for (local203 = 0; local203 < menuActionRow; local203++) {
             local219 = (menuActionRow - local203 - 1) * 15 + local9 + 35;
@@ -632,7 +632,7 @@ public class MiniMenu {
     }
 
     @OriginalMember(owner = "client!dm", name = "a", descriptor = "(Lclient!be;III)V")
-    public static void method1207(@OriginalArg(0) Wdiget arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2) {
+    public static void method1207(@OriginalArg(0) Widget arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2) {
         if (menuActionRow < 2 && anInt5014 == 0 && !aBoolean302) {
             return;
         }
@@ -663,7 +663,7 @@ public class MiniMenu {
     }
 
     @OriginalMember(owner = "client!aj", name = "a", descriptor = "(BILclient!be;)I")
-    public static int getOpCursor(@OriginalArg(1) int arg0, @OriginalArg(2) Wdiget arg1) {
+    public static int getOpCursor(@OriginalArg(1) int arg0, @OriginalArg(2) Widget arg1) {
         if (!WidgetList.getServerActiveProperties(arg1).isButtonEnabled(arg0) && arg1.onOptionClick == null) {
             return -1;
         } else if (arg1.anIntArray39 == null || arg0 >= arg1.anIntArray39.length) {
@@ -720,7 +720,7 @@ public class MiniMenu {
             Protocol.outboundBuffer.p2_alt3(anInt4997);
             Protocol.outboundBuffer.p2_alt3(a);
             anInt2043 = 0;
-            pressedInventoryWdiget = WidgetList.getComponent(local19);
+            pressedInventoryWidget = WidgetList.getComponent(local19);
             anInt5444 = local15;
         }
         @Pc(192) Npc npc;
@@ -766,7 +766,7 @@ public class MiniMenu {
             Protocol.outboundBuffer.p2_alt2(local15);
             Protocol.outboundBuffer.p4_alt3(local19);
             anInt2043 = 0;
-            pressedInventoryWdiget = WidgetList.getComponent(local19);
+            pressedInventoryWidget = WidgetList.getComponent(local19);
             anInt5444 = local15;
         }
         if (actionCode == LOC_ACTION_1) {
@@ -827,7 +827,7 @@ public class MiniMenu {
             Protocol.outboundBuffer.pIsaac1(92);
             Protocol.outboundBuffer.p2_alt3(a);
         }
-        @Pc(693) Wdiget com;
+        @Pc(693) Widget com;
         if (actionCode == OBJ_EXAMINE_IN_COMPONENT) {
             com = WidgetList.getComponent(local19);
             if (com == null || com.invSlotObjCount[local15] < 100000) {
@@ -837,7 +837,7 @@ public class MiniMenu {
                 Chat.addMessage(JString.EMPTY, 0, JString.concatenate(new JString[] { JString.parseInt(com.invSlotObjCount[local15]), aClass100_1039, ObjTypeList.get(a).name}));
             }
             anInt2043 = 0;
-            pressedInventoryWdiget = WidgetList.getComponent(local19);
+            pressedInventoryWidget = WidgetList.getComponent(local19);
             anInt5444 = local15;
         }
         if (actionCode == WALK_HERE) {
@@ -884,7 +884,7 @@ public class MiniMenu {
             Protocol.outboundBuffer.p2_alt2(a);
             Protocol.outboundBuffer.p4_alt1(local19);
             anInt2043 = 0;
-            pressedInventoryWdiget = WidgetList.getComponent(local19);
+            pressedInventoryWidget = WidgetList.getComponent(local19);
             anInt5444 = local15;
         }
         if (actionCode == COMPONENT_OBJ_ACTION) {
@@ -895,7 +895,7 @@ public class MiniMenu {
             Protocol.outboundBuffer.p2_alt2(a);
             Protocol.outboundBuffer.p2_alt1(anInt506);
             anInt2043 = 0;
-            pressedInventoryWdiget = WidgetList.getComponent(local19);
+            pressedInventoryWidget = WidgetList.getComponent(local19);
             anInt5444 = local15;
         }
         if (actionCode == UNKNOWN_10) {
@@ -928,7 +928,7 @@ public class MiniMenu {
             Protocol.outboundBuffer.p2_alt1(local15);
             Protocol.outboundBuffer.p4_alt1(local19);
             anInt2043 = 0;
-            pressedInventoryWdiget = WidgetList.getComponent(local19);
+            pressedInventoryWidget = WidgetList.getComponent(local19);
             anInt5444 = local15;
         }
         if (actionCode == OBJ_LOC_ACTION && PathFinder.findPathToLoc(local31, local19, local15)) {
@@ -961,7 +961,7 @@ public class MiniMenu {
             Protocol.outboundBuffer.p2_alt2(local15);
             Protocol.outboundBuffer.p4rme(local19);
             anInt2043 = 0;
-            pressedInventoryWdiget = WidgetList.getComponent(local19);
+            pressedInventoryWidget = WidgetList.getComponent(local19);
             anInt5444 = local15;
         }
         if (actionCode == UNKNOWN_21) {
@@ -1031,7 +1031,7 @@ public class MiniMenu {
             Protocol.outboundBuffer.p2_alt3(a);
             Protocol.outboundBuffer.p2_alt3(local15);
             anInt2043 = 0;
-            pressedInventoryWdiget = WidgetList.getComponent(local19);
+            pressedInventoryWidget = WidgetList.getComponent(local19);
             anInt5444 = local15;
         }
         if (actionCode == COMPONENT_PLAYER_ACTION) {
@@ -1072,7 +1072,7 @@ public class MiniMenu {
             Protocol.outboundBuffer.p2(a);
             Protocol.outboundBuffer.p4rme(local19);
             anInt2043 = 0;
-            pressedInventoryWdiget = WidgetList.getComponent(local19);
+            pressedInventoryWidget = WidgetList.getComponent(local19);
             anInt5444 = local15;
         }
         if (actionCode == NPC_ACTION_5) {
@@ -1194,7 +1194,7 @@ public class MiniMenu {
             Protocol.outboundBuffer.p2(local15);
             Protocol.outboundBuffer.p2_alt2(a);
             anInt2043 = 0;
-            pressedInventoryWdiget = WidgetList.getComponent(local19);
+            pressedInventoryWidget = WidgetList.getComponent(local19);
             anInt5444 = local15;
         }
         if (actionCode == UNKNOWN_24) {
@@ -1229,7 +1229,7 @@ public class MiniMenu {
             Protocol.outboundBuffer.p2_alt2(local15);
             Protocol.outboundBuffer.p2_alt1(a);
             anInt2043 = 0;
-            pressedInventoryWdiget = WidgetList.getComponent(local19);
+            pressedInventoryWidget = WidgetList.getComponent(local19);
             anInt5444 = local15;
         }
         if (actionCode == PLAYER_ACTION_5) {
@@ -1271,7 +1271,7 @@ public class MiniMenu {
             Protocol.outboundBuffer.p4rme(local19);
             Protocol.outboundBuffer.p2_alt3(a);
             anInt2043 = 0;
-            pressedInventoryWdiget = WidgetList.getComponent(local19);
+            pressedInventoryWidget = WidgetList.getComponent(local19);
             anInt5444 = local15;
         }
         if (actionCode == PLAYER_ACTION_1) {
@@ -1292,7 +1292,7 @@ public class MiniMenu {
             Protocol.outboundBuffer.p2_alt1(local15);
             Protocol.outboundBuffer.p2_alt1(a);
             anInt2043 = 0;
-            pressedInventoryWdiget = WidgetList.getComponent(local19);
+            pressedInventoryWidget = WidgetList.getComponent(local19);
             anInt5444 = local15;
         }
         if (actionCode == COMPONENT_OBJSTACK_ACTION) {
@@ -1379,8 +1379,8 @@ public class MiniMenu {
         if (aBoolean302) {
             method1294();
         }
-        if (pressedInventoryWdiget != null && anInt2043 == 0) {
-            WidgetList.redraw(pressedInventoryWdiget);
+        if (pressedInventoryWidget != null && anInt2043 == 0) {
+            WidgetList.redraw(pressedInventoryWidget);
         }
     }
 
@@ -1418,7 +1418,7 @@ public class MiniMenu {
             @Pc(33) int local33 = (arg5 - arg3) * (local17 - local19) / arg1 + local19;
             local47 = local15 + (local13 - local15) * (arg4 - arg0) / arg2;
             if (aBoolean302 && (anInt4999 & 0x40) != 0) {
-                @Pc(61) Wdiget local61 = WidgetList.getCreatedComponent(anInt2512, anInt506);
+                @Pc(61) Widget local61 = WidgetList.getCreatedComponent(anInt2512, anInt506);
                 if (local61 == null) {
                     method1294();
                 } else {
@@ -1804,7 +1804,7 @@ public class MiniMenu {
 
     @OriginalMember(owner = "runetek4.client!ub", name = "b", descriptor = "(IIIIIII)V")
     public static void method4246(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(6) int arg5) {
-        @Pc(8) Wdiget local8 = WidgetList.getCreatedComponent(arg0, arg1);
+        @Pc(8) Widget local8 = WidgetList.getCreatedComponent(arg0, arg1);
         if (local8 != null && local8.onUse != null) {
             @Pc(19) WidgetEvent local19 = new WidgetEvent();
             local19.source = local8;
@@ -1817,23 +1817,23 @@ public class MiniMenu {
         anInt4999 = arg2;
         aBoolean302 = true;
         anInt5393 = arg4;
-        anInt1092 = arg5;
+        defaultCursor = arg5;
         WidgetList.redraw(local8);
     }
 
     @OriginalMember(owner = "client!ej", name = "h", descriptor = "(I)V")
     public static void processMenuActions() {
-        if (anInt3953 == 2) {
-            if (ClientScriptRunner.anInt3751 == Mouse.anInt5850 && ClientScriptRunner.anInt1892 == Mouse.anInt5895) {
-                anInt3953 = 0;
+        if (menuState == 2) {
+            if (ClientScriptRunner.scriptMouseX == Mouse.anInt5850 && ClientScriptRunner.scriptMouseY == Mouse.anInt5895) {
+                menuState = 0;
                 if (Cheat.shiftClick && Keyboard.pressedKeys[Keyboard.KEY_SHIFT] && menuActionRow > 2) {
                     doAction(menuActionRow - 2);
                 } else {
                     doAction(menuActionRow - 1);
                 }
             }
-        } else if (ClientScriptRunner.anInt3751 == Mouse.mouseClickX && ClientScriptRunner.anInt1892 == Mouse.mouseClickY) {
-            anInt3953 = 0;
+        } else if (ClientScriptRunner.scriptMouseX == Mouse.mouseClickX && ClientScriptRunner.scriptMouseY == Mouse.mouseClickY) {
+            menuState = 0;
             if (Cheat.shiftClick && Keyboard.pressedKeys[Keyboard.KEY_SHIFT] && menuActionRow > 2) {
                 doAction(menuActionRow - 2);
             } else {
@@ -1841,7 +1841,7 @@ public class MiniMenu {
             }
         } else {
             Mouse.anInt5895 = Mouse.mouseClickY;
-            anInt3953 = 2;
+            menuState = 2;
             Mouse.anInt5850 = Mouse.mouseClickX;
         }
     }

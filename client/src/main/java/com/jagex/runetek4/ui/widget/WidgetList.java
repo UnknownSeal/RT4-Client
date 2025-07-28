@@ -7,7 +7,7 @@ import com.jagex.runetek4.ui.chat.ClanChat;
 import com.jagex.runetek4.client.LoginManager;
 import com.jagex.runetek4.config.types.seq.SeqType;
 import com.jagex.runetek4.data.cache.media.SoftwareSprite;
-import com.jagex.runetek4.data.cache.media.component.Wdiget;
+import com.jagex.runetek4.data.cache.media.component.Widget;
 import com.jagex.runetek4.client.GameShell;
 import com.jagex.runetek4.client.Preferences;
 import com.jagex.runetek4.client.Client;
@@ -52,7 +52,7 @@ public class WidgetList {
     @OriginalMember(owner = "runetek4.client!sg", name = "q", descriptor = "[I")
     public static final int[] keyCodes = new int[128];
     @OriginalMember(owner = "runetek4.client!pa", name = "R", descriptor = "[Z")
-    public static final boolean[] aBooleanArray100 = new boolean[100];
+    public static final boolean[] widgetNeedsRedraw = new boolean[100];
     @OriginalMember(owner = "client!ch", name = "y", descriptor = "[Z")
     public static final boolean[] rectangleRedraw = new boolean[100];
     @OriginalMember(owner = "runetek4.client!sd", name = "V", descriptor = "[I")
@@ -76,7 +76,7 @@ public class WidgetList {
     @OriginalMember(owner = "runetek4.client!ql", name = "h", descriptor = "Lclient!na;")
     public static final JString aClass100_903 = JString.parse("Hidden)2");
     @OriginalMember(owner = "runetek4.client!sc", name = "z", descriptor = "[Z")
-    public static final boolean[] aBooleanArray116 = new boolean[100];
+    public static final boolean[] widgetRedrawPrevious = new boolean[100];
     @OriginalMember(owner = "client!je", name = "fb", descriptor = "I")
     public static int transmitTimer = 1;
     @OriginalMember(owner = "runetek4.client!md", name = "W", descriptor = "I")
@@ -96,11 +96,11 @@ public class WidgetList {
     @OriginalMember(owner = "client!sh", name = "f", descriptor = "I")
     public static int anInt5103 = -1;
     @OriginalMember(owner = "runetek4.client!wl", name = "h", descriptor = "Lclient!be;")
-    public static Wdiget aClass13_26 = null;
+    public static Widget aClass13_26 = null;
     @OriginalMember(owner = "runetek4.client!rg", name = "s", descriptor = "I")
     public static int anInt5574 = -1;
     @OriginalMember(owner = "runetek4.client!og", name = "e", descriptor = "Lclient!be;")
-    public static Wdiget aClass13_22;
+    public static Widget aClass13_22;
     @OriginalMember(owner = "runetek4.client!gd", name = "j", descriptor = "I")
     public static int lastItemDragTime = 0;
     @OriginalMember(owner = "runetek4.client!qk", name = "f", descriptor = "I")
@@ -112,17 +112,17 @@ public class WidgetList {
     @OriginalMember(owner = "runetek4.client!qh", name = "g", descriptor = "Lclient!ve;")
     public static Js5 aClass153_85;
     @OriginalMember(owner = "runetek4.client!th", name = "j", descriptor = "[[Lclient!be;")
-    public static Wdiget[][] cachedWdigets;
+    public static Widget[][] cachedWidgets;
     @OriginalMember(owner = "runetek4.client!sc", name = "m", descriptor = "[Z")
     public static boolean[] loadedComponents;
     @OriginalMember(owner = "runetek4.client!ra", name = "J", descriptor = "I")
     public static int miscTransmitAt = 0;
     @OriginalMember(owner = "runetek4.client!jd", name = "i", descriptor = "Lclient!be;")
-    public static Wdiget clickedInventoryWdiget;
+    public static Widget clickedInventoryWidget;
     @OriginalMember(owner = "runetek4.client!nf", name = "h", descriptor = "Lclient!be;")
-    public static Wdiget mouseOverInventoryInterface;
+    public static Widget mouseOverInventoryInterface;
     @OriginalMember(owner = "client!ef", name = "r", descriptor = "Lclient!be;")
-    public static Wdiget aClass13_12 = null;
+    public static Widget aClass13_12 = null;
     @OriginalMember(owner = "client!bn", name = "O", descriptor = "I")
     public static int anInt761;
     @OriginalMember(owner = "client!bc", name = "X", descriptor = "I")
@@ -203,7 +203,7 @@ public class WidgetList {
             ClientScriptRunner.method1807();
             method1626(topLevelInterface);
         }
-        MiniMenu.anInt1092 = -1;
+        MiniMenu.defaultCursor = -1;
         method1750(ClientScriptRunner.anInt5794);
         PlayerList.self = new Player();
         PlayerList.self.zFine = 3000;
@@ -230,21 +230,21 @@ public class WidgetList {
             return;
         }
         gameInterfaceJs5.discardUnpacked(componentId);
-        if (cachedWdigets[componentId] == null) {
+        if (cachedWidgets[componentId] == null) {
             return;
         }
         @Pc(27) boolean deleteFromCache = true;
-        for (@Pc(29) int i = 0; i < cachedWdigets[componentId].length; i++) {
-            if (cachedWdigets[componentId][i] != null) {
-                if (cachedWdigets[componentId][i].type == 2) {
+        for (@Pc(29) int i = 0; i < cachedWidgets[componentId].length; i++) {
+            if (cachedWidgets[componentId][i] != null) {
+                if (cachedWidgets[componentId][i].type == 2) {
                     deleteFromCache = false;
                 } else {
-                    cachedWdigets[componentId][i] = null;
+                    cachedWidgets[componentId][i] = null;
                 }
             }
         }
         if (deleteFromCache) {
-            cachedWdigets[componentId] = null;
+            cachedWidgets[componentId] = null;
         }
         loadedComponents[componentId] = false;
     }
@@ -258,7 +258,7 @@ public class WidgetList {
             resetComponent(local16);
         }
         method3214(local16);
-        @Pc(32) Wdiget local32 = getComponent(local9);
+        @Pc(32) Widget local32 = getComponent(local9);
         if (local32 != null) {
             redraw(local32);
         }
@@ -270,7 +270,7 @@ public class WidgetList {
             }
         }
         if (MiniMenu.menuActionRow == 1) {
-            ClientScriptRunner.aBoolean108 = false;
+            ClientScriptRunner.menuVisible = false;
             redrawScreen(anInt4271, anInt761, anInt5138, anInt436);
         } else {
             redrawScreen(anInt4271, anInt761, anInt5138, anInt436);
@@ -291,7 +291,7 @@ public class WidgetList {
 
     @OriginalMember(owner = "runetek4.client!eb", name = "d", descriptor = "(I)V")
     public static void createComponentMemoryBuffer() {
-        cachedWdigets = new Wdiget[gameInterfaceJs5.capacity()][];
+        cachedWidgets = new Widget[gameInterfaceJs5.capacity()][];
         loadedComponents = new boolean[gameInterfaceJs5.capacity()];
     }
 
@@ -301,11 +301,11 @@ public class WidgetList {
             method1949(topLevelInterface);
         }
         for (@Pc(15) int local15 = 0; local15 < rectangles; local15++) {
-            if (aBooleanArray100[local15]) {
+            if (widgetNeedsRedraw[local15]) {
                 rectangleRedraw[local15] = true;
             }
-            aBooleanArray116[local15] = aBooleanArray100[local15];
-            aBooleanArray100[local15] = false;
+            widgetRedrawPrevious[local15] = widgetNeedsRedraw[local15];
+            widgetNeedsRedraw[local15] = false;
         }
         ClientScriptRunner.anInt2503 = -1;
         mouseOverInventoryInterface = null;
@@ -329,42 +329,42 @@ public class WidgetList {
     @OriginalMember(owner = "runetek4.client!eg", name = "a", descriptor = "(IIIIIIII)V")
     public static void method1320(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int arg6) {
         if (load(arg4)) {
-            method946(cachedWdigets[arg4], -1, arg5, arg1, arg3, arg6, arg0, arg2);
+            method946(cachedWidgets[arg4], -1, arg5, arg1, arg3, arg6, arg0, arg2);
         }
     }
 
     @OriginalMember(owner = "runetek4.client!af", name = "a", descriptor = "(BI)Lclient!be;")
-    public static Wdiget getComponent(@OriginalArg(1) int id) {
+    public static Widget getComponent(@OriginalArg(1) int id) {
         @Pc(7) int interfaceId = id >> 16;
         @Pc(18) int componentId = id & 0xFFFF;
-        if (cachedWdigets[interfaceId] == null || cachedWdigets[interfaceId][componentId] == null) {
+        if (cachedWidgets[interfaceId] == null || cachedWidgets[interfaceId][componentId] == null) {
             @Pc(33) boolean success = load(interfaceId);
             if (!success) {
                 return null;
             }
             // todo: this should not be necessary, data/server-related?
-            if (cachedWdigets.length <= interfaceId || cachedWdigets[interfaceId].length <= componentId) {
+            if (cachedWidgets.length <= interfaceId || cachedWidgets[interfaceId].length <= componentId) {
                 return null;
             }
         }
-        return cachedWdigets[interfaceId][componentId];
+        return cachedWidgets[interfaceId][componentId];
     }
 
     @OriginalMember(owner = "runetek4.client!runetek4.client", name = "b", descriptor = "(Lclient!be;)Lclient!bf;")
-    public static ServerActiveProperties getServerActiveProperties(@OriginalArg(0) Wdiget arg0) {
+    public static ServerActiveProperties getServerActiveProperties(@OriginalArg(0) Widget arg0) {
         @Pc(13) ServerActiveProperties local13 = (ServerActiveProperties) properties.get(((long) arg0.id << 32) + (long) arg0.createdComponentId);
         return local13 == null ? arg0.properties : local13;
     }
 
     @OriginalMember(owner = "runetek4.client!dg", name = "a", descriptor = "(ILclient!be;)V")
-    public static void redraw(@OriginalArg(1) Wdiget arg0) {
+    public static void redraw(@OriginalArg(1) Widget arg0) {
         if (anInt4311 == arg0.rectangleLoop) {
-            aBooleanArray100[arg0.rectangle] = true;
+            widgetNeedsRedraw[arg0.rectangle] = true;
         }
     }
 
     @OriginalMember(owner = "runetek4.client!runetek4.client", name = "c", descriptor = "(Lclient!be;)Z")
-    public static boolean method947(@OriginalArg(0) Wdiget arg0) {
+    public static boolean method947(@OriginalArg(0) Widget arg0) {
         if (Cheat.qaOpTest) {
             if (getServerActiveProperties(arg0).events != 0) {
                 return false;
@@ -377,14 +377,14 @@ public class WidgetList {
     }
 
     @OriginalMember(owner = "runetek4.client!qf", name = "a", descriptor = "(BII)Lclient!be;")
-    public static Wdiget getCreatedComponent(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1) {
-        @Pc(7) Wdiget local7 = getComponent(arg0);
+    public static Widget getCreatedComponent(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1) {
+        @Pc(7) Widget local7 = getComponent(arg0);
         if (arg1 == -1) {
             return local7;
-        } else if (local7 == null || local7.createdWdigets == null || local7.createdWdigets.length <= arg1) {
+        } else if (local7 == null || local7.createdWidgets == null || local7.createdWidgets.length <= arg1) {
             return null;
         } else {
-            return local7.createdWdigets[arg1];
+            return local7.createdWidgets[arg1];
         }
     }
 
@@ -392,7 +392,7 @@ public class WidgetList {
     public static void redrawScreen(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
         for (@Pc(12) int local12 = 0; local12 < rectangles; local12++) {
             if (rectangleWidth[local12] + rectangleX[local12] > arg0 && arg1 + arg0 > rectangleX[local12] && arg2 < rectangleHeight[local12] + rectangleY[local12] && rectangleY[local12] < arg2 + arg3) {
-                aBooleanArray100[local12] = true;
+                widgetNeedsRedraw[local12] = true;
             }
         }
     }
@@ -408,7 +408,7 @@ public class WidgetList {
         aClass153_64 = arg0;
         gameInterfaceJs5 = arg2;
         aClass153_85 = arg3;
-        cachedWdigets = new Wdiget[gameInterfaceJs5.capacity()][];
+        cachedWidgets = new Widget[gameInterfaceJs5.capacity()][];
         loadedComponents = new boolean[gameInterfaceJs5.capacity()];
     }
 
@@ -422,14 +422,14 @@ public class WidgetList {
                 loadedComponents[componentId] = true;
                 return true;
             }
-            if (cachedWdigets[componentId] == null) {
-                cachedWdigets[componentId] = new Wdiget[gameInterfaceCount];
+            if (cachedWidgets[componentId] == null) {
+                cachedWidgets[componentId] = new Widget[gameInterfaceCount];
             }
             for (@Pc(46) int i = 0; i < gameInterfaceCount; i++) {
-                if (cachedWdigets[componentId][i] == null) {
+                if (cachedWidgets[componentId][i] == null) {
                     @Pc(62) byte[] interfaceFileData = gameInterfaceJs5.getfile(componentId, i);
                     if (interfaceFileData != null) {
-                        @Pc(74) Wdiget local74 = cachedWdigets[componentId][i] = new Wdiget();
+                        @Pc(74) Widget local74 = cachedWidgets[componentId][i] = new Widget();
                         local74.id = i + (componentId << 16);
                         if (interfaceFileData[0] == -1) {
                             local74.decodeIf3(new Packet(interfaceFileData));
@@ -452,7 +452,7 @@ public class WidgetList {
             @Pc(14) int local14 = local6.interfaceId;
             if (load(local14)) {
                 @Pc(21) boolean local21 = true;
-                @Pc(25) Wdiget[] local25 = cachedWdigets[local14];
+                @Pc(25) Widget[] local25 = cachedWidgets[local14];
                 @Pc(27) int local27;
                 for (local27 = 0; local27 < local25.length; local27++) {
                     if (local25[local27] != null) {
@@ -462,7 +462,7 @@ public class WidgetList {
                 }
                 if (!local21) {
                     local27 = (int) local6.nodeId;
-                    @Pc(60) Wdiget local60 = getComponent(local27);
+                    @Pc(60) Widget local60 = getComponent(local27);
                     if (local60 != null) {
                         redraw(local60);
                     }
@@ -472,7 +472,7 @@ public class WidgetList {
     }
 
     @OriginalMember(owner = "runetek4.client!qj", name = "a", descriptor = "(Lclient!be;BI)Lclient!na;")
-    public static JString getOp(@OriginalArg(0) Wdiget arg0, @OriginalArg(2) int arg1) {
+    public static JString getOp(@OriginalArg(0) Widget arg0, @OriginalArg(2) int arg1) {
         if (!getServerActiveProperties(arg0).isButtonEnabled(arg1) && arg0.onOptionClick == null) {
             return null;
         } else if (arg0.ops == null || arg0.ops.length <= arg1 || arg0.ops[arg1] == null || arg0.ops[arg1].trim().length() == 0) {
@@ -487,9 +487,9 @@ public class WidgetList {
         if (!load(arg0)) {
             return;
         }
-        @Pc(15) Wdiget[] local15 = cachedWdigets[arg0];
+        @Pc(15) Widget[] local15 = cachedWidgets[arg0];
         for (@Pc(17) int local17 = 0; local17 < local15.length; local17++) {
-            @Pc(29) Wdiget local29 = local15[local17];
+            @Pc(29) Widget local29 = local15[local17];
             if (local29 != null) {
                 local29.anInt496 = 1;
                 local29.anInt510 = 0;
@@ -501,14 +501,14 @@ public class WidgetList {
     @OriginalMember(owner = "runetek4.client!ta", name = "a", descriptor = "(IZIII)V")
     public static void method4017(@OriginalArg(0) int arg0, @OriginalArg(1) boolean arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
         if (load(arg2)) {
-            method4190(-1, arg1, arg3, arg0, cachedWdigets[arg2]);
+            method4190(-1, arg1, arg3, arg0, cachedWidgets[arg2]);
         }
     }
 
     @OriginalMember(owner = "runetek4.client!vk", name = "a", descriptor = "(IZIII[Lclient!be;)V")
-    public static void method4190(@OriginalArg(0) int arg0, @OriginalArg(1) boolean arg1, @OriginalArg(2) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) Wdiget[] arg4) {
+    public static void method4190(@OriginalArg(0) int arg0, @OriginalArg(1) boolean arg1, @OriginalArg(2) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) Widget[] arg4) {
         for (@Pc(3) int local3 = 0; local3 < arg4.length; local3++) {
-            @Pc(19) Wdiget local19 = arg4[local3];
+            @Pc(19) Widget local19 = arg4[local3];
             if (local19 != null && local19.overlayer == arg0) {
                 method2801(arg3, arg2, local19, arg1);
                 method2291(local19, arg3, arg2);
@@ -532,12 +532,12 @@ public class WidgetList {
     }
 
     @OriginalMember(owner = "client!bg", name = "a", descriptor = "(Lclient!be;ZI)V")
-    public static void method531(@OriginalArg(0) Wdiget arg0, @OriginalArg(1) boolean arg1) {
+    public static void method531(@OriginalArg(0) Widget arg0, @OriginalArg(1) boolean arg1) {
         @Pc(20) int local20 = arg0.scrollMaxH == 0 ? arg0.width : arg0.scrollMaxH;
         @Pc(32) int local32 = arg0.scrollMaxV == 0 ? arg0.height : arg0.scrollMaxV;
-        method4190(arg0.id, arg1, local20, local32, cachedWdigets[arg0.id >> 16]);
-        if (arg0.createdWdigets != null) {
-            method4190(arg0.id, arg1, local20, local32, arg0.createdWdigets);
+        method4190(arg0.id, arg1, local20, local32, cachedWidgets[arg0.id >> 16]);
+        if (arg0.createdWidgets != null) {
+            method4190(arg0.id, arg1, local20, local32, arg0.createdWidgets);
         }
         @Pc(66) SubInterface local66 = (SubInterface) openInterfaces.get((long) arg0.id);
         if (local66 != null) {
@@ -546,7 +546,7 @@ public class WidgetList {
     }
 
     @OriginalMember(owner = "runetek4.client!lk", name = "a", descriptor = "(IIILclient!be;Z)V")
-    public static void method2801(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) Wdiget arg2, @OriginalArg(4) boolean arg3) {
+    public static void method2801(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) Widget arg2, @OriginalArg(4) boolean arg3) {
         @Pc(4) int local4 = arg2.width;
         @Pc(7) int local7 = arg2.height;
         if (arg2.dynamicWidthValue == 0) {
@@ -606,7 +606,7 @@ public class WidgetList {
     }
 
     @OriginalMember(owner = "runetek4.client!ii", name = "a", descriptor = "(Lclient!be;III)V")
-    public static void method2291(@OriginalArg(0) Wdiget arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2) {
+    public static void method2291(@OriginalArg(0) Widget arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2) {
         if (arg0.xMode == 0) {
             arg0.y = arg0.baseY;
         } else if (arg0.xMode == 1) {
@@ -653,9 +653,9 @@ public class WidgetList {
         if (arg0 == -1 || !load(arg0)) {
             return;
         }
-        @Pc(31) Wdiget[] local31 = cachedWdigets[arg0];
+        @Pc(31) Widget[] local31 = cachedWidgets[arg0];
         for (@Pc(33) int local33 = 0; local33 < local31.length; local33++) {
-            @Pc(41) Wdiget local41 = local31[local33];
+            @Pc(41) Widget local41 = local31[local33];
             if (local41.anObjectArray3 != null) {
                 @Pc(50) WidgetEvent local50 = new WidgetEvent();
                 local50.arguments = local41.anObjectArray3;
@@ -690,12 +690,12 @@ public class WidgetList {
     @OriginalMember(owner = "client!ed", name = "a", descriptor = "(III)V")
     public static void runScripts(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1) {
         if (load(arg1)) {
-            method7(cachedWdigets[arg1], arg0);
+            method7(cachedWidgets[arg1], arg0);
         }
     }
 
     @OriginalMember(owner = "runetek4.client!wl", name = "a", descriptor = "(Lclient!be;I)Lclient!be;")
-    public static Wdiget method4668(@OriginalArg(0) Wdiget arg0) {
+    public static Widget method4668(@OriginalArg(0) Widget arg0) {
         if (arg0.overlayer != -1) {
             return getComponent(arg0.overlayer);
         }
@@ -710,8 +710,8 @@ public class WidgetList {
     }
 
     @OriginalMember(owner = "client!fn", name = "a", descriptor = "(ILclient!be;)V")
-    public static void update(@OriginalArg(1) Wdiget arg0) {
-        @Pc(7) Wdiget local7 = method4668(arg0);
+    public static void update(@OriginalArg(1) Widget arg0) {
+        @Pc(7) Widget local7 = method4668(arg0);
         @Pc(19) int local19;
         @Pc(17) int local17;
         if (local7 == null) {
@@ -726,13 +726,13 @@ public class WidgetList {
     }
 
     @OriginalMember(owner = "runetek4.client!aa", name = "a", descriptor = "([Lclient!be;ZI)V")
-    public static void method7(@OriginalArg(0) Wdiget[] arg0, @OriginalArg(2) int arg1) {
+    public static void method7(@OriginalArg(0) Widget[] arg0, @OriginalArg(2) int arg1) {
         for (@Pc(11) int local11 = 0; local11 < arg0.length; local11++) {
-            @Pc(23) Wdiget local23 = arg0[local11];
+            @Pc(23) Widget local23 = arg0[local11];
             if (local23 != null) {
                 if (local23.type == 0) {
-                    if (local23.createdWdigets != null) {
-                        method7(local23.createdWdigets, arg1);
+                    if (local23.createdWidgets != null) {
+                        method7(local23.createdWidgets, arg1);
                     }
                     @Pc(49) SubInterface local49 = (SubInterface) openInterfaces.get((long) local23.id);
                     if (local49 != null) {
@@ -748,8 +748,8 @@ public class WidgetList {
                 }
                 if (arg1 == 1 && local23.onWidgetsOpenClose != null) {
                     if (local23.createdComponentId >= 0) {
-                        @Pc(103) Wdiget local103 = getComponent(local23.id);
-                        if (local103 == null || local103.createdWdigets == null || local23.createdComponentId >= local103.createdWdigets.length || local103.createdWdigets[local23.createdComponentId] != local23) {
+                        @Pc(103) Widget local103 = getComponent(local23.id);
+                        if (local103 == null || local103.createdWidgets == null || local23.createdComponentId >= local103.createdWidgets.length || local103.createdWidgets[local23.createdComponentId] != local23) {
                             continue;
                         }
                     }
@@ -763,25 +763,25 @@ public class WidgetList {
     }
 
     @OriginalMember(owner = "client!runetek4.client", name = "a", descriptor = "([Lclient!be;IIIIIII)V")
-    public static void method946(@OriginalArg(0) Wdiget[] arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7) {
+    public static void method946(@OriginalArg(0) Widget[] arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7) {
         for (@Pc(1) int local1 = 0; local1 < arg0.length; local1++) {
-            @Pc(9) Wdiget wdiget = arg0[local1];
-            if (wdiget != null && wdiget.overlayer == arg1 && (!wdiget.if3 || wdiget.type == 0 || wdiget.aBoolean25 || getServerActiveProperties(wdiget).events != 0 || wdiget == ClientScriptRunner.aClass13_1 || wdiget.contentType == 1338) && (!wdiget.if3 || !method947(wdiget))) {
-                @Pc(50) int local50 = wdiget.x + arg6;
-                @Pc(55) int local55 = wdiget.y + arg7;
+            @Pc(9) Widget widget = arg0[local1];
+            if (widget != null && widget.overlayer == arg1 && (!widget.if3 || widget.type == 0 || widget.aBoolean25 || getServerActiveProperties(widget).events != 0 || widget == ClientScriptRunner.aClass13_1 || widget.contentType == 1338) && (!widget.if3 || !method947(widget))) {
+                @Pc(50) int local50 = widget.x + arg6;
+                @Pc(55) int local55 = widget.y + arg7;
                 @Pc(61) int local61;
                 @Pc(63) int local63;
                 @Pc(65) int local65;
                 @Pc(67) int local67;
-                if (wdiget.type == 2) {
+                if (widget.type == 2) {
                     local61 = arg2;
                     local63 = arg3;
                     local65 = arg4;
                     local67 = arg5;
                 } else {
-                    @Pc(73) int local73 = local50 + wdiget.width;
-                    @Pc(78) int local78 = local55 + wdiget.height;
-                    if (wdiget.type == 9) {
+                    @Pc(73) int local73 = local50 + widget.width;
+                    @Pc(78) int local78 = local55 + widget.height;
+                    if (widget.type == 9) {
                         local73++;
                         local78++;
                     }
@@ -790,17 +790,17 @@ public class WidgetList {
                     local65 = local73 < arg4 ? local73 : arg4;
                     local67 = local78 < arg5 ? local78 : arg5;
                 }
-                if (wdiget == ClientScriptRunner.aClass13_14) {
+                if (widget == ClientScriptRunner.aClass13_14) {
                     aBoolean83 = true;
                     anInt3075 = local50;
                     anInt660 = local55;
                 }
-                if (!wdiget.if3 || local61 < local65 && local63 < local67) {
-                    if (wdiget.type == 0) {
-                        if (!wdiget.if3 && method947(wdiget) && aClass13_22 != wdiget) {
+                if (!widget.if3 || local61 < local65 && local63 < local67) {
+                    if (widget.type == 0) {
+                        if (!widget.if3 && method947(widget) && aClass13_22 != widget) {
                             continue;
                         }
-                        if (wdiget.noClickThrough && Mouse.lastMouseX >= local61 && Mouse.lastMouseY >= local63 && Mouse.lastMouseX < local65 && Mouse.lastMouseY < local67) {
+                        if (widget.noClickThrough && Mouse.lastMouseX >= local61 && Mouse.lastMouseY >= local63 && Mouse.lastMouseX < local65 && Mouse.lastMouseY < local67) {
                             for (@Pc(164) WidgetEvent local164 = (WidgetEvent) lowPriorityRequests.head(); local164 != null; local164 = (WidgetEvent) lowPriorityRequests.next()) {
                                 if (local164.aBoolean158) {
                                     local164.unlink();
@@ -814,7 +814,7 @@ public class WidgetList {
                             anInt3337 = 0;
                         }
                     }
-                    if (wdiget.if3) {
+                    if (widget.if3) {
                         @Pc(207) boolean local207;
                         if (Mouse.lastMouseX >= local61 && Mouse.lastMouseY >= local63 && Mouse.lastMouseX < local65 && Mouse.lastMouseY < local67) {
                             local207 = true;
@@ -831,75 +831,75 @@ public class WidgetList {
                         }
                         @Pc(243) int i;
                         @Pc(322) int k;
-                        if (wdiget.aByteArray8 != null) {
-                            for (i = 0; i < wdiget.aByteArray8.length; i++) {
-                                if (Keyboard.pressedKeys[wdiget.aByteArray8[i]]) {
-                                    if (wdiget.anIntArray49 == null || Client.loop >= wdiget.anIntArray49[i]) {
-                                        @Pc(279) byte local279 = wdiget.aByteArray7[i];
+                        if (widget.aByteArray8 != null) {
+                            for (i = 0; i < widget.aByteArray8.length; i++) {
+                                if (Keyboard.pressedKeys[widget.aByteArray8[i]]) {
+                                    if (widget.anIntArray49 == null || Client.loop >= widget.anIntArray49[i]) {
+                                        @Pc(279) byte local279 = widget.aByteArray7[i];
                                         if (local279 == 0 || ((local279 & 0x2) == 0 || Keyboard.pressedKeys[86]) && ((local279 & 0x1) == 0 || Keyboard.pressedKeys[82]) && ((local279 & 0x4) == 0 || Keyboard.pressedKeys[81])) {
-                                            ClientProt.method4512(JString.EMPTY, -1, i + 1, wdiget.id);
-                                            k = wdiget.anIntArray46[i];
-                                            if (wdiget.anIntArray49 == null) {
-                                                wdiget.anIntArray49 = new int[wdiget.aByteArray8.length];
+                                            ClientProt.method4512(JString.EMPTY, -1, i + 1, widget.id);
+                                            k = widget.anIntArray46[i];
+                                            if (widget.anIntArray49 == null) {
+                                                widget.anIntArray49 = new int[widget.aByteArray8.length];
                                             }
                                             if (k == 0) {
-                                                wdiget.anIntArray49[i] = Integer.MAX_VALUE;
+                                                widget.anIntArray49[i] = Integer.MAX_VALUE;
                                             } else {
-                                                wdiget.anIntArray49[i] = Client.loop + k;
+                                                widget.anIntArray49[i] = Client.loop + k;
                                             }
                                         }
                                     }
-                                } else if (wdiget.anIntArray49 != null) {
-                                    wdiget.anIntArray49[i] = 0;
+                                } else if (widget.anIntArray49 != null) {
+                                    widget.anIntArray49[i] = 0;
                                 }
                             }
                         }
                         if (local221) {
-                            ClientScriptRunner.method1015(Mouse.mouseClickY - local55, Mouse.mouseClickX - local50, wdiget);
+                            ClientScriptRunner.method1015(Mouse.mouseClickY - local55, Mouse.mouseClickX - local50, widget);
                         }
-                        if (ClientScriptRunner.aClass13_14 != null && ClientScriptRunner.aClass13_14 != wdiget && local207 && getServerActiveProperties(wdiget).isDragTarget()) {
-                            aClass13_12 = wdiget;
+                        if (ClientScriptRunner.aClass13_14 != null && ClientScriptRunner.aClass13_14 != widget && local207 && getServerActiveProperties(widget).isDragTarget()) {
+                            aClass13_12 = widget;
                         }
-                        if (wdiget == ClientScriptRunner.aClass13_1) {
+                        if (widget == ClientScriptRunner.aClass13_1) {
                             aBoolean174 = true;
                             ClientScriptRunner.anInt2225 = local50;
                             anInt5103 = local55;
                         }
-                        if (wdiget.aBoolean25 || wdiget.contentType != 0) {
+                        if (widget.aBoolean25 || widget.contentType != 0) {
                             @Pc(399) WidgetEvent request;
-                            if (local207 && MouseWheel.wheelRotation != 0 && wdiget.onScroll != null) {
+                            if (local207 && MouseWheel.wheelRotation != 0 && widget.onScroll != null) {
                                 request = new WidgetEvent();
                                 request.aBoolean158 = true;
-                                request.source = wdiget;
+                                request.source = widget;
                                 request.mouseY = MouseWheel.wheelRotation;
-                                request.arguments = wdiget.onScroll;
+                                request.arguments = widget.onScroll;
                                 lowPriorityRequests.addTail(request);
                             }
-                            if (ClientScriptRunner.aClass13_14 != null || clickedInventoryWdiget != null || ClientScriptRunner.aBoolean108 || wdiget.contentType != 1400 && anInt3337 > 0) {
+                            if (ClientScriptRunner.aClass13_14 != null || clickedInventoryWidget != null || ClientScriptRunner.menuVisible || widget.contentType != 1400 && anInt3337 > 0) {
                                 local221 = false;
                                 local212 = false;
                                 local207 = false;
                             }
                             @Pc(508) int skill;
-                            if (wdiget.contentType != 0) {
-                                if (wdiget.contentType == 1337) {
-                                    aClass13_26 = wdiget;
-                                    redraw(wdiget);
+                            if (widget.contentType != 0) {
+                                if (widget.contentType == 1337) {
+                                    aClass13_26 = widget;
+                                    redraw(widget);
                                     continue;
                                 }
-                                if (wdiget.contentType == 1338) {
+                                if (widget.contentType == 1338) {
                                     if (local221) {
                                         anInt5 = Mouse.mouseClickX - local50;
                                         MiniMenu.anInt2878 = Mouse.mouseClickY - local55;
                                     }
                                     continue;
                                 }
-                                if (wdiget.contentType == 1400) {
-                                    WorldMap.wdiget = wdiget;
+                                if (widget.contentType == 1400) {
+                                    WorldMap.widget = widget;
                                     if (local221) {
                                         if (Keyboard.pressedKeys[82] && LoginManager.staffModLevel > 0) {
-                                            i = (int) ((double) (Mouse.mouseClickX - local50 - wdiget.width / 2) * 2.0D / (double) WorldMap.zoom);
-                                            skill = (int) ((double) (Mouse.mouseClickY - local55 - wdiget.height / 2) * 2.0D / (double) WorldMap.zoom);
+                                            i = (int) ((double) (Mouse.mouseClickX - local50 - widget.width / 2) * 2.0D / (double) WorldMap.zoom);
+                                            skill = (int) ((double) (Mouse.mouseClickY - local55 - widget.height / 2) * 2.0D / (double) WorldMap.zoom);
                                             k = WorldMap.anInt435 + i;
                                             @Pc(516) int local516 = WorldMap.anInt919 + skill;
                                             @Pc(520) int local520 = k + WorldMap.originX;
@@ -928,281 +928,281 @@ public class WidgetList {
                                     anInt3337 = 0;
                                     continue;
                                 }
-                                if (wdiget.contentType == 1401) {
+                                if (widget.contentType == 1401) {
                                     if (local212) {
-                                        WorldMap.method2387(wdiget.width, Mouse.lastMouseY - local55, Mouse.lastMouseX - local50, wdiget.height);
+                                        WorldMap.method2387(widget.width, Mouse.lastMouseY - local55, Mouse.lastMouseX - local50, widget.height);
                                     }
                                     continue;
                                 }
-                                if (wdiget.contentType == 1402) {
+                                if (widget.contentType == 1402) {
                                     if (!GlRenderer.enabled) {
-                                        redraw(wdiget);
+                                        redraw(widget);
                                     }
                                     continue;
                                 }
                             }
-                            if (!wdiget.aBoolean24 && local221) {
-                                wdiget.aBoolean24 = true;
-                                if (wdiget.onClickRepeat != null) {
+                            if (!widget.aBoolean24 && local221) {
+                                widget.aBoolean24 = true;
+                                if (widget.onClickRepeat != null) {
                                     request = new WidgetEvent();
                                     request.aBoolean158 = true;
-                                    request.source = wdiget;
+                                    request.source = widget;
                                     request.mouseX = Mouse.mouseClickX - local50;
                                     request.mouseY = Mouse.mouseClickY - local55;
-                                    request.arguments = wdiget.onClickRepeat;
+                                    request.arguments = widget.onClickRepeat;
                                     lowPriorityRequests.addTail(request);
                                 }
                             }
-                            if (wdiget.aBoolean24 && local212 && wdiget.onDrag != null) {
+                            if (widget.aBoolean24 && local212 && widget.onDrag != null) {
                                 request = new WidgetEvent();
                                 request.aBoolean158 = true;
-                                request.source = wdiget;
+                                request.source = widget;
                                 request.mouseX = Mouse.lastMouseX - local50;
                                 request.mouseY = Mouse.lastMouseY - local55;
-                                request.arguments = wdiget.onDrag;
+                                request.arguments = widget.onDrag;
                                 lowPriorityRequests.addTail(request);
                             }
-                            if (wdiget.aBoolean24 && !local212) {
-                                wdiget.aBoolean24 = false;
-                                if (wdiget.onRelease != null) {
+                            if (widget.aBoolean24 && !local212) {
+                                widget.aBoolean24 = false;
+                                if (widget.onRelease != null) {
                                     request = new WidgetEvent();
                                     request.aBoolean158 = true;
-                                    request.source = wdiget;
+                                    request.source = widget;
                                     request.mouseX = Mouse.lastMouseX - local50;
                                     request.mouseY = Mouse.lastMouseY - local55;
-                                    request.arguments = wdiget.onRelease;
+                                    request.arguments = widget.onRelease;
                                     mediumPriorityRequests.addTail(request);
                                 }
                             }
-                            if (local212 && wdiget.onHold != null) {
+                            if (local212 && widget.onHold != null) {
                                 request = new WidgetEvent();
                                 request.aBoolean158 = true;
-                                request.source = wdiget;
+                                request.source = widget;
                                 request.mouseX = Mouse.lastMouseX - local50;
                                 request.mouseY = Mouse.lastMouseY - local55;
-                                request.arguments = wdiget.onHold;
+                                request.arguments = widget.onHold;
                                 lowPriorityRequests.addTail(request);
                             }
-                            if (!wdiget.aBoolean19 && local207) {
-                                wdiget.aBoolean19 = true;
-                                if (wdiget.onMouseOver != null) {
+                            if (!widget.aBoolean19 && local207) {
+                                widget.aBoolean19 = true;
+                                if (widget.onMouseOver != null) {
                                     request = new WidgetEvent();
                                     request.aBoolean158 = true;
-                                    request.source = wdiget;
+                                    request.source = widget;
                                     request.mouseX = Mouse.lastMouseX - local50;
                                     request.mouseY = Mouse.lastMouseY - local55;
-                                    request.arguments = wdiget.onMouseOver;
+                                    request.arguments = widget.onMouseOver;
                                     lowPriorityRequests.addTail(request);
                                 }
                             }
-                            if (wdiget.aBoolean19 && local207 && wdiget.onMouseRepeat != null) {
+                            if (widget.aBoolean19 && local207 && widget.onMouseRepeat != null) {
                                 request = new WidgetEvent();
                                 request.aBoolean158 = true;
-                                request.source = wdiget;
+                                request.source = widget;
                                 request.mouseX = Mouse.lastMouseX - local50;
                                 request.mouseY = Mouse.lastMouseY - local55;
-                                request.arguments = wdiget.onMouseRepeat;
+                                request.arguments = widget.onMouseRepeat;
                                 lowPriorityRequests.addTail(request);
                             }
-                            if (wdiget.aBoolean19 && !local207) {
-                                wdiget.aBoolean19 = false;
-                                if (wdiget.onMouseLeave != null) {
+                            if (widget.aBoolean19 && !local207) {
+                                widget.aBoolean19 = false;
+                                if (widget.onMouseLeave != null) {
                                     request = new WidgetEvent();
                                     request.aBoolean158 = true;
-                                    request.source = wdiget;
+                                    request.source = widget;
                                     request.mouseX = Mouse.lastMouseX - local50;
                                     request.mouseY = Mouse.lastMouseY - local55;
-                                    request.arguments = wdiget.onMouseLeave;
+                                    request.arguments = widget.onMouseLeave;
                                     mediumPriorityRequests.addTail(request);
                                 }
                             }
-                            if (wdiget.onTimer != null) {
+                            if (widget.onTimer != null) {
                                 request = new WidgetEvent();
-                                request.source = wdiget;
-                                request.arguments = wdiget.onTimer;
+                                request.source = widget;
+                                request.arguments = widget.onTimer;
                                 highPriorityRequests.addTail(request);
                             }
                             @Pc(966) WidgetEvent request2;
-                            if (wdiget.onVarcTransmit != null && VarcDomain.updatedVarcsWriterIndex > wdiget.updatedVarcsReaderIndex) {
-                                if (wdiget.varcTriggers == null || VarcDomain.updatedVarcsWriterIndex - wdiget.updatedVarcsReaderIndex > 32) {
+                            if (widget.onVarcTransmit != null && VarcDomain.updatedVarcsWriterIndex > widget.updatedVarcsReaderIndex) {
+                                if (widget.varcTriggers == null || VarcDomain.updatedVarcsWriterIndex - widget.updatedVarcsReaderIndex > 32) {
                                     request = new WidgetEvent();
-                                    request.source = wdiget;
-                                    request.arguments = wdiget.onVarcTransmit;
+                                    request.source = widget;
+                                    request.arguments = widget.onVarcTransmit;
                                     lowPriorityRequests.addTail(request);
                                 } else {
-                                    label563: for (i = wdiget.updatedVarcsReaderIndex; i < VarcDomain.updatedVarcsWriterIndex; i++) {
+                                    label563: for (i = widget.updatedVarcsReaderIndex; i < VarcDomain.updatedVarcsWriterIndex; i++) {
                                         skill = VarcDomain.updatedVarcs[i & 0x1F];
-                                        for (k = 0; k < wdiget.varcTriggers.length; k++) {
-                                            if (wdiget.varcTriggers[k] == skill) {
+                                        for (k = 0; k < widget.varcTriggers.length; k++) {
+                                            if (widget.varcTriggers[k] == skill) {
                                                 request2 = new WidgetEvent();
-                                                request2.source = wdiget;
-                                                request2.arguments = wdiget.onVarcTransmit;
+                                                request2.source = widget;
+                                                request2.arguments = widget.onVarcTransmit;
                                                 lowPriorityRequests.addTail(request2);
                                                 break label563;
                                             }
                                         }
                                     }
                                 }
-                                wdiget.updatedVarcsReaderIndex = VarcDomain.updatedVarcsWriterIndex;
+                                widget.updatedVarcsReaderIndex = VarcDomain.updatedVarcsWriterIndex;
                             }
-                            if (wdiget.onVarcstrTransmit != null && VarcDomain.updatedVarcstrsWriterIndex > wdiget.updatedVarcstrsReaderIndex) {
-                                if (wdiget.varcstrTriggers == null || VarcDomain.updatedVarcstrsWriterIndex - wdiget.updatedVarcstrsReaderIndex > 32) {
+                            if (widget.onVarcstrTransmit != null && VarcDomain.updatedVarcstrsWriterIndex > widget.updatedVarcstrsReaderIndex) {
+                                if (widget.varcstrTriggers == null || VarcDomain.updatedVarcstrsWriterIndex - widget.updatedVarcstrsReaderIndex > 32) {
                                     request = new WidgetEvent();
-                                    request.source = wdiget;
-                                    request.arguments = wdiget.onVarcstrTransmit;
+                                    request.source = widget;
+                                    request.arguments = widget.onVarcstrTransmit;
                                     lowPriorityRequests.addTail(request);
                                 } else {
-                                    label539: for (i = wdiget.updatedVarcstrsReaderIndex; i < VarcDomain.updatedVarcstrsWriterIndex; i++) {
+                                    label539: for (i = widget.updatedVarcstrsReaderIndex; i < VarcDomain.updatedVarcstrsWriterIndex; i++) {
                                         skill = VarcDomain.updatedVarcstrs[i & 0x1F];
-                                        for (k = 0; k < wdiget.varcstrTriggers.length; k++) {
-                                            if (wdiget.varcstrTriggers[k] == skill) {
+                                        for (k = 0; k < widget.varcstrTriggers.length; k++) {
+                                            if (widget.varcstrTriggers[k] == skill) {
                                                 request2 = new WidgetEvent();
-                                                request2.source = wdiget;
-                                                request2.arguments = wdiget.onVarcstrTransmit;
+                                                request2.source = widget;
+                                                request2.arguments = widget.onVarcstrTransmit;
                                                 lowPriorityRequests.addTail(request2);
                                                 break label539;
                                             }
                                         }
                                     }
                                 }
-                                wdiget.updatedVarcstrsReaderIndex = VarcDomain.updatedVarcstrsWriterIndex;
+                                widget.updatedVarcstrsReaderIndex = VarcDomain.updatedVarcstrsWriterIndex;
                             }
-                            if (wdiget.onVarpTransmit != null && VarpDomain.updatedVarpsWriterIndex > wdiget.updatedVarpsReaderIndex) {
-                                if (wdiget.varpTriggers == null || VarpDomain.updatedVarpsWriterIndex - wdiget.updatedVarpsReaderIndex > 32) {
+                            if (widget.onVarpTransmit != null && VarpDomain.updatedVarpsWriterIndex > widget.updatedVarpsReaderIndex) {
+                                if (widget.varpTriggers == null || VarpDomain.updatedVarpsWriterIndex - widget.updatedVarpsReaderIndex > 32) {
                                     request = new WidgetEvent();
-                                    request.source = wdiget;
-                                    request.arguments = wdiget.onVarpTransmit;
+                                    request.source = widget;
+                                    request.arguments = widget.onVarpTransmit;
                                     lowPriorityRequests.addTail(request);
                                 } else {
-                                    label515: for (i = wdiget.updatedVarpsReaderIndex; i < VarpDomain.updatedVarpsWriterIndex; i++) {
+                                    label515: for (i = widget.updatedVarpsReaderIndex; i < VarpDomain.updatedVarpsWriterIndex; i++) {
                                         skill = VarpDomain.updatedVarps[i & 0x1F];
-                                        for (k = 0; k < wdiget.varpTriggers.length; k++) {
-                                            if (wdiget.varpTriggers[k] == skill) {
+                                        for (k = 0; k < widget.varpTriggers.length; k++) {
+                                            if (widget.varpTriggers[k] == skill) {
                                                 request2 = new WidgetEvent();
-                                                request2.source = wdiget;
-                                                request2.arguments = wdiget.onVarpTransmit;
+                                                request2.source = widget;
+                                                request2.arguments = widget.onVarpTransmit;
                                                 lowPriorityRequests.addTail(request2);
                                                 break label515;
                                             }
                                         }
                                     }
                                 }
-                                wdiget.updatedVarpsReaderIndex = VarpDomain.updatedVarpsWriterIndex;
+                                widget.updatedVarpsReaderIndex = VarpDomain.updatedVarpsWriterIndex;
                             }
-                            if (wdiget.onInvTransmit != null && Inv.updatedInventoriesWriterIndex > wdiget.updatedInventoriesReaderIndex) {
-                                if (wdiget.inventoryTriggers == null || Inv.updatedInventoriesWriterIndex - wdiget.updatedInventoriesReaderIndex > 32) {
+                            if (widget.onInvTransmit != null && Inv.updatedInventoriesWriterIndex > widget.updatedInventoriesReaderIndex) {
+                                if (widget.inventoryTriggers == null || Inv.updatedInventoriesWriterIndex - widget.updatedInventoriesReaderIndex > 32) {
                                     request = new WidgetEvent();
-                                    request.source = wdiget;
-                                    request.arguments = wdiget.onInvTransmit;
+                                    request.source = widget;
+                                    request.arguments = widget.onInvTransmit;
                                     lowPriorityRequests.addTail(request);
                                 } else {
-                                    label491: for (i = wdiget.updatedInventoriesReaderIndex; i < Inv.updatedInventoriesWriterIndex; i++) {
+                                    label491: for (i = widget.updatedInventoriesReaderIndex; i < Inv.updatedInventoriesWriterIndex; i++) {
                                         skill = Inv.updatedInventories[i & 0x1F];
-                                        for (k = 0; k < wdiget.inventoryTriggers.length; k++) {
-                                            if (wdiget.inventoryTriggers[k] == skill) {
+                                        for (k = 0; k < widget.inventoryTriggers.length; k++) {
+                                            if (widget.inventoryTriggers[k] == skill) {
                                                 request2 = new WidgetEvent();
-                                                request2.source = wdiget;
-                                                request2.arguments = wdiget.onInvTransmit;
+                                                request2.source = widget;
+                                                request2.arguments = widget.onInvTransmit;
                                                 lowPriorityRequests.addTail(request2);
                                                 break label491;
                                             }
                                         }
                                     }
                                 }
-                                wdiget.updatedInventoriesReaderIndex = Inv.updatedInventoriesWriterIndex;
+                                widget.updatedInventoriesReaderIndex = Inv.updatedInventoriesWriterIndex;
                             }
-                            if (wdiget.onStatTransmit != null && PlayerSkillXpTable.updatedStatsWriterIndex > wdiget.updatedStatsReaderIndex) {
-                                if (wdiget.statTriggers == null || PlayerSkillXpTable.updatedStatsWriterIndex - wdiget.updatedStatsReaderIndex > 32) {
+                            if (widget.onStatTransmit != null && PlayerSkillXpTable.updatedStatsWriterIndex > widget.updatedStatsReaderIndex) {
+                                if (widget.statTriggers == null || PlayerSkillXpTable.updatedStatsWriterIndex - widget.updatedStatsReaderIndex > 32) {
                                     request = new WidgetEvent();
-                                    request.source = wdiget;
-                                    request.arguments = wdiget.onStatTransmit;
+                                    request.source = widget;
+                                    request.arguments = widget.onStatTransmit;
                                     lowPriorityRequests.addTail(request);
                                 } else {
-                                    label467: for (i = wdiget.updatedStatsReaderIndex; i < PlayerSkillXpTable.updatedStatsWriterIndex; i++) {
+                                    label467: for (i = widget.updatedStatsReaderIndex; i < PlayerSkillXpTable.updatedStatsWriterIndex; i++) {
                                         skill = PlayerSkillXpTable.updatedStats[i & 0x1F];
-                                        for (k = 0; k < wdiget.statTriggers.length; k++) {
-                                            if (wdiget.statTriggers[k] == skill) {
+                                        for (k = 0; k < widget.statTriggers.length; k++) {
+                                            if (widget.statTriggers[k] == skill) {
                                                 request2 = new WidgetEvent();
-                                                request2.source = wdiget;
-                                                request2.arguments = wdiget.onStatTransmit;
+                                                request2.source = widget;
+                                                request2.arguments = widget.onStatTransmit;
                                                 lowPriorityRequests.addTail(request2);
                                                 break label467;
                                             }
                                         }
                                     }
                                 }
-                                wdiget.updatedStatsReaderIndex = PlayerSkillXpTable.updatedStatsWriterIndex;
+                                widget.updatedStatsReaderIndex = PlayerSkillXpTable.updatedStatsWriterIndex;
                             }
-                            if (Chat.transmitAt > wdiget.lastTransmitTimer && wdiget.onMsg != null) {
+                            if (Chat.transmitAt > widget.lastTransmitTimer && widget.onMsg != null) {
                                 request = new WidgetEvent();
-                                request.source = wdiget;
-                                request.arguments = wdiget.onMsg;
+                                request.source = widget;
+                                request.arguments = widget.onMsg;
                                 lowPriorityRequests.addTail(request);
                             }
-                            if (FriendList.transmitAt > wdiget.lastTransmitTimer && wdiget.onFriendTransmit != null) {
+                            if (FriendList.transmitAt > widget.lastTransmitTimer && widget.onFriendTransmit != null) {
                                 request = new WidgetEvent();
-                                request.source = wdiget;
-                                request.arguments = wdiget.onFriendTransmit;
+                                request.source = widget;
+                                request.arguments = widget.onFriendTransmit;
                                 lowPriorityRequests.addTail(request);
                             }
-                            if (ClanChat.transmitAt > wdiget.lastTransmitTimer && wdiget.onClanTransmit != null) {
+                            if (ClanChat.transmitAt > widget.lastTransmitTimer && widget.onClanTransmit != null) {
                                 request = new WidgetEvent();
-                                request.source = wdiget;
-                                request.arguments = wdiget.onClanTransmit;
+                                request.source = widget;
+                                request.arguments = widget.onClanTransmit;
                                 lowPriorityRequests.addTail(request);
                             }
-                            if (StockMarketManager.transmitAt > wdiget.lastTransmitTimer && wdiget.onStockTransmit != null) {
+                            if (StockMarketManager.transmitAt > widget.lastTransmitTimer && widget.onStockTransmit != null) {
                                 request = new WidgetEvent();
-                                request.source = wdiget;
-                                request.arguments = wdiget.onStockTransmit;
+                                request.source = widget;
+                                request.arguments = widget.onStockTransmit;
                                 lowPriorityRequests.addTail(request);
                             }
-                            if (miscTransmitAt > wdiget.lastTransmitTimer && wdiget.onMiscTransmit != null) {
+                            if (miscTransmitAt > widget.lastTransmitTimer && widget.onMiscTransmit != null) {
                                 request = new WidgetEvent();
-                                request.source = wdiget;
-                                request.arguments = wdiget.onMiscTransmit;
+                                request.source = widget;
+                                request.arguments = widget.onMiscTransmit;
                                 lowPriorityRequests.addTail(request);
                             }
-                            wdiget.lastTransmitTimer = transmitTimer;
-                            if (wdiget.onKey != null) {
+                            widget.lastTransmitTimer = transmitTimer;
+                            if (widget.onKey != null) {
                                 for (i = 0; i < keyQueueSize; i++) {
                                     @Pc(1430) WidgetEvent local1430 = new WidgetEvent();
-                                    local1430.source = wdiget;
+                                    local1430.source = widget;
                                     local1430.keyCode = keyCodes[i];
                                     local1430.keyChar = keyChars[i];
-                                    local1430.arguments = wdiget.onKey;
+                                    local1430.arguments = widget.onKey;
                                     lowPriorityRequests.addTail(local1430);
                                 }
                             }
-                            if (Camera.aBoolean16 && wdiget.onMinimapUnlock != null) {
+                            if (Camera.aBoolean16 && widget.onMinimapUnlock != null) {
                                 request = new WidgetEvent();
-                                request.source = wdiget;
-                                request.arguments = wdiget.onMinimapUnlock;
+                                request.source = widget;
+                                request.arguments = widget.onMinimapUnlock;
                                 lowPriorityRequests.addTail(request);
                             }
                         }
                     }
-                    if (!wdiget.if3 && ClientScriptRunner.aClass13_14 == null && clickedInventoryWdiget == null && !ClientScriptRunner.aBoolean108) {
-                        if ((wdiget.anInt470 >= 0 || wdiget.overColor != 0) && Mouse.lastMouseX >= local61 && Mouse.lastMouseY >= local63 && Mouse.lastMouseX < local65 && Mouse.lastMouseY < local67) {
-                            if (wdiget.anInt470 >= 0) {
-                                aClass13_22 = arg0[wdiget.anInt470];
+                    if (!widget.if3 && ClientScriptRunner.aClass13_14 == null && clickedInventoryWidget == null && !ClientScriptRunner.menuVisible) {
+                        if ((widget.anInt470 >= 0 || widget.overColor != 0) && Mouse.lastMouseX >= local61 && Mouse.lastMouseY >= local63 && Mouse.lastMouseX < local65 && Mouse.lastMouseY < local67) {
+                            if (widget.anInt470 >= 0) {
+                                aClass13_22 = arg0[widget.anInt470];
                             } else {
-                                aClass13_22 = wdiget;
+                                aClass13_22 = widget;
                             }
                         }
-                        if (wdiget.type == 8 && Mouse.lastMouseX >= local61 && Mouse.lastMouseY >= local63 && Mouse.lastMouseX < local65 && Mouse.lastMouseY < local67) {
-                            Protocol.aClass13_11 = wdiget;
+                        if (widget.type == 8 && Mouse.lastMouseX >= local61 && Mouse.lastMouseY >= local63 && Mouse.lastMouseX < local65 && Mouse.lastMouseY < local67) {
+                            Protocol.aClass13_11 = widget;
                         }
-                        if (wdiget.scrollMaxV > wdiget.height) {
-                            method4049(Mouse.lastMouseY, wdiget.height, wdiget, Mouse.lastMouseX, local50 + wdiget.width, local55, wdiget.scrollMaxV);
+                        if (widget.scrollMaxV > widget.height) {
+                            method4049(Mouse.lastMouseY, widget.height, widget, Mouse.lastMouseX, local50 + widget.width, local55, widget.scrollMaxV);
                         }
                     }
-                    if (wdiget.type == 0) {
-                        method946(arg0, wdiget.id, local61, local63, local65, local67, local50 - wdiget.scrollX, local55 - wdiget.scrollY);
-                        if (wdiget.createdWdigets != null) {
-                            method946(wdiget.createdWdigets, wdiget.id, local61, local63, local65, local67, local50 - wdiget.scrollX, local55 - wdiget.scrollY);
+                    if (widget.type == 0) {
+                        method946(arg0, widget.id, local61, local63, local65, local67, local50 - widget.scrollX, local55 - widget.scrollY);
+                        if (widget.createdWidgets != null) {
+                            method946(widget.createdWidgets, widget.id, local61, local63, local65, local67, local50 - widget.scrollX, local55 - widget.scrollY);
                         }
-                        @Pc(1595) SubInterface local1595 = (SubInterface) openInterfaces.get((long) wdiget.id);
+                        @Pc(1595) SubInterface local1595 = (SubInterface) openInterfaces.get((long) widget.id);
                         if (local1595 != null) {
                             method1320(local50, local63, local55, local65, local1595.interfaceId, local61, local67);
                         }
@@ -1213,7 +1213,7 @@ public class WidgetList {
     }
 
     @OriginalMember(owner = "runetek4.client!tc", name = "a", descriptor = "(IILclient!be;BIIII)V")
-    public static void method4049(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) Wdiget arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int arg6) {
+    public static void method4049(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) Widget arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int arg6) {
         if (aBoolean84) {
             anInt1396 = 32;
         } else {
@@ -1262,12 +1262,12 @@ public class WidgetList {
     @OriginalMember(owner = "runetek4.client!hh", name = "a", descriptor = "(II)V")
     public static void method1949(@OriginalArg(1) int arg0) {
         if (load(arg0)) {
-            method2354(-1, cachedWdigets[arg0]);
+            method2354(-1, cachedWidgets[arg0]);
         }
     }
 
     @OriginalMember(owner = "client!runetek4.client", name = "a", descriptor = "(Lclient!be;)Lclient!be;")
-    public static Wdiget method938(@OriginalArg(0) Wdiget arg0) {
+    public static Widget method938(@OriginalArg(0) Widget arg0) {
         @Pc(4) int local4 = getServerActiveProperties(arg0).getDragDepth();
         if (local4 == 0) {
             return null;
@@ -1282,17 +1282,17 @@ public class WidgetList {
     }
 
     @OriginalMember(owner = "runetek4.client!jd", name = "a", descriptor = "(II[Lclient!be;)V")
-    public static void method2354(@OriginalArg(1) int arg0, @OriginalArg(2) Wdiget[] arg1) {
+    public static void method2354(@OriginalArg(1) int arg0, @OriginalArg(2) Widget[] arg1) {
         for (@Pc(7) int local7 = 0; local7 < arg1.length; local7++) {
-            @Pc(15) Wdiget local15 = arg1[local7];
+            @Pc(15) Widget local15 = arg1[local7];
             if (local15 != null && local15.overlayer == arg0 && (!local15.if3 || !method947(local15))) {
                 if (local15.type == 0) {
                     if (!local15.if3 && method947(local15) && local15 != aClass13_22) {
                         continue;
                     }
                     method2354(local15.id, arg1);
-                    if (local15.createdWdigets != null) {
-                        method2354(local15.id, local15.createdWdigets);
+                    if (local15.createdWidgets != null) {
+                        method2354(local15.id, local15.createdWidgets);
                     }
                     @Pc(73) SubInterface local73 = (SubInterface) openInterfaces.get((long) local15.id);
                     if (local73 != null) {

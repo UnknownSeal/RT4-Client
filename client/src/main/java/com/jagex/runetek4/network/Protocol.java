@@ -16,7 +16,7 @@ import com.jagex.runetek4.clientscript.DelayedStateChange;
 import com.jagex.runetek4.config.types.obj.ObjType;
 import com.jagex.runetek4.data.cache.media.Font;
 import com.jagex.runetek4.config.types.seq.SeqType;
-import com.jagex.runetek4.data.cache.media.component.Wdiget;
+import com.jagex.runetek4.data.cache.media.component.Widget;
 import com.jagex.runetek4.config.types.npc.NpcTypeList;
 import com.jagex.runetek4.config.types.obj.ObjTypeList;
 import com.jagex.runetek4.config.types.quickchat.QuickChatPhraseTypeList;
@@ -172,7 +172,7 @@ public class Protocol {
     public static BufferedSocket gameServerSocket;
 
     @OriginalMember(owner = "runetek4.client!dg", name = "h", descriptor = "Lclient!be;")
-    public static Wdiget aClass13_11;
+    public static Widget aClass13_11;
 
     @OriginalMember(owner = "runetek4.client!kf", name = "l", descriptor = "I")
     public static int anInt5235 = 0;
@@ -698,7 +698,7 @@ public class Protocol {
                         WidgetList.method3712(false);
                         WidgetList.method1626(WidgetList.topLevelInterface);
                         for (slot = 0; slot < 100; slot++) {
-                            WidgetList.aBooleanArray100[slot] = true;
+                            WidgetList.widgetNeedsRedraw[slot] = true;
                         }
                     }
                     opcode = -1;
@@ -969,7 +969,7 @@ public class Protocol {
                         return true;
                     } else if (opcode == 144) {
                         ii = inboundBuffer.p4rme();
-                        @Pc(2666) Wdiget local2666 = WidgetList.getComponent(ii);
+                        @Pc(2666) Widget local2666 = WidgetList.getComponent(ii);
                         for (world = 0; world < local2666.invSlotObjId.length; world++) {
                             local2666.invSlotObjId[world] = -1;
                             local2666.invSlotObjId[world] = 0;
@@ -1168,7 +1168,7 @@ public class Protocol {
                                         local3449.unlink();
                                         WidgetList.openInterfaces.put(local3449, (long) world);
                                     }
-                                    @Pc(3490) Wdiget local3490 = WidgetList.getComponent(ii);
+                                    @Pc(3490) Widget local3490 = WidgetList.getComponent(ii);
                                     if (local3490 != null) {
                                         WidgetList.redraw(local3490);
                                     }
@@ -1548,7 +1548,7 @@ public class Protocol {
                                 opcode = -1;
                                 return true;
                             } else {
-                                @Pc(4956) Wdiget local4956;
+                                @Pc(4956) Widget local4956;
                                 if (opcode == 22) {
                                     ii = inboundBuffer.g4();
                                     xp = inboundBuffer.g2();
@@ -1733,7 +1733,7 @@ public class Protocol {
                                     }
                                     int verifyID = inboundBuffer.g2le();
                                     if (setVerifyID(verifyID)) {
-                                        @Pc(5603) Wdiget com = WidgetList.getComponent(xp);
+                                        @Pc(5603) Widget com = WidgetList.getComponent(xp);
                                         @Pc(5615) ObjType obj;
                                         if (com.if3) {
                                             DelayedStateChange.method3707(xp, ii, world);
@@ -2332,10 +2332,10 @@ public class Protocol {
                         LoginManager.underWaterLocationsMapFileIds[local20] = -1;
                     } else {
                         LoginManager.regionBitPacked[local20] = local169;
-                        LoginManager.mapFileIds[local20] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { LoginManager.aClass100_558, JString.parseInt(local138), LoginManager.UNDERSCORE, JString.parseInt(local151) }));
-                        LoginManager.locationsMapFileIds[local20] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { LoginManager.aClass100_1090, JString.parseInt(local138), LoginManager.UNDERSCORE, JString.parseInt(local151) }));
-                        LoginManager.underWaterMapFileIds[local20] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { LoginManager.aClass100_772, JString.parseInt(local138), LoginManager.UNDERSCORE, JString.parseInt(local151) }));
-                        LoginManager.underWaterLocationsMapFileIds[local20] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { LoginManager.aClass100_1103, JString.parseInt(local138), LoginManager.UNDERSCORE, JString.parseInt(local151) }));
+                        LoginManager.mapFileIds[local20] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { LoginManager.m, JString.parseInt(local138), LoginManager.UNDERSCORE, JString.parseInt(local151) }));
+                        LoginManager.locationsMapFileIds[local20] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { LoginManager.l, JString.parseInt(local138), LoginManager.UNDERSCORE, JString.parseInt(local151) }));
+                        LoginManager.underWaterMapFileIds[local20] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { LoginManager.um, JString.parseInt(local138), LoginManager.UNDERSCORE, JString.parseInt(local151) }));
+                        LoginManager.underWaterLocationsMapFileIds[local20] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { LoginManager.ul, JString.parseInt(local138), LoginManager.UNDERSCORE, JString.parseInt(local151) }));
                     }
                     local20++;
                 }
@@ -2401,10 +2401,10 @@ public class Protocol {
                             LoginManager.regionBitPacked[local60] = local571;
                             @Pc(609) int local609 = local571 & 0xFF;
                             local573 = local571 >> 8 & 0xFF;
-                            LoginManager.mapFileIds[local60] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { LoginManager.aClass100_558, JString.parseInt(local573), LoginManager.UNDERSCORE, JString.parseInt(local609) }));
-                            LoginManager.locationsMapFileIds[local60] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { LoginManager.aClass100_1090, JString.parseInt(local573), LoginManager.UNDERSCORE, JString.parseInt(local609) }));
-                            LoginManager.underWaterMapFileIds[local60] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { LoginManager.aClass100_772, JString.parseInt(local573), LoginManager.UNDERSCORE, JString.parseInt(local609) }));
-                            LoginManager.underWaterLocationsMapFileIds[local60] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { LoginManager.aClass100_1103, JString.parseInt(local573), LoginManager.UNDERSCORE, JString.parseInt(local609) }));
+                            LoginManager.mapFileIds[local60] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { LoginManager.m, JString.parseInt(local573), LoginManager.UNDERSCORE, JString.parseInt(local609) }));
+                            LoginManager.locationsMapFileIds[local60] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { LoginManager.l, JString.parseInt(local573), LoginManager.UNDERSCORE, JString.parseInt(local609) }));
+                            LoginManager.underWaterMapFileIds[local60] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { LoginManager.um, JString.parseInt(local573), LoginManager.UNDERSCORE, JString.parseInt(local609) }));
+                            LoginManager.underWaterLocationsMapFileIds[local60] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { LoginManager.ul, JString.parseInt(local573), LoginManager.UNDERSCORE, JString.parseInt(local609) }));
                             local60++;
                         }
                     }
@@ -2984,7 +2984,7 @@ public class Protocol {
         local9.interfaceId = arg0;
         WidgetList.openInterfaces.put(local9, arg1);
         WidgetList.method1753(arg0);
-        @Pc(28) Wdiget local28 = WidgetList.getComponent(arg1);
+        @Pc(28) Widget local28 = WidgetList.getComponent(arg1);
         if (local28 != null) {
             WidgetList.redraw(local28);
         }
@@ -3000,7 +3000,7 @@ public class Protocol {
             }
         }
         if (MiniMenu.menuActionRow == 1) {
-            ClientScriptRunner.aBoolean108 = false;
+            ClientScriptRunner.menuVisible = false;
             WidgetList.redrawScreen(WidgetList.anInt4271, WidgetList.anInt761, WidgetList.anInt5138, WidgetList.anInt436);
         } else {
             WidgetList.redrawScreen(WidgetList.anInt4271, WidgetList.anInt761, WidgetList.anInt5138, WidgetList.anInt436);
@@ -3026,31 +3026,31 @@ public class Protocol {
 
     @OriginalMember(owner = "client!ah", name = "b", descriptor = "(I)V")
     public static void method843() {
-        if (WidgetList.clickedInventoryWdiget != null || ClientScriptRunner.aClass13_14 != null) {
+        if (WidgetList.clickedInventoryWidget != null || ClientScriptRunner.aClass13_14 != null) {
             return;
         }
         @Pc(20) int local20 = Mouse.clickButton;
         @Pc(93) int local93;
         @Pc(99) int local99;
-        if (!ClientScriptRunner.aBoolean108) {
+        if (!ClientScriptRunner.menuVisible) {
             if (local20 == 1 && MiniMenu.menuActionRow > 0) {
                 @Pc(37) short local37 = MiniMenu.actions[MiniMenu.menuActionRow - 1];
                 if (local37 == 25 || local37 == 23 || local37 == 48 || local37 == 7 || local37 == 13 || local37 == 47 || local37 == 5 || local37 == 43 || local37 == 35 || local37 == 58 || local37 == 22 || local37 == 1006) {
                     local93 = MiniMenu.intArgs1[MiniMenu.menuActionRow - 1];
                     local99 = MiniMenu.intArgs2[MiniMenu.menuActionRow - 1];
-                    @Pc(103) Wdiget local103 = WidgetList.getComponent(local99);
+                    @Pc(103) Widget local103 = WidgetList.getComponent(local99);
                     @Pc(106) ServerActiveProperties local106 = WidgetList.getServerActiveProperties(local103);
                     if (local106.isObjSwapEnabled() || local106.isObjReplaceEnabled()) {
                         WidgetList.lastItemDragTime = 0;
                         WidgetList.draggingClickedInventoryObject = false;
-                        if (WidgetList.clickedInventoryWdiget != null) {
-                            WidgetList.redraw(WidgetList.clickedInventoryWdiget);
+                        if (WidgetList.clickedInventoryWidget != null) {
+                            WidgetList.redraw(WidgetList.clickedInventoryWidget);
                         }
-                        WidgetList.clickedInventoryWdiget = WidgetList.getComponent(local99);
+                        WidgetList.clickedInventoryWidget = WidgetList.getComponent(local99);
                         WidgetList.clickedInventoryComponentX = Mouse.mouseClickX;
                         WidgetList.clickedInventoryComponentY = Mouse.mouseClickY;
                         WidgetList.selectedInventorySlot = local93;
-                        WidgetList.redraw(WidgetList.clickedInventoryWdiget);
+                        WidgetList.redraw(WidgetList.clickedInventoryWidget);
                         return;
                     }
                 }
@@ -3058,10 +3058,10 @@ public class Protocol {
             if (local20 == 1 && (VarpDomain.oneMouseButton == 1 && MiniMenu.menuActionRow > 2 || MiniMenu.menuHasAddFriend(MiniMenu.menuActionRow - 1))) {
                 local20 = 2;
             }
-            if (local20 == 2 && MiniMenu.menuActionRow > 0 || MiniMenu.anInt3953 == 1) {
+            if (local20 == 2 && MiniMenu.menuActionRow > 0 || MiniMenu.menuState == 1) {
                 ClientScriptRunner.determineMenuSize();
             }
-            if (local20 == 1 && MiniMenu.menuActionRow > 0 || MiniMenu.anInt3953 == 2) {
+            if (local20 == 1 && MiniMenu.menuActionRow > 0 || MiniMenu.menuState == 2) {
                 MiniMenu.processMenuActions();
             }
             return;
@@ -3071,7 +3071,7 @@ public class Protocol {
             local93 = Mouse.lastMouseY;
             local204 = Mouse.lastMouseX;
             if (local204 < WidgetList.anInt4271 - 10 || local204 > WidgetList.anInt761 + WidgetList.anInt4271 + 10 || WidgetList.anInt5138 - 10 > local93 || local93 > WidgetList.anInt436 + WidgetList.anInt5138 + 10) {
-                ClientScriptRunner.aBoolean108 = false;
+                ClientScriptRunner.menuVisible = false;
                 WidgetList.redrawScreen(WidgetList.anInt4271, WidgetList.anInt761, WidgetList.anInt5138, WidgetList.anInt436);
             }
         }
@@ -3098,7 +3098,7 @@ public class Protocol {
         if (local269 != -1) {
             MiniMenu.doAction(local269);
         }
-        ClientScriptRunner.aBoolean108 = false;
+        ClientScriptRunner.menuVisible = false;
         WidgetList.redrawScreen(WidgetList.anInt4271, WidgetList.anInt761, WidgetList.anInt5138, WidgetList.anInt436);
     }
 }

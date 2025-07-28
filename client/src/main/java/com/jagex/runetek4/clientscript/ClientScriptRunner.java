@@ -23,7 +23,7 @@ import com.jagex.runetek4.config.types.obj.ObjType;
 import com.jagex.runetek4.data.cache.media.Font;
 import com.jagex.runetek4.config.types.seq.SeqType;
 import com.jagex.runetek4.data.cache.media.SoftwareSprite;
-import com.jagex.runetek4.data.cache.media.component.Wdiget;
+import com.jagex.runetek4.data.cache.media.component.Widget;
 import com.jagex.runetek4.config.types.enums.EnumTypeList;
 import com.jagex.runetek4.config.types.idk.IDKTypeList;
 import com.jagex.runetek4.config.types.inv.InvTypeList;
@@ -227,10 +227,10 @@ public final class ClientScriptRunner {
 	public static final JString aClass100_10 = JString.parse("<br>");
 
 	@OriginalMember(owner = "runetek4.client!em", name = "z", descriptor = "Z")
-	public static boolean aBoolean108 = false;
+	public static boolean menuVisible = false;
 
 	@OriginalMember(owner = "runetek4.client!d", name = "R", descriptor = "Lclient!be;")
-	public static Wdiget aClass13_10 = null;
+	public static Widget aClass13_10 = null;
 
 	@OriginalMember(owner = "client!bi", name = "jb", descriptor = "Z")
 	public static boolean aBoolean43 = true;
@@ -239,13 +239,13 @@ public final class ClientScriptRunner {
 	public static boolean neverRemoveRoofs = false;
 
 	@OriginalMember(owner = "runetek4.client!ib", name = "e", descriptor = "Lclient!be;")
-	public static Wdiget aClass13_14 = null;
+	public static Widget aClass13_14 = null;
 
 	@OriginalMember(owner = "runetek4.client!nm", name = "W", descriptor = "Lclient!na;")
 	public static JString url;
 
 	@OriginalMember(owner = "runetek4.client!th", name = "m", descriptor = "[Lclient!be;")
-	public static Wdiget[] aClass13Array13;
+	public static Widget[] aClass13Array13;
 
 	@OriginalMember(owner = "runetek4.client!k", name = "j", descriptor = "I")
 	public static int anInt3126;
@@ -254,7 +254,7 @@ public final class ClientScriptRunner {
 	public static int anInt4696;
 
 	@OriginalMember(owner = "runetek4.client!ac", name = "p", descriptor = "Lclient!be;")
-	public static Wdiget aClass13_1 = null;
+	public static Widget aClass13_1 = null;
 
 	@OriginalMember(owner = "runetek4.client!km", name = "pc", descriptor = "Z")
 	public static boolean aBoolean172 = false;
@@ -296,10 +296,10 @@ public final class ClientScriptRunner {
 	public static int anInt4851;
 
 	@OriginalMember(owner = "runetek4.client!me", name = "nb", descriptor = "I")
-	public static int anInt3751;
+	public static int scriptMouseX;
 
 	@OriginalMember(owner = "runetek4.client!em", name = "w", descriptor = "I")
-	public static int anInt1892;
+	public static int scriptMouseY;
 
 	@OriginalMember(owner = "runetek4.client!vg", name = "c", descriptor = "Z")
 	public static boolean aBoolean299 = false;
@@ -314,10 +314,10 @@ public final class ClientScriptRunner {
 	public static QuickChatPhrase activePhrase;
 
 	@OriginalMember(owner = "runetek4.client!wf", name = "j", descriptor = "Lclient!be;")
-	public static Wdiget secondaryActiveWdiget;
+	public static Widget secondaryActiveWidget;
 
 	@OriginalMember(owner = "runetek4.client!sg", name = "i", descriptor = "Lclient!be;")
-	public static Wdiget primaryActiveWdiget;
+	public static Widget primaryActiveWidget;
 
 	@OriginalMember(owner = "runetek4.client!og", name = "g", descriptor = "[Lclient!na;")
 	public static JString[] stringLocals;
@@ -470,7 +470,7 @@ public final class ClientScriptRunner {
 	}
 
 	@OriginalMember(owner = "runetek4.client!k", name = "a", descriptor = "(Lclient!be;Lclient!na;I)Lclient!na;")
-	public static JString interpolate(@OriginalArg(0) Wdiget arg0, @OriginalArg(1) JString string) {
+	public static JString interpolate(@OriginalArg(0) Widget arg0, @OriginalArg(1) JString string) {
 		if (string.indexOf(JString.PERCENT_SIGN) == -1) {
 			return string;
 		}
@@ -525,12 +525,12 @@ public final class ClientScriptRunner {
 	}
 
 	@OriginalMember(owner = "runetek4.client!we", name = "a", descriptor = "(BILclient!be;)I")
-	public static int executeClientscript(@OriginalArg(1) int scriptIndex, @OriginalArg(2) Wdiget wdiget) {
-		if (wdiget.scripts == null || scriptIndex >= wdiget.scripts.length) {
+	public static int executeClientscript(@OriginalArg(1) int scriptIndex, @OriginalArg(2) Widget widget) {
+		if (widget.scripts == null || scriptIndex >= widget.scripts.length) {
 			return -2;
 		}
 		try {
-			@Pc(33) int[] script = wdiget.scripts[scriptIndex];
+			@Pc(33) int[] script = widget.scripts[scriptIndex];
 			@Pc(35) byte accumulatorMode = 0;
 			@Pc(37) int accumulator = 0;
 			@Pc(39) int pc = 0;
@@ -560,7 +560,7 @@ public final class ClientScriptRunner {
 					value = PlayerSkillXpTable.experience[script[pc++]];
 				}
 				@Pc(124) int pc2;
-				@Pc(135) Wdiget com;
+				@Pc(135) Widget com;
 				@Pc(140) int pc3;
 				@Pc(152) int j;
 				if (opcode == 4) { // load_inv_count {interface id} {obj id}
@@ -657,22 +657,22 @@ public final class ClientScriptRunner {
 	}
 
 	@OriginalMember(owner = "runetek4.client!md", name = "a", descriptor = "(Lclient!be;I)Z")
-	public static boolean isTrue(@OriginalArg(0) Wdiget wdiget) {
-		if (wdiget.cs1ComparisonOpcodes == null) {
+	public static boolean isTrue(@OriginalArg(0) Widget widget) {
+		if (widget.cs1ComparisonOpcodes == null) {
 			return false;
 		}
-		for (@Pc(14) int i = 0; i < wdiget.cs1ComparisonOpcodes.length; i++) {
-			@Pc(34) int value = executeClientscript(i, wdiget);
-			@Pc(39) int operand = wdiget.scriptOperand[i];
-			if (wdiget.cs1ComparisonOpcodes[i] == 2) {
+		for (@Pc(14) int i = 0; i < widget.cs1ComparisonOpcodes.length; i++) {
+			@Pc(34) int value = executeClientscript(i, widget);
+			@Pc(39) int operand = widget.scriptOperand[i];
+			if (widget.cs1ComparisonOpcodes[i] == 2) {
 				if (operand <= value) {
 					return false;
 				}
-			} else if (wdiget.cs1ComparisonOpcodes[i] == 3) {
+			} else if (widget.cs1ComparisonOpcodes[i] == 3) {
 				if (value <= operand) {
 					return false;
 				}
-			} else if (wdiget.cs1ComparisonOpcodes[i] == 4) {
+			} else if (widget.cs1ComparisonOpcodes[i] == 4) {
 				if (value == operand) {
 					return false;
 				}
@@ -684,45 +684,45 @@ public final class ClientScriptRunner {
 	}
 
 	@OriginalMember(owner = "runetek4.client!gn", name = "a", descriptor = "(III[Lclient!be;IIIIBI)V")
-	public static void renderComponent(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) Wdiget[] wdigets, @OriginalArg(4) int arg4, @OriginalArg(5) int layer, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(9) int parentRectangle) {
+	public static void renderComponent(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) Widget[] widgets, @OriginalArg(4) int arg4, @OriginalArg(5) int layer, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(9) int parentRectangle) {
 		if (GlRenderer.enabled) {
 			GlRaster.setClip(arg0, arg6, arg4, arg7);
 		} else {
 			SoftwareRaster.setClip(arg0, arg6, arg4, arg7);
 			Rasterizer.prepare();
 		}
-		for (@Pc(18) int i = 0; i < wdigets.length; i++) {
-			@Pc(30) Wdiget wdiget = wdigets[i];
-			if (wdiget != null && (wdiget.overlayer == layer || layer == -1412584499 && wdiget == aClass13_14)) {
+		for (@Pc(18) int i = 0; i < widgets.length; i++) {
+			@Pc(30) Widget widget = widgets[i];
+			if (widget != null && (widget.overlayer == layer || layer == -1412584499 && widget == aClass13_14)) {
 				@Pc(57) int rectangle;
 				if (parentRectangle == -1) {
-					WidgetList.rectangleX[WidgetList.rectangles] = arg2 + wdiget.x;
-					WidgetList.rectangleY[WidgetList.rectangles] = wdiget.y + arg1;
-					WidgetList.rectangleWidth[WidgetList.rectangles] = wdiget.width;
-					WidgetList.rectangleHeight[WidgetList.rectangles] = wdiget.height;
+					WidgetList.rectangleX[WidgetList.rectangles] = arg2 + widget.x;
+					WidgetList.rectangleY[WidgetList.rectangles] = widget.y + arg1;
+					WidgetList.rectangleWidth[WidgetList.rectangles] = widget.width;
+					WidgetList.rectangleHeight[WidgetList.rectangles] = widget.height;
 					rectangle = WidgetList.rectangles++;
 				} else {
 					rectangle = parentRectangle;
 				}
-				wdiget.rectangleLoop = Client.loop;
-				wdiget.rectangle = rectangle;
-				if (!wdiget.if3 || !WidgetList.method947(wdiget)) {
-					if (wdiget.contentType > 0) {
-						method13(wdiget);
+				widget.rectangleLoop = Client.loop;
+				widget.rectangle = rectangle;
+				if (!widget.if3 || !WidgetList.method947(widget)) {
+					if (widget.contentType > 0) {
+						method13(widget);
 					}
-					@Pc(114) int local114 = arg1 + wdiget.y;
-					@Pc(117) int alpha = wdiget.alpha;
-					@Pc(123) int local123 = wdiget.x + arg2;
-					if (Cheat.qaOpTest && (WidgetList.getServerActiveProperties(wdiget).events != 0 || wdiget.type == 0) && alpha > 127) {
+					@Pc(114) int local114 = arg1 + widget.y;
+					@Pc(117) int alpha = widget.alpha;
+					@Pc(123) int local123 = widget.x + arg2;
+					if (Cheat.qaOpTest && (WidgetList.getServerActiveProperties(widget).events != 0 || widget.type == 0) && alpha > 127) {
 						alpha = 127;
 					}
 					@Pc(166) int local166;
 					@Pc(164) int local164;
-					if (wdiget == aClass13_14) {
-						if (layer != -1412584499 && !wdiget.dragRenderBehavior) {
+					if (widget == aClass13_14) {
+						if (layer != -1412584499 && !widget.dragRenderBehavior) {
 							anInt4696 = arg2;
 							anInt3126 = arg1;
-							aClass13Array13 = wdigets;
+							aClass13Array13 = widgets;
 							continue;
 						}
 						if (aBoolean172 && WidgetList.aBoolean174) {
@@ -732,20 +732,20 @@ public final class ClientScriptRunner {
 							if (local164 < WidgetList.anInt5103) {
 								local164 = WidgetList.anInt5103;
 							}
-							if (local164 + wdiget.height > aClass13_1.height + WidgetList.anInt5103) {
-								local164 = aClass13_1.height + WidgetList.anInt5103 - wdiget.height;
+							if (local164 + widget.height > aClass13_1.height + WidgetList.anInt5103) {
+								local164 = aClass13_1.height + WidgetList.anInt5103 - widget.height;
 							}
 							local114 = local164;
 							local166 -= anInt5388;
 							if (anInt2225 > local166) {
 								local166 = anInt2225;
 							}
-							if (aClass13_1.width + anInt2225 < wdiget.width + local166) {
-								local166 = aClass13_1.width + anInt2225 - wdiget.width;
+							if (aClass13_1.width + anInt2225 < widget.width + local166) {
+								local166 = aClass13_1.width + anInt2225 - widget.width;
 							}
 							local123 = local166;
 						}
-						if (!wdiget.dragRenderBehavior) {
+						if (!widget.dragRenderBehavior) {
 							alpha = 128;
 						}
 					}
@@ -753,7 +753,7 @@ public final class ClientScriptRunner {
 					@Pc(291) int local291;
 					@Pc(270) int local270;
 					@Pc(276) int local276;
-					if (wdiget.type == 2) {
+					if (widget.type == 2) {
 						local291 = arg7;
 						local302 = arg4;
 						local164 = arg6;
@@ -761,16 +761,16 @@ public final class ClientScriptRunner {
 					} else {
 						local164 = local114 > arg6 ? local114 : arg6;
 						local166 = arg0 < local123 ? local123 : arg0;
-						local270 = wdiget.width + local123;
-						local276 = local114 + wdiget.height;
-						if (wdiget.type == 9) {
+						local270 = widget.width + local123;
+						local276 = local114 + widget.height;
+						if (widget.type == 9) {
 							local276++;
 							local270++;
 						}
 						local291 = arg7 <= local276 ? arg7 : local276;
 						local302 = local270 >= arg4 ? arg4 : local270;
 					}
-					if (!wdiget.if3 || local302 > local166 && local164 < local291) {
+					if (!widget.if3 || local302 > local166 && local164 < local291) {
 						@Pc(468) int local468;
 						@Pc(503) int memory;
 						@Pc(514) int color;
@@ -779,12 +779,12 @@ public final class ClientScriptRunner {
 						@Pc(563) int local563;
 						@Pc(571) int local571;
 						@Pc(545) int objId;
-						if (wdiget.contentType != 0) {
-							if (wdiget.contentType == 1337 || wdiget.contentType == 1403 && GlRenderer.enabled) {
-								WidgetList.aClass13_26 = wdiget;
+						if (widget.contentType != 0) {
+							if (widget.contentType == 1337 || widget.contentType == 1403 && GlRenderer.enabled) {
+								WidgetList.aClass13_26 = widget;
 								WidgetList.anInt5574 = local114;
 								anInt2503 = local123;
-								drawScene(wdiget.height, wdiget.contentType == 1403, local123, wdiget.width, local114);
+								drawScene(widget.height, widget.contentType == 1403, local123, widget.width, local114);
 								if (GlRenderer.enabled) {
 									GlRaster.setClip(arg0, arg6, arg4, arg7);
 								} else {
@@ -792,28 +792,28 @@ public final class ClientScriptRunner {
 								}
 								continue;
 							}
-							if (wdiget.contentType == 1338) {
-								if (!wdiget.method478()) {
+							if (widget.contentType == 1338) {
+								if (!widget.method478()) {
 									continue;
 								}
-								MiniMap.render(rectangle, local114, local123, wdiget);
+								MiniMap.render(rectangle, local114, local123, widget);
 								if (GlRenderer.enabled) {
 									GlRaster.setClip(arg0, arg6, arg4, arg7);
 								} else {
 									SoftwareRaster.setClip(arg0, arg6, arg4, arg7);
 								}
-								if (MiniMap.state != 0 && MiniMap.state != 3 || aBoolean108 || local166 > anInt3751 || anInt1892 < local164 || anInt3751 >= local302 || local291 <= anInt1892) {
+								if (MiniMap.state != 0 && MiniMap.state != 3 || menuVisible || local166 > scriptMouseX || scriptMouseY < local164 || scriptMouseX >= local302 || local291 <= scriptMouseY) {
 									continue;
 								}
-								local270 = anInt3751 - local123;
-								local276 = anInt1892 - local114;
-								local468 = wdiget.anIntArray37[local276];
-								if (local270 < local468 || local270 > local468 + wdiget.anIntArray45[local276]) {
+								local270 = scriptMouseX - local123;
+								local276 = scriptMouseY - local114;
+								local468 = widget.anIntArray37[local276];
+								if (local270 < local468 || local270 > local468 + widget.anIntArray45[local276]) {
 									continue;
 								}
-								local276 -= wdiget.height / 2;
+								local276 -= widget.height / 2;
 								memory = Camera.orbitCameraYaw + MiniMap.minimapAnticheatAngle & 0x7FF;
-								local270 -= wdiget.width / 2;
+								local270 -= widget.width / 2;
 								color = MathUtils.sin[memory];
 								cardMemory = MathUtils.cos[memory];
 								color = (MiniMap.minimapZoom + 256) * color >> 8;
@@ -823,7 +823,7 @@ public final class ClientScriptRunner {
 								local563 = PlayerList.self.xFine + dragY >> 7;
 								local571 = PlayerList.self.zFine - objId >> 7;
 								if (MiniMenu.aBoolean302 && (MiniMenu.anInt4999 & 0x40) != 0) {
-									@Pc(583) Wdiget local583 = WidgetList.getCreatedComponent(MiniMenu.anInt2512, MiniMenu.anInt506);
+									@Pc(583) Widget local583 = WidgetList.getCreatedComponent(MiniMenu.anInt2512, MiniMenu.anInt506);
 									if (local583 == null) {
 										MiniMenu.method1294();
 									} else {
@@ -837,9 +837,9 @@ public final class ClientScriptRunner {
 								MiniMenu.addActionRow(-1, 1L, JString.EMPTY, local563, (short) 60, MiniMenu.walkText, local571);
 								continue;
 							}
-							if (wdiget.contentType == 1339) {
-								if (wdiget.method478()) {
-									method3047(local123, local114, wdiget, rectangle);
+							if (widget.contentType == 1339) {
+								if (widget.method478()) {
+									method3047(local123, local114, widget, rectangle);
 									if (GlRenderer.enabled) {
 										GlRaster.setClip(arg0, arg6, arg4, arg7);
 									} else {
@@ -848,9 +848,9 @@ public final class ClientScriptRunner {
 								}
 								continue;
 							}
-							if (wdiget.contentType == 1400) {
-								WorldMap.method2225(local123, local114, wdiget.height, wdiget.width);
-								WidgetList.aBooleanArray100[rectangle] = true;
+							if (widget.contentType == 1400) {
+								WorldMap.method2225(local123, local114, widget.height, widget.width);
+								WidgetList.widgetNeedsRedraw[rectangle] = true;
 								WidgetList.rectangleRedraw[rectangle] = true;
 								if (GlRenderer.enabled) {
 									GlRaster.setClip(arg0, arg6, arg4, arg7);
@@ -859,9 +859,9 @@ public final class ClientScriptRunner {
 								}
 								continue;
 							}
-							if (wdiget.contentType == 1401) {
-								method4(local123, wdiget.height, wdiget.width, local114);
-								WidgetList.aBooleanArray100[rectangle] = true;
+							if (widget.contentType == 1401) {
+								method4(local123, widget.height, widget.width, local114);
+								WidgetList.widgetNeedsRedraw[rectangle] = true;
 								WidgetList.rectangleRedraw[rectangle] = true;
 								if (GlRenderer.enabled) {
 									GlRaster.setClip(arg0, arg6, arg4, arg7);
@@ -870,19 +870,19 @@ public final class ClientScriptRunner {
 								}
 								continue;
 							}
-							if (wdiget.contentType == 1402) {
+							if (widget.contentType == 1402) {
 								if (!GlRenderer.enabled) {
 									Flames.render(local123, local114);
-									WidgetList.aBooleanArray100[rectangle] = true;
+									WidgetList.widgetNeedsRedraw[rectangle] = true;
 									WidgetList.rectangleRedraw[rectangle] = true;
 								}
 								continue;
 							}
-							if (wdiget.contentType == 1405) {
+							if (widget.contentType == 1405) {
 								if (!Cheat.displayFps) {
 									continue;
 								}
-								local270 = wdiget.width + local123;
+								local270 = widget.width + local123;
 								local276 = local114 + 15;
 								Fonts.p12Full.renderRight(JString.concatenate(new JString[] { Cheat.DEBUG_FPS2, JString.parseInt(GameShell.fps) }), local270, local276, 16776960, -1);
 								local276 += 15;
@@ -916,51 +916,51 @@ public final class ClientScriptRunner {
 								@Pc(968) JString local968 = JString.concatenate(new JString[] { Cheat.DEBUG_CACHE, StringUtils.formatNumber(0, true, 2, (long) local571), aClass100_672, JString.parseInt(local563), aClass100_80});
 								Fonts.p11Full.renderRight(local968, local270, local276, 16776960, -1);
 								local276 += 12;
-								WidgetList.aBooleanArray100[rectangle] = true;
+								WidgetList.widgetNeedsRedraw[rectangle] = true;
 								WidgetList.rectangleRedraw[rectangle] = true;
 								continue;
 							}
-							if (wdiget.contentType == 1406) {
+							if (widget.contentType == 1406) {
 								anInt3484 = local114;
-								LoginManager.aClass13_13 = wdiget;
+								LoginManager.hoveredWidget = widget;
 								anInt3260 = local123;
 								continue;
 							}
 						}
-						if (!aBoolean108) {
-							if (wdiget.type == 0 && wdiget.noClickThrough && anInt3751 >= local166 && anInt1892 >= local164 && anInt3751 < local302 && local291 > anInt1892 && !Cheat.qaOpTest) {
+						if (!menuVisible) {
+							if (widget.type == 0 && widget.noClickThrough && scriptMouseX >= local166 && scriptMouseY >= local164 && scriptMouseX < local302 && local291 > scriptMouseY && !Cheat.qaOpTest) {
 								MiniMenu.menuActionRow = 1;
-								MiniMenu.cursors[0] = MiniMenu.anInt1092;
+								MiniMenu.cursors[0] = MiniMenu.defaultCursor;
 								MiniMenu.ops[0] = LocalizedText.CANCEL;
 								MiniMenu.opBases[0] = JString.EMPTY;
 								MiniMenu.actions[0] = 1005;
 							}
-							if (local166 <= anInt3751 && local164 <= anInt1892 && local302 > anInt3751 && local291 > anInt1892) {
-								MiniMenu.addComponentEntries(anInt1892 - local114, -local123 + anInt3751, wdiget);
+							if (local166 <= scriptMouseX && local164 <= scriptMouseY && local302 > scriptMouseX && local291 > scriptMouseY) {
+								MiniMenu.addComponentEntries(scriptMouseY - local114, -local123 + scriptMouseX, widget);
 							}
 						}
-						if (wdiget.type == 0) {
-							if (!wdiget.if3 && WidgetList.method947(wdiget) && WidgetList.aClass13_22 != wdiget) {
+						if (widget.type == 0) {
+							if (!widget.if3 && WidgetList.method947(widget) && WidgetList.aClass13_22 != widget) {
 								continue;
 							}
-							if (!wdiget.if3) {
-								if (wdiget.scrollMaxV - wdiget.height < wdiget.scrollY) {
-									wdiget.scrollY = wdiget.scrollMaxV - wdiget.height;
+							if (!widget.if3) {
+								if (widget.scrollMaxV - widget.height < widget.scrollY) {
+									widget.scrollY = widget.scrollMaxV - widget.height;
 								}
-								if (wdiget.scrollY < 0) {
-									wdiget.scrollY = 0;
+								if (widget.scrollY < 0) {
+									widget.scrollY = 0;
 								}
 							}
-							renderComponent(local166, local114 - wdiget.scrollY, -wdiget.scrollX + local123, wdigets, local302, wdiget.id, local164, local291, rectangle);
-							if (wdiget.createdWdigets != null) {
-								renderComponent(local166, local114 - wdiget.scrollY, -wdiget.scrollX + local123, wdiget.createdWdigets, local302, wdiget.id, local164, local291, rectangle);
+							renderComponent(local166, local114 - widget.scrollY, -widget.scrollX + local123, widgets, local302, widget.id, local164, local291, rectangle);
+							if (widget.createdWidgets != null) {
+								renderComponent(local166, local114 - widget.scrollY, -widget.scrollX + local123, widget.createdWidgets, local302, widget.id, local164, local291, rectangle);
 							}
-							@Pc(1186) SubInterface local1186 = (SubInterface) WidgetList.openInterfaces.get((long) wdiget.id);
+							@Pc(1186) SubInterface local1186 = (SubInterface) WidgetList.openInterfaces.get((long) widget.id);
 							if (local1186 != null) {
-								if (local1186.anInt5879 == 0 && !aBoolean108 && anInt3751 >= local166 && local164 <= anInt1892 && local302 > anInt3751 && anInt1892 < local291 && !Cheat.qaOpTest) {
+								if (local1186.anInt5879 == 0 && !menuVisible && scriptMouseX >= local166 && local164 <= scriptMouseY && local302 > scriptMouseX && scriptMouseY < local291 && !Cheat.qaOpTest) {
 									MiniMenu.ops[0] = LocalizedText.CANCEL;
 									MiniMenu.menuActionRow = 1;
-									MiniMenu.cursors[0] = MiniMenu.anInt1092;
+									MiniMenu.cursors[0] = MiniMenu.defaultCursor;
 									MiniMenu.actions[0] = 1005;
 									MiniMenu.opBases[0] = JString.EMPTY;
 								}
@@ -973,36 +973,36 @@ public final class ClientScriptRunner {
 								Rasterizer.prepare();
 							}
 						}
-						if (WidgetList.aBooleanArray116[rectangle] || Cheat.rectDebug > 1) {
-							if (wdiget.type == 0 && !wdiget.if3 && wdiget.scrollMaxV > wdiget.height) {
-								method1624(wdiget.scrollY, wdiget.scrollMaxV, wdiget.width + local123, local114, wdiget.height);
+						if (WidgetList.widgetRedrawPrevious[rectangle] || Cheat.rectDebug > 1) {
+							if (widget.type == 0 && !widget.if3 && widget.scrollMaxV > widget.height) {
+								method1624(widget.scrollY, widget.scrollMaxV, widget.width + local123, local114, widget.height);
 							}
-							if (wdiget.type != 1) {
-								if (wdiget.type == 2) {
+							if (widget.type != 1) {
+								if (widget.type == 2) {
 									local270 = 0;
-									for (local276 = 0; local276 < wdiget.baseHeight; local276++) {
-										for (local468 = 0; local468 < wdiget.baseWidth; local468++) {
-											color = local114 + local276 * (wdiget.invMarginY + 32);
-											memory = (wdiget.invMarginX + 32) * local468 + local123;
+									for (local276 = 0; local276 < widget.baseHeight; local276++) {
+										for (local468 = 0; local468 < widget.baseWidth; local468++) {
+											color = local114 + local276 * (widget.invMarginY + 32);
+											memory = (widget.invMarginX + 32) * local468 + local123;
 											if (local270 < 20) {
-												color += wdiget.invOffsetY[local270];
-												memory += wdiget.invOffsetX[local270];
+												color += widget.invOffsetY[local270];
+												memory += widget.invOffsetX[local270];
 											}
-											if (wdiget.invSlotObjId[local270] > 0) {
-												objId = wdiget.invSlotObjId[local270] - 1;
-												if (arg0 < memory + 32 && memory < arg4 && arg6 < color + 32 && color < arg7 || wdiget == WidgetList.clickedInventoryWdiget && WidgetList.selectedInventorySlot == local270) {
+											if (widget.invSlotObjId[local270] > 0) {
+												objId = widget.invSlotObjId[local270] - 1;
+												if (arg0 < memory + 32 && memory < arg4 && arg6 < color + 32 && color < arg7 || widget == WidgetList.clickedInventoryWidget && WidgetList.selectedInventorySlot == local270) {
 													@Pc(1476) Sprite sprite;
-													if (MiniMenu.anInt5014 == 1 && MiniMenu.anInt4370 == local270 && wdiget.id == MiniMap.anInt5062) {
-														sprite = Inv.getObjectSprite(2, objId, wdiget.objDrawText, wdiget.invSlotObjCount[local270], 0);
+													if (MiniMenu.anInt5014 == 1 && MiniMenu.anInt4370 == local270 && widget.id == MiniMap.anInt5062) {
+														sprite = Inv.getObjectSprite(2, objId, widget.objDrawText, widget.invSlotObjCount[local270], 0);
 													} else {
-														sprite = Inv.getObjectSprite(1, objId, wdiget.objDrawText, wdiget.invSlotObjCount[local270], 3153952);
+														sprite = Inv.getObjectSprite(1, objId, widget.objDrawText, widget.invSlotObjCount[local270], 3153952);
 													}
 													if (Rasterizer.textureHasTransparency) {
-														WidgetList.aBooleanArray100[rectangle] = true;
+														WidgetList.widgetNeedsRedraw[rectangle] = true;
 													}
 													if (sprite == null) {
-														WidgetList.redraw(wdiget);
-													} else if (WidgetList.clickedInventoryWdiget == wdiget && local270 == WidgetList.selectedInventorySlot) {
+														WidgetList.redraw(widget);
+													} else if (WidgetList.clickedInventoryWidget == widget && local270 == WidgetList.selectedInventorySlot) {
 														cardMemory = Mouse.lastMouseX - WidgetList.clickedInventoryComponentX;
 														dragY = Mouse.lastMouseY - WidgetList.clickedInventoryComponentY;
 														if (dragY < 5 && dragY > -5) {
@@ -1018,7 +1018,7 @@ public final class ClientScriptRunner {
 														// draw dragged icon (at half opacity)
 														sprite.renderAlpha(memory + cardMemory, color - -dragY, 128);
 														if (layer != -1) {
-															@Pc(1571) Wdiget local1571 = wdigets[layer & 0xFFFF];
+															@Pc(1571) Widget local1571 = widgets[layer & 0xFFFF];
 															@Pc(1577) int top;
 															@Pc(1575) int bottom;
 															if (GlRenderer.enabled) {
@@ -1054,115 +1054,115 @@ public final class ClientScriptRunner {
 																WidgetList.redraw(local1571);
 															}
 														}
-													} else if (wdiget == MiniMenu.pressedInventoryWdiget && local270 == MiniMenu.anInt5444) {
+													} else if (widget == MiniMenu.pressedInventoryWidget && local270 == MiniMenu.anInt5444) {
 														sprite.renderAlpha(memory, color, 128);
 													} else {
 														sprite.render(memory, color);
 													}
 												}
-											} else if (wdiget.invSprite != null && local270 < 20) {
-												@Pc(1381) Sprite local1381 = wdiget.method482(local270);
+											} else if (widget.invSprite != null && local270 < 20) {
+												@Pc(1381) Sprite local1381 = widget.method482(local270);
 												if (local1381 != null) {
 													local1381.render(memory, color);
-												} else if (Wdiget.aBoolean72) {
-													WidgetList.redraw(wdiget);
+												} else if (Widget.aBoolean72) {
+													WidgetList.redraw(widget);
 												}
 											}
 											local270++;
 										}
 									}
-								} else if (wdiget.type == 3) {
-									if (isTrue(wdiget)) {
-										local270 = wdiget.activeColor;
-										if (WidgetList.aClass13_22 == wdiget && wdiget.anInt475 != 0) {
-											local270 = wdiget.anInt475;
+								} else if (widget.type == 3) {
+									if (isTrue(widget)) {
+										local270 = widget.activeColor;
+										if (WidgetList.aClass13_22 == widget && widget.anInt475 != 0) {
+											local270 = widget.anInt475;
 										}
 									} else {
-										local270 = wdiget.color;
-										if (wdiget == WidgetList.aClass13_22 && wdiget.overColor != 0) {
-											local270 = wdiget.overColor;
+										local270 = widget.color;
+										if (widget == WidgetList.aClass13_22 && widget.overColor != 0) {
+											local270 = widget.overColor;
 										}
 									}
 									if (alpha == 0) {
-										if (wdiget.filled) {
+										if (widget.filled) {
 											if (GlRenderer.enabled) {
-												GlRaster.fillRect(local123, local114, wdiget.width, wdiget.height, local270);
+												GlRaster.fillRect(local123, local114, widget.width, widget.height, local270);
 											} else {
-												SoftwareRaster.fillRect(local123, local114, wdiget.width, wdiget.height, local270);
+												SoftwareRaster.fillRect(local123, local114, widget.width, widget.height, local270);
 											}
 										} else if (GlRenderer.enabled) {
-											GlRaster.drawRect(local123, local114, wdiget.width, wdiget.height, local270);
+											GlRaster.drawRect(local123, local114, widget.width, widget.height, local270);
 										} else {
-											SoftwareRaster.drawRect(local123, local114, wdiget.width, wdiget.height, local270);
+											SoftwareRaster.drawRect(local123, local114, widget.width, widget.height, local270);
 										}
-									} else if (wdiget.filled) {
+									} else if (widget.filled) {
 										if (GlRenderer.enabled) {
-											GlRaster.fillRectAlpha(local123, local114, wdiget.width, wdiget.height, local270, 256 - (alpha & 0xFF));
+											GlRaster.fillRectAlpha(local123, local114, widget.width, widget.height, local270, 256 - (alpha & 0xFF));
 										} else {
-											SoftwareRaster.fillRectAlpha(local123, local114, wdiget.width, wdiget.height, local270, 256 - (alpha & 0xFF));
+											SoftwareRaster.fillRectAlpha(local123, local114, widget.width, widget.height, local270, 256 - (alpha & 0xFF));
 										}
 									} else if (GlRenderer.enabled) {
-										GlRaster.drawRectAlpha(local123, local114, wdiget.width, wdiget.height, local270, 256 - (alpha & 0xFF));
+										GlRaster.drawRectAlpha(local123, local114, widget.width, widget.height, local270, 256 - (alpha & 0xFF));
 									} else {
-										SoftwareRaster.drawRectAlpha(local123, local114, wdiget.width, wdiget.height, local270, 256 - (alpha & 0xFF));
+										SoftwareRaster.drawRectAlpha(local123, local114, widget.width, widget.height, local270, 256 - (alpha & 0xFF));
 									}
 								} else {
 									@Pc(1921) Font local1921;
-									if (wdiget.type == 4) {
-										local1921 = wdiget.getFont(Sprites.nameIcons);
+									if (widget.type == 4) {
+										local1921 = widget.getFont(Sprites.nameIcons);
 										if (local1921 != null) {
-											@Pc(1934) JString local1934 = wdiget.text;
-											if (isTrue(wdiget)) {
-												local276 = wdiget.activeColor;
-												if (WidgetList.aClass13_22 == wdiget && wdiget.anInt475 != 0) {
-													local276 = wdiget.anInt475;
+											@Pc(1934) JString local1934 = widget.text;
+											if (isTrue(widget)) {
+												local276 = widget.activeColor;
+												if (WidgetList.aClass13_22 == widget && widget.anInt475 != 0) {
+													local276 = widget.anInt475;
 												}
-												if (wdiget.activeText.length() > 0) {
-													local1934 = wdiget.activeText;
+												if (widget.activeText.length() > 0) {
+													local1934 = widget.activeText;
 												}
 											} else {
-												local276 = wdiget.color;
-												if (WidgetList.aClass13_22 == wdiget && wdiget.overColor != 0) {
-													local276 = wdiget.overColor;
+												local276 = widget.color;
+												if (WidgetList.aClass13_22 == widget && widget.overColor != 0) {
+													local276 = widget.overColor;
 												}
 											}
-											if (wdiget.if3 && wdiget.objId != -1) {
-												@Pc(1989) ObjType local1989 = ObjTypeList.get(wdiget.objId);
+											if (widget.if3 && widget.objId != -1) {
+												@Pc(1989) ObjType local1989 = ObjTypeList.get(widget.objId);
 												local1934 = local1989.name;
 												if (local1934 == null) {
 													local1934 = MiniMenu.NULL;
 												}
-												if ((local1989.stackable == 1 || wdiget.objCount != 1) && wdiget.objCount != -1) {
-													local1934 = JString.concatenate(new JString[] { MiniMenu.aClass100_32, local1934, JString.aClass100_375, method1548(wdiget.objCount) });
+												if ((local1989.stackable == 1 || widget.objCount != 1) && widget.objCount != -1) {
+													local1934 = JString.concatenate(new JString[] { MiniMenu.aClass100_32, local1934, JString.aClass100_375, method1548(widget.objCount) });
 												}
 											}
-											if (aClass13_10 == wdiget) {
-												local276 = wdiget.color;
+											if (aClass13_10 == widget) {
+												local276 = widget.color;
 												local1934 = LocalizedText.PLEASEWAIT;
 											}
-											if (!wdiget.if3) {
-												local1934 = interpolate(wdiget, local1934);
+											if (!widget.if3) {
+												local1934 = interpolate(widget, local1934);
 											}
-											local1921.drawInterfaceText(local1934, local123, local114, wdiget.width, wdiget.height, local276, wdiget.shadowed ? 0 : -1, wdiget.halign, wdiget.valign, wdiget.vpadding);
-										} else if (Wdiget.aBoolean72) {
-											WidgetList.redraw(wdiget);
+											local1921.drawInterfaceText(local1934, local123, local114, widget.width, widget.height, local276, widget.shadowed ? 0 : -1, widget.halign, widget.valign, widget.vpadding);
+										} else if (Widget.aBoolean72) {
+											WidgetList.redraw(widget);
 										}
-									} else if (wdiget.type == 5) {
+									} else if (widget.type == 5) {
 										@Pc(2094) Sprite sprite;
-										if (wdiget.if3) {
-											if (wdiget.objId == -1) {
-												sprite = wdiget.method489(false);
+										if (widget.if3) {
+											if (widget.objId == -1) {
+												sprite = widget.method489(false);
 											} else {
-												sprite = Inv.getObjectSprite(wdiget.outlineThickness, wdiget.objId, wdiget.objDrawText, wdiget.objCount, wdiget.shadowColor);
+												sprite = Inv.getObjectSprite(widget.outlineThickness, widget.objId, widget.objDrawText, widget.objCount, widget.shadowColor);
 											}
 											if (sprite != null) {
 												local276 = sprite.innerWidth;
 												local468 = sprite.innerHeight;
-												if (wdiget.spriteTiling) {
-													memory = (local276 + wdiget.width - 1) / local276;
-													color = (wdiget.height + local468 - 1) / local468;
+												if (widget.spriteTiling) {
+													memory = (local276 + widget.width - 1) / local276;
+													color = (widget.height + local468 - 1) / local468;
 													if (GlRenderer.enabled) {
-														GlRaster.method1183(local123, local114, wdiget.width + local123, wdiget.height + local114);
+														GlRaster.method1183(local123, local114, widget.width + local123, widget.height + local114);
 														@Pc(2274) boolean local2274 = IntUtils.isPowerOfTwo(sprite.width);
 														@Pc(2279) boolean local2279 = IntUtils.isPowerOfTwo(sprite.height);
 														@Pc(2282) GlSprite local2282 = (GlSprite) sprite;
@@ -1201,11 +1201,11 @@ public final class ClientScriptRunner {
 														}
 														GlRaster.setClip(arg0, arg6, arg4, arg7);
 													} else {
-														SoftwareRaster.method2498(local123, local114, local123 + wdiget.width, local114 - -wdiget.height);
+														SoftwareRaster.method2498(local123, local114, local123 + widget.width, local114 - -widget.height);
 														for (cardMemory = 0; cardMemory < memory; cardMemory++) {
 															for (dragY = 0; dragY < color; dragY++) {
-																if (wdiget.angle2d != 0) {
-																	sprite.renderAngled(local114 + local468 * dragY + local468 / 2, wdiget.angle2d, 4096, cardMemory * local276 + local123 + local276 / 2);
+																if (widget.angle2d != 0) {
+																	sprite.renderAngled(local114 + local468 * dragY + local468 / 2, widget.angle2d, 4096, cardMemory * local276 + local123 + local276 / 2);
 																} else if (alpha == 0) {
 																	sprite.render(cardMemory * local276 + local123, local468 * dragY + local114);
 																} else {
@@ -1216,97 +1216,97 @@ public final class ClientScriptRunner {
 														SoftwareRaster.setClip(arg0, arg6, arg4, arg7);
 													}
 												} else {
-													memory = wdiget.width * 4096 / local276;
-													if (wdiget.angle2d != 0) {
-														sprite.renderAngled(local114 + wdiget.height / 2, wdiget.angle2d, memory, local123 + wdiget.width / 2);
+													memory = widget.width * 4096 / local276;
+													if (widget.angle2d != 0) {
+														sprite.renderAngled(local114 + widget.height / 2, widget.angle2d, memory, local123 + widget.width / 2);
 													} else if (alpha != 0) {
-														sprite.renderAlpha(local123, local114, wdiget.width, wdiget.height, 256 - (alpha & 0xFF));
-													} else if (local276 == wdiget.width && local468 == wdiget.height) {
+														sprite.renderAlpha(local123, local114, widget.width, widget.height, 256 - (alpha & 0xFF));
+													} else if (local276 == widget.width && local468 == widget.height) {
 														sprite.render(local123, local114);
 													} else {
 														// render icons in a container i.e bank icons
-														sprite.renderResized(local123, local114, wdiget.width, wdiget.height);
+														sprite.renderResized(local123, local114, widget.width, widget.height);
 													}
 												}
-											} else if (Wdiget.aBoolean72) {
-												WidgetList.redraw(wdiget);
+											} else if (Widget.aBoolean72) {
+												WidgetList.redraw(widget);
 											}
 										} else {
-											sprite = wdiget.method489(isTrue(wdiget));
+											sprite = widget.method489(isTrue(widget));
 											if (sprite != null) {
 												sprite.render(local123, local114);
-											} else if (Wdiget.aBoolean72) {
-												WidgetList.redraw(wdiget);
+											} else if (Widget.aBoolean72) {
+												WidgetList.redraw(widget);
 											}
 										}
 									} else {
 										@Pc(2611) ObjType local2611;
-										if (wdiget.type == 6) {
-											@Pc(2587) boolean local2587 = isTrue(wdiget);
+										if (widget.type == 6) {
+											@Pc(2587) boolean local2587 = isTrue(widget);
 											@Pc(2589) Model local2589 = null;
 											if (local2587) {
-												local276 = wdiget.activeModelSeqId;
+												local276 = widget.activeModelSeqId;
 											} else {
-												local276 = wdiget.modelSeqId;
+												local276 = widget.modelSeqId;
 											}
 											memory = 0;
-											if (wdiget.objId != -1) {
-												local2611 = ObjTypeList.get(wdiget.objId);
+											if (widget.objId != -1) {
+												local2611 = ObjTypeList.get(widget.objId);
 												if (local2611 != null) {
-													local2611 = local2611.getMeshAddress(wdiget.objCount);
+													local2611 = local2611.getMeshAddress(widget.objCount);
 													@Pc(2630) SeqType local2630 = local276 == -1 ? null : SeqTypeList.get(local276);
-													local2589 = local2611.getModel(wdiget.anInt496, wdiget.anInt500, local2630, 1, wdiget.anInt510);
+													local2589 = local2611.getModel(widget.anInt496, widget.anInt500, local2630, 1, widget.anInt510);
 													if (local2589 == null) {
-														WidgetList.redraw(wdiget);
+														WidgetList.redraw(widget);
 													} else {
 														memory = -local2589.getMinY() / 2;
 													}
 												}
-											} else if (wdiget.modelType == 5) {
-												if (wdiget.modelId == -1) {
+											} else if (widget.modelType == 5) {
+												if (widget.modelId == -1) {
 													local2589 = PlayerAppearance.DEFAULT.method1954(null, -1, null, null, 0, -1, 0, -1, -1);
 												} else {
-													color = wdiget.modelId & 0x7FF;
+													color = widget.modelId & 0x7FF;
 													if (color == PlayerList.selfId) {
 														color = 2047;
 													}
 													@Pc(2751) Player local2751 = PlayerList.players[color];
 													@Pc(2760) SeqType local2760 = local276 == -1 ? null : SeqTypeList.get(local276);
-													if (local2751 != null && (int) local2751.username.encode37() << 11 == (wdiget.modelId & 0xFFFFF800)) {
-														local2589 = local2751.appearance.method1954(null, -1, null, local2760, 0, -1, 0, wdiget.anInt510, 0);
+													if (local2751 != null && (int) local2751.username.encode37() << 11 == (widget.modelId & 0xFFFFF800)) {
+														local2589 = local2751.appearance.method1954(null, -1, null, local2760, 0, -1, 0, widget.anInt510, 0);
 													}
 												}
 											} else if (local276 == -1) {
-												local2589 = wdiget.method488(-1, null, -1, 0, local2587, PlayerList.self.appearance);
-												if (local2589 == null && Wdiget.aBoolean72) {
-													WidgetList.redraw(wdiget);
+												local2589 = widget.method488(-1, null, -1, 0, local2587, PlayerList.self.appearance);
+												if (local2589 == null && Widget.aBoolean72) {
+													WidgetList.redraw(widget);
 												}
 											} else {
 												@Pc(2689) SeqType local2689 = SeqTypeList.get(local276);
-												local2589 = wdiget.method488(wdiget.anInt496, local2689, wdiget.anInt510, wdiget.anInt500, local2587, PlayerList.self.appearance);
-												if (local2589 == null && Wdiget.aBoolean72) {
-													WidgetList.redraw(wdiget);
+												local2589 = widget.method488(widget.anInt496, local2689, widget.anInt510, widget.anInt500, local2587, PlayerList.self.appearance);
+												if (local2589 == null && Widget.aBoolean72) {
+													WidgetList.redraw(widget);
 												}
 											}
 											if (local2589 != null) {
-												if (wdiget.anInt451 > 0) {
-													color = (wdiget.width << 8) / wdiget.anInt451;
+												if (widget.anInt451 > 0) {
+													color = (widget.width << 8) / widget.anInt451;
 												} else {
 													color = 256;
 												}
-												if (wdiget.anInt526 <= 0) {
+												if (widget.anInt526 <= 0) {
 													cardMemory = 256;
 												} else {
-													cardMemory = (wdiget.height << 8) / wdiget.anInt526;
+													cardMemory = (widget.height << 8) / widget.anInt526;
 												}
-												dragY = local123 + wdiget.width / 2 + (color * wdiget.anInt495 >> 8);
-												objId = wdiget.height / 2 + local114 + (cardMemory * wdiget.anInt481 >> 8);
+												dragY = local123 + widget.width / 2 + (color * widget.anInt495 >> 8);
+												objId = widget.height / 2 + local114 + (cardMemory * widget.anInt481 >> 8);
 												if (GlRenderer.enabled) {
-													if (wdiget.modelOrtho) {
-														GlRenderer.method4182(dragY, objId, wdiget.modelZoom, wdiget.aShort11, color, cardMemory);
+													if (widget.modelOrtho) {
+														GlRenderer.method4182(dragY, objId, widget.modelZoom, widget.aShort11, color, cardMemory);
 													} else {
 														GlRenderer.method4148(dragY, objId, color, cardMemory);
-														GlRenderer.method4152((float) wdiget.aShort10, (float) wdiget.aShort11 * 1.5F);
+														GlRenderer.method4152((float) widget.aShort10, (float) widget.aShort11 * 1.5F);
 													}
 													GlRenderer.restoreLighting();
 													GlRenderer.setDepthTestEnabled(true);
@@ -1318,73 +1318,73 @@ public final class ClientScriptRunner {
 														GlRaster.setClip(arg0, arg6, arg4, arg7);
 														aBoolean299 = false;
 													}
-													if (wdiget.aBoolean34) {
+													if (widget.aBoolean34) {
 														GlRenderer.disableDepthMask();
 													}
-													local563 = MathUtils.sin[wdiget.modelXAngle] * wdiget.modelZoom >> 16;
-													local571 = wdiget.modelZoom * MathUtils.cos[wdiget.modelXAngle] >> 16;
-													if (wdiget.if3) {
-														local2589.setCamera(wdiget.modelYAngle, wdiget.modelYOffset, wdiget.modelXAngle, wdiget.modelXOffset, wdiget.modelZOffset + local563 + memory, wdiget.modelZOffset + local571, -1L);
+													local563 = MathUtils.sin[widget.modelXAngle] * widget.modelZoom >> 16;
+													local571 = widget.modelZoom * MathUtils.cos[widget.modelXAngle] >> 16;
+													if (widget.if3) {
+														local2589.setCamera(widget.modelYAngle, widget.modelYOffset, widget.modelXAngle, widget.modelXOffset, widget.modelZOffset + local563 + memory, widget.modelZOffset + local571, -1L);
 													} else {
-														local2589.setCamera(wdiget.modelYAngle, 0, wdiget.modelXAngle, 0, local563, local571, -1L);
+														local2589.setCamera(widget.modelYAngle, 0, widget.modelXAngle, 0, local563, local571, -1L);
 													}
-													if (wdiget.aBoolean34) {
+													if (widget.aBoolean34) {
 														GlRenderer.enableDepthMask();
 													}
 												} else {
 													Rasterizer.setBounds(dragY, objId);
-													local563 = MathUtils.sin[wdiget.modelXAngle] * wdiget.modelZoom >> 16;
-													local571 = wdiget.modelZoom * MathUtils.cos[wdiget.modelXAngle] >> 16;
-													if (!wdiget.if3) {
-														local2589.setCamera(wdiget.modelYAngle, 0, wdiget.modelXAngle, 0, local563, local571, -1L);
-													} else if (wdiget.modelOrtho) {
-														((SoftwareModel) local2589).method4591(wdiget.modelYAngle, wdiget.modelYOffset, wdiget.modelXAngle, wdiget.modelXOffset, wdiget.modelZOffset + memory + local563, local571 + wdiget.modelZOffset, wdiget.modelZoom);
+													local563 = MathUtils.sin[widget.modelXAngle] * widget.modelZoom >> 16;
+													local571 = widget.modelZoom * MathUtils.cos[widget.modelXAngle] >> 16;
+													if (!widget.if3) {
+														local2589.setCamera(widget.modelYAngle, 0, widget.modelXAngle, 0, local563, local571, -1L);
+													} else if (widget.modelOrtho) {
+														((SoftwareModel) local2589).method4591(widget.modelYAngle, widget.modelYOffset, widget.modelXAngle, widget.modelXOffset, widget.modelZOffset + memory + local563, local571 + widget.modelZOffset, widget.modelZoom);
 													} else {
-														local2589.setCamera(wdiget.modelYAngle, wdiget.modelYOffset, wdiget.modelXAngle, wdiget.modelXOffset, wdiget.modelZOffset + local563 + memory, local571 + wdiget.modelZOffset, -1L);
+														local2589.setCamera(widget.modelYAngle, widget.modelYOffset, widget.modelXAngle, widget.modelXOffset, widget.modelZOffset + local563 + memory, local571 + widget.modelZOffset, -1L);
 													}
 													Rasterizer.prepareOffsets();
 												}
 											}
 										} else {
-											if (wdiget.type == 7) {
-												local1921 = wdiget.getFont(Sprites.nameIcons);
+											if (widget.type == 7) {
+												local1921 = widget.getFont(Sprites.nameIcons);
 												if (local1921 == null) {
-													if (Wdiget.aBoolean72) {
-														WidgetList.redraw(wdiget);
+													if (Widget.aBoolean72) {
+														WidgetList.redraw(widget);
 													}
 													continue;
 												}
 												local276 = 0;
-												for (local468 = 0; local468 < wdiget.baseHeight; local468++) {
-													for (memory = 0; memory < wdiget.baseWidth; memory++) {
-														if (wdiget.invSlotObjId[local276] > 0) {
-															local2611 = ObjTypeList.get(wdiget.invSlotObjId[local276] - 1);
+												for (local468 = 0; local468 < widget.baseHeight; local468++) {
+													for (memory = 0; memory < widget.baseWidth; memory++) {
+														if (widget.invSlotObjId[local276] > 0) {
+															local2611 = ObjTypeList.get(widget.invSlotObjId[local276] - 1);
 															@Pc(3159) JString local3159;
-															if (local2611.stackable != 1 && wdiget.invSlotObjCount[local276] == 1) {
+															if (local2611.stackable != 1 && widget.invSlotObjCount[local276] == 1) {
 																local3159 = JString.concatenate(new JString[] { MiniMenu.aClass100_32, local2611.name, JString.aClass100_978 });
 															} else {
-																local3159 = JString.concatenate(new JString[] { MiniMenu.aClass100_32, local2611.name, JString.aClass100_375, method1548(wdiget.invSlotObjCount[local276]) });
+																local3159 = JString.concatenate(new JString[] { MiniMenu.aClass100_32, local2611.name, JString.aClass100_375, method1548(widget.invSlotObjCount[local276]) });
 															}
-															dragY = local123 + memory * (wdiget.invMarginX + 115);
-															objId = (wdiget.invMarginY + 12) * local468 + local114;
-															if (wdiget.halign == 0) {
-																local1921.renderLeft(local3159, dragY, objId, wdiget.color, wdiget.shadowed ? 0 : -1);
-															} else if (wdiget.halign == 1) {
-																local1921.renderCenter(local3159, dragY + 57, objId, wdiget.color, wdiget.shadowed ? 0 : -1);
+															dragY = local123 + memory * (widget.invMarginX + 115);
+															objId = (widget.invMarginY + 12) * local468 + local114;
+															if (widget.halign == 0) {
+																local1921.renderLeft(local3159, dragY, objId, widget.color, widget.shadowed ? 0 : -1);
+															} else if (widget.halign == 1) {
+																local1921.renderCenter(local3159, dragY + 57, objId, widget.color, widget.shadowed ? 0 : -1);
 															} else {
-																local1921.renderRight(local3159, dragY + 115 - 1, objId, wdiget.color, wdiget.shadowed ? 0 : -1);
+																local1921.renderRight(local3159, dragY + 115 - 1, objId, widget.color, widget.shadowed ? 0 : -1);
 															}
 														}
 														local276++;
 													}
 												}
 											}
-											if (wdiget.type == 8 && Protocol.aClass13_11 == wdiget && Protocol.anInt5235 == anInt4504) {
+											if (widget.type == 8 && Protocol.aClass13_11 == widget && Protocol.anInt5235 == anInt4504) {
 												local276 = 0;
 												local270 = 0;
-												@Pc(3297) JString local3297 = wdiget.text;
+												@Pc(3297) JString local3297 = widget.text;
 												@Pc(3299) Font local3299 = Fonts.p12Full;
-												local3297 = interpolate(wdiget, local3297);
+												local3297 = interpolate(widget, local3297);
 												@Pc(3325) JString local3325;
 												while (local3297.length() > 0) {
 													cardMemory = local3297.indexOf(JString.aClass100_556);
@@ -1401,13 +1401,13 @@ public final class ClientScriptRunner {
 														local270 = dragY;
 													}
 												}
-												dragY = local114 + wdiget.height + 5;
+												dragY = local114 + widget.height + 5;
 												local270 += 6;
 												local276 += 7;
 												if (dragY + local276 > arg7) {
 													dragY = arg7 - local276;
 												}
-												cardMemory = local123 + wdiget.width - local270 - 5;
+												cardMemory = local123 + widget.width - local270 - 5;
 												if (cardMemory < local123 + 5) {
 													cardMemory = local123 + 5;
 												}
@@ -1421,9 +1421,9 @@ public final class ClientScriptRunner {
 													SoftwareRaster.fillRect(cardMemory, dragY, local270, local276, 16777120);
 													SoftwareRaster.drawRect(cardMemory, dragY, local270, local276, 0);
 												}
-												local3297 = wdiget.text;
+												local3297 = widget.text;
 												objId = dragY + local3299.characterDefaultHeight + 2;
-												local3297 = interpolate(wdiget, local3297);
+												local3297 = interpolate(widget, local3297);
 												while (local3297.length() > 0) {
 													local563 = local3297.indexOf(JString.aClass100_556);
 													if (local563 == -1) {
@@ -1437,26 +1437,26 @@ public final class ClientScriptRunner {
 													objId += local3299.characterDefaultHeight + 1;
 												}
 											}
-											if (wdiget.type == 9) {
-												if (wdiget.aBoolean20) {
-													local468 = local123 + wdiget.width;
-													local276 = local114 + wdiget.height;
+											if (widget.type == 9) {
+												if (widget.aBoolean20) {
+													local468 = local123 + widget.width;
+													local276 = local114 + widget.height;
 													memory = local114;
 												} else {
 													local276 = local114;
-													memory = local114 + wdiget.height;
-													local468 = local123 + wdiget.width;
+													memory = local114 + widget.height;
+													local468 = local123 + widget.width;
 												}
-												if (wdiget.lineWidth == 1) {
+												if (widget.lineWidth == 1) {
 													if (GlRenderer.enabled) {
-														GlRaster.drawDiagonalLine(local123, local276, local468, memory, wdiget.color);
+														GlRaster.drawDiagonalLine(local123, local276, local468, memory, widget.color);
 													} else {
-														SoftwareRaster.drawDiagonalLine(local123, local276, local468, memory, wdiget.color);
+														SoftwareRaster.drawDiagonalLine(local123, local276, local468, memory, widget.color);
 													}
 												} else if (GlRenderer.enabled) {
-													GlRaster.method1181(local123, local276, local468, memory, wdiget.color, wdiget.lineWidth);
+													GlRaster.method1181(local123, local276, local468, memory, widget.color, widget.lineWidth);
 												} else {
-													SoftwareRaster.method2494(local123, local276, local468, memory, wdiget.color, wdiget.lineWidth);
+													SoftwareRaster.method2494(local123, local276, local468, memory, widget.color, widget.lineWidth);
 												}
 											}
 										}
@@ -1471,7 +1471,7 @@ public final class ClientScriptRunner {
 	}
 
 	@OriginalMember(owner = "runetek4.client!aa", name = "a", descriptor = "(BLclient!be;)V")
-	public static void method13(@OriginalArg(1) Wdiget arg0) {
+	public static void method13(@OriginalArg(1) Widget arg0) {
 		@Pc(16) int local16 = arg0.contentType;
 		if (local16 == 324) {
 			if (anInt3851 == -1) {
@@ -1595,7 +1595,7 @@ public final class ClientScriptRunner {
 			SoftwareRaster.setClip(arg2, arg4, arg3 + arg2, arg0 + arg4);
 			Rasterizer.prepare();
 		}
-		if (aBoolean108 || anInt3751 < arg2 || anInt3751 >= arg3 + arg2 || arg4 > anInt1892 || arg0 + arg4 <= anInt1892) {
+		if (menuVisible || scriptMouseX < arg2 || scriptMouseX >= arg3 + arg2 || arg4 > scriptMouseY || arg0 + arg4 <= scriptMouseY) {
 			RawModel.allowInput = false;
 			MiniMenu.anInt7 = 0;
 		} else {
@@ -1604,9 +1604,9 @@ public final class ClientScriptRunner {
 			jitter = Rasterizer.screenUpperX;
 			@Pc(344) int local344 = Rasterizer.screenLowerY;
 			type = Rasterizer.screenLowerX;
-			GlModel.anInt3582 = type + (jitter - type) * (-arg2 + anInt3751) / arg3;
+			GlModel.anInt3582 = type + (jitter - type) * (-arg2 + scriptMouseX) / arg3;
 			@Pc(361) int local361 = Rasterizer.screenUpperY;
-			RawModel.anInt1053 = (local361 - local344) * (anInt1892 - arg4) / arg0 + local344;
+			RawModel.anInt1053 = (local361 - local344) * (scriptMouseY - arg4) / arg0 + local344;
 		}
 		Client.audioLoop();
 		@Pc(387) byte local387 = method4047() == 2 ? (byte) anInt3325 : 1;
@@ -1657,13 +1657,13 @@ public final class ClientScriptRunner {
 			}
 			Fonts.drawTextOnScreen(false, LocalizedText.LOADING);
 		}
-		if (!arg1 && !aBoolean43 && !aBoolean108 && arg2 <= anInt3751 && arg3 + arg2 > anInt3751 && arg4 <= anInt1892 && arg0 + arg4 > anInt1892) {
-			MiniMenu.addEntries(arg4, arg3, arg0, arg2, anInt1892, anInt3751);
+		if (!arg1 && !aBoolean43 && !menuVisible && arg2 <= scriptMouseX && arg3 + arg2 > scriptMouseX && arg4 <= scriptMouseY && arg0 + arg4 > scriptMouseY) {
+			MiniMenu.addEntries(arg4, arg3, arg0, arg2, scriptMouseY, scriptMouseX);
 		}
 	}
 
 	@OriginalMember(owner = "client!mj", name = "a", descriptor = "(IILclient!be;IB)V")
-	public static void method3047(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) Wdiget arg2, @OriginalArg(3) int arg3) {
+	public static void method3047(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) Widget arg2, @OriginalArg(3) int arg3) {
 		if (GlRenderer.enabled) {
 			GlRaster.setClip(arg0, arg1, arg2.width + arg0, arg2.height + arg1);
 		}
@@ -2140,11 +2140,11 @@ public final class ClientScriptRunner {
 				} else {
 					secondary = false;
 				}
-				@Pc(1182) Wdiget createdWdiget;
+				@Pc(1182) Widget createdWidget;
 				@Pc(1052) int j;
-				@Pc(1063) Wdiget wdiget;
+				@Pc(1063) Widget widget;
 				@Pc(1087) int childId;
-				@Pc(1256) Wdiget local1256;
+				@Pc(1256) Widget local1256;
 				if (opcode < 300) {
 					if (opcode == 100) {
 						// cc_create
@@ -2153,57 +2153,57 @@ public final class ClientScriptRunner {
 						interfaceType = scriptIntValues[isp + 1];
 						j = scriptIntValues[isp + 2];
 						if (interfaceType != 0) {
-							wdiget = WidgetList.getComponent(componentId);
-							if (wdiget.createdWdigets == null) {
-								wdiget.createdWdigets = new Wdiget[j + 1];
+							widget = WidgetList.getComponent(componentId);
+							if (widget.createdWidgets == null) {
+								widget.createdWidgets = new Widget[j + 1];
 							}
-							if (j >= wdiget.createdWdigets.length) {
-								@Pc(1085) Wdiget[] createdWdigets = new Wdiget[j + 1];
-								for (childId = 0; childId < wdiget.createdWdigets.length; childId++) {
-									createdWdigets[childId] = wdiget.createdWdigets[childId];
+							if (j >= widget.createdWidgets.length) {
+								@Pc(1085) Widget[] createdWidgets = new Widget[j + 1];
+								for (childId = 0; childId < widget.createdWidgets.length; childId++) {
+									createdWidgets[childId] = widget.createdWidgets[childId];
 								}
-								wdiget.createdWdigets = createdWdigets;
+								widget.createdWidgets = createdWidgets;
 							}
-							if (j > 0 && wdiget.createdWdigets[j - 1] == null) {
+							if (j > 0 && widget.createdWidgets[j - 1] == null) {
 								throw new RuntimeException("Gap at:" + (j - 1));
 							}
-							@Pc(1137) Wdiget local1137 = new Wdiget();
+							@Pc(1137) Widget local1137 = new Widget();
 							local1137.if3 = true;
 							local1137.createdComponentId = j;
-							local1137.overlayer = local1137.id = wdiget.id;
+							local1137.overlayer = local1137.id = widget.id;
 							local1137.type = interfaceType;
-							wdiget.createdWdigets[j] = local1137;
+							widget.createdWidgets[j] = local1137;
 							if (secondary) {
-								secondaryActiveWdiget = local1137;
+								secondaryActiveWidget = local1137;
 							} else {
-								primaryActiveWdiget = local1137;
+								primaryActiveWidget = local1137;
 							}
-							WidgetList.redraw(wdiget);
+							WidgetList.redraw(widget);
 							continue;
 						}
 						throw new RuntimeException();
 					}
-					@Pc(1204) Wdiget wdiget2;
+					@Pc(1204) Widget widget2;
 					if (opcode == 101) {
 						// cc_delete
-						createdWdiget = secondary ? secondaryActiveWdiget : primaryActiveWdiget;
-						if (createdWdiget.createdComponentId == -1) {
+						createdWidget = secondary ? secondaryActiveWidget : primaryActiveWidget;
+						if (createdWidget.createdComponentId == -1) {
 							if (!secondary) {
 								throw new RuntimeException("Tried to cc_delete static active-component!");
 							}
 							throw new RuntimeException("Tried to .cc_delete static .active-component!");
 						}
-						wdiget2 = WidgetList.getComponent(createdWdiget.id);
-						wdiget2.createdWdigets[createdWdiget.createdComponentId] = null;
-						WidgetList.redraw(wdiget2);
+						widget2 = WidgetList.getComponent(createdWidget.id);
+						widget2.createdWidgets[createdWidget.createdComponentId] = null;
+						WidgetList.redraw(widget2);
 						continue;
 					}
 					if (opcode == 102) {
 						// cc_deleteall
 						isp--;
-						createdWdiget = WidgetList.getComponent(scriptIntValues[isp]);
-						createdWdiget.createdWdigets = null;
-						WidgetList.redraw(createdWdiget);
+						createdWidget = WidgetList.getComponent(scriptIntValues[isp]);
+						createdWidget.createdWidgets = null;
+						WidgetList.redraw(createdWidget);
 						continue;
 					}
 					if (opcode == 200) {
@@ -2214,9 +2214,9 @@ public final class ClientScriptRunner {
 						if (local1256 != null && interfaceType != -1) {
 							scriptIntValues[isp++] = 1;
 							if (secondary) {
-								secondaryActiveWdiget = local1256;
+								secondaryActiveWidget = local1256;
 							} else {
-								primaryActiveWdiget = local1256;
+								primaryActiveWidget = local1256;
 							}
 							continue;
 						}
@@ -2226,15 +2226,15 @@ public final class ClientScriptRunner {
 					if (opcode == 201) {
 						isp--;
 						componentId = scriptIntValues[isp];
-						wdiget2 = WidgetList.getComponent(componentId);
-						if (wdiget2 == null) {
+						widget2 = WidgetList.getComponent(componentId);
+						if (widget2 == null) {
 							scriptIntValues[isp++] = 0;
 						} else {
 							scriptIntValues[isp++] = 1;
 							if (secondary) {
-								secondaryActiveWdiget = wdiget2;
+								secondaryActiveWidget = widget2;
 							} else {
-								primaryActiveWdiget = wdiget2;
+								primaryActiveWidget = widget2;
 							}
 						}
 						continue;
@@ -2283,110 +2283,110 @@ public final class ClientScriptRunner {
 							@Pc(2522) JString chatTypedLowercase;
 							if (opcode >= 1100 && opcode < 1200 || !(opcode < 2100 || opcode >= 2200)) {
 								if (opcode < 2000) {
-									createdWdiget = secondary ? secondaryActiveWdiget : primaryActiveWdiget;
+									createdWidget = secondary ? secondaryActiveWidget : primaryActiveWidget;
 								} else {
 									opcode -= 1000;
 									isp--;
-									createdWdiget = WidgetList.getComponent(scriptIntValues[isp]);
+									createdWidget = WidgetList.getComponent(scriptIntValues[isp]);
 								}
 								if (opcode == 1100) {
 									// setscrollpos
 									isp -= 2;
-									createdWdiget.scrollX = scriptIntValues[isp];
-									if (createdWdiget.scrollX > createdWdiget.scrollMaxH - createdWdiget.width) {
-										createdWdiget.scrollX = createdWdiget.scrollMaxH - createdWdiget.width;
+									createdWidget.scrollX = scriptIntValues[isp];
+									if (createdWidget.scrollX > createdWidget.scrollMaxH - createdWidget.width) {
+										createdWidget.scrollX = createdWidget.scrollMaxH - createdWidget.width;
 									}
-									if (createdWdiget.scrollX < 0) {
-										createdWdiget.scrollX = 0;
+									if (createdWidget.scrollX < 0) {
+										createdWidget.scrollX = 0;
 									}
-									createdWdiget.scrollY = scriptIntValues[isp + 1];
-									if (createdWdiget.scrollY > createdWdiget.scrollMaxV - createdWdiget.height) {
-										createdWdiget.scrollY = createdWdiget.scrollMaxV - createdWdiget.height;
+									createdWidget.scrollY = scriptIntValues[isp + 1];
+									if (createdWidget.scrollY > createdWidget.scrollMaxV - createdWidget.height) {
+										createdWidget.scrollY = createdWidget.scrollMaxV - createdWidget.height;
 									}
-									if (createdWdiget.scrollY < 0) {
-										createdWdiget.scrollY = 0;
+									if (createdWidget.scrollY < 0) {
+										createdWidget.scrollY = 0;
 									}
-									WidgetList.redraw(createdWdiget);
-									if (createdWdiget.createdComponentId == -1) {
-										DelayedStateChange.setComponentScrollPositionClient(createdWdiget.id);
+									WidgetList.redraw(createdWidget);
+									if (createdWidget.createdComponentId == -1) {
+										DelayedStateChange.setComponentScrollPositionClient(createdWidget.id);
 									}
 									continue;
 								}
 								if (opcode == 1101) {
 									// setcolor
 									isp--;
-									createdWdiget.color = scriptIntValues[isp];
-									WidgetList.redraw(createdWdiget);
-									if (createdWdiget.createdComponentId == -1) {
-										DelayedStateChange.setComponentColorClient(createdWdiget.id);
+									createdWidget.color = scriptIntValues[isp];
+									WidgetList.redraw(createdWidget);
+									if (createdWidget.createdComponentId == -1) {
+										DelayedStateChange.setComponentColorClient(createdWidget.id);
 									}
 									continue;
 								}
 								if (opcode == 1102) {
 									// setfill
 									isp--;
-									createdWdiget.filled = scriptIntValues[isp] == 1;
-									WidgetList.redraw(createdWdiget);
+									createdWidget.filled = scriptIntValues[isp] == 1;
+									WidgetList.redraw(createdWidget);
 									continue;
 								}
 								if (opcode == 1103) {
 									// settrans
 									isp--;
-									createdWdiget.alpha = scriptIntValues[isp];
-									WidgetList.redraw(createdWdiget);
+									createdWidget.alpha = scriptIntValues[isp];
+									WidgetList.redraw(createdWidget);
 									continue;
 								}
 								if (opcode == 1104) {
 									// setlinewid
 									isp--;
-									createdWdiget.lineWidth = scriptIntValues[isp];
-									WidgetList.redraw(createdWdiget);
+									createdWidget.lineWidth = scriptIntValues[isp];
+									WidgetList.redraw(createdWidget);
 									continue;
 								}
 								if (opcode == 1105) {
 									// setgraphic
 									isp--;
-									createdWdiget.spriteId = scriptIntValues[isp];
-									WidgetList.redraw(createdWdiget);
+									createdWidget.spriteId = scriptIntValues[isp];
+									WidgetList.redraw(createdWidget);
 									continue;
 								}
 								if (opcode == 1106) {
 									isp--;
-									createdWdiget.angle2d = scriptIntValues[isp];
-									WidgetList.redraw(createdWdiget);
+									createdWidget.angle2d = scriptIntValues[isp];
+									WidgetList.redraw(createdWidget);
 									continue;
 								}
 								if (opcode == 1107) {
 									// settiling
 									isp--;
-									createdWdiget.spriteTiling = scriptIntValues[isp] == 1;
-									WidgetList.redraw(createdWdiget);
+									createdWidget.spriteTiling = scriptIntValues[isp] == 1;
+									WidgetList.redraw(createdWidget);
 									continue;
 								}
 								if (opcode == 1108) {
 									// setmodel
-									createdWdiget.modelType = 1;
+									createdWidget.modelType = 1;
 									isp--;
-									createdWdiget.modelId = scriptIntValues[isp];
-									WidgetList.redraw(createdWdiget);
-									if (createdWdiget.createdComponentId == -1) {
-										DelayedStateChange.setComponentModelClient(createdWdiget.id);
+									createdWidget.modelId = scriptIntValues[isp];
+									WidgetList.redraw(createdWidget);
+									if (createdWidget.createdComponentId == -1) {
+										DelayedStateChange.setComponentModelClient(createdWidget.id);
 									}
 									continue;
 								}
 								if (opcode == 1109) {
 									// setmodelangle
 									isp -= 6;
-									createdWdiget.modelXOffset = scriptIntValues[isp];
-									createdWdiget.modelZOffset = scriptIntValues[isp + 1];
-									createdWdiget.modelXAngle = scriptIntValues[isp + 2];
-									createdWdiget.modelYAngle = scriptIntValues[isp + 3];
-									createdWdiget.modelYOffset = scriptIntValues[isp + 4];
-									createdWdiget.modelZoom = scriptIntValues[isp + 5];
-									WidgetList.redraw(createdWdiget);
-									if (createdWdiget.createdComponentId == -1) {
-										DelayedStateChange.setComponentModelAngleClient(createdWdiget.id);
-										DelayedStateChange.setComponentModelOffsetClient(createdWdiget.id);
+									createdWidget.modelXOffset = scriptIntValues[isp];
+									createdWidget.modelZOffset = scriptIntValues[isp + 1];
+									createdWidget.modelXAngle = scriptIntValues[isp + 2];
+									createdWidget.modelYAngle = scriptIntValues[isp + 3];
+									createdWidget.modelYOffset = scriptIntValues[isp + 4];
+									createdWidget.modelZoom = scriptIntValues[isp + 5];
+									WidgetList.redraw(createdWidget);
+									if (createdWidget.createdComponentId == -1) {
+										DelayedStateChange.setComponentModelAngleClient(createdWidget.id);
+										DelayedStateChange.setComponentModelOffsetClient(createdWidget.id);
 									}
 									continue;
 								}
@@ -2394,197 +2394,197 @@ public final class ClientScriptRunner {
 									// setmodelanim
 									isp--;
 									interfaceType = scriptIntValues[isp];
-									if (createdWdiget.modelSeqId != interfaceType) {
-										createdWdiget.modelSeqId = interfaceType;
-										createdWdiget.anInt510 = 0;
-										createdWdiget.anInt500 = 0;
-										createdWdiget.anInt496 = 1;
-										WidgetList.redraw(createdWdiget);
+									if (createdWidget.modelSeqId != interfaceType) {
+										createdWidget.modelSeqId = interfaceType;
+										createdWidget.anInt510 = 0;
+										createdWidget.anInt500 = 0;
+										createdWidget.anInt496 = 1;
+										WidgetList.redraw(createdWidget);
 									}
-									if (createdWdiget.createdComponentId == -1) {
-										DelayedStateChange.setComponentModelAnimClient(createdWdiget.id);
+									if (createdWidget.createdComponentId == -1) {
+										DelayedStateChange.setComponentModelAnimClient(createdWidget.id);
 									}
 									continue;
 								}
 								if (opcode == 1111) {
 									// setmodelorthog
 									isp--;
-									createdWdiget.modelOrtho = scriptIntValues[isp] == 1;
-									WidgetList.redraw(createdWdiget);
+									createdWidget.modelOrtho = scriptIntValues[isp] == 1;
+									WidgetList.redraw(createdWidget);
 									continue;
 								}
 								if (opcode == 1112) {
 									// settext
 									ssp--;
 									chatTypedLowercase = scriptStringValues[ssp];
-									if (!chatTypedLowercase.strEquals(createdWdiget.text)) {
-										createdWdiget.text = chatTypedLowercase;
-										WidgetList.redraw(createdWdiget);
+									if (!chatTypedLowercase.strEquals(createdWidget.text)) {
+										createdWidget.text = chatTypedLowercase;
+										WidgetList.redraw(createdWidget);
 									}
-									if (createdWdiget.createdComponentId == -1) {
-										DelayedStateChange.setComponentTextClient(createdWdiget.id);
+									if (createdWidget.createdComponentId == -1) {
+										DelayedStateChange.setComponentTextClient(createdWidget.id);
 									}
 									continue;
 								}
 								if (opcode == 1113) {
 									// settextfont
 									isp--;
-									createdWdiget.fontId = scriptIntValues[isp];
-									WidgetList.redraw(createdWdiget);
+									createdWidget.fontId = scriptIntValues[isp];
+									WidgetList.redraw(createdWidget);
 									continue;
 								}
 								if (opcode == 1114) {
 									// settextalign
 									isp -= 3;
-									createdWdiget.halign = scriptIntValues[isp];
-									createdWdiget.valign = scriptIntValues[isp + 1];
-									createdWdiget.vpadding = scriptIntValues[isp + 2];
-									WidgetList.redraw(createdWdiget);
+									createdWidget.halign = scriptIntValues[isp];
+									createdWidget.valign = scriptIntValues[isp + 1];
+									createdWidget.vpadding = scriptIntValues[isp + 2];
+									WidgetList.redraw(createdWidget);
 									continue;
 								}
 								if (opcode == 1115) {
 									// settextshadow
 									isp--;
-									createdWdiget.shadowed = scriptIntValues[isp] == 1;
-									WidgetList.redraw(createdWdiget);
+									createdWidget.shadowed = scriptIntValues[isp] == 1;
+									WidgetList.redraw(createdWidget);
 									continue;
 								}
 								if (opcode == 1116) {
 									isp--;
-									createdWdiget.outlineThickness = scriptIntValues[isp];
-									WidgetList.redraw(createdWdiget);
+									createdWidget.outlineThickness = scriptIntValues[isp];
+									WidgetList.redraw(createdWidget);
 									continue;
 								}
 								if (opcode == 1117) {
 									isp--;
-									createdWdiget.shadowColor = scriptIntValues[isp];
-									WidgetList.redraw(createdWdiget);
+									createdWidget.shadowColor = scriptIntValues[isp];
+									WidgetList.redraw(createdWidget);
 									continue;
 								}
 								if (opcode == 1118) {
 									isp--;
-									createdWdiget.vFlip = scriptIntValues[isp] == 1;
-									WidgetList.redraw(createdWdiget);
+									createdWidget.vFlip = scriptIntValues[isp] == 1;
+									WidgetList.redraw(createdWidget);
 									continue;
 								}
 								if (opcode == 1119) {
 									isp--;
-									createdWdiget.hFlip = scriptIntValues[isp] == 1;
-									WidgetList.redraw(createdWdiget);
+									createdWidget.hFlip = scriptIntValues[isp] == 1;
+									WidgetList.redraw(createdWidget);
 									continue;
 								}
 								if (opcode == 1120) {
 									isp -= 2;
-									createdWdiget.scrollMaxH = scriptIntValues[isp];
-									createdWdiget.scrollMaxV = scriptIntValues[isp + 1];
-									WidgetList.redraw(createdWdiget);
-									if (createdWdiget.type == 0) {
-										WidgetList.method531(createdWdiget, false);
+									createdWidget.scrollMaxH = scriptIntValues[isp];
+									createdWidget.scrollMaxV = scriptIntValues[isp + 1];
+									WidgetList.redraw(createdWidget);
+									if (createdWidget.type == 0) {
+										WidgetList.method531(createdWidget, false);
 									}
 									continue;
 								}
 								if (opcode == 1121) {
 									isp -= 2;
-									createdWdiget.aShort11 = (short) scriptIntValues[isp];
-									createdWdiget.aShort10 = (short) scriptIntValues[isp + 1];
-									WidgetList.redraw(createdWdiget);
+									createdWidget.aShort11 = (short) scriptIntValues[isp];
+									createdWidget.aShort10 = (short) scriptIntValues[isp + 1];
+									WidgetList.redraw(createdWidget);
 									continue;
 								}
 								if (opcode == 1122) {
 									isp--;
-									createdWdiget.hasAlpha = scriptIntValues[isp] == 1;
-									WidgetList.redraw(createdWdiget);
+									createdWidget.hasAlpha = scriptIntValues[isp] == 1;
+									WidgetList.redraw(createdWidget);
 									continue;
 								}
 								if (opcode == 1123) {
 									isp--;
-									createdWdiget.modelZoom = scriptIntValues[isp];
-									WidgetList.redraw(createdWdiget);
-									if (createdWdiget.createdComponentId == -1) {
-										DelayedStateChange.setComponentModelAngleClient(createdWdiget.id);
+									createdWidget.modelZoom = scriptIntValues[isp];
+									WidgetList.redraw(createdWidget);
+									if (createdWidget.createdComponentId == -1) {
+										DelayedStateChange.setComponentModelAngleClient(createdWidget.id);
 									}
 									continue;
 								}
 							} else if (opcode >= 1200 && opcode < 1300 || !(opcode < 2200 || opcode >= 2300)) {
 								if (opcode < 2000) {
-									createdWdiget = secondary ? secondaryActiveWdiget : primaryActiveWdiget;
+									createdWidget = secondary ? secondaryActiveWidget : primaryActiveWidget;
 								} else {
 									isp--;
-									createdWdiget = WidgetList.getComponent(scriptIntValues[isp]);
+									createdWidget = WidgetList.getComponent(scriptIntValues[isp]);
 									opcode -= 1000;
 								}
-								WidgetList.redraw(createdWdiget);
+								WidgetList.redraw(createdWidget);
 								if (opcode == 1200 || opcode == 1205) {
 									isp -= 2;
 									j = scriptIntValues[isp + 1];
 									interfaceType = scriptIntValues[isp];
-									if (createdWdiget.createdComponentId == -1) {
-										DelayedStateChange.setComponentObjClient(createdWdiget.id);
-										DelayedStateChange.setComponentModelAngleClient(createdWdiget.id);
-										DelayedStateChange.setComponentModelOffsetClient(createdWdiget.id);
+									if (createdWidget.createdComponentId == -1) {
+										DelayedStateChange.setComponentObjClient(createdWidget.id);
+										DelayedStateChange.setComponentModelAngleClient(createdWidget.id);
+										DelayedStateChange.setComponentModelOffsetClient(createdWidget.id);
 									}
 									if (interfaceType == -1) {
-										createdWdiget.modelId = -1;
-										createdWdiget.modelType = 1;
-										createdWdiget.objId = -1;
+										createdWidget.modelId = -1;
+										createdWidget.modelType = 1;
+										createdWidget.objId = -1;
 									} else {
-										createdWdiget.objId = interfaceType;
-										createdWdiget.objCount = j;
+										createdWidget.objId = interfaceType;
+										createdWidget.objCount = j;
 										@Pc(13416) ObjType local13416 = ObjTypeList.get(interfaceType);
-										createdWdiget.modelYOffset = local13416.zAngle2D;
-										createdWdiget.modelXOffset = local13416.xof2d;
-										createdWdiget.modelXAngle = local13416.xan2d;
-										createdWdiget.modelZOffset = local13416.yof2d;
-										createdWdiget.modelYAngle = local13416.yan2d;
-										createdWdiget.modelZoom = local13416.zoom2d;
-										if (createdWdiget.anInt451 > 0) {
-											createdWdiget.modelZoom = createdWdiget.modelZoom * 32 / createdWdiget.anInt451;
-										} else if (createdWdiget.baseWidth > 0) {
-											createdWdiget.modelZoom = createdWdiget.modelZoom * 32 / createdWdiget.baseWidth;
+										createdWidget.modelYOffset = local13416.zAngle2D;
+										createdWidget.modelXOffset = local13416.xof2d;
+										createdWidget.modelXAngle = local13416.xan2d;
+										createdWidget.modelZOffset = local13416.yof2d;
+										createdWidget.modelYAngle = local13416.yan2d;
+										createdWidget.modelZoom = local13416.zoom2d;
+										if (createdWidget.anInt451 > 0) {
+											createdWidget.modelZoom = createdWidget.modelZoom * 32 / createdWidget.anInt451;
+										} else if (createdWidget.baseWidth > 0) {
+											createdWidget.modelZoom = createdWidget.modelZoom * 32 / createdWidget.baseWidth;
 										}
 										if (opcode == 1205) {
-											createdWdiget.objDrawText = false;
+											createdWidget.objDrawText = false;
 										} else {
-											createdWdiget.objDrawText = true;
+											createdWidget.objDrawText = true;
 										}
 									}
 									continue;
 								}
 								if (opcode == 1201) {
 									// setnpchead
-									createdWdiget.modelType = 2;
+									createdWidget.modelType = 2;
 									isp--;
-									createdWdiget.modelId = scriptIntValues[isp];
-									if (createdWdiget.createdComponentId == -1) {
-										DelayedStateChange.setComponentModelClient(createdWdiget.id);
+									createdWidget.modelId = scriptIntValues[isp];
+									if (createdWidget.createdComponentId == -1) {
+										DelayedStateChange.setComponentModelClient(createdWidget.id);
 									}
 									continue;
 								}
 								if (opcode == 1202) {
 									// setplayerhead_self
-									createdWdiget.modelType = 3;
-									createdWdiget.modelId = PlayerList.self.appearance.getHeadModelId();
-									if (createdWdiget.createdComponentId == -1) {
-										DelayedStateChange.setComponentModelClient(createdWdiget.id);
+									createdWidget.modelType = 3;
+									createdWidget.modelId = PlayerList.self.appearance.getHeadModelId();
+									if (createdWidget.createdComponentId == -1) {
+										DelayedStateChange.setComponentModelClient(createdWidget.id);
 									}
 									continue;
 								}
 								if (opcode == 1203) {
 									// setnpcmodel
-									createdWdiget.modelType = 6;
+									createdWidget.modelType = 6;
 									isp--;
-									createdWdiget.modelId = scriptIntValues[isp];
-									if (createdWdiget.createdComponentId == -1) {
-										DelayedStateChange.setComponentModelClient(createdWdiget.id);
+									createdWidget.modelId = scriptIntValues[isp];
+									if (createdWidget.createdComponentId == -1) {
+										DelayedStateChange.setComponentModelClient(createdWidget.id);
 									}
 									continue;
 								}
 								if (opcode == 1204) {
-									createdWdiget.modelType = 5;
+									createdWidget.modelType = 5;
 									isp--;
-									createdWdiget.modelId = scriptIntValues[isp];
-									if (createdWdiget.createdComponentId == -1) {
-										DelayedStateChange.setComponentModelClient(createdWdiget.id);
+									createdWidget.modelId = scriptIntValues[isp];
+									if (createdWidget.createdComponentId == -1) {
+										DelayedStateChange.setComponentModelClient(createdWidget.id);
 									}
 									continue;
 								}
@@ -2592,18 +2592,18 @@ public final class ClientScriptRunner {
 								if (opcode >= 2000) {
 									// if_
 									isp--;
-									createdWdiget = WidgetList.getComponent(scriptIntValues[isp]);
+									createdWidget = WidgetList.getComponent(scriptIntValues[isp]);
 									opcode -= 1000;
 								} else {
 									// cc_
-									createdWdiget = secondary ? secondaryActiveWdiget : primaryActiveWdiget;
+									createdWidget = secondary ? secondaryActiveWidget : primaryActiveWidget;
 								}
 								if (opcode == 1300) {
 									isp--;
 									interfaceType = scriptIntValues[isp] - 1;
 									if (interfaceType >= 0 && interfaceType <= 9) {
 										ssp--;
-										createdWdiget.method480(scriptStringValues[ssp], interfaceType);
+										createdWidget.method480(scriptStringValues[ssp], interfaceType);
 										continue;
 									}
 									ssp--;
@@ -2613,43 +2613,43 @@ public final class ClientScriptRunner {
 									isp -= 2;
 									j = scriptIntValues[isp + 1];
 									interfaceType = scriptIntValues[isp];
-									createdWdiget.aClass13_5 = WidgetList.getCreatedComponent(interfaceType, j);
+									createdWidget.aClass13_5 = WidgetList.getCreatedComponent(interfaceType, j);
 									continue;
 								}
 								if (opcode == 1302) {
 									isp--;
-									createdWdiget.dragRenderBehavior = scriptIntValues[isp] == 1;
+									createdWidget.dragRenderBehavior = scriptIntValues[isp] == 1;
 									continue;
 								}
 								if (opcode == 1303) {
 									isp--;
-									createdWdiget.dragDeadzone = scriptIntValues[isp];
+									createdWidget.dragDeadzone = scriptIntValues[isp];
 									continue;
 								}
 								if (opcode == 1304) {
 									isp--;
-									createdWdiget.dragDeadtime = scriptIntValues[isp];
+									createdWidget.dragDeadtime = scriptIntValues[isp];
 									continue;
 								}
 								if (opcode == 1305) {
 									ssp--;
-									createdWdiget.optionBase = scriptStringValues[ssp];
+									createdWidget.optionBase = scriptStringValues[ssp];
 									continue;
 								}
 								if (opcode == 1306) {
 									ssp--;
-									createdWdiget.optionCircumfix = scriptStringValues[ssp];
+									createdWidget.optionCircumfix = scriptStringValues[ssp];
 									continue;
 								}
 								if (opcode == 1307) {
-									createdWdiget.ops = null;
+									createdWidget.ops = null;
 									continue;
 								}
 								if (opcode == 1308) {
 									isp--;
-									createdWdiget.anInt484 = scriptIntValues[isp];
+									createdWidget.anInt484 = scriptIntValues[isp];
 									isp--;
-									createdWdiget.anInt499 = scriptIntValues[isp];
+									createdWidget.anInt499 = scriptIntValues[isp];
 									continue;
 								}
 								if (opcode == 1309) {
@@ -2658,7 +2658,7 @@ public final class ClientScriptRunner {
 									isp--;
 									j = scriptIntValues[isp];
 									if (j >= 1 && j <= 10) {
-										createdWdiget.method477(j - 1, interfaceType);
+										createdWidget.method477(j - 1, interfaceType);
 									}
 									continue;
 								}
@@ -2667,12 +2667,12 @@ public final class ClientScriptRunner {
 								if (opcode >= 1400 && opcode < 1500 || opcode >= 2400 && opcode < 2500) {
 									if (opcode < 2000) {
 										// if_
-										createdWdiget = secondary ? secondaryActiveWdiget : primaryActiveWdiget;
+										createdWidget = secondary ? secondaryActiveWidget : primaryActiveWidget;
 									} else {
 										// cc_
 										opcode -= 1000;
 										isp--;
-										createdWdiget = WidgetList.getComponent(scriptIntValues[isp]);
+										createdWidget = WidgetList.getComponent(scriptIntValues[isp]);
 									}
 									@Pc(12937) int[] local12937 = null;
 									ssp--;
@@ -2706,308 +2706,308 @@ public final class ClientScriptRunner {
 									} else {
 										arguments[0] = Integer.valueOf(start);
 									}
-									createdWdiget.aBoolean25 = true;
+									createdWidget.aBoolean25 = true;
 									if (opcode == 1400) {
-										createdWdiget.onClickRepeat = arguments;
+										createdWidget.onClickRepeat = arguments;
 									} else if (opcode == 1401) {
-										createdWdiget.onHold = arguments;
+										createdWidget.onHold = arguments;
 									} else if (opcode == 1402) {
-										createdWdiget.onRelease = arguments;
+										createdWidget.onRelease = arguments;
 									} else if (opcode == 1403) {
-										createdWdiget.onMouseOver = arguments;
+										createdWidget.onMouseOver = arguments;
 									} else if (opcode == 1404) {
-										createdWdiget.onMouseLeave = arguments;
+										createdWidget.onMouseLeave = arguments;
 									} else if (opcode == 1405) {
-										createdWdiget.onDragStart = arguments;
+										createdWidget.onDragStart = arguments;
 									} else if (opcode == 1406) {
-										createdWdiget.onUseWith = arguments;
+										createdWidget.onUseWith = arguments;
 									} else if (opcode == 1407) {
-										createdWdiget.varpTriggers = local12937;
-										createdWdiget.onVarpTransmit = arguments;
+										createdWidget.varpTriggers = local12937;
+										createdWidget.onVarpTransmit = arguments;
 									} else if (opcode == 1408) {
-										createdWdiget.onTimer = arguments;
+										createdWidget.onTimer = arguments;
 									} else if (opcode == 1409) {
-										createdWdiget.onOptionClick = arguments;
+										createdWidget.onOptionClick = arguments;
 									} else if (opcode == 1410) {
-										createdWdiget.onDragRelease = arguments;
+										createdWidget.onDragRelease = arguments;
 									} else if (opcode == 1411) {
-										createdWdiget.onDrag = arguments;
+										createdWidget.onDrag = arguments;
 									} else if (opcode == 1412) {
-										createdWdiget.onMouseRepeat = arguments;
+										createdWidget.onMouseRepeat = arguments;
 									} else if (opcode == 1414) {
-										createdWdiget.inventoryTriggers = local12937;
-										createdWdiget.onInvTransmit = arguments;
+										createdWidget.inventoryTriggers = local12937;
+										createdWidget.onInvTransmit = arguments;
 									} else if (opcode == 1415) {
-										createdWdiget.statTriggers = local12937;
-										createdWdiget.onStatTransmit = arguments;
+										createdWidget.statTriggers = local12937;
+										createdWidget.onStatTransmit = arguments;
 									} else if (opcode == 1416) {
-										createdWdiget.onUse = arguments;
+										createdWidget.onUse = arguments;
 									} else if (opcode == 1417) {
-										createdWdiget.onScroll = arguments;
+										createdWidget.onScroll = arguments;
 									} else if (opcode == 1418) {
-										createdWdiget.onMsg = arguments;
+										createdWidget.onMsg = arguments;
 									} else if (opcode == 1419) {
-										createdWdiget.onKey = arguments;
+										createdWidget.onKey = arguments;
 									} else if (opcode == 1420) {
-										createdWdiget.onFriendTransmit = arguments;
+										createdWidget.onFriendTransmit = arguments;
 									} else if (opcode == 1421) {
-										createdWdiget.onClanTransmit = arguments;
+										createdWidget.onClanTransmit = arguments;
 									} else if (opcode == 1422) {
-										createdWdiget.onMiscTransmit = arguments;
+										createdWidget.onMiscTransmit = arguments;
 									} else if (opcode == 1423) {
-										createdWdiget.onDialogAbort = arguments;
+										createdWidget.onDialogAbort = arguments;
 									} else if (opcode == 1424) {
-										createdWdiget.onWidgetsOpenClose = arguments;
+										createdWidget.onWidgetsOpenClose = arguments;
 									} else if (opcode == 1425) {
-										createdWdiget.onStockTransmit = arguments;
+										createdWidget.onStockTransmit = arguments;
 									} else if (opcode == 1426) {
-										createdWdiget.onMinimapUnlock = arguments;
+										createdWidget.onMinimapUnlock = arguments;
 									} else if (opcode == 1427) {
-										createdWdiget.onResize = arguments;
+										createdWidget.onResize = arguments;
 									} else if (opcode == 1428) {
-										createdWdiget.onVarcTransmit = arguments;
-										createdWdiget.varcTriggers = local12937;
+										createdWidget.onVarcTransmit = arguments;
+										createdWidget.varcTriggers = local12937;
 									} else if (opcode == 1429) {
-										createdWdiget.varcstrTriggers = local12937;
-										createdWdiget.onVarcstrTransmit = arguments;
+										createdWidget.varcstrTriggers = local12937;
+										createdWidget.onVarcstrTransmit = arguments;
 									}
 									continue;
 								}
 								if (opcode < 1600) {
-									createdWdiget = secondary ? secondaryActiveWdiget : primaryActiveWdiget;
+									createdWidget = secondary ? secondaryActiveWidget : primaryActiveWidget;
 									if (opcode == 1500) {
 										// cc_getx
-										scriptIntValues[isp++] = createdWdiget.x;
+										scriptIntValues[isp++] = createdWidget.x;
 										continue;
 									}
 									if (opcode == 1501) {
 										// cc_gety
-										scriptIntValues[isp++] = createdWdiget.y;
+										scriptIntValues[isp++] = createdWidget.y;
 										continue;
 									}
 									if (opcode == 1502) {
 										// cc_getwidth
-										scriptIntValues[isp++] = createdWdiget.width;
+										scriptIntValues[isp++] = createdWidget.width;
 										continue;
 									}
 									if (opcode == 1503) {
 										// cc_getheight
-										scriptIntValues[isp++] = createdWdiget.height;
+										scriptIntValues[isp++] = createdWidget.height;
 										continue;
 									}
 									if (opcode == 1504) {
 										// cc_gethide
-										scriptIntValues[isp++] = createdWdiget.hidden ? 1 : 0;
+										scriptIntValues[isp++] = createdWidget.hidden ? 1 : 0;
 										continue;
 									}
 									if (opcode == 1505) {
 										// set_getlayer
-										scriptIntValues[isp++] = createdWdiget.overlayer;
+										scriptIntValues[isp++] = createdWidget.overlayer;
 										continue;
 									}
 								} else if (opcode < 1700) {
-									createdWdiget = secondary ? secondaryActiveWdiget : primaryActiveWdiget;
+									createdWidget = secondary ? secondaryActiveWidget : primaryActiveWidget;
 									if (opcode == 1600) {
 										// cc_getscrollx
-										scriptIntValues[isp++] = createdWdiget.scrollX;
+										scriptIntValues[isp++] = createdWidget.scrollX;
 										continue;
 									}
 									if (opcode == 1601) {
 										// cc_getscrolly
-										scriptIntValues[isp++] = createdWdiget.scrollY;
+										scriptIntValues[isp++] = createdWidget.scrollY;
 										continue;
 									}
 									if (opcode == 1602) {
-										scriptStringValues[ssp++] = createdWdiget.text;
+										scriptStringValues[ssp++] = createdWidget.text;
 										continue;
 									}
 									if (opcode == 1603) {
-										scriptIntValues[isp++] = createdWdiget.scrollMaxH;
+										scriptIntValues[isp++] = createdWidget.scrollMaxH;
 										continue;
 									}
 									if (opcode == 1604) {
-										scriptIntValues[isp++] = createdWdiget.scrollMaxV;
+										scriptIntValues[isp++] = createdWidget.scrollMaxV;
 										continue;
 									}
 									if (opcode == 1605) {
-										scriptIntValues[isp++] = createdWdiget.modelZoom;
+										scriptIntValues[isp++] = createdWidget.modelZoom;
 										continue;
 									}
 									if (opcode == 1606) {
-										scriptIntValues[isp++] = createdWdiget.modelXAngle;
+										scriptIntValues[isp++] = createdWidget.modelXAngle;
 										continue;
 									}
 									if (opcode == 1607) {
-										scriptIntValues[isp++] = createdWdiget.modelYOffset;
+										scriptIntValues[isp++] = createdWidget.modelYOffset;
 										continue;
 									}
 									if (opcode == 1608) {
-										scriptIntValues[isp++] = createdWdiget.modelYAngle;
+										scriptIntValues[isp++] = createdWidget.modelYAngle;
 										continue;
 									}
 									if (opcode == 1609) {
-										scriptIntValues[isp++] = createdWdiget.alpha;
+										scriptIntValues[isp++] = createdWidget.alpha;
 										continue;
 									}
 									if (opcode == 1610) {
-										scriptIntValues[isp++] = createdWdiget.modelXOffset;
+										scriptIntValues[isp++] = createdWidget.modelXOffset;
 										continue;
 									}
 									if (opcode == 1611) {
-										scriptIntValues[isp++] = createdWdiget.modelZOffset;
+										scriptIntValues[isp++] = createdWidget.modelZOffset;
 										continue;
 									}
 									if (opcode == 1612) {
-										scriptIntValues[isp++] = createdWdiget.spriteId;
+										scriptIntValues[isp++] = createdWidget.spriteId;
 										continue;
 									}
 								} else if (opcode < 1800) {
-									createdWdiget = secondary ? secondaryActiveWdiget : primaryActiveWdiget;
+									createdWidget = secondary ? secondaryActiveWidget : primaryActiveWidget;
 									if (opcode == 1700) {
-										scriptIntValues[isp++] = createdWdiget.objId;
+										scriptIntValues[isp++] = createdWidget.objId;
 										continue;
 									}
 									if (opcode == 1701) {
-										if (createdWdiget.objId == -1) {
+										if (createdWidget.objId == -1) {
 											scriptIntValues[isp++] = 0;
 										} else {
-											scriptIntValues[isp++] = createdWdiget.objCount;
+											scriptIntValues[isp++] = createdWidget.objCount;
 										}
 										continue;
 									}
 									if (opcode == 1702) {
-										scriptIntValues[isp++] = createdWdiget.createdComponentId;
+										scriptIntValues[isp++] = createdWidget.createdComponentId;
 										continue;
 									}
 								} else if (opcode < 1900) {
-									createdWdiget = secondary ? secondaryActiveWdiget : primaryActiveWdiget;
+									createdWidget = secondary ? secondaryActiveWidget : primaryActiveWidget;
 									if (opcode == 1800) {
-										scriptIntValues[isp++] = WidgetList.getServerActiveProperties(createdWdiget).getTargetMask();
+										scriptIntValues[isp++] = WidgetList.getServerActiveProperties(createdWidget).getTargetMask();
 										continue;
 									}
 									if (opcode == 1801) {
 										isp--;
 										interfaceType = scriptIntValues[isp];
 										interfaceType--;
-										if (createdWdiget.ops != null && interfaceType < createdWdiget.ops.length && createdWdiget.ops[interfaceType] != null) {
-											scriptStringValues[ssp++] = createdWdiget.ops[interfaceType];
+										if (createdWidget.ops != null && interfaceType < createdWidget.ops.length && createdWidget.ops[interfaceType] != null) {
+											scriptStringValues[ssp++] = createdWidget.ops[interfaceType];
 											continue;
 										}
 										scriptStringValues[ssp++] = EMPTY_STRING;
 										continue;
 									}
 									if (opcode == 1802) {
-										if (createdWdiget.optionBase == null) {
+										if (createdWidget.optionBase == null) {
 											scriptStringValues[ssp++] = EMPTY_STRING;
 										} else {
-											scriptStringValues[ssp++] = createdWdiget.optionBase;
+											scriptStringValues[ssp++] = createdWidget.optionBase;
 										}
 										continue;
 									}
 								} else if (opcode < 2600) {
 									isp--;
-									createdWdiget = WidgetList.getComponent(scriptIntValues[isp]);
+									createdWidget = WidgetList.getComponent(scriptIntValues[isp]);
 									if (opcode == 2500) {
 										// if_getx
-										scriptIntValues[isp++] = createdWdiget.x;
+										scriptIntValues[isp++] = createdWidget.x;
 										continue;
 									}
 									if (opcode == 2501) {
 										// if_gety
-										scriptIntValues[isp++] = createdWdiget.y;
+										scriptIntValues[isp++] = createdWidget.y;
 										continue;
 									}
 									if (opcode == 2502) {
 										// if_getwidth
-										scriptIntValues[isp++] = createdWdiget.width;
+										scriptIntValues[isp++] = createdWidget.width;
 										continue;
 									}
 									if (opcode == 2503) {
 										// if_getheight
-										scriptIntValues[isp++] = createdWdiget.height;
+										scriptIntValues[isp++] = createdWidget.height;
 										continue;
 									}
 									if (opcode == 2504) {
 										// if_gethide
-										scriptIntValues[isp++] = createdWdiget.hidden ? 1 : 0;
+										scriptIntValues[isp++] = createdWidget.hidden ? 1 : 0;
 										continue;
 									}
 									if (opcode == 2505) {
 										// if_getlayer
-										scriptIntValues[isp++] = createdWdiget.overlayer;
+										scriptIntValues[isp++] = createdWidget.overlayer;
 										continue;
 									}
 								} else if (opcode < 2700) {
 									isp--;
-									createdWdiget = WidgetList.getComponent(scriptIntValues[isp]);
+									createdWidget = WidgetList.getComponent(scriptIntValues[isp]);
 									if (opcode == 2600) {
 										// if_getscrollx
-										scriptIntValues[isp++] = createdWdiget.scrollX;
+										scriptIntValues[isp++] = createdWidget.scrollX;
 										continue;
 									}
 									if (opcode == 2601) {
 										// if_getscrolly
-										scriptIntValues[isp++] = createdWdiget.scrollY;
+										scriptIntValues[isp++] = createdWidget.scrollY;
 										continue;
 									}
 									if (opcode == 2602) {
-										scriptStringValues[ssp++] = createdWdiget.text;
+										scriptStringValues[ssp++] = createdWidget.text;
 										continue;
 									}
 									if (opcode == 2603) {
-										scriptIntValues[isp++] = createdWdiget.scrollMaxH;
+										scriptIntValues[isp++] = createdWidget.scrollMaxH;
 										continue;
 									}
 									if (opcode == 2604) {
-										scriptIntValues[isp++] = createdWdiget.scrollMaxV;
+										scriptIntValues[isp++] = createdWidget.scrollMaxV;
 										continue;
 									}
 									if (opcode == 2605) {
-										scriptIntValues[isp++] = createdWdiget.modelZoom;
+										scriptIntValues[isp++] = createdWidget.modelZoom;
 										continue;
 									}
 									if (opcode == 2606) {
-										scriptIntValues[isp++] = createdWdiget.modelXAngle;
+										scriptIntValues[isp++] = createdWidget.modelXAngle;
 										continue;
 									}
 									if (opcode == 2607) {
-										scriptIntValues[isp++] = createdWdiget.modelYOffset;
+										scriptIntValues[isp++] = createdWidget.modelYOffset;
 										continue;
 									}
 									if (opcode == 2608) {
-										scriptIntValues[isp++] = createdWdiget.modelYAngle;
+										scriptIntValues[isp++] = createdWidget.modelYAngle;
 										continue;
 									}
 									if (opcode == 2609) {
-										scriptIntValues[isp++] = createdWdiget.alpha;
+										scriptIntValues[isp++] = createdWidget.alpha;
 										continue;
 									}
 									if (opcode == 2610) {
-										scriptIntValues[isp++] = createdWdiget.modelXOffset;
+										scriptIntValues[isp++] = createdWidget.modelXOffset;
 										continue;
 									}
 									if (opcode == 2611) {
-										scriptIntValues[isp++] = createdWdiget.modelZOffset;
+										scriptIntValues[isp++] = createdWidget.modelZOffset;
 										continue;
 									}
 									if (opcode == 2612) {
-										scriptIntValues[isp++] = createdWdiget.spriteId;
+										scriptIntValues[isp++] = createdWidget.spriteId;
 										continue;
 									}
 								} else if (opcode < 2800) {
 									if (opcode == 2700) {
 										isp--;
-										createdWdiget = WidgetList.getComponent(scriptIntValues[isp]);
-										scriptIntValues[isp++] = createdWdiget.objId;
+										createdWidget = WidgetList.getComponent(scriptIntValues[isp]);
+										scriptIntValues[isp++] = createdWidget.objId;
 										continue;
 									}
 									if (opcode == 2701) {
 										isp--;
-										createdWdiget = WidgetList.getComponent(scriptIntValues[isp]);
-										if (createdWdiget.objId == -1) {
+										createdWidget = WidgetList.getComponent(scriptIntValues[isp]);
+										if (createdWidget.objId == -1) {
 											scriptIntValues[isp++] = 0;
 										} else {
-											scriptIntValues[isp++] = createdWdiget.objCount;
+											scriptIntValues[isp++] = createdWidget.objCount;
 										}
 										continue;
 									}
@@ -3024,14 +3024,14 @@ public final class ClientScriptRunner {
 									}
 									if (opcode == 2703) {
 										isp--;
-										createdWdiget = WidgetList.getComponent(scriptIntValues[isp]);
-										if (createdWdiget.createdWdigets == null) {
+										createdWidget = WidgetList.getComponent(scriptIntValues[isp]);
+										if (createdWidget.createdWidgets == null) {
 											scriptIntValues[isp++] = 0;
 											continue;
 										}
-										interfaceType = createdWdiget.createdWdigets.length;
-										for (j = 0; j < createdWdiget.createdWdigets.length; j++) {
-											if (createdWdiget.createdWdigets[j] == null) {
+										interfaceType = createdWidget.createdWidgets.length;
+										for (j = 0; j < createdWidget.createdWidgets.length; j++) {
+											if (createdWidget.createdWidgets[j] == null) {
 												interfaceType = j;
 												break;
 											}
@@ -3053,27 +3053,27 @@ public final class ClientScriptRunner {
 									}
 								} else if (opcode < 2900) {
 									isp--;
-									createdWdiget = WidgetList.getComponent(scriptIntValues[isp]);
+									createdWidget = WidgetList.getComponent(scriptIntValues[isp]);
 									if (opcode == 2800) {
-										scriptIntValues[isp++] = WidgetList.getServerActiveProperties(createdWdiget).getTargetMask();
+										scriptIntValues[isp++] = WidgetList.getServerActiveProperties(createdWidget).getTargetMask();
 										continue;
 									}
 									if (opcode == 2801) {
 										isp--;
 										interfaceType = scriptIntValues[isp];
 										interfaceType--;
-										if (createdWdiget.ops != null && createdWdiget.ops.length > interfaceType && createdWdiget.ops[interfaceType] != null) {
-											scriptStringValues[ssp++] = createdWdiget.ops[interfaceType];
+										if (createdWidget.ops != null && createdWidget.ops.length > interfaceType && createdWidget.ops[interfaceType] != null) {
+											scriptStringValues[ssp++] = createdWidget.ops[interfaceType];
 											continue;
 										}
 										scriptStringValues[ssp++] = EMPTY_STRING;
 										continue;
 									}
 									if (opcode == 2802) {
-										if (createdWdiget.optionBase == null) {
+										if (createdWidget.optionBase == null) {
 											scriptStringValues[ssp++] = EMPTY_STRING;
 										} else {
-											scriptStringValues[ssp++] = createdWdiget.optionBase;
+											scriptStringValues[ssp++] = createdWidget.optionBase;
 										}
 										continue;
 									}
@@ -3134,14 +3134,14 @@ public final class ClientScriptRunner {
 										interfaceType = scriptIntValues[isp + 1];
 										componentId = scriptIntValues[isp];
 										j = scriptIntValues[isp + 2];
-										wdiget = WidgetList.getComponent(j);
-										method1015(interfaceType, componentId, wdiget);
+										widget = WidgetList.getComponent(j);
+										method1015(interfaceType, componentId, widget);
 										continue;
 									}
 									if (opcode == 3109) {
 										isp -= 2;
 										componentId = scriptIntValues[isp];
-										local1256 = secondary ? secondaryActiveWdiget : primaryActiveWdiget;
+										local1256 = secondary ? secondaryActiveWidget : primaryActiveWidget;
 										interfaceType = scriptIntValues[isp + 1];
 										method1015(interfaceType, componentId, local1256);
 										continue;
@@ -5910,17 +5910,17 @@ public final class ClientScriptRunner {
 							}
 						} else {
 							if (opcode < 2000) {
-								createdWdiget = secondary ? secondaryActiveWdiget : primaryActiveWdiget;
+								createdWidget = secondary ? secondaryActiveWidget : primaryActiveWidget;
 							} else {
 								isp--;
-								createdWdiget = WidgetList.getComponent(scriptIntValues[isp]);
+								createdWidget = WidgetList.getComponent(scriptIntValues[isp]);
 								opcode -= 1000;
 							}
 							if (opcode == 1000) {
 								// setposition
 								isp -= 4;
-								createdWdiget.baseX = scriptIntValues[isp];
-								createdWdiget.baseY = scriptIntValues[isp + 1];
+								createdWidget.baseX = scriptIntValues[isp];
+								createdWidget.baseY = scriptIntValues[isp + 1];
 								j = scriptIntValues[isp + 3];
 								if (j < 0) {
 									j = 0;
@@ -5933,22 +5933,22 @@ public final class ClientScriptRunner {
 								} else if (interfaceType > 5) {
 									interfaceType = 5;
 								}
-								createdWdiget.xMode = (byte) j;
-								createdWdiget.yMode = (byte) interfaceType;
-								WidgetList.redraw(createdWdiget);
-								WidgetList.update(createdWdiget);
-								if (createdWdiget.createdComponentId == -1) {
-									DelayedStateChange.setComponentPositionClient(createdWdiget.id);
+								createdWidget.xMode = (byte) j;
+								createdWidget.yMode = (byte) interfaceType;
+								WidgetList.redraw(createdWidget);
+								WidgetList.update(createdWidget);
+								if (createdWidget.createdComponentId == -1) {
+									DelayedStateChange.setComponentPositionClient(createdWidget.id);
 								}
 								continue;
 							}
 							if (opcode == 1001) {
 								// setsize
 								isp -= 4;
-								createdWdiget.baseWidth = scriptIntValues[isp];
-								createdWdiget.baseHeight = scriptIntValues[isp + 1];
-								createdWdiget.anInt451 = 0;
-								createdWdiget.anInt526 = 0;
+								createdWidget.baseWidth = scriptIntValues[isp];
+								createdWidget.baseHeight = scriptIntValues[isp + 1];
+								createdWidget.anInt451 = 0;
+								createdWidget.anInt526 = 0;
 								interfaceType = scriptIntValues[isp + 2];
 								j = scriptIntValues[isp + 3];
 								if (j < 0) {
@@ -5956,17 +5956,17 @@ public final class ClientScriptRunner {
 								} else if (j > 4) {
 									j = 4;
 								}
-								createdWdiget.dynamicHeightValue = (byte) j;
+								createdWidget.dynamicHeightValue = (byte) j;
 								if (interfaceType < 0) {
 									interfaceType = 0;
 								} else if (interfaceType > 4) {
 									interfaceType = 4;
 								}
-								createdWdiget.dynamicWidthValue = (byte) interfaceType;
-								WidgetList.redraw(createdWdiget);
-								WidgetList.update(createdWdiget);
-								if (createdWdiget.type == 0) {
-									WidgetList.method531(createdWdiget, false);
+								createdWidget.dynamicWidthValue = (byte) interfaceType;
+								WidgetList.redraw(createdWidget);
+								WidgetList.update(createdWidget);
+								if (createdWidget.type == 0) {
+									WidgetList.method531(createdWidget, false);
 								}
 								continue;
 							}
@@ -5974,30 +5974,30 @@ public final class ClientScriptRunner {
 								// sethide
 								isp--;
 								local1552 = scriptIntValues[isp] == 1;
-								if (local1552 != createdWdiget.hidden) {
-									createdWdiget.hidden = local1552;
-									WidgetList.redraw(createdWdiget);
+								if (local1552 != createdWidget.hidden) {
+									createdWidget.hidden = local1552;
+									WidgetList.redraw(createdWidget);
 								}
-								if (createdWdiget.createdComponentId == -1) {
-									DelayedStateChange.setComponentHiddenClient(createdWdiget.id);
+								if (createdWidget.createdComponentId == -1) {
+									DelayedStateChange.setComponentHiddenClient(createdWidget.id);
 								}
 								continue;
 							}
 							if (opcode == 1004) {
 								// setaspect
 								isp -= 2;
-								createdWdiget.aspectWidth = scriptIntValues[isp];
-								createdWdiget.aspectHeight = scriptIntValues[isp + 1];
-								WidgetList.redraw(createdWdiget);
-								WidgetList.update(createdWdiget);
-								if (createdWdiget.type == 0) {
-									WidgetList.method531(createdWdiget, false);
+								createdWidget.aspectWidth = scriptIntValues[isp];
+								createdWidget.aspectHeight = scriptIntValues[isp + 1];
+								WidgetList.redraw(createdWidget);
+								WidgetList.update(createdWidget);
+								if (createdWidget.type == 0) {
+									WidgetList.method531(createdWidget, false);
 								}
 								continue;
 							}
 							if (opcode == 1005) {
 								isp--;
-								createdWdiget.noClickThrough = scriptIntValues[isp] == 1;
+								createdWidget.noClickThrough = scriptIntValues[isp] == 1;
 								continue;
 							}
 						}
@@ -6032,7 +6032,7 @@ public final class ClientScriptRunner {
 	@OriginalMember(owner = "client!gn", name = "b", descriptor = "(Z)V")
 	public static void method1807() {
 		for (@Pc(11) int local11 = 0; local11 < 100; local11++) {
-			WidgetList.aBooleanArray100[local11] = true;
+			WidgetList.widgetNeedsRedraw[local11] = true;
 		}
 	}
 
@@ -7193,9 +7193,9 @@ public final class ClientScriptRunner {
 			}
 		}
 		local18 = MiniMenu.menuActionRow * 15 + 21;
-		@Pc(43) int local43 = anInt1892;
+		@Pc(43) int local43 = scriptMouseY;
 		local16 += 8;
-		local27 = anInt3751 - local16 / 2;
+		local27 = scriptMouseX - local16 / 2;
 		if (local43 + local18 > GameShell.canvasHeigth) {
 			local43 = GameShell.canvasHeigth - local18;
 		}
@@ -7208,45 +7208,45 @@ public final class ClientScriptRunner {
 		if (local43 < 0) {
 			local43 = 0;
 		}
-		if (MiniMenu.anInt3953 == 1) {
-			if (anInt3751 == Mouse.anInt5850 && Mouse.anInt5895 == anInt1892) {
+		if (MiniMenu.menuState == 1) {
+			if (scriptMouseX == Mouse.anInt5850 && Mouse.anInt5895 == scriptMouseY) {
 				WidgetList.anInt436 = MiniMenu.menuActionRow * 15 + (WidgetList.aBoolean298 ? 26 : 22);
-				MiniMenu.anInt3953 = 0;
+				MiniMenu.menuState = 0;
 				WidgetList.anInt5138 = local43;
 				WidgetList.anInt4271 = local27;
-				aBoolean108 = true;
+				menuVisible = true;
 				WidgetList.anInt761 = local16;
 			}
-		} else if (anInt3751 == Mouse.mouseClickX && anInt1892 == Mouse.mouseClickY) {
+		} else if (scriptMouseX == Mouse.mouseClickX && scriptMouseY == Mouse.mouseClickY) {
 			WidgetList.anInt4271 = local27;
-			MiniMenu.anInt3953 = 0;
+			MiniMenu.menuState = 0;
 			WidgetList.anInt761 = local16;
 			WidgetList.anInt5138 = local43;
 			WidgetList.anInt436 = (WidgetList.aBoolean298 ? 26 : 22) + MiniMenu.menuActionRow * 15;
-			aBoolean108 = true;
+			menuVisible = true;
 		} else {
 			Mouse.anInt5895 = Mouse.mouseClickY;
 			Mouse.anInt5850 = Mouse.mouseClickX;
-			MiniMenu.anInt3953 = 1;
+			MiniMenu.menuState = 1;
 		}
 	}
 
 	@OriginalMember(owner = "client!ag", name = "a", descriptor = "(IIIIIIIII)V")
 	public static void method86(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int arg6, @OriginalArg(8) int arg7) {
 		if (WidgetList.load(arg0)) {
-			renderComponent(arg1, arg7, arg3, WidgetList.cachedWdigets[arg0], arg2, -1, arg6, arg5, arg4);
+			renderComponent(arg1, arg7, arg3, WidgetList.cachedWidgets[arg0], arg2, -1, arg6, arg5, arg4);
 		} else if (arg4 == -1) {
 			for (@Pc(27) int local27 = 0; local27 < 100; local27++) {
-				WidgetList.aBooleanArray100[local27] = true;
+				WidgetList.widgetNeedsRedraw[local27] = true;
 			}
 		} else {
-			WidgetList.aBooleanArray100[arg4] = true;
+			WidgetList.widgetNeedsRedraw[arg4] = true;
 		}
 	}
 
 	@OriginalMember(owner = "client!da", name = "a", descriptor = "(IIILclient!be;)V")
-	public static void method1015(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(3) Wdiget arg2) {
-		if (aClass13_14 != null || aBoolean108 || (arg2 == null || method1836(arg2) == null)) {
+	public static void method1015(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(3) Widget arg2) {
+		if (aClass13_14 != null || menuVisible || (arg2 == null || method1836(arg2) == null)) {
 			return;
 		}
 		aClass13_14 = arg2;
@@ -7258,8 +7258,8 @@ public final class ClientScriptRunner {
 	}
 
 	@OriginalMember(owner = "client!ha", name = "a", descriptor = "(ILclient!be;)Lclient!be;")
-	public static Wdiget method1836(@OriginalArg(1) Wdiget arg0) {
-		@Pc(12) Wdiget local12 = WidgetList.method938(arg0);
+	public static Widget method1836(@OriginalArg(1) Widget arg0) {
+		@Pc(12) Widget local12 = WidgetList.method938(arg0);
 		if (local12 == null) {
 			local12 = arg0.aClass13_5;
 		}

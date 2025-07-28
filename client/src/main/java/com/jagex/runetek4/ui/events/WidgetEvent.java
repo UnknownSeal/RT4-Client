@@ -2,7 +2,7 @@ package com.jagex.runetek4.ui.events;
 
 import com.jagex.runetek4.util.string.JString;
 import com.jagex.runetek4.core.node.Node;
-import com.jagex.runetek4.data.cache.media.component.Wdiget;
+import com.jagex.runetek4.data.cache.media.component.Widget;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 
@@ -10,7 +10,7 @@ import org.openrs2.deob.annotation.OriginalMember;
 public final class WidgetEvent extends Node {
 
 	@OriginalMember(owner = "runetek4.client!jl", name = "q", descriptor = "Lclient!be;")
-	public Wdiget target;
+	public Widget target;
 
 	@OriginalMember(owner = "runetek4.client!jl", name = "r", descriptor = "Lclient!na;")
 	public JString opBase;
@@ -37,5 +37,5 @@ public final class WidgetEvent extends Node {
 	public Object[] arguments;
 
 	@OriginalMember(owner = "runetek4.client!jl", name = "F", descriptor = "Lclient!be;")
-	public Wdiget source;
+	public Widget source;
 }
