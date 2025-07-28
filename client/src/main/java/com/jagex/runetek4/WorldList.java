@@ -220,13 +220,14 @@ public class WorldList {
             if (client.settings != null) {
                 settings = JString.concatenate(new JString[] { aClass100_783, client.settings});
             }
-            @Pc(182) JString url = JString.concatenate(new JString[] { HTTP_PROTOCOL, world.hostname, port, aClass100_1107, JString.parseInt(client.language), aClass100_801, JString.parseInt(client.affiliate), settings, aClass100_659, client.objectTag ? aClass100_184 : aClass100_945, aClass100_420, client.javaScript ? aClass100_184 : aClass100_945, aClass100_260, client.advertSuppressed ? aClass100_184 : aClass100_945 });
-            try {
-                client.instance.getAppletContext().showDocument(url.method3107(), "_self");
-                return true;
-            } catch (@Pc(191) Exception local191) {
-                return false;
-            }
+//            @Pc(182) JString url = JString.concatenate(new JString[] { HTTP_PROTOCOL, world.hostname, port, aClass100_1107, JString.parseInt(client.language), aClass100_801, JString.parseInt(client.affiliate), settings, aClass100_659, client.objectTag ? aClass100_184 : aClass100_945, aClass100_420, client.javaScript ? aClass100_184 : aClass100_945, aClass100_260, client.advertSuppressed ? aClass100_184 : aClass100_945 });
+//            try {
+//                client.instance.getAppletContext().showDocument(url.method3107(), "_self");
+//                return true;
+//            } catch (@Pc(191) Exception local191) {
+//                return false;
+//            }
+            return false;
         }
     }
 

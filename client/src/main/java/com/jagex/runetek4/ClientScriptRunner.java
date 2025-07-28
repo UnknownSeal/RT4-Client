@@ -5390,11 +5390,13 @@ public final class ClientScriptRunner {
 													}
 												} else if (opcode < 6500) {
 													if (opcode == 6405) {
-														scriptIntValues[isp++] = client.showVideoAd() ? 1 : 0;
+														// scriptIntValues[isp++] = client.showVideoAd() ? 1 : 0;
+														scriptIntValues[isp++] = 0;
 														continue;
 													}
 													if (opcode == 6406) {
-														scriptIntValues[isp++] = isShowingVideoAd() ? 1 : 0;
+														// scriptIntValues[isp++] = isShowingVideoAd() ? 1 : 0;
+														scriptIntValues[isp++] = 0;
 														continue;
 													}
 												} else if (opcode < 6600) {
@@ -6834,24 +6836,26 @@ public final class ClientScriptRunner {
 
 	@OriginalMember(owner = "runetek4.client!nf", name = "a", descriptor = "(Lclient!na;BZ)V")
 	public static void openUrl(@OriginalArg(0) JString arg0, @OriginalArg(2) boolean arg1) {
-		if (!arg1) {
-			try {
-				GameShell.instance.getAppletContext().showDocument(arg0.method3127(GameShell.instance.getCodeBase()), "_top");
-			} catch (@Pc(22) Exception local22) {
-			}
-			return;
-		}
-		if (GlRenderer.enabled && GameShell.openWindowJavaScript) {
-			try {
-				BrowserControl.call(GameShell.signLink.applet, "openjs", new Object[] { arg0.method3127(GameShell.instance.getCodeBase()).toString() });
-				return;
-			} catch (@Pc(48) Throwable local48) {
-			}
-		}
-		try {
-			GameShell.instance.getAppletContext().showDocument(arg0.method3127(GameShell.instance.getCodeBase()), "_blank");
-		} catch (@Pc(59) Exception local59) {
-		}
+	// TODO Implement a replacement for this method??
+
+//		if (!arg1) {
+//			try {
+//				GameShell.instance.getAppletContext().showDocument(arg0.method3127(GameShell.instance.getCodeBase()), "_top");
+//			} catch (@Pc(22) Exception local22) {
+//			}
+//			return;
+//		}
+//		if (GlRenderer.enabled && GameShell.openWindowJavaScript) {
+//			try {
+//				BrowserControl.call(GameShell.signLink.applet, "openjs", new Object[] { arg0.method3127(GameShell.instance.getCodeBase()).toString() });
+//				return;
+//			} catch (@Pc(48) Throwable local48) {
+//			}
+//		}
+//		try {
+//			GameShell.instance.getAppletContext().showDocument(arg0.method3127(GameShell.instance.getCodeBase()), "_blank");
+//		} catch (@Pc(59) Exception local59) {
+//		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!og", name = "a", descriptor = "(BIILclient!fe;III)V")
@@ -6892,16 +6896,16 @@ public final class ClientScriptRunner {
 		return arg4 == null ? true : SceneGraph.addLoc(arg0, arg7, arg8, arg9 + 1 - arg7, arg10 - arg8 + 1, arg1, arg2, arg3, arg4, arg5, true, arg6);
 	}
 
-	@OriginalMember(owner = "runetek4.client!vl", name = "a", descriptor = "(I)Z")
-	public static boolean isShowingVideoAd() {
-		if (client.objectTag) {
-			try {
-				return !((Boolean) SHOWINGVIDEOAD.browserControlCall(GameShell.signLink.applet));
-			} catch (@Pc(21) Throwable local21) {
-			}
-		}
-		return true;
-	}
+//	@OriginalMember(owner = "runetek4.client!vl", name = "a", descriptor = "(I)Z")
+//	public static boolean isShowingVideoAd() {
+//		if (client.objectTag) {
+//			try {
+//				return !((Boolean) SHOWINGVIDEOAD.browserControlCall(GameShell.signLink.applet));
+//			} catch (@Pc(21) Throwable local21) {
+//			}
+//		}
+//		return true;
+//	}
 
 	@OriginalMember(owner = "client!uh", name = "f", descriptor = "(I)V")
 	public static void method4302() {

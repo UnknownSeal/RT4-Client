@@ -1,6 +1,5 @@
 package com.jagex.runetek4.util;
 
-import java.applet.Applet;
 import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.Frame;
@@ -82,9 +81,6 @@ public final class SignLink implements Runnable {
 
 	@OriginalMember(owner = "signlink!ll", name = "y", descriptor = "Lsignlink!im;")
 	private PrivilegedRequest requestQueueHead = null;
-
-	@OriginalMember(owner = "signlink!ll", name = "i", descriptor = "Ljava/applet/Applet;")
-	public Applet applet = null;
 
 	@OriginalMember(owner = "signlink!ll", name = "x", descriptor = "Ljava/lang/String;")
 	private final String cacheSubDir;
@@ -169,11 +165,10 @@ public final class SignLink implements Runnable {
 	}
 
 	@OriginalMember(owner = "signlink!ll", name = "<init>", descriptor = "(Ljava/applet/Applet;ILjava/lang/String;I)V")
-	public SignLink(@OriginalArg(0) Applet applet, @OriginalArg(1) int arg1, @OriginalArg(2) String arg2, @OriginalArg(3) int arg3) throws Exception {
+	public SignLink(@OriginalArg(1) int arg1, @OriginalArg(2) String arg2, @OriginalArg(3) int arg3) throws Exception {
 		javaVersion = "1.1";
 		this.cacheSubDir = arg2;
 		this.cacheId = arg1;
-		this.applet = applet;
 		javaVendor = "Unknown";
 		try {
 			javaVendor = System.getProperty("java.vendor");
@@ -209,22 +204,6 @@ public final class SignLink implements Runnable {
 		try {
 			this.eventQueue = Toolkit.getDefaultToolkit().getSystemEventQueue();
 		} catch (@Pc(97) Throwable exception) {
-		}
-		try {
-			if (applet == null) {
-				setFocusTraversalKeysEnabled = Class.forName("java.awt.Component").getDeclaredMethod("setFocusTraversalKeysEnabled", Boolean.TYPE);
-			} else {
-				setFocusTraversalKeysEnabled = applet.getClass().getMethod("setFocusTraversalKeysEnabled", Boolean.TYPE);
-			}
-		} catch (@Pc(125) Exception exception) {
-		}
-		try {
-			if (applet == null) {
-				setFocusCycleRoot = Class.forName("java.awt.Container").getDeclaredMethod("setFocusCycleRoot", Boolean.TYPE);
-			} else {
-				setFocusCycleRoot = applet.getClass().getMethod("setFocusCycleRoot", Boolean.TYPE);
-			}
-		} catch (@Pc(153) Exception local153) {
 		}
 		this.uid = new FileOnDisk(getFile(null, this.cacheId, "random.dat"), "rw", 25L);
 		this.cacheData = new FileOnDisk(getFile(this.cacheSubDir, this.cacheId, "main_file_cache.dat2"), "rw", 104857600L);

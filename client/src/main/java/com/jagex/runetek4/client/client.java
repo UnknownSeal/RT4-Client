@@ -629,27 +629,27 @@ public final class client extends GameShell {
 		System.gc();
 	}
 
-	@OriginalMember(owner = "runetek4.client!jj", name = "a", descriptor = "(Z)V")
-	public static void topBannerRefresh() {
-		if (!advertSuppressed && modeWhere != 2) {
-			try {
-				aClass100_900.browserControlCall(instance);
-			} catch (@Pc(26) Throwable local26) {
-			}
-		}
-	}
+//	@OriginalMember(owner = "runetek4.client!jj", name = "a", descriptor = "(Z)V")
+//	public static void topBannerRefresh() {
+//		if (!advertSuppressed && modeWhere != 2) {
+//			try {
+//				aClass100_900.browserControlCall(instance);
+//			} catch (@Pc(26) Throwable local26) {
+//			}
+//		}
+//	}
 
-	@OriginalMember(owner = "runetek4.client!gn", name = "a", descriptor = "(Z)Z")
-	public static boolean showVideoAd() {
-		if (objectTag) {
-			try {
-				aClass100_35.browserControlCall(signLink.applet);
-				return true;
-			} catch (@Pc(14) Throwable local14) {
-			}
-		}
-		return false;
-	}
+//	@OriginalMember(owner = "runetek4.client!gn", name = "a", descriptor = "(Z)Z")
+//	public static boolean showVideoAd() {
+//		if (objectTag) {
+//			try {
+//				aClass100_35.browserControlCall(signLink.applet);
+//				return true;
+//			} catch (@Pc(14) Throwable local14) {
+//			}
+//		}
+//		return false;
+//	}
 
 	@OriginalMember(owner = "runetek4.client!re", name = "a", descriptor = "(I)V")
 	public static void clean() {
@@ -700,7 +700,7 @@ public final class client extends GameShell {
 			WorldMap.clear(true);
 		}
 		if (statusCode == 25 || statusCode == 10) {
-			topBannerRefresh();
+			//topBannerRefresh();
 		}
 		if (statusCode == 5) {
 			TitleScreen.load(js5Archive8);
@@ -747,8 +747,6 @@ public final class client extends GameShell {
 			@Pc(65) Container local65;
 			if (GameShell.fullScreenFrame != null) {
 				local65 = GameShell.fullScreenFrame;
-			} else if (GameShell.frame == null) {
-				local65 = GameShell.signLink.applet;
 			} else {
 				local65 = GameShell.frame;
 			}
@@ -905,77 +903,77 @@ public final class client extends GameShell {
 		}
 	}
 
-	@OriginalMember(owner = "client!client", name = "init", descriptor = "()V")
-	@Override
-	public final void init() {
-		if (!this.isHostnameValid()) {
-			return;
-		}
-		worldListId = Integer.parseInt(this.getParameter("worldid"));
-		modeWhere = Integer.parseInt(this.getParameter("modewhere"));
-		if (modeWhere < 0 || modeWhere > 1) {
-			modeWhere = 0;
-		}
-		modeWhat = Integer.parseInt(this.getParameter("modewhat"));
-		if (modeWhat < 0 || modeWhat > 2) {
-			modeWhat = 0;
-		}
-		@Pc(50) String local50 = this.getParameter("advertsuppressed");
-		if (local50 != null && local50.equals("1")) {
-			advertSuppressed = true;
-		} else {
-			advertSuppressed = false;
-		}
-		try {
-			language = Integer.parseInt(this.getParameter("lang"));
-		} catch (@Pc(69) Exception local69) {
-			language = 0;
-		}
-		LocalizedText.setLanguage(language);
-		@Pc(78) String local78 = this.getParameter("objecttag");
-		if (local78 != null && local78.equals("1")) {
-			javaScript = true;
-		} else {
-			javaScript = false;
-		}
-		@Pc(94) String local94 = this.getParameter("js");
-		if (local94 != null && local94.equals("1")) {
-			objectTag = true;
-		} else {
-			objectTag = false;
-		}
-		@Pc(111) String local111 = this.getParameter("game");
-		if (local111 != null && local111.equals("1")) {
-			game = 1;
-		} else {
-			game = 0;
-		}
-		try {
-			affiliate = Integer.parseInt(this.getParameter("affid"));
-		} catch (@Pc(130) Exception local130) {
-			affiliate = 0;
-		}
-		settings = SETTINGS.fromParameters(this);
-		if (settings == null) {
-			settings = JString.EMPTY;
-		}
-		@Pc(146) String local146 = this.getParameter("country");
-		if (local146 != null) {
-			try {
-				country = Integer.parseInt(local146);
-			} catch (@Pc(153) Exception local153) {
-				country = 0;
-			}
-		}
-		@Pc(159) String local159 = this.getParameter("haveie6");
-		if (local159 != null && local159.equals("1")) {
-			haveIe6 = true;
-		} else {
-			haveIe6 = false;
-		}
-		instance = this;
-		this.startApplet(modeWhat + 32);
-	}
+//	@OriginalMember(owner = "client!client", name = "init", descriptor = "()V")
+//	@Override
+//	public final void init() {
+//		if (!this.isHostnameValid()) {
+//			return;
+//		}
+//		worldListId = Integer.parseInt(this.getParameter("worldid"));
+//		modeWhere = Integer.parseInt(this.getParameter("modewhere"));
+//		if (modeWhere < 0 || modeWhere > 1) {
+//			modeWhere = 0;
+//		}
+//		modeWhat = Integer.parseInt(this.getParameter("modewhat"));
+//		if (modeWhat < 0 || modeWhat > 2) {
+//			modeWhat = 0;
+//		}
+//		@Pc(50) String local50 = this.getParameter("advertsuppressed");
+//		if (local50 != null && local50.equals("1")) {
+//			advertSuppressed = true;
+//		} else {
+//			advertSuppressed = false;
+//		}
+//		try {
+//			language = Integer.parseInt(this.getParameter("lang"));
+//		} catch (@Pc(69) Exception local69) {
+//			language = 0;
+//		}
+//		LocalizedText.setLanguage(language);
+//		@Pc(78) String local78 = this.getParameter("objecttag");
+//		if (local78 != null && local78.equals("1")) {
+//			javaScript = true;
+//		} else {
+//			javaScript = false;
+//		}
+//		@Pc(94) String local94 = this.getParameter("js");
+//		if (local94 != null && local94.equals("1")) {
+//			objectTag = true;
+//		} else {
+//			objectTag = false;
+//		}
+//		@Pc(111) String local111 = this.getParameter("game");
+//		if (local111 != null && local111.equals("1")) {
+//			game = 1;
+//		} else {
+//			game = 0;
+//		}
+//		try {
+//			affiliate = Integer.parseInt(this.getParameter("affid"));
+//		} catch (@Pc(130) Exception local130) {
+//			affiliate = 0;
+//		}
+//		settings = SETTINGS.fromParameters(this);
+//		if (settings == null) {
+//			settings = JString.EMPTY;
+//		}
+//		@Pc(146) String local146 = this.getParameter("country");
+//		if (local146 != null) {
+//			try {
+//				country = Integer.parseInt(local146);
+//			} catch (@Pc(153) Exception local153) {
+//				country = 0;
+//			}
+//		}
+//		@Pc(159) String local159 = this.getParameter("haveie6");
+//		if (local159 != null && local159.equals("1")) {
+//			haveIe6 = true;
+//		} else {
+//			haveIe6 = false;
+//		}
+//		instance = this;
+//		this.startApplet(modeWhat + 32);
+//	}
 
 	@OriginalMember(owner = "client!client", name = "g", descriptor = "(I)V")
 	@Override
@@ -991,11 +989,11 @@ public final class client extends GameShell {
 		Preferences.read(GameShell.signLink); // preferences
 
 		if (modeWhere == 0) {
-			worldListHostname = this.getCodeBase().getHost();
+			worldListHostname = "127.0.0.1";
 			worldListAlternatePort = 443;
 			worldListDefaultPort = 43594;
 		} else if (modeWhere == 1) {
-			worldListHostname = this.getCodeBase().getHost();
+			worldListHostname = "127.0.0.1";
 			worldListAlternatePort = worldListId + 50000;
 			worldListDefaultPort = worldListId + 40000;
 		} else if (modeWhere == 2) {
@@ -1158,9 +1156,9 @@ public final class client extends GameShell {
 												ClientScriptRunner.url = null;
 												Protocol.openUrlRequest = null;
 											}
-											if (loop % 1500 == 0) {
-												topBannerRefresh();
-											}
+//											if (loop % 1500 == 0) {
+//												topBannerRefresh();
+//											}
 											return;
 										}
 										prioritySource = priorityRequest.source;

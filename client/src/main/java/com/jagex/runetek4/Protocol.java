@@ -1724,7 +1724,8 @@ public class Protocol {
                                     opcode = -1;
                                     return true;
                                 } else if (opcode == 142) {
-                                    method3954(inboundBuffer.gjstr());
+                                    // Called removed method3954, stored username to cookie
+                                    //method3954(inboundBuffer.gjstr());
                                     opcode = -1;
                                     return true;
                                 } else if (opcode == 26) {
@@ -2902,26 +2903,6 @@ public class Protocol {
             if (npc.primarySeqId != -1) {
                 SoundPlayer.playSeqSound(npc.zFine, SeqTypeList.get(npc.primarySeqId), npc.xFine, false, npc.anInt3425);
             }
-        }
-    }
-
-    @OriginalMember(owner = "runetek4.client!sj", name = "a", descriptor = "(ILclient!na;)V")
-    public static void method3954(@OriginalArg(1) JString arg0) {
-        client.settings = arg0;
-        if (GameShell.signLink.applet == null) {
-            return;
-        }
-        try {
-            @Pc(17) JString local17 = aClass100_989.fromParameters(GameShell.signLink.applet);
-            @Pc(23) JString local23 = aClass100_1029.fromParameters(GameShell.signLink.applet);
-            @Pc(48) JString local48 = JString.concatenate(new JString[] { local17, aClass100_667, arg0, aClass100_1095, local23 });
-            if (arg0.length() == 0) {
-                local48 = JString.concatenate(new JString[] { local48, aClass100_1018});
-            } else {
-                local48 = JString.concatenate(new JString[] { local48, aClass100_1082, DateUtil.getDateString(MonotonicTime.currentTimeMillis() + 94608000000L), MAX_AGE, JString.method2929(94608000L) });
-            }
-            JString.concatenate(new JString[] {aClass100_821, local48, aClass100_946}).method3134(GameShell.signLink.applet);
-        } catch (@Pc(124) Throwable local124) {
         }
     }
 

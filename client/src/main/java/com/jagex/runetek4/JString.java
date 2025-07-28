@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import java.applet.Applet;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.io.UnsupportedEncodingException;
@@ -689,12 +688,6 @@ public final class JString implements StringInterface {
 		throw new RuntimeException();
 	}
 
-	@OriginalMember(owner = "runetek4.client!na", name = "a", descriptor = "(ZLjava/applet/Applet;)V")
-	public final void method3134(@OriginalArg(1) Applet arg0) throws Throwable {
-		@Pc(16) String local16 = new String(this.chars, 0, this.length);
-		BrowserControl.eval(arg0, local16);
-	}
-
 	@OriginalMember(owner = "runetek4.client!na", name = "a", descriptor = "(III)I")
 	public final int indexOf(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
 		@Pc(4) byte local4 = (byte) arg0;
@@ -1027,13 +1020,6 @@ public final class JString implements StringInterface {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!na", name = "a", descriptor = "(BLjava/applet/Applet;)Lclient!na;")
-	public final JString fromParameters(@OriginalArg(1) Applet arg0) {
-		@Pc(19) String local19 = new String(this.chars, 0, this.length);
-		@Pc(23) String local23 = arg0.getParameter(local19);
-		return local23 == null ? null : of(local23);
-	}
-
 	@OriginalMember(owner = "runetek4.client!na", name = "d", descriptor = "(Z)I")
 	public final int getHash() {
 		@Pc(7) int local7 = 0;
@@ -1065,17 +1051,6 @@ public final class JString implements StringInterface {
 			this.chars = local26;
 		}
 		return this;
-	}
-
-	@OriginalMember(owner = "runetek4.client!na", name = "a", descriptor = "(ILjava/applet/Applet;)Ljava/lang/Object;")
-	public final Object browserControlCall(@OriginalArg(1) Applet arg0) throws Throwable {
-		@Pc(12) String local12 = new String(this.chars, 0, this.length);
-		@Pc(17) Object local17 = BrowserControl.call(local12, arg0);
-		if (local17 instanceof String) {
-			@Pc(24) byte[] local24 = ((String) local17).getBytes();
-			local17 = decodeString(local24, local24.length, 0);
-		}
-		return local17;
 	}
 
 	@OriginalMember(owner = "runetek4.client!na", name = "j", descriptor = "(I)J")

@@ -941,19 +941,6 @@ public class LoginManager {
                 membersWorld = Protocol.inboundBuffer.g1() == 1;
                 LocTypeList.setAllowMembers(membersWorld);
                 ObjTypeList.setAllowMembers(membersWorld);
-                if (!client.advertSuppressed) {
-                    if (playerUnderage && !parentalAdvertConsent || playerMember) {
-                        try {
-                            ZAP.browserControlCall(GameShell.signLink.applet);
-                        } catch (@Pc(910) Throwable local910) {
-                        }
-                    } else {
-                        try {
-                            UNZAP.browserControlCall(GameShell.signLink.applet);
-                        } catch (@Pc(920) Throwable local920) {
-                        }
-                    }
-                }
                 Protocol.opcode = Protocol.inboundBuffer.gIssac1();
                 Protocol.packetSize = Protocol.inboundBuffer.g2();
                 step = 9;

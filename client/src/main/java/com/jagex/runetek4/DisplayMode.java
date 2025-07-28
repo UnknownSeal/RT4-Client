@@ -171,8 +171,6 @@ public final class DisplayMode {
 		@Pc(85) Container container;
 		if (GameShell.fullScreenFrame != null) {
 			container = GameShell.fullScreenFrame;
-		} else if (GameShell.frame == null) {
-			container = GameShell.signLink.applet;
 		} else {
 			container = GameShell.frame;
 		}

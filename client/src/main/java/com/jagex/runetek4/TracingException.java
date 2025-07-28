@@ -41,18 +41,6 @@ public final class TracingException extends RuntimeException {
 			message = replace("@", "%40", message);
 			message = replace("&", "%26", message);
 			message = replace("#", "%23", message);
-			if (signLink.applet == null) {
-				return;
-			}
-			@Pc(109) PrivilegedRequest privilegedRequest = signLink.openUrlStream(new URL(signLink.applet.getCodeBase(), "clienterror.ws?c=" + GameShell.clientBuild + "&u=" + Player.name37 + "&v1=" + SignLink.javaVendor + "&v2=" + SignLink.javaVersion + "&e=" + message));
-			while (privilegedRequest.status == 0) {
-				ThreadUtils.sleep(1L);
-			}
-			if (privilegedRequest.status == 1) {
-				@Pc(128) DataInputStream dataInputStream = (DataInputStream) privilegedRequest.result;
-				dataInputStream.read();
-				dataInputStream.close();
-			}
 		} catch (@Pc(135) Exception exception) {
 		}
 	}
