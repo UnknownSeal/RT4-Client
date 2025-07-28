@@ -1,8 +1,8 @@
 package com.jagex.runetek4.config.types.struct;
 
-import com.jagex.runetek4.LruHashTable;
+import com.jagex.runetek4.core.datastruct.LruHashTable;
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.data.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;

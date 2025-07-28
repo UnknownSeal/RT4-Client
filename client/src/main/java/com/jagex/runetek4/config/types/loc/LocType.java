@@ -1,11 +1,18 @@
 package com.jagex.runetek4.config.types.loc;
 
-import com.jagex.runetek4.*;
-import com.jagex.runetek4.client.client;
+import com.jagex.runetek4.client.Client;
 import com.jagex.runetek4.config.types.seq.SeqType;
-import com.jagex.runetek4.LocEntity;
-import com.jagex.runetek4.RawModel;
-import com.jagex.runetek4.Entity;
+import com.jagex.runetek4.game.state.VarpDomain;
+import com.jagex.runetek4.entity.loc.LocEntity;
+import com.jagex.runetek4.graphics.model.RawModel;
+import com.jagex.runetek4.entity.entity.Entity;
+import com.jagex.runetek4.graphics.gl.GlModel;
+import com.jagex.runetek4.graphics.gl.GlRenderer;
+import com.jagex.runetek4.util.string.JString;
+import com.jagex.runetek4.util.string.LocalizedText;
+import com.jagex.runetek4.graphics.model.SoftwareModel;
+import com.jagex.runetek4.scene.SceneGraph;
+import com.jagex.runetek4.ui.sprite.SoftwareIndexedSprite;
 import com.jagex.runetek4.util.IntUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -14,7 +21,7 @@ import org.openrs2.deob.annotation.Pc;
 import com.jagex.runetek4.core.datastruct.IntWrapper;
 import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.core.datastruct.JagStringWrapper;
-import com.jagex.runetek4.node.Node;
+import com.jagex.runetek4.core.node.Node;
 import com.jagex.runetek4.core.io.Packet;
 
 @OriginalClass("client!pb")
@@ -608,7 +615,7 @@ public final class LocType {
 				if (this.recol_d_palette == null || this.recol_d_palette.length <= local315) {
 					modified.recolor(this.recol_s[local315], this.recol_d[local315]);
 				} else {
-					modified.recolor(this.recol_s[local315], client.aShortArray19[this.recol_d_palette[local315] & 0xFF]);
+					modified.recolor(this.recol_s[local315], Client.aShortArray19[this.recol_d_palette[local315] & 0xFF]);
 				}
 			}
 		}
@@ -820,7 +827,7 @@ public final class LocType {
 			if (this.hillchange != 0) {
 				local330.method4110(this.hillchange, this.hillchange_value, local235, arg2, arg5, arg1, arg4, arg9);
 			}
-			local330.method4111(this.active == 0 && !this.aBoolean214, true, true, this.active == 0, true, false);
+			local330.updateBuffers(this.active == 0 && !this.aBoolean214, true, true, this.active == 0, true, false);
 			aLocEntity_1.model = local330;
 			local330.aBoolean259 = local298;
 			aLocEntity_1.sprite = local265;
@@ -924,7 +931,7 @@ public final class LocType {
 				return null;
 			}
 			local46.createBones();
-			local46.method4111(false, false, false, false, false, true);
+			local46.updateBuffers(false, false, false, false, false, true);
 			LocTypeList.aClass99_36.put(local46, local30);
 		}
 		@Pc(80) boolean local80 = false;

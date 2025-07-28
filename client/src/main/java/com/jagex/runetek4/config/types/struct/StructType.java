@@ -1,10 +1,10 @@
 package com.jagex.runetek4.config.types.struct;
 
-import com.jagex.runetek4.JString;
+import com.jagex.runetek4.util.string.JString;
 import com.jagex.runetek4.core.datastruct.*;
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.node.SecondaryNode;
-import com.jagex.runetek4.node.Node;
+import com.jagex.runetek4.core.node.SecondaryNode;
+import com.jagex.runetek4.core.node.Node;
 import com.jagex.runetek4.util.IntUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;

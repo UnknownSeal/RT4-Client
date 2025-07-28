@@ -4,7 +4,7 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
-import com.jagex.runetek4.encryption.Isaac;
+import com.jagex.runetek4.util.crypto.Isaac;
 
 @OriginalClass("client!i")
 public final class PacketBit extends Packet {

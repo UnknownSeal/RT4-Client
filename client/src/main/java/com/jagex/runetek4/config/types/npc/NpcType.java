@@ -1,14 +1,21 @@
 package com.jagex.runetek4.config.types.npc;
 
-import com.jagex.runetek4.*;
-import com.jagex.runetek4.client.client;
+import com.jagex.runetek4.graphics.animation.AnimFrameset;
+import com.jagex.runetek4.client.Client;
 import com.jagex.runetek4.config.types.seq.SeqType;
 import com.jagex.runetek4.config.types.seq.SeqTypeList;
 import com.jagex.runetek4.config.types.bas.BasType;
 import com.jagex.runetek4.config.types.bas.BasTypeList;
-import com.jagex.runetek4.RawModel;
+import com.jagex.runetek4.game.state.VarpDomain;
+import com.jagex.runetek4.graphics.model.Model;
+import com.jagex.runetek4.graphics.model.RawModel;
+import com.jagex.runetek4.entity.entity.PathingEntity_Class147;
+import com.jagex.runetek4.graphics.gl.GlModel;
+import com.jagex.runetek4.graphics.gl.GlRenderer;
+import com.jagex.runetek4.util.string.JString;
+import com.jagex.runetek4.util.string.LocalizedText;
 import com.jagex.runetek4.util.IntUtils;
-import com.jagex.runetek4.util.MathUtils;
+import com.jagex.runetek4.util.math.MathUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -16,7 +23,7 @@ import org.openrs2.deob.annotation.Pc;
 import com.jagex.runetek4.core.datastruct.IntWrapper;
 import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.core.datastruct.JagStringWrapper;
-import com.jagex.runetek4.node.Node;
+import com.jagex.runetek4.core.node.Node;
 import com.jagex.runetek4.core.io.Packet;
 
 @OriginalClass("client!me")
@@ -548,7 +555,7 @@ public final class NpcType {
 					if (this.recol_d_palette == null || this.recol_d_palette.length <= local173) {
 						local593.recolor(this.recol_s[local173], this.recol_d[local173]);
 					} else {
-						local593.recolor(this.recol_s[local173], client.aShortArray74[this.recol_d_palette[local173] & 0xFF]);
+						local593.recolor(this.recol_s[local173], Client.aShortArray74[this.recol_d_palette[local173] & 0xFF]);
 					}
 				}
 			}
@@ -559,7 +566,7 @@ public final class NpcType {
 			}
 			local40 = local593.createModel(this.ambient + 64, this.contrast + 850, -30, -50, -30);
 			if (GlRenderer.enabled) {
-				((GlModel) local40).method4111(false, false, false, false, false, true);
+				((GlModel) local40).updateBuffers(false, false, false, false, false, true);
 			}
 			NpcTypeList.models.put(local40, this.id);
 		}
@@ -746,7 +753,7 @@ public final class NpcType {
 						if (this.recol_d_palette == null || index >= this.recol_d_palette.length) {
 							local119.recolor(this.recol_s[index], this.recol_d[index]);
 						} else {
-							local119.recolor(this.recol_s[index], client.aShortArray74[this.recol_d_palette[index] & 0xFF]);
+							local119.recolor(this.recol_s[index], Client.aShortArray74[this.recol_d_palette[index] & 0xFF]);
 						}
 					}
 				}

@@ -1,7 +1,7 @@
 package com.jagex.runetek4.config.types.quickchat;
 
-import com.jagex.runetek4.JString;
-import com.jagex.runetek4.node.SecondaryNode;
+import com.jagex.runetek4.util.string.JString;
+import com.jagex.runetek4.core.node.SecondaryNode;
 import com.jagex.runetek4.core.io.Packet;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -84,6 +84,7 @@ public final class QuickChatCatType extends SecondaryNode {
 				this.phraseShortcuts[local38] = method3933(arg0.g1s());
 			}
 		} else if (opcode == 4) {
+			// TODO why is this here?
 		}
 	}
 

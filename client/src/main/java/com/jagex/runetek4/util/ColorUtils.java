@@ -1,6 +1,6 @@
 package com.jagex.runetek4.util;
 
-import com.jagex.runetek4.FogManager;
+import com.jagex.runetek4.graphics.lighting.FogManager;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;

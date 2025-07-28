@@ -1,9 +1,9 @@
 package com.jagex.runetek4.audio.midi;
 
 import com.jagex.runetek4.audio.pcm.PcmSound;
-import com.jagex.runetek4.SoundPcmStream;
+import com.jagex.runetek4.audio.core.SoundPcmStream;
 
-import com.jagex.runetek4.node.Node;
+import com.jagex.runetek4.core.node.Node;
 
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;

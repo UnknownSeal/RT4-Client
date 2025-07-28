@@ -2,10 +2,10 @@ package com.jagex.runetek4.client;
 
 import com.jagex.runetek4.FileOnDisk;
 import com.jagex.runetek4.PrivilegedRequest;
-import com.jagex.runetek4.SceneGraph;
+import com.jagex.runetek4.scene.SceneGraph;
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.util.SignLink;
-import com.jagex.runetek4.util.ThreadUtils;
+import com.jagex.runetek4.util.system.SignLink;
+import com.jagex.runetek4.util.system.ThreadUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -117,13 +117,13 @@ public class Preferences {
                 @Pc(39) Packet local39 = encode();
                 local11.write(local39.data, local39.offset, 0);
             }
-        } catch (@Pc(49) Exception local49) {
+        } catch (@Pc(49) Exception ignored) {
         }
         try {
             if (local11 != null) {
                 local11.close();
             }
-        } catch (@Pc(56) Exception local56) {
+        } catch (@Pc(56) Exception ignored) {
         }
     }
 
@@ -190,13 +190,13 @@ public class Preferences {
                 }
                 decode(new Packet(local106));
             }
-        } catch (@Pc(151) Exception local151) {
+        } catch (@Pc(151) Exception ignored) {
         }
         try {
             if (local48 != null) {
                 local48.close();
             }
-        } catch (@Pc(158) Exception local158) {
+        } catch (@Pc(158) Exception ignored) {
         }
     }
 

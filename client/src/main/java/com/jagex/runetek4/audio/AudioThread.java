@@ -1,9 +1,9 @@
 package com.jagex.runetek4.audio;
 
-import com.jagex.runetek4.TracingException;
+import com.jagex.runetek4.core.exceptions.TracingException;
 import com.jagex.runetek4.client.GameShell;
-import com.jagex.runetek4.util.SignLink;
-import com.jagex.runetek4.util.ThreadUtils;
+import com.jagex.runetek4.util.system.SignLink;
+import com.jagex.runetek4.util.system.ThreadUtils;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;

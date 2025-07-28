@@ -1,6 +1,6 @@
 package com.jagex.runetek4.config.types.idk;
 
-import com.jagex.runetek4.RawModel;
+import com.jagex.runetek4.graphics.model.RawModel;
 import com.jagex.runetek4.core.io.Packet;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;

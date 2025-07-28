@@ -1,7 +1,8 @@
 package com.jagex.runetek4.config.types.quickchat;
 
-import com.jagex.runetek4.*;
-import com.jagex.runetek4.node.SecondaryNode;
+import com.jagex.runetek4.ui.chat.QuickChatPhrase;
+import com.jagex.runetek4.util.string.JString;
+import com.jagex.runetek4.core.node.SecondaryNode;
 import com.jagex.runetek4.core.io.Packet;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;

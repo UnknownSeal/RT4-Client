@@ -1,8 +1,8 @@
 package com.jagex.runetek4.audio.vorbis;
 
 import com.jagex.runetek4.audio.pcm.PcmSound;
-import com.jagex.runetek4.js5.Js5;
-import com.jagex.runetek4.node.Node;
+import com.jagex.runetek4.data.js5.Js5;
+import com.jagex.runetek4.core.node.Node;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.util.IntUtils;
 import org.openrs2.deob.annotation.OriginalArg;
