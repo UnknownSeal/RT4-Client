@@ -2,10 +2,10 @@ package com.jagex.runetek4.client;
 
 import com.jagex.runetek4.FileOnDisk;
 import com.jagex.runetek4.PrivilegedRequest;
-import com.jagex.runetek4.SceneGraph;
+import com.jagex.runetek4.scene.SceneGraph;
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.util.SignLink;
-import com.jagex.runetek4.util.ThreadUtils;
+import com.jagex.runetek4.util.system.SignLink;
+import com.jagex.runetek4.util.system.ThreadUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;

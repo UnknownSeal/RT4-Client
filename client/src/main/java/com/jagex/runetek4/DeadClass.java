@@ -1,5 +1,7 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.core.datastruct.LruHashTable;
+import com.jagex.runetek4.util.string.JString;
 import org.openrs2.deob.annotation.OriginalMember;
 
 // Has no usages.

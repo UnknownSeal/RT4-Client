@@ -2,11 +2,11 @@ package com.jagex.runetek4.audio.midi;
 
 import com.jagex.runetek4.audio.pcm.PcmSound;
 
-import com.jagex.runetek4.SoundBank;
+import com.jagex.runetek4.audio.core.SoundBank;
 
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.data.js5.Js5;
 
-import com.jagex.runetek4.node.Node;
+import com.jagex.runetek4.core.node.Node;
 
 import com.jagex.runetek4.core.io.Packet;
 

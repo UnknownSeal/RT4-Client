@@ -1,9 +1,9 @@
 package com.jagex.runetek4.config.types.seq;
 
-import com.jagex.runetek4.AnimFrameset;
+import com.jagex.runetek4.graphics.animation.AnimFrameset;
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.js5.Js5;
-import com.jagex.runetek4.node.SoftLruHashTable;
+import com.jagex.runetek4.data.js5.Js5;
+import com.jagex.runetek4.core.node.SoftLruHashTable;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;

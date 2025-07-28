@@ -1,9 +1,14 @@
 package com.jagex.runetek4.config.types.obj;
 
-import com.jagex.runetek4.*;
-import com.jagex.runetek4.client.client;
+import com.jagex.runetek4.client.Client;
 import com.jagex.runetek4.config.types.seq.SeqType;
-import com.jagex.runetek4.RawModel;
+import com.jagex.runetek4.graphics.model.Model;
+import com.jagex.runetek4.graphics.model.RawModel;
+import com.jagex.runetek4.graphics.gl.GlModel;
+import com.jagex.runetek4.graphics.gl.GlRenderer;
+import com.jagex.runetek4.util.string.JString;
+import com.jagex.runetek4.util.string.LocalizedText;
+import com.jagex.runetek4.graphics.model.SoftwareModel;
 import com.jagex.runetek4.util.IntUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -12,7 +17,7 @@ import org.openrs2.deob.annotation.Pc;
 import com.jagex.runetek4.core.datastruct.IntWrapper;
 import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.core.datastruct.JagStringWrapper;
-import com.jagex.runetek4.node.Node;
+import com.jagex.runetek4.core.node.Node;
 import com.jagex.runetek4.core.io.Packet;
 
 @OriginalClass("client!h")
@@ -534,7 +539,7 @@ public final class ObjType {
 					if (this.recol_d_palette == null || i >= this.recol_d_palette.length) {
 						model2.recolor(this.recol_s[i], this.recol_d[i]);
 					} else {
-						model2.recolor(this.recol_s[i], client.aShortArray87[this.recol_d_palette[i] & 0xFF]);
+						model2.recolor(this.recol_s[i], Client.aShortArray87[this.recol_d_palette[i] & 0xFF]);
 					}
 				}
 			}
@@ -677,7 +682,7 @@ public final class ObjType {
 				if (this.recol_d_palette == null || i >= this.recol_d_palette.length) {
 					model.recolor(this.recol_s[i], this.recol_d[i]);
 				} else {
-					model.recolor(this.recol_s[i], client.aShortArray87[this.recol_d_palette[i] & 0xFF]);
+					model.recolor(this.recol_s[i], Client.aShortArray87[this.recol_d_palette[i] & 0xFF]);
 				}
 			}
 		}

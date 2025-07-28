@@ -1,7 +1,8 @@
 package com.jagex.runetek4.config.types.msi;
 
-import com.jagex.runetek4.*;
 import com.jagex.runetek4.core.io.Packet;
+import com.jagex.runetek4.ui.sprite.SoftwareIndexedSprite;
+import com.jagex.runetek4.ui.sprite.SpriteLoader;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;

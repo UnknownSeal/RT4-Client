@@ -1,8 +1,14 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.media.SoftwareSprite;
-import com.jagex.runetek4.client.client;
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.data.cache.media.SoftwareSprite;
+import com.jagex.runetek4.client.Client;
+import com.jagex.runetek4.graphics.gl.GlRaster;
+import com.jagex.runetek4.graphics.gl.GlRenderer;
+import com.jagex.runetek4.data.js5.Js5;
+import com.jagex.runetek4.util.string.JString;
+import com.jagex.runetek4.graphics.raster.SoftwareRaster;
+import com.jagex.runetek4.ui.sprite.SoftwareIndexedSprite;
+import com.jagex.runetek4.ui.sprite.SpriteLoader;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -162,7 +168,7 @@ public class Flames {
             anInt6++;
         }
         anInt5084 += arg0;
-        local60 = (arg0 + (client.loop & 0x1)) / 2;
+        local60 = (arg0 + (Client.loop & 0x1)) / 2;
         if (local60 <= 0) {
             return;
         }

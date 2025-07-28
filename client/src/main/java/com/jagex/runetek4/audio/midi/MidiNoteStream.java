@@ -1,12 +1,12 @@
 package com.jagex.runetek4.audio.midi;
 
-import com.jagex.runetek4.LinkedList;
+import com.jagex.runetek4.core.datastruct.LinkedList;
 
-import com.jagex.runetek4.MixerPcmStream;
+import com.jagex.runetek4.audio.core.MixerPcmStream;
 
-import com.jagex.runetek4.PcmStream;
+import com.jagex.runetek4.audio.core.PcmStream;
 
-import com.jagex.runetek4.SoundPcmStream;
+import com.jagex.runetek4.audio.core.SoundPcmStream;
 
 import com.jagex.runetek4.audio.AudioChannel;
 

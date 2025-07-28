@@ -4,10 +4,15 @@ import java.awt.*;
 import java.awt.event.*;
 
 import com.jagex.runetek4.*;
-import com.jagex.runetek4.DisplayMode;
-import com.jagex.runetek4.core.utils.Timer;
-import com.jagex.runetek4.util.SignLink;
-import com.jagex.runetek4.util.ThreadUtils;
+import com.jagex.runetek4.core.exceptions.TracingException;
+import com.jagex.runetek4.graphics.core.DisplayMode;
+import com.jagex.runetek4.util.system.Timer;
+import com.jagex.runetek4.graphics.gl.GlRenderer;
+import com.jagex.runetek4.graphics.core.FrameBuffer;
+import com.jagex.runetek4.graphics.raster.SoftwareRaster;
+import com.jagex.runetek4.ui.widget.WidgetList;
+import com.jagex.runetek4.util.system.SignLink;
+import com.jagex.runetek4.util.system.ThreadUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -162,8 +167,8 @@ public abstract class GameShell extends Canvas implements Runnable, FocusListene
 		} else {
 			canvas.setLocation(leftMargin, topMargin);
 		}
-		if (InterfaceList.topLevelInterface != -1) {
-			InterfaceList.method3712(true);
+		if (WidgetList.topLevelInterface != -1) {
+			WidgetList.method3712(true);
 		}
 		method2704();
 	}

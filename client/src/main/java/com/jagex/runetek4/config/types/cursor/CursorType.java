@@ -1,6 +1,6 @@
 package com.jagex.runetek4.config.types.cursor;
 
-import com.jagex.runetek4.cache.media.SoftwareSprite;
+import com.jagex.runetek4.data.cache.media.SoftwareSprite;
 import com.jagex.runetek4.core.io.Packet;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;

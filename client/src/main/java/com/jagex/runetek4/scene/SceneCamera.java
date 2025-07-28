@@ -1,7 +1,7 @@
 package com.jagex.runetek4.scene;
 
 import com.jagex.runetek4.*;
-import com.jagex.runetek4.Player;
+import com.jagex.runetek4.entity.entity.Player;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 

@@ -1,8 +1,8 @@
 package com.jagex.runetek4.scene.tile;
 
 import com.jagex.runetek4.scene.Scenery;
-import com.jagex.runetek4.node.Node;
-import com.jagex.runetek4.ObjStackEntity;
+import com.jagex.runetek4.core.node.Node;
+import com.jagex.runetek4.entity.loc.ObjStackEntity;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;

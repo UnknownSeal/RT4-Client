@@ -3,9 +3,11 @@ package com.jagex.runetek4.audio;
 import java.awt.Component;
 
 import com.jagex.runetek4.*;
+import com.jagex.runetek4.audio.core.PcmStream;
+import com.jagex.runetek4.audio.core.Sound;
 import com.jagex.runetek4.util.ArrayUtils;
-import com.jagex.runetek4.util.SignLink;
-import com.jagex.runetek4.util.ThreadUtils;
+import com.jagex.runetek4.util.system.SignLink;
+import com.jagex.runetek4.util.system.ThreadUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;

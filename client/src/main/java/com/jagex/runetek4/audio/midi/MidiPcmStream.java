@@ -1,12 +1,15 @@
 package com.jagex.runetek4.audio.midi;
 
-import com.jagex.runetek4.*;
-
 import com.jagex.runetek4.audio.AudioChannel;
+import com.jagex.runetek4.audio.core.PcmStream;
+import com.jagex.runetek4.audio.core.SoundBank;
+import com.jagex.runetek4.audio.core.SoundPcmStream;
 import com.jagex.runetek4.audio.pcm.PcmSound;
 
+import com.jagex.runetek4.audio.streaming.Song;
+import com.jagex.runetek4.core.buffer.ByteArrayNode;
 import com.jagex.runetek4.core.datastruct.HashTable;
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.data.js5.Js5;
 
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
