@@ -1,29 +1,30 @@
 package com.jagex.runetek4.audio.pcm;
 
 import com.jagex.runetek4.Sound;
+
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 
-@OriginalClass("runetek4.client!kj")
+@OriginalClass("client!kj")
 public final class PcmSound extends Sound {
 
-	@OriginalMember(owner = "runetek4.client!kj", name = "r", descriptor = "Z")
+	@OriginalMember(owner = "client!kj", name = "r", descriptor = "Z")
 	public boolean aBoolean165;
 
-	@OriginalMember(owner = "runetek4.client!kj", name = "u", descriptor = "I")
+	@OriginalMember(owner = "client!kj", name = "u", descriptor = "I")
 	public int rate;
 
-	@OriginalMember(owner = "runetek4.client!kj", name = "q", descriptor = "[B")
+	@OriginalMember(owner = "client!kj", name = "q", descriptor = "[B")
 	public byte[] samples;
 
-	@OriginalMember(owner = "runetek4.client!kj", name = "t", descriptor = "I")
+	@OriginalMember(owner = "client!kj", name = "t", descriptor = "I")
 	public int start;
 
-	@OriginalMember(owner = "runetek4.client!kj", name = "s", descriptor = "I")
+	@OriginalMember(owner = "client!kj", name = "s", descriptor = "I")
 	public int end;
 
-	@OriginalMember(owner = "runetek4.client!kj", name = "<init>", descriptor = "(I[BII)V")
+	@OriginalMember(owner = "client!kj", name = "<init>", descriptor = "(I[BII)V")
 	public PcmSound(@OriginalArg(0) int arg0, @OriginalArg(1) byte[] arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
 		this.rate = arg0;
 		this.samples = arg1;
@@ -31,7 +32,7 @@ public final class PcmSound extends Sound {
 		this.end = arg3;
 	}
 
-	@OriginalMember(owner = "runetek4.client!kj", name = "<init>", descriptor = "(I[BIIZ)V")
+	@OriginalMember(owner = "client!kj", name = "<init>", descriptor = "(I[BIIZ)V")
 	public PcmSound(@OriginalArg(0) int arg0, @OriginalArg(1) byte[] arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) boolean arg4) {
 		this.rate = arg0;
 		this.samples = arg1;
@@ -40,8 +41,8 @@ public final class PcmSound extends Sound {
 		this.aBoolean165 = arg4;
 	}
 
-	@OriginalMember(owner = "runetek4.client!kj", name = "a", descriptor = "(Lclient!vj;)Lclient!kj;")
-	public final PcmSound resample(@OriginalArg(0) PcmResampler arg0) {
+	@OriginalMember(owner = "client!kj", name = "a", descriptor = "(Lclient!vj;)Lclient!kj;")
+	public PcmSound resample(@OriginalArg(0) PcmResampler arg0) {
 		this.samples = arg0.method4520(this.samples);
 		this.rate = arg0.scaleRate(this.rate);
 		if (this.start == this.end) {

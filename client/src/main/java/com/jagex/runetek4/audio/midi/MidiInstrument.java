@@ -1,43 +1,48 @@
 package com.jagex.runetek4.audio.midi;
 
 import com.jagex.runetek4.audio.pcm.PcmSound;
+
 import com.jagex.runetek4.SoundBank;
+
 import com.jagex.runetek4.js5.Js5;
+
 import com.jagex.runetek4.node.Node;
+
 import com.jagex.runetek4.core.io.Packet;
+
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-@OriginalClass("runetek4.client!jk")
+@OriginalClass("client!jk")
 public final class MidiInstrument extends Node {
 
-	@OriginalMember(owner = "runetek4.client!jk", name = "r", descriptor = "[B")
-	public final byte[] aByteArray43 = new byte[128];
+	@OriginalMember(owner = "client!jk", name = "r", descriptor = "[B")
+	public final byte[] keyPan = new byte[128];
 
-	@OriginalMember(owner = "runetek4.client!jk", name = "s", descriptor = "[I")
-	private int[] anIntArray289 = new int[128];
+	@OriginalMember(owner = "client!jk", name = "s", descriptor = "[I")
+	private int[] soundIds = new int[128];
 
-	@OriginalMember(owner = "runetek4.client!jk", name = "u", descriptor = "I")
+	@OriginalMember(owner = "client!jk", name = "u", descriptor = "I")
 	public final int anInt3078;
 
-	@OriginalMember(owner = "runetek4.client!jk", name = "w", descriptor = "[B")
+	@OriginalMember(owner = "client!jk", name = "w", descriptor = "[B")
 	public final byte[] aByteArray44;
 
-	@OriginalMember(owner = "runetek4.client!jk", name = "C", descriptor = "[B")
+	@OriginalMember(owner = "client!jk", name = "C", descriptor = "[B")
 	public final byte[] aByteArray45 = new byte[128];
 
-	@OriginalMember(owner = "runetek4.client!jk", name = "D", descriptor = "[Lclient!kj;")
-	public final PcmSound[] aClass3_Sub16_Sub1Array1 = new PcmSound[128];
+	@OriginalMember(owner = "client!jk", name = "D", descriptor = "[Lclient!kj;")
+	public final PcmSound[] sounds = new PcmSound[128];
 
-	@OriginalMember(owner = "runetek4.client!jk", name = "H", descriptor = "[S")
+	@OriginalMember(owner = "client!jk", name = "H", descriptor = "[S")
 	public final short[] aShortArray36 = new short[128];
 
-	@OriginalMember(owner = "runetek4.client!jk", name = "I", descriptor = "[Lclient!wh;")
+	@OriginalMember(owner = "client!jk", name = "I", descriptor = "[Lclient!wh;")
 	public final Midi_Class162[] aMidiClass162Array1 = new Midi_Class162[128];
 
-	@OriginalMember(owner = "runetek4.client!jk", name = "<init>", descriptor = "([B)V")
+	@OriginalMember(owner = "client!jk", name = "<init>", descriptor = "([B)V")
 	public MidiInstrument(@OriginalArg(0) byte[] arg0) {
 		@Pc(29) int local29 = 0;
 		this.aByteArray44 = new byte[128];
@@ -150,7 +155,7 @@ public final class MidiInstrument extends Node {
 				local430 = local38.gVarInt();
 			}
 			this.aShortArray36[local432] = (short) (this.aShortArray36[local432] + ((local430 - 1 & 0x2) << 14));
-			this.anIntArray289[local432] = local430;
+			this.soundIds[local432] = local430;
 			local375--;
 		}
 		local375 = 0;
@@ -158,7 +163,7 @@ public final class MidiInstrument extends Node {
 		local428 = 0;
 		@Pc(496) int local496;
 		for (local496 = 0; local496 < 128; local496++) {
-			if (this.anIntArray289[local496] != 0) {
+			if (this.soundIds[local496] != 0) {
 				if (local375 == 0) {
 					local432 = local38.data[local57++] - 1;
 					if (local55.length > local428) {
@@ -175,7 +180,7 @@ public final class MidiInstrument extends Node {
 		local428 = 0;
 		local496 = 0;
 		for (@Pc(550) int local550 = 0; local550 < 128; local550++) {
-			if (this.anIntArray289[local550] != 0) {
+			if (this.soundIds[local550] != 0) {
 				if (local375 == 0) {
 					local496 = local38.data[local108++] + 16 << 2;
 					if (local428 < local106.length) {
@@ -185,7 +190,7 @@ public final class MidiInstrument extends Node {
 					}
 				}
 				local375--;
-				this.aByteArray43[local550] = (byte) local496;
+				this.keyPan[local550] = (byte) local496;
 			}
 		}
 		local428 = 0;
@@ -193,7 +198,7 @@ public final class MidiInstrument extends Node {
 		@Pc(609) Midi_Class162 local609 = null;
 		@Pc(611) int local611;
 		for (local611 = 0; local611 < 128; local611++) {
-			if (this.anIntArray289[local611] != 0) {
+			if (this.soundIds[local611] != 0) {
 				if (local375 == 0) {
 					local609 = local242[local187[local428]];
 					if (local428 >= local159.length) {
@@ -217,7 +222,7 @@ public final class MidiInstrument extends Node {
 				} else {
 					local375 = -1;
 				}
-				if (this.anIntArray289[local664] > 0) {
+				if (this.soundIds[local664] > 0) {
 					local611 = local38.g1() + 1;
 				}
 			}
@@ -316,14 +321,14 @@ public final class MidiInstrument extends Node {
 			local954 = local327[0];
 			@Pc(1133) int local1133 = local327[1] << 1;
 			for (local734 = 0; local734 < local954; local734++) {
-				local1066 = local1133 + (this.aByteArray43[local734] & 0xFF);
+				local1066 = local1133 + (this.keyPan[local734] & 0xFF);
 				if (local1066 < 0) {
 					local1066 = 0;
 				}
 				if (local1066 > 128) {
 					local1066 = 128;
 				}
-				this.aByteArray43[local734] = (byte) local1066;
+				this.keyPan[local734] = (byte) local1066;
 			}
 			local734 = 2;
 			@Pc(1207) int local1207;
@@ -335,27 +340,27 @@ public final class MidiInstrument extends Node {
 				for (local1016 = local954; local1016 < local995; local1016++) {
 					local1031 = method3825(local1014, local995 - local954);
 					local1014 += local1207 - local1133;
-					@Pc(1237) int local1237 = local1031 + (this.aByteArray43[local1016] & 0xFF);
+					@Pc(1237) int local1237 = local1031 + (this.keyPan[local1016] & 0xFF);
 					if (local1237 < 0) {
 						local1237 = 0;
 					}
 					if (local1237 > 128) {
 						local1237 = 128;
 					}
-					this.aByteArray43[local1016] = (byte) local1237;
+					this.keyPan[local1016] = (byte) local1237;
 				}
 				local954 = local995;
 				local1133 = local1207;
 			}
 			for (local1066 = local954; local1066 < 128; local1066++) {
-				local1207 = (this.aByteArray43[local1066] & 0xFF) + local1133;
+				local1207 = (this.keyPan[local1066] & 0xFF) + local1133;
 				if (local1207 < 0) {
 					local1207 = 0;
 				}
 				if (local1207 > 128) {
 					local1207 = 128;
 				}
-				this.aByteArray43[local1066] = (byte) local1207;
+				this.keyPan[local1066] = (byte) local1207;
 			}
 		}
 		for (local664 = 0; local664 < local194; local664++) {
@@ -390,50 +395,50 @@ public final class MidiInstrument extends Node {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!jb", name = "a", descriptor = "(ILclient!ve;I)Lclient!jk;")
+	@OriginalMember(owner = "client!jb", name = "a", descriptor = "(ILclient!ve;I)Lclient!jk;")
 	public static MidiInstrument method2320(@OriginalArg(1) Js5 arg0, @OriginalArg(2) int arg1) {
 		@Pc(9) byte[] local9 = arg0.method4500(arg1);
 		return local9 == null ? null : new MidiInstrument(local9);
 	}
 
-	@OriginalMember(owner = "runetek4.client!sa", name = "c", descriptor = "(III)I")
+	@OriginalMember(owner = "client!sa", name = "c", descriptor = "(III)I")
 	public static int method3825(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1) {
 		@Pc(12) int local12 = arg0 >>> 31;
 		return (arg0 + local12) / arg1 - local12;
 	}
 
-	@OriginalMember(owner = "runetek4.client!jk", name = "d", descriptor = "(B)V")
-	public final void method2432() {
-		this.anIntArray289 = null;
+	@OriginalMember(owner = "client!jk", name = "d", descriptor = "(B)V")
+	public void release() {
+		this.soundIds = null;
 	}
 
-	@OriginalMember(owner = "runetek4.client!jk", name = "a", descriptor = "(I[ILclient!le;[B)Z")
-	public final boolean method2436(@OriginalArg(1) int[] arg0, @OriginalArg(2) SoundBank arg1, @OriginalArg(3) byte[] arg2) {
-		@Pc(8) int local8 = 0;
-		@Pc(10) PcmSound local10 = null;
-		@Pc(16) boolean local16 = true;
-		for (@Pc(18) int local18 = 0; local18 < 128; local18++) {
-			if (arg2 == null || arg2[local18] != 0) {
-				@Pc(35) int local35 = this.anIntArray289[local18];
-				if (local35 != 0) {
-					if (local8 != local35) {
-						local8 = local35--;
-						if ((local35 & 0x1) == 0) {
-							local10 = arg1.getSynthSound(local35 >> 2, arg0);
+	@OriginalMember(owner = "client!jk", name = "a", descriptor = "(I[ILclient!le;[B)Z")
+	public boolean isReady(@OriginalArg(2) SoundBank soundBank, @OriginalArg(1) int[] samplingRates, @OriginalArg(3) byte[] keys) {
+		@Pc(8) int prevSoundId = 0;
+		@Pc(10) PcmSound sound = null;
+		@Pc(16) boolean ready = true;
+		for (@Pc(18) int i = 0; i < 128; i++) {
+			if (keys == null || keys[i] != 0) {
+				@Pc(35) int soundId = this.soundIds[i];
+				if (soundId != 0) {
+					if (prevSoundId != soundId) {
+						prevSoundId = soundId--;
+						if ((soundId & 0x1) == 0) {
+							sound = soundBank.getSynthSound(soundId >> 2, samplingRates);
 						} else {
-							local10 = arg1.getVorbisSound(local35 >> 2, arg0);
+							sound = soundBank.getVorbisSound(soundId >> 2, samplingRates);
 						}
-						if (local10 == null) {
-							local16 = false;
+						if (sound == null) {
+							ready = false;
 						}
 					}
-					if (local10 != null) {
-						this.aClass3_Sub16_Sub1Array1[local18] = local10;
-						this.anIntArray289[local18] = 0;
+					if (sound != null) {
+						this.sounds[i] = sound;
+						this.soundIds[i] = 0;
 					}
 				}
 			}
 		}
-		return local16;
+		return ready;
 	}
 }

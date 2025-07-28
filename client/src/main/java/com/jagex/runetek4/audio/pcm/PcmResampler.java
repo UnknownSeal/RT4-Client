@@ -5,19 +5,19 @@ import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-@OriginalClass("runetek4.client!vj")
+@OriginalClass("client!vj")
 public final class PcmResampler {
 
-	@OriginalMember(owner = "runetek4.client!vj", name = "k", descriptor = "I")
+	@OriginalMember(owner = "client!vj", name = "k", descriptor = "I")
 	private int outputRate;
 
-	@OriginalMember(owner = "runetek4.client!vj", name = "i", descriptor = "[[I")
+	@OriginalMember(owner = "client!vj", name = "i", descriptor = "[[I")
 	private int[][] anIntArrayArray40;
 
-	@OriginalMember(owner = "runetek4.client!vj", name = "e", descriptor = "I")
+	@OriginalMember(owner = "client!vj", name = "e", descriptor = "I")
 	private int inputRate;
 
-	@OriginalMember(owner = "runetek4.client!vj", name = "<init>", descriptor = "(II)V")
+	@OriginalMember(owner = "client!vj", name = "<init>", descriptor = "(II)V")
 	public PcmResampler(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
 		if (arg1 != arg0) {
 			@Pc(12) int local12 = gcd(arg1, arg0);
@@ -52,7 +52,7 @@ public final class PcmResampler {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!og", name = "a", descriptor = "(III)I")
+	@OriginalMember(owner = "client!og", name = "a", descriptor = "(III)I")
 	public static int gcd(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1) {
 		if (arg0 > 22050) {
 			arg1 = arg0;
@@ -66,7 +66,7 @@ public final class PcmResampler {
 		return arg1;
 	}
 
-	@OriginalMember(owner = "runetek4.client!vj", name = "a", descriptor = "([BB)[B")
+	@OriginalMember(owner = "client!vj", name = "a", descriptor = "([BB)[B")
 	public final byte[] method4520(@OriginalArg(0) byte[] arg0) {
 		if (this.anIntArrayArray40 != null) {
 			@Pc(31) int local31 = (int) ((long) arg0.length * (long) this.outputRate / (long) this.inputRate) + 14;
@@ -101,16 +101,16 @@ public final class PcmResampler {
 		return arg0;
 	}
 
-	@OriginalMember(owner = "runetek4.client!vj", name = "a", descriptor = "(IB)I")
-	public final int scaleRate(@OriginalArg(0) int arg0) {
+	@OriginalMember(owner = "client!vj", name = "a", descriptor = "(IB)I")
+	public int scaleRate(@OriginalArg(0) int arg0) {
 		if (this.anIntArrayArray40 != null) {
 			arg0 = (int) ((long) this.outputRate * (long) arg0 / (long) this.inputRate);
 		}
 		return arg0;
 	}
 
-	@OriginalMember(owner = "runetek4.client!vj", name = "a", descriptor = "(ZI)I")
-	public final int scalePosition(@OriginalArg(1) int arg0) {
+	@OriginalMember(owner = "client!vj", name = "a", descriptor = "(ZI)I")
+	public int scalePosition(@OriginalArg(1) int arg0) {
 		if (this.anIntArrayArray40 != null) {
 			arg0 = (int) ((long) this.outputRate * (long) arg0 / (long) this.inputRate) + 6;
 		}

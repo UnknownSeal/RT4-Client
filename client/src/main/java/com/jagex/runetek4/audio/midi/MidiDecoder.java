@@ -1,57 +1,58 @@
 package com.jagex.runetek4.audio.midi;
 
 import com.jagex.runetek4.core.io.Packet;
+
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-@OriginalClass("runetek4.client!ki")
+@OriginalClass("client!ki")
 public final class MidiDecoder {
 
-	@OriginalMember(owner = "runetek4.client!ki", name = "e", descriptor = "[B")
+	@OriginalMember(owner = "client!ki", name = "e", descriptor = "[B")
 	public static final byte[] STATUS_LENGTHS = new byte[] { 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 1, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
-	@OriginalMember(owner = "runetek4.client!ki", name = "b", descriptor = "[I")
+	@OriginalMember(owner = "client!ki", name = "b", descriptor = "[I")
 	public int[] times;
 
-	@OriginalMember(owner = "runetek4.client!ki", name = "c", descriptor = "[I")
+	@OriginalMember(owner = "client!ki", name = "c", descriptor = "[I")
 	private int[] positions;
 
-	@OriginalMember(owner = "runetek4.client!ki", name = "d", descriptor = "I")
+	@OriginalMember(owner = "client!ki", name = "d", descriptor = "I")
 	public int division;
 
-	@OriginalMember(owner = "runetek4.client!ki", name = "f", descriptor = "[I")
+	@OriginalMember(owner = "client!ki", name = "f", descriptor = "[I")
 	private int[] startPositions;
 
-	@OriginalMember(owner = "runetek4.client!ki", name = "g", descriptor = "J")
+	@OriginalMember(owner = "client!ki", name = "g", descriptor = "J")
 	private long startMillis;
 
-	@OriginalMember(owner = "runetek4.client!ki", name = "h", descriptor = "[I")
+	@OriginalMember(owner = "client!ki", name = "h", descriptor = "[I")
 	private int[] statuses;
 
-	@OriginalMember(owner = "runetek4.client!ki", name = "i", descriptor = "I")
+	@OriginalMember(owner = "client!ki", name = "i", descriptor = "I")
 	private int tempo;
 
-	@OriginalMember(owner = "runetek4.client!ki", name = "a", descriptor = "Lclient!wa;")
+	@OriginalMember(owner = "client!ki", name = "a", descriptor = "Lclient!wa;")
 	private final Packet packet = new Packet(null);
 
-	@OriginalMember(owner = "runetek4.client!ki", name = "<init>", descriptor = "()V")
+	@OriginalMember(owner = "client!ki", name = "<init>", descriptor = "()V")
 	public MidiDecoder() {
 	}
 
-	@OriginalMember(owner = "runetek4.client!ki", name = "<init>", descriptor = "([B)V")
+	@OriginalMember(owner = "client!ki", name = "<init>", descriptor = "([B)V")
 	public MidiDecoder(@OriginalArg(0) byte[] bytes) {
 		this.init(bytes);
 	}
 
-	@OriginalMember(owner = "runetek4.client!ki", name = "a", descriptor = "(I)J")
-	public final long getTimeMillis(@OriginalArg(0) int time) {
+	@OriginalMember(owner = "client!ki", name = "a", descriptor = "(I)J")
+	public long getTimeMillis(@OriginalArg(0) int time) {
 		return this.startMillis + (long) time * (long) this.tempo;
 	}
 
-	@OriginalMember(owner = "runetek4.client!ki", name = "b", descriptor = "()Z")
-	public final boolean hasNextTrack() {
+	@OriginalMember(owner = "client!ki", name = "b", descriptor = "()Z")
+	public boolean hasNextTrack() {
 		@Pc(3) int tracks = this.positions.length;
 		for (@Pc(5) int i = 0; i < tracks; i++) {
 			if (this.positions[i] >= 0) {
@@ -61,8 +62,8 @@ public final class MidiDecoder {
 		return true;
 	}
 
-	@OriginalMember(owner = "runetek4.client!ki", name = "a", descriptor = "(J)V")
-	public final void setStartMillis(@OriginalArg(0) long millis) {
+	@OriginalMember(owner = "client!ki", name = "a", descriptor = "(J)V")
+	public void setStartMillis(@OriginalArg(0) long millis) {
 		this.startMillis = millis;
 		@Pc(6) int tracks = this.positions.length;
 		for (@Pc(8) int i = 0; i < tracks; i++) {
@@ -74,33 +75,33 @@ public final class MidiDecoder {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!ki", name = "c", descriptor = "()Z")
-	public final boolean isValid() {
+	@OriginalMember(owner = "client!ki", name = "c", descriptor = "()Z")
+	public boolean isValid() {
 		return this.packet.data != null;
 	}
 
-	@OriginalMember(owner = "runetek4.client!ki", name = "d", descriptor = "()I")
-	public final int getTrackCount() {
+	@OriginalMember(owner = "client!ki", name = "d", descriptor = "()I")
+	public int getTrackCount() {
 		return this.positions.length;
 	}
 
-	@OriginalMember(owner = "runetek4.client!ki", name = "b", descriptor = "(I)I")
-	public final int getNextEvent(@OriginalArg(0) int track) {
+	@OriginalMember(owner = "client!ki", name = "b", descriptor = "(I)I")
+	public int getNextEvent(@OriginalArg(0) int track) {
 		return this.getNextEventInternal(track);
 	}
 
-	@OriginalMember(owner = "runetek4.client!ki", name = "c", descriptor = "(I)V")
-	public final void loadTrackPosition(@OriginalArg(0) int track) {
+	@OriginalMember(owner = "client!ki", name = "c", descriptor = "(I)V")
+	public void loadTrackPosition(@OriginalArg(0) int track) {
 		this.packet.offset = this.positions[track];
 	}
 
-	@OriginalMember(owner = "runetek4.client!ki", name = "d", descriptor = "(I)V")
-	public final void addDeltaTime(@OriginalArg(0) int track) {
+	@OriginalMember(owner = "client!ki", name = "d", descriptor = "(I)V")
+	public void addDeltaTime(@OriginalArg(0) int track) {
 		@Pc(4) int deltaTime = this.packet.gVarInt();
 		this.times[track] += deltaTime;
 	}
 
-	@OriginalMember(owner = "runetek4.client!ki", name = "a", descriptor = "(II)I")
+	@OriginalMember(owner = "client!ki", name = "a", descriptor = "(II)I")
 	private int getNextEvent(@OriginalArg(0) int arg0, @OriginalArg(1) int status) {
 		@Pc(12) int event;
 		if (status != 255) {
@@ -133,7 +134,7 @@ public final class MidiDecoder {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!ki", name = "e", descriptor = "(I)I")
+	@OriginalMember(owner = "client!ki", name = "e", descriptor = "(I)I")
 	private int getNextEventInternal(@OriginalArg(0) int track) {
 		@Pc(7) byte statusByte = this.packet.data[this.packet.offset];
 		@Pc(13) int status;
@@ -160,8 +161,8 @@ public final class MidiDecoder {
 		return 0;
 	}
 
-	@OriginalMember(owner = "runetek4.client!ki", name = "a", descriptor = "([B)V")
-	public final void init(@OriginalArg(0) byte[] bytes) {
+	@OriginalMember(owner = "client!ki", name = "a", descriptor = "([B)V")
+	public void init(@OriginalArg(0) byte[] bytes) {
 		this.packet.data = bytes;
 		this.packet.offset = 10;
 		@Pc(12) int tracks = this.packet.g2();
@@ -187,13 +188,13 @@ public final class MidiDecoder {
 		this.statuses = new int[tracks];
 	}
 
-	@OriginalMember(owner = "runetek4.client!ki", name = "f", descriptor = "(I)V")
-	public final void saveTrackPosition(@OriginalArg(0) int track) {
+	@OriginalMember(owner = "client!ki", name = "f", descriptor = "(I)V")
+	public void saveTrackPosition(@OriginalArg(0) int track) {
 		this.positions[track] = this.packet.offset;
 	}
 
-	@OriginalMember(owner = "runetek4.client!ki", name = "e", descriptor = "()I")
-	public final int getNextTrack() {
+	@OriginalMember(owner = "client!ki", name = "e", descriptor = "()I")
+	public int getNextTrack() {
 		@Pc(3) int tracks = this.positions.length;
 		@Pc(5) int track = -1;
 		@Pc(7) int minTime = Integer.MAX_VALUE;
@@ -206,8 +207,8 @@ public final class MidiDecoder {
 		return track;
 	}
 
-	@OriginalMember(owner = "runetek4.client!ki", name = "f", descriptor = "()V")
-	public final void release() {
+	@OriginalMember(owner = "client!ki", name = "f", descriptor = "()V")
+	public void release() {
 		this.packet.data = null;
 		this.startPositions = null;
 		this.positions = null;
@@ -215,8 +216,8 @@ public final class MidiDecoder {
 		this.statuses = null;
 	}
 
-	@OriginalMember(owner = "runetek4.client!ki", name = "g", descriptor = "()V")
-	public final void loadEndOfTrackPosition() {
+	@OriginalMember(owner = "client!ki", name = "g", descriptor = "()V")
+	public void loadEndOfTrackPosition() {
 		this.packet.offset = -1;
 	}
 }
