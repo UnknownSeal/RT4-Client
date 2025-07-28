@@ -19,6 +19,7 @@ public final class Bzip2Decompressor {
 			arg1.strmNextInPtr++;
 			arg1.strmTotalInLo32++;
 			if (arg1.strmTotalInLo32 == 0) {
+				// TODO why is this here?
 			}
 		}
 		@Pc(17) int local17 = arg1.bsBuff >> arg1.bsLive - arg0 & (0x1 << arg0) - 1;
@@ -130,6 +131,7 @@ public final class Bzip2Decompressor {
 		@Pc(215) int local215 = arg0.strmTotalOutLo32;
 		arg0.strmTotalOutLo32 += local27 - local25;
 		if (arg0.strmTotalOutLo32 < local215) {
+			// TODO why is this here?
 		}
 		arg0.stateOutCh = local2;
 		arg0.stateOutLen = local5;
@@ -217,6 +219,7 @@ public final class Bzip2Decompressor {
 				uc = getUchar(s);
 				uc = getBit(s);
 				if (uc != 0) {
+					// TODO why is this here?
 				}
 				s.origPtr = 0;
 				uc = getUchar(s);

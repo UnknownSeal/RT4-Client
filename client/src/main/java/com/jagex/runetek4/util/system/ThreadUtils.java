@@ -22,7 +22,7 @@ public class ThreadUtils {
     public static void sleepUninterruptibly(@OriginalArg(0) long arg0) {
         try {
             Thread.sleep(arg0);
-        } catch (@Pc(11) InterruptedException local11) {
+        } catch (@Pc(11) InterruptedException ignored) {
         }
     }
 }

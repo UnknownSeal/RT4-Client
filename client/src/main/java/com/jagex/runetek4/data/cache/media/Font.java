@@ -283,7 +283,7 @@ public abstract class Font extends SecondaryNode {
 									}
 									x += nameIcon.innerWidth;
 									local8 = 0;
-								} catch (@Pc(168) Exception local168) {
+								} catch (@Pc(168) Exception ignored) {
 								}
 							} else {
 								this.parseStringForEffects(effectString);
@@ -403,7 +403,7 @@ public abstract class Font extends SecondaryNode {
 									@Pc(121) int local121 = local43.substring(4).parseInt();
 									local9 += this.nameIcons[local121].innerWidth;
 									local7 = 0;
-								} catch (@Pc(133) Exception local133) {
+								} catch (@Pc(133) Exception ignored) {
 								}
 							}
 							continue;
@@ -964,7 +964,7 @@ public abstract class Font extends SecondaryNode {
 									}
 									arg1 += local146.innerWidth;
 									local8 = 0;
-								} catch (@Pc(197) Exception local197) {
+								} catch (@Pc(197) Exception ignored) {
 								}
 							} else {
 								this.parseStringForEffects(local44);

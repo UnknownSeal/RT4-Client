@@ -76,7 +76,7 @@ public final class BufferedSocket implements Runnable {
 								}
 								try {
 									this.wait();
-								} catch (@Pc(21) InterruptedException exception) {
+								} catch (@Pc(21) InterruptedException ignored) {
 								}
 							}
 							off = this.readPointer;
@@ -98,7 +98,7 @@ public final class BufferedSocket implements Runnable {
 						if (this.socket != null) {
 							this.socket.close();
 						}
-					} catch (@Pc(119) IOException exception) {
+					} catch (@Pc(119) IOException ignored) {
 					}
 					this.buffer = null;
 					break;
@@ -214,7 +214,7 @@ public final class BufferedSocket implements Runnable {
 			if (this.thread.status == 1) {
 				try {
 					((Thread) this.thread.result).join();
-				} catch (@Pc(59) InterruptedException exception) {
+				} catch (@Pc(59) InterruptedException ignored) {
 				}
 			}
 		}

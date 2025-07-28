@@ -417,6 +417,7 @@ public final class Js5CachedResourceProvider extends Js5ResourceProvider {
 			}
 			if (this.groupStatus[group] != 1) {
 				if (this.groupStatus[group] != 0) {
+					// TODO Why is this here?
 				}
 				this.verifiedGroups++;
 				this.groupStatus[group] = 1;

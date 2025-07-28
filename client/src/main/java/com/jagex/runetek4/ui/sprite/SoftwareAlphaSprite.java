@@ -140,7 +140,7 @@ public final class SoftwareAlphaSprite extends SoftwareSprite {
 				local57 += local33;
 				local63 += SoftwareRaster.width;
 			}
-		} catch (@Pc(164) Exception local164) {
+		} catch (@Pc(164) Exception ignored) {
 		}
 	}
 
@@ -701,7 +701,7 @@ public final class SoftwareAlphaSprite extends SoftwareSprite {
 				local63 += local39;
 				local69 += SoftwareRaster.width;
 			}
-		} catch (@Pc(186) Exception local186) {
+		} catch (@Pc(186) Exception ignored) {
 		}
 	}
 
@@ -736,7 +736,7 @@ public final class SoftwareAlphaSprite extends SoftwareSprite {
 				local63 += local39;
 				local69 += SoftwareRaster.width;
 			}
-		} catch (@Pc(186) Exception local186) {
+		} catch (@Pc(186) Exception ignored) {
 		}
 	}
 

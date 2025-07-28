@@ -156,6 +156,7 @@ public final class TextureOpHslAdjust extends TextureOp {
 					this.anInt2557 = 4096;
 				}
 				for (this.anInt2551 += this.anInt2546; this.anInt2551 < 0; this.anInt2551 += 4096) {
+					// TODO why is this here?
 				}
 				while (this.anInt2551 > 4096) {
 					this.anInt2551 -= 4096;

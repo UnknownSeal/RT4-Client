@@ -209,7 +209,7 @@ public final class GlRenderer {
 	public static void swapBuffers() {
 		try {
 			drawable.swapBuffers();
-		} catch (@Pc(3) Exception local3) {
+		} catch (@Pc(3) Exception ignored) {
 		}
 	}
 
@@ -349,7 +349,7 @@ public final class GlRenderer {
 			glContext.release();
 			glContext.destroy();
 			glDrawable.setRealized(false);
-		} catch (@Pc(30) Throwable ex) {
+		} catch (@Pc(30) Throwable ignored) {
 		}
 	}
 
@@ -489,7 +489,7 @@ public final class GlRenderer {
 		if (gl != null) {
 			try {
 				MaterialManager.quit(); // MaterialManager
-			} catch (@Pc(5) Throwable local5) {
+			} catch (@Pc(5) Throwable ignored) {
 			}
 		}
 
@@ -504,11 +504,11 @@ public final class GlRenderer {
 					if (GLContext.getCurrent() == context) {
 						context.release();
 					}
-				} catch (@Pc(17) Throwable ex) {
+				} catch (@Pc(17) Throwable ignored) {
 				}
 				try {
 					context.destroy();
-				} catch (@Pc(21) Throwable ex) {
+				} catch (@Pc(21) Throwable ignored) {
 				}
 			}
 		}
@@ -516,7 +516,7 @@ public final class GlRenderer {
 		if (drawable != null) {
 			try {
 				drawable.setRealized(false);
-			} catch (@Pc(30) Throwable ex) {
+			} catch (@Pc(30) Throwable ignored) {
 			}
 		}
 		window = null;
@@ -695,7 +695,7 @@ public final class GlRenderer {
 					if (result != 0) {
 						break;
 					}
-				} catch (@Pc(41) Exception local41) {
+				} catch (@Pc(41) Exception ignored) {
 				}
 				if (swapBuffersAttempts++ > 5) {
 					return -2;

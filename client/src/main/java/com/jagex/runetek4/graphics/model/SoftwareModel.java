@@ -892,7 +892,7 @@ public final class SoftwareModel extends Model {
 		}
 		try {
 			this.draw(project1, local190, key, b - d, c - d + 2, arg10);
-		} catch (@Pc(713) Exception local713) {
+		} catch (@Pc(713) Exception ignored) {
 		}
 	}
 
@@ -1106,7 +1106,7 @@ public final class SoftwareModel extends Model {
 				}
 			}
 			this.draw(false, arg6 >= 0L, arg6, this.aShort35, this.aShort35 << 1, null);
-		} catch (@Pc(240) RuntimeException local240) {
+		} catch (@Pc(240) RuntimeException ignored) {
 		}
 	}
 
@@ -1908,7 +1908,7 @@ public final class SoftwareModel extends Model {
 				}
 			}
 			this.draw(false, false, 0L, this.aShort35, this.aShort35 << 1, null);
-		} catch (@Pc(234) RuntimeException local234) {
+		} catch (@Pc(234) RuntimeException ignored) {
 		}
 	}
 

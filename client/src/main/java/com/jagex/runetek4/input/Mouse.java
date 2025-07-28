@@ -162,6 +162,7 @@ public final class Mouse implements MouseListener, MouseMotionListener, FocusLis
 			anInt2467 = 0;
 			anInt1759 = 0;
 			@Pc(14) int local14 = arg0.getModifiers();
+			// TODO why is this here?
 			if ((local14 & 0x10) == 0) {
 			}
 			if ((local14 & 0x4) == 0) {
@@ -203,6 +204,7 @@ public final class Mouse implements MouseListener, MouseMotionListener, FocusLis
 				anInt1759 = 2;
 			}
 			@Pc(29) int local29 = arg0.getModifiers();
+			// TODO why is this here?
 			if ((local29 & 0x10) == 0) {
 			}
 			if ((local29 & 0x4) != 0) {

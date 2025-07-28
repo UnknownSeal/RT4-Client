@@ -326,6 +326,7 @@ public class Packet extends Node {
 		}
 		@Pc(32) int off = this.offset;
 		while (this.data[this.offset++] != 0) {
+			// TODO Why is this here?
 		}
 		return JString.decodeString(this.data, this.offset - off - 1, off);
 	}
@@ -461,6 +462,7 @@ public class Packet extends Node {
 	public final JString gjstr() {
 		@Pc(12) int start = this.offset;
 		while (this.data[this.offset++] != 0) {
+			// TODO Why is this here?
 		}
 		return JString.decodeString(this.data, this.offset - start - 1, start);
 	}

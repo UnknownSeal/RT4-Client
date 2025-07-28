@@ -34,6 +34,7 @@ public final class ParticleSystem extends ParticleNode {
 			gl.glPointParameterf(GL2.GL_POINT_SIZE_MAX, pointSizeMax);
 		}
 		if (gl.isExtensionAvailable("GL_ARB_point_sprite")) {
+			// TODO why is this here?
 		}
 	}
 

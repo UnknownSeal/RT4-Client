@@ -844,7 +844,7 @@ public class SoftwareSprite extends Sprite {
 				local57 += local33;
 				local63 += SoftwareRaster.width;
 			}
-		} catch (@Pc(128) Exception local128) {
+		} catch (@Pc(128) Exception ignored) {
 		}
 	}
 
@@ -1013,7 +1013,7 @@ public class SoftwareSprite extends Sprite {
 				local63 += local39;
 				local69 += SoftwareRaster.width;
 			}
-		} catch (@Pc(144) Exception local144) {
+		} catch (@Pc(144) Exception ignored) {
 		}
 	}
 
@@ -1153,7 +1153,7 @@ public class SoftwareSprite extends Sprite {
 				local63 += local39;
 				local69 += SoftwareRaster.width;
 			}
-		} catch (@Pc(150) Exception local150) {
+		} catch (@Pc(150) Exception ignored) {
 		}
 	}
 

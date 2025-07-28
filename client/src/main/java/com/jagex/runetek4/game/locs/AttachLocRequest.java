@@ -86,6 +86,7 @@ public final class AttachLocRequest extends Node {
 			if (entity != null) {
 				@Pc(63) LocType type = LocTypeList.get(request.locId);
 				if (Player.plane < 3) {
+					// TODO why is this here?
 				}
 				@Pc(86) int width;
 				@Pc(83) int length;

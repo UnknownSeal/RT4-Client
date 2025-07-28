@@ -229,7 +229,7 @@ public final class Keyboard implements KeyListener, FocusListener {
 		if (method != null) {
 			try {
 				method.invoke(component, Boolean.FALSE);
-			} catch (@Pc(25) Throwable local25) {
+			} catch (@Pc(25) Throwable ignored) {
 			}
 		}
 		component.addKeyListener(instance);

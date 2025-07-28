@@ -46,9 +46,6 @@ public final class SignLink implements Runnable {
 	@OriginalMember(owner = "signlink!ll", name = "b", descriptor = "Ljava/lang/String;")
 	private static String osArch;
 
-	@OriginalMember(owner = "signlink!ll", name = "u", descriptor = "Ljava/lang/reflect/Method;")
-	public static Method setFocusCycleRoot;
-
 	@OriginalMember(owner = "signlink!ll", name = "r", descriptor = "Ljava/lang/reflect/Method;")
 	public static Method setFocusTraversalKeysEnabled;
 
@@ -111,7 +108,7 @@ public final class SignLink implements Runnable {
 			if (cacheLocation.length() <= 0 || (new File(cacheLocation)).exists()) {
 				try {
 					return new FileOnDisk(new File(cacheLocation, "jagex_" + cacheSubDir + "_preferences.dat"), "rw", 10000L);
-				} catch (@Pc(84) Exception exception) {
+				} catch (@Pc(84) Exception ignored) {
 				}
 			}
 		}

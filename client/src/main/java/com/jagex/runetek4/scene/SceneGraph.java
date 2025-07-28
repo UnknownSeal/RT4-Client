@@ -893,9 +893,11 @@ public class SceneGraph {
                     if ((occludeFlags[level][z0][local2204] & 0x1) != 0) {
                         local200 = level;
                         for (x0 = local2204; x0 > 0 && (occludeFlags[level][z0][x0 - 1] & 0x1) != 0; x0--) {
+                            // TODO why is this here?
                         }
                         underlayId = level;
                         for (z = local2204; z < 104 && (occludeFlags[level][z0][z + 1] & 0x1) != 0; z++) {
+                            // TODO why is this here?
                         }
                         label454: while (underlayId > 0) {
                             for (dx = x0; dx <= z; dx++) {
@@ -927,10 +929,12 @@ public class SceneGraph {
                     }
                     if ((occludeFlags[level][z0][local2204] & 0x2) != 0) {
                         for (x0 = z0; x0 > 0 && (occludeFlags[level][x0 - 1][local2204] & 0x2) != 0; x0--) {
+                            // TODO why is this here?
                         }
                         local200 = level;
                         underlayId = level;
                         for (z = z0; z < 104 && (occludeFlags[level][z + 1][local2204] & 0x2) != 0; z++) {
+                            // TODO why is this here?
                         }
                         label508: while (underlayId > 0) {
                             for (dx = x0; dx <= z; dx++) {
@@ -964,8 +968,10 @@ public class SceneGraph {
                         x0 = z0;
                         z = z0;
                         for (underlayId = local2204; underlayId > 0 && (occludeFlags[level][z0][underlayId - 1] & 0x4) != 0; underlayId--) {
+                            // TODO why is this here?
                         }
                         for (local200 = local2204; local200 < 104 && (occludeFlags[level][z0][local200 + 1] & 0x4) != 0; local200++) {
+                            // TODO why is this here?
                         }
                         label562: while (x0 > 0) {
                             for (dx = underlayId; dx <= local200; dx++) {
@@ -5228,6 +5234,7 @@ public class SceneGraph {
                         }
                     }
                 } else if (local223 == 2) {
+                    // TODO why is this here?
                 }
             }
         }

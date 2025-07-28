@@ -73,7 +73,7 @@ public final class Js5NetQueue {
 			if (this.latency > 30000) {
 				try {
 					this.updateServerSocket.closeGracefully();
-				} catch (@Pc(43) Exception local43) {
+				} catch (@Pc(43) Exception ignored) {
 				}
 				this.updateServerSocket = null;
 			}
@@ -198,7 +198,7 @@ public final class Js5NetQueue {
 		} catch (@Pc(644) IOException ioException) {
 			try {
 				this.updateServerSocket.closeGracefully();
-			} catch (@Pc(650) Exception closeException) {
+			} catch (@Pc(650) Exception ignored) {
 			}
 			this.response = -2;
 			this.errors++;
@@ -220,7 +220,7 @@ public final class Js5NetQueue {
 		} catch (@Pc(39) IOException local39) {
 			try {
 				this.updateServerSocket.closeGracefully();
-			} catch (@Pc(45) Exception local45) {
+			} catch (@Pc(45) Exception ignored) {
 			}
 			this.errors++;
 			this.response = -2;
@@ -246,7 +246,7 @@ public final class Js5NetQueue {
 		} catch (@Pc(42) IOException local42) {
 			try {
 				this.updateServerSocket.closeGracefully();
-			} catch (@Pc(48) Exception local48) {
+			} catch (@Pc(48) Exception ignored) {
 			}
 			this.errors++;
 			this.response = -2;
@@ -266,7 +266,7 @@ public final class Js5NetQueue {
 		if (this.updateServerSocket != null) {
 			try {
 				this.updateServerSocket.closeGracefully();
-			} catch (@Pc(14) Exception exception) {
+			} catch (@Pc(14) Exception ignored) {
 			}
 			this.updateServerSocket = null;
 		}
@@ -291,7 +291,7 @@ public final class Js5NetQueue {
 							} catch (@Pc(107) IOException local107) {
 								try {
 									this.updateServerSocket.closeGracefully();
-								} catch (@Pc(113) Exception local113) {
+								} catch (@Pc(113) Exception ignored) {
 								}
 								this.response = -2;
 								this.errors++;
@@ -318,7 +318,7 @@ public final class Js5NetQueue {
 	public void rekey() {
 		try {
 			this.updateServerSocket.closeGracefully();
-		} catch (@Pc(17) Exception local17) {
+		} catch (@Pc(17) Exception ignored) {
 		}
 		this.response = -1;
 		this.encryptionKey = (byte) (Math.random() * 255.0D + 1.0D);
@@ -371,7 +371,7 @@ public final class Js5NetQueue {
 		} catch (@Pc(37) IOException local37) {
 			try {
 				this.updateServerSocket.closeGracefully();
-			} catch (@Pc(43) Exception local43) {
+			} catch (@Pc(43) Exception ignored) {
 			}
 			this.errors++;
 			this.updateServerSocket = null;

@@ -133,6 +133,7 @@ public final class TextureOpBricks extends TextureOp {
 			@Pc(18) int local18 = 0;
 			@Pc(25) int local25;
 			for (local25 = Texture.heightFractions[arg0] + this.anInt3675; local25 < 0; local25 += 4096) {
+				// TODO why is this here?
 			}
 			while (local25 > 4096) {
 				local25 -= 4096;
@@ -150,6 +151,7 @@ public final class TextureOpBricks extends TextureOp {
 					@Pc(114) int local114 = local74 ? this.anInt3678 : -this.anInt3678;
 					@Pc(126) int local126;
 					for (local126 = Texture.widthFractions[local100] + (this.anInt3679 * local114 >> 12); local126 < 0; local126 += 4096) {
+						// TODO why is this here?
 					}
 					while (local126 > 4096) {
 						local126 -= 4096;

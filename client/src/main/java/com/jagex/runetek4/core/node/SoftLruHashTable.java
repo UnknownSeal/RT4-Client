@@ -29,6 +29,7 @@ public final class SoftLruHashTable {
 		this.capacity = capacity;
 		@Pc(11) int i;
 		for (i = 1; i + i < capacity; i += i) {
+			// TODO why is this here?
 		}
 		this.available = capacity;
 		this.hashTable = new HashTable(i);

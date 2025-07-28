@@ -84,6 +84,7 @@ public final class QuickChatCatType extends SecondaryNode {
 				this.phraseShortcuts[local38] = method3933(arg0.g1s());
 			}
 		} else if (opcode == 4) {
+			// TODO why is this here?
 		}
 	}
 

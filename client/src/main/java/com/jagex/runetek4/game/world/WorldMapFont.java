@@ -227,7 +227,7 @@ public final class WorldMapFont {
 				if (c == 'f' || c == 't' || c == 'w' || c == 'v' || c == 'k' || c == 'x' || c == 'y' || c == 'A' || c == 'V' || c == 'W') {
 					imageWidth++;
 				}
-			} catch (@Pc(45) Exception local45) {
+			} catch (@Pc(45) Exception ignored) {
 			}
 		}
 		@Pc(48) int maxAscent = metrics.getMaxAscent();
@@ -247,7 +247,7 @@ public final class WorldMapFont {
 		@Pc(123) PixelGrabber grabber = new PixelGrabber(image, 0, 0, imageWidth, imageHeight, pixels, 0, imageWidth);
 		try {
 			grabber.grabPixels();
-		} catch (@Pc(128) Exception local128) {
+		} catch (@Pc(128) Exception ignored) {
 		}
 		image.flush();
 		@Pc(134) int x0 = 0;

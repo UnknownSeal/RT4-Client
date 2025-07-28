@@ -54,6 +54,7 @@ public class Game {
             return;
         }
         for (@Pc(34) int i = 0; i < 100 && Protocol.readPacket(); i++) {
+            // TODO why is this here?
         }
         if (Client.gameState != 30) {
             return;

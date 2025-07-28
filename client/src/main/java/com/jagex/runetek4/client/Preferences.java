@@ -117,13 +117,13 @@ public class Preferences {
                 @Pc(39) Packet local39 = encode();
                 local11.write(local39.data, local39.offset, 0);
             }
-        } catch (@Pc(49) Exception local49) {
+        } catch (@Pc(49) Exception ignored) {
         }
         try {
             if (local11 != null) {
                 local11.close();
             }
-        } catch (@Pc(56) Exception local56) {
+        } catch (@Pc(56) Exception ignored) {
         }
     }
 
@@ -190,13 +190,13 @@ public class Preferences {
                 }
                 decode(new Packet(local106));
             }
-        } catch (@Pc(151) Exception local151) {
+        } catch (@Pc(151) Exception ignored) {
         }
         try {
             if (local48 != null) {
                 local48.close();
             }
-        } catch (@Pc(158) Exception local158) {
+        } catch (@Pc(158) Exception ignored) {
         }
     }
 

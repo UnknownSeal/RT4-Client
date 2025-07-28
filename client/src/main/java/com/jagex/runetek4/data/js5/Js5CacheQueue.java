@@ -57,7 +57,7 @@ public final class Js5CacheQueue implements Runnable {
 		}
 		try {
 			this.thread.join();
-		} catch (@Pc(23) InterruptedException local23) {
+		} catch (@Pc(23) InterruptedException ignored) {
 		}
 		this.thread = null;
 	}
@@ -121,7 +121,7 @@ public final class Js5CacheQueue implements Runnable {
 				if (local19 == null) {
 					try {
 						this.queue.wait();
-					} catch (@Pc(35) InterruptedException local35) {
+					} catch (@Pc(35) InterruptedException ignored) {
 					}
 					continue;
 				}

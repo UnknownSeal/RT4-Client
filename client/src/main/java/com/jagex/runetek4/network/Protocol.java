@@ -1670,6 +1670,7 @@ public class Protocol {
                                         }
                                         username2 &= Long.MAX_VALUE;
                                         for (i = 0; ClanChat.size > i && (username2 != ClanChat.members[i].nodeId || world != ClanChat.members[i].world); i++) {
+                                            // TODO why is this here?
                                         }
                                         if (i < ClanChat.size) {
                                             while (ClanChat.size - 1 > i) {
