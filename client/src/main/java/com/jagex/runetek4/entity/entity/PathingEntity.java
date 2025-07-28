@@ -119,7 +119,7 @@ public abstract class PathingEntity extends Entity {
 	public final int[] movementQueueX = new int[10];
 
 	@OriginalMember(owner = "client!fe", name = "B", descriptor = "I")
-	public int anInt3360 = 0;
+	public int animationFrame = 0;
 
 	@OriginalMember(owner = "client!fe", name = "O", descriptor = "I")
 	public int primarySeqId = -1;
@@ -134,7 +134,7 @@ public abstract class PathingEntity extends Entity {
 	public int faceX = 0;
 
 	@OriginalMember(owner = "client!fe", name = "Q", descriptor = "I")
-	public int anInt3371 = 0;
+	public int animationLoopCounter = 0;
 
 	@OriginalMember(owner = "client!fe", name = "E", descriptor = "I")
 	public int faceY = 0;
@@ -191,7 +191,7 @@ public abstract class PathingEntity extends Entity {
 	public int movementQueueSize = 0;
 
 	@OriginalMember(owner = "client!fe", name = "Zb", descriptor = "I")
-	public int anInt3420 = 0;
+	public int animationDelay = 0;
 
 	@OriginalMember(owner = "client!fe", name = "cc", descriptor = "I")
 	private int anInt3423 = 0;
@@ -221,7 +221,7 @@ public abstract class PathingEntity extends Entity {
 	public int chatEffect = 0;
 
 	@OriginalMember(owner = "client!fe", name = "T", descriptor = "I")
-	public int anInt3373 = -1;
+	public int animationDirection = -1;
 
 	@OriginalMember(owner = "client!fe", name = "Fb", descriptor = "Z")
 	public boolean seqStretches = false;
@@ -251,7 +251,7 @@ public abstract class PathingEntity extends Entity {
 	public final int[] hitDamages = new int[4];
 
 	@OriginalMember(owner = "client!fe", name = "Ib", descriptor = "I")
-	public int anInt3405 = 0;
+	public int movementQueueSnapshot = 0;
 
 	@OriginalMember(owner = "client!fe", name = "y", descriptor = "I")
 	private int anInt3357 = 0;
@@ -266,7 +266,7 @@ public abstract class PathingEntity extends Entity {
 	public int lastSeenLoop = 0;
 
 	@OriginalMember(owner = "client!fe", name = "ec", descriptor = "I")
-	public int anInt3425 = 0;
+	public int animationFrameDelay = 0;
 
 	@OriginalMember(owner = "client!fe", name = "Wb", descriptor = "Lclient!na;")
 	public JString chatMessage = null;
@@ -315,7 +315,7 @@ public abstract class PathingEntity extends Entity {
 		this.movementQueueX[0] = x;
 		this.movementQueueZ[0] = z;
 		this.movementQueueSize = 0;
-		this.anInt3405 = 0;
+		this.movementQueueSnapshot = 0;
 		this.zFine = arg0 * 64 + this.movementQueueZ[0] * 128;
 		this.xFine = arg0 * 64 + this.movementQueueX[0] * 128;
 		if (GlRenderer.enabled && PlayerList.self == this) {
@@ -645,7 +645,7 @@ public abstract class PathingEntity extends Entity {
 	@OriginalMember(owner = "client!fe", name = "c", descriptor = "(I)V")
 	public final void method2689() {
 		this.movementQueueSize = 0;
-		this.anInt3405 = 0;
+		this.movementQueueSnapshot = 0;
 	}
 
 	@OriginalMember(owner = "client!fe", name = "d", descriptor = "(I)I")

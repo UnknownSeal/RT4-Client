@@ -738,7 +738,7 @@ public class Protocol {
                     count = inboundBuffer.g1();
                     i = inboundBuffer.g1();
                     if (setVerifyID(verifyID)) {
-                        Camera.method3849(slot, world, count, xp, i);
+                        Camera.setCameraLookAtTarget(slot, world, count, xp, i);
                     }
                     opcode = -1;
                     return true;
@@ -1107,7 +1107,7 @@ public class Protocol {
                             count = inboundBuffer.g1();
                             i = inboundBuffer.g1();
                             if (setVerifyID(verifyID)) {
-                                Camera.method2722(true, count, slot, i, world, xp);
+                                Camera.setCameraTargetPosition(true, count, slot, i, world, xp);
                             }
                             opcode = -1;
                             return true;
@@ -2513,7 +2513,7 @@ public class Protocol {
             player.anInt3386 = inboundBuffer.g2le() + Client.loop;
             player.anInt3431 = inboundBuffer.p1neg();
             player.movementQueueSize = 1;
-            player.anInt3405 = 0;
+            player.movementQueueSnapshot = 0;
         }
         if ((flags & 0x20) != 0) {
             player.chatMessage = inboundBuffer.gjstr();
@@ -2954,26 +2954,26 @@ public class Protocol {
             @Pc(10) SeqType seqType = SeqTypeList.get(animationId);
             @Pc(13) int local13 = seqType.exactmove;
             if (local13 == 1) {
-                npc.anInt3373 = 1;
-                npc.anInt3425 = 0;
-                npc.anInt3360 = 0;
-                npc.anInt3371 = 0;
-                npc.anInt3420 = arg0;
-                SoundPlayer.playSeqSound(npc.zFine, seqType, npc.xFine, false, npc.anInt3425);
+                npc.animationDirection = 1;
+                npc.animationFrameDelay = 0;
+                npc.animationFrame = 0;
+                npc.animationLoopCounter = 0;
+                npc.animationDelay = arg0;
+                SoundPlayer.playSeqSound(npc.zFine, seqType, npc.xFine, false, npc.animationFrameDelay);
             }
             if (local13 == 2) {
-                npc.anInt3371 = 0;
+                npc.animationLoopCounter = 0;
             }
         } else if (animationId == -1 || npc.primarySeqId == -1 || SeqTypeList.get(animationId).priority >= SeqTypeList.get(npc.primarySeqId).priority) {
-            npc.anInt3360 = 0;
+            npc.animationFrame = 0;
             npc.primarySeqId = animationId;
-            npc.anInt3373 = 1;
-            npc.anInt3371 = 0;
-            npc.anInt3420 = arg0;
-            npc.anInt3405 = npc.movementQueueSize;
-            npc.anInt3425 = 0;
+            npc.animationDirection = 1;
+            npc.animationLoopCounter = 0;
+            npc.animationDelay = arg0;
+            npc.movementQueueSnapshot = npc.movementQueueSize;
+            npc.animationFrameDelay = 0;
             if (npc.primarySeqId != -1) {
-                SoundPlayer.playSeqSound(npc.zFine, SeqTypeList.get(npc.primarySeqId), npc.xFine, false, npc.anInt3425);
+                SoundPlayer.playSeqSound(npc.zFine, SeqTypeList.get(npc.primarySeqId), npc.xFine, false, npc.animationFrameDelay);
             }
         }
     }

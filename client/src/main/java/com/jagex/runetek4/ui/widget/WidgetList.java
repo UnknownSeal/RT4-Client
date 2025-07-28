@@ -214,8 +214,8 @@ public class WidgetList {
             return;
         }
         if (Camera.cameraType == 2) {
-            Camera.renderX = Camera.anInt5375 << 7;
-            Camera.renderZ = Camera.anInt4232 << 7;
+            Camera.renderX = Camera.targetTileZ << 7;
+            Camera.renderZ = Camera.targetTileX << 7;
         } else {
             Camera.updateLoginScreenCamera();
         }
@@ -1174,7 +1174,7 @@ public class WidgetList {
                                     lowPriorityRequests.addTail(local1430);
                                 }
                             }
-                            if (Camera.aBoolean16 && widget.onMinimapUnlock != null) {
+                            if (Camera.shouldReverse && widget.onMinimapUnlock != null) {
                                 request = new WidgetEvent();
                                 request.source = widget;
                                 request.arguments = widget.onMinimapUnlock;

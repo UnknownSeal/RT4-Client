@@ -681,16 +681,16 @@ public final class Client extends GameShell {
 		FriendList.friendCount = 0;
 		VarpDomain.resetVarBits();
 		DelayedStateChange.clear();
-		Camera.anInt5230 = 0;
-		Camera.anInt5217 = 0;
-		Camera.anInt5765 = 0;
-		Camera.anInt5203 = 0;
-		Camera.anInt4232 = 0;
-		Camera.anInt5375 = 0;
-		Camera.anInt1744 = 0;
-		Camera.anInt5449 = 0;
-		Camera.anInt4612 = 0;
-		Camera.anInt5225 = 0;
+		Camera.minAngleStep = 0;
+		Camera.angleInterpolationSpeed = 0;
+		Camera.lookAtTileX = 0;
+		Camera.heightOffset = 0;
+		Camera.targetTileX = 0;
+		Camera.targetTileZ = 0;
+		Camera.lookAtHeightOffset = 0;
+		Camera.lookAtTileZ = 0;
+		Camera.interpolationSpeed = 0;
+		Camera.minInterpolationStep = 0;
 		for (i = 0; i < VarcDomain.varcs.length; i++) {
 			VarcDomain.varcs[i] = -1;
 		}

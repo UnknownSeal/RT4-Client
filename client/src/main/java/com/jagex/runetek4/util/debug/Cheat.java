@@ -3,7 +3,6 @@ package com.jagex.runetek4.util.debug;
 import com.jagex.runetek4.ui.chat.Chat;
 import com.jagex.runetek4.client.*;
 import com.jagex.runetek4.config.types.seq.SeqType;
-import com.jagex.runetek4.entity.entity.Player;
 import com.jagex.runetek4.entity.entity.PlayerAppearance;
 import com.jagex.runetek4.game.logic.PathFinder;
 import com.jagex.runetek4.graphics.gl.GlCleaner;
@@ -140,7 +139,7 @@ public class Cheat {
                 local29 = Runtime.getRuntime();
                 local38 = (int) ((local29.totalMemory() - local29.freeMemory()) / 1024L);
                 Chat.addMessage(null, 0, JString.concatenate(new JString[] {aClass100_893, JString.parseInt(local38), DEBUG_MEM_UNIT}));
-                Player.method501();
+                GlRenderer.updateOpenGLModelBuffers();
                 Client.unloadSoft();
                 for (local117 = 0; local117 < 10; local117++) {
                     System.gc();

@@ -1587,8 +1587,8 @@ public final class ClientScriptRunner {
 			@Pc(248) float local248 = (float) Camera.cameraPitch * 0.17578125F;
 			@Pc(253) float local253 = (float) Camera.cameraYaw * 0.17578125F;
 			if (Camera.cameraType == 3) {
-				local248 = Camera.aFloat15 * 360.0F / 6.2831855F;
-				local253 = Camera.aFloat10 * 360.0F / 6.2831855F;
+				local248 = Camera.pitchRadians * 360.0F / 6.2831855F;
+				local253 = Camera.yawRadians * 360.0F / 6.2831855F;
 			}
 			GlRenderer.method4171(arg2, arg4, arg3, arg0, arg3 / 2 + arg2, arg4 - -(arg0 / 2), local248, local253, anInt5029, anInt5029);
 		} else {
@@ -4789,7 +4789,7 @@ public final class ClientScriptRunner {
 														componentId = scriptIntValues[isp];
 														interfaceType = scriptIntValues[isp + 1];
 														if (componentId >= 0 && componentId < 2) {
-															Camera.anIntArrayArrayArray9[componentId] = new int[interfaceType << 1][4];
+															Camera.cameraSplines[componentId] = new int[interfaceType << 1][4];
 														}
 														continue;
 													}
@@ -4802,15 +4802,15 @@ public final class ClientScriptRunner {
 														start = scriptIntValues[isp + 4];
 														@Pc(8108) int local8108 = scriptIntValues[isp + 6];
 														childId = scriptIntValues[isp + 5];
-														if (componentId >= 0 && componentId < 2 && Camera.anIntArrayArrayArray9[componentId] != null && interfaceType >= 0 && Camera.anIntArrayArrayArray9[componentId].length > interfaceType) {
-															Camera.anIntArrayArrayArray9[componentId][interfaceType] = new int[] { (j >> 14 & 0x3FFF) * 128, i, (j & 0x3FFF) * 128, local8108 };
-															Camera.anIntArrayArrayArray9[componentId][interfaceType + 1] = new int[] { (start >> 14 & 0x3FFF) * 128, childId, (start & 0x3FFF) * 128 };
+														if (componentId >= 0 && componentId < 2 && Camera.cameraSplines[componentId] != null && interfaceType >= 0 && Camera.cameraSplines[componentId].length > interfaceType) {
+															Camera.cameraSplines[componentId][interfaceType] = new int[] { (j >> 14 & 0x3FFF) * 128, i, (j & 0x3FFF) * 128, local8108 };
+															Camera.cameraSplines[componentId][interfaceType + 1] = new int[] { (start >> 14 & 0x3FFF) * 128, childId, (start & 0x3FFF) * 128 };
 														}
 														continue;
 													}
 													if (opcode == 5407) {
 														isp--;
-														componentId = Camera.anIntArrayArrayArray9[scriptIntValues[isp]].length >> 1;
+														componentId = Camera.cameraSplines[scriptIntValues[isp]].length >> 1;
 														scriptIntValues[isp++] = componentId;
 														continue;
 													}
@@ -4931,7 +4931,7 @@ public final class ClientScriptRunner {
 														i = scriptIntValues[isp + 3];
 														j = scriptIntValues[isp + 2];
 														interfaceType = scriptIntValues[isp + 1];
-														Camera.method2722(false, j, interfaceType, i, (componentId & 0x3FFF) - Camera.originZ, (componentId >> 14 & 0x3FFF) - Camera.originX);
+														Camera.setCameraTargetPosition(false, j, interfaceType, i, (componentId & 0x3FFF) - Camera.originZ, (componentId >> 14 & 0x3FFF) - Camera.originX);
 														continue;
 													}
 													if (opcode == 5501) {
@@ -4940,7 +4940,7 @@ public final class ClientScriptRunner {
 														componentId = scriptIntValues[isp];
 														i = scriptIntValues[isp + 3];
 														j = scriptIntValues[isp + 2];
-														Camera.method3849(interfaceType, (componentId & 0x3FFF) - Camera.originZ, j, (componentId >> 14 & 0x3FFF) - Camera.originX, i);
+														Camera.setCameraLookAtTarget(interfaceType, (componentId & 0x3FFF) - Camera.originZ, j, (componentId >> 14 & 0x3FFF) - Camera.originX, i);
 														continue;
 													}
 													if (opcode == 5502) {
@@ -4949,25 +4949,25 @@ public final class ClientScriptRunner {
 														if (componentId >= 2) {
 															throw new RuntimeException();
 														}
-														Camera.anInt3718 = componentId;
+														Camera.cameraSplineId = componentId;
 														interfaceType = scriptIntValues[isp + 1];
-														if (Camera.anIntArrayArrayArray9[Camera.anInt3718].length >> 1 <= interfaceType + 1) {
+														if (Camera.cameraSplines[Camera.cameraSplineId].length >> 1 <= interfaceType + 1) {
 															throw new RuntimeException();
 														}
-														Camera.anInt3125 = interfaceType;
-														Camera.anInt5224 = 0;
-														Camera.anInt5101 = scriptIntValues[isp + 2];
-														Camera.anInt5843 = scriptIntValues[isp + 3];
+														Camera.positionKeyframe = interfaceType;
+														Camera.animationTimer = 0;
+														Camera.minAnimationSpeed = scriptIntValues[isp + 2];
+														Camera.maxAnimationSpeed = scriptIntValues[isp + 3];
 														j = scriptIntValues[isp + 4];
 														if (j >= 2) {
 															throw new RuntimeException();
 														}
-														Camera.anInt1694 = j;
+														Camera.lookAtSplineId = j;
 														i = scriptIntValues[isp + 5];
-														if (Camera.anIntArrayArrayArray9[Camera.anInt1694].length >> 1 <= i + 1) {
+														if (Camera.cameraSplines[Camera.lookAtSplineId].length >> 1 <= i + 1) {
 															throw new RuntimeException();
 														}
-														Camera.anInt2119 = i;
+														Camera.lookAtKeyframe = i;
 														Camera.cameraType = 3;
 														continue;
 													}

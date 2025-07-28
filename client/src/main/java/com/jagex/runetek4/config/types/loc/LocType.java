@@ -827,7 +827,7 @@ public final class LocType {
 			if (this.hillchange != 0) {
 				local330.method4110(this.hillchange, this.hillchange_value, local235, arg2, arg5, arg1, arg4, arg9);
 			}
-			local330.method4111(this.active == 0 && !this.aBoolean214, true, true, this.active == 0, true, false);
+			local330.updateBuffers(this.active == 0 && !this.aBoolean214, true, true, this.active == 0, true, false);
 			aLocEntity_1.model = local330;
 			local330.aBoolean259 = local298;
 			aLocEntity_1.sprite = local265;
@@ -931,7 +931,7 @@ public final class LocType {
 				return null;
 			}
 			local46.createBones();
-			local46.method4111(false, false, false, false, false, true);
+			local46.updateBuffers(false, false, false, false, false, true);
 			LocTypeList.aClass99_36.put(local46, local30);
 		}
 		@Pc(80) boolean local80 = false;

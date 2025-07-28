@@ -539,7 +539,7 @@ public class Game {
                                                 }
                                             }
                                             if (Camera.cameraType == 1) {
-                                                Camera.method4273();
+                                                Camera.updatePlayerCamera();
                                             } else if (Camera.cameraType == 2) {
                                                 Camera.updateLockedCamera();
                                             } else {

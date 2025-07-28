@@ -62,9 +62,9 @@ public final class Npc extends PathingEntity {
 		if (this.type == null) {
 			return;
 		}
-		@Pc(29) SeqType local29 = this.primarySeqId != -1 && this.anInt3420 == 0 ? SeqTypeList.get(this.primarySeqId) : null;
+		@Pc(29) SeqType local29 = this.primarySeqId != -1 && this.animationDelay == 0 ? SeqTypeList.get(this.primarySeqId) : null;
 		@Pc(53) SeqType local53 = this.movementSeqId == -1 || this.movementSeqId == this.getBasType().readyanim && local29 != null ? null : SeqTypeList.get(this.movementSeqId);
-		@Pc(74) Model body = this.type.getBodyModel(this.aPathingEntityClass147Array3, this.anInt3388, this.anInt3407, this.anInt3373, this.anInt3360, this.anInt3425, local53, this.anInt3396, local29);
+		@Pc(74) Model body = this.type.getBodyModel(this.aPathingEntityClass147Array3, this.anInt3388, this.anInt3407, this.animationDirection, this.animationFrame, this.animationFrameDelay, local53, this.anInt3396, local29);
 		if (body == null) {
 			return;
 		}
@@ -75,7 +75,7 @@ public final class Npc extends PathingEntity {
 		}
 		@Pc(140) Model model;
 		if (Preferences.characterShadowsOn && local84.spotshadow) {
-			model = ShadowModelList.method1043(this.type.spotshadowtrans_1, this.seqStretches, local53 == null ? local29 : local53, this.xFine, this.type.spotshadowcolour_2, this.zFine, this.type.spotshadowcolour_1, this.type.size, body, orientation, local53 == null ? this.anInt3425 : this.anInt3407, this.anInt3424, this.type.spotshadowtrans_2);
+			model = ShadowModelList.method1043(this.type.spotshadowtrans_1, this.seqStretches, local53 == null ? local29 : local53, this.xFine, this.type.spotshadowcolour_2, this.zFine, this.type.spotshadowcolour_1, this.type.size, body, orientation, local53 == null ? this.animationFrameDelay : this.anInt3407, this.anInt3424, this.type.spotshadowtrans_2);
 			if (GlRenderer.enabled) {
 				@Pc(144) float local144 = GlRenderer.method4179();
 				@Pc(146) float local146 = GlRenderer.method4166();

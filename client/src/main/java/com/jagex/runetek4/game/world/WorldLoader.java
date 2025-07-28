@@ -400,10 +400,10 @@ public class WorldLoader {
         if (arg4) {
             Camera.renderX -= dx * 128;
             Camera.renderZ -= dz * 128;
-            Camera.anInt4232 -= dz;
-            Camera.anInt5449 -= dx;
-            Camera.anInt5765 -= dz;
-            Camera.anInt5375 -= dx;
+            Camera.targetTileX -= dz;
+            Camera.lookAtTileZ -= dx;
+            Camera.lookAtTileX -= dz;
+            Camera.targetTileZ -= dx;
         } else {
             Camera.cameraType = 1;
         }

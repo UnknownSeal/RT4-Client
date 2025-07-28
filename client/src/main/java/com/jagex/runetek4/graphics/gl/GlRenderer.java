@@ -7,6 +7,9 @@ import java.nio.IntBuffer;
 
 import com.jagex.runetek4.client.GameShell;
 import com.jagex.runetek4.client.Preferences;
+import com.jagex.runetek4.game.world.WorldLoader;
+import com.jagex.runetek4.scene.SceneGraph;
+import com.jagex.runetek4.scene.tile.Tile;
 import com.jagex.runetek4.util.string.JString;
 import com.jagex.runetek4.graphics.lighting.FogManager;
 import com.jagex.runetek4.graphics.lighting.LightingManager;
@@ -827,5 +830,79 @@ public final class GlRenderer {
 	@OriginalMember(owner = "client!gj", name = "b", descriptor = "(I)V")
 	public static void resetMaterial() {
 		MaterialManager.setMaterial(0, 0);
+	}
+
+	@OriginalMember(owner = "client!bf", name = "c", descriptor = "(I)V")
+	public static void updateOpenGLModelBuffers() {
+		if (!enabled || WorldLoader.aBoolean252) {
+			return;
+		}
+		@Pc(14) Tile[][][] sceneTiles = SceneGraph.tiles;
+		for (@Pc(22) int level = 0; level < sceneTiles.length; level++) {
+			@Pc(30) Tile[][] levelTiles = sceneTiles[level];
+			for (@Pc(32) int x = 0; x < levelTiles.length; x++) {
+				for (@Pc(42) int z = 0; z < levelTiles[x].length; z++) {
+					@Pc(54) Tile tile = levelTiles[x][z];
+					if (tile != null) {
+						@Pc(71) GlModel glModel;
+						if (tile.groundDecor != null && tile.groundDecor.entity instanceof GlModel) {
+							glModel = (GlModel) tile.groundDecor.entity;
+							if ((tile.groundDecor.key & Long.MIN_VALUE) == 0L) {
+								glModel.updateBuffers(false, true, true, false, true, true);
+							} else {
+								glModel.updateBuffers(true, true, true, true, true, true);
+							}
+						}
+						if (tile.wallDecor != null) {
+							if (tile.wallDecor.primary instanceof GlModel) {
+								glModel = (GlModel) tile.wallDecor.primary;
+								if ((tile.wallDecor.key & Long.MIN_VALUE) == 0L) {
+									glModel.updateBuffers(false, true, true, false, true, true);
+								} else {
+									glModel.updateBuffers(true, true, true, true, true, true);
+								}
+							}
+							if (tile.wallDecor.secondary instanceof GlModel) {
+								glModel = (GlModel) tile.wallDecor.secondary;
+								if ((Long.MIN_VALUE & tile.wallDecor.key) == 0L) {
+									glModel.updateBuffers(false, true, true, false, true, true);
+								} else {
+									glModel.updateBuffers(true, true, true, true, true, true);
+								}
+							}
+						}
+						if (tile.wall != null) {
+							if (tile.wall.primary instanceof GlModel) {
+								glModel = (GlModel) tile.wall.primary;
+								if ((tile.wall.key & Long.MIN_VALUE) == 0L) {
+									glModel.updateBuffers(false, true, true, false, true, true);
+								} else {
+									glModel.updateBuffers(true, true, true, true, true, true);
+								}
+							}
+							if (tile.wall.secondary instanceof GlModel) {
+								glModel = (GlModel) tile.wall.secondary;
+								if ((Long.MIN_VALUE & tile.wall.key) == 0L) {
+									glModel.updateBuffers(false, true, true, false, true, true);
+								} else {
+									glModel.updateBuffers(true, true, true, true, true, true);
+								}
+							}
+						}
+						for (@Pc(270) int sceneryIndex = 0; sceneryIndex < tile.sceneryLen; sceneryIndex++) {
+							if (tile.scenery[sceneryIndex].entity instanceof GlModel) {
+								@Pc(293) GlModel sceneryModel = (GlModel) tile.scenery[sceneryIndex].entity;
+								if ((Long.MIN_VALUE & tile.scenery[sceneryIndex].key) == 0L) {
+									sceneryModel.updateBuffers(false, true, true, false, true, true);
+								} else {
+									sceneryModel.updateBuffers(true, true, true, true, true, true);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		WorldLoader.aBoolean252 = true;
 	}
 }

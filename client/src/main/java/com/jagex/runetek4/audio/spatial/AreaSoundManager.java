@@ -300,4 +300,14 @@ public class AreaSoundManager {
             }
         }
     }
+
+    @OriginalMember(owner = "runetek4.client!rg", name = "a", descriptor = "(Lclient!e;I)V")
+    public static void updatePlayerAreaSound(@OriginalArg(0) Player player) {
+        @Pc(12) AreaSound exisitngSound = (AreaSound) playerSounds.get(player.username.encode37());
+        if (exisitngSound == null) {
+            add(player.movementQueueZ[0], null, 0, null, player.movementQueueX[0], Player.plane, player);
+        } else {
+            exisitngSound.update();
+        }
+    }
 }

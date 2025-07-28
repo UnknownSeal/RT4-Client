@@ -2,7 +2,6 @@ package com.jagex.runetek4.entity.entity;
 
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.audio.core.SoundPlayer;
-import com.jagex.runetek4.audio.spatial.AreaSound;
 import com.jagex.runetek4.audio.spatial.AreaSoundManager;
 import com.jagex.runetek4.config.types.spotanim.SpotAnimType;
 import com.jagex.runetek4.client.GameShell;
@@ -14,11 +13,9 @@ import com.jagex.runetek4.config.types.seq.SeqTypeList;
 import com.jagex.runetek4.config.types.spotanim.SpotAnimTypeList;
 import com.jagex.runetek4.config.types.bas.BasType;
 import com.jagex.runetek4.config.types.seq.SeqType;
-import com.jagex.runetek4.game.world.WorldLoader;
 import com.jagex.runetek4.graphics.effects.ParticleSystem;
 import com.jagex.runetek4.game.logic.HintArrowManager;
 import com.jagex.runetek4.game.inventory.Equipment;
-import com.jagex.runetek4.graphics.gl.GlModel;
 import com.jagex.runetek4.graphics.gl.GlRenderer;
 import com.jagex.runetek4.util.string.JString;
 import com.jagex.runetek4.game.map.MapMarker;
@@ -26,8 +23,6 @@ import com.jagex.runetek4.graphics.model.Model;
 import com.jagex.runetek4.graphics.model.SoftwareModel;
 import com.jagex.runetek4.graphics.lighting.ShadowModelList;
 import com.jagex.runetek4.entity.loc.Loc;
-import com.jagex.runetek4.scene.SceneGraph;
-import com.jagex.runetek4.scene.tile.Tile;
 import com.jagex.runetek4.ui.sprite.Sprites;
 import com.jagex.runetek4.ui.widget.MiniMap;
 import com.jagex.runetek4.ui.components.Crosshair;
@@ -148,106 +143,32 @@ public final class Player extends PathingEntity {
         return local14;
     }
 
-	@OriginalMember(owner = "client!bf", name = "c", descriptor = "(I)V")
-	public static void method501() {
-		if (!GlRenderer.enabled || WorldLoader.aBoolean252) {
-			return;
-		}
-		@Pc(14) Tile[][][] local14 = SceneGraph.tiles;
-		for (@Pc(22) int local22 = 0; local22 < local14.length; local22++) {
-			@Pc(30) Tile[][] local30 = local14[local22];
-			for (@Pc(32) int local32 = 0; local32 < local30.length; local32++) {
-				for (@Pc(42) int local42 = 0; local42 < local30[local32].length; local42++) {
-					@Pc(54) Tile local54 = local30[local32][local42];
-					if (local54 != null) {
-						@Pc(71) GlModel local71;
-						if (local54.groundDecor != null && local54.groundDecor.entity instanceof GlModel) {
-							local71 = (GlModel) local54.groundDecor.entity;
-							if ((local54.groundDecor.key & Long.MIN_VALUE) == 0L) {
-								local71.method4111(false, true, true, false, true, true);
-							} else {
-								local71.method4111(true, true, true, true, true, true);
-							}
-						}
-						if (local54.wallDecor != null) {
-							if (local54.wallDecor.primary instanceof GlModel) {
-								local71 = (GlModel) local54.wallDecor.primary;
-								if ((local54.wallDecor.key & Long.MIN_VALUE) == 0L) {
-									local71.method4111(false, true, true, false, true, true);
-								} else {
-									local71.method4111(true, true, true, true, true, true);
-								}
-							}
-							if (local54.wallDecor.secondary instanceof GlModel) {
-								local71 = (GlModel) local54.wallDecor.secondary;
-								if ((Long.MIN_VALUE & local54.wallDecor.key) == 0L) {
-									local71.method4111(false, true, true, false, true, true);
-								} else {
-									local71.method4111(true, true, true, true, true, true);
-								}
-							}
-						}
-						if (local54.wall != null) {
-							if (local54.wall.primary instanceof GlModel) {
-								local71 = (GlModel) local54.wall.primary;
-								if ((local54.wall.key & Long.MIN_VALUE) == 0L) {
-									local71.method4111(false, true, true, false, true, true);
-								} else {
-									local71.method4111(true, true, true, true, true, true);
-								}
-							}
-							if (local54.wall.secondary instanceof GlModel) {
-								local71 = (GlModel) local54.wall.secondary;
-								if ((Long.MIN_VALUE & local54.wall.key) == 0L) {
-									local71.method4111(false, true, true, false, true, true);
-								} else {
-									local71.method4111(true, true, true, true, true, true);
-								}
-							}
-						}
-						for (@Pc(270) int local270 = 0; local270 < local54.sceneryLen; local270++) {
-							if (local54.scenery[local270].entity instanceof GlModel) {
-								@Pc(293) GlModel local293 = (GlModel) local54.scenery[local270].entity;
-								if ((Long.MIN_VALUE & local54.scenery[local270].key) == 0L) {
-									local293.method4111(false, true, true, false, true, true);
-								} else {
-									local293.method4111(true, true, true, true, true, true);
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-		WorldLoader.aBoolean252 = true;
-	}
-
 	@OriginalMember(owner = "runetek4.client!pa", name = "a", descriptor = "(IIILclient!e;)V")
-	public static void animate(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) Player arg2) {
-		if (arg1 == arg2.primarySeqId && arg1 != -1) {
-			@Pc(89) SeqType local89 = SeqTypeList.get(arg1);
-			@Pc(92) int local92 = local89.exactmove;
-			if (local92 == 1) {
-				arg2.anInt3420 = arg0;
-				arg2.anInt3360 = 0;
-				arg2.anInt3373 = 1;
-				arg2.anInt3425 = 0;
-				arg2.anInt3371 = 0;
-				SoundPlayer.playSeqSound(arg2.zFine, local89, arg2.xFine, PlayerList.self == arg2, arg2.anInt3425);
+	public static void animate(@OriginalArg(1) int delay, @OriginalArg(2) int sequenceId, @OriginalArg(3) Player player) {
+		if (sequenceId == player.primarySeqId && sequenceId != -1) {
+			@Pc(89) SeqType sequence = SeqTypeList.get(sequenceId);
+			@Pc(92) int exactMoveType = sequence.exactmove;
+			if (exactMoveType == 1) {
+				player.animationDelay = delay;
+				player.animationFrame = 0;
+				player.animationDirection = 1;
+				player.animationFrameDelay = 0;
+				player.animationLoopCounter = 0;
+				SoundPlayer.playSeqSound(player.zFine, sequence, player.xFine, PlayerList.self == player, player.animationFrameDelay);
 			}
-			if (local92 == 2) {
-				arg2.anInt3371 = 0;
+			if (exactMoveType == 2) {
+				player.animationLoopCounter = 0;
 			}
-		} else if (arg1 == -1 || arg2.primarySeqId == -1 || SeqTypeList.get(arg1).priority >= SeqTypeList.get(arg2.primarySeqId).priority) {
-			arg2.anInt3373 = 1;
-			arg2.anInt3425 = 0;
-			arg2.anInt3420 = arg0;
-			arg2.anInt3405 = arg2.movementQueueSize;
-			arg2.anInt3371 = 0;
-			arg2.anInt3360 = 0;
-			arg2.primarySeqId = arg1;
-			if (arg2.primarySeqId != -1) {
-				SoundPlayer.playSeqSound(arg2.zFine, SeqTypeList.get(arg2.primarySeqId), arg2.xFine, arg2 == PlayerList.self, arg2.anInt3425);
+		} else if (sequenceId == -1 || player.primarySeqId == -1 || SeqTypeList.get(sequenceId).priority >= SeqTypeList.get(player.primarySeqId).priority) {
+			player.animationDirection = 1;
+			player.animationFrameDelay = 0;
+			player.animationDelay = delay;
+			player.movementQueueSnapshot = player.movementQueueSize;
+			player.animationLoopCounter = 0;
+			player.animationFrame = 0;
+			player.primarySeqId = sequenceId;
+			if (player.primarySeqId != -1) {
+				SoundPlayer.playSeqSound(player.zFine, SeqTypeList.get(player.primarySeqId), player.xFine, player == PlayerList.self, player.animationFrameDelay);
 			}
 		}
 	}
@@ -304,28 +225,18 @@ public final class Player extends PathingEntity {
 	}
 
 	@OriginalMember(owner = "runetek4.client!um", name = "a", descriptor = "(Z)V")
-	public static void setTutorialIsland() {
+	public static void updateTutorialIslandStatus() {
 		inTutorialIsland = 0;
-		@Pc(17) int local17 = Camera.originX + (PlayerList.self.xFine >> 7);
-		@Pc(25) int local25 = (PlayerList.self.zFine >> 7) + Camera.originZ;
-		if (local17 >= 3053 && local17 <= 3156 && local25 >= 3056 && local25 <= 3136) {
+		@Pc(17) int playerWorldX = Camera.originX + (PlayerList.self.xFine >> 7);
+		@Pc(25) int playerWorldZ = (PlayerList.self.zFine >> 7) + Camera.originZ;
+		if (playerWorldX >= 3053 && playerWorldX <= 3156 && playerWorldZ >= 3056 && playerWorldZ <= 3136) {
 			inTutorialIsland = 1;
 		}
-		if (local17 >= 3072 && local17 <= 3118 && local25 >= 9492 && local25 <= 9535) {
+		if (playerWorldX >= 3072 && playerWorldX <= 3118 && playerWorldZ >= 9492 && playerWorldZ <= 9535) {
 			inTutorialIsland = 1;
 		}
-		if (inTutorialIsland == 1 && local17 >= 3139 && local17 <= 3199 && local25 >= 3008 && local25 <= 3062) {
+		if (inTutorialIsland == 1 && playerWorldX >= 3139 && playerWorldX <= 3199 && playerWorldZ >= 3008 && playerWorldZ <= 3062) {
 			inTutorialIsland = 0;
-		}
-	}
-
-	@OriginalMember(owner = "runetek4.client!rg", name = "a", descriptor = "(Lclient!e;I)V")
-	public static void method4359(@OriginalArg(0) Player arg0) {
-		@Pc(12) AreaSound local12 = (AreaSound) AreaSoundManager.playerSounds.get(arg0.username.encode37());
-		if (local12 == null) {
-			AreaSoundManager.add(arg0.movementQueueZ[0], null, 0, null, arg0.movementQueueX[0], plane, arg0);
-		} else {
-			local12.update();
 		}
 	}
 
@@ -337,7 +248,7 @@ public final class Player extends PathingEntity {
 		if (Crosshair.CrosshairMode == 2) {
 			Sprites.crosses[Crosshair.CrosshairCycle / 100 + 4].render(Crosshair.x - 8, Crosshair.y + -8);
 		}
-		setTutorialIsland();
+		updateTutorialIslandStatus();
 	}
 
 	@OriginalMember(owner = "client!e", name = "c", descriptor = "(B)I")
@@ -434,7 +345,7 @@ public final class Player extends PathingEntity {
 			this.anInt1654 = arg0.g2();
 			this.anInt1670 = arg0.g2();
 			if (this.soundRadius != local134 || this.anInt1648 != local175 || this.anInt1658 != local309 || local312 != this.anInt1654 || this.anInt1670 != local315) {
-				method4359(this);
+				AreaSoundManager.updatePlayerAreaSound(this);
 			}
 		}
 		if (this.appearance == null) {
@@ -457,12 +368,12 @@ public final class Player extends PathingEntity {
 		if (this.appearance == null) {
 			return;
 		}
-		@Pc(25) SeqType local25 = this.primarySeqId != -1 && this.anInt3420 == 0 ? SeqTypeList.get(this.primarySeqId) : null;
+		@Pc(25) SeqType local25 = this.primarySeqId != -1 && this.animationDelay == 0 ? SeqTypeList.get(this.primarySeqId) : null;
 		@Pc(54) SeqType local54 = this.movementSeqId == -1 || this.lowMemory || this.movementSeqId == this.getBasType().readyanim && local25 != null ? null : SeqTypeList.get(this.movementSeqId);
-		@Pc(76) Model local76 = this.appearance.method1954(this.aPathingEntityClass147Array3, this.anInt3373, local54, local25, this.anInt3396, this.anInt3388, this.anInt3360, this.anInt3425, this.anInt3407);
+		@Pc(76) Model local76 = this.appearance.method1954(this.aPathingEntityClass147Array3, this.animationDirection, local54, local25, this.anInt3396, this.anInt3388, this.animationFrame, this.animationFrameDelay, this.anInt3407);
 		@Pc(79) int local79 = PlayerAppearance.getModelCacheSize();
 		if (GlRenderer.enabled && GameShell.maxMemory < 96 && local79 > 50) {
-			method501();
+			GlRenderer.updateOpenGLModelBuffers();
 		}
 		@Pc(102) int local102;
 		if (Client.modeWhat != 0 && local79 < 50) {
@@ -482,7 +393,7 @@ public final class Player extends PathingEntity {
 		this.minY = local76.getMinY();
 		@Pc(184) Model model;
 		if (Preferences.characterShadowsOn && (this.appearance.npcId == -1 || NpcTypeList.get(this.appearance.npcId).spotshadow)) {
-			model = ShadowModelList.method1043(160, this.seqStretches, local54 == null ? local25 : local54, this.xFine, 0, this.zFine, 0, 1, local76, arg0, local54 == null ? this.anInt3425 : this.anInt3407, this.anInt3424, 240);
+			model = ShadowModelList.method1043(160, this.seqStretches, local54 == null ? local25 : local54, this.xFine, 0, this.zFine, 0, 1, local76, arg0, local54 == null ? this.animationFrameDelay : this.anInt3407, this.anInt3424, 240);
 			if (GlRenderer.enabled) {
 				@Pc(188) float local188 = GlRenderer.method4179();
 				@Pc(190) float local190 = GlRenderer.method4166();
