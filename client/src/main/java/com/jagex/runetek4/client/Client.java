@@ -12,6 +12,7 @@ import com.jagex.runetek4.audio.core.SoundPlayer;
 import com.jagex.runetek4.audio.streaming.MusicPlayer;
 import com.jagex.runetek4.core.exceptions.TracingException;
 import com.jagex.runetek4.data.js5.*;
+import com.jagex.runetek4.game.world.WorldLoader;
 import com.jagex.runetek4.graphics.effects.ParticleSystem;
 import com.jagex.runetek4.game.logic.HintArrowManager;
 import com.jagex.runetek4.game.logic.PathFinder;
@@ -827,11 +828,11 @@ public final class Client extends GameShell {
 			Protocol.aClass95_4 = null;
 		}
 		if (statusCode == 25 || statusCode == 28) {
-			LoginManager.anInt5804 = 0;
+			WorldLoader.locLoadFailures = 0;
 			anInt5150 = 1;
-			LoginManager.loadingScreenState = 0;
+			WorldLoader.loadingScreenState = 0;
 			anInt1196 = 1;
-			LoginManager.mapFilesMissingCount = 0;
+			WorldLoader.mapFilesMissingCount = 0;
 			WorldMap.clear(true);
 		}
 		if (statusCode == 25 || statusCode == 10) {
@@ -920,17 +921,17 @@ public final class Client extends GameShell {
 		} else if (gameState == 10) {
 			WidgetList.method2460();
 		} else if (gameState == 25 || gameState == 28) {
-			if (LoginManager.loadingScreenState == 1) {
-				if (anInt5150 < LoginManager.mapFilesMissingCount) {
-					anInt5150 = LoginManager.mapFilesMissingCount;
+			if (WorldLoader.loadingScreenState == 1) {
+				if (anInt5150 < WorldLoader.mapFilesMissingCount) {
+					anInt5150 = WorldLoader.mapFilesMissingCount;
 				}
-				local80 = (anInt5150 - LoginManager.mapFilesMissingCount) * 50 / anInt5150;
+				local80 = (anInt5150 - WorldLoader.mapFilesMissingCount) * 50 / anInt5150;
 				Fonts.drawTextOnScreen(false, JString.concatenate(new JString[] { LocalizedText.LOADING, aClass100_974, JString.parseInt(local80), ClientScriptRunner.aClass100_80 }));
-			} else if (LoginManager.loadingScreenState == 2) {
-				if (anInt1196 < LoginManager.anInt5804) {
-					anInt1196 = LoginManager.anInt5804;
+			} else if (WorldLoader.loadingScreenState == 2) {
+				if (anInt1196 < WorldLoader.locLoadFailures) {
+					anInt1196 = WorldLoader.locLoadFailures;
 				}
-				local80 = (anInt1196 - LoginManager.anInt5804) * 50 / anInt1196 + 50;
+				local80 = (anInt1196 - WorldLoader.locLoadFailures) * 50 / anInt1196 + 50;
 				Fonts.drawTextOnScreen(false, JString.concatenate(new JString[] { LocalizedText.LOADING, aClass100_974, JString.parseInt(local80), ClientScriptRunner.aClass100_80 }));
 			} else {
 				Fonts.drawTextOnScreen(false, LocalizedText.LOADING);
@@ -1132,10 +1133,8 @@ public final class Client extends GameShell {
 			worldListAlternatePort = worldListId + 50000;
 			worldListDefaultPort = worldListId + 40000;
 		} else if (modeWhere == 2) {
-			worldListHostname = "127.0.0.1";
 			worldListAlternatePort = worldListId + 50000;
 			worldListDefaultPort = worldListId + 40000;
-
 		}
 		if (game == 1) {
 			Cheat.shiftClick = true;
@@ -1773,7 +1772,7 @@ public final class Client extends GameShell {
 			this.mainLoad();
 			GameShell.resetTimer();
 		} else if (gameState == 25 || gameState == 28) {
-			LoginManager.rebuildMap();
+			WorldLoader.rebuildMap();
 		}
 		if (gameState == 10) {
 			this.mainUpdate();

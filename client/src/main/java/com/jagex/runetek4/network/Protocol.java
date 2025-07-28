@@ -1,6 +1,7 @@
 package com.jagex.runetek4.network;
 
 import com.jagex.runetek4.*;
+import com.jagex.runetek4.game.world.WorldLoader;
 import com.jagex.runetek4.graphics.animation.ProjAnimNode;
 import com.jagex.runetek4.graphics.animation.ProjectileAnimation;
 import com.jagex.runetek4.graphics.animation.SpotAnim;
@@ -2292,27 +2293,27 @@ public class Protocol {
         if (!SceneGraph.dynamicMapRegion) {
             local13 = inboundBuffer.g2sub();
             local20 = (packetSize - inboundBuffer.offset) / 16;
-            LoginManager.regionsXteaKeys = new int[local20][4];
+            WorldLoader.regionsXteaKeys = new int[local20][4];
             for (local26 = 0; local26 < local20; local26++) {
                 for (local31 = 0; local31 < 4; local31++) {
-                    LoginManager.regionsXteaKeys[local26][local31] = inboundBuffer.p4rme();
+                    WorldLoader.regionsXteaKeys[local26][local31] = inboundBuffer.p4rme();
                 }
             }
             local26 = inboundBuffer.g1_alt3();
             local31 = inboundBuffer.g2();
             local60 = inboundBuffer.g2sub();
             local64 = inboundBuffer.g2sub();
-            LoginManager.regionBitPacked = new int[local20];
-            LoginManager.mapFilesBuffer = new byte[local20][];
-            LoginManager.npcSpawnsFilesBuffer = null;
-            LoginManager.underWaterMapFileIds = new int[local20];
-            LoginManager.locationMapFilesBuffer = new byte[local20][];
-            LoginManager.underWaterLocationsMapFilesBuffer = new byte[local20][];
-            LoginManager.npcSpawnsFileIds = null;
-            LoginManager.mapFileIds = new int[local20];
-            LoginManager.underWaterMapFilesBuffer = new byte[local20][];
-            LoginManager.locationsMapFileIds = new int[local20];
-            LoginManager.underWaterLocationsMapFileIds = new int[local20];
+            WorldLoader.regionBitPacked = new int[local20];
+            WorldLoader.mapFilesBuffer = new byte[local20][];
+            WorldLoader.npcSpawnsFilesBuffer = null;
+            WorldLoader.underWaterMapFileIds = new int[local20];
+            WorldLoader.locationMapFilesBuffer = new byte[local20][];
+            WorldLoader.underWaterLocationsMapFilesBuffer = new byte[local20][];
+            WorldLoader.npcSpawnsFileIds = null;
+            WorldLoader.mapFileIds = new int[local20];
+            WorldLoader.underWaterMapFilesBuffer = new byte[local20][];
+            WorldLoader.locationsMapFileIds = new int[local20];
+            WorldLoader.underWaterLocationsMapFileIds = new int[local20];
             local20 = 0;
             @Pc(100) boolean local100 = false;
             if ((local31 / 8 == 48 || local31 / 8 == 49) && local60 / 8 == 48) {
@@ -2325,22 +2326,22 @@ public class Protocol {
                 for (local151 = (local60 - 6) / 8; local151 <= (local60 + 6) / 8; local151++) {
                     local169 = (local138 << 8) + local151;
                     if (local100 && (local151 == 49 || local151 == 149 || local151 == 147 || local138 == 50 || local138 == 49 && local151 == 47)) {
-                        LoginManager.regionBitPacked[local20] = local169;
-                        LoginManager.mapFileIds[local20] = -1;
-                        LoginManager.locationsMapFileIds[local20] = -1;
-                        LoginManager.underWaterMapFileIds[local20] = -1;
-                        LoginManager.underWaterLocationsMapFileIds[local20] = -1;
+                        WorldLoader.regionBitPacked[local20] = local169;
+                        WorldLoader.mapFileIds[local20] = -1;
+                        WorldLoader.locationsMapFileIds[local20] = -1;
+                        WorldLoader.underWaterMapFileIds[local20] = -1;
+                        WorldLoader.underWaterLocationsMapFileIds[local20] = -1;
                     } else {
-                        LoginManager.regionBitPacked[local20] = local169;
-                        LoginManager.mapFileIds[local20] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { LoginManager.m, JString.parseInt(local138), LoginManager.UNDERSCORE, JString.parseInt(local151) }));
-                        LoginManager.locationsMapFileIds[local20] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { LoginManager.l, JString.parseInt(local138), LoginManager.UNDERSCORE, JString.parseInt(local151) }));
-                        LoginManager.underWaterMapFileIds[local20] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { LoginManager.um, JString.parseInt(local138), LoginManager.UNDERSCORE, JString.parseInt(local151) }));
-                        LoginManager.underWaterLocationsMapFileIds[local20] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { LoginManager.ul, JString.parseInt(local138), LoginManager.UNDERSCORE, JString.parseInt(local151) }));
+                        WorldLoader.regionBitPacked[local20] = local169;
+                        WorldLoader.mapFileIds[local20] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { WorldLoader.m, JString.parseInt(local138), WorldLoader.UNDERSCORE, JString.parseInt(local151) }));
+                        WorldLoader.locationsMapFileIds[local20] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { WorldLoader.l, JString.parseInt(local138), WorldLoader.UNDERSCORE, JString.parseInt(local151) }));
+                        WorldLoader.underWaterMapFileIds[local20] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { LoginManager.um, JString.parseInt(local138), WorldLoader.UNDERSCORE, JString.parseInt(local151) }));
+                        WorldLoader.underWaterLocationsMapFileIds[local20] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { LoginManager.ul, JString.parseInt(local138), WorldLoader.UNDERSCORE, JString.parseInt(local151) }));
                     }
                     local20++;
                 }
             }
-            LoginManager.method2463(local26, local60, local31, local64, false, local13);
+            WorldLoader.initializeMapRegion(local26, local60, local31, local64, false, local13);
             return;
         }
         local13 = inboundBuffer.g2leadd();
@@ -2363,24 +2364,24 @@ public class Protocol {
         }
         inboundBuffer.accessBytes();
         local60 = (packetSize - inboundBuffer.offset) / 16;
-        LoginManager.regionsXteaKeys = new int[local60][4];
+        WorldLoader.regionsXteaKeys = new int[local60][4];
         for (local64 = 0; local64 < local60; local64++) {
             for (local391 = 0; local391 < 4; local391++) {
-                LoginManager.regionsXteaKeys[local64][local391] = inboundBuffer.p4rme();
+                WorldLoader.regionsXteaKeys[local64][local391] = inboundBuffer.p4rme();
             }
         }
         local64 = inboundBuffer.g2();
-        LoginManager.underWaterLocationsMapFileIds = new int[local60];
-        LoginManager.locationsMapFileIds = new int[local60];
-        LoginManager.mapFileIds = new int[local60];
-        LoginManager.underWaterLocationsMapFilesBuffer = new byte[local60][];
-        LoginManager.npcSpawnsFileIds = null;
-        LoginManager.underWaterMapFileIds = new int[local60];
-        LoginManager.locationMapFilesBuffer = new byte[local60][];
-        LoginManager.mapFilesBuffer = new byte[local60][];
-        LoginManager.regionBitPacked = new int[local60];
-        LoginManager.npcSpawnsFilesBuffer = null;
-        LoginManager.underWaterMapFilesBuffer = new byte[local60][];
+        WorldLoader.underWaterLocationsMapFileIds = new int[local60];
+        WorldLoader.locationsMapFileIds = new int[local60];
+        WorldLoader.mapFileIds = new int[local60];
+        WorldLoader.underWaterLocationsMapFilesBuffer = new byte[local60][];
+        WorldLoader.npcSpawnsFileIds = null;
+        WorldLoader.underWaterMapFileIds = new int[local60];
+        WorldLoader.locationMapFilesBuffer = new byte[local60][];
+        WorldLoader.mapFilesBuffer = new byte[local60][];
+        WorldLoader.regionBitPacked = new int[local60];
+        WorldLoader.npcSpawnsFilesBuffer = null;
+        WorldLoader.underWaterMapFilesBuffer = new byte[local60][];
         local60 = 0;
         for (local391 = 0; local391 < 4; local391++) {
             for (local138 = 0; local138 < 13; local138++) {
@@ -2392,26 +2393,26 @@ public class Protocol {
                         @Pc(571) int local571 = local561 / 8 + (local555 / 8 << 8);
                         @Pc(573) int local573;
                         for (local573 = 0; local573 < local60; local573++) {
-                            if (local571 == LoginManager.regionBitPacked[local573]) {
+                            if (local571 == WorldLoader.regionBitPacked[local573]) {
                                 local571 = -1;
                                 break;
                             }
                         }
                         if (local571 != -1) {
-                            LoginManager.regionBitPacked[local60] = local571;
+                            WorldLoader.regionBitPacked[local60] = local571;
                             @Pc(609) int local609 = local571 & 0xFF;
                             local573 = local571 >> 8 & 0xFF;
-                            LoginManager.mapFileIds[local60] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { LoginManager.m, JString.parseInt(local573), LoginManager.UNDERSCORE, JString.parseInt(local609) }));
-                            LoginManager.locationsMapFileIds[local60] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { LoginManager.l, JString.parseInt(local573), LoginManager.UNDERSCORE, JString.parseInt(local609) }));
-                            LoginManager.underWaterMapFileIds[local60] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { LoginManager.um, JString.parseInt(local573), LoginManager.UNDERSCORE, JString.parseInt(local609) }));
-                            LoginManager.underWaterLocationsMapFileIds[local60] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { LoginManager.ul, JString.parseInt(local573), LoginManager.UNDERSCORE, JString.parseInt(local609) }));
+                            WorldLoader.mapFileIds[local60] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { WorldLoader.m, JString.parseInt(local573), WorldLoader.UNDERSCORE, JString.parseInt(local609) }));
+                            WorldLoader.locationsMapFileIds[local60] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { WorldLoader.l, JString.parseInt(local573), WorldLoader.UNDERSCORE, JString.parseInt(local609) }));
+                            WorldLoader.underWaterMapFileIds[local60] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { LoginManager.um, JString.parseInt(local573), WorldLoader.UNDERSCORE, JString.parseInt(local609) }));
+                            WorldLoader.underWaterLocationsMapFileIds[local60] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { LoginManager.ul, JString.parseInt(local573), WorldLoader.UNDERSCORE, JString.parseInt(local609) }));
                             local60++;
                         }
                     }
                 }
             }
         }
-        LoginManager.method2463(local26, local64, local20, local31, false, local13);
+        WorldLoader.initializeMapRegion(local26, local64, local20, local31, false, local13);
     }
 
     @OriginalMember(owner = "client!gk", name = "a", descriptor = "(IIBLclient!e;)V")

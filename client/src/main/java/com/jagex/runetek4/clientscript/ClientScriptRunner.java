@@ -5007,7 +5007,7 @@ public final class ClientScriptRunner {
 														continue;
 													}
 													if (opcode == 5601) {
-														LoginManager.method3395();
+														LoginManager.advanceLoginStep();
 														continue;
 													}
 													if (opcode == 5602) {

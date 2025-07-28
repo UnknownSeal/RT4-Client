@@ -2,7 +2,6 @@ package com.jagex.runetek4.scene;
 
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.audio.spatial.AreaSoundManager;
-import com.jagex.runetek4.client.LoginManager;
 import com.jagex.runetek4.client.Preferences;
 import com.jagex.runetek4.config.types.flu.FluType;
 import com.jagex.runetek4.config.types.flu.FluTypeList;
@@ -17,6 +16,7 @@ import com.jagex.runetek4.entity.entity.Entity;
 import com.jagex.runetek4.entity.entity.Player;
 import com.jagex.runetek4.game.logic.CollisionMap;
 import com.jagex.runetek4.game.logic.PathFinder;
+import com.jagex.runetek4.game.world.WorldLoader;
 import com.jagex.runetek4.graphics.gl.GlRenderer;
 import com.jagex.runetek4.graphics.gl.GlTile;
 import com.jagex.runetek4.graphics.environment.Environment;
@@ -3183,7 +3183,7 @@ public class SceneGraph {
     @OriginalMember(owner = "client!ch", name = "c", descriptor = "(I)V")
     public static void method846() {
         if (!allLevelsAreVisible() && centralPlane != Player.plane) {
-            LoginManager.method2463(Player.plane, centralZoneZ, centralZoneX, PlayerList.self.movementQueueZ[0], false, PlayerList.self.movementQueueX[0]);
+            WorldLoader.initializeMapRegion(Player.plane, centralZoneZ, centralZoneX, PlayerList.self.movementQueueZ[0], false, PlayerList.self.movementQueueX[0]);
         } else if (Player.plane != LightingManager.anInt2875 && MiniMap.drawMap(Player.plane)) {
             LightingManager.anInt2875 = Player.plane;
             ClientScriptRunner.method2218();

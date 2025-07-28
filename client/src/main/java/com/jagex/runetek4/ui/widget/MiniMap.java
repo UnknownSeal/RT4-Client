@@ -1,6 +1,7 @@
 package com.jagex.runetek4.ui.widget;
 
 import com.jagex.runetek4.*;
+import com.jagex.runetek4.game.world.WorldLoader;
 import com.jagex.runetek4.ui.chat.ClanChat;
 import com.jagex.runetek4.client.LoginManager;
 import com.jagex.runetek4.config.types.npc.NpcType;
@@ -148,37 +149,37 @@ public class MiniMap {
             @Pc(200) int npcZ;
             @Pc(239) int local239;
             @Pc(271) int local271;
-            if (LoginManager.mapElementList != null) {
-                for (@Pc(117) int local117 = 0; local117 < LoginManager.mapElementList.anInt5074; local117++) {
-                    if (LoginManager.mapElementList.method3892(local117)) {
-                        flagX = (LoginManager.mapElementList.aShortArray73[local117] - Camera.originX) * 4 + 2 - PlayerList.self.xFine / 32;
+            if (WorldLoader.mapElementList != null) {
+                for (@Pc(117) int local117 = 0; local117 < WorldLoader.mapElementList.anInt5074; local117++) {
+                    if (WorldLoader.mapElementList.method3892(local117)) {
+                        flagX = (WorldLoader.mapElementList.aShortArray73[local117] - Camera.originX) * 4 + 2 - PlayerList.self.xFine / 32;
                         local150 = MathUtils.sin[angle];
                         local154 = MathUtils.cos[angle];
                         @Pc(156) Font local156 = Fonts.p11Full;
                         @Pc(164) int local164 = local150 * 256 / (minimapZoom + 256);
-                        flagZ = (LoginManager.mapElementList.aShortArray72[local117] - Camera.originZ) * 4 + 2 - PlayerList.self.zFine / 32;
+                        flagZ = (WorldLoader.mapElementList.aShortArray72[local117] - Camera.originZ) * 4 + 2 - PlayerList.self.zFine / 32;
                         @Pc(189) int local189 = local154 * 256 / (minimapZoom + 256);
                         npcZ = flagZ * local189 - flagX * local164 >> 16;
-                        if (LoginManager.mapElementList.method3894(local117) == 1) {
+                        if (WorldLoader.mapElementList.method3894(local117) == 1) {
                             local156 = Fonts.p12Full;
                         }
-                        if (LoginManager.mapElementList.method3894(local117) == 2) {
+                        if (WorldLoader.mapElementList.method3894(local117) == 2) {
                             local156 = Fonts.b12Full;
                         }
                         npcX = local164 * flagZ + local189 * flagX >> 16;
-                        local239 = local156.getMaxLineWidth(LoginManager.mapElementList.text[local117], 100);
+                        local239 = local156.getMaxLineWidth(WorldLoader.mapElementList.text[local117], 100);
                         @Pc(245) int local245 = npcX - local239 / 2;
                         if (local245 >= -arg3.width && local245 <= arg3.width && npcZ >= -arg3.height && npcZ <= arg3.height) {
                             local271 = 16777215;
-                            if (LoginManager.mapElementList.anIntArray444[local117] != -1) {
-                                local271 = LoginManager.mapElementList.anIntArray444[local117];
+                            if (WorldLoader.mapElementList.anIntArray444[local117] != -1) {
+                                local271 = WorldLoader.mapElementList.anIntArray444[local117];
                             }
                             if (GlRenderer.enabled) {
                                 GlFont.method1188((GlSprite) arg3.method489(false));
                             } else {
                                 SoftwareRaster.method2486(arg3.anIntArray37, arg3.anIntArray45);
                             }
-                            local156.renderParagraphAlpha(LoginManager.mapElementList.text[local117], arg2 + local245 + arg3.width / 2, arg1 + arg3.height / 2 + -npcZ, local239, 50, local271, 0, 1, 0, 0);
+                            local156.renderParagraphAlpha(WorldLoader.mapElementList.text[local117], arg2 + local245 + arg3.width / 2, arg1 + arg3.height / 2 + -npcZ, local239, 50, local271, 0, 1, 0, 0);
                             if (GlRenderer.enabled) {
                                 GlFont.method1173();
                             } else {

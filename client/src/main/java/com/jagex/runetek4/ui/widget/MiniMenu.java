@@ -1852,4 +1852,9 @@ public class MiniMenu {
         Protocol.outboundBuffer.p4rme(arg1);
         Protocol.outboundBuffer.p2_alt1(arg0);
     }
+
+    @OriginalMember(owner = "runetek4.client!tb", name = "h", descriptor = "(I)I")
+    public static int getShiftClickOption() {
+        return Cheat.shiftClick && Keyboard.pressedKeys[81] && menuActionRow > 2 ? cursors[menuActionRow - 2] : cursors[menuActionRow - 1];
+    }
 }

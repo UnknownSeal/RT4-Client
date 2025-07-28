@@ -4,7 +4,6 @@ import com.jagex.runetek4.*;
 import com.jagex.runetek4.audio.core.SoundPlayer;
 import com.jagex.runetek4.audio.spatial.AreaSound;
 import com.jagex.runetek4.audio.spatial.AreaSoundManager;
-import com.jagex.runetek4.client.LoginManager;
 import com.jagex.runetek4.config.types.spotanim.SpotAnimType;
 import com.jagex.runetek4.client.GameShell;
 import com.jagex.runetek4.client.Preferences;
@@ -15,6 +14,7 @@ import com.jagex.runetek4.config.types.seq.SeqTypeList;
 import com.jagex.runetek4.config.types.spotanim.SpotAnimTypeList;
 import com.jagex.runetek4.config.types.bas.BasType;
 import com.jagex.runetek4.config.types.seq.SeqType;
+import com.jagex.runetek4.game.world.WorldLoader;
 import com.jagex.runetek4.graphics.effects.ParticleSystem;
 import com.jagex.runetek4.game.logic.HintArrowManager;
 import com.jagex.runetek4.game.inventory.Equipment;
@@ -150,7 +150,7 @@ public final class Player extends PathingEntity {
 
 	@OriginalMember(owner = "client!bf", name = "c", descriptor = "(I)V")
 	public static void method501() {
-		if (!GlRenderer.enabled || LoginManager.aBoolean252) {
+		if (!GlRenderer.enabled || WorldLoader.aBoolean252) {
 			return;
 		}
 		@Pc(14) Tile[][][] local14 = SceneGraph.tiles;
@@ -219,7 +219,7 @@ public final class Player extends PathingEntity {
 				}
 			}
 		}
-		LoginManager.aBoolean252 = true;
+		WorldLoader.aBoolean252 = true;
 	}
 
 	@OriginalMember(owner = "runetek4.client!pa", name = "a", descriptor = "(IIILclient!e;)V")
