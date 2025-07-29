@@ -370,7 +370,7 @@ public final class Player extends PathingEntity {
 		}
 		@Pc(25) SeqType local25 = this.primarySeqId != -1 && this.animationDelay == 0 ? SeqTypeList.get(this.primarySeqId) : null;
 		@Pc(54) SeqType local54 = this.movementSeqId == -1 || this.lowMemory || this.movementSeqId == this.getBasType().readyanim && local25 != null ? null : SeqTypeList.get(this.movementSeqId);
-		@Pc(76) Model local76 = this.appearance.method1954(this.aPathingEntityClass147Array3, this.animationDirection, local54, local25, this.anInt3396, this.anInt3388, this.animationFrame, this.animationFrameDelay, this.anInt3407);
+		@Pc(76) Model local76 = this.appearance.createAnimatedBodyModel(this.aPathingEntityClass147Array3, this.animationDirection, local54, local25, this.anInt3396, this.anInt3388, this.animationFrame, this.animationFrameDelay, this.anInt3407);
 		@Pc(79) int local79 = PlayerAppearance.getModelCacheSize();
 		if (GlRenderer.enabled && GameShell.maxMemory < 96 && local79 > 50) {
 			GlRenderer.updateOpenGLModelBuffers();

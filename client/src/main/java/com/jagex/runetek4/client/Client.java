@@ -1141,13 +1141,13 @@ public final class Client extends GameShell {
 			FogManager.defaulFogColorRgb = 0;
 			PlayerAppearance.destinationBodyColors = PlayerAppearance.GAME1_DESTINATION_BODY_COLORS;
 			PlayerAppearance.destinationSkinColors = PlayerAppearance.GAME1_DESTINATION_SKIN_COLORS;
-			PlayerAppearance.aShortArray65 = PlayerAppearance.GAME1_SOURCE_BODY_COLORS;
-			PlayerAppearance.aShortArray41 = PlayerAppearance.GAME1_SOURCE_SKIN_COLORS;
+			PlayerAppearance.sourceBodyColors = PlayerAppearance.GAME1_SOURCE_BODY_COLORS;
+			PlayerAppearance.sourceSkinColors = PlayerAppearance.GAME1_SOURCE_SKIN_COLORS;
 		} else {
 			PlayerAppearance.destinationBodyColors = PlayerAppearance.GAME0_DESTINATION_BODY_COLORS;
-			PlayerAppearance.aShortArray41 = PlayerAppearance.GAME0_SOURCE_SKIN_COLORS;
+			PlayerAppearance.sourceSkinColors = PlayerAppearance.GAME0_SOURCE_SKIN_COLORS;
 			PlayerAppearance.destinationSkinColors = PlayerAppearance.GAME0_DESTINATION_SKIN_COLORS;
-			PlayerAppearance.aShortArray65 = PlayerAppearance.GAME0_SOURCE_BODY_COLORS;
+			PlayerAppearance.sourceBodyColors = PlayerAppearance.GAME0_SOURCE_BODY_COLORS;
 		}
 		alternatePort = worldListAlternatePort;
 		defaultPort = worldListDefaultPort;

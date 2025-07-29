@@ -1957,7 +1957,7 @@ public class WidgetList {
                                                 }
                                             } else if (widget.modelType == 5) {
                                                 if (widget.modelId == -1) {
-                                                    local2589 = PlayerAppearance.DEFAULT.method1954(null, -1, null, null, 0, -1, 0, -1, -1);
+                                                    local2589 = PlayerAppearance.DEFAULT.createAnimatedBodyModel(null, -1, null, null, 0, -1, 0, -1, -1);
                                                 } else {
                                                     color = widget.modelId & 0x7FF;
                                                     if (color == PlayerList.selfId) {
@@ -1966,7 +1966,7 @@ public class WidgetList {
                                                     @Pc(2751) Player local2751 = PlayerList.players[color];
                                                     @Pc(2760) SeqType local2760 = clipBottom2 == -1 ? null : SeqTypeList.get(clipBottom2);
                                                     if (local2751 != null && (int) local2751.username.encode37() << 11 == (widget.modelId & 0xFFFFF800)) {
-                                                        local2589 = local2751.appearance.method1954(null, -1, null, local2760, 0, -1, 0, widget.anInt510, 0);
+                                                        local2589 = local2751.appearance.createAnimatedBodyModel(null, -1, null, local2760, 0, -1, 0, widget.anInt510, 0);
                                                     }
                                                 }
                                             } else if (clipBottom2 == -1) {
