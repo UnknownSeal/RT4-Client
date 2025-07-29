@@ -499,10 +499,10 @@ public class MiniMenu {
 
     @OriginalMember(owner = "runetek4.client!ij", name = "a", descriptor = "(B)V")
     public static void drawB() {
-        @Pc(3) int local3 = WidgetList.anInt4271;
-        @Pc(9) int local9 = WidgetList.anInt5138;
-        @Pc(11) int local11 = WidgetList.anInt436;
-        @Pc(13) int local13 = WidgetList.anInt761;
+        @Pc(3) int local3 = WidgetList.menuX;
+        @Pc(9) int local9 = WidgetList.menuY;
+        @Pc(11) int local11 = WidgetList.menuHeight;
+        @Pc(13) int local13 = WidgetList.menuWidth;
         if (LoginManager.loginSprite2 == null || LoginManager.loginSprite5 == null) {
             if (Client.js5Archive8.isFileReady(LoginManager.anInt1736) && Client.js5Archive8.isFileReady(LoginManager.anInt4073)) {
                 LoginManager.loginSprite2 = SoftwareSprite.loadSoftwareAlphaSprite(Client.js5Archive8, LoginManager.anInt1736);
@@ -599,15 +599,15 @@ public class MiniMenu {
             }
             Fonts.b12Full.renderLeft(getOp(local203), local3 + 3, local219, local418, 0);
         }
-        WidgetList.forceRedrawScreen(WidgetList.anInt4271, WidgetList.anInt5138, WidgetList.anInt436, WidgetList.anInt761);
+        WidgetList.forceRedrawScreen(WidgetList.menuX, WidgetList.menuY, WidgetList.menuHeight, WidgetList.menuWidth);
     }
 
     @OriginalMember(owner = "runetek4.client!lf", name = "b", descriptor = "(I)V")
     public static void drawA() {
-        @Pc(3) int local3 = WidgetList.anInt5138;
-        @Pc(9) int local9 = WidgetList.anInt761;
-        @Pc(11) int local11 = WidgetList.anInt4271;
-        @Pc(15) int local15 = WidgetList.anInt436;
+        @Pc(3) int local3 = WidgetList.menuY;
+        @Pc(9) int local9 = WidgetList.menuWidth;
+        @Pc(11) int local11 = WidgetList.menuX;
+        @Pc(15) int local15 = WidgetList.menuHeight;
         if (GlRenderer.enabled) {
             GlRaster.fillRect(local11, local3, local9, local15, 6116423);
             GlRaster.fillRect(local11 + 1, local3 + 1, local9 - 2, 16, 0);
@@ -628,7 +628,7 @@ public class MiniMenu {
             }
             Fonts.b12Full.renderLeft(getOp(local107), local11 + 3, local127, local129, 0);
         }
-        WidgetList.forceRedrawScreen(WidgetList.anInt4271, WidgetList.anInt5138, WidgetList.anInt436, WidgetList.anInt761);
+        WidgetList.forceRedrawScreen(WidgetList.menuX, WidgetList.menuY, WidgetList.menuHeight, WidgetList.menuWidth);
     }
 
     @OriginalMember(owner = "client!dm", name = "a", descriptor = "(Lclient!be;III)V")
@@ -1824,7 +1824,7 @@ public class MiniMenu {
     @OriginalMember(owner = "client!ej", name = "h", descriptor = "(I)V")
     public static void processMenuActions() {
         if (menuState == 2) {
-            if (ClientScriptRunner.scriptMouseX == Mouse.anInt5850 && ClientScriptRunner.scriptMouseY == Mouse.anInt5895) {
+            if (ClientScriptRunner.scriptMouseX == Mouse.lastClickX && ClientScriptRunner.scriptMouseY == Mouse.lastClickY) {
                 menuState = 0;
                 if (Cheat.shiftClick && Keyboard.pressedKeys[Keyboard.KEY_SHIFT] && menuActionRow > 2) {
                     doAction(menuActionRow - 2);
@@ -1840,9 +1840,9 @@ public class MiniMenu {
                 doAction(menuActionRow - 1);
             }
         } else {
-            Mouse.anInt5895 = Mouse.mouseClickY;
+            Mouse.lastClickY = Mouse.mouseClickY;
             menuState = 2;
-            Mouse.anInt5850 = Mouse.mouseClickX;
+            Mouse.lastClickX = Mouse.mouseClickX;
         }
     }
 

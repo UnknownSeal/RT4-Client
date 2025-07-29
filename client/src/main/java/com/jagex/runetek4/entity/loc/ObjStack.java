@@ -23,16 +23,16 @@ public final class ObjStack extends Entity {
 
 	@OriginalMember(owner = "runetek4.client!uj", name = "a", descriptor = "(IIIII)V")
 	@Override
-	public final void method4545(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
+	public final void update(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
 	}
 
 	@OriginalMember(owner = "runetek4.client!uj", name = "a", descriptor = "(IIIIIIIIJILclient!ga;)V")
 	@Override
-	public final void render(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) long arg8, @OriginalArg(9) int arg9, @OriginalArg(10) ParticleSystem arg10) {
-		@Pc(16) Model local16 = ObjTypeList.get(this.type).getModel(-1, 0, null, this.amount, 0);
-		if (local16 != null) {
-			local16.render(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10);
-			this.minY = local16.getMinY();
+	public final void render(@OriginalArg(0) int worldX, @OriginalArg(1) int worldY, @OriginalArg(2) int worldZ, @OriginalArg(3) int rotationX, @OriginalArg(4) int rotationY, @OriginalArg(5) int rotationZ, @OriginalArg(6) int scaleX, @OriginalArg(7) int scaleY, @OriginalArg(8) long flags, @OriginalArg(9) int lightLevel, @OriginalArg(10) ParticleSystem particleSystem) {
+		@Pc(16) Model model = ObjTypeList.get(this.type).getModel(-1, 0, null, this.amount, 0);
+		if (model != null) {
+			model.render(worldX, worldY, worldZ, rotationX, rotationY, rotationZ, scaleX, scaleY, flags, lightLevel, particleSystem);
+			this.minY = model.getMinY();
 		}
 	}
 

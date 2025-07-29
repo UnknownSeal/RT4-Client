@@ -584,12 +584,12 @@ public final class NpcType {
 		local173 = arg0 == null ? 0 : arg0.length;
 		for (local235 = 0; local235 < local173; local235++) {
 			if (arg0[local235] != null) {
-				@Pc(753) SeqType local753 = SeqTypeList.get(arg0[local235].anInt5396);
+				@Pc(753) SeqType local753 = SeqTypeList.get(arg0[local235].sequenceId);
 				if (local753.frames != null) {
 					aClass144Array1[local235] = local753;
-					local207 = arg0[local235].anInt5398;
+					local207 = arg0[local235].direction;
 					local46 = true;
-					local200 = arg0[local235].anInt5399;
+					local200 = arg0[local235].frameIndex;
 					local214 = local753.frames[local200];
 					aClass3_Sub2_Sub7Array1[local235] = SeqTypeList.getAnimFrameset(local214 >>> 16);
 					local214 &= 0xFFFF;
@@ -601,7 +601,7 @@ public final class NpcType {
 					}
 					if ((local753.tween || SeqType.applyTweening) && local207 != -1 && local753.frames.length > local207) {
 						anIntArray147[local235] = local753.frameDelay[local200];
-						anIntArray492[local235] = arg0[local235].anInt5404;
+						anIntArray492[local235] = arg0[local235].loopCount;
 						local228 = local753.frames[local207];
 						aClass3_Sub2_Sub7Array5[local235] = SeqTypeList.getAnimFrameset(local228 >>> 16);
 						local228 &= 0xFFFF;

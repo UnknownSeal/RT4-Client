@@ -1,7 +1,16 @@
 package com.jagex.runetek4.ui.widget;
 
 import com.jagex.runetek4.*;
+import com.jagex.runetek4.config.types.obj.ObjType;
+import com.jagex.runetek4.config.types.obj.ObjTypeList;
 import com.jagex.runetek4.data.cache.CacheArchive;
+import com.jagex.runetek4.data.cache.media.Font;
+import com.jagex.runetek4.entity.entity.PlayerAppearance;
+import com.jagex.runetek4.graphics.gl.GlCleaner;
+import com.jagex.runetek4.graphics.model.Model;
+import com.jagex.runetek4.graphics.model.SoftwareModel;
+import com.jagex.runetek4.graphics.raster.Rasterizer;
+import com.jagex.runetek4.scene.SceneGraph;
 import com.jagex.runetek4.ui.chat.Chat;
 import com.jagex.runetek4.ui.chat.ClanChat;
 import com.jagex.runetek4.client.LoginManager;
@@ -29,6 +38,11 @@ import com.jagex.runetek4.input.Keyboard;
 import com.jagex.runetek4.input.Mouse;
 import com.jagex.runetek4.input.MouseWheel;
 import com.jagex.runetek4.data.js5.Js5;
+import com.jagex.runetek4.ui.sprite.GlSprite;
+import com.jagex.runetek4.ui.sprite.Sprite;
+import com.jagex.runetek4.ui.sprite.Sprites;
+import com.jagex.runetek4.util.IntUtils;
+import com.jagex.runetek4.util.math.MathUtils;
 import com.jagex.runetek4.util.string.JString;
 import com.jagex.runetek4.util.string.LocalizedText;
 import com.jagex.runetek4.graphics.lighting.FogManager;
@@ -42,6 +56,7 @@ import com.jagex.runetek4.game.stockmarket.StockMarketManager;
 import com.jagex.runetek4.ui.events.WidgetEvent;
 import com.jagex.runetek4.util.debug.Cheat;
 import com.jagex.runetek4.game.world.WorldMap;
+import com.jagex.runetek4.util.string.StringUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -84,7 +99,7 @@ public class WidgetList {
     @OriginalMember(owner = "client!je", name = "T", descriptor = "Lclient!sc;")
     public static HashTable openInterfaces = new HashTable(8);
     @OriginalMember(owner = "runetek4.client!ve", name = "w", descriptor = "Z")
-    public static boolean aBoolean298 = false;
+    public static boolean hasScrollbar = false;
     @OriginalMember(owner = "client!bn", name = "V", descriptor = "I")
     public static int rectangles = 0;
     @OriginalMember(owner = "runetek4.client!oj", name = "y", descriptor = "I")
@@ -92,9 +107,9 @@ public class WidgetList {
     @OriginalMember(owner = "client!bm", name = "f", descriptor = "Lclient!ve;")
     public static Js5 gameImageJs5;
     @OriginalMember(owner = "runetek4.client!lg", name = "b", descriptor = "Z")
-    public static boolean aBoolean174 = false;
+    public static boolean dragActive = false;
     @OriginalMember(owner = "client!sh", name = "f", descriptor = "I")
-    public static int anInt5103 = -1;
+    public static int minY = -1;
     @OriginalMember(owner = "runetek4.client!wl", name = "h", descriptor = "Lclient!be;")
     public static Widget aClass13_26 = null;
     @OriginalMember(owner = "runetek4.client!rg", name = "s", descriptor = "I")
@@ -122,17 +137,17 @@ public class WidgetList {
     @OriginalMember(owner = "runetek4.client!nf", name = "h", descriptor = "Lclient!be;")
     public static Widget mouseOverInventoryInterface;
     @OriginalMember(owner = "client!ef", name = "r", descriptor = "Lclient!be;")
-    public static Widget aClass13_12 = null;
+    public static Widget targetWidget = null;
     @OriginalMember(owner = "client!bn", name = "O", descriptor = "I")
-    public static int anInt761;
+    public static int menuWidth;
     @OriginalMember(owner = "client!bc", name = "X", descriptor = "I")
-    public static int anInt436;
+    public static int menuHeight;
     @OriginalMember(owner = "runetek4.client!si", name = "ab", descriptor = "I")
-    public static int anInt5138;
+    public static int menuY;
     @OriginalMember(owner = "runetek4.client!lj", name = "w", descriptor = "I")
     public static int clickedInventoryComponentX = 0;
     @OriginalMember(owner = "runetek4.client!ok", name = "b", descriptor = "I")
-    public static int anInt4271;
+    public static int menuX;
     @OriginalMember(owner = "runetek4.client!ac", name = "n", descriptor = "I")
     public static int selectedInventorySlot = 0;
     @OriginalMember(owner = "runetek4.client!jj", name = "j", descriptor = "Z")
@@ -144,17 +159,17 @@ public class WidgetList {
     @OriginalMember(owner = "client!fk", name = "e", descriptor = "I")
     public static int anInt1885;
     @OriginalMember(owner = "client!bj", name = "s", descriptor = "I")
-    public static int anInt660 = -1;
+    public static int lastMouseY = -1;
     @OriginalMember(owner = "runetek4.client!kl", name = "s", descriptor = "I")
     public static int anInt3337 = 0;
     @OriginalMember(owner = "runetek4.client!jk", name = "p", descriptor = "I")
-    public static int anInt3075 = -1;
+    public static int lastMouseX = -1;
     @OriginalMember(owner = "client!df", name = "n", descriptor = "I")
     public static int anInt1396 = 0;
     @OriginalMember(owner = "client!di", name = "H", descriptor = "Z")
     public static boolean aBoolean84 = false;
     @OriginalMember(owner = "client!dh", name = "a", descriptor = "Z")
-    public static boolean aBoolean83 = false;
+    public static boolean canDrag = false;
     @OriginalMember(owner = "client!ja", name = "r", descriptor = "I")
     public static int currentCursor = -1;
     @OriginalMember(owner = "runetek4.client!a", name = "h", descriptor = "I")
@@ -271,9 +286,9 @@ public class WidgetList {
         }
         if (MiniMenu.menuActionRow == 1) {
             ClientScriptRunner.menuVisible = false;
-            redrawScreen(anInt4271, anInt761, anInt5138, anInt436);
+            redrawScreen(menuX, menuWidth, menuY, menuHeight);
         } else {
-            redrawScreen(anInt4271, anInt761, anInt5138, anInt436);
+            redrawScreen(menuX, menuWidth, menuY, menuHeight);
             local43 = Fonts.b12Full.getStringWidth(LocalizedText.CHOOSE_OPTION);
             for (@Pc(75) int local75 = 0; local75 < MiniMenu.menuActionRow; local75++) {
                 @Pc(88) int local88 = Fonts.b12Full.getStringWidth(MiniMenu.getOp(local75));
@@ -281,8 +296,8 @@ public class WidgetList {
                     local43 = local88;
                 }
             }
-            anInt436 = MiniMenu.menuActionRow * 15 + (aBoolean298 ? 26 : 22);
-            anInt761 = local43 + 8;
+            menuHeight = MiniMenu.menuActionRow * 15 + (hasScrollbar ? 26 : 22);
+            menuWidth = local43 + 8;
         }
         if (topLevelInterface != -1) {
             runScripts(1, topLevelInterface);
@@ -766,7 +781,7 @@ public class WidgetList {
     public static void method946(@OriginalArg(0) Widget[] arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7) {
         for (@Pc(1) int local1 = 0; local1 < arg0.length; local1++) {
             @Pc(9) Widget widget = arg0[local1];
-            if (widget != null && widget.overlayer == arg1 && (!widget.if3 || widget.type == 0 || widget.aBoolean25 || getServerActiveProperties(widget).events != 0 || widget == ClientScriptRunner.aClass13_1 || widget.contentType == 1338) && (!widget.if3 || !method947(widget))) {
+            if (widget != null && widget.overlayer == arg1 && (!widget.if3 || widget.type == 0 || widget.aBoolean25 || getServerActiveProperties(widget).events != 0 || widget == ClientScriptRunner.containerWidget || widget.contentType == 1338) && (!widget.if3 || !method947(widget))) {
                 @Pc(50) int local50 = widget.x + arg6;
                 @Pc(55) int local55 = widget.y + arg7;
                 @Pc(61) int local61;
@@ -790,10 +805,10 @@ public class WidgetList {
                     local65 = local73 < arg4 ? local73 : arg4;
                     local67 = local78 < arg5 ? local78 : arg5;
                 }
-                if (widget == ClientScriptRunner.aClass13_14) {
-                    aBoolean83 = true;
-                    anInt3075 = local50;
-                    anInt660 = local55;
+                if (widget == ClientScriptRunner.dragWidget) {
+                    canDrag = true;
+                    lastMouseX = local50;
+                    lastMouseY = local55;
                 }
                 if (!widget.if3 || local61 < local65 && local63 < local67) {
                     if (widget.type == 0) {
@@ -807,9 +822,9 @@ public class WidgetList {
                                     local164.source.aBoolean19 = false;
                                 }
                             }
-                            if (ClientScriptRunner.anInt4851 == 0) {
-                                ClientScriptRunner.aClass13_14 = null;
-                                ClientScriptRunner.aClass13_1 = null;
+                            if (ClientScriptRunner.dragTime == 0) {
+                                ClientScriptRunner.dragWidget = null;
+                                ClientScriptRunner.containerWidget = null;
                             }
                             anInt3337 = 0;
                         }
@@ -855,15 +870,15 @@ public class WidgetList {
                             }
                         }
                         if (local221) {
-                            ClientScriptRunner.method1015(Mouse.mouseClickY - local55, Mouse.mouseClickX - local50, widget);
+                            ClientScriptRunner.startWidgetDrag(Mouse.mouseClickY - local55, Mouse.mouseClickX - local50, widget);
                         }
-                        if (ClientScriptRunner.aClass13_14 != null && ClientScriptRunner.aClass13_14 != widget && local207 && getServerActiveProperties(widget).isDragTarget()) {
-                            aClass13_12 = widget;
+                        if (ClientScriptRunner.dragWidget != null && ClientScriptRunner.dragWidget != widget && local207 && getServerActiveProperties(widget).isDragTarget()) {
+                            targetWidget = widget;
                         }
-                        if (widget == ClientScriptRunner.aClass13_1) {
-                            aBoolean174 = true;
-                            ClientScriptRunner.anInt2225 = local50;
-                            anInt5103 = local55;
+                        if (widget == ClientScriptRunner.containerWidget) {
+                            dragActive = true;
+                            ClientScriptRunner.minX = local50;
+                            minY = local55;
                         }
                         if (widget.aBoolean25 || widget.contentType != 0) {
                             @Pc(399) WidgetEvent request;
@@ -875,7 +890,7 @@ public class WidgetList {
                                 request.arguments = widget.onScroll;
                                 lowPriorityRequests.addTail(request);
                             }
-                            if (ClientScriptRunner.aClass13_14 != null || clickedInventoryWidget != null || ClientScriptRunner.menuVisible || widget.contentType != 1400 && anInt3337 > 0) {
+                            if (ClientScriptRunner.dragWidget != null || clickedInventoryWidget != null || ClientScriptRunner.menuVisible || widget.contentType != 1400 && anInt3337 > 0) {
                                 local221 = false;
                                 local212 = false;
                                 local207 = false;
@@ -909,19 +924,19 @@ public class WidgetList {
                                             continue;
                                         }
                                         anInt3337 = 1;
-                                        ClientScriptRunner.anInt5388 = Mouse.lastMouseX;
-                                        ClientScriptRunner.anInt4035 = Mouse.lastMouseY;
+                                        ClientScriptRunner.dragStartX = Mouse.lastMouseX;
+                                        ClientScriptRunner.dragStartY = Mouse.lastMouseY;
                                         continue;
                                     }
                                     if (local212 && anInt3337 > 0) {
-                                        if (anInt3337 == 1 && (ClientScriptRunner.anInt5388 != Mouse.lastMouseX || ClientScriptRunner.anInt4035 != Mouse.lastMouseY)) {
+                                        if (anInt3337 == 1 && (ClientScriptRunner.dragStartX != Mouse.lastMouseX || ClientScriptRunner.dragStartY != Mouse.lastMouseY)) {
                                             anInt4620 = WorldMap.anInt435;
                                             anInt1885 = WorldMap.anInt919;
                                             anInt3337 = 2;
                                         }
                                         if (anInt3337 == 2) {
-                                            WorldMap.method1964(anInt4620 + (int) ((double) (ClientScriptRunner.anInt5388 - Mouse.lastMouseX) * 2.0D / (double) WorldMap.targetZoom));
-                                            WorldMap.method4641(anInt1885 + (int) ((double) (ClientScriptRunner.anInt4035 - Mouse.lastMouseY) * 2.0D / (double) WorldMap.targetZoom));
+                                            WorldMap.method1964(anInt4620 + (int) ((double) (ClientScriptRunner.dragStartX - Mouse.lastMouseX) * 2.0D / (double) WorldMap.targetZoom));
+                                            WorldMap.method4641(anInt1885 + (int) ((double) (ClientScriptRunner.dragStartY - Mouse.lastMouseY) * 2.0D / (double) WorldMap.targetZoom));
                                         }
                                         continue;
                                     }
@@ -1182,7 +1197,7 @@ public class WidgetList {
                             }
                         }
                     }
-                    if (!widget.if3 && ClientScriptRunner.aClass13_14 == null && clickedInventoryWidget == null && !ClientScriptRunner.menuVisible) {
+                    if (!widget.if3 && ClientScriptRunner.dragWidget == null && clickedInventoryWidget == null && !ClientScriptRunner.menuVisible) {
                         if ((widget.anInt470 >= 0 || widget.overColor != 0) && Mouse.lastMouseX >= local61 && Mouse.lastMouseY >= local63 && Mouse.lastMouseX < local65 && Mouse.lastMouseY < local67) {
                             if (widget.anInt470 >= 0) {
                                 aClass13_22 = arg0[widget.anInt470];
@@ -1267,7 +1282,7 @@ public class WidgetList {
     }
 
     @OriginalMember(owner = "client!runetek4.client", name = "a", descriptor = "(Lclient!be;)Lclient!be;")
-    public static Widget method938(@OriginalArg(0) Widget arg0) {
+    public static Widget canAcceptDrop(@OriginalArg(0) Widget arg0) {
         @Pc(4) int local4 = getServerActiveProperties(arg0).getDragDepth();
         if (local4 == 0) {
             return null;
@@ -1359,5 +1374,870 @@ public class WidgetList {
             redraw(ClientScriptRunner.aClass13_10);
             ClientScriptRunner.aClass13_10 = null;
         }
+    }
+
+    @OriginalMember(owner = "runetek4.client!gn", name = "a", descriptor = "(III[Lclient!be;IIIIBI)V")
+    public static void renderWidget(@OriginalArg(0) int clipLeft, @OriginalArg(1) int offsetY, @OriginalArg(2) int offsetX, @OriginalArg(3) Widget[] widgets, @OriginalArg(4) int clipRight, @OriginalArg(5) int layer, @OriginalArg(6) int clipTop, @OriginalArg(7) int clipBottom, @OriginalArg(9) int parentRectangle) {
+        if (GlRenderer.enabled) {
+            GlRaster.setClip(clipLeft, clipTop, clipRight, clipBottom);
+        } else {
+            SoftwareRaster.setClip(clipLeft, clipTop, clipRight, clipBottom);
+            Rasterizer.prepare();
+        }
+        for (@Pc(18) int i = 0; i < widgets.length; i++) {
+            @Pc(30) Widget widget = widgets[i];
+            if (widget != null && (widget.overlayer == layer || layer == -1412584499 && widget == ClientScriptRunner.dragWidget)) {
+                @Pc(57) int rectangle;
+                if (parentRectangle == -1) {
+                    rectangleX[rectangles] = offsetX + widget.x;
+                    rectangleY[rectangles] = widget.y + offsetY;
+                    rectangleWidth[rectangles] = widget.width;
+                    rectangleHeight[rectangles] = widget.height;
+                    rectangle = rectangles++;
+                } else {
+                    rectangle = parentRectangle;
+                }
+                widget.rectangleLoop = Client.loop;
+                widget.rectangle = rectangle;
+                if (!widget.if3 || !method947(widget)) {
+                    if (widget.contentType > 0) {
+                        updateGenderDependentWidgets(widget);
+                    }
+                    @Pc(114) int renderY = offsetY + widget.y;
+                    @Pc(117) int alpha = widget.alpha;
+                    @Pc(123) int renderX = widget.x + offsetX;
+                    if (Cheat.qaOpTest && (getServerActiveProperties(widget).events != 0 || widget.type == 0) && alpha > 127) {
+                        alpha = 127;
+                    }
+                    @Pc(166) int clipLeft2;
+                    @Pc(164) int clipTop2;
+                    if (widget == ClientScriptRunner.dragWidget) {
+                        if (layer != -1412584499 && !widget.dragRenderBehavior) {
+                            ClientScriptRunner.anInt4696 = offsetX;
+                            ClientScriptRunner.anInt3126 = offsetY;
+                            ClientScriptRunner.aClass13Array13 = widgets;
+                            continue;
+                        }
+                        if (ClientScriptRunner.isDragging && dragActive) {
+                            clipTop2 = Mouse.lastMouseY;
+                            clipLeft2 = Mouse.lastMouseX;
+                            clipTop2 -= ClientScriptRunner.dragStartY;
+                            if (clipTop2 < minY) {
+                                clipTop2 = minY;
+                            }
+                            if (clipTop2 + widget.height > ClientScriptRunner.containerWidget.height + minY) {
+                                clipTop2 = ClientScriptRunner.containerWidget.height + minY - widget.height;
+                            }
+                            renderY = clipTop2;
+                            clipLeft2 -= ClientScriptRunner.dragStartX;
+                            if (ClientScriptRunner.minX > clipLeft2) {
+                                clipLeft2 = ClientScriptRunner.minX;
+                            }
+                            if (ClientScriptRunner.containerWidget.width + ClientScriptRunner.minX < widget.width + clipLeft2) {
+                                clipLeft2 = ClientScriptRunner.containerWidget.width + ClientScriptRunner.minX - widget.width;
+                            }
+                            renderX = clipLeft2;
+                        }
+                        if (!widget.dragRenderBehavior) {
+                            alpha = 128;
+                        }
+                    }
+                    @Pc(302) int clipRight3;
+                    @Pc(291) int clipBottom3;
+                    @Pc(270) int clipRight2;
+                    @Pc(276) int clipBottom2;
+                    if (widget.type == 2) {
+                        clipBottom3 = clipBottom;
+                        clipRight3 = clipRight;
+                        clipTop2 = clipTop;
+                        clipLeft2 = clipLeft;
+                    } else {
+                        clipTop2 = renderY > clipTop ? renderY : clipTop;
+                        clipLeft2 = clipLeft < renderX ? renderX : clipLeft;
+                        clipRight2 = widget.width + renderX;
+                        clipBottom2 = renderY + widget.height;
+                        if (widget.type == 9) {
+                            clipBottom2++;
+                            clipRight2++;
+                        }
+                        clipBottom3 = clipBottom <= clipBottom2 ? clipBottom : clipBottom2;
+                        clipRight3 = clipRight2 >= clipRight ? clipRight : clipRight2;
+                    }
+                    if (!widget.if3 || clipRight3 > clipLeft2 && clipTop2 < clipBottom3) {
+                        @Pc(468) int local468;
+                        @Pc(503) int memory;
+                        @Pc(514) int color;
+                        @Pc(518) int cardMemory;
+                        @Pc(556) int dragY;
+                        @Pc(563) int local563;
+                        @Pc(571) int local571;
+                        @Pc(545) int objId;
+                        if (widget.contentType != 0) {
+                            if (widget.contentType == 1337 || widget.contentType == 1403 && GlRenderer.enabled) {
+                                aClass13_26 = widget;
+                                anInt5574 = renderY;
+                                ClientScriptRunner.anInt2503 = renderX;
+                                SceneGraph.drawScene(widget.height, widget.contentType == 1403, renderX, widget.width, renderY);
+                                if (GlRenderer.enabled) {
+                                    GlRaster.setClip(clipLeft, clipTop, clipRight, clipBottom);
+                                } else {
+                                    SoftwareRaster.setClip(clipLeft, clipTop, clipRight, clipBottom);
+                                }
+                                continue;
+                            }
+                            if (widget.contentType == 1338) {
+                                if (!widget.method478()) {
+                                    continue;
+                                }
+                                MiniMap.render(rectangle, renderY, renderX, widget);
+                                if (GlRenderer.enabled) {
+                                    GlRaster.setClip(clipLeft, clipTop, clipRight, clipBottom);
+                                } else {
+                                    SoftwareRaster.setClip(clipLeft, clipTop, clipRight, clipBottom);
+                                }
+                                if (MiniMap.state != 0 && MiniMap.state != 3 || ClientScriptRunner.menuVisible || clipLeft2 > ClientScriptRunner.scriptMouseX || ClientScriptRunner.scriptMouseY < clipTop2 || ClientScriptRunner.scriptMouseX >= clipRight3 || clipBottom3 <= ClientScriptRunner.scriptMouseY) {
+                                    continue;
+                                }
+                                clipRight2 = ClientScriptRunner.scriptMouseX - renderX;
+                                clipBottom2 = ClientScriptRunner.scriptMouseY - renderY;
+                                local468 = widget.compassPixelOffsets[clipBottom2];
+                                if (clipRight2 < local468 || clipRight2 > local468 + widget.compassPixelWidths[clipBottom2]) {
+                                    continue;
+                                }
+                                clipBottom2 -= widget.height / 2;
+                                memory = Camera.orbitCameraYaw + MiniMap.minimapAnticheatAngle & 0x7FF;
+                                clipRight2 -= widget.width / 2;
+                                color = MathUtils.sin[memory];
+                                cardMemory = MathUtils.cos[memory];
+                                color = (MiniMap.minimapZoom + 256) * color >> 8;
+                                cardMemory = (MiniMap.minimapZoom + 256) * cardMemory >> 8;
+                                objId = cardMemory * clipBottom2 - color * clipRight2 >> 11;
+                                dragY = clipBottom2 * color + clipRight2 * cardMemory >> 11;
+                                local563 = PlayerList.self.xFine + dragY >> 7;
+                                local571 = PlayerList.self.zFine - objId >> 7;
+                                if (MiniMenu.aBoolean302 && (MiniMenu.anInt4999 & 0x40) != 0) {
+                                    @Pc(583) Widget local583 = getCreatedComponent(MiniMenu.anInt2512, MiniMenu.anInt506);
+                                    if (local583 == null) {
+                                        MiniMenu.method1294();
+                                    } else {
+                                        MiniMenu.addActionRow(MiniMenu.anInt5393, 1L, MiniMenu.aClass100_961, local563, (short) 11, MiniMenu.aClass100_545, local571);
+                                    }
+                                    continue;
+                                }
+                                if (Client.game == 1) {
+                                    MiniMenu.addActionRow(-1, 1L, JString.EMPTY, local563, (short) 36, LocalizedText.FACEHERE, local571);
+                                }
+                                MiniMenu.addActionRow(-1, 1L, JString.EMPTY, local563, (short) 60, MiniMenu.walkText, local571);
+                                continue;
+                            }
+                            if (widget.contentType == 1339) {
+                                if (widget.method478()) {
+                                    MiniMap.renderCompass(renderX, renderY, widget, rectangle);
+                                    if (GlRenderer.enabled) {
+                                        GlRaster.setClip(clipLeft, clipTop, clipRight, clipBottom);
+                                    } else {
+                                        SoftwareRaster.setClip(clipLeft, clipTop, clipRight, clipBottom);
+                                    }
+                                }
+                                continue;
+                            }
+                            if (widget.contentType == 1400) {
+                                WorldMap.render(renderX, renderY, widget.height, widget.width);
+                                widgetNeedsRedraw[rectangle] = true;
+                                rectangleRedraw[rectangle] = true;
+                                if (GlRenderer.enabled) {
+                                    GlRaster.setClip(clipLeft, clipTop, clipRight, clipBottom);
+                                } else {
+                                    SoftwareRaster.setClip(clipLeft, clipTop, clipRight, clipBottom);
+                                }
+                                continue;
+                            }
+                            if (widget.contentType == 1401) {
+                                WorldMap.renderWorldMap(renderX, widget.height, widget.width, renderY);
+                                widgetNeedsRedraw[rectangle] = true;
+                                rectangleRedraw[rectangle] = true;
+                                if (GlRenderer.enabled) {
+                                    GlRaster.setClip(clipLeft, clipTop, clipRight, clipBottom);
+                                } else {
+                                    SoftwareRaster.setClip(clipLeft, clipTop, clipRight, clipBottom);
+                                }
+                                continue;
+                            }
+                            if (widget.contentType == 1402) {
+                                if (!GlRenderer.enabled) {
+                                    Flames.render(renderX, renderY);
+                                    widgetNeedsRedraw[rectangle] = true;
+                                    rectangleRedraw[rectangle] = true;
+                                }
+                                continue;
+                            }
+                            if (widget.contentType == 1405) {
+                                if (!Cheat.displayFps) {
+                                    continue;
+                                }
+                                clipRight2 = widget.width + renderX;
+                                clipBottom2 = renderY + 15;
+                                Fonts.p12Full.renderRight(JString.concatenate(new JString[] { Cheat.DEBUG_FPS2, JString.parseInt(GameShell.fps) }), clipRight2, clipBottom2, 16776960, -1);
+                                clipBottom2 += 15;
+                                @Pc(795) Runtime runtime = Runtime.getRuntime();
+                                memory = (int) ((runtime.totalMemory() - runtime.freeMemory()) / 1024L);
+                                color = 16776960;
+                                if (memory > 65536) {
+                                    color = 16711680;
+                                }
+                                Fonts.p12Full.renderRight(JString.concatenate(new JString[] { Cheat.DEBUG_MEM, JString.parseInt(memory), Cheat.DEBUG_MEM_UNIT}), clipRight2, clipBottom2, color, -1);
+                                clipBottom2 += 15;
+                                if (GlRenderer.enabled) {
+                                    color = 16776960;
+                                    cardMemory = (GlCleaner.oncard_texture + GlCleaner.oncard_geometry + GlCleaner.oncard_2d) / 1024;
+                                    if (cardMemory > 65536) {
+                                        color = 16711680;
+                                    }
+                                    Fonts.p12Full.renderRight(JString.concatenate(new JString[] { Cheat.DEBUG_CARD, JString.parseInt(cardMemory), Cheat.DEBUG_MEM_UNIT}), clipRight2, clipBottom2, color, -1);
+                                    clipBottom2 += 15;
+                                }
+                                cardMemory = 0;
+                                objId = 0;
+                                dragY = 0;
+                                for (local563 = 0; local563 < 28; local563++) {
+                                    cardMemory += Client.js5Providers[local563].getIndexSize();
+                                    dragY += Client.js5Providers[local563].getVerifiedGroups();
+                                    objId += Client.js5Providers[local563].getTotalVerifiedGroups();
+                                }
+                                local571 = dragY * 10000 / cardMemory;
+                                local563 = objId * 100 / cardMemory;
+                                @Pc(968) JString local968 = JString.concatenate(new JString[] { Cheat.DEBUG_CACHE, StringUtils.formatNumber(0, true, 2, (long) local571), ClientScriptRunner.aClass100_672, JString.parseInt(local563), ClientScriptRunner.aClass100_80});
+                                Fonts.p11Full.renderRight(local968, clipRight2, clipBottom2, 16776960, -1);
+                                clipBottom2 += 12;
+                                widgetNeedsRedraw[rectangle] = true;
+                                rectangleRedraw[rectangle] = true;
+                                continue;
+                            }
+                            if (widget.contentType == 1406) {
+                                ClientScriptRunner.anInt3484 = renderY;
+                                LoginManager.hoveredWidget = widget;
+                                ClientScriptRunner.anInt3260 = renderX;
+                                continue;
+                            }
+                        }
+                        if (!ClientScriptRunner.menuVisible) {
+                            if (widget.type == 0 && widget.noClickThrough && ClientScriptRunner.scriptMouseX >= clipLeft2 && ClientScriptRunner.scriptMouseY >= clipTop2 && ClientScriptRunner.scriptMouseX < clipRight3 && clipBottom3 > ClientScriptRunner.scriptMouseY && !Cheat.qaOpTest) {
+                                MiniMenu.menuActionRow = 1;
+                                MiniMenu.cursors[0] = MiniMenu.defaultCursor;
+                                MiniMenu.ops[0] = LocalizedText.CANCEL;
+                                MiniMenu.opBases[0] = JString.EMPTY;
+                                MiniMenu.actions[0] = 1005;
+                            }
+                            if (clipLeft2 <= ClientScriptRunner.scriptMouseX && clipTop2 <= ClientScriptRunner.scriptMouseY && clipRight3 > ClientScriptRunner.scriptMouseX && clipBottom3 > ClientScriptRunner.scriptMouseY) {
+                                MiniMenu.addComponentEntries(ClientScriptRunner.scriptMouseY - renderY, -renderX + ClientScriptRunner.scriptMouseX, widget);
+                            }
+                        }
+                        if (widget.type == 0) {
+                            if (!widget.if3 && method947(widget) && aClass13_22 != widget) {
+                                continue;
+                            }
+                            if (!widget.if3) {
+                                if (widget.scrollMaxV - widget.height < widget.scrollY) {
+                                    widget.scrollY = widget.scrollMaxV - widget.height;
+                                }
+                                if (widget.scrollY < 0) {
+                                    widget.scrollY = 0;
+                                }
+                            }
+                            renderWidget(clipLeft2, renderY - widget.scrollY, -widget.scrollX + renderX, widgets, clipRight3, widget.id, clipTop2, clipBottom3, rectangle);
+                            if (widget.createdWidgets != null) {
+                                renderWidget(clipLeft2, renderY - widget.scrollY, -widget.scrollX + renderX, widget.createdWidgets, clipRight3, widget.id, clipTop2, clipBottom3, rectangle);
+                            }
+                            @Pc(1186) SubInterface local1186 = (SubInterface) openInterfaces.get((long) widget.id);
+                            if (local1186 != null) {
+                                if (local1186.anInt5879 == 0 && !ClientScriptRunner.menuVisible && ClientScriptRunner.scriptMouseX >= clipLeft2 && clipTop2 <= ClientScriptRunner.scriptMouseY && clipRight3 > ClientScriptRunner.scriptMouseX && ClientScriptRunner.scriptMouseY < clipBottom3 && !Cheat.qaOpTest) {
+                                    MiniMenu.ops[0] = LocalizedText.CANCEL;
+                                    MiniMenu.menuActionRow = 1;
+                                    MiniMenu.cursors[0] = MiniMenu.defaultCursor;
+                                    MiniMenu.actions[0] = 1005;
+                                    MiniMenu.opBases[0] = JString.EMPTY;
+                                }
+                                ClientScriptRunner.renderOrInvalidateWidget(local1186.interfaceId, clipLeft2, clipRight3, renderX, rectangle, clipBottom3, clipTop2, renderY);
+                            }
+                            if (GlRenderer.enabled) {
+                                GlRaster.setClip(clipLeft, clipTop, clipRight, clipBottom);
+                            } else {
+                                SoftwareRaster.setClip(clipLeft, clipTop, clipRight, clipBottom);
+                                Rasterizer.prepare();
+                            }
+                        }
+                        if (widgetRedrawPrevious[rectangle] || Cheat.rectDebug > 1) {
+                            if (widget.type == 0 && !widget.if3 && widget.scrollMaxV > widget.height) {
+                                drawScrollbar(widget.scrollY, widget.scrollMaxV, widget.width + renderX, renderY, widget.height);
+                            }
+                            if (widget.type != 1) {
+                                if (widget.type == 2) {
+                                    clipRight2 = 0;
+                                    for (clipBottom2 = 0; clipBottom2 < widget.baseHeight; clipBottom2++) {
+                                        for (local468 = 0; local468 < widget.baseWidth; local468++) {
+                                            color = renderY + clipBottom2 * (widget.invMarginY + 32);
+                                            memory = (widget.invMarginX + 32) * local468 + renderX;
+                                            if (clipRight2 < 20) {
+                                                color += widget.invOffsetY[clipRight2];
+                                                memory += widget.invOffsetX[clipRight2];
+                                            }
+                                            if (widget.invSlotObjId[clipRight2] > 0) {
+                                                objId = widget.invSlotObjId[clipRight2] - 1;
+                                                if (clipLeft < memory + 32 && memory < clipRight && clipTop < color + 32 && color < clipBottom || widget == clickedInventoryWidget && selectedInventorySlot == clipRight2) {
+                                                    @Pc(1476) Sprite sprite;
+                                                    if (MiniMenu.anInt5014 == 1 && MiniMenu.anInt4370 == clipRight2 && widget.id == MiniMap.anInt5062) {
+                                                        sprite = Inv.getObjectSprite(2, objId, widget.objDrawText, widget.invSlotObjCount[clipRight2], 0);
+                                                    } else {
+                                                        sprite = Inv.getObjectSprite(1, objId, widget.objDrawText, widget.invSlotObjCount[clipRight2], 3153952);
+                                                    }
+                                                    if (Rasterizer.textureHasTransparency) {
+                                                        widgetNeedsRedraw[rectangle] = true;
+                                                    }
+                                                    if (sprite == null) {
+                                                        redraw(widget);
+                                                    } else if (clickedInventoryWidget == widget && clipRight2 == selectedInventorySlot) {
+                                                        cardMemory = Mouse.lastMouseX - clickedInventoryComponentX;
+                                                        dragY = Mouse.lastMouseY - clickedInventoryComponentY;
+                                                        if (dragY < 5 && dragY > -5) {
+                                                            dragY = 0;
+                                                        }
+                                                        if (cardMemory < 5 && cardMemory > -5) {
+                                                            cardMemory = 0;
+                                                        }
+                                                        if (lastItemDragTime < 5) {
+                                                            cardMemory = 0;
+                                                            dragY = 0;
+                                                        }
+                                                        // draw dragged icon (at half opacity)
+                                                        sprite.renderAlpha(memory + cardMemory, color - -dragY, 128);
+                                                        if (layer != -1) {
+                                                            @Pc(1571) Widget local1571 = widgets[layer & 0xFFFF];
+                                                            @Pc(1577) int top;
+                                                            @Pc(1575) int bottom;
+                                                            if (GlRenderer.enabled) {
+                                                                bottom = GlRaster.clipBottom;
+                                                                top = GlRaster.clipTop;
+                                                            } else {
+                                                                top = SoftwareRaster.clipTop;
+                                                                bottom = SoftwareRaster.clipBottom;
+                                                            }
+                                                            @Pc(1611) int local1611;
+                                                            if (top > dragY + color && local1571.scrollY > 0) {
+                                                                local1611 = Protocol.sceneDelta * (top - dragY - color) / 3;
+                                                                if (local1611 > Protocol.sceneDelta * 10) {
+                                                                    local1611 = Protocol.sceneDelta * 10;
+                                                                }
+                                                                if (local1611 > local1571.scrollY) {
+                                                                    local1611 = local1571.scrollY;
+                                                                }
+                                                                local1571.scrollY -= local1611;
+                                                                clickedInventoryComponentY += local1611;
+                                                                redraw(local1571);
+                                                            }
+                                                            if (bottom < dragY + color + 32 && local1571.scrollY < local1571.scrollMaxV - local1571.height) {
+                                                                local1611 = (color + dragY + 32 - bottom) * Protocol.sceneDelta / 3;
+                                                                if (local1611 > Protocol.sceneDelta * 10) {
+                                                                    local1611 = Protocol.sceneDelta * 10;
+                                                                }
+                                                                if (local1571.scrollMaxV - local1571.scrollY - local1571.height < local1611) {
+                                                                    local1611 = local1571.scrollMaxV - local1571.height - local1571.scrollY;
+                                                                }
+                                                                local1571.scrollY += local1611;
+                                                                clickedInventoryComponentY -= local1611;
+                                                                redraw(local1571);
+                                                            }
+                                                        }
+                                                    } else if (widget == MiniMenu.pressedInventoryWidget && clipRight2 == MiniMenu.anInt5444) {
+                                                        sprite.renderAlpha(memory, color, 128);
+                                                    } else {
+                                                        sprite.render(memory, color);
+                                                    }
+                                                }
+                                            } else if (widget.invSprite != null && clipRight2 < 20) {
+                                                @Pc(1381) Sprite local1381 = widget.method482(clipRight2);
+                                                if (local1381 != null) {
+                                                    local1381.render(memory, color);
+                                                } else if (Widget.aBoolean72) {
+                                                    redraw(widget);
+                                                }
+                                            }
+                                            clipRight2++;
+                                        }
+                                    }
+                                } else if (widget.type == 3) {
+                                    if (ClientScriptRunner.isTrue(widget)) {
+                                        clipRight2 = widget.activeColor;
+                                        if (aClass13_22 == widget && widget.anInt475 != 0) {
+                                            clipRight2 = widget.anInt475;
+                                        }
+                                    } else {
+                                        clipRight2 = widget.color;
+                                        if (widget == aClass13_22 && widget.overColor != 0) {
+                                            clipRight2 = widget.overColor;
+                                        }
+                                    }
+                                    if (alpha == 0) {
+                                        if (widget.filled) {
+                                            if (GlRenderer.enabled) {
+                                                GlRaster.fillRect(renderX, renderY, widget.width, widget.height, clipRight2);
+                                            } else {
+                                                SoftwareRaster.fillRect(renderX, renderY, widget.width, widget.height, clipRight2);
+                                            }
+                                        } else if (GlRenderer.enabled) {
+                                            GlRaster.drawRect(renderX, renderY, widget.width, widget.height, clipRight2);
+                                        } else {
+                                            SoftwareRaster.drawRect(renderX, renderY, widget.width, widget.height, clipRight2);
+                                        }
+                                    } else if (widget.filled) {
+                                        if (GlRenderer.enabled) {
+                                            GlRaster.fillRectAlpha(renderX, renderY, widget.width, widget.height, clipRight2, 256 - (alpha & 0xFF));
+                                        } else {
+                                            SoftwareRaster.fillRectAlpha(renderX, renderY, widget.width, widget.height, clipRight2, 256 - (alpha & 0xFF));
+                                        }
+                                    } else if (GlRenderer.enabled) {
+                                        GlRaster.drawRectAlpha(renderX, renderY, widget.width, widget.height, clipRight2, 256 - (alpha & 0xFF));
+                                    } else {
+                                        SoftwareRaster.drawRectAlpha(renderX, renderY, widget.width, widget.height, clipRight2, 256 - (alpha & 0xFF));
+                                    }
+                                } else {
+                                    @Pc(1921) com.jagex.runetek4.data.cache.media.Font local1921;
+                                    if (widget.type == 4) {
+                                        local1921 = widget.getFont(Sprites.nameIcons);
+                                        if (local1921 != null) {
+                                            @Pc(1934) JString local1934 = widget.text;
+                                            if (ClientScriptRunner.isTrue(widget)) {
+                                                clipBottom2 = widget.activeColor;
+                                                if (aClass13_22 == widget && widget.anInt475 != 0) {
+                                                    clipBottom2 = widget.anInt475;
+                                                }
+                                                if (widget.activeText.length() > 0) {
+                                                    local1934 = widget.activeText;
+                                                }
+                                            } else {
+                                                clipBottom2 = widget.color;
+                                                if (aClass13_22 == widget && widget.overColor != 0) {
+                                                    clipBottom2 = widget.overColor;
+                                                }
+                                            }
+                                            if (widget.if3 && widget.objId != -1) {
+                                                @Pc(1989) ObjType local1989 = ObjTypeList.get(widget.objId);
+                                                local1934 = local1989.name;
+                                                if (local1934 == null) {
+                                                    local1934 = MiniMenu.NULL;
+                                                }
+                                                if ((local1989.stackable == 1 || widget.objCount != 1) && widget.objCount != -1) {
+                                                    local1934 = JString.concatenate(new JString[] { MiniMenu.aClass100_32, local1934, JString.aClass100_375, StringUtils.formatNumber(widget.objCount) });
+                                                }
+                                            }
+                                            if (ClientScriptRunner.aClass13_10 == widget) {
+                                                clipBottom2 = widget.color;
+                                                local1934 = LocalizedText.PLEASEWAIT;
+                                            }
+                                            if (!widget.if3) {
+                                                local1934 = JString.processStringTokens(widget, local1934);
+                                            }
+                                            local1921.drawInterfaceText(local1934, renderX, renderY, widget.width, widget.height, clipBottom2, widget.shadowed ? 0 : -1, widget.halign, widget.valign, widget.vpadding);
+                                        } else if (Widget.aBoolean72) {
+                                            redraw(widget);
+                                        }
+                                    } else if (widget.type == 5) {
+                                        @Pc(2094) Sprite sprite;
+                                        if (widget.if3) {
+                                            if (widget.objId == -1) {
+                                                sprite = widget.method489(false);
+                                            } else {
+                                                sprite = Inv.getObjectSprite(widget.outlineThickness, widget.objId, widget.objDrawText, widget.objCount, widget.shadowColor);
+                                            }
+                                            if (sprite != null) {
+                                                clipBottom2 = sprite.innerWidth;
+                                                local468 = sprite.innerHeight;
+                                                if (widget.spriteTiling) {
+                                                    memory = (clipBottom2 + widget.width - 1) / clipBottom2;
+                                                    color = (widget.height + local468 - 1) / local468;
+                                                    if (GlRenderer.enabled) {
+                                                        GlRaster.method1183(renderX, renderY, widget.width + renderX, widget.height + renderY);
+                                                        @Pc(2274) boolean local2274 = IntUtils.isPowerOfTwo(sprite.width);
+                                                        @Pc(2279) boolean local2279 = IntUtils.isPowerOfTwo(sprite.height);
+                                                        @Pc(2282) GlSprite local2282 = (GlSprite) sprite;
+                                                        if (local2274 && local2279) {
+                                                            if (alpha == 0) {
+                                                                local2282.method1429(renderX, renderY, memory, color);
+                                                            } else {
+                                                                local2282.method1426(renderX, renderY, 256 - (alpha & 0xFF), memory, color);
+                                                            }
+                                                        } else if (local2274) {
+                                                            for (local563 = 0; local563 < color; local563++) {
+                                                                if (alpha == 0) {
+                                                                    local2282.method1429(renderX, local563 * local468 + renderY, memory, 1);
+                                                                } else {
+                                                                    local2282.method1426(renderX, renderY + local563 * local468, -(alpha & 0xFF) + 256, memory, 1);
+                                                                }
+                                                            }
+                                                        } else if (local2279) {
+                                                            for (local563 = 0; local563 < memory; local563++) {
+                                                                if (alpha == 0) {
+                                                                    local2282.method1429(clipBottom2 * local563 + renderX, renderY, 1, color);
+                                                                } else {
+                                                                    local2282.method1426(clipBottom2 * local563 + renderX, renderY, 256 - (alpha & 0xFF), 1, color);
+                                                                }
+                                                            }
+                                                        } else {
+                                                            for (local563 = 0; local563 < memory; local563++) {
+                                                                for (local571 = 0; local571 < color; local571++) {
+                                                                    if (alpha == 0) {
+                                                                        sprite.render(renderX + clipBottom2 * local563, local468 * local571 + renderY);
+                                                                    } else {
+                                                                        sprite.renderAlpha(local563 * clipBottom2 + renderX, local468 * local571 + renderY, 256 - (alpha & 0xFF));
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                        GlRaster.setClip(clipLeft, clipTop, clipRight, clipBottom);
+                                                    } else {
+                                                        SoftwareRaster.method2498(renderX, renderY, renderX + widget.width, renderY - -widget.height);
+                                                        for (cardMemory = 0; cardMemory < memory; cardMemory++) {
+                                                            for (dragY = 0; dragY < color; dragY++) {
+                                                                if (widget.angle2d != 0) {
+                                                                    sprite.renderAngled(renderY + local468 * dragY + local468 / 2, widget.angle2d, 4096, cardMemory * clipBottom2 + renderX + clipBottom2 / 2);
+                                                                } else if (alpha == 0) {
+                                                                    sprite.render(cardMemory * clipBottom2 + renderX, local468 * dragY + renderY);
+                                                                } else {
+                                                                    sprite.renderAlpha(cardMemory * clipBottom2 + renderX, renderY + dragY * local468, 256 - (alpha & 0xFF));
+                                                                }
+                                                            }
+                                                        }
+                                                        SoftwareRaster.setClip(clipLeft, clipTop, clipRight, clipBottom);
+                                                    }
+                                                } else {
+                                                    memory = widget.width * 4096 / clipBottom2;
+                                                    if (widget.angle2d != 0) {
+                                                        sprite.renderAngled(renderY + widget.height / 2, widget.angle2d, memory, renderX + widget.width / 2);
+                                                    } else if (alpha != 0) {
+                                                        sprite.renderAlpha(renderX, renderY, widget.width, widget.height, 256 - (alpha & 0xFF));
+                                                    } else if (clipBottom2 == widget.width && local468 == widget.height) {
+                                                        sprite.render(renderX, renderY);
+                                                    } else {
+                                                        // render icons in a container i.e bank icons
+                                                        sprite.renderResized(renderX, renderY, widget.width, widget.height);
+                                                    }
+                                                }
+                                            } else if (Widget.aBoolean72) {
+                                                redraw(widget);
+                                            }
+                                        } else {
+                                            sprite = widget.method489(ClientScriptRunner.isTrue(widget));
+                                            if (sprite != null) {
+                                                sprite.render(renderX, renderY);
+                                            } else if (Widget.aBoolean72) {
+                                                redraw(widget);
+                                            }
+                                        }
+                                    } else {
+                                        @Pc(2611) ObjType local2611;
+                                        if (widget.type == 6) {
+                                            @Pc(2587) boolean local2587 = ClientScriptRunner.isTrue(widget);
+                                            @Pc(2589) Model local2589 = null;
+                                            if (local2587) {
+                                                clipBottom2 = widget.activeModelSeqId;
+                                            } else {
+                                                clipBottom2 = widget.modelSeqId;
+                                            }
+                                            memory = 0;
+                                            if (widget.objId != -1) {
+                                                local2611 = ObjTypeList.get(widget.objId);
+                                                if (local2611 != null) {
+                                                    local2611 = local2611.getMeshAddress(widget.objCount);
+                                                    @Pc(2630) SeqType local2630 = clipBottom2 == -1 ? null : SeqTypeList.get(clipBottom2);
+                                                    local2589 = local2611.getModel(widget.anInt496, widget.anInt500, local2630, 1, widget.anInt510);
+                                                    if (local2589 == null) {
+                                                        redraw(widget);
+                                                    } else {
+                                                        memory = -local2589.getMinY() / 2;
+                                                    }
+                                                }
+                                            } else if (widget.modelType == 5) {
+                                                if (widget.modelId == -1) {
+                                                    local2589 = PlayerAppearance.DEFAULT.createAnimatedBodyModel(null, -1, null, null, 0, -1, 0, -1, -1);
+                                                } else {
+                                                    color = widget.modelId & 0x7FF;
+                                                    if (color == PlayerList.selfId) {
+                                                        color = 2047;
+                                                    }
+                                                    @Pc(2751) Player local2751 = PlayerList.players[color];
+                                                    @Pc(2760) SeqType local2760 = clipBottom2 == -1 ? null : SeqTypeList.get(clipBottom2);
+                                                    if (local2751 != null && (int) local2751.username.encode37() << 11 == (widget.modelId & 0xFFFFF800)) {
+                                                        local2589 = local2751.appearance.createAnimatedBodyModel(null, -1, null, local2760, 0, -1, 0, widget.anInt510, 0);
+                                                    }
+                                                }
+                                            } else if (clipBottom2 == -1) {
+                                                local2589 = widget.method488(-1, null, -1, 0, local2587, PlayerList.self.appearance);
+                                                if (local2589 == null && Widget.aBoolean72) {
+                                                    redraw(widget);
+                                                }
+                                            } else {
+                                                @Pc(2689) SeqType local2689 = SeqTypeList.get(clipBottom2);
+                                                local2589 = widget.method488(widget.anInt496, local2689, widget.anInt510, widget.anInt500, local2587, PlayerList.self.appearance);
+                                                if (local2589 == null && Widget.aBoolean72) {
+                                                    redraw(widget);
+                                                }
+                                            }
+                                            if (local2589 != null) {
+                                                if (widget.anInt451 > 0) {
+                                                    color = (widget.width << 8) / widget.anInt451;
+                                                } else {
+                                                    color = 256;
+                                                }
+                                                if (widget.anInt526 <= 0) {
+                                                    cardMemory = 256;
+                                                } else {
+                                                    cardMemory = (widget.height << 8) / widget.anInt526;
+                                                }
+                                                dragY = renderX + widget.width / 2 + (color * widget.anInt495 >> 8);
+                                                objId = widget.height / 2 + renderY + (cardMemory * widget.anInt481 >> 8);
+                                                if (GlRenderer.enabled) {
+                                                    if (widget.modelOrtho) {
+                                                        GlRenderer.method4182(dragY, objId, widget.modelZoom, widget.aShort11, color, cardMemory);
+                                                    } else {
+                                                        GlRenderer.method4148(dragY, objId, color, cardMemory);
+                                                        GlRenderer.method4152((float) widget.aShort10, (float) widget.aShort11 * 1.5F);
+                                                    }
+                                                    GlRenderer.restoreLighting();
+                                                    GlRenderer.setDepthTestEnabled(true);
+                                                    GlRenderer.setFogEnabled(false);
+                                                    FogManager.init(Preferences.brightness);
+                                                    if (ClientScriptRunner.aBoolean299) {
+                                                        GlRaster.method1177();
+                                                        GlRenderer.clearDepthBuffer();
+                                                        GlRaster.setClip(clipLeft, clipTop, clipRight, clipBottom);
+                                                        ClientScriptRunner.aBoolean299 = false;
+                                                    }
+                                                    if (widget.aBoolean34) {
+                                                        GlRenderer.disableDepthMask();
+                                                    }
+                                                    local563 = MathUtils.sin[widget.modelXAngle] * widget.modelZoom >> 16;
+                                                    local571 = widget.modelZoom * MathUtils.cos[widget.modelXAngle] >> 16;
+                                                    if (widget.if3) {
+                                                        local2589.setCamera(widget.modelYAngle, widget.modelYOffset, widget.modelXAngle, widget.modelXOffset, widget.modelZOffset + local563 + memory, widget.modelZOffset + local571, -1L);
+                                                    } else {
+                                                        local2589.setCamera(widget.modelYAngle, 0, widget.modelXAngle, 0, local563, local571, -1L);
+                                                    }
+                                                    if (widget.aBoolean34) {
+                                                        GlRenderer.enableDepthMask();
+                                                    }
+                                                } else {
+                                                    Rasterizer.setBounds(dragY, objId);
+                                                    local563 = MathUtils.sin[widget.modelXAngle] * widget.modelZoom >> 16;
+                                                    local571 = widget.modelZoom * MathUtils.cos[widget.modelXAngle] >> 16;
+                                                    if (!widget.if3) {
+                                                        local2589.setCamera(widget.modelYAngle, 0, widget.modelXAngle, 0, local563, local571, -1L);
+                                                    } else if (widget.modelOrtho) {
+                                                        ((SoftwareModel) local2589).method4591(widget.modelYAngle, widget.modelYOffset, widget.modelXAngle, widget.modelXOffset, widget.modelZOffset + memory + local563, local571 + widget.modelZOffset, widget.modelZoom);
+                                                    } else {
+                                                        local2589.setCamera(widget.modelYAngle, widget.modelYOffset, widget.modelXAngle, widget.modelXOffset, widget.modelZOffset + local563 + memory, local571 + widget.modelZOffset, -1L);
+                                                    }
+                                                    Rasterizer.prepareOffsets();
+                                                }
+                                            }
+                                        } else {
+                                            if (widget.type == 7) {
+                                                local1921 = widget.getFont(Sprites.nameIcons);
+                                                if (local1921 == null) {
+                                                    if (Widget.aBoolean72) {
+                                                        redraw(widget);
+                                                    }
+                                                    continue;
+                                                }
+                                                clipBottom2 = 0;
+                                                for (local468 = 0; local468 < widget.baseHeight; local468++) {
+                                                    for (memory = 0; memory < widget.baseWidth; memory++) {
+                                                        if (widget.invSlotObjId[clipBottom2] > 0) {
+                                                            local2611 = ObjTypeList.get(widget.invSlotObjId[clipBottom2] - 1);
+                                                            @Pc(3159) JString local3159;
+                                                            if (local2611.stackable != 1 && widget.invSlotObjCount[clipBottom2] == 1) {
+                                                                local3159 = JString.concatenate(new JString[] { MiniMenu.aClass100_32, local2611.name, JString.aClass100_978 });
+                                                            } else {
+                                                                local3159 = JString.concatenate(new JString[] { MiniMenu.aClass100_32, local2611.name, JString.aClass100_375, StringUtils.formatNumber(widget.invSlotObjCount[clipBottom2]) });
+                                                            }
+                                                            dragY = renderX + memory * (widget.invMarginX + 115);
+                                                            objId = (widget.invMarginY + 12) * local468 + renderY;
+                                                            if (widget.halign == 0) {
+                                                                local1921.renderLeft(local3159, dragY, objId, widget.color, widget.shadowed ? 0 : -1);
+                                                            } else if (widget.halign == 1) {
+                                                                local1921.renderCenter(local3159, dragY + 57, objId, widget.color, widget.shadowed ? 0 : -1);
+                                                            } else {
+                                                                local1921.renderRight(local3159, dragY + 115 - 1, objId, widget.color, widget.shadowed ? 0 : -1);
+                                                            }
+                                                        }
+                                                        clipBottom2++;
+                                                    }
+                                                }
+                                            }
+                                            if (widget.type == 8 && Protocol.aClass13_11 == widget && Protocol.anInt5235 == ClientScriptRunner.anInt4504) {
+                                                clipBottom2 = 0;
+                                                clipRight2 = 0;
+                                                @Pc(3297) JString local3297 = widget.text;
+                                                @Pc(3299) Font local3299 = Fonts.p12Full;
+                                                local3297 = JString.processStringTokens(widget, local3297);
+                                                @Pc(3325) JString local3325;
+                                                while (local3297.length() > 0) {
+                                                    cardMemory = local3297.indexOf(JString.aClass100_556);
+                                                    if (cardMemory == -1) {
+                                                        local3325 = local3297;
+                                                        local3297 = JString.EMPTY;
+                                                    } else {
+                                                        local3325 = local3297.substring(cardMemory, 0);
+                                                        local3297 = local3297.substring(cardMemory + 4);
+                                                    }
+                                                    dragY = local3299.getStringWidth(local3325);
+                                                    clipBottom2 += local3299.characterDefaultHeight + 1;
+                                                    if (clipRight2 < dragY) {
+                                                        clipRight2 = dragY;
+                                                    }
+                                                }
+                                                dragY = renderY + widget.height + 5;
+                                                clipRight2 += 6;
+                                                clipBottom2 += 7;
+                                                if (dragY + clipBottom2 > clipBottom) {
+                                                    dragY = clipBottom - clipBottom2;
+                                                }
+                                                cardMemory = renderX + widget.width - clipRight2 - 5;
+                                                if (cardMemory < renderX + 5) {
+                                                    cardMemory = renderX + 5;
+                                                }
+                                                if (clipRight2 + cardMemory > clipRight) {
+                                                    cardMemory = clipRight - clipRight2;
+                                                }
+                                                if (GlRenderer.enabled) {
+                                                    GlRaster.fillRect(cardMemory, dragY, clipRight2, clipBottom2, 16777120);
+                                                    GlRaster.drawRect(cardMemory, dragY, clipRight2, clipBottom2, 0);
+                                                } else {
+                                                    SoftwareRaster.fillRect(cardMemory, dragY, clipRight2, clipBottom2, 16777120);
+                                                    SoftwareRaster.drawRect(cardMemory, dragY, clipRight2, clipBottom2, 0);
+                                                }
+                                                local3297 = widget.text;
+                                                objId = dragY + local3299.characterDefaultHeight + 2;
+                                                local3297 = JString.processStringTokens(widget, local3297);
+                                                while (local3297.length() > 0) {
+                                                    local563 = local3297.indexOf(JString.aClass100_556);
+                                                    if (local563 == -1) {
+                                                        local3325 = local3297;
+                                                        local3297 = JString.EMPTY;
+                                                    } else {
+                                                        local3325 = local3297.substring(local563, 0);
+                                                        local3297 = local3297.substring(local563 + 4);
+                                                    }
+                                                    local3299.renderLeft(local3325, cardMemory + 3, objId, 0, -1);
+                                                    objId += local3299.characterDefaultHeight + 1;
+                                                }
+                                            }
+                                            if (widget.type == 9) {
+                                                if (widget.aBoolean20) {
+                                                    local468 = renderX + widget.width;
+                                                    clipBottom2 = renderY + widget.height;
+                                                    memory = renderY;
+                                                } else {
+                                                    clipBottom2 = renderY;
+                                                    memory = renderY + widget.height;
+                                                    local468 = renderX + widget.width;
+                                                }
+                                                if (widget.lineWidth == 1) {
+                                                    if (GlRenderer.enabled) {
+                                                        GlRaster.drawDiagonalLine(renderX, clipBottom2, local468, memory, widget.color);
+                                                    } else {
+                                                        SoftwareRaster.drawDiagonalLine(renderX, clipBottom2, local468, memory, widget.color);
+                                                    }
+                                                } else if (GlRenderer.enabled) {
+                                                    GlRaster.method1181(renderX, clipBottom2, local468, memory, widget.color, widget.lineWidth);
+                                                } else {
+                                                    SoftwareRaster.method2494(renderX, clipBottom2, local468, memory, widget.color, widget.lineWidth);
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @OriginalMember(owner = "runetek4.client!aa", name = "a", descriptor = "(BLclient!be;)V")
+    public static void updateGenderDependentWidgets(@OriginalArg(1) Widget widget) {
+        @Pc(16) int contentType = widget.contentType;
+        if (contentType == 324) {
+            if (ClientScriptRunner.defaultSpriteId == -1) {
+                ClientScriptRunner.defaultSpriteId = widget.spriteId;
+                ClientScriptRunner.alternateSpriteId = widget.activeSpriteId;
+            }
+            if (PlayerAppearance.DEFAULT.gender) {
+                widget.spriteId = ClientScriptRunner.defaultSpriteId;
+            } else {
+                widget.spriteId = ClientScriptRunner.alternateSpriteId;
+            }
+        } else if (contentType == 325) {
+            if (ClientScriptRunner.defaultSpriteId == -1) {
+                ClientScriptRunner.alternateSpriteId = widget.activeSpriteId;
+                ClientScriptRunner.defaultSpriteId = widget.spriteId;
+            }
+            if (PlayerAppearance.DEFAULT.gender) {
+                widget.spriteId = ClientScriptRunner.alternateSpriteId;
+            } else {
+                widget.spriteId = ClientScriptRunner.defaultSpriteId;
+            }
+        } else if (contentType == 327) {
+            widget.modelXAngle = 150;
+            widget.modelYAngle = (int) (Math.sin((double) Client.loop / 40.0D) * 256.0D) & 0x7FF;
+            widget.modelType = 5;
+            widget.modelId = -1;
+        } else if (contentType == 328) {
+            if (PlayerList.self.username == null) {
+                widget.modelId = 0;
+            } else {
+                widget.modelXAngle = 150;
+                widget.modelYAngle = (int) (Math.sin((double) Client.loop / 40.0D) * 256.0D) & 0x7FF;
+                widget.modelType = 5;
+                widget.modelId = ((int) PlayerList.self.username.encode37() << 11) + 2047;
+                widget.anInt496 = PlayerList.self.anInt3388;
+                widget.anInt500 = 0;
+                widget.modelSeqId = PlayerList.self.movementSeqId;
+                widget.anInt510 = PlayerList.self.anInt3407;
+            }
+        }
+    }
+
+    @OriginalMember(owner = "client!fn", name = "a", descriptor = "(BIIIII)V")
+    public static void drawScrollbar(@OriginalArg(1) int scrollPosition, @OriginalArg(2) int scrollMax, @OriginalArg(3) int x, @OriginalArg(4) int y, @OriginalArg(5) int height) {
+        Sprites.scrollbars[0].renderTransparent(x, y);
+        Sprites.scrollbars[1].renderTransparent(x, height + y - 16);
+        @Pc(35) int thumbHeight = height * (height - 32) / scrollMax;
+        if (thumbHeight < 8) {
+            thumbHeight = 8;
+        }
+        @Pc(54) int thumbY = scrollPosition * (height - thumbHeight - 32) / (scrollMax - height);
+        if (!GlRenderer.enabled) {
+            SoftwareRaster.fillRect(x, y + 16, 16, height - 32, ClientScriptRunner.anInt4306);
+            SoftwareRaster.fillRect(x, thumbY + y + 16, 16, thumbHeight, ClientScriptRunner.anInt1704);
+            SoftwareRaster.drawVerticalLine(x, thumbY + y + 16, thumbHeight, ClientScriptRunner.anInt4938);
+            SoftwareRaster.drawVerticalLine(x + 1, thumbY + 16 + y, thumbHeight, ClientScriptRunner.anInt4938);
+            SoftwareRaster.drawHorizontalLine(x, y + thumbY + 16, 16, ClientScriptRunner.anInt4938);
+            SoftwareRaster.drawHorizontalLine(x, y + thumbY + 17, 16, ClientScriptRunner.anInt4938);
+            SoftwareRaster.drawVerticalLine(x + 15, thumbY + 16 + y, thumbHeight, ClientScriptRunner.anInt671);
+            SoftwareRaster.drawVerticalLine(x + 14, y - -17 - -thumbY, thumbHeight - 1, ClientScriptRunner.anInt671);
+            SoftwareRaster.drawHorizontalLine(x, thumbHeight + y + thumbY + 15, 16, ClientScriptRunner.anInt671);
+            SoftwareRaster.drawHorizontalLine(x + 1, thumbHeight + y - (-thumbY + -14), 15, ClientScriptRunner.anInt671);
+            return;
+        }
+        GlRaster.fillRect(x, y + 16, 16, height - 32, ClientScriptRunner.anInt4306);
+        GlRaster.fillRect(x, y + thumbY + 16, 16, thumbHeight, ClientScriptRunner.anInt1704);
+        GlRaster.method1176(x, thumbY + y + 16, thumbHeight, ClientScriptRunner.anInt4938);
+        GlRaster.method1176(x + 1, thumbY + 16 + y, thumbHeight, ClientScriptRunner.anInt4938);
+        GlRaster.method1174(x, thumbY + y + 16, 16, ClientScriptRunner.anInt4938);
+        GlRaster.method1174(x, thumbY + y + 17, 16, ClientScriptRunner.anInt4938);
+        GlRaster.method1176(x + 15, y + (16 - -thumbY), thumbHeight, ClientScriptRunner.anInt671);
+        GlRaster.method1176(x + 14, y - -thumbY + 17, thumbHeight - 1, ClientScriptRunner.anInt671);
+        GlRaster.method1174(x, thumbHeight + y + thumbY + 15, 16, ClientScriptRunner.anInt671);
+        GlRaster.method1174(x + 1, y + 14 - -thumbY + thumbHeight, 15, ClientScriptRunner.anInt671);
     }
 }

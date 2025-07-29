@@ -97,7 +97,7 @@ public final class WorldMapFont {
 	}
 
 	@OriginalMember(owner = "client!fd", name = "a", descriptor = "()I")
-	public int method1503() {
+	public int getBaselineOffset() {
 		return this.data[8] - 1;
 	}
 
@@ -121,84 +121,84 @@ public final class WorldMapFont {
 	}
 
 	@OriginalMember(owner = "client!fd", name = "a", descriptor = "(IIII[B)V")
-	private void renderGlyph(@OriginalArg(0) int index, @OriginalArg(1) int x, @OriginalArg(2) int y, @OriginalArg(3) int arg3, @OriginalArg(4) byte[] src) {
-		@Pc(7) int local7 = x + src[index + 5];
-		@Pc(15) int local15 = y - src[index + 6];
+	private void renderGlyph(@OriginalArg(0) int index, @OriginalArg(1) int x, @OriginalArg(2) int y, @OriginalArg(3) int color, @OriginalArg(4) byte[] src) {
+		@Pc(7) int glyphX = x + src[index + 5];
+		@Pc(15) int glyphY = y - src[index + 6];
 		@Pc(21) int width = src[index + 3];
 		@Pc(27) int height = src[index + 4];
 		@Pc(47) int srcIndex = src[index] * 16384 + src[index + 1] * 128 + src[index + 2];
-		@Pc(53) int destIndex = local7 + local15 * SoftwareRaster.width;
+		@Pc(53) int destIndex = glyphX + glyphY * SoftwareRaster.width;
 		@Pc(57) int destStride = SoftwareRaster.width - width;
 		@Pc(59) int srcStride = 0;
-		@Pc(66) int local66;
-		if (local15 < SoftwareRaster.clipTop) {
-			local66 = SoftwareRaster.clipTop - local15;
-			height -= local66;
-			local15 = SoftwareRaster.clipTop;
-			srcIndex += local66 * width;
-			destIndex += local66 * SoftwareRaster.width;
+		@Pc(66) int clipAmount;
+		if (glyphY < SoftwareRaster.clipTop) {
+			clipAmount = SoftwareRaster.clipTop - glyphY;
+			height -= clipAmount;
+			glyphY = SoftwareRaster.clipTop;
+			srcIndex += clipAmount * width;
+			destIndex += clipAmount * SoftwareRaster.width;
 		}
-		if (local15 + height >= SoftwareRaster.clipBottom) {
-			height -= local15 + height + 1 - SoftwareRaster.clipBottom;
+		if (glyphY + height >= SoftwareRaster.clipBottom) {
+			height -= glyphY + height + 1 - SoftwareRaster.clipBottom;
 		}
-		if (local7 < SoftwareRaster.clipLeft) {
-			local66 = SoftwareRaster.clipLeft - local7;
-			width -= local66;
-			local7 = SoftwareRaster.clipLeft;
-			srcIndex += local66;
-			destIndex += local66;
-			srcStride = local66;
-			destStride += local66;
+		if (glyphX < SoftwareRaster.clipLeft) {
+			clipAmount = SoftwareRaster.clipLeft - glyphX;
+			width -= clipAmount;
+			glyphX = SoftwareRaster.clipLeft;
+			srcIndex += clipAmount;
+			destIndex += clipAmount;
+			srcStride = clipAmount;
+			destStride += clipAmount;
 		}
-		if (local7 + width >= SoftwareRaster.clipRight) {
-			local66 = local7 + width + 1 - SoftwareRaster.clipRight;
-			width -= local66;
-			srcStride += local66;
-			destStride += local66;
+		if (glyphX + width >= SoftwareRaster.clipRight) {
+			clipAmount = glyphX + width + 1 - SoftwareRaster.clipRight;
+			width -= clipAmount;
+			srcStride += clipAmount;
+			destStride += clipAmount;
 		}
 		if (width <= 0 || height <= 0) {
 			return;
 		}
 		if (this.grayscale) {
-			this.renderGlyphGrayscale(SoftwareRaster.pixels, src, arg3, srcIndex, destIndex, width, height, destStride, srcStride);
+			this.renderGlyphGrayscale(SoftwareRaster.pixels, src, color, srcIndex, destIndex, width, height, destStride, srcStride);
 		} else {
-			this.renderGlyphMono(SoftwareRaster.pixels, src, arg3, srcIndex, destIndex, width, height, destStride, srcStride);
+			this.renderGlyphMono(SoftwareRaster.pixels, src, color, srcIndex, destIndex, width, height, destStride, srcStride);
 		}
 	}
 
 	@OriginalMember(owner = "client!fd", name = "b", descriptor = "([I[BIIIIIII)V")
-	private void renderGlyphMono(@OriginalArg(0) int[] arg0, @OriginalArg(1) byte[] src, @OriginalArg(2) int color, @OriginalArg(3) int srcIndex, @OriginalArg(4) int destIndex, @OriginalArg(5) int width, @OriginalArg(6) int arg6, @OriginalArg(7) int destStride, @OriginalArg(8) int srcStride) {
-		@Pc(4) int roundedWidth = -(width >> 2);
-		@Pc(9) int width2 = -(width & 0x3);
-		for (@Pc(12) int y = -arg6; y < 0; y++) {
+	private void renderGlyphMono(@OriginalArg(0) int[] destPixels, @OriginalArg(1) byte[] src, @OriginalArg(2) int color, @OriginalArg(3) int srcIndex, @OriginalArg(4) int destIndex, @OriginalArg(5) int width, @OriginalArg(6) int height, @OriginalArg(7) int destStride, @OriginalArg(8) int srcStride) {
+		@Pc(4) int unrolledWidth = -(width >> 2);
+		@Pc(9) int remainingWidth = -(width & 0x3);
+		for (@Pc(12) int y = -height; y < 0; y++) {
 			@Pc(16) int x;
-			for (x = roundedWidth; x < 0; x++) {
+			for (x = unrolledWidth; x < 0; x++) {
 				if (src[srcIndex++] == 0) {
 					destIndex++;
 				} else {
-					arg0[destIndex++] = color;
+					destPixels[destIndex++] = color;
 				}
 				if (src[srcIndex++] == 0) {
 					destIndex++;
 				} else {
-					arg0[destIndex++] = color;
+					destPixels[destIndex++] = color;
 				}
 				if (src[srcIndex++] == 0) {
 					destIndex++;
 				} else {
-					arg0[destIndex++] = color;
+					destPixels[destIndex++] = color;
 				}
 				if (src[srcIndex++] == 0) {
 					destIndex++;
 				} else {
-					arg0[destIndex++] = color;
+					destPixels[destIndex++] = color;
 				}
 			}
-			for (x = width2; x < 0; x++) {
+			for (x = remainingWidth; x < 0; x++) {
 				if (src[srcIndex++] == 0) {
 					destIndex++;
 				} else {
-					arg0[destIndex++] = color;
+					destPixels[destIndex++] = color;
 				}
 			}
 			destIndex += destStride;
@@ -207,11 +207,11 @@ public final class WorldMapFont {
 	}
 
 	@OriginalMember(owner = "client!fd", name = "b", descriptor = "(Lclient!na;IIIZ)V")
-	public void renderStringCenter(@OriginalArg(0) JString arg0, @OriginalArg(1) int x, @OriginalArg(2) int y, @OriginalArg(3) int color) {
-		@Pc(5) int halfWidth = this.getStringWidth(arg0) / 2;
-		@Pc(8) int local8 = this.method1511();
-		if (x - halfWidth <= SoftwareRaster.clipRight && (x + halfWidth >= SoftwareRaster.clipLeft && (y - local8 <= SoftwareRaster.clipBottom && y >= 0))) {
-			this.renderString(arg0, x - halfWidth, y, color, true);
+	public void renderStringCenter(@OriginalArg(0) JString string, @OriginalArg(1) int x, @OriginalArg(2) int y, @OriginalArg(3) int color) {
+		@Pc(5) int halfWidth = this.getStringWidth(string) / 2;
+		@Pc(8) int fontHeight = this.getLineHeight();
+		if (x - halfWidth <= SoftwareRaster.clipRight && (x + halfWidth >= SoftwareRaster.clipLeft && (y - fontHeight <= SoftwareRaster.clipBottom && y >= 0))) {
+			this.renderString(string, x - halfWidth, y, color, true);
 		}
 	}
 
@@ -254,41 +254,41 @@ public final class WorldMapFont {
 		@Pc(136) int y0 = 0;
 		@Pc(138) int x1 = imageWidth;
 		@Pc(140) int y1 = imageHeight;
-		@Pc(142) int local142;
-		@Pc(147) int local147;
+		@Pc(142) int y;
+		@Pc(147) int x;
 		@Pc(158) int color;
-		y0: for (local142 = 0; local142 < imageHeight; local142++) {
-			for (local147 = 0; local147 < imageWidth; local147++) {
-				color = pixels[local147 + local142 * imageWidth];
+		y0: for (y = 0; y < imageHeight; y++) {
+			for (x = 0; x < imageWidth; x++) {
+				color = pixels[x + y * imageWidth];
 				if ((color & 0xFFFFFF) != 0) {
-					y0 = local142;
+					y0 = y;
 					break y0;
 				}
 			}
 		}
-		x0: for (local142 = 0; local142 < imageWidth; local142++) {
-			for (local147 = 0; local147 < imageHeight; local147++) {
-				color = pixels[local142 + local147 * imageWidth];
+		x0: for (y = 0; y < imageWidth; y++) {
+			for (x = 0; x < imageHeight; x++) {
+				color = pixels[y + x * imageWidth];
 				if ((color & 0xFFFFFF) != 0) {
-					x0 = local142;
+					x0 = y;
 					break x0;
 				}
 			}
 		}
-		y1: for (local142 = imageHeight - 1; local142 >= 0; local142--) {
-			for (local147 = 0; local147 < imageWidth; local147++) {
-				color = pixels[local147 + local142 * imageWidth];
+		y1: for (y = imageHeight - 1; y >= 0; y--) {
+			for (x = 0; x < imageWidth; x++) {
+				color = pixels[x + y * imageWidth];
 				if ((color & 0xFFFFFF) != 0) {
-					y1 = local142 + 1;
+					y1 = y + 1;
 					break y1;
 				}
 			}
 		}
-		x1: for (local142 = imageWidth - 1; local142 >= 0; local142--) {
-			for (local147 = 0; local147 < imageHeight; local147++) {
-				color = pixels[local142 + local147 * imageWidth];
+		x1: for (y = imageWidth - 1; y >= 0; y--) {
+			for (x = 0; x < imageHeight; x++) {
+				color = pixels[y + x * imageWidth];
 				if ((color & 0xFFFFFF) != 0) {
-					x1 = local142 + 1;
+					x1 = y + 1;
 					break x1;
 				}
 			}
@@ -302,9 +302,9 @@ public final class WorldMapFont {
 		this.data[id * 9 + 6] = (byte) (maxAscent - y0);
 		this.data[id * 9 + 7] = (byte) width;
 		this.data[id * 9 + 8] = (byte) height;
-		for (local142 = y0; local142 < y1; local142++) {
-			for (local147 = x0; local147 < x1; local147++) {
-				color = pixels[local147 + local142 * imageWidth] & 0xFF;
+		for (y = y0; y < y1; y++) {
+			for (x = x0; x < x1; x++) {
+				color = pixels[x + y * imageWidth] & 0xFF;
 				if (color > 30 && color < 230) {
 					this.grayscale = true;
 				}
@@ -329,7 +329,7 @@ public final class WorldMapFont {
 	}
 
 	@OriginalMember(owner = "client!fd", name = "c", descriptor = "()I")
-	public int method1511() {
+	public int getLineHeight() {
 		return this.data[6];
 	}
 }

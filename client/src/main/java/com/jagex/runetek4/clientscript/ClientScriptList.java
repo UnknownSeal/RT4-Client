@@ -38,18 +38,18 @@ public class ClientScriptList {
         clientScript.intArgs = buffer.g2();
         clientScript.stringArgs = buffer.g2();
         @Pc(98) int switches = buffer.g1();
-        @Pc(107) int local107;
+        @Pc(107) int i;
         @Pc(114) int opcode;
         if (switches > 0) {
             clientScript.switchTables = new HashTable[switches];
-            for (local107 = 0; local107 < switches; local107++) {
+            for (i = 0; i < switches; i++) {
                 opcode = buffer.g2();
                 @Pc(121) HashTable table = new HashTable(IntUtils.bitceil(opcode));
-                clientScript.switchTables[local107] = table;
+                clientScript.switchTables[i] = table;
                 while (opcode-- > 0) {
-                    @Pc(136) int local136 = buffer.g4();
-                    @Pc(140) int local140 = buffer.g4();
-                    table.put(new IntWrapper(local140), (long) local136);
+                    @Pc(136) int key = buffer.g4();
+                    @Pc(140) int value = buffer.g4();
+                    table.put(new IntWrapper(value), (long) key);
                 }
             }
         }
@@ -57,18 +57,18 @@ public class ClientScriptList {
         clientScript.name = buffer.gjstrFast();
         clientScript.opcodes = new int[opcodeCount];
         clientScript.stringOperands = new JString[opcodeCount];
-        local107 = 0;
+        i = 0;
         clientScript.intOperands = new int[opcodeCount];
         while (trailerPos > buffer.offset) {
             opcode = buffer.g2();
             if (opcode == 3) {
-                clientScript.stringOperands[local107] = buffer.gjstr();
+                clientScript.stringOperands[i] = buffer.gjstr();
             } else if (opcode >= 100 || opcode == 21 || opcode == 38 || opcode == 39) {
-                clientScript.intOperands[local107] = buffer.g1();
+                clientScript.intOperands[i] = buffer.g1();
             } else {
-                clientScript.intOperands[local107] = buffer.g4();
+                clientScript.intOperands[i] = buffer.g4();
             }
-            clientScript.opcodes[local107++] = opcode;
+            clientScript.opcodes[i++] = opcode;
         }
         scripts.put(clientScript, (long) scriptId);
         return clientScript;

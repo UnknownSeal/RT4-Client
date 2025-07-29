@@ -31,16 +31,16 @@ public final class Loc extends Entity {
 	private ParticleSystem particles;
 
 	@OriginalMember(owner = "runetek4.client!dc", name = "x", descriptor = "I")
-	private int anInt1296 = 0;
+	private int shadowWorldX = 0;
 
 	@OriginalMember(owner = "runetek4.client!dc", name = "t", descriptor = "Z")
-	private boolean aBoolean80 = false;
+	private boolean isMultiLoc = false;
 
 	@OriginalMember(owner = "runetek4.client!dc", name = "s", descriptor = "I")
-	private int anInt1294 = 0;
+	private int shadowHeightOffset = 0;
 
 	@OriginalMember(owner = "runetek4.client!dc", name = "B", descriptor = "Z")
-	private boolean aBoolean81 = true;
+	private boolean shadowInitialized = true;
 
 	@OriginalMember(owner = "runetek4.client!dc", name = "Q", descriptor = "Lclient!ek;")
 	private SoftwareIndexedSprite sprite2 = null;
@@ -49,187 +49,187 @@ public final class Loc extends Entity {
 	private final int anInt1311 = -32768;
 
 	@OriginalMember(owner = "runetek4.client!dc", name = "eb", descriptor = "I")
-	private int anInt1319 = 0;
+	private int shadowWorldZ = 0;
 
 	@OriginalMember(owner = "runetek4.client!dc", name = "gb", descriptor = "I")
-	private int anInt1321 = -1;
+	private int lastShadowLocId = -1;
 
 	@OriginalMember(owner = "runetek4.client!dc", name = "ib", descriptor = "I")
-	private int anInt1322 = -1;
+	private int lastShadowFrame = -1;
 
 	@OriginalMember(owner = "runetek4.client!dc", name = "H", descriptor = "I")
-	private final int anInt1303;
+	private final int plane;
 
 	@OriginalMember(owner = "runetek4.client!dc", name = "w", descriptor = "I")
-	private final int anInt1295;
+	private final int z;
 
 	@OriginalMember(owner = "runetek4.client!dc", name = "N", descriptor = "I")
-	private final int anInt1308;
+	private final int shape;
 
 	@OriginalMember(owner = "runetek4.client!dc", name = "L", descriptor = "I")
-	private final int anInt1307;
+	private final int x;
 
 	@OriginalMember(owner = "runetek4.client!dc", name = "C", descriptor = "I")
-	private final int anInt1299;
+	private final int locTypeId;
 
 	@OriginalMember(owner = "runetek4.client!dc", name = "D", descriptor = "I")
-	private final int anInt1300;
+	private final int rotation;
 
 	@OriginalMember(owner = "runetek4.client!dc", name = "u", descriptor = "Lclient!tk;")
-	private SeqType aClass144_2;
+	private SeqType sequence;
 
 	@OriginalMember(owner = "runetek4.client!dc", name = "y", descriptor = "I")
-	private int anInt1297;
+	private int frameIndex;
 
 	@OriginalMember(owner = "runetek4.client!dc", name = "I", descriptor = "I")
-	private int anInt1304;
+	private int nextFrameIndex;
 
 	@OriginalMember(owner = "runetek4.client!dc", name = "bb", descriptor = "I")
-	private int anInt1317;
+	private int frameDelay;
 
 	@OriginalMember(owner = "runetek4.client!dc", name = "fb", descriptor = "I")
-	private int anInt1320;
+	private int lastUpdateTime;
 
 	@OriginalMember(owner = "runetek4.client!dc", name = "<init>", descriptor = "(IIIIIIIZLclient!th;)V")
-	public Loc(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) boolean arg7, @OriginalArg(8) Entity arg8) {
-		this.anInt1303 = arg3;
-		this.anInt1295 = arg2;
-		this.anInt1308 = arg4;
-		this.anInt1307 = arg1;
-		this.anInt1299 = arg0;
-		this.anInt1300 = arg5;
+	public Loc(@OriginalArg(0) int locTypeId, @OriginalArg(1) int x, @OriginalArg(2) int z, @OriginalArg(3) int plane, @OriginalArg(4) int shape, @OriginalArg(5) int rotation, @OriginalArg(6) int sequenceId, @OriginalArg(7) boolean randomStart, @OriginalArg(8) Entity replacedEntity) {
+		this.plane = plane;
+		this.z = z;
+		this.shape = shape;
+		this.x = x;
+		this.locTypeId = locTypeId;
+		this.rotation = rotation;
 		@Pc(67) LocType local67;
-		if (GlRenderer.enabled && arg8 != null) {
-			if (arg8 instanceof Loc) {
-				((Loc) arg8).method1046();
+		if (GlRenderer.enabled && replacedEntity != null) {
+			if (replacedEntity instanceof Loc) {
+				((Loc) replacedEntity).clearShadow();
 			} else {
-				local67 = LocTypeList.get(this.anInt1299);
+				local67 = LocTypeList.get(this.locTypeId);
 				if (local67.multiloc != null) {
 					local67 = local67.getMultiLoc();
 				}
 				if (local67 != null) {
-					method181(local67, 0, this.anInt1295, 0, this.anInt1307, this.anInt1308, this.anInt1300, this.anInt1303);
+					registerLocShadow(local67, 0, this.z, 0, this.x, this.shape, this.rotation, this.plane);
 				}
 			}
 		}
-		if (arg6 != -1) {
-			this.aClass144_2 = SeqTypeList.get(arg6);
-			this.anInt1297 = 0;
-			if (this.aClass144_2.frames.length <= 1) {
-				this.anInt1304 = 0;
+		if (sequenceId != -1) {
+			this.sequence = SeqTypeList.get(sequenceId);
+			this.frameIndex = 0;
+			if (this.sequence.frames.length <= 1) {
+				this.nextFrameIndex = 0;
 			} else {
-				this.anInt1304 = 1;
+				this.nextFrameIndex = 1;
 			}
-			this.anInt1317 = 1;
-			this.anInt1320 = Client.loop - 1;
-			if (this.aClass144_2.exactmove == 0 && arg8 != null && arg8 instanceof Loc) {
-				@Pc(142) Loc local142 = (Loc) arg8;
-				if (this.aClass144_2 == local142.aClass144_2) {
-					this.anInt1297 = local142.anInt1297;
-					this.anInt1320 = local142.anInt1320;
-					this.anInt1317 = local142.anInt1317;
-					this.anInt1304 = local142.anInt1304;
+			this.frameDelay = 1;
+			this.lastUpdateTime = Client.loop - 1;
+			if (this.sequence.exactmove == 0 && replacedEntity != null && replacedEntity instanceof Loc) {
+				@Pc(142) Loc local142 = (Loc) replacedEntity;
+				if (this.sequence == local142.sequence) {
+					this.frameIndex = local142.frameIndex;
+					this.lastUpdateTime = local142.lastUpdateTime;
+					this.frameDelay = local142.frameDelay;
+					this.nextFrameIndex = local142.nextFrameIndex;
 					return;
 				}
 			}
-			if (arg7 && this.aClass144_2.replayOff != -1) {
-				this.anInt1297 = (int) (Math.random() * (double) this.aClass144_2.frames.length);
-				this.anInt1304 = this.anInt1297 + 1;
-				if (this.anInt1304 >= this.aClass144_2.frames.length) {
-					this.anInt1304 -= this.aClass144_2.replayOff;
-					if (this.anInt1304 < 0 || this.anInt1304 >= this.aClass144_2.frames.length) {
-						this.anInt1304 = -1;
+			if (randomStart && this.sequence.replayOff != -1) {
+				this.frameIndex = (int) (Math.random() * (double) this.sequence.frames.length);
+				this.nextFrameIndex = this.frameIndex + 1;
+				if (this.nextFrameIndex >= this.sequence.frames.length) {
+					this.nextFrameIndex -= this.sequence.replayOff;
+					if (this.nextFrameIndex < 0 || this.nextFrameIndex >= this.sequence.frames.length) {
+						this.nextFrameIndex = -1;
 					}
 				}
-				this.anInt1317 = (int) (Math.random() * (double) this.aClass144_2.frameDelay[this.anInt1297]) + 1;
-				this.anInt1320 = Client.loop - this.anInt1317;
+				this.frameDelay = (int) (Math.random() * (double) this.sequence.frameDelay[this.frameIndex]) + 1;
+				this.lastUpdateTime = Client.loop - this.frameDelay;
 			}
 		}
-		if (GlRenderer.enabled && arg8 != null) {
-			this.method1048(true);
+		if (GlRenderer.enabled && replacedEntity != null) {
+			this.updateGlModel(true);
 		}
-		if (arg8 == null) {
-			local67 = LocTypeList.get(this.anInt1299);
+		if (replacedEntity == null) {
+			local67 = LocTypeList.get(this.locTypeId);
 			if (local67.multiloc != null) {
-				this.aBoolean80 = true;
+				this.isMultiLoc = true;
 			}
 		}
 	}
 
 	@OriginalMember(owner = "client!al", name = "a", descriptor = "(Lclient!pb;BIIIIIII)V")
-	public static void method181(@OriginalArg(0) LocType arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int arg6, @OriginalArg(8) int arg7) {
-		@Pc(5) int local5 = arg2 & 0x3;
-		@Pc(28) int local28;
-		@Pc(31) int local31;
-		if (local5 == 1 || local5 == 3) {
-			local28 = arg0.length;
-			local31 = arg0.width;
+	public static void registerLocShadow(@OriginalArg(0) LocType locType, @OriginalArg(2) int offsetZ, @OriginalArg(3) int rotation, @OriginalArg(4) int offsetX, @OriginalArg(5) int x, @OriginalArg(6) int shape, @OriginalArg(7) int z, @OriginalArg(8) int plane) {
+		@Pc(5) int rotationMask = rotation & 0x3;
+		@Pc(28) int effectiveWidth;
+		@Pc(31) int effectiveLength;
+		if (rotationMask == 1 || rotationMask == 3) {
+			effectiveWidth = locType.length;
+			effectiveLength = locType.width;
 		} else {
-			local31 = arg0.length;
-			local28 = arg0.width;
+			effectiveLength = locType.length;
+			effectiveWidth = locType.width;
 		}
-		@Pc(53) int local53;
-		@Pc(51) int local51;
-		if (arg6 + local31 > 104) {
-			local51 = arg6 + 1;
-			local53 = arg6;
+		@Pc(53) int zEnd;
+		@Pc(51) int zStart;
+		if (z + effectiveLength > 104) {
+			zStart = z + 1;
+			zEnd = z;
 		} else {
-			local53 = arg6 + (local31 >> 1);
-			local51 = arg6 + (local31 + 1 >> 1);
+			zEnd = z + (effectiveLength >> 1);
+			zStart = z + (effectiveLength + 1 >> 1);
 		}
-		@Pc(80) int local80 = (arg5 << 7) + (local28 << 6);
-		@Pc(88) int local88 = (arg6 << 7) + (local31 << 6);
-		@Pc(96) int local96;
-		@Pc(100) int local100;
-		if (arg5 + local28 > 104) {
-			local96 = arg5;
-			local100 = arg5 + 1;
+		@Pc(80) int worldX = (shape << 7) + (effectiveWidth << 6);
+		@Pc(88) int worldZ = (z << 7) + (effectiveLength << 6);
+		@Pc(96) int xStart;
+		@Pc(100) int xEnd;
+		if (shape + effectiveWidth > 104) {
+			xStart = shape;
+			xEnd = shape + 1;
 		} else {
-			local96 = arg5 + (local28 >> 1);
-			local100 = (local28 + 1 >> 1) + arg5;
+			xStart = shape + (effectiveWidth >> 1);
+			xEnd = (effectiveWidth + 1 >> 1) + shape;
 		}
-		@Pc(120) int[][] local120 = SceneGraph.tileHeights[arg7];
-		@Pc(122) int local122 = 0;
-		@Pc(148) int local148 = local120[local96][local51] + local120[local96][local53] + local120[local100][local53] + local120[local100][local51] >> 2;
-		@Pc(158) int[][] local158;
-		if (arg7 != 0) {
-			local158 = SceneGraph.tileHeights[0];
-			local122 = local148 - (local158[local96][local51] + local158[local100][local53] + local158[local96][local53] + local158[local100][local51] >> 2);
+		@Pc(120) int[][] currentPlaneHeights = SceneGraph.tileHeights[plane];
+		@Pc(122) int heightOffset = 0;
+		@Pc(148) int averageHeight = currentPlaneHeights[xStart][zStart] + currentPlaneHeights[xStart][zEnd] + currentPlaneHeights[xEnd][zEnd] + currentPlaneHeights[xEnd][zStart] >> 2;
+		@Pc(158) int[][] upperPlaneHeights;
+		if (plane != 0) {
+			upperPlaneHeights = SceneGraph.tileHeights[0];
+			heightOffset = averageHeight - (upperPlaneHeights[xStart][zStart] + upperPlaneHeights[xEnd][zEnd] + upperPlaneHeights[xStart][zEnd] + upperPlaneHeights[xEnd][zStart] >> 2);
 		}
-		local158 = null;
-		if (arg7 < 3) {
-			local158 = SceneGraph.tileHeights[arg7 + 1];
+		upperPlaneHeights = null;
+		if (plane < 3) {
+			upperPlaneHeights = SceneGraph.tileHeights[plane + 1];
 		}
-		@Pc(215) LocEntity local215 = arg0.method3428(arg2, local80, local120, arg4, local148, local158, false, null, true, local88);
-		ShadowManager.method4207(local215.sprite, local80 - arg3, local122, local88 - arg1);
+		@Pc(215) LocEntity locEntity = locType.method3428(rotation, worldX, currentPlaneHeights, x, averageHeight, upperPlaneHeights, false, null, true, worldZ);
+		ShadowManager.renderShadow(locEntity.sprite, worldX - offsetX, heightOffset, worldZ - offsetZ);
 	}
 
 	@OriginalMember(owner = "runetek4.client!dc", name = "a", descriptor = "(IIIII)V")
 	@Override
-	public final void method4545(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
+	public final void update(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int worldZ, @OriginalArg(4) int worldX) {
 		if (GlRenderer.enabled) {
-			this.method1048(true);
+			this.updateGlModel(true);
 		} else {
-			this.method1047(arg4, arg3);
+			this.updateAnimation(worldX, worldZ);
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!dc", name = "a", descriptor = "(IIIIIIIIJILclient!ga;)V")
 	@Override
-	public final void render(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) long arg8, @OriginalArg(9) int arg9, @OriginalArg(10) ParticleSystem arg10) {
-		@Pc(3) Entity local3 = this.method1049();
-		if (local3 != null) {
-			local3.render(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, this.particles);
+	public final void render(@OriginalArg(0) int worldX, @OriginalArg(1) int worldY, @OriginalArg(2) int worldZ, @OriginalArg(3) int rotationX, @OriginalArg(4) int rotationY, @OriginalArg(5) int rotationZ, @OriginalArg(6) int scaleX, @OriginalArg(7) int scaleY, @OriginalArg(8) long flags, @OriginalArg(9) int lightLevel, @OriginalArg(10) ParticleSystem particleSystem) {
+		@Pc(3) Entity model = this.getModel();
+		if (model != null) {
+			model.render(worldX, worldY, worldZ, rotationX, rotationY, rotationZ, scaleX, scaleY, flags, lightLevel, this.particles);
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!dc", name = "c", descriptor = "(I)V")
-	public final void method1046() {
+	public final void clearShadow() {
 		if (this.sprite2 != null) {
-			ShadowManager.method4207(this.sprite2, this.anInt1296, this.anInt1294, this.anInt1319);
+			ShadowManager.renderShadow(this.sprite2, this.shadowWorldX, this.shadowHeightOffset, this.shadowWorldZ);
 		}
-		this.anInt1321 = -1;
-		this.anInt1322 = -1;
+		this.lastShadowLocId = -1;
+		this.lastShadowFrame = -1;
 		this.sprite2 = null;
 	}
 
@@ -239,164 +239,164 @@ public final class Loc extends Entity {
 	}
 
 	@OriginalMember(owner = "runetek4.client!dc", name = "b", descriptor = "(III)V")
-	private void method1047(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
-		if (this.aClass144_2 == null) {
+	private void updateAnimation(@OriginalArg(0) int worldX, @OriginalArg(1) int worldZ) {
+		if (this.sequence == null) {
 			return;
 		}
-		@Pc(10) int local10 = Client.loop - this.anInt1320;
-		if (local10 > 100 && this.aClass144_2.replayOff > 0) {
-			@Pc(29) int local29 = this.aClass144_2.frames.length - this.aClass144_2.replayOff;
-			while (this.anInt1297 < local29 && this.aClass144_2.frameDelay[this.anInt1297] < local10) {
-				local10 -= this.aClass144_2.frameDelay[this.anInt1297];
-				this.anInt1297++;
+		@Pc(10) int elapsedTime = Client.loop - this.lastUpdateTime;
+		if (elapsedTime > 100 && this.sequence.replayOff > 0) {
+			@Pc(29) int nonReplayFrameCount = this.sequence.frames.length - this.sequence.replayOff;
+			while (this.frameIndex < nonReplayFrameCount && this.sequence.frameDelay[this.frameIndex] < elapsedTime) {
+				elapsedTime -= this.sequence.frameDelay[this.frameIndex];
+				this.frameIndex++;
 			}
-			if (this.anInt1297 >= local29) {
-				@Pc(77) int local77 = 0;
-				for (@Pc(79) int local79 = local29; local79 < this.aClass144_2.frames.length; local79++) {
-					local77 += this.aClass144_2.frameDelay[local79];
+			if (this.frameIndex >= nonReplayFrameCount) {
+				@Pc(77) int replayDuration = 0;
+				for (@Pc(79) int frameIndex = nonReplayFrameCount; frameIndex < this.sequence.frames.length; frameIndex++) {
+					replayDuration += this.sequence.frameDelay[frameIndex];
 				}
-				local10 %= local77;
+				elapsedTime %= replayDuration;
 			}
-			this.anInt1304 = this.anInt1297 + 1;
-			if (this.anInt1304 >= this.aClass144_2.frames.length) {
-				this.anInt1304 -= this.aClass144_2.replayOff;
-				if (this.anInt1304 < 0 || this.aClass144_2.frames.length <= this.anInt1304) {
-					this.anInt1304 = -1;
+			this.nextFrameIndex = this.frameIndex + 1;
+			if (this.nextFrameIndex >= this.sequence.frames.length) {
+				this.nextFrameIndex -= this.sequence.replayOff;
+				if (this.nextFrameIndex < 0 || this.sequence.frames.length <= this.nextFrameIndex) {
+					this.nextFrameIndex = -1;
 				}
 			}
 		}
-		while (local10 > this.aClass144_2.frameDelay[this.anInt1297]) {
-			SoundPlayer.playSeqSound(arg0, this.aClass144_2, arg1, false, this.anInt1297);
-			local10 -= this.aClass144_2.frameDelay[this.anInt1297];
-			this.anInt1297++;
-			if (this.aClass144_2.frames.length <= this.anInt1297) {
-				this.anInt1297 -= this.aClass144_2.replayOff;
-				if (this.anInt1297 < 0 || this.aClass144_2.frames.length <= this.anInt1297) {
-					this.aClass144_2 = null;
+		while (elapsedTime > this.sequence.frameDelay[this.frameIndex]) {
+			SoundPlayer.playSeqSound(worldX, this.sequence, worldZ, false, this.frameIndex);
+			elapsedTime -= this.sequence.frameDelay[this.frameIndex];
+			this.frameIndex++;
+			if (this.sequence.frames.length <= this.frameIndex) {
+				this.frameIndex -= this.sequence.replayOff;
+				if (this.frameIndex < 0 || this.sequence.frames.length <= this.frameIndex) {
+					this.sequence = null;
 					break;
 				}
 			}
-			this.anInt1304 = this.anInt1297 + 1;
-			if (this.aClass144_2.frames.length <= this.anInt1304) {
-				this.anInt1304 -= this.aClass144_2.replayOff;
-				if (this.anInt1304 < 0 || this.anInt1304 >= this.aClass144_2.frames.length) {
-					this.anInt1304 = -1;
+			this.nextFrameIndex = this.frameIndex + 1;
+			if (this.sequence.frames.length <= this.nextFrameIndex) {
+				this.nextFrameIndex -= this.sequence.replayOff;
+				if (this.nextFrameIndex < 0 || this.nextFrameIndex >= this.sequence.frames.length) {
+					this.nextFrameIndex = -1;
 				}
 			}
 		}
-		this.anInt1317 = local10;
-		this.anInt1320 = Client.loop - local10;
+		this.frameDelay = elapsedTime;
+		this.lastUpdateTime = Client.loop - elapsedTime;
 	}
 
 	@OriginalMember(owner = "runetek4.client!dc", name = "a", descriptor = "(ZI)Lclient!th;")
-	private Entity method1048(@OriginalArg(0) boolean arg0) {
-		@Pc(12) boolean local12 = SceneGraph.surfaceTileHeights != SceneGraph.tileHeights;
-		@Pc(19) LocType local19 = LocTypeList.get(this.anInt1299);
-		@Pc(22) int local22 = local19.anim;
-		if (local19.multiloc != null) {
-			local19 = local19.getMultiLoc();
+	private Entity updateGlModel(@OriginalArg(0) boolean shadowOnly) {
+		@Pc(12) boolean isLevelTransition = SceneGraph.surfaceTileHeights != SceneGraph.tileHeights;
+		@Pc(19) LocType locType = LocTypeList.get(this.locTypeId);
+		@Pc(22) int originalAnimId = locType.anim;
+		if (locType.multiloc != null) {
+			locType = locType.getMultiLoc();
 		}
-		if (local19 == null) {
-			if (GlRenderer.enabled && !local12) {
-				this.method1046();
+		if (locType == null) {
+			if (GlRenderer.enabled && !isLevelTransition) {
+				this.clearShadow();
 			}
 			return null;
 		}
-		@Pc(69) int local69;
-		if (Client.game != 0 && this.aBoolean80 && (this.aClass144_2 == null || this.aClass144_2 != null && this.aClass144_2.id != local19.anim)) {
-			local69 = local19.anim;
-			if (local19.anim == -1) {
-				local69 = local22;
+		@Pc(69) int animationId;
+		if (Client.game != 0 && this.isMultiLoc && (this.sequence == null || this.sequence != null && this.sequence.id != locType.anim)) {
+			animationId = locType.anim;
+			if (locType.anim == -1) {
+				animationId = originalAnimId;
 			}
-			if (local69 == -1) {
-				this.aClass144_2 = null;
+			if (animationId == -1) {
+				this.sequence = null;
 			} else {
-				this.aClass144_2 = SeqTypeList.get(local69);
+				this.sequence = SeqTypeList.get(animationId);
 			}
-			if (this.aClass144_2 != null) {
-				if (local19.randomanimframe && this.aClass144_2.replayOff != -1) {
-					this.anInt1297 = (int) (Math.random() * (double) this.aClass144_2.frames.length);
-					this.anInt1320 -= (int) (Math.random() * (double) this.aClass144_2.frameDelay[this.anInt1297]);
+			if (this.sequence != null) {
+				if (locType.randomanimframe && this.sequence.replayOff != -1) {
+					this.frameIndex = (int) (Math.random() * (double) this.sequence.frames.length);
+					this.lastUpdateTime -= (int) (Math.random() * (double) this.sequence.frameDelay[this.frameIndex]);
 				} else {
-					this.anInt1297 = 0;
-					this.anInt1320 = Client.loop - 1;
+					this.frameIndex = 0;
+					this.lastUpdateTime = Client.loop - 1;
 				}
 			}
 		}
-		local69 = this.anInt1295 & 0x3;
-		@Pc(160) int local160;
-		@Pc(157) int local157;
-		if (local69 == 1 || local69 == 3) {
-			local157 = local19.width;
-			local160 = local19.length;
+		animationId = this.z & 0x3;
+		@Pc(160) int effectiveWidth;
+		@Pc(157) int effectiveLength;
+		if (animationId == 1 || animationId == 3) {
+			effectiveLength = locType.width;
+			effectiveWidth = locType.length;
 		} else {
-			local160 = local19.width;
-			local157 = local19.length;
+			effectiveWidth = locType.width;
+			effectiveLength = locType.length;
 		}
-		@Pc(178) int local178 = this.anInt1308 + (local160 + 1 >> 1);
-		@Pc(185) int local185 = (local160 >> 1) + this.anInt1308;
-		@Pc(192) int local192 = (local157 >> 1) + this.anInt1300;
-		@Pc(201) int local201 = (local157 + 1 >> 1) + this.anInt1300;
-		this.method1047(local192 * 128, local185 * 128);
-		@Pc(256) boolean local256 = !local12 && local19.hardshadow && (local19.id != this.anInt1321 || (this.anInt1297 != this.anInt1322 || this.aClass144_2 != null && (this.aClass144_2.aBoolean280 || SeqType.applyTweening) && this.anInt1297 != this.anInt1304) && Preferences.sceneryShadowsType >= 2);
-		if (arg0 && !local256) {
+		@Pc(178) int xMax = this.shape + (effectiveWidth + 1 >> 1);
+		@Pc(185) int xMin = (effectiveWidth >> 1) + this.shape;
+		@Pc(192) int zMin = (effectiveLength >> 1) + this.rotation;
+		@Pc(201) int zMax = (effectiveLength + 1 >> 1) + this.rotation;
+		this.updateAnimation(zMin * 128, xMin * 128);
+		@Pc(256) boolean needsShadowUpdate = !isLevelTransition && locType.hardshadow && (locType.id != this.lastShadowLocId || (this.frameIndex != this.lastShadowFrame || this.sequence != null && (this.sequence.aBoolean280 || SeqType.applyTweening) && this.frameIndex != this.nextFrameIndex) && Preferences.sceneryShadowsType >= 2);
+		if (shadowOnly && !needsShadowUpdate) {
 			return null;
 		}
-		@Pc(267) int[][] local267 = SceneGraph.tileHeights[this.anInt1303];
-		@Pc(293) int local293 = local267[local178][local201] + local267[local185][local201] + local267[local185][local192] + local267[local178][local192] >> 2;
-		@Pc(302) int local302 = (local160 << 6) + (this.anInt1308 << 7);
-		@Pc(311) int local311 = (local157 << 6) + (this.anInt1300 << 7);
-		@Pc(314) int[][] local314 = null;
-		if (local12) {
-			local314 = SceneGraph.surfaceTileHeights[0];
-		} else if (this.anInt1303 < 3) {
-			local314 = SceneGraph.tileHeights[this.anInt1303 + 1];
+		@Pc(267) int[][] currentHeights = SceneGraph.tileHeights[this.plane];
+		@Pc(293) int averageHeight = currentHeights[xMax][zMax] + currentHeights[xMin][zMax] + currentHeights[xMin][zMin] + currentHeights[xMax][zMin] >> 2;
+		@Pc(302) int worldX = (effectiveWidth << 6) + (this.shape << 7);
+		@Pc(311) int worldZ = (effectiveLength << 6) + (this.rotation << 7);
+		@Pc(314) int[][] upperHeights = null;
+		if (isLevelTransition) {
+			upperHeights = SceneGraph.surfaceTileHeights[0];
+		} else if (this.plane < 3) {
+			upperHeights = SceneGraph.tileHeights[this.plane + 1];
 		}
-		if (GlRenderer.enabled && local256) {
-			ShadowManager.method4207(this.sprite2, this.anInt1296, this.anInt1294, this.anInt1319);
+		if (GlRenderer.enabled && needsShadowUpdate) {
+			ShadowManager.renderShadow(this.sprite2, this.shadowWorldX, this.shadowHeightOffset, this.shadowWorldZ);
 		}
-		@Pc(356) boolean local356 = this.sprite2 == null;
-		@Pc(389) LocEntity local389;
-		if (this.aClass144_2 == null) {
-			local389 = local19.method3428(this.anInt1295, local302, local267, this.anInt1307, local293, local314, false, local356 ? sprite1 : this.sprite2, local256, local311);
+		@Pc(356) boolean useSharedSprite = this.sprite2 == null;
+		@Pc(389) LocEntity locEntity;
+		if (this.sequence == null) {
+			locEntity = locType.method3428(this.z, worldX, currentHeights, this.x, averageHeight, upperHeights, false, useSharedSprite ? sprite1 : this.sprite2, needsShadowUpdate, worldZ);
 		} else {
-			local389 = local19.method3429(local311, local302, local356 ? sprite1 : this.sprite2, local293, this.aClass144_2, this.anInt1295, local267, local256, this.anInt1297, local314, this.anInt1304, this.anInt1307, this.anInt1317);
+			locEntity = locType.method3429(worldZ, worldX, useSharedSprite ? sprite1 : this.sprite2, averageHeight, this.sequence, this.z, currentHeights, needsShadowUpdate, this.frameIndex, upperHeights, this.nextFrameIndex, this.x, this.frameDelay);
 		}
-		if (local389 == null) {
+		if (locEntity == null) {
 			return null;
 		}
-		if (GlRenderer.enabled && local256) {
-			if (local356) {
-				sprite1 = local389.sprite;
+		if (GlRenderer.enabled && needsShadowUpdate) {
+			if (useSharedSprite) {
+				sprite1 = locEntity.sprite;
 			}
-			@Pc(429) int local429 = 0;
-			if (this.anInt1303 != 0) {
-				@Pc(439) int[][] local439 = SceneGraph.tileHeights[0];
-				local429 = local293 - (local439[local178][local192] + local439[local185][local192] + local439[local185][local201] + local439[local178][local201] >> 2);
+			@Pc(429) int heightOffset = 0;
+			if (this.plane != 0) {
+				@Pc(439) int[][] groundHeights = SceneGraph.tileHeights[0];
+				heightOffset = averageHeight - (groundHeights[xMax][zMin] + groundHeights[xMin][zMin] + groundHeights[xMin][zMax] + groundHeights[xMax][zMax] >> 2);
 			}
-			@Pc(471) SoftwareIndexedSprite local471 = local389.sprite;
-			if (this.aBoolean81 && ShadowManager.method4209(local471, local302, local429, local311)) {
-				this.aBoolean81 = false;
+			@Pc(471) SoftwareIndexedSprite shadowSprite = locEntity.sprite;
+			if (this.shadowInitialized && ShadowManager.method4209(shadowSprite, worldX, heightOffset, worldZ)) {
+				this.shadowInitialized = false;
 			}
-			if (!this.aBoolean81) {
-				ShadowManager.method4211(local471, local302, local429, local311);
-				this.sprite2 = local471;
-				this.anInt1319 = local311;
-				if (local356) {
+			if (!this.shadowInitialized) {
+				ShadowManager.method4211(shadowSprite, worldX, heightOffset, worldZ);
+				this.sprite2 = shadowSprite;
+				this.shadowWorldZ = worldZ;
+				if (useSharedSprite) {
 					sprite1 = null;
 				}
-				this.anInt1294 = local429;
-				this.anInt1296 = local302;
+				this.shadowHeightOffset = heightOffset;
+				this.shadowWorldX = worldX;
 			}
-			this.anInt1321 = local19.id;
-			this.anInt1322 = this.anInt1297;
+			this.lastShadowLocId = locType.id;
+			this.lastShadowFrame = this.frameIndex;
 		}
-		return local389.model;
+		return locEntity.model;
 	}
 
 	@OriginalMember(owner = "runetek4.client!dc", name = "d", descriptor = "(I)Lclient!th;")
-	public final Entity method1049() {
-		return this.method1048(false);
+	public final Entity getModel() {
+		return this.updateGlModel(false);
 	}
 
 	@OriginalMember(owner = "runetek4.client!dc", name = "b", descriptor = "()I")
