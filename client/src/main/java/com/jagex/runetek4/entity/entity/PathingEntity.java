@@ -47,7 +47,7 @@ public abstract class PathingEntity extends Entity {
 	public int anInt3380;
 
 	@OriginalMember(owner = "client!fe", name = "cb", descriptor = "I")
-	public int anInt3381;
+	public int orientation;
 
 	@OriginalMember(owner = "client!fe", name = "fb", descriptor = "I")
 	public int atachmentX0;
@@ -92,7 +92,7 @@ public abstract class PathingEntity extends Entity {
 	public int zFine;
 
 	@OriginalMember(owner = "client!fe", name = "dc", descriptor = "I")
-	public int anInt3424;
+	public int groundHeight;
 
 	@OriginalMember(owner = "client!fe", name = "fc", descriptor = "I")
 	public int attachmentZFine;
@@ -173,7 +173,7 @@ public abstract class PathingEntity extends Entity {
 	public int anInt3377 = 0;
 
 	@OriginalMember(owner = "client!fe", name = "Eb", descriptor = "[Lclient!ub;")
-	public final PathingEntity_Class147[] aPathingEntityClass147Array3 = new PathingEntity_Class147[12];
+	public final PathingEntity_Class147[] layeredAnimations = new PathingEntity_Class147[12];
 
 	@OriginalMember(owner = "client!fe", name = "Lb", descriptor = "I")
 	public int chatLoops = 100;
@@ -420,7 +420,7 @@ public abstract class PathingEntity extends Entity {
 		if (local201 + local134 < anInt1938) {
 			anInt1938 = local201 + local134;
 		}
-		anInt1938 = (anInt1938 >> 1) - this.anInt3424;
+		anInt1938 = (anInt1938 >> 1) - this.groundHeight;
 		if (anInt1938 != 0) {
 			arg0.translate(0, anInt1938, 0);
 		}

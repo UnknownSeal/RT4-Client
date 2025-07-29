@@ -120,7 +120,7 @@ public class MiniMap {
         if (GlRenderer.enabled) {
             ((GlSprite) sprite).method1425(arg0.width / 2 + arg5 + local81 - sprite.innerWidth / 2, arg0.height / 2 + arg4 - (local92 + sprite.innerHeight / 2), (GlSprite) arg0.method489(false));
         } else {
-            ((SoftwareSprite) sprite).drawImage(arg0.width / 2 + arg5 + local81 - sprite.innerWidth / 2, -(sprite.innerHeight / 2) + arg0.height / 2 + arg4 + -local92, arg0.anIntArray37, arg0.anIntArray45);
+            ((SoftwareSprite) sprite).drawImage(arg0.width / 2 + arg5 + local81 - sprite.innerWidth / 2, -(sprite.innerHeight / 2) + arg0.height / 2 + arg4 + -local92, arg0.compassPixelOffsets, arg0.compassPixelWidths);
         }
     }
 
@@ -139,7 +139,7 @@ public class MiniMap {
             if (GlRenderer.enabled) {
                 ((GlSprite) sprite).renderRotatedTransparent(arg2, arg1, arg3.width, arg3.height, anchorX, anchorY, angle, minimapZoom + 256, (GlSprite) arg3.method489(false));
             } else {
-                ((SoftwareSprite) sprite).renderRotated(arg2, arg1, arg3.width, arg3.height, anchorX, anchorY, angle, minimapZoom + 256, arg3.anIntArray37, arg3.anIntArray45);
+                ((SoftwareSprite) sprite).renderRotated(arg2, arg1, arg3.width, arg3.height, anchorX, anchorY, angle, minimapZoom + 256, arg3.compassPixelOffsets, arg3.compassPixelWidths);
             }
             @Pc(146) int flagX;
             @Pc(181) int flagZ;
@@ -151,7 +151,7 @@ public class MiniMap {
             @Pc(271) int local271;
             if (WorldLoader.mapElementList != null) {
                 for (@Pc(117) int local117 = 0; local117 < WorldLoader.mapElementList.anInt5074; local117++) {
-                    if (WorldLoader.mapElementList.method3892(local117)) {
+                    if (WorldLoader.mapElementList.hasFlag4Set(local117)) {
                         flagX = (WorldLoader.mapElementList.aShortArray73[local117] - Camera.originX) * 4 + 2 - PlayerList.self.xFine / 32;
                         local150 = MathUtils.sin[angle];
                         local154 = MathUtils.cos[angle];
@@ -160,10 +160,10 @@ public class MiniMap {
                         flagZ = (WorldLoader.mapElementList.aShortArray72[local117] - Camera.originZ) * 4 + 2 - PlayerList.self.zFine / 32;
                         @Pc(189) int local189 = local154 * 256 / (minimapZoom + 256);
                         npcZ = flagZ * local189 - flagX * local164 >> 16;
-                        if (WorldLoader.mapElementList.method3894(local117) == 1) {
+                        if (WorldLoader.mapElementList.getLowerTwoBits(local117) == 1) {
                             local156 = Fonts.p12Full;
                         }
-                        if (WorldLoader.mapElementList.method3894(local117) == 2) {
+                        if (WorldLoader.mapElementList.getLowerTwoBits(local117) == 2) {
                             local156 = Fonts.b12Full;
                         }
                         npcX = local164 * flagZ + local189 * flagX >> 16;
@@ -177,7 +177,7 @@ public class MiniMap {
                             if (GlRenderer.enabled) {
                                 GlFont.method1188((GlSprite) arg3.method489(false));
                             } else {
-                                SoftwareRaster.method2486(arg3.anIntArray37, arg3.anIntArray45);
+                                SoftwareRaster.method2486(arg3.compassPixelOffsets, arg3.compassPixelWidths);
                             }
                             local156.renderParagraphAlpha(WorldLoader.mapElementList.text[local117], arg2 + local245 + arg3.width / 2, arg1 + arg3.height / 2 + -npcZ, local239, 50, local271, 0, 1, 0, 0);
                             if (GlRenderer.enabled) {
@@ -307,7 +307,7 @@ public class MiniMap {
                 local1041.render(arg2, arg1);
             }
         } else {
-            SoftwareRaster.method2504(arg2, arg1, arg3.anIntArray37, arg3.anIntArray45);
+            SoftwareRaster.method2504(arg2, arg1, arg3.compassPixelOffsets, arg3.compassPixelWidths);
         }
         WidgetList.rectangleRedraw[arg0] = true;
     }
@@ -577,9 +577,9 @@ public class MiniMap {
         while (local5.length > local3) {
             @Pc(17) MapMarker local17 = local5[local3];
             if (local17 != null && local17.type == 2) {
-                ClientScriptRunner.method1026(arg0 >> 1, arg4, (local17.anInt4046 - Camera.originZ << 7) + local17.anInt4047, local17.anInt4050 * 2, arg2 >> 1, local17.anInt4045 + (local17.targetX - Camera.originX << 7), arg3);
-                if (ClientScriptRunner.anInt1951 > -1 && Client.loop % 20 < 10) {
-                    Sprites.headhints[local17.anInt4048].render(arg1 + ClientScriptRunner.anInt1951 - 12, arg5 + -28 - -ClientScriptRunner.anInt548);
+                ClientScriptRunner.calculateScreenCoordinates(arg0 >> 1, arg4, (local17.anInt4046 - Camera.originZ << 7) + local17.anInt4047, local17.anInt4050 * 2, arg2 >> 1, local17.anInt4045 + (local17.targetX - Camera.originX << 7), arg3);
+                if (ClientScriptRunner.overheadScreenX > -1 && Client.loop % 20 < 10) {
+                    Sprites.headhints[local17.anInt4048].render(arg1 + ClientScriptRunner.overheadScreenX - 12, arg5 + -28 - -ClientScriptRunner.overheadScreenY);
                 }
             }
             local3++;
@@ -709,5 +709,27 @@ public class MiniMap {
             }
         }
         return true;
+    }
+
+    @OriginalMember(owner = "client!mj", name = "a", descriptor = "(IILclient!be;IB)V")
+    public static void renderCompass(@OriginalArg(0) int x, @OriginalArg(1) int y, @OriginalArg(2) Widget widget, @OriginalArg(3) int rectangle) {
+        if (GlRenderer.enabled) {
+            GlRaster.setClip(x, y, widget.width + x, widget.height + y);
+        }
+        if (state >= 3) {
+            if (GlRenderer.enabled) {
+                @Pc(44) Sprite sprite = widget.method489(false);
+                if (sprite != null) {
+                    sprite.render(x, y);
+                }
+            } else {
+                SoftwareRaster.method2504(x, y, widget.compassPixelOffsets, widget.compassPixelWidths);
+            }
+        } else if (GlRenderer.enabled) {
+            ((GlSprite) Sprites.compass).renderRotatedTransparent(x, y, widget.width, widget.height, Sprites.compass.width / 2, Sprites.compass.height / 2, Camera.orbitCameraYaw, 256, (GlSprite) widget.method489(false));
+        } else {
+            ((SoftwareSprite) Sprites.compass).renderRotated(x, y, widget.width, widget.height, Sprites.compass.width / 2, Sprites.compass.height / 2, Camera.orbitCameraYaw, widget.compassPixelOffsets, widget.compassPixelWidths);
+        }
+        WidgetList.rectangleRedraw[rectangle] = true;
     }
 }

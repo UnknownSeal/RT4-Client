@@ -64,23 +64,23 @@ public final class Map extends SecondaryNode {
 	}
 
     @OriginalMember(owner = "runetek4.client!rb", name = "a", descriptor = "(Lclient!wa;Z)Lclient!bn;")
-    public static Map create(@OriginalArg(0) Packet arg0) {
-        @Pc(35) Map map = new Map(arg0.gjstr(), arg0.gjstr(), arg0.g2(), arg0.g2(), arg0.g4(), arg0.g1() == 1, arg0.g1());
-        @Pc(39) int len = arg0.g1();
-        for (@Pc(41) int i = 0; i < len; i++) {
-            map.chunks.addTail(new MapChunk(arg0.g2(), arg0.g2(), arg0.g2(), arg0.g2()));
+    public static Map create(@OriginalArg(0) Packet packet) {
+        @Pc(35) Map map = new Map(packet.gjstr(), packet.gjstr(), packet.g2(), packet.g2(), packet.g4(), packet.g1() == 1, packet.g1());
+        @Pc(39) int chunkCount = packet.g1();
+        for (@Pc(41) int chunkIndex = 0; chunkIndex < chunkCount; chunkIndex++) {
+            map.chunks.addTail(new MapChunk(packet.g2(), packet.g2(), packet.g2(), packet.g2()));
         }
         map.computeBounds();
         return map;
     }
 
     @OriginalMember(owner = "runetek4.client!bn", name = "a", descriptor = "(IBI)Z")
-	public final boolean containsSource(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1) {
-		if (this.displayMinX > arg1 || arg1 > this.displayMaxZ || arg0 < this.displayMaxX || arg0 > this.displayMinZ) {
+	public final boolean containsSource(@OriginalArg(0) int sourceX, @OriginalArg(2) int sourceZ) {
+		if (this.displayMinX > sourceZ || sourceZ > this.displayMaxZ || sourceX < this.displayMaxX || sourceX > this.displayMinZ) {
 			return false;
 		}
 		for (@Pc(33) MapChunk chunk = (MapChunk) this.chunks.head(); chunk != null; chunk = (MapChunk) this.chunks.next()) {
-			if (chunk.containsDisplay(arg0, arg1)) {
+			if (chunk.containsDisplay(sourceX, sourceZ)) {
 				return true;
 			}
 		}

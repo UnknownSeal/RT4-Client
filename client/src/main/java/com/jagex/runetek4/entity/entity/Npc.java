@@ -64,7 +64,7 @@ public final class Npc extends PathingEntity {
 		}
 		@Pc(29) SeqType local29 = this.primarySeqId != -1 && this.animationDelay == 0 ? SeqTypeList.get(this.primarySeqId) : null;
 		@Pc(53) SeqType local53 = this.movementSeqId == -1 || this.movementSeqId == this.getBasType().readyanim && local29 != null ? null : SeqTypeList.get(this.movementSeqId);
-		@Pc(74) Model body = this.type.getBodyModel(this.aPathingEntityClass147Array3, this.anInt3388, this.anInt3407, this.animationDirection, this.animationFrame, this.animationFrameDelay, local53, this.anInt3396, local29);
+		@Pc(74) Model body = this.type.getBodyModel(this.layeredAnimations, this.anInt3388, this.anInt3407, this.animationDirection, this.animationFrame, this.animationFrameDelay, local53, this.anInt3396, local29);
 		if (body == null) {
 			return;
 		}
@@ -75,7 +75,7 @@ public final class Npc extends PathingEntity {
 		}
 		@Pc(140) Model model;
 		if (Preferences.characterShadowsOn && local84.spotshadow) {
-			model = ShadowModelList.method1043(this.type.spotshadowtrans_1, this.seqStretches, local53 == null ? local29 : local53, this.xFine, this.type.spotshadowcolour_2, this.zFine, this.type.spotshadowcolour_1, this.type.size, body, orientation, local53 == null ? this.animationFrameDelay : this.anInt3407, this.anInt3424, this.type.spotshadowtrans_2);
+			model = ShadowModelList.method1043(this.type.spotshadowtrans_1, this.seqStretches, local53 == null ? local29 : local53, this.xFine, this.type.spotshadowcolour_2, this.zFine, this.type.spotshadowcolour_1, this.type.size, body, orientation, local53 == null ? this.animationFrameDelay : this.anInt3407, this.groundHeight, this.type.spotshadowtrans_2);
 			if (GlRenderer.enabled) {
 				@Pc(144) float local144 = GlRenderer.method4179();
 				@Pc(146) float local146 = GlRenderer.method4166();
@@ -145,7 +145,7 @@ public final class Npc extends PathingEntity {
 
 	@OriginalMember(owner = "client!km", name = "a", descriptor = "(IIIII)V")
 	@Override
-	public void method4545(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
+	public void update(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
 		if (this.type == null) {
 			// TODO Why is this here?
 		}

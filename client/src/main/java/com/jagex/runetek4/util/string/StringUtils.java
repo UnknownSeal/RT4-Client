@@ -1,5 +1,6 @@
 package com.jagex.runetek4.util.string;
 
+import com.jagex.runetek4.ui.widget.MiniMenu;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -70,5 +71,20 @@ public class StringUtils {
             local59.method3113(local28);
         }
         return JString.concatenate(new JString[] { local9, local137.method3124(), local59.method3124() });
+    }
+
+    @OriginalMember(owner = "runetek4.client!fi", name = "a", descriptor = "(BI)Lclient!na;")
+    public static JString formatNumber(@OriginalArg(1) int number) {
+        @Pc(9) JString numberStr = JString.parseInt(number);
+        for (@Pc(21) int insertPos = numberStr.length() - 3; insertPos > 0; insertPos -= 3) {
+            numberStr = JString.concatenate(new JString[] { numberStr.substring(insertPos, 0), JString.COMMA_SEPARATOR, numberStr.substring(insertPos) });
+        }
+        if (numberStr.length() > 9) {
+            return JString.concatenate(new JString[] { JString.aClass100_1043, numberStr.substring(numberStr.length() - 8, 0), LocalizedText.MILLION_SHORT, MiniMenu.OPEN_PARENTHESIS, numberStr, JString.aClass100_583 });
+        } else if (numberStr.length() > 6) {
+            return JString.concatenate(new JString[] { JString.aClass100_589, numberStr.substring(numberStr.length() - 4, 0), LocalizedText.THOUSAND_SHORT, MiniMenu.OPEN_PARENTHESIS, numberStr, JString.aClass100_583 });
+        } else {
+            return JString.concatenate(new JString[] { JString.aClass100_1101, numberStr, JString.aClass100_978 });
+        }
     }
 }

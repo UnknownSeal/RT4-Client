@@ -5,8 +5,11 @@ import java.awt.Graphics;
 import java.io.UnsupportedEncodingException;
 
 import com.jagex.runetek4.WidgetString;
+import com.jagex.runetek4.clientscript.ClientScriptRunner;
 import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.core.datastruct.JagStringWrapper;
+import com.jagex.runetek4.data.cache.media.component.Widget;
+import com.jagex.runetek4.entity.entity.Player;
 import com.jagex.runetek4.util.data.Base37;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -52,7 +55,7 @@ public final class JString implements WidgetString {
 	@OriginalMember(owner = "runetek4.client!wj", name = "b", descriptor = "Lclient!na;")
 	public static final JString aClass100_1101 = parse(" <col=ffff00>");
 	@OriginalMember(owner = "runetek4.client!mi", name = "R", descriptor = "Lclient!na;")
-	public static final JString aClass100_760 = parse(")1");
+	public static final JString COMMA_SEPARATOR = parse(")1");
 	@OriginalMember(owner = "runetek4.client!sj", name = "w", descriptor = "Lclient!na;")
 	public static final JString aClass100_978 = parse("<)4col>");
 	@OriginalMember(owner = "runetek4.client!jb", name = "c", descriptor = "Lclient!na;")
@@ -312,7 +315,62 @@ public final class JString implements WidgetString {
 		return local126;
 	}
 
-	@OriginalMember(owner = "runetek4.client!na", name = "a", descriptor = "(BLclient!na;)Z")
+    @OriginalMember(owner = "runetek4.client!k", name = "a", descriptor = "(Lclient!be;Lclient!na;I)Lclient!na;")
+    public static JString processStringTokens(@OriginalArg(0) Widget widget, @OriginalArg(1) JString string) {
+        if (string.indexOf(PERCENT_SIGN) == -1) {
+            return string;
+        }
+        while (true) {
+            @Pc(14) int pos = string.indexOf(ClientScriptRunner.U1);
+            if (pos == -1) {
+                while (true) {
+                    pos = string.indexOf(ClientScriptRunner.U2);
+                    if (pos == -1) {
+                        while (true) {
+                            pos = string.indexOf(ClientScriptRunner.U3);
+                            if (pos == -1) {
+                                while (true) {
+                                    pos = string.indexOf(ClientScriptRunner.U4);
+                                    if (pos == -1) {
+                                        while (true) {
+                                            pos = string.indexOf(ClientScriptRunner.U5);
+                                            if (pos == -1) {
+                                                while (true) {
+                                                    pos = string.indexOf(ClientScriptRunner.Udns);
+                                                    if (pos == -1) {
+                                                        return string;
+                                                    }
+                                                    @Pc(246) JString replacement = EMPTY;
+                                                    if (Player.lastLogAddress != null) {
+                                                        replacement = formatIp(Player.lastLogAddress.intArg2);
+                                                        try {
+                                                            if (Player.lastLogAddress.result != null) {
+                                                                @Pc(265) byte[] bytes = ((String) Player.lastLogAddress.result).getBytes("ISO-8859-1");
+                                                                replacement = decodeString(bytes, bytes.length, 0);
+                                                            }
+                                                        } catch (@Pc(274) UnsupportedEncodingException ignored) {
+                                                        }
+                                                    }
+                                                    string = concatenate(new JString[] { string.substring(pos, 0), replacement, string.substring(pos + 4) });
+                                                }
+                                            }
+                                            string = concatenate(new JString[] { string.substring(pos, 0), StringUtils.toString(ClientScriptRunner.executeClientscript(4, widget)), string.substring(pos + 2) });
+                                        }
+                                    }
+                                    string = concatenate(new JString[] { string.substring(pos, 0), StringUtils.toString(ClientScriptRunner.executeClientscript(3, widget)), string.substring(pos + 2) });
+                                }
+                            }
+                            string = concatenate(new JString[] { string.substring(pos, 0), StringUtils.toString(ClientScriptRunner.executeClientscript(2, widget)), string.substring(pos + 2) });
+                        }
+                    }
+                    string = concatenate(new JString[] { string.substring(pos, 0), StringUtils.toString(ClientScriptRunner.executeClientscript(1, widget)), string.substring(pos + 2) });
+                }
+            }
+            string = concatenate(new JString[] { string.substring(pos, 0), StringUtils.toString(ClientScriptRunner.executeClientscript(0, widget)), string.substring(pos + 2) });
+        }
+    }
+
+    @OriginalMember(owner = "runetek4.client!na", name = "a", descriptor = "(BLclient!na;)Z")
 	public final boolean strEquals(@OriginalArg(1) JString arg0) {
 		if (arg0 == null) {
 			return false;

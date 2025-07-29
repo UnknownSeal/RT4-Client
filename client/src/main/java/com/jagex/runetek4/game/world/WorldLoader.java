@@ -91,31 +91,31 @@ public class WorldLoader {
     public static int anInt3811 = 0;
 
     @OriginalMember(owner = "runetek4.client!t", name = "a", descriptor = "(ZB)V")
-    public static void loadDynamicLocsToScene(@OriginalArg(0) boolean arg0) {
-        @Pc(19) byte local19;
-        @Pc(21) byte[][] local21;
-        if (GlRenderer.enabled && arg0) {
-            local21 = underWaterLocationsMapFilesBuffer;
-            local19 = 1;
+    public static void loadDynamicLocsToScene(@OriginalArg(0) boolean underWater) {
+        @Pc(19) byte planeCount;
+        @Pc(21) byte[][] mapDataBuffers;
+        if (GlRenderer.enabled && underWater) {
+            mapDataBuffers = underWaterLocationsMapFilesBuffer;
+            planeCount = 1;
         } else {
-            local19 = 4;
-            local21 = locationMapFilesBuffer;
+            planeCount = 4;
+            mapDataBuffers = locationMapFilesBuffer;
         }
-        for (@Pc(29) int local29 = 0; local29 < local19; local29++) {
+        for (@Pc(29) int currentPlane = 0; currentPlane < planeCount; currentPlane++) {
             Client.audioLoop();
-            for (@Pc(36) int local36 = 0; local36 < 13; local36++) {
-                for (@Pc(43) int local43 = 0; local43 < 13; local43++) {
-                    @Pc(56) int local56 = Protocol.anIntArrayArrayArray18[local29][local36][local43];
-                    if (local56 != -1) {
-                        @Pc(67) int local67 = local56 >> 24 & 0x3;
-                        if (!arg0 || local67 == 0) {
-                            @Pc(77) int local77 = local56 >> 1 & 0x3;
-                            @Pc(83) int local83 = local56 >> 14 & 0x3FF;
-                            @Pc(89) int local89 = local56 >> 3 & 0x7FF;
-                            @Pc(99) int local99 = local89 / 8 + (local83 / 8 << 8);
-                            for (@Pc(101) int local101 = 0; local101 < regionBitPacked.length; local101++) {
-                                if (regionBitPacked[local101] == local99 && local21[local101] != null) {
-                                    method3771(PathFinder.collisionMaps, local29, local21[local101], local67, local77, local36 * 8, local43 * 8, arg0, (local83 & 0x7) * 8, (local89 & 0x7) * 8);
+            for (@Pc(36) int regionX = 0; regionX < 13; regionX++) {
+                for (@Pc(43) int regionZ = 0; regionZ < 13; regionZ++) {
+                    @Pc(56) int packedLocationData = Protocol.anIntArrayArrayArray18[currentPlane][regionX][regionZ];
+                    if (packedLocationData != -1) {
+                        @Pc(67) int extractedPlane = packedLocationData >> 24 & 0x3;
+                        if (!underWater || extractedPlane == 0) {
+                            @Pc(77) int rotation = packedLocationData >> 1 & 0x3;
+                            @Pc(83) int worldX = packedLocationData >> 14 & 0x3FF;
+                            @Pc(89) int worldZ = packedLocationData >> 3 & 0x7FF;
+                            @Pc(99) int regionId = worldZ / 8 + (worldX / 8 << 8);
+                            for (@Pc(101) int regionIndex = 0; regionIndex < regionBitPacked.length; regionIndex++) {
+                                if (regionBitPacked[regionIndex] == regionId && mapDataBuffers[regionIndex] != null) {
+                                    parseLocationData(PathFinder.collisionMaps, currentPlane, mapDataBuffers[regionIndex], extractedPlane, rotation, regionX * 8, regionZ * 8, underWater, (worldX & 0x7) * 8, (worldZ & 0x7) * 8);
                                     break;
                                 }
                             }
@@ -127,44 +127,44 @@ public class WorldLoader {
     }
 
     @OriginalMember(owner = "runetek4.client!rj", name = "a", descriptor = "([Lclient!mj;I[BIIIIZIIB)V")
-    public static void method3771(@OriginalArg(0) CollisionMap[] arg0, @OriginalArg(1) int arg1, @OriginalArg(2) byte[] arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) boolean arg7, @OriginalArg(8) int arg8, @OriginalArg(9) int arg9) {
-        @Pc(7) int local7 = -1;
-        @Pc(12) Packet local12 = new Packet(arg2);
+    public static void parseLocationData(@OriginalArg(0) CollisionMap[] collisionMaps, @OriginalArg(1) int plane, @OriginalArg(2) byte[] locationData, @OriginalArg(3) int targetPlane, @OriginalArg(4) int baseRotation, @OriginalArg(5) int baseX, @OriginalArg(6) int baseZ, @OriginalArg(7) boolean underWater, @OriginalArg(8) int regionOffsetX, @OriginalArg(9) int regionOffsetZ) {
+        @Pc(7) int locationId = -1;
+        @Pc(12) Packet packet = new Packet(locationData);
         while (true) {
-            @Pc(20) int local20 = local12.gVarSmart();
-            if (local20 == 0) {
+            @Pc(20) int idDelta = packet.gVarSmart();
+            if (idDelta == 0) {
                 return;
             }
-            local7 += local20;
-            @Pc(31) int local31 = 0;
+            locationId += idDelta;
+            @Pc(31) int positionData = 0;
             while (true) {
-                @Pc(35) int local35 = local12.gSmart1or2();
-                if (local35 == 0) {
+                @Pc(35) int positionDelta = packet.gSmart1or2();
+                if (positionDelta == 0) {
                     break;
                 }
-                local31 += local35 - 1;
-                @Pc(50) int local50 = local31 & 0x3F;
-                @Pc(56) int local56 = local31 >> 6 & 0x3F;
-                @Pc(60) int local60 = local31 >> 12;
-                @Pc(64) int local64 = local12.g1();
-                @Pc(68) int local68 = local64 >> 2;
-                @Pc(72) int local72 = local64 & 0x3;
-                if (arg3 == local60 && local56 >= arg8 && local56 < arg8 + 8 && arg9 <= local50 && arg9 + 8 > local50) {
-                    @Pc(103) LocType local103 = LocTypeList.get(local7);
-                    @Pc(120) int local120 = method1286(local50 & 0x7, arg4, local72, local103.length, local103.width, local56 & 0x7) + arg5;
-                    @Pc(137) int local137 = method4541(local103.width, arg4, local103.length, local56 & 0x7, local72, local50 & 0x7) + arg6;
-                    if (local120 > 0 && local137 > 0 && local120 < 103 && local137 < 103) {
-                        @Pc(154) CollisionMap local154 = null;
-                        if (!arg7) {
-                            @Pc(159) int local159 = arg1;
-                            if ((SceneGraph.renderFlags[1][local120][local137] & 0x2) == 2) {
-                                local159 = arg1 - 1;
+                positionData += positionDelta - 1;
+                @Pc(50) int localX = positionData & 0x3F;
+                @Pc(56) int localZ = positionData >> 6 & 0x3F;
+                @Pc(60) int locationPlane = positionData >> 12;
+                @Pc(64) int shapeAndRotation = packet.g1();
+                @Pc(68) int shape = shapeAndRotation >> 2;
+                @Pc(72) int rotation = shapeAndRotation & 0x3;
+                if (targetPlane == locationPlane && localZ >= regionOffsetX && localZ < regionOffsetX + 8 && regionOffsetZ <= localX && regionOffsetZ + 8 > localX) {
+                    @Pc(103) LocType locType = LocTypeList.get(locationId);
+                    @Pc(120) int worldX = transformLocalX(localX & 0x7, baseRotation, rotation, locType.length, locType.width, localZ & 0x7) + baseX;
+                    @Pc(137) int worldZ = transformLocalZ(locType.width, baseRotation, locType.length, localZ & 0x7, rotation, localX & 0x7) + baseZ;
+                    if (worldX > 0 && worldZ > 0 && worldX < 103 && worldZ < 103) {
+                        @Pc(154) CollisionMap collisionMap = null;
+                        if (!underWater) {
+                            @Pc(159) int collisionPlane = plane;
+                            if ((SceneGraph.renderFlags[1][worldX][worldZ] & 0x2) == 2) {
+                                collisionPlane = plane - 1;
                             }
-                            if (local159 >= 0) {
-                                local154 = arg0[local159];
+                            if (collisionPlane >= 0) {
+                                collisionMap = collisionMaps[collisionPlane];
                             }
                         }
-                        SceneGraph.addLoc(arg1, !arg7, arg1, arg7, local154, local7, local68, local120, local137, local72 + arg4 & 0x3);
+                        SceneGraph.addLoc(plane, !underWater, plane, underWater, collisionMap, locationId, shape, worldX, worldZ, rotation + baseRotation & 0x3);
                     }
                 }
             }
@@ -172,78 +172,78 @@ public class WorldLoader {
     }
 
     @OriginalMember(owner = "client!eb", name = "a", descriptor = "(IIIIIII)I")
-    public static int method1286(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(6) int arg5) {
-        if ((arg2 & 0x1) == 1) {
-            @Pc(10) int local10 = arg4;
-            arg4 = arg3;
-            arg3 = local10;
+    public static int transformLocalX(@OriginalArg(0) int localX, @OriginalArg(1) int baseRotation, @OriginalArg(2) int objectRotation, @OriginalArg(3) int objectLength, @OriginalArg(4) int objectWidth, @OriginalArg(6) int localZ) {
+        if ((objectRotation & 0x1) == 1) {
+            @Pc(10) int temp = objectWidth;
+            objectWidth = objectLength;
+            objectLength = temp;
         }
-        @Pc(18) int local18 = arg1 & 0x3;
-        if (local18 == 0) {
-            return arg5;
-        } else if (local18 == 1) {
-            return arg0;
-        } else if (local18 == 2) {
-            return 7 + 1 - arg5 - arg4;
+        @Pc(18) int totalRotation = baseRotation & 0x3;
+        if (totalRotation == 0) {
+            return localZ;
+        } else if (totalRotation == 1) {
+            return localX;
+        } else if (totalRotation == 2) {
+            return 7 + 1 - localZ - objectWidth;
         } else {
-            return 7 + 1 - arg0 - arg3;
+            return 7 + 1 - localX - objectLength;
         }
     }
 
     @OriginalMember(owner = "runetek4.client!th", name = "a", descriptor = "(IIBIIII)I")
-    public static int method4541(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5) {
-        if ((arg4 & 0x1) == 1) {
-            @Pc(9) int local9 = arg0;
-            arg0 = arg2;
-            arg2 = local9;
+    public static int transformLocalZ(@OriginalArg(0) int objectWidth, @OriginalArg(1) int baseRotation, @OriginalArg(3) int objectLength, @OriginalArg(4) int localZ, @OriginalArg(5) int objectRotation, @OriginalArg(6) int localX) {
+        if ((objectRotation & 0x1) == 1) {
+            @Pc(9) int temp = objectWidth;
+            objectWidth = objectLength;
+            objectLength = temp;
         }
-        @Pc(29) int local29 = arg1 & 0x3;
+        @Pc(29) int local29 = baseRotation & 0x3;
         if (local29 == 0) {
-            return arg5;
+            return localX;
         } else if (local29 == 1) {
-            return 7 + 1 - arg3 - arg0;
+            return 7 + 1 - localZ - objectWidth;
         } else if (local29 == 2) {
-            return 1 + 7 - arg2 - arg5;
+            return 1 + 7 - objectLength - localX;
         } else {
-            return arg3;
+            return localZ;
         }
     }
 
     @OriginalMember(owner = "runetek4.client!ha", name = "a", descriptor = "(ZB)V")
-    public static void loadDynamicTerrain(@OriginalArg(0) boolean arg0) {
-        @Pc(11) byte local11;
-        @Pc(13) byte[][] local13;
-        if (GlRenderer.enabled && arg0) {
-            local11 = 1;
-            local13 = underWaterMapFilesBuffer;
+    public static void loadDynamicTerrain(@OriginalArg(0) boolean underWater) {
+        @Pc(11) byte planeCount;
+        @Pc(13) byte[][] mapDataBuffers;
+        if (GlRenderer.enabled && underWater) {
+            planeCount = 1;
+            mapDataBuffers = underWaterMapFilesBuffer;
         } else {
-            local13 = mapFilesBuffer;
-            local11 = 4;
+            mapDataBuffers = mapFilesBuffer;
+            planeCount = 4;
         }
-        for (@Pc(21) int local21 = 0; local21 < local11; local21++) {
+        for (@Pc(21) int plane = 0; plane < planeCount; plane++) {
             Client.audioLoop();
-            for (@Pc(32) int local32 = 0; local32 < 13; local32++) {
-                for (@Pc(39) int local39 = 0; local39 < 13; local39++) {
-                    @Pc(52) int local52 = Protocol.anIntArrayArrayArray18[local21][local32][local39];
-                    @Pc(54) boolean local54 = false;
-                    if (local52 != -1) {
-                        @Pc(65) int local65 = local52 >> 24 & 0x3;
-                        if (!arg0 || local65 == 0) {
-                            @Pc(76) int local76 = local52 >> 3 & 0x7FF;
-                            @Pc(82) int local82 = local52 >> 1 & 0x3;
-                            @Pc(88) int local88 = local52 >> 14 & 0x3FF;
-                            @Pc(98) int local98 = (local88 / 8 << 8) + local76 / 8;
-                            for (@Pc(100) int local100 = 0; local100 < regionBitPacked.length; local100++) {
-                                if (regionBitPacked[local100] == local98 && local13[local100] != null) {
-                                    SceneGraph.method4228(local82, local32 * 8, local21, PathFinder.collisionMaps, local39 * 8, local13[local100], local65, (local76 & 0x7) * 8, (local88 & 0x7) * 8, arg0);
-                                    local54 = true;
+            for (@Pc(32) int regionX = 0; regionX < 13; regionX++) {
+                for (@Pc(39) int regionZ = 0; regionZ < 13; regionZ++) {
+                    @Pc(52) int packedTerrainData = Protocol.anIntArrayArrayArray18[plane][regionX][regionZ];
+                    @Pc(54) boolean terrainLoaded = false;
+                    if (packedTerrainData != -1) {
+                        @Pc(65) int extractedPlane = packedTerrainData >> 24 & 0x3;
+                        if (!underWater || extractedPlane == 0) {
+                            @Pc(76) int worldZ = packedTerrainData >> 3 & 0x7FF;
+                            @Pc(82) int rotation = packedTerrainData >> 1 & 0x3;
+                            @Pc(88) int worldX = packedTerrainData >> 14 & 0x3FF;
+                            @Pc(98) int regionId = (worldX / 8 << 8) + worldZ / 8;
+                            for (@Pc(100) int regionIndex = 0; regionIndex < regionBitPacked.length; regionIndex++) {
+                                if (regionBitPacked[regionIndex] == regionId && mapDataBuffers[regionIndex] != null) {
+                                    SceneGraph.parseTerrainData(rotation, regionX * 8, plane, PathFinder.collisionMaps, regionZ * 8, mapDataBuffers[regionIndex], extractedPlane, (worldZ & 0x7) * 8, (worldX & 0x7) * 8, underWater);
+                                    terrainLoaded = true;
                                     break;
                                 }
                             }
                         }
                     }
-                    if (!local54) {
-                        SceneGraph.method645(local21, local39 * 8, local32 * 8, 8, 8);
+                    if (!terrainLoaded) {
+                        SceneGraph.initializeEmptyTerrain(plane, regionZ * 8, regionX * 8, 8, 8);
                     }
                 }
             }
@@ -251,168 +251,168 @@ public class WorldLoader {
     }
 
     @OriginalMember(owner = "client!gn", name = "a", descriptor = "(ZI)V")
-    public static void loadTerrainData(@OriginalArg(0) boolean arg0) {
-        @Pc(7) byte local7;
-        @Pc(9) byte[][] local9;
-        if (GlRenderer.enabled && arg0) {
-            local7 = 1;
-            local9 = underWaterMapFilesBuffer;
+    public static void loadTerrainData(@OriginalArg(0) boolean underWater) {
+        @Pc(7) byte planeCount;
+        @Pc(9) byte[][] mapDataBuffers;
+        if (GlRenderer.enabled && underWater) {
+            planeCount = 1;
+            mapDataBuffers = underWaterMapFilesBuffer;
         } else {
-            local7 = 4;
-            local9 = mapFilesBuffer;
+            planeCount = 4;
+            mapDataBuffers = mapFilesBuffer;
         }
-        @Pc(18) int local18 = local9.length;
-        @Pc(20) int local20;
-        @Pc(38) int local38;
-        @Pc(49) int local49;
-        @Pc(53) byte[] local53;
-        for (local20 = 0; local20 < local18; local20++) {
-            local38 = (regionBitPacked[local20] >> 8) * 64 - Camera.originX;
-            local49 = (regionBitPacked[local20] & 0xFF) * 64 - Camera.originZ;
-            local53 = local9[local20];
-            if (local53 != null) {
+        @Pc(18) int regionCount = mapDataBuffers.length;
+        @Pc(20) int regionIndex;
+        @Pc(38) int worldX;
+        @Pc(49) int worldZ;
+        @Pc(53) byte[] terrainData;
+        for (regionIndex = 0; regionIndex < regionCount; regionIndex++) {
+            worldX = (regionBitPacked[regionIndex] >> 8) * 64 - Camera.originX;
+            worldZ = (regionBitPacked[regionIndex] & 0xFF) * 64 - Camera.originZ;
+            terrainData = mapDataBuffers[regionIndex];
+            if (terrainData != null) {
                 Client.audioLoop();
-                SceneGraph.method2203(PathFinder.collisionMaps, arg0, SceneGraph.centralZoneX * 8 - 48, local49, local38, (SceneGraph.centralZoneZ - 6) * 8, local53);
+                SceneGraph.method2203(PathFinder.collisionMaps, underWater, SceneGraph.centralZoneX * 8 - 48, worldZ, worldX, (SceneGraph.centralZoneZ - 6) * 8, terrainData);
             }
         }
-        for (local20 = 0; local20 < local18; local20++) {
-            local38 = (regionBitPacked[local20] >> 8) * 64 - Camera.originX;
-            local49 = (regionBitPacked[local20] & 0xFF) * 64 - Camera.originZ;
-            local53 = local9[local20];
-            if (local53 == null && SceneGraph.centralZoneZ < 800) {
+        for (regionIndex = 0; regionIndex < regionCount; regionIndex++) {
+            worldX = (regionBitPacked[regionIndex] >> 8) * 64 - Camera.originX;
+            worldZ = (regionBitPacked[regionIndex] & 0xFF) * 64 - Camera.originZ;
+            terrainData = mapDataBuffers[regionIndex];
+            if (terrainData == null && SceneGraph.centralZoneZ < 800) {
                 Client.audioLoop();
-                for (@Pc(130) int local130 = 0; local130 < local7; local130++) {
-                    SceneGraph.method645(local130, local49, local38, 64, 64);
+                for (@Pc(130) int plane = 0; plane < planeCount; plane++) {
+                    SceneGraph.initializeEmptyTerrain(plane, worldZ, worldX, 64, 64);
                 }
             }
         }
     }
 
     @OriginalMember(owner = "runetek4.client!k", name = "a", descriptor = "(IIIIZIZ)V")
-    public static void initializeMapRegion(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) boolean arg4, @OriginalArg(5) int arg5) {
-        if (SceneGraph.centralZoneX == arg2 && arg1 == SceneGraph.centralZoneZ && (SceneGraph.centralPlane == arg0 || SceneGraph.allLevelsAreVisible())) {
+    public static void initializeMapRegion(@OriginalArg(0) int plane, @OriginalArg(1) int zoneZ, @OriginalArg(2) int zoneX, @OriginalArg(3) int playerLocalX, @OriginalArg(4) boolean isWorldTransition, @OriginalArg(5) int playerLocalZ) {
+        if (SceneGraph.centralZoneX == zoneX && zoneZ == SceneGraph.centralZoneZ && (SceneGraph.centralPlane == plane || SceneGraph.allLevelsAreVisible())) {
             return;
         }
-        SceneGraph.centralZoneX = arg2;
-        SceneGraph.centralZoneZ = arg1;
-        SceneGraph.centralPlane = arg0;
+        SceneGraph.centralZoneX = zoneX;
+        SceneGraph.centralZoneZ = zoneZ;
+        SceneGraph.centralPlane = plane;
         if (SceneGraph.allLevelsAreVisible()) {
             SceneGraph.centralPlane = 0;
         }
-        if (arg4) {
+        if (isWorldTransition) {
             Client.processGameStatus(28);
         } else {
             Client.processGameStatus(25);
         }
         Fonts.drawTextOnScreen(true, LocalizedText.LOADING);
-        @Pc(53) int local53 = Camera.originZ;
-        @Pc(55) int local55 = Camera.originX;
-        Camera.originZ = arg1 * 8 - 48;
-        Camera.originX = (arg2 - 6) * 8;
+        @Pc(53) int oldOriginZ = Camera.originZ;
+        @Pc(55) int oldOriginX = Camera.originX;
+        Camera.originZ = zoneZ * 8 - 48;
+        Camera.originX = (zoneX - 6) * 8;
         map = MapList.getContainingSource(SceneGraph.centralZoneX * 8, SceneGraph.centralZoneZ * 8);
-        @Pc(81) int dz = Camera.originZ - local53;
-        @Pc(86) int dx = Camera.originX - local55;
+        @Pc(81) int deltaZ = Camera.originZ - oldOriginZ;
+        @Pc(86) int deltaX = Camera.originX - oldOriginX;
         mapElementList = null;
-        @Pc(96) int i;
-        @Pc(103) Npc local103;
-        @Pc(109) int j;
-        if (arg4) {
+        @Pc(96) int npcIndex;
+        @Pc(103) Npc npc;
+        @Pc(109) int queueIndex;
+        if (isWorldTransition) {
             NpcList.npcCount = 0;
-            for (i = 0; i < 32768; i++) {
-                local103 = NpcList.npcs[i];
-                if (local103 != null) {
-                    local103.xFine -= dx * 128;
-                    local103.zFine -= dz * 128;
-                    if (local103.xFine >= 0 && local103.xFine <= 13184 && local103.zFine >= 0 && local103.zFine <= 13184) {
-                        for (j = 0; j < 10; j++) {
-                            local103.movementQueueX[j] -= dx;
-                            local103.movementQueueZ[j] -= dz;
+            for (npcIndex = 0; npcIndex < 32768; npcIndex++) {
+                npc = NpcList.npcs[npcIndex];
+                if (npc != null) {
+                    npc.xFine -= deltaX * 128;
+                    npc.zFine -= deltaZ * 128;
+                    if (npc.xFine >= 0 && npc.xFine <= 13184 && npc.zFine >= 0 && npc.zFine <= 13184) {
+                        for (queueIndex = 0; queueIndex < 10; queueIndex++) {
+                            npc.movementQueueX[queueIndex] -= deltaX;
+                            npc.movementQueueZ[queueIndex] -= deltaZ;
                         }
-                        NpcList.npcIds[NpcList.npcCount++] = i;
+                        NpcList.npcIds[NpcList.npcCount++] = npcIndex;
                     } else {
-                        NpcList.npcs[i].setNpcType(null);
-                        NpcList.npcs[i] = null;
+                        NpcList.npcs[npcIndex].setNpcType(null);
+                        NpcList.npcs[npcIndex] = null;
                     }
                 }
             }
         } else {
-            for (i = 0; i < 32768; i++) {
-                local103 = NpcList.npcs[i];
-                if (local103 != null) {
-                    for (j = 0; j < 10; j++) {
-                        local103.movementQueueX[j] -= dx;
-                        local103.movementQueueZ[j] -= dz;
+            for (npcIndex = 0; npcIndex < 32768; npcIndex++) {
+                npc = NpcList.npcs[npcIndex];
+                if (npc != null) {
+                    for (queueIndex = 0; queueIndex < 10; queueIndex++) {
+                        npc.movementQueueX[queueIndex] -= deltaX;
+                        npc.movementQueueZ[queueIndex] -= deltaZ;
                     }
-                    local103.xFine -= dx * 128;
-                    local103.zFine -= dz * 128;
+                    npc.xFine -= deltaX * 128;
+                    npc.zFine -= deltaZ * 128;
                 }
             }
         }
-        for (i = 0; i < 2048; i++) {
-            @Pc(265) Player player = PlayerList.players[i];
+        for (npcIndex = 0; npcIndex < 2048; npcIndex++) {
+            @Pc(265) Player player = PlayerList.players[npcIndex];
             if (player != null) {
-                for (j = 0; j < 10; j++) {
-                    player.movementQueueX[j] -= dx;
-                    player.movementQueueZ[j] -= dz;
+                for (queueIndex = 0; queueIndex < 10; queueIndex++) {
+                    player.movementQueueX[queueIndex] -= deltaX;
+                    player.movementQueueZ[queueIndex] -= deltaZ;
                 }
-                player.xFine -= dx * 128;
-                player.zFine -= dz * 128;
+                player.xFine -= deltaX * 128;
+                player.zFine -= deltaZ * 128;
             }
         }
-        Player.plane = arg0;
-        PlayerList.self.teleport(arg5, false, arg3);
+        Player.plane = plane;
+        PlayerList.self.teleport(playerLocalZ, false, playerLocalX);
         @Pc(322) byte endTileX = 104;
         @Pc(324) byte startTileX = 0;
         @Pc(326) byte startTileZ = 0;
         @Pc(328) byte dirZ = 1;
         @Pc(330) byte endTileZ = 104;
         @Pc(332) byte dirX = 1;
-        if (dz < 0) {
+        if (deltaZ < 0) {
             dirZ = -1;
             endTileZ = -1;
             startTileZ = 103;
         }
-        if (dx < 0) {
+        if (deltaX < 0) {
             dirX = -1;
             startTileX = 103;
             endTileX = -1;
         }
-        for (@Pc(358) int x = startTileX; x != endTileX; x += dirX) {
-            for (@Pc(367) int z = startTileZ; z != endTileZ; z += dirZ) {
-                @Pc(378) int lastX = dx + x;
-                @Pc(382) int lastZ = z + dz;
+        for (@Pc(358) int tileX = startTileX; tileX != endTileX; tileX += dirX) {
+            for (@Pc(367) int tileZ = startTileZ; tileZ != endTileZ; tileZ += dirZ) {
+                @Pc(378) int sourceX = deltaX + tileX;
+                @Pc(382) int sourceZ = tileZ + deltaZ;
                 for (@Pc(384) int level = 0; level < 4; level++) {
-                    if (lastX >= 0 && lastZ >= 0 && lastX < 104 && lastZ < 104) {
-                        SceneGraph.objStacks[level][x][z] = SceneGraph.objStacks[level][lastX][lastZ];
+                    if (sourceX >= 0 && sourceZ >= 0 && sourceX < 104 && sourceZ < 104) {
+                        SceneGraph.objStacks[level][tileX][tileZ] = SceneGraph.objStacks[level][sourceX][sourceZ];
                     } else {
-                        SceneGraph.objStacks[level][x][z] = null;
+                        SceneGraph.objStacks[level][tileX][tileZ] = null;
                     }
                 }
             }
         }
-        for (@Pc(451) ChangeLocRequest loc = (ChangeLocRequest) ChangeLocRequest.queue.head(); loc != null; loc = (ChangeLocRequest) ChangeLocRequest.queue.next()) {
-            loc.z -= dz;
-            loc.x -= dx;
-            if (loc.x < 0 || loc.z < 0 || loc.x >= 104 || loc.z >= 104) {
-                loc.unlink();
+        for (@Pc(451) ChangeLocRequest locRequest = (ChangeLocRequest) ChangeLocRequest.queue.head(); locRequest != null; locRequest = (ChangeLocRequest) ChangeLocRequest.queue.next()) {
+            locRequest.z -= deltaZ;
+            locRequest.x -= deltaX;
+            if (locRequest.x < 0 || locRequest.z < 0 || locRequest.x >= 104 || locRequest.z >= 104) {
+                locRequest.unlink();
             }
         }
-        if (arg4) {
-            Camera.renderX -= dx * 128;
-            Camera.renderZ -= dz * 128;
-            Camera.targetTileX -= dz;
-            Camera.lookAtTileZ -= dx;
-            Camera.lookAtTileX -= dz;
-            Camera.targetTileZ -= dx;
+        if (isWorldTransition) {
+            Camera.renderX -= deltaX * 128;
+            Camera.renderZ -= deltaZ * 128;
+            Camera.targetTileX -= deltaZ;
+            Camera.lookAtTileZ -= deltaX;
+            Camera.lookAtTileX -= deltaZ;
+            Camera.targetTileZ -= deltaX;
         } else {
             Camera.cameraType = 1;
         }
         SoundPlayer.size = 0;
         if (LoginManager.mapFlagX != 0) {
-            LoginManager.mapFlagZ -= dz;
-            LoginManager.mapFlagX -= dx;
+            LoginManager.mapFlagZ -= deltaZ;
+            LoginManager.mapFlagX -= deltaX;
         }
-        if (GlRenderer.enabled && arg4 && (Math.abs(dx) > 104 || Math.abs(dz) > 104)) {
+        if (GlRenderer.enabled && isWorldTransition && (Math.abs(deltaX) > 104 || Math.abs(deltaZ) > 104)) {
             FogManager.setInstantFade();
         }
         LightingManager.anInt2875 = -1;
@@ -421,75 +421,75 @@ public class WorldLoader {
     }
 
     @OriginalMember(owner = "client!ca", name = "a", descriptor = "(ZI)V")
-    public static void loadLocsToScene(@OriginalArg(0) boolean highmem) {
-        @Pc(13) int local13 = mapFilesBuffer.length;
-        @Pc(19) byte[][] local19;
-        if (GlRenderer.enabled && highmem) {
-            local19 = underWaterLocationsMapFilesBuffer;
+    public static void loadLocsToScene(@OriginalArg(0) boolean underWater) {
+        @Pc(13) int regionCount = mapFilesBuffer.length;
+        @Pc(19) byte[][] locationDataBuffers;
+        if (GlRenderer.enabled && underWater) {
+            locationDataBuffers = underWaterLocationsMapFilesBuffer;
         } else {
-            local19 = locationMapFilesBuffer;
+            locationDataBuffers = locationMapFilesBuffer;
         }
-        for (@Pc(25) int local25 = 0; local25 < local13; local25++) {
-            @Pc(32) byte[] local32 = local19[local25];
-            if (local32 != null) {
-                @Pc(45) int local45 = (regionBitPacked[local25] >> 8) * 64 - Camera.originX;
-                @Pc(56) int local56 = (regionBitPacked[local25] & 0xFF) * 64 - Camera.originZ;
+        for (@Pc(25) int regionIndex = 0; regionIndex < regionCount; regionIndex++) {
+            @Pc(32) byte[] locationData = locationDataBuffers[regionIndex];
+            if (locationData != null) {
+                @Pc(45) int worldX = (regionBitPacked[regionIndex] >> 8) * 64 - Camera.originX;
+                @Pc(56) int worldZ = (regionBitPacked[regionIndex] & 0xFF) * 64 - Camera.originZ;
                 Client.audioLoop();
-                SceneGraph.readLocs(local45, highmem, local32, local56, PathFinder.collisionMaps);
+                SceneGraph.readLocs(worldX, underWater, locationData, worldZ, PathFinder.collisionMaps);
             }
         }
     }
 
     @OriginalMember(owner = "client!dm", name = "a", descriptor = "(BII[B)Z")
-    public static boolean loadLocs(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) byte[] arg2) {
-        @Pc(15) boolean local15 = true;
-        @Pc(17) int local17 = -1;
-        @Pc(22) Packet local22 = new Packet(arg2);
+    public static boolean loadLocs(@OriginalArg(1) int baseX, @OriginalArg(2) int baseZ, @OriginalArg(3) byte[] locationData) {
+        @Pc(15) boolean allLocsReady = true;
+        @Pc(17) int locationId = -1;
+        @Pc(22) Packet packet = new Packet(locationData);
         label70: while (true) {
-            @Pc(26) int local26 = local22.gVarSmart();
-            if (local26 == 0) {
-                return local15;
+            @Pc(26) int idDelta = packet.gVarSmart();
+            if (idDelta == 0) {
+                return allLocsReady;
             }
-            @Pc(33) int local33 = 0;
-            local17 += local26;
-            @Pc(39) boolean local39 = false;
+            @Pc(33) int positionData = 0;
+            locationId += idDelta;
+            @Pc(39) boolean skipLocationData = false;
             while (true) {
-                @Pc(78) int local78;
-                @Pc(95) LocType local95;
+                @Pc(78) int shape;
+                @Pc(95) LocType locType;
                 do {
-                    @Pc(72) int local72;
-                    @Pc(68) int local68;
+                    @Pc(72) int worldZ;
+                    @Pc(68) int worldX;
                     do {
                         do {
                             do {
                                 do {
-                                    @Pc(45) int local45;
-                                    while (local39) {
-                                        local45 = local22.gSmart1or2();
-                                        if (local45 == 0) {
+                                    @Pc(45) int positionDelta;
+                                    while (skipLocationData) {
+                                        positionDelta = packet.gSmart1or2();
+                                        if (positionDelta == 0) {
                                             continue label70;
                                         }
-                                        local22.g1();
+                                        packet.g1();
                                     }
-                                    local45 = local22.gSmart1or2();
-                                    if (local45 == 0) {
+                                    positionDelta = packet.gSmart1or2();
+                                    if (positionDelta == 0) {
                                         continue label70;
                                     }
-                                    local33 += local45 - 1;
-                                    @Pc(58) int local58 = local33 & 0x3F;
-                                    @Pc(64) int local64 = local33 >> 6 & 0x3F;
-                                    local68 = arg1 + local58;
-                                    local72 = arg0 + local64;
-                                    local78 = local22.g1() >> 2;
-                                } while (local72 <= 0);
-                            } while (local68 <= 0);
-                        } while (local72 >= 103);
-                    } while (local68 >= 103);
-                    local95 = LocTypeList.get(local17);
-                } while (local78 == 22 && !Preferences.showGroundDecorations && local95.active == 0 && local95.blockwalk != 1 && !local95.forcedecor);
-                local39 = true;
-                if (!local95.isReady()) {
-                    local15 = false;
+                                    positionData += positionDelta - 1;
+                                    @Pc(58) int localX = positionData & 0x3F;
+                                    @Pc(64) int localZ = positionData >> 6 & 0x3F;
+                                    worldX = baseZ + localX;
+                                    worldZ = baseX + localZ;
+                                    shape = packet.g1() >> 2;
+                                } while (worldZ <= 0);
+                            } while (worldX <= 0);
+                        } while (worldZ >= 103);
+                    } while (worldX >= 103);
+                    locType = LocTypeList.get(locationId);
+                } while (shape == 22 && !Preferences.showGroundDecorations && locType.active == 0 && locType.blockwalk != 1 && !locType.forcedecor);
+                skipLocationData = true;
+                if (!locType.isReady()) {
+                    allLocsReady = false;
                     locLoadFailures++;
                 }
             }
@@ -745,45 +745,45 @@ public class WorldLoader {
 
     @OriginalMember(owner = "runetek4.client!mh", name = "h", descriptor = "(B)V")
     public static void decodeNpcFiles() {
-        @Pc(10) int local10 = npcSpawnsFilesBuffer.length;
-        for (@Pc(16) int local16 = 0; local16 < local10; local16++) {
-            if (npcSpawnsFilesBuffer[local16] != null) {
-                @Pc(25) int local25 = -1;
-                for (@Pc(27) int local27 = 0; local27 < anInt3811; local27++) {
-                    if (regionIndexLookup[local27] == regionBitPacked[local16]) {
-                        local25 = local27;
+        @Pc(10) int regionCount = npcSpawnsFilesBuffer.length;
+        for (@Pc(16) int regionIndex = 0; regionIndex < regionCount; regionIndex++) {
+            if (npcSpawnsFilesBuffer[regionIndex] != null) {
+                @Pc(25) int lookupIndex = -1;
+                for (@Pc(27) int searchIndex = 0; searchIndex < anInt3811; searchIndex++) {
+                    if (regionIndexLookup[searchIndex] == regionBitPacked[regionIndex]) {
+                        lookupIndex = searchIndex;
                         break;
                     }
                 }
-                if (local25 == -1) {
-                    regionIndexLookup[anInt3811] = regionBitPacked[local16];
-                    local25 = anInt3811++;
+                if (lookupIndex == -1) {
+                    regionIndexLookup[anInt3811] = regionBitPacked[regionIndex];
+                    lookupIndex = anInt3811++;
                 }
-                @Pc(67) int local67 = 0;
-                @Pc(74) Packet local74 = new Packet(npcSpawnsFilesBuffer[local16]);
-                while (local74.offset < npcSpawnsFilesBuffer[local16].length && local67 < 511) {
-                    @Pc(97) int local97 = local67++ << 6 | local25;
-                    @Pc(103) int local103 = local74.g2();
-                    @Pc(107) int local107 = local103 >> 14;
-                    @Pc(113) int local113 = local103 >> 7 & 0x3F;
-                    @Pc(125) int local125 = local113 + (regionBitPacked[local16] >> 8) * 64 - Camera.originX;
-                    @Pc(129) int local129 = local103 & 0x3F;
-                    @Pc(142) int local142 = local129 + (regionBitPacked[local16] & 0xFF) * 64 - Camera.originZ;
-                    @Pc(148) NpcType local148 = NpcTypeList.get(local74.g2());
-                    if (NpcList.npcs[local97] == null && (local148.walkflags & 0x1) > 0 && local107 == SceneGraph.centralPlane && local125 >= 0 && local148.size + local125 < 104 && local142 >= 0 && local142 + local148.size < 104) {
-                        NpcList.npcs[local97] = new Npc();
-                        @Pc(198) Npc local198 = NpcList.npcs[local97];
-                        NpcList.npcIds[NpcList.npcCount++] = local97;
-                        local198.lastSeenLoop = Client.loop;
-                        local198.setNpcType(local148);
-                        local198.setSize(local198.type.size);
-                        local198.dstYaw = local198.anInt3381 = PathingEntity.ANGLES[local198.type.respawndir];
-                        local198.anInt3376 = local198.type.turnspeed;
-                        if (local198.anInt3376 == 0) {
-                            local198.anInt3381 = 0;
+                @Pc(67) int npcIndex = 0;
+                @Pc(74) Packet packet = new Packet(npcSpawnsFilesBuffer[regionIndex]);
+                while (packet.offset < npcSpawnsFilesBuffer[regionIndex].length && npcIndex < 511) {
+                    @Pc(97) int globalNpcId = npcIndex++ << 6 | lookupIndex;
+                    @Pc(103) int packedSpawnData = packet.g2();
+                    @Pc(107) int plane = packedSpawnData >> 14;
+                    @Pc(113) int localX = packedSpawnData >> 7 & 0x3F;
+                    @Pc(125) int worldX = localX + (regionBitPacked[regionIndex] >> 8) * 64 - Camera.originX;
+                    @Pc(129) int localZ = packedSpawnData & 0x3F;
+                    @Pc(142) int worldZ = localZ + (regionBitPacked[regionIndex] & 0xFF) * 64 - Camera.originZ;
+                    @Pc(148) NpcType npcType = NpcTypeList.get(packet.g2());
+                    if (NpcList.npcs[globalNpcId] == null && (npcType.walkflags & 0x1) > 0 && plane == SceneGraph.centralPlane && worldX >= 0 && npcType.size + worldX < 104 && worldZ >= 0 && worldZ + npcType.size < 104) {
+                        NpcList.npcs[globalNpcId] = new Npc();
+                        @Pc(198) Npc npc = NpcList.npcs[globalNpcId];
+                        NpcList.npcIds[NpcList.npcCount++] = globalNpcId;
+                        npc.lastSeenLoop = Client.loop;
+                        npc.setNpcType(npcType);
+                        npc.setSize(npc.type.size);
+                        npc.dstYaw = npc.orientation = PathingEntity.ANGLES[npc.type.respawndir];
+                        npc.anInt3376 = npc.type.turnspeed;
+                        if (npc.anInt3376 == 0) {
+                            npc.orientation = 0;
                         }
-                        local198.anInt3365 = local198.type.nas;
-                        local198.teleport(local198.getSize(), local125, local142, true);
+                        npc.anInt3365 = npc.type.nas;
+                        npc.teleport(npc.getSize(), worldX, worldZ, true);
                     }
                 }
             }

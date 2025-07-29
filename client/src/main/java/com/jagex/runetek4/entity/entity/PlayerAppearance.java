@@ -53,9 +53,9 @@ public final class PlayerAppearance {
 	@OriginalMember(owner = "runetek4.client!wd", name = "d", descriptor = "[I")
 	public static final int[] BASE_PART_MAP = new int[] { 8, 11, 4, 6, 9, 7, 10, 0 };
 	@OriginalMember(owner = "runetek4.client!r", name = "b", descriptor = "[Lclient!tk;")
-	public static final SeqType[] aClass144Array2 = new SeqType[14];
+	public static final SeqType[] layerSequences = new SeqType[14];
 	@OriginalMember(owner = "runetek4.client!ri", name = "b", descriptor = "[I")
-	public static final int[] anIntArray187 = new int[14];
+	public static final int[] tweenFrameIds = new int[14];
 	@OriginalMember(owner = "runetek4.client!uf", name = "j", descriptor = "Lclient!n;")
 	public static final SoftLruHashTable bodyModels = new SoftLruHashTable(260);
 	@OriginalMember(owner = "runetek4.client!l", name = "b", descriptor = "Lclient!n;")
@@ -65,15 +65,15 @@ public final class PlayerAppearance {
 	@OriginalMember(owner = "runetek4.client!mc", name = "ab", descriptor = "[I")
 	public static final int[] FEMALE_FEATURES = new int[] { 7, 8, 9, 10, 11, 12, 13, 15 };
 	@OriginalMember(owner = "runetek4.client!wh", name = "j", descriptor = "[Lclient!cl;")
-	public static final AnimFrameset[] aClass3_Sub2_Sub7Array8 = new AnimFrameset[14];
+	public static final AnimFrameset[] primaryFramesets = new AnimFrameset[14];
 	@OriginalMember(owner = "runetek4.client!vf", name = "g", descriptor = "[I")
-	public static final int[] anIntArray515 = new int[14];
+	public static final int[] frameDelays = new int[14];
 	@OriginalMember(owner = "runetek4.client!kf", name = "d", descriptor = "[Lclient!cl;")
-	public static final AnimFrameset[] aClass3_Sub2_Sub7Array7 = new AnimFrameset[14];
+	public static final AnimFrameset[] tweenFramesets = new AnimFrameset[14];
 	@OriginalMember(owner = "client!fm", name = "fb", descriptor = "[I")
-	public static final int[] anIntArray183 = new int[14];
+	public static final int[] frameTimes = new int[14];
 	@OriginalMember(owner = "runetek4.client!th", name = "i", descriptor = "[I")
-	public static final int[] anIntArray520 = new int[14];
+	public static final int[] primaryFrameIds = new int[14];
 
 	@OriginalMember(owner = "runetek4.client!cj", name = "e", descriptor = "[[S")
 	public static short[][] destinationBodyColors;
@@ -81,9 +81,9 @@ public final class PlayerAppearance {
 	@OriginalMember(owner = "runetek4.client!nj", name = "m", descriptor = "[[S")
 	public static short[][] destinationSkinColors;
 	@OriginalMember(owner = "runetek4.client!qe", name = "r", descriptor = "[S")
-	public static short[] aShortArray65;
+	public static short[] sourceBodyColors;
 	@OriginalMember(owner = "runetek4.client!mj", name = "C", descriptor = "[S")
-	public static short[] aShortArray41;
+	public static short[] sourceSkinColors;
 
 	@OriginalMember(owner = "client!hh", name = "e", descriptor = "I")
 	public int npcId;
@@ -104,7 +104,7 @@ public final class PlayerAppearance {
 	private int[] colors;
 
 	@OriginalMember(owner = "client!hh", name = "w", descriptor = "[[I")
-	private int[][] anIntArrayArray19;
+	private int[][] transformationMatrices;
 
 	@OriginalMember(owner = "client!hh", name = "x", descriptor = "Z")
 	public boolean gender;
@@ -133,66 +133,66 @@ public final class PlayerAppearance {
     }
 
     @OriginalMember(owner = "client!hh", name = "a", descriptor = "(IIIILclient!tk;III)Lclient!ak;")
-	public final Model method1946(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) SeqType arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6) {
-		@Pc(24) long local24 = (long) arg2 | (long) (arg6 << 16) | (long) arg1 << 32;
-		@Pc(30) Model local30 = (Model) headModels.get(local24);
-		if (local30 == null) {
-			@Pc(36) RawModel[] local36 = new RawModel[3];
-			@Pc(38) int local38 = 0;
-			if (!IDKTypeList.get(arg2).hasReadyHeads() || !IDKTypeList.get(arg6).hasReadyHeads() || !IDKTypeList.get(arg1).hasReadyHeads()) {
+	public final Model createHeadModel(@OriginalArg(0) int animFrame, @OriginalArg(1) int hairId, @OriginalArg(2) int faceId, @OriginalArg(3) int animFrame2, @OriginalArg(4) SeqType sequence, @OriginalArg(5) int animLoop, @OriginalArg(6) int beardId) {
+		@Pc(24) long cacheKey = (long) faceId | (long) (beardId << 16) | (long) hairId << 32;
+		@Pc(30) Model model = (Model) headModels.get(cacheKey);
+		if (model == null) {
+			@Pc(36) RawModel[] headComponents = new RawModel[3];
+			@Pc(38) int componentCount = 0;
+			if (!IDKTypeList.get(faceId).hasReadyHeads() || !IDKTypeList.get(beardId).hasReadyHeads() || !IDKTypeList.get(hairId).hasReadyHeads()) {
 				return null;
 			}
-			@Pc(66) RawModel local66 = IDKTypeList.get(arg2).getHeadModel();
-			if (local66 != null) {
-				local38++;
-				local36[0] = local66;
+			@Pc(66) RawModel rawModel = IDKTypeList.get(faceId).getHeadModel();
+			if (rawModel != null) {
+				componentCount++;
+				headComponents[0] = rawModel;
 			}
-			local66 = IDKTypeList.get(arg6).getHeadModel();
-			if (local66 != null) {
-				local36[local38++] = local66;
+			rawModel = IDKTypeList.get(beardId).getHeadModel();
+			if (rawModel != null) {
+				headComponents[componentCount++] = rawModel;
 			}
-			local66 = IDKTypeList.get(arg1).getHeadModel();
-			if (local66 != null) {
-				local36[local38++] = local66;
+			rawModel = IDKTypeList.get(hairId).getHeadModel();
+			if (rawModel != null) {
+				headComponents[componentCount++] = rawModel;
 			}
-			local66 = new RawModel(local36, local38);
-			for (@Pc(110) int local110 = 0; local110 < 5; local110++) {
-				if (this.colors[local110] < destinationBodyColors[local110].length) {
-					local66.recolor(aShortArray65[local110], destinationBodyColors[local110][this.colors[local110]]);
+			rawModel = new RawModel(headComponents, componentCount);
+			for (@Pc(110) int colorIndex = 0; colorIndex < 5; colorIndex++) {
+				if (this.colors[colorIndex] < destinationBodyColors[colorIndex].length) {
+					rawModel.recolor(sourceBodyColors[colorIndex], destinationBodyColors[colorIndex][this.colors[colorIndex]]);
 				}
-				if (destinationSkinColors[local110].length > this.colors[local110]) {
-					local66.recolor(aShortArray41[local110], destinationSkinColors[local110][this.colors[local110]]);
+				if (destinationSkinColors[colorIndex].length > this.colors[colorIndex]) {
+					rawModel.recolor(sourceSkinColors[colorIndex], destinationSkinColors[colorIndex][this.colors[colorIndex]]);
 				}
 			}
-			local30 = local66.createModel(64, 768, -50, -10, -50);
-			headModels.put(local30, local24);
+			model = rawModel.createModel(64, 768, -50, -10, -50);
+			headModels.put(model, cacheKey);
 		}
-		if (arg4 != null) {
-			local30 = arg4.method4215(local30, arg0, arg3, arg5);
+		if (sequence != null) {
+			model = sequence.method4215(model, animFrame, animFrame2, animLoop);
 		}
-		return local30;
+		return model;
 	}
 
 	@OriginalMember(owner = "client!hh", name = "a", descriptor = "(I)V")
 	private void updateChecksum() {
-		@Pc(8) long local8 = this.checksum;
+		@Pc(8) long previousChecksum = this.checksum;
 		this.checksum = -1L;
-		@Pc(13) long[] local13 = Packet.CRC64_TABLE;
-		this.checksum = local13[(int) (((long) (this.basId >> 8) ^ this.checksum) & 0xFFL)] ^ this.checksum >>> 8;
-		this.checksum = local13[(int) ((this.checksum ^ (long) this.basId) & 0xFFL)] ^ this.checksum >>> 8;
-		@Pc(53) int local53;
-		for (local53 = 0; local53 < 12; local53++) {
-			this.checksum = this.checksum >>> 8 ^ local13[(int) ((this.checksum ^ (long) (this.identikit[local53] >> 24)) & 0xFFL)];
-			this.checksum = this.checksum >>> 8 ^ local13[(int) ((this.checksum ^ (long) (this.identikit[local53] >> 16)) & 0xFFL)];
-			this.checksum = local13[(int) (((long) (this.identikit[local53] >> 8) ^ this.checksum) & 0xFFL)] ^ this.checksum >>> 8;
-			this.checksum = this.checksum >>> 8 ^ local13[(int) ((this.checksum ^ (long) this.identikit[local53]) & 0xFFL)];
+		@Pc(13) long[] crcTable = Packet.CRC64_TABLE;
+		this.checksum = crcTable[(int) (((long) (this.basId >> 8) ^ this.checksum) & 0xFFL)] ^ this.checksum >>> 8;
+		this.checksum = crcTable[(int) ((this.checksum ^ (long) this.basId) & 0xFFL)] ^ this.checksum >>> 8;
+		@Pc(53) int i;
+		for (i = 0; i < 12; i++) {
+			this.checksum = this.checksum >>> 8 ^ crcTable[(int) ((this.checksum ^ (long) (this.identikit[i] >> 24)) & 0xFFL)];
+			this.checksum = this.checksum >>> 8 ^ crcTable[(int) ((this.checksum ^ (long) (this.identikit[i] >> 16)) & 0xFFL)];
+			this.checksum = crcTable[(int) (((long) (this.identikit[i] >> 8) ^ this.checksum) & 0xFFL)] ^ this.checksum >>> 8;
+			this.checksum = this.checksum >>> 8 ^ crcTable[(int) ((this.checksum ^ (long) this.identikit[i]) & 0xFFL)];
 		}
-		for (local53 = 0; local53 < 5; local53++) {
-			this.checksum = local13[(int) (((long) this.colors[local53] ^ this.checksum) & 0xFFL)] ^ this.checksum >>> 8;
+		for (i = 0; i < 5; i++) {
+			this.checksum = crcTable[(int) (((long) this.colors[i] ^ this.checksum) & 0xFFL)] ^ this.checksum >>> 8;
 		}
-		this.checksum = local13[(int) (((long) (this.gender ? 1 : 0) ^ this.checksum) & 0xFFL)] ^ this.checksum >>> 8;
-		if (local8 != 0L && this.checksum != local8) {
-			bodyModels.remove(local8);
+		this.checksum = crcTable[(int) (((long) (this.gender ? 1 : 0) ^ this.checksum) & 0xFFL)] ^ this.checksum >>> 8;
+		if (previousChecksum != 0L && this.checksum != previousChecksum) {
+			bodyModels.remove(previousChecksum);
 		}
 	}
 
@@ -206,15 +206,15 @@ public final class PlayerAppearance {
 	public final void set(@OriginalArg(0) int[] colors, @OriginalArg(1) int npcId, @OriginalArg(2) boolean female, @OriginalArg(4) int[] arg3, @OriginalArg(5) int arg4) {
 		if (arg4 != this.basId) {
 			this.basId = arg4;
-			this.anIntArrayArray19 = null;
+			this.transformationMatrices = null;
 		}
 		if (arg3 == null) {
 			arg3 = new int[12];
-			for (@Pc(24) int local24 = 0; local24 < 8; local24++) {
-				for (@Pc(31) int local31 = 0; local31 < IDKTypeList.count; local31++) {
-					@Pc(38) IDKType type = IDKTypeList.get(local31);
-					if (type != null && !type.disable && type.feature == (female ? FEMALE_FEATURES[local24] : MALE_FEATURES[local24])) {
-						arg3[BASE_PART_MAP[local24]] = Integer.MIN_VALUE | local31;
+			for (@Pc(24) int featureIndex = 0; featureIndex < 8; featureIndex++) {
+				for (@Pc(31) int idkId = 0; idkId < IDKTypeList.count; idkId++) {
+					@Pc(38) IDKType type = IDKTypeList.get(idkId);
+					if (type != null && !type.disable && type.feature == (female ? FEMALE_FEATURES[featureIndex] : MALE_FEATURES[featureIndex])) {
+						arg3[BASE_PART_MAP[featureIndex]] = Integer.MIN_VALUE | idkId;
 						break;
 					}
 				}
@@ -248,350 +248,350 @@ public final class PlayerAppearance {
 	}
 
 	@OriginalMember(owner = "client!hh", name = "a", descriptor = "([Lclient!ub;ILclient!tk;Lclient!tk;IIIIZII)Lclient!ak;")
-	public final Model method1954(@OriginalArg(0) PathingEntity_Class147[] arg0, @OriginalArg(1) int arg1, @OriginalArg(2) SeqType arg2, @OriginalArg(3) SeqType arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(7) int arg6, @OriginalArg(9) int arg7, @OriginalArg(10) int arg8) {
+	public final Model createAnimatedBodyModel(@OriginalArg(0) PathingEntity_Class147[] animationStates, @OriginalArg(1) int tweenFrame, @OriginalArg(2) SeqType primarySequence, @OriginalArg(3) SeqType weaponSequence, @OriginalArg(4) int primaryFrame2, @OriginalArg(5) int primaryFrame1, @OriginalArg(7) int weaponFrame2, @OriginalArg(9) int weaponFrame1, @OriginalArg(10) int primaryTweenFrame) {
 		if (this.npcId != -1) {
-			return NpcTypeList.get(this.npcId).getBodyModel(arg0, arg5, arg8, arg1, arg6, arg7, arg2, arg4, arg3);
+			return NpcTypeList.get(this.npcId).getBodyModel(animationStates, primaryFrame1, primaryTweenFrame, tweenFrame, weaponFrame2, weaponFrame1, primarySequence, primaryFrame2, weaponSequence);
 		}
-		@Pc(38) int[] local38 = this.identikit;
-		@Pc(41) long local41 = this.checksum;
-		if (arg3 != null && (arg3.mainHand >= 0 || arg3.offhand >= 0)) {
-			local38 = new int[12];
-			for (@Pc(61) int local61 = 0; local61 < 12; local61++) {
-				local38[local61] = this.identikit[local61];
+		@Pc(38) int[] equipmentIds = this.identikit;
+		@Pc(41) long modelCacheKey = this.checksum;
+		if (weaponSequence != null && (weaponSequence.mainHand >= 0 || weaponSequence.offhand >= 0)) {
+			equipmentIds = new int[12];
+			for (@Pc(61) int i = 0; i < 12; i++) {
+				equipmentIds[i] = this.identikit[i];
 			}
-			if (arg3.mainHand >= 0) {
-				if (arg3.mainHand == 65535) {
-					local41 ^= 0xFFFFFFFF00000000L;
-					local38[5] = 0;
+			if (weaponSequence.mainHand >= 0) {
+				if (weaponSequence.mainHand == 65535) {
+					modelCacheKey ^= 0xFFFFFFFF00000000L;
+					equipmentIds[5] = 0;
 				} else {
-					local38[5] = arg3.mainHand | 0x40000000;
-					local41 ^= (long) local38[5] << 32;
+					equipmentIds[5] = weaponSequence.mainHand | 0x40000000;
+					modelCacheKey ^= (long) equipmentIds[5] << 32;
 				}
 			}
-			if (arg3.offhand >= 0) {
-				if (arg3.offhand == 65535) {
-					local38[3] = 0;
-					local41 ^= 0xFFFFFFFFL;
+			if (weaponSequence.offhand >= 0) {
+				if (weaponSequence.offhand == 65535) {
+					equipmentIds[3] = 0;
+					modelCacheKey ^= 0xFFFFFFFFL;
 				} else {
-					local38[3] = arg3.offhand | 0x40000000;
-					local41 ^= local38[3];
+					equipmentIds[3] = weaponSequence.offhand | 0x40000000;
+					modelCacheKey ^= equipmentIds[3];
 				}
 			}
 		}
-		@Pc(154) Model local154 = (Model) bodyModels.get(local41);
-		@Pc(158) boolean local158;
-		@Pc(353) int local353;
-		@Pc(360) int local360;
-		@Pc(374) int local374;
-		@Pc(367) int local367;
-		@Pc(381) int local381;
+		@Pc(154) Model cachedModel = (Model) bodyModels.get(modelCacheKey);
+		@Pc(158) boolean hasUnreadyModels;
+		@Pc(353) int translateY;
+		@Pc(360) int translateZ;
+		@Pc(374) int rotateX;
+		@Pc(367) int rotateY;
+		@Pc(381) int rotateZ;
 		@Pc(451) int local451;
 		@Pc(457) int local457;
 		@Pc(475) int local475;
 		@Pc(481) int local481;
 		@Pc(598) int local598;
-		@Pc(346) int local346;
-		if (local154 == null) {
-			local158 = false;
-			@Pc(169) int local169;
-			for (@Pc(160) int local160 = 0; local160 < 12; local160++) {
-				local169 = local38[local160];
-				if ((local169 & 0x40000000) == 0) {
-					if ((local169 & Integer.MIN_VALUE) != 0 && !IDKTypeList.get(local169 & 0x3FFFFFFF).isBodyModelReady()) {
-						local158 = true;
+		@Pc(346) int translateX;
+		if (cachedModel == null) {
+			hasUnreadyModels = false;
+			@Pc(169) int equipmentId;
+			for (@Pc(160) int slotIndex = 0; slotIndex < 12; slotIndex++) {
+				equipmentId = equipmentIds[slotIndex];
+				if ((equipmentId & 0x40000000) == 0) {
+					if ((equipmentId & Integer.MIN_VALUE) != 0 && !IDKTypeList.get(equipmentId & 0x3FFFFFFF).isBodyModelReady()) {
+						hasUnreadyModels = true;
 					}
-				} else if (!ObjTypeList.get(local169 & 0x3FFFFFFF).isWearModelReady(this.gender)) {
-					local158 = true;
+				} else if (!ObjTypeList.get(equipmentId & 0x3FFFFFFF).isWearModelReady(this.gender)) {
+					hasUnreadyModels = true;
 				}
 			}
-			if (local158) {
+			if (hasUnreadyModels) {
 				if (this.prevChecksum != -1L) {
-					local154 = (Model) bodyModels.get(this.prevChecksum);
+					cachedModel = (Model) bodyModels.get(this.prevChecksum);
 				}
-				if (local154 == null) {
+				if (cachedModel == null) {
 					return null;
 				}
 			}
-			if (local154 == null) {
-				@Pc(239) RawModel[] local239 = new RawModel[12];
-				@Pc(250) int local250;
-				for (local169 = 0; local169 < 12; local169++) {
-					local250 = local38[local169];
-					@Pc(272) RawModel local272;
-					if ((local250 & 0x40000000) != 0) {
-						local272 = ObjTypeList.get(local250 & 0x3FFFFFFF).getBodyModel(this.gender);
-						if (local272 != null) {
-							local239[local169] = local272;
+			if (cachedModel == null) {
+				@Pc(239) RawModel[] bodyParts = new RawModel[12];
+				@Pc(250) int partIndex;
+				for (equipmentId = 0; equipmentId < 12; equipmentId++) {
+					partIndex = equipmentIds[equipmentId];
+					@Pc(272) RawModel partModel;
+					if ((partIndex & 0x40000000) != 0) {
+						partModel = ObjTypeList.get(partIndex & 0x3FFFFFFF).getBodyModel(this.gender);
+						if (partModel != null) {
+							bodyParts[equipmentId] = partModel;
 						}
-					} else if ((Integer.MIN_VALUE & local250) != 0) {
-						local272 = IDKTypeList.get(local250 & 0x3FFFFFFF).getModel();
-						if (local272 != null) {
-							local239[local169] = local272;
+					} else if ((Integer.MIN_VALUE & partIndex) != 0) {
+						partModel = IDKTypeList.get(partIndex & 0x3FFFFFFF).getModel();
+						if (partModel != null) {
+							bodyParts[equipmentId] = partModel;
 						}
 					}
 				}
-				@Pc(303) BasType local303 = null;
+				@Pc(303) BasType baseAnimSet = null;
 				if (this.basId != -1) {
-					local303 = BasTypeList.get(this.basId);
+					baseAnimSet = BasTypeList.get(this.basId);
 				}
-				if (local303 != null && local303.modelRotateTranslate != null) {
-					for (local250 = 0; local250 < local303.modelRotateTranslate.length; local250++) {
-						if (local303.modelRotateTranslate[local250] != null && local239[local250] != null) {
-							local346 = local303.modelRotateTranslate[local250][0];
-							local353 = local303.modelRotateTranslate[local250][1];
-							local360 = local303.modelRotateTranslate[local250][2];
-							local367 = local303.modelRotateTranslate[local250][4];
-							local374 = local303.modelRotateTranslate[local250][3];
-							local381 = local303.modelRotateTranslate[local250][5];
-							if (this.anIntArrayArray19 == null) {
-								this.anIntArrayArray19 = new int[local303.modelRotateTranslate.length][];
+				if (baseAnimSet != null && baseAnimSet.modelRotateTranslate != null) {
+					for (partIndex = 0; partIndex < baseAnimSet.modelRotateTranslate.length; partIndex++) {
+						if (baseAnimSet.modelRotateTranslate[partIndex] != null && bodyParts[partIndex] != null) {
+							translateX = baseAnimSet.modelRotateTranslate[partIndex][0];
+							translateY = baseAnimSet.modelRotateTranslate[partIndex][1];
+							translateZ = baseAnimSet.modelRotateTranslate[partIndex][2];
+							rotateY = baseAnimSet.modelRotateTranslate[partIndex][4];
+							rotateX = baseAnimSet.modelRotateTranslate[partIndex][3];
+							rotateZ = baseAnimSet.modelRotateTranslate[partIndex][5];
+							if (this.transformationMatrices == null) {
+								this.transformationMatrices = new int[baseAnimSet.modelRotateTranslate.length][];
 							}
-							if (this.anIntArrayArray19[local250] == null) {
-								@Pc(404) int[] local404 = this.anIntArrayArray19[local250] = new int[15];
-								if (local374 == 0 && local367 == 0 && local381 == 0) {
-									local404[12] = -local346;
-									local404[13] = -local353;
-									local404[0] = local404[4] = local404[8] = 32768;
-									local404[14] = -local360;
+							if (this.transformationMatrices[partIndex] == null) {
+								@Pc(404) int[] transformMatrix = this.transformationMatrices[partIndex] = new int[15];
+								if (rotateX == 0 && rotateY == 0 && rotateZ == 0) {
+									transformMatrix[12] = -translateX;
+									transformMatrix[13] = -translateY;
+									transformMatrix[0] = transformMatrix[4] = transformMatrix[8] = 32768;
+									transformMatrix[14] = -translateZ;
 								} else {
-									local451 = MathUtils.cos[local374] >> 1;
-									local457 = MathUtils.sin[local374] >> 1;
-									@Pc(463) int local463 = MathUtils.cos[local367] >> 1;
-									@Pc(469) int local469 = MathUtils.sin[local367] >> 1;
-									local475 = MathUtils.cos[local381] >> 1;
-									local481 = MathUtils.sin[local381] >> 1;
-									local404[4] = local451 * local475 + 16384 >> 15;
-									local404[5] = -local457;
-									local404[3] = local481 * local451 + 16384 >> 15;
-									local404[2] = local451 * local469 + 16384 >> 15;
-									local404[8] = local463 * local451 + 16384 >> 15;
+									local451 = MathUtils.cos[rotateX] >> 1;
+									local457 = MathUtils.sin[rotateX] >> 1;
+									@Pc(463) int local463 = MathUtils.cos[rotateY] >> 1;
+									@Pc(469) int local469 = MathUtils.sin[rotateY] >> 1;
+									local475 = MathUtils.cos[rotateZ] >> 1;
+									local481 = MathUtils.sin[rotateZ] >> 1;
+									transformMatrix[4] = local451 * local475 + 16384 >> 15;
+									transformMatrix[5] = -local457;
+									transformMatrix[3] = local481 * local451 + 16384 >> 15;
+									transformMatrix[2] = local451 * local469 + 16384 >> 15;
+									transformMatrix[8] = local463 * local451 + 16384 >> 15;
 									@Pc(534) int local534 = local481 * local457 + 16384 >> 15;
-									local404[0] = local469 * local534 + local475 * local463 + 16384 >> 15;
-									local404[14] = local404[8] * -local360 + -local353 * local404[5] + local404[2] * -local346 + 16384 >> 15;
-									local404[6] = local463 * local534 + local475 * -local469 + 16384 >> 15;
+									transformMatrix[0] = local469 * local534 + local475 * local463 + 16384 >> 15;
+									transformMatrix[14] = transformMatrix[8] * -translateZ + -translateY * transformMatrix[5] + transformMatrix[2] * -translateX + 16384 >> 15;
+									transformMatrix[6] = local463 * local534 + local475 * -local469 + 16384 >> 15;
 									local598 = local475 * local457 + 16384 >> 15;
-									local404[7] = -local481 * -local469 + local598 * local463 + 16384 >> 15;
-									local404[1] = local469 * local598 + local463 * -local481 + 16384 >> 15;
-									local404[12] = -local353 * local404[3] + local404[0] * -local346 + -local360 * local404[6] + 16384 >> 15;
-									local404[13] = -local353 * local404[4] + local404[1] * -local346 + -local360 * local404[7] + 16384 >> 15;
+									transformMatrix[7] = -local481 * -local469 + local598 * local463 + 16384 >> 15;
+									transformMatrix[1] = local469 * local598 + local463 * -local481 + 16384 >> 15;
+									transformMatrix[12] = -translateY * transformMatrix[3] + transformMatrix[0] * -translateX + -translateZ * transformMatrix[6] + 16384 >> 15;
+									transformMatrix[13] = -translateY * transformMatrix[4] + transformMatrix[1] * -translateX + -translateZ * transformMatrix[7] + 16384 >> 15;
 								}
-								local404[9] = local346;
-								local404[11] = local360;
-								local404[10] = local353;
+								transformMatrix[9] = translateX;
+								transformMatrix[11] = translateZ;
+								transformMatrix[10] = translateY;
 							}
-							if (local374 != 0 || local367 != 0 || local381 != 0) {
-								local239[local250].method1684(local374, local367, local381);
+							if (rotateX != 0 || rotateY != 0 || rotateZ != 0) {
+								bodyParts[partIndex].method1684(rotateX, rotateY, rotateZ);
 							}
-							if (local346 != 0 || local353 != 0 || local360 != 0) {
-								local239[local250].translate(local346, local353, local360);
+							if (translateX != 0 || translateY != 0 || translateZ != 0) {
+								bodyParts[partIndex].translate(translateX, translateY, translateZ);
 							}
 						}
 					}
 				}
-				@Pc(740) RawModel model = new RawModel(local239, local239.length);
-				for (local346 = 0; local346 < 5; local346++) {
-					if (destinationBodyColors[local346].length > this.colors[local346]) {
-						model.recolor(aShortArray65[local346], destinationBodyColors[local346][this.colors[local346]]);
+				@Pc(740) RawModel model = new RawModel(bodyParts, bodyParts.length);
+				for (translateX = 0; translateX < 5; translateX++) {
+					if (destinationBodyColors[translateX].length > this.colors[translateX]) {
+						model.recolor(sourceBodyColors[translateX], destinationBodyColors[translateX][this.colors[translateX]]);
 					}
-					if (destinationSkinColors[local346].length > this.colors[local346]) {
-						model.recolor(aShortArray41[local346], destinationSkinColors[local346][this.colors[local346]]);
+					if (destinationSkinColors[translateX].length > this.colors[translateX]) {
+						model.recolor(sourceSkinColors[translateX], destinationSkinColors[translateX][this.colors[translateX]]);
 					}
 				}
-				local154 = model.createModel(64, 850, -30, -50, -30);
+				cachedModel = model.createModel(64, 850, -30, -50, -30);
 				if (GlRenderer.enabled) {
-					((GlModel) local154).updateBuffers(false, false, true, false, false, true);
+					((GlModel) cachedModel).updateBuffers(false, false, true, false, false, true);
 				}
-				bodyModels.put(local154, local41);
-				this.prevChecksum = local41;
+				bodyModels.put(cachedModel, modelCacheKey);
+				this.prevChecksum = modelCacheKey;
 			}
 		}
-		local158 = false;
-		@Pc(827) boolean local827 = false;
-		local346 = arg0 == null ? 0 : arg0.length;
-		@Pc(836) boolean local836 = false;
-		@Pc(838) boolean local838 = false;
+		hasUnreadyModels = false;
+		@Pc(827) boolean hasAlphaTransforms = false;
+		translateX = animationStates == null ? 0 : animationStates.length;
+		@Pc(836) boolean hasColorTransforms = false;
+		@Pc(838) boolean hasSpecialEffects = false;
 		@Pc(979) int local979;
-		for (local353 = 0; local353 < local346; local353++) {
-			if (arg0[local353] != null) {
-				@Pc(858) SeqType local858 = SeqTypeList.get(arg0[local353].anInt5396);
-				if (local858.frames != null) {
-					local158 = true;
-					aClass144Array2[local353] = local858;
-					local374 = arg0[local353].anInt5399;
-					local367 = arg0[local353].anInt5398;
-					local381 = local858.frames[local374];
-					aClass3_Sub2_Sub7Array8[local353] = SeqTypeList.getAnimFrameset(local381 >>> 16);
-					local381 &= 0xFFFF;
-					anIntArray520[local353] = local381;
-					if (aClass3_Sub2_Sub7Array8[local353] != null) {
-						local836 |= aClass3_Sub2_Sub7Array8[local353].isColorTransformed(local381);
-						local827 |= aClass3_Sub2_Sub7Array8[local353].isAlphaTransformed(local381);
-						local838 |= local858.aBoolean278;
+		for (translateY = 0; translateY < translateX; translateY++) {
+			if (animationStates[translateY] != null) {
+				@Pc(858) SeqType layerSequence = SeqTypeList.get(animationStates[translateY].sequenceId);
+				if (layerSequence.frames != null) {
+					hasUnreadyModels = true;
+					layerSequences[translateY] = layerSequence;
+					rotateX = animationStates[translateY].frameIndex;
+					rotateY = animationStates[translateY].direction;
+					rotateZ = layerSequence.frames[rotateX];
+					primaryFramesets[translateY] = SeqTypeList.getAnimFrameset(rotateZ >>> 16);
+					rotateZ &= 0xFFFF;
+					primaryFrameIds[translateY] = rotateZ;
+					if (primaryFramesets[translateY] != null) {
+						hasColorTransforms |= primaryFramesets[translateY].isColorTransformed(rotateZ);
+						hasAlphaTransforms |= primaryFramesets[translateY].isAlphaTransformed(rotateZ);
+						hasSpecialEffects |= layerSequence.aBoolean278;
 					}
-					if ((local858.tween || SeqType.applyTweening) && local367 != -1 && local367 < local858.frames.length) {
-						anIntArray515[local353] = local858.frameDelay[local374];
-						anIntArray183[local353] = arg0[local353].anInt5404;
-						local979 = local858.frames[local367];
-						aClass3_Sub2_Sub7Array7[local353] = SeqTypeList.getAnimFrameset(local979 >>> 16);
+					if ((layerSequence.tween || SeqType.applyTweening) && rotateY != -1 && rotateY < layerSequence.frames.length) {
+						frameDelays[translateY] = layerSequence.frameDelay[rotateX];
+						frameTimes[translateY] = animationStates[translateY].loopCount;
+						local979 = layerSequence.frames[rotateY];
+						tweenFramesets[translateY] = SeqTypeList.getAnimFrameset(local979 >>> 16);
 						@Pc(991) int local991 = local979 & 0xFFFF;
-						anIntArray187[local353] = local991;
-						if (aClass3_Sub2_Sub7Array7[local353] != null) {
-							local836 |= aClass3_Sub2_Sub7Array7[local353].isColorTransformed(local991);
-							local827 |= aClass3_Sub2_Sub7Array7[local353].isAlphaTransformed(local991);
+						tweenFrameIds[translateY] = local991;
+						if (tweenFramesets[translateY] != null) {
+							hasColorTransforms |= tweenFramesets[translateY].isColorTransformed(local991);
+							hasAlphaTransforms |= tweenFramesets[translateY].isAlphaTransformed(local991);
 						}
 					} else {
-						anIntArray515[local353] = 0;
-						anIntArray183[local353] = 0;
-						aClass3_Sub2_Sub7Array7[local353] = null;
-						anIntArray187[local353] = -1;
+						frameDelays[translateY] = 0;
+						frameTimes[translateY] = 0;
+						tweenFramesets[translateY] = null;
+						tweenFrameIds[translateY] = -1;
 					}
 				}
 			}
 		}
-		if (!local158 && arg3 == null && arg2 == null) {
-			return local154;
+		if (!hasUnreadyModels && weaponSequence == null && primarySequence == null) {
+			return cachedModel;
 		}
-		local353 = -1;
-		local360 = -1;
-		local374 = 0;
-		@Pc(1040) AnimFrameset local1040 = null;
-		@Pc(1042) AnimFrameset local1042 = null;
-		if (arg3 != null) {
-			local353 = arg3.frames[arg7];
-			local979 = local353 >>> 16;
-			local1042 = SeqTypeList.getAnimFrameset(local979);
-			local353 &= 0xFFFF;
-			if (local1042 != null) {
-				local836 |= local1042.isColorTransformed(local353);
-				local827 |= local1042.isAlphaTransformed(local353);
-				local838 |= arg3.aBoolean278;
+		translateY = -1;
+		translateZ = -1;
+		rotateX = 0;
+		@Pc(1040) AnimFrameset weaponFrameset1 = null;
+		@Pc(1042) AnimFrameset weaponFrameset2 = null;
+		if (weaponSequence != null) {
+			translateY = weaponSequence.frames[weaponFrame1];
+			local979 = translateY >>> 16;
+			weaponFrameset2 = SeqTypeList.getAnimFrameset(local979);
+			translateY &= 0xFFFF;
+			if (weaponFrameset2 != null) {
+				hasColorTransforms |= weaponFrameset2.isColorTransformed(translateY);
+				hasAlphaTransforms |= weaponFrameset2.isAlphaTransformed(translateY);
+				hasSpecialEffects |= weaponSequence.aBoolean278;
 			}
-			if ((arg3.tween || SeqType.applyTweening) && arg1 != -1 && arg3.frames.length > arg1) {
-				local360 = arg3.frames[arg1];
-				local451 = local360 >>> 16;
-				local360 &= 0xFFFF;
-				local374 = arg3.frameDelay[arg7];
+			if ((weaponSequence.tween || SeqType.applyTweening) && tweenFrame != -1 && weaponSequence.frames.length > tweenFrame) {
+				translateZ = weaponSequence.frames[tweenFrame];
+				local451 = translateZ >>> 16;
+				translateZ &= 0xFFFF;
+				rotateX = weaponSequence.frameDelay[weaponFrame1];
 				if (local979 == local451) {
-					local1040 = local1042;
+					weaponFrameset1 = weaponFrameset2;
 				} else {
-					local1040 = SeqTypeList.getAnimFrameset(local360 >>> 16);
+					weaponFrameset1 = SeqTypeList.getAnimFrameset(translateZ >>> 16);
 				}
-				if (local1040 != null) {
-					local836 |= local1040.isColorTransformed(local360);
-					local827 |= local1040.isAlphaTransformed(local360);
+				if (weaponFrameset1 != null) {
+					hasColorTransforms |= weaponFrameset1.isColorTransformed(translateZ);
+					hasAlphaTransforms |= weaponFrameset1.isAlphaTransformed(translateZ);
 				}
 			}
 		}
 		local979 = -1;
 		local451 = -1;
-		@Pc(1154) AnimFrameset local1154 = null;
-		@Pc(1156) AnimFrameset local1156 = null;
+		@Pc(1154) AnimFrameset primaryFrameset1 = null;
+		@Pc(1156) AnimFrameset primaryFrameset2 = null;
 		local457 = 0;
-		if (arg2 != null) {
-			local979 = arg2.frames[arg8];
+		if (primarySequence != null) {
+			local979 = primarySequence.frames[primaryTweenFrame];
 			local475 = local979 >>> 16;
 			local979 &= 0xFFFF;
-			local1154 = SeqTypeList.getAnimFrameset(local475);
-			if (local1154 != null) {
-				local836 |= local1154.isColorTransformed(local979);
-				local827 |= local1154.isAlphaTransformed(local979);
-				local838 |= arg2.aBoolean278;
+			primaryFrameset1 = SeqTypeList.getAnimFrameset(local475);
+			if (primaryFrameset1 != null) {
+				hasColorTransforms |= primaryFrameset1.isColorTransformed(local979);
+				hasAlphaTransforms |= primaryFrameset1.isAlphaTransformed(local979);
+				hasSpecialEffects |= primarySequence.aBoolean278;
 			}
-			if ((arg2.tween || SeqType.applyTweening) && arg5 != -1 && arg2.frames.length > arg5) {
-				local457 = arg2.frameDelay[arg8];
-				local451 = arg2.frames[arg5];
+			if ((primarySequence.tween || SeqType.applyTweening) && primaryFrame1 != -1 && primarySequence.frames.length > primaryFrame1) {
+				local457 = primarySequence.frameDelay[primaryTweenFrame];
+				local451 = primarySequence.frames[primaryFrame1];
 				local481 = local451 >>> 16;
 				local451 &= 0xFFFF;
 				if (local475 == local481) {
-					local1156 = local1154;
+					primaryFrameset2 = primaryFrameset1;
 				} else {
-					local1156 = SeqTypeList.getAnimFrameset(local451 >>> 16);
+					primaryFrameset2 = SeqTypeList.getAnimFrameset(local451 >>> 16);
 				}
-				if (local1156 != null) {
-					local836 |= local1156.isColorTransformed(local451);
-					local827 |= local1156.isAlphaTransformed(local451);
+				if (primaryFrameset2 != null) {
+					hasColorTransforms |= primaryFrameset2.isColorTransformed(local451);
+					hasAlphaTransforms |= primaryFrameset2.isAlphaTransformed(local451);
 				}
 			}
 		}
-		@Pc(1284) Model local1284 = local154.method4572(!local827, !local836, !local838);
+		@Pc(1284) Model animatedModel = cachedModel.method4572(!hasAlphaTransforms, !hasColorTransforms, !hasSpecialEffects);
 		local481 = 0;
 		local598 = 1;
-		while (local481 < local346) {
-			if (aClass3_Sub2_Sub7Array8[local481] != null) {
-				local1284.method4565(aClass3_Sub2_Sub7Array8[local481], anIntArray520[local481], aClass3_Sub2_Sub7Array7[local481], anIntArray187[local481], anIntArray183[local481] - 1, anIntArray515[local481], local598, aClass144Array2[local481].aBoolean278, this.anIntArrayArray19[local481]);
+		while (local481 < translateX) {
+			if (primaryFramesets[local481] != null) {
+				animatedModel.method4565(primaryFramesets[local481], primaryFrameIds[local481], tweenFramesets[local481], tweenFrameIds[local481], frameTimes[local481] - 1, frameDelays[local481], local598, layerSequences[local481].aBoolean278, this.transformationMatrices[local481]);
 			}
 			local481++;
 			local598 <<= 0x1;
 		}
-		if (local1042 != null && local1154 != null) {
-			local1284.method4570(local1042, local353, local1040, local360, arg6 - 1, local374, local1154, local979, local1156, local451, arg4 - 1, local457, arg3.framegroup, arg3.aBoolean278 | arg2.aBoolean278);
-		} else if (local1042 != null) {
-			local1284.method4558(local1042, local353, local1040, local360, arg6 - 1, local374, arg3.aBoolean278);
-		} else if (local1154 != null) {
-			local1284.method4558(local1154, local979, local1156, local451, arg4 - 1, local457, arg2.aBoolean278);
+		if (weaponFrameset2 != null && primaryFrameset1 != null) {
+			animatedModel.method4570(weaponFrameset2, translateY, weaponFrameset1, translateZ, weaponFrame2 - 1, rotateX, primaryFrameset1, local979, primaryFrameset2, local451, primaryFrame2 - 1, local457, weaponSequence.framegroup, weaponSequence.aBoolean278 | primarySequence.aBoolean278);
+		} else if (weaponFrameset2 != null) {
+			animatedModel.method4558(weaponFrameset2, translateY, weaponFrameset1, translateZ, weaponFrame2 - 1, rotateX, weaponSequence.aBoolean278);
+		} else if (primaryFrameset1 != null) {
+			animatedModel.method4558(primaryFrameset1, local979, primaryFrameset2, local451, primaryFrame2 - 1, local457, primarySequence.aBoolean278);
 		}
-		for (local481 = 0; local481 < local346; local481++) {
-			aClass3_Sub2_Sub7Array8[local481] = null;
-			aClass3_Sub2_Sub7Array7[local481] = null;
-			aClass144Array2[local481] = null;
+		for (local481 = 0; local481 < translateX; local481++) {
+			primaryFramesets[local481] = null;
+			tweenFramesets[local481] = null;
+			layerSequences[local481] = null;
 		}
-		return local1284;
+		return animatedModel;
 	}
 
 	@OriginalMember(owner = "client!hh", name = "a", descriptor = "(IBLclient!tk;II)Lclient!ak;")
-	public final Model getStaticModel(@OriginalArg(0) int arg0, @OriginalArg(2) SeqType arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
+	public final Model getStaticModel(@OriginalArg(0) int animFrame, @OriginalArg(2) SeqType sequence, @OriginalArg(3) int animLoop, @OriginalArg(4) int animFrame2) {
 		if (this.npcId != -1) {
-			return NpcTypeList.get(this.npcId).getHeadModel(arg1, arg0, arg3, arg2);
+			return NpcTypeList.get(this.npcId).getHeadModel(sequence, animFrame, animFrame2, animLoop);
 		}
 		@Pc(30) Model cachedModel = (Model) headModels.get(this.checksum);
 		if (cachedModel == null) {
-			@Pc(42) boolean bool = false;
-			@Pc(52) int i;
-			for (@Pc(44) int local44 = 0; local44 < 12; local44++) {
-				i = this.identikit[local44];
-				if ((i & 0x40000000) == 0) {
-					if ((i & Integer.MIN_VALUE) != 0 && !IDKTypeList.get(i & 0x3FFFFFFF).hasReadyHeads()) {
-						bool = true;
+			@Pc(42) boolean hasUnreadyModels = false;
+			@Pc(52) int equipmentId;
+			for (@Pc(44) int slotIndex = 0; slotIndex < 12; slotIndex++) {
+				equipmentId = this.identikit[slotIndex];
+				if ((equipmentId & 0x40000000) == 0) {
+					if ((equipmentId & Integer.MIN_VALUE) != 0 && !IDKTypeList.get(equipmentId & 0x3FFFFFFF).hasReadyHeads()) {
+						hasUnreadyModels = true;
 					}
-				} else if (!ObjTypeList.get(i & 0x3FFFFFFF).isHeadModelReady(this.gender)) {
-					bool = true;
+				} else if (!ObjTypeList.get(equipmentId & 0x3FFFFFFF).isHeadModelReady(this.gender)) {
+					hasUnreadyModels = true;
 				}
 			}
-			if (bool) {
+			if (hasUnreadyModels) {
 				return null;
 			}
-			@Pc(100) RawModel[] models = new RawModel[12];
-			i = 0;
+			@Pc(100) RawModel[] headComponents = new RawModel[12];
+			equipmentId = 0;
 			@Pc(114) int j;
 			for (@Pc(104) int equipmentSlot = 0; equipmentSlot < 12; equipmentSlot++) {
 				j = this.identikit[equipmentSlot];
-				@Pc(134) RawModel local134;
+				@Pc(134) RawModel headModel;
 				if ((j & 0x40000000) != 0) {
-					local134 = ObjTypeList.get(j & 0x3FFFFFFF).getHeadModel(this.gender);
-					if (local134 != null) {
-						models[i++] = local134;
+					headModel = ObjTypeList.get(j & 0x3FFFFFFF).getHeadModel(this.gender);
+					if (headModel != null) {
+						headComponents[equipmentId++] = headModel;
 					}
 				} else if ((Integer.MIN_VALUE & j) != 0) {
-					local134 = IDKTypeList.get(j & 0x3FFFFFFF).getHeadModel();
-					if (local134 != null) {
-						models[i++] = local134;
+					headModel = IDKTypeList.get(j & 0x3FFFFFFF).getHeadModel();
+					if (headModel != null) {
+						headComponents[equipmentId++] = headModel;
 					}
 				}
 			}
-			@Pc(171) RawModel local171 = new RawModel(models, i);
+			@Pc(171) RawModel combinedModel = new RawModel(headComponents, equipmentId);
 			for (j = 0; j < 5; j++) {
 				if (destinationBodyColors[j].length > this.colors[j]) {
-					local171.recolor(aShortArray65[j], destinationBodyColors[j][this.colors[j]]);
+					combinedModel.recolor(sourceBodyColors[j], destinationBodyColors[j][this.colors[j]]);
 				}
 				if (destinationSkinColors[j].length > this.colors[j]) {
-					local171.recolor(aShortArray41[j], destinationSkinColors[j][this.colors[j]]);
+					combinedModel.recolor(sourceSkinColors[j], destinationSkinColors[j][this.colors[j]]);
 				}
 			}
-			cachedModel = local171.createModel(64, 768, -50, -10, -50);
+			cachedModel = combinedModel.createModel(64, 768, -50, -10, -50);
 			headModels.put(cachedModel, this.checksum);
 		}
-		if (arg1 != null) {
-			cachedModel = arg1.method4215(cachedModel, arg3, arg0, arg2);
+		if (sequence != null) {
+			cachedModel = sequence.method4215(cachedModel, animFrame2, animFrame, animLoop);
 		}
 		return cachedModel;
 	}

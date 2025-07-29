@@ -7,20 +7,20 @@ import org.openrs2.deob.annotation.OriginalMember;
 public final class PathingEntity_Class147 {
 
 	@OriginalMember(owner = "runetek4.client!ub", name = "b", descriptor = "I")
-	public int anInt5396;
+	public int sequenceId;
 
 	@OriginalMember(owner = "runetek4.client!ub", name = "d", descriptor = "I")
-	public int anInt5398;
+	public int direction;
 
 	@OriginalMember(owner = "runetek4.client!ub", name = "f", descriptor = "I")
-	public int anInt5399;
+	public int frameIndex;
 
 	@OriginalMember(owner = "runetek4.client!ub", name = "g", descriptor = "I")
-	public int anInt5400;
+	public int frameTime;
 
 	@OriginalMember(owner = "runetek4.client!ub", name = "l", descriptor = "I")
-	public int anInt5404;
+	public int loopCount;
 
 	@OriginalMember(owner = "runetek4.client!ub", name = "q", descriptor = "I")
-	public int anInt5408;
+	public int delay;
 }

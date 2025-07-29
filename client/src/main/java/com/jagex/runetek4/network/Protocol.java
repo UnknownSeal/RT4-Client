@@ -2217,8 +2217,8 @@ public class Protocol {
                                     local1188 = local1232.modelRotateTranslate[local1194][0];
                                     local224 -= local1232.modelRotateTranslate[local1194][1];
                                     @Pc(1264) int local1264 = local1232.modelRotateTranslate[local1194][2];
-                                    @Pc(1269) int local1269 = MathUtils.sin[local1198.anInt3381];
-                                    @Pc(1274) int local1274 = MathUtils.cos[local1198.anInt3381];
+                                    @Pc(1269) int local1269 = MathUtils.sin[local1198.orientation];
+                                    @Pc(1274) int local1274 = MathUtils.cos[local1198.orientation];
                                     @Pc(1284) int local1284 = local1188 * local1274 + local1264 * local1269 >> 16;
                                     @Pc(1295) int local1295 = local1274 * local1264 - local1188 * local1269 >> 16;
                                     local19 += local1295;
@@ -2546,7 +2546,7 @@ public class Protocol {
                 local505[local510] = inboundBuffer.g1add();
                 local508[local510] = inboundBuffer.g2();
             }
-            Player.method865(local505, local502, player, local508);
+            Player.updateLayeredAnimations(local505, local502, player, local508);
         }
         if ((flags & 0x100) != 0) {
             chatFlags = inboundBuffer.g2le();
@@ -2688,7 +2688,7 @@ public class Protocol {
                         dx -= 32;
                     }
                     if (local27) {
-                        player.dstYaw = player.anInt3381 = local99;
+                        player.dstYaw = player.orientation = local99;
                     }
                     @Pc(116) int jump = inboundBuffer.gBit(1);
                     @Pc(121) int dz = inboundBuffer.gBit(5);
@@ -2843,7 +2843,7 @@ public class Protocol {
                     @Pc(66) int local66 = inboundBuffer.gBit(1);
                     @Pc(73) int angle = PathingEntity.ANGLES[inboundBuffer.gBit(3)];
                     if (local19) {
-                        npc.dstYaw = npc.anInt3381 = angle;
+                        npc.dstYaw = npc.orientation = angle;
                     }
                     @Pc(86) int local86 = inboundBuffer.gBit(1);
                     if (local86 == 1) {
@@ -2862,7 +2862,7 @@ public class Protocol {
                     npc.anInt3365 = npc.type.nas;
                     npc.anInt3376 = npc.type.turnspeed;
                     if (npc.anInt3376 == 0) {
-                        npc.anInt3381 = 0;
+                        npc.orientation = 0;
                     }
                     npc.teleport(npc.getSize(), PlayerList.self.movementQueueX[0] + local124, local105 + PlayerList.self.movementQueueZ[0], local66 == 1);
                     if (npc.type.hasAreaSound()) {
@@ -2905,40 +2905,40 @@ public class Protocol {
             @Pc(15) int local15 = arg3[local3];
             @Pc(19) int local19 = arg0[local3];
             @Pc(23) int local23 = arg2[local3];
-            for (@Pc(25) int local25 = 0; local19 != 0 && arg1.aPathingEntityClass147Array3.length > local25; local25++) {
+            for (@Pc(25) int local25 = 0; local19 != 0 && arg1.layeredAnimations.length > local25; local25++) {
                 if ((local19 & 0x1) != 0) {
                     if (local15 == -1) {
-                        arg1.aPathingEntityClass147Array3[local25] = null;
+                        arg1.layeredAnimations[local25] = null;
                     } else {
                         @Pc(60) SeqType local60 = SeqTypeList.get(local15);
-                        @Pc(65) PathingEntity_Class147 local65 = arg1.aPathingEntityClass147Array3[local25];
+                        @Pc(65) PathingEntity_Class147 local65 = arg1.layeredAnimations[local25];
                         @Pc(68) int local68 = local60.exactmove;
                         if (local65 != null) {
-                            if (local15 == local65.anInt5396) {
+                            if (local15 == local65.sequenceId) {
                                 if (local68 == 0) {
-                                    local65 = arg1.aPathingEntityClass147Array3[local25] = null;
+                                    local65 = arg1.layeredAnimations[local25] = null;
                                 } else if (local68 == 1) {
-                                    local65.anInt5399 = 0;
-                                    local65.anInt5400 = 0;
-                                    local65.anInt5398 = 1;
-                                    local65.anInt5404 = 0;
-                                    local65.anInt5408 = local23;
+                                    local65.frameIndex = 0;
+                                    local65.frameTime = 0;
+                                    local65.direction = 1;
+                                    local65.loopCount = 0;
+                                    local65.delay = local23;
                                     SoundPlayer.playSeqSound(arg1.zFine, local60, arg1.xFine, false, 0);
                                 } else if (local68 == 2) {
-                                    local65.anInt5400 = 0;
+                                    local65.frameTime = 0;
                                 }
-                            } else if (local60.priority >= SeqTypeList.get(local65.anInt5396).priority) {
-                                local65 = arg1.aPathingEntityClass147Array3[local25] = null;
+                            } else if (local60.priority >= SeqTypeList.get(local65.sequenceId).priority) {
+                                local65 = arg1.layeredAnimations[local25] = null;
                             }
                         }
                         if (local65 == null) {
-                            local65 = arg1.aPathingEntityClass147Array3[local25] = new PathingEntity_Class147();
-                            local65.anInt5398 = 1;
-                            local65.anInt5404 = 0;
-                            local65.anInt5408 = local23;
-                            local65.anInt5396 = local15;
-                            local65.anInt5400 = 0;
-                            local65.anInt5399 = 0;
+                            local65 = arg1.layeredAnimations[local25] = new PathingEntity_Class147();
+                            local65.direction = 1;
+                            local65.loopCount = 0;
+                            local65.delay = local23;
+                            local65.sequenceId = local15;
+                            local65.frameTime = 0;
+                            local65.frameIndex = 0;
                             SoundPlayer.playSeqSound(arg1.zFine, local60, arg1.xFine, false, 0);
                         }
                     }
@@ -3002,9 +3002,9 @@ public class Protocol {
         }
         if (MiniMenu.menuActionRow == 1) {
             ClientScriptRunner.menuVisible = false;
-            WidgetList.redrawScreen(WidgetList.anInt4271, WidgetList.anInt761, WidgetList.anInt5138, WidgetList.anInt436);
+            WidgetList.redrawScreen(WidgetList.menuX, WidgetList.menuWidth, WidgetList.menuY, WidgetList.menuHeight);
         } else {
-            WidgetList.redrawScreen(WidgetList.anInt4271, WidgetList.anInt761, WidgetList.anInt5138, WidgetList.anInt436);
+            WidgetList.redrawScreen(WidgetList.menuX, WidgetList.menuWidth, WidgetList.menuY, WidgetList.menuHeight);
             local53 = Fonts.b12Full.getStringWidth(LocalizedText.CHOOSE_OPTION);
             for (@Pc(95) int local95 = 0; local95 < MiniMenu.menuActionRow; local95++) {
                 @Pc(104) int local104 = Fonts.b12Full.getStringWidth(MiniMenu.getOp(local95));
@@ -3012,8 +3012,8 @@ public class Protocol {
                     local53 = local104;
                 }
             }
-            WidgetList.anInt761 = local53 + 8;
-            WidgetList.anInt436 = MiniMenu.menuActionRow * 15 + (WidgetList.aBoolean298 ? 26 : 22);
+            WidgetList.menuWidth = local53 + 8;
+            WidgetList.menuHeight = MiniMenu.menuActionRow * 15 + (WidgetList.hasScrollbar ? 26 : 22);
         }
         if (local28 != null) {
             WidgetList.method531(local28, false);
@@ -3027,7 +3027,7 @@ public class Protocol {
 
     @OriginalMember(owner = "client!ah", name = "b", descriptor = "(I)V")
     public static void method843() {
-        if (WidgetList.clickedInventoryWidget != null || ClientScriptRunner.aClass13_14 != null) {
+        if (WidgetList.clickedInventoryWidget != null || ClientScriptRunner.dragWidget != null) {
             return;
         }
         @Pc(20) int local20 = Mouse.clickButton;
@@ -3071,23 +3071,23 @@ public class Protocol {
         if (local20 != 1) {
             local93 = Mouse.lastMouseY;
             local204 = Mouse.lastMouseX;
-            if (local204 < WidgetList.anInt4271 - 10 || local204 > WidgetList.anInt761 + WidgetList.anInt4271 + 10 || WidgetList.anInt5138 - 10 > local93 || local93 > WidgetList.anInt436 + WidgetList.anInt5138 + 10) {
+            if (local204 < WidgetList.menuX - 10 || local204 > WidgetList.menuWidth + WidgetList.menuX + 10 || WidgetList.menuY - 10 > local93 || local93 > WidgetList.menuHeight + WidgetList.menuY + 10) {
                 ClientScriptRunner.menuVisible = false;
-                WidgetList.redrawScreen(WidgetList.anInt4271, WidgetList.anInt761, WidgetList.anInt5138, WidgetList.anInt436);
+                WidgetList.redrawScreen(WidgetList.menuX, WidgetList.menuWidth, WidgetList.menuY, WidgetList.menuHeight);
             }
         }
         if (local20 != 1) {
             return;
         }
-        local204 = WidgetList.anInt4271;
-        local93 = WidgetList.anInt5138;
-        local99 = WidgetList.anInt761;
+        local204 = WidgetList.menuX;
+        local93 = WidgetList.menuY;
+        local99 = WidgetList.menuWidth;
         @Pc(265) int local265 = Mouse.mouseClickX;
         @Pc(267) int local267 = Mouse.mouseClickY;
         @Pc(269) int local269 = -1;
         for (@Pc(271) int local271 = 0; local271 < MiniMenu.menuActionRow; local271++) {
             @Pc(289) int local289;
-            if (WidgetList.aBoolean298) {
+            if (WidgetList.hasScrollbar) {
                 local289 = (MiniMenu.menuActionRow - local271 - 1) * 15 + local93 + 35;
             } else {
                 local289 = (MiniMenu.menuActionRow - local271 - 1) * 15 + local93 + 31;
@@ -3100,6 +3100,6 @@ public class Protocol {
             MiniMenu.doAction(local269);
         }
         ClientScriptRunner.menuVisible = false;
-        WidgetList.redrawScreen(WidgetList.anInt4271, WidgetList.anInt761, WidgetList.anInt5138, WidgetList.anInt436);
+        WidgetList.redrawScreen(WidgetList.menuX, WidgetList.menuWidth, WidgetList.menuY, WidgetList.menuHeight);
     }
 }
