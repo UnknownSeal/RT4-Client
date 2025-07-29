@@ -79,54 +79,54 @@ public class ShadowManager {
     }
 
     @OriginalMember(owner = "runetek4.client!tj", name = "c", descriptor = "(Lclient!ek;Lclient!ek;II)V")
-    private static void method4202(@OriginalArg(0) SoftwareIndexedSprite arg0, @OriginalArg(1) SoftwareIndexedSprite arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
-        arg2 += arg0.xOffset;
-        arg3 += arg0.yOffset;
-        @Pc(16) int local16 = arg2 + arg3 * arg1.width;
-        @Pc(18) int local18 = 0;
-        @Pc(21) int local21 = arg0.height;
-        @Pc(24) int local24 = arg0.width;
-        @Pc(29) int local29 = arg1.width - local24;
-        @Pc(31) int local31 = 0;
-        @Pc(37) int local37;
-        if (arg3 <= 0) {
-            local37 = 1 - arg3;
-            local21 -= local37;
-            local18 = local37 * local24;
-            local16 += local37 * arg1.width;
-            arg3 = 1;
+    private static void blitShadowSprite(@OriginalArg(0) SoftwareIndexedSprite sourceSprite, @OriginalArg(1) SoftwareIndexedSprite targetSprite, @OriginalArg(2) int x, @OriginalArg(3) int y) {
+        x += sourceSprite.xOffset;
+        y += sourceSprite.yOffset;
+        @Pc(16) int targetIndex = x + y * targetSprite.width;
+        @Pc(18) int sourceIndex = 0;
+        @Pc(21) int drawHeight = sourceSprite.height;
+        @Pc(24) int drawWidth = sourceSprite.width;
+        @Pc(29) int targetRowSkip = targetSprite.width - drawWidth;
+        @Pc(31) int sourceRowSkip = 0;
+        @Pc(37) int clipAmount;
+        if (y <= 0) {
+            clipAmount = 1 - y;
+            drawHeight -= clipAmount;
+            sourceIndex = clipAmount * drawWidth;
+            targetIndex += clipAmount * targetSprite.width;
+            y = 1;
         }
-        if (arg3 + local21 >= arg1.height) {
-            local37 = arg3 + local21 + 1 - arg1.height;
-            local21 -= local37;
+        if (y + drawHeight >= targetSprite.height) {
+            clipAmount = y + drawHeight + 1 - targetSprite.height;
+            drawHeight -= clipAmount;
         }
-        if (arg2 <= 0) {
-            local37 = 1 - arg2;
-            local24 -= local37;
-            local18 += local37;
-            local16 += local37;
-            local31 = local37;
-            local29 += local37;
-            arg2 = 1;
+        if (x <= 0) {
+            clipAmount = 1 - x;
+            drawWidth -= clipAmount;
+            sourceIndex += clipAmount;
+            targetIndex += clipAmount;
+            sourceRowSkip = clipAmount;
+            targetRowSkip += clipAmount;
+            x = 1;
         }
-        if (arg2 + local24 >= arg1.width) {
-            local37 = arg2 + local24 + 1 - arg1.width;
-            local24 -= local37;
-            local31 += local37;
-            local29 += local37;
+        if (x + drawWidth >= targetSprite.width) {
+            clipAmount = x + drawWidth + 1 - targetSprite.width;
+            drawWidth -= clipAmount;
+            sourceRowSkip += clipAmount;
+            targetRowSkip += clipAmount;
         }
-        if (local24 > 0 && local21 > 0) {
-            method4195(arg1.pixels, arg0.pixels, local18, local16, local24, local21, local29, local31);
-            method4196(arg2, arg3, local24, local21);
+        if (drawWidth > 0 && drawHeight > 0) {
+            method4195(targetSprite.pixels, sourceSprite.pixels, sourceIndex, targetIndex, drawWidth, drawHeight, targetRowSkip, sourceRowSkip);
+            method4196(x, y, drawWidth, drawHeight);
         }
     }
 
     @OriginalMember(owner = "runetek4.client!tj", name = "a", descriptor = "(Lclient!ek;III)V")
-    public static void method4207(@OriginalArg(0) SoftwareIndexedSprite arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
-        if (arg0 != null) {
-            @Pc(12) int local12 = arg1 - (arg2 * FogManager.lightX >> 8) >> 3;
-            @Pc(22) int local22 = arg3 - (arg2 * FogManager.lightZ >> 8) >> 3;
-            method4202(arg0, shadowMapImage, local12 + 1, local22 + 1);
+    public static void renderShadow(@OriginalArg(0) SoftwareIndexedSprite shadowSprite, @OriginalArg(1) int worldX, @OriginalArg(2) int heightOffset, @OriginalArg(3) int worldZ) {
+        if (shadowSprite != null) {
+            @Pc(12) int shadowMapX = worldX - (heightOffset * FogManager.lightX >> 8) >> 3;
+            @Pc(22) int shadowMapZ = worldZ - (heightOffset * FogManager.lightZ >> 8) >> 3;
+            blitShadowSprite(shadowSprite, shadowMapImage, shadowMapX + 1, shadowMapZ + 1);
         }
     }
 

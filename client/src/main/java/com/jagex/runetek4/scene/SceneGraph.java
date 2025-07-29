@@ -2305,54 +2305,54 @@ public class SceneGraph {
         }
         if (local57 == 2) {
             if (local100 instanceof Loc) {
-                ((Loc) local100).method1046();
+                ((Loc) local100).clearShadow();
             } else {
-                Loc.method181(local74, 0, local92 + 4, 0, local57, arg1, arg0, arg4);
+                Loc.registerLocShadow(local74, 0, local92 + 4, 0, local57, arg1, arg0, arg4);
             }
             if (local102 instanceof Loc) {
-                ((Loc) local102).method1046();
+                ((Loc) local102).clearShadow();
             } else {
-                Loc.method181(local74, 0, local92 + 1 & 0x3, 0, local57, arg1, arg0, arg4);
+                Loc.registerLocShadow(local74, 0, local92 + 1 & 0x3, 0, local57, arg1, arg0, arg4);
             }
         } else if (local57 == 5) {
             if (local100 instanceof Loc) {
-                ((Loc) local100).method1046();
+                ((Loc) local100).clearShadow();
             } else {
-                Loc.method181(local74, WALL_DECORATION_ROTATION_FORWARD_Z[local92] * 8, local92, WALL_DECORATION_ROTATION_FORWARD_X[local92] * 8, 4, arg1, arg0, arg4);
+                Loc.registerLocShadow(local74, WALL_DECORATION_ROTATION_FORWARD_Z[local92] * 8, local92, WALL_DECORATION_ROTATION_FORWARD_X[local92] * 8, 4, arg1, arg0, arg4);
             }
         } else if (local57 == 6) {
             if (local100 instanceof Loc) {
-                ((Loc) local100).method1046();
+                ((Loc) local100).clearShadow();
             } else {
-                Loc.method181(local74, anIntArray154[local92] * 8, local92 + 4, anIntArray565[local92] * 8, 4, arg1, arg0, arg4);
+                Loc.registerLocShadow(local74, anIntArray154[local92] * 8, local92 + 4, anIntArray565[local92] * 8, 4, arg1, arg0, arg4);
             }
         } else if (local57 == 7) {
             if (local100 instanceof Loc) {
-                ((Loc) local100).method1046();
+                ((Loc) local100).clearShadow();
             } else {
-                Loc.method181(local74, 0, (local92 + 2 & 0x3) + 4, 0, 4, arg1, arg0, arg4);
+                Loc.registerLocShadow(local74, 0, (local92 + 2 & 0x3) + 4, 0, 4, arg1, arg0, arg4);
             }
         } else if (local57 == 8) {
             if (local100 instanceof Loc) {
-                ((Loc) local100).method1046();
+                ((Loc) local100).clearShadow();
             } else {
-                Loc.method181(local74, anIntArray154[local92] * 8, local92 + 4, anIntArray565[local92] * 8, 4, arg1, arg0, arg4);
+                Loc.registerLocShadow(local74, anIntArray154[local92] * 8, local92 + 4, anIntArray565[local92] * 8, 4, arg1, arg0, arg4);
             }
             if (local102 instanceof Loc) {
-                ((Loc) local102).method1046();
+                ((Loc) local102).clearShadow();
             } else {
-                Loc.method181(local74, anIntArray154[local92] * 8, (local92 + 2 & 0x3) + 4, anIntArray565[local92] * 8, 4, arg1, arg0, arg4);
+                Loc.registerLocShadow(local74, anIntArray154[local92] * 8, (local92 + 2 & 0x3) + 4, anIntArray565[local92] * 8, 4, arg1, arg0, arg4);
             }
         } else if (local57 == 11) {
             if (local100 instanceof Loc) {
-                ((Loc) local100).method1046();
+                ((Loc) local100).clearShadow();
             } else {
-                Loc.method181(local74, 0, local92 + 4, 0, 10, arg1, arg0, arg4);
+                Loc.registerLocShadow(local74, 0, local92 + 4, 0, 10, arg1, arg0, arg4);
             }
         } else if (local100 instanceof Loc) {
-            ((Loc) local100).method1046();
+            ((Loc) local100).clearShadow();
         } else {
-            Loc.method181(local74, 0, local92, 0, local57, arg1, arg0, arg4);
+            Loc.registerLocShadow(local74, 0, local92, 0, local57, arg1, arg0, arg4);
         }
     }
 
@@ -5393,26 +5393,26 @@ public class SceneGraph {
                             if (local32 >= local9 && local32 <= local13 && local37 >= local17 && local37 <= local21) {
                                 if (local46.wall != null) {
                                     @Pc(103) Wall local103 = local46.wall;
-                                    local103.primary.method4545(0, local23, local103.anInt3051, local103.xFine, local103.zFine);
+                                    local103.primary.update(0, local23, local103.anInt3051, local103.xFine, local103.zFine);
                                     if (local103.secondary != null) {
-                                        local103.secondary.method4545(0, local23, local103.anInt3051, local103.xFine, local103.zFine);
+                                        local103.secondary.update(0, local23, local103.anInt3051, local103.xFine, local103.zFine);
                                     }
                                 }
                                 if (local46.wallDecor != null) {
                                     @Pc(134) WallDecor local134 = local46.wallDecor;
-                                    local134.primary.method4545(local134.anInt1388, local23, local134.anInt1391, local134.xFine, local134.zFine);
+                                    local134.primary.update(local134.anInt1388, local23, local134.anInt1391, local134.xFine, local134.zFine);
                                     if (local134.secondary != null) {
-                                        local134.secondary.method4545(local134.anInt1388, local23, local134.anInt1391, local134.xFine, local134.zFine);
+                                        local134.secondary.update(local134.anInt1388, local23, local134.anInt1391, local134.xFine, local134.zFine);
                                     }
                                 }
                                 if (local46.groundDecor != null) {
                                     @Pc(167) GroundDecor local167 = local46.groundDecor;
-                                    local167.entity.method4545(0, local23, local167.anInt733, local167.xFine, local167.zFine);
+                                    local167.entity.update(0, local23, local167.anInt733, local167.xFine, local167.zFine);
                                 }
                                 if (local46.scenery != null) {
                                     for (local183 = 0; local183 < local46.sceneryLen; local183++) {
                                         @Pc(192) Scenery local192 = local46.scenery[local183];
-                                        local192.entity.method4545(local192.anInt1714, local23, local192.anInt1706, local192.anInt1699, local192.anInt1703);
+                                        local192.entity.update(local192.anInt1714, local23, local192.anInt1706, local192.anInt1699, local192.anInt1703);
                                     }
                                 }
                             }

@@ -841,7 +841,7 @@ public final class RawModel extends Entity {
 
 	@OriginalMember(owner = "client!gb", name = "a", descriptor = "(IIIII)V")
 	@Override
-	public void method4545(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
+	public void update(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
 	}
 
 	@OriginalMember(owner = "client!gb", name = "c", descriptor = "(III)V")

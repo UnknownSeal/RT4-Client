@@ -145,7 +145,7 @@ public final class Npc extends PathingEntity {
 
 	@OriginalMember(owner = "client!km", name = "a", descriptor = "(IIIII)V")
 	@Override
-	public void method4545(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
+	public void update(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
 		if (this.type == null) {
 			// TODO Why is this here?
 		}
