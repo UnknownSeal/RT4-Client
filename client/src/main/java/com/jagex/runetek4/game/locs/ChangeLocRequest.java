@@ -52,66 +52,66 @@ public final class ChangeLocRequest extends Node {
 	public int setLoops = 0;
 
 	@OriginalMember(owner = "client!ce", name = "a", descriptor = "(IIIIIIIIII)V")
-	public static void push(@OriginalArg(0) int level, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int layer, @OriginalArg(8) int arg7, @OriginalArg(9) int arg8) {
+	public static void push(@OriginalArg(0) int level, @OriginalArg(1) int z, @OriginalArg(3) int id, @OriginalArg(4) int x, @OriginalArg(5) int resetLoops, @OriginalArg(6) int rotation, @OriginalArg(7) int layer, @OriginalArg(8) int type, @OriginalArg(9) int setLoops) {
 		@Pc(9) ChangeLocRequest loc = null;
 		for (@Pc(14) ChangeLocRequest l = (ChangeLocRequest) queue.head(); l != null; l = (ChangeLocRequest) queue.next()) {
-			if (l.level == level && arg3 == l.x && l.z == arg1 && layer == l.layer) {
+			if (l.level == level && x == l.x && l.z == z && layer == l.layer) {
 				loc = l;
 				break;
 			}
 		}
 		if (loc == null) {
 			loc = new ChangeLocRequest();
-			loc.x = arg3;
-			loc.z = arg1;
+			loc.x = x;
+			loc.z = z;
 			loc.level = level;
 			loc.layer = layer;
 			init(loc);
 			queue.addTail(loc);
 		}
-		loc.anInt926 = arg7;
-		loc.setLoops = arg8;
-		loc.resetLoops = arg4;
-		loc.anInt929 = arg5;
-		loc.anInt922 = arg2;
+		loc.anInt926 = type;
+		loc.setLoops = setLoops;
+		loc.resetLoops = resetLoops;
+		loc.anInt929 = rotation;
+		loc.anInt922 = id;
 	}
 
 	@OriginalMember(owner = "runetek4.client!ug", name = "a", descriptor = "(B)V")
 	public static void loop() {
-		for (@Pc(10) ChangeLocRequest local10 = (ChangeLocRequest) queue.head(); local10 != null; local10 = (ChangeLocRequest) queue.next()) {
-			if (local10.resetLoops > 0) {
-				local10.resetLoops--;
+		for (@Pc(10) ChangeLocRequest request = (ChangeLocRequest) queue.head(); request != null; request = (ChangeLocRequest) queue.next()) {
+			if (request.resetLoops > 0) {
+				request.resetLoops--;
 			}
-			if (local10.resetLoops != 0) {
-				if (local10.setLoops > 0) {
-					local10.setLoops--;
+			if (request.resetLoops != 0) {
+				if (request.setLoops > 0) {
+					request.setLoops--;
 				}
-				if (local10.setLoops == 0 && local10.x >= 1 && local10.z >= 1 && local10.x <= 102 && local10.z <= 102 && (local10.anInt929 < 0 || method3557(local10.anInt929, local10.anInt926))) {
-					SceneGraph.method1698(local10.anInt929, local10.x, local10.level, local10.anInt922, local10.z, local10.anInt926, local10.layer);
-					local10.setLoops = -1;
-					if (local10.originalId == local10.anInt929 && local10.originalId == -1) {
-						local10.unlink();
-					} else if (local10.anInt929 == local10.originalId && local10.anInt922 == local10.originalAngle && local10.originalShape == local10.anInt926) {
-						local10.unlink();
+				if (request.setLoops == 0 && request.x >= 1 && request.z >= 1 && request.x <= 102 && request.z <= 102 && (request.anInt929 < 0 || isLocTypeReady(request.anInt929, request.anInt926))) {
+					SceneGraph.method1698(request.anInt929, request.x, request.level, request.anInt922, request.z, request.anInt926, request.layer);
+					request.setLoops = -1;
+					if (request.originalId == request.anInt929 && request.originalId == -1) {
+						request.unlink();
+					} else if (request.anInt929 == request.originalId && request.anInt922 == request.originalAngle && request.originalShape == request.anInt926) {
+						request.unlink();
 					}
 				}
-			} else if (local10.originalId < 0 || method3557(local10.originalId, local10.originalShape)) {
-				SceneGraph.method1698(local10.originalId, local10.x, local10.level, local10.originalAngle, local10.z, local10.originalShape, local10.layer);
-				local10.unlink();
+			} else if (request.originalId < 0 || isLocTypeReady(request.originalId, request.originalShape)) {
+				SceneGraph.method1698(request.originalId, request.x, request.level, request.originalAngle, request.z, request.originalShape, request.layer);
+				request.unlink();
 			}
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!il", name = "a", descriptor = "(BII)Z")
-	public static boolean method3557(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1) {
-		if (arg1 == 11) {
-			arg1 = 10;
+	public static boolean isLocTypeReady(@OriginalArg(1) int locId, @OriginalArg(2) int shape) {
+		if (shape == 11) {
+			shape = 10;
 		}
-		if (arg1 >= 5 && arg1 <= 8) {
-			arg1 = 4;
+		if (shape >= 5 && shape <= 8) {
+			shape = 4;
 		}
-		@Pc(30) LocType local30 = LocTypeList.get(arg0);
-		return local30.isReady(arg1);
+		@Pc(30) LocType locType = LocTypeList.get(locId);
+		return locType.isReady(shape);
 	}
 
 	@OriginalMember(owner = "runetek4.client!sf", name = "a", descriptor = "(ILclient!cd;)V")
@@ -143,7 +143,7 @@ public final class ChangeLocRequest extends Node {
 	}
 
 	@OriginalMember(owner = "runetek4.client!rl", name = "i", descriptor = "(I)V")
-	public static void method3796() {
+	public static void refreshRequests() {
 		for (@Pc(10) ChangeLocRequest loc = (ChangeLocRequest) queue.head(); loc != null; loc = (ChangeLocRequest) queue.next()) {
 			if (loc.resetLoops == -1) {
 				loc.setLoops = 0;

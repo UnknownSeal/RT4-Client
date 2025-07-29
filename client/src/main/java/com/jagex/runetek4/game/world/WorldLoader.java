@@ -709,7 +709,7 @@ public class WorldLoader {
         }
         ClientScriptRunner.method2218();
         Client.audioLoop();
-        ChangeLocRequest.method3796();
+        ChangeLocRequest.refreshRequests();
         Client.unload();
         aBoolean252 = false;
         if (GameShell.frame != null && Protocol.gameServerSocket != null && Client.gameState == 25) {

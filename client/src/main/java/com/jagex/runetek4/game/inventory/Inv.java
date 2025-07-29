@@ -45,33 +45,33 @@ public final class Inv extends Node {
 	public int[] invSlotObjCount = new int[] { 0 };
 
 	@OriginalMember(owner = "client!wl", name = "a", descriptor = "(IIIIB)V")
-	public static void update(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
-		@Pc(12) Inv local12 = (Inv) objectContainerCache.get((long) arg3);
-		if (local12 == null) {
-			local12 = new Inv();
-			objectContainerCache.put(local12, (long) arg3);
+	public static void update(@OriginalArg(0) int objectId, @OriginalArg(1) int slotIndex, @OriginalArg(2) int count, @OriginalArg(3) int inventoryId) {
+		@Pc(12) Inv inventory = (Inv) objectContainerCache.get((long) inventoryId);
+		if (inventory == null) {
+			inventory = new Inv();
+			objectContainerCache.put(inventory, (long) inventoryId);
 		}
-		if (local12.invSlotObjId.length <= arg1) {
-			@Pc(39) int[] local39 = new int[arg1 + 1];
-			@Pc(44) int[] local44 = new int[arg1 + 1];
-			for (int index = 0; index < local12.invSlotObjId.length; index++) {
-				local39[index] = local12.invSlotObjId[index];
-				local44[index] = local12.invSlotObjCount[index];
+		if (inventory.invSlotObjId.length <= slotIndex) {
+			@Pc(39) int[] newObjectIds = new int[slotIndex + 1];
+			@Pc(44) int[] newCounts = new int[slotIndex + 1];
+			for (int index = 0; index < inventory.invSlotObjId.length; index++) {
+				newObjectIds[index] = inventory.invSlotObjId[index];
+				newCounts[index] = inventory.invSlotObjCount[index];
 			}
-			for (int index = local12.invSlotObjId.length; index < arg1; index++) {
-				local39[index] = -1;
-				local44[index] = 0;
+			for (int index = inventory.invSlotObjId.length; index < slotIndex; index++) {
+				newObjectIds[index] = -1;
+				newCounts[index] = 0;
 			}
-			local12.invSlotObjId = local39;
-			local12.invSlotObjCount = local44;
+			inventory.invSlotObjId = newObjectIds;
+			inventory.invSlotObjCount = newCounts;
 		}
-		local12.invSlotObjId[arg1] = arg0;
-		local12.invSlotObjCount[arg1] = arg2;
+		inventory.invSlotObjId[slotIndex] = objectId;
+		inventory.invSlotObjCount[slotIndex] = count;
 	}
 
 	@OriginalMember(owner = "client!wj", name = "a", descriptor = "(BII)I")
-	public static int getSlotTotal(@OriginalArg(1) int arg0, @OriginalArg(2) int slot) {
-		@Pc(8) Inv inv = (Inv) objectContainerCache.get(arg0);
+	public static int getSlotTotal(@OriginalArg(1) int inventoryId, @OriginalArg(2) int slot) {
+		@Pc(8) Inv inv = (Inv) objectContainerCache.get(inventoryId);
 		if (inv == null) {
 			return 0;
 		} else if (slot == -1) {
@@ -88,21 +88,21 @@ public final class Inv extends Node {
 	}
 
 	@OriginalMember(owner = "client!ba", name = "a", descriptor = "(IB)I")
-	public static int getFreeSpace(@OriginalArg(0) int arg0) {
-		if (arg0 < 0) {
+	public static int getFreeSpace(@OriginalArg(0) int inventoryId) {
+		if (inventoryId < 0) {
 			return 0;
 		}
-		@Pc(17) Inv inv = (Inv) objectContainerCache.get((long) arg0);
+		@Pc(17) Inv inv = (Inv) objectContainerCache.get((long) inventoryId);
 		if (inv == null) {
-			return InvTypeList.get(arg0).size;
+			return InvTypeList.get(inventoryId).size;
 		}
 		@Pc(31) int freeSpaces = 0;
-		for (@Pc(33) int local33 = 0; local33 < inv.invSlotObjId.length; local33++) {
-			if (inv.invSlotObjId[local33] == -1) {
+		for (@Pc(33) int slotIndex = 0; slotIndex < inv.invSlotObjId.length; slotIndex++) {
+			if (inv.invSlotObjId[slotIndex] == -1) {
 				freeSpaces++;
 			}
 		}
-		return freeSpaces + InvTypeList.get(arg0).size - inv.invSlotObjId.length;
+		return freeSpaces + InvTypeList.get(inventoryId).size - inv.invSlotObjId.length;
 	}
 
 	@OriginalMember(owner = "runetek4.client!hn", name = "f", descriptor = "(B)V")
@@ -111,15 +111,15 @@ public final class Inv extends Node {
 	}
 
     @OriginalMember(owner = "runetek4.client!pf", name = "a", descriptor = "(IIZIII)Lclient!qf;")
-    public static Sprite getObjectSprite(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) boolean arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
-        @Pc(27) int key = (arg2 ? 65536 : 0) + arg1 + (arg0 << 17) + (arg4 << 19);
-        @Pc(37) long uid = (long) key * 3849834839L + (long) arg3 * 3147483667L;
+    public static Sprite getObjectSprite(@OriginalArg(0) int shadowColor, @OriginalArg(1) int objectId, @OriginalArg(2) boolean hasOutline, @OriginalArg(3) int stackCount, @OriginalArg(4) int outlineType) {
+        @Pc(27) int key = (hasOutline ? 65536 : 0) + objectId + (shadowColor << 17) + (outlineType << 19);
+        @Pc(37) long uid = (long) key * 3849834839L + (long) stackCount * 3147483667L;
         @Pc(43) Sprite sprite = (Sprite) ObjTypeList.objectSpriteCache.get(uid);
         if (sprite != null) {
             return sprite;
         }
         Rasterizer.textureHasTransparency = false;
-        sprite = renderObjectSprite(arg4, false, arg1, arg2, arg0, arg3, false);
+        sprite = renderObjectSprite(outlineType, false, objectId, hasOutline, shadowColor, stackCount, false);
         if (sprite != null && !Rasterizer.textureHasTransparency) {
             ObjTypeList.objectSpriteCache.put(sprite, uid);
         }
@@ -127,49 +127,49 @@ public final class Inv extends Node {
     }
 
 	@OriginalMember(owner = "client!bm", name = "a", descriptor = "(III)I")
-	public static int getItemCount(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1) {
-		@Pc(10) Inv local10 = (Inv) objectContainerCache.get((long) arg0);
-		if (local10 == null) {
+	public static int getItemCount(@OriginalArg(1) int inventoryId, @OriginalArg(2) int slotIndex) {
+		@Pc(10) Inv inventory = (Inv) objectContainerCache.get((long) inventoryId);
+		if (inventory == null) {
 			return 0;
-		} else if (arg1 >= 0 && arg1 < local10.invSlotObjCount.length) {
-			return local10.invSlotObjCount[arg1];
+		} else if (slotIndex >= 0 && slotIndex < inventory.invSlotObjCount.length) {
+			return inventory.invSlotObjCount[slotIndex];
 		} else {
 			return 0;
 		}
 	}
 
 	@OriginalMember(owner = "client!be", name = "a", descriptor = "(III)I")
-	public static int getItemType(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1) {
-		@Pc(10) Inv local10 = (Inv) objectContainerCache.get(arg0);
-		if (local10 == null) {
+	public static int getItemType(@OriginalArg(0) int inventoryId, @OriginalArg(2) int slotIndex) {
+		@Pc(10) Inv inventory = (Inv) objectContainerCache.get(inventoryId);
+		if (inventory == null) {
 			return -1;
-		} else if (arg1 >= 0 && arg1 < local10.invSlotObjId.length) {
-			return local10.invSlotObjId[arg1];
+		} else if (slotIndex >= 0 && slotIndex < inventory.invSlotObjId.length) {
+			return inventory.invSlotObjId[slotIndex];
 		} else {
 			return -1;
 		}
 	}
 
 	@OriginalMember(owner = "client!bc", name = "d", descriptor = "(II)V")
-	public static void delete(@OriginalArg(0) int arg0) {
-		@Pc(14) Inv local14 = (Inv) objectContainerCache.get((long) arg0);
-		if (local14 != null) {
-			local14.unlink();
+	public static void delete(@OriginalArg(0) int inventoryId) {
+		@Pc(14) Inv inventory = (Inv) objectContainerCache.get((long) inventoryId);
+		if (inventory != null) {
+			inventory.unlink();
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!na", name = "a", descriptor = "(IBZIZIIZ)Lclient!qf;")
-	public static Sprite renderObjectSprite(@OriginalArg(0) int arg0, @OriginalArg(2) boolean linked, @OriginalArg(3) int arg2, @OriginalArg(4) boolean drawText, @OriginalArg(5) int arg4, @OriginalArg(6) int stack, @OriginalArg(7) boolean cert) {
-		@Pc(5) ObjType objType = ObjTypeList.get(arg2);
+	public static Sprite renderObjectSprite(@OriginalArg(0) int shadowColor, @OriginalArg(2) boolean linked, @OriginalArg(3) int objectId, @OriginalArg(4) boolean drawText, @OriginalArg(5) int outlineType, @OriginalArg(6) int stack, @OriginalArg(7) boolean cert) {
+		@Pc(5) ObjType objType = ObjTypeList.get(objectId);
 		if (stack > 1 && objType.countObj != null) {
-			@Pc(15) int local15 = -1;
-			for (@Pc(17) int local17 = 0; local17 < 10; local17++) {
-				if (stack >= objType.countco[local17] && objType.countco[local17] != 0) {
-					local15 = objType.countObj[local17];
+			@Pc(15) int stackedObjectId = -1;
+			for (@Pc(17) int stackTierIndex = 0; stackTierIndex < 10; stackTierIndex++) {
+				if (stack >= objType.countco[stackTierIndex] && objType.countco[stackTierIndex] != 0) {
+					stackedObjectId = objType.countObj[stackTierIndex];
 				}
 			}
-			if (local15 != -1) {
-				objType = ObjTypeList.get(local15);
+			if (stackedObjectId != -1) {
+				objType = ObjTypeList.get(stackedObjectId);
 			}
 		}
 		@Pc(60) SoftwareModel model = objType.getInvModel();
@@ -183,7 +183,7 @@ public final class Inv extends Node {
 				return null;
 			}
 		} else if (objType.lentTemplate != -1) {
-			linkedSprite = (SoftwareSprite) renderObjectSprite(arg0, true, objType.lentLink, false, arg4, stack, false);
+			linkedSprite = (SoftwareSprite) renderObjectSprite(shadowColor, true, objType.lentLink, false, outlineType, stack, false);
 			if (linkedSprite == null) {
 				return null;
 			}
@@ -201,21 +201,21 @@ public final class Inv extends Node {
 		Rasterizer.jagged = false;
 		if (cert) {
 			zoom = (int) ((double) zoom * 1.5D);
-		} else if (arg4 == 2) {
+		} else if (outlineType == 2) {
 			zoom = (int) ((double) zoom * 1.04D);
 		}
 		@Pc(176) int pitchcos = MathUtils.cos[objType.xan2d] * zoom >> 16;
 		@Pc(185) int pitchsin = MathUtils.sin[objType.xan2d] * zoom >> 16;
 		model.setCamera(objType.yan2d, objType.zAngle2D, objType.xan2d, objType.xof2d, pitchsin + objType.yof2d - model.getMinY() / 2, objType.yof2d + pitchcos, -1L);
-		if (arg4 >= 1) {
+		if (outlineType >= 1) {
 			canvas.drawOutline(1);
-			if (arg4 >= 2) {
+			if (outlineType >= 2) {
 				canvas.drawOutline(16777215);
 			}
 			SoftwareRaster.setSize(canvas.pixels, 36, 32);
 		}
-		if (arg0 != 0) {
-			canvas.drawShadow(arg0);
+		if (shadowColor != 0) {
+			canvas.drawShadow(shadowColor);
 		}
 		if (objType.certTemplate != -1) {
 			linkedSprite.render(0, 0);
@@ -246,38 +246,38 @@ public final class Inv extends Node {
 	}
 
     @OriginalMember(owner = "client!bd", name = "a", descriptor = "(BI)V")
-    public static void method475(@OriginalArg(1) int arg0) {
-        @Pc(8) Inv local8 = (Inv) objectContainerCache.get(arg0);
-        if (local8 != null) {
-            for (@Pc(24) int local24 = 0; local24 < local8.invSlotObjId.length; local24++) {
-                local8.invSlotObjId[local24] = -1;
-                local8.invSlotObjCount[local24] = 0;
+    public static void clearInventory(@OriginalArg(1) int inventoryId) {
+        @Pc(8) Inv inventory = (Inv) objectContainerCache.get(inventoryId);
+        if (inventory != null) {
+            for (@Pc(24) int slotIndex = 0; slotIndex < inventory.invSlotObjId.length; slotIndex++) {
+                inventory.invSlotObjId[slotIndex] = -1;
+                inventory.invSlotObjCount[slotIndex] = 0;
             }
         }
     }
 
 	@OriginalMember(owner = "runetek4.client!od", name = "a", descriptor = "(IZII)I")
-	public static int getTotalParam(@OriginalArg(1) boolean arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2) {
-		@Pc(19) Inv local19 = (Inv) objectContainerCache.get((long) arg1);
-		if (local19 == null) {
+	public static int getTotalParam(@OriginalArg(1) boolean multiplyByCount, @OriginalArg(2) int inventoryId, @OriginalArg(3) int paramId) {
+		@Pc(19) Inv inventory = (Inv) objectContainerCache.get((long) inventoryId);
+		if (inventory == null) {
 			return 0;
 		}
-		@Pc(27) int local27 = 0;
-		for (@Pc(29) int local29 = 0; local29 < local19.invSlotObjId.length; local29++) {
-			if (local19.invSlotObjId[local29] >= 0 && ObjTypeList.capacity > local19.invSlotObjId[local29]) {
-				@Pc(56) ObjType local56 = ObjTypeList.get(local19.invSlotObjId[local29]);
-				if (local56.params != null) {
-					@Pc(68) IntWrapper local68 = (IntWrapper) local56.params.get((long) arg2);
-					if (local68 != null) {
-						if (arg0) {
-							local27 += local19.invSlotObjCount[local29] * local68.value;
+		@Pc(27) int total = 0;
+		for (@Pc(29) int slotIndex = 0; slotIndex < inventory.invSlotObjId.length; slotIndex++) {
+			if (inventory.invSlotObjId[slotIndex] >= 0 && ObjTypeList.capacity > inventory.invSlotObjId[slotIndex]) {
+				@Pc(56) ObjType objType = ObjTypeList.get(inventory.invSlotObjId[slotIndex]);
+				if (objType.params != null) {
+					@Pc(68) IntWrapper paramWrapper = (IntWrapper) objType.params.get((long) paramId);
+					if (paramWrapper != null) {
+						if (multiplyByCount) {
+							total += inventory.invSlotObjCount[slotIndex] * paramWrapper.value;
 						} else {
-							local27 += local68.value;
+							total += paramWrapper.value;
 						}
 					}
 				}
 			}
 		}
-		return local27;
+		return total;
 	}
 }

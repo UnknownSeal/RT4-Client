@@ -296,7 +296,7 @@ public final class Player extends PathingEntity {
 					break;
 				}
 				if (local134 >= 32768) {
-					local134 = Equipment.objIds[local134 - 32768];
+					local134 = Equipment.equipmentObjectIds[local134 - 32768];
 					equipmentIds[local102] = local134 | 0x40000000;
 					local175 = ObjTypeList.get(local134).team;
 					if (local175 != 0) {

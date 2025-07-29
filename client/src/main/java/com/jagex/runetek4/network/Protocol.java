@@ -1774,7 +1774,7 @@ public class Protocol {
                                             local4956.invSlotObjCount[slot] = 0;
                                         }
                                     }
-                                    Inv.method475(xp);
+                                    Inv.clearInventory(xp);
                                     slot = inboundBuffer.g2();
                                     for (count = 0; count < slot; count++) {
                                         i = inboundBuffer.g1_alt3();
