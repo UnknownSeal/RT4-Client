@@ -9,13 +9,13 @@ import org.openrs2.deob.annotation.Pc;
 
 public class NpcTypeList {
 
-    @OriginalMember(owner = "runetek4.client!jl", name = "x", descriptor = "Lclient!n;")
+    @OriginalMember(owner = "client!jl", name = "x", descriptor = "Lclient!n;")
     public static final SoftLruHashTable models = new SoftLruHashTable(50);
 
-    @OriginalMember(owner = "runetek4.client!vf", name = "k", descriptor = "Lclient!n;")
+    @OriginalMember(owner = "client!vf", name = "k", descriptor = "Lclient!n;")
     public static final SoftLruHashTable headModels = new SoftLruHashTable(5);
 
-    @OriginalMember(owner = "runetek4.client!he", name = "V", descriptor = "Lclient!n;")
+    @OriginalMember(owner = "client!he", name = "V", descriptor = "Lclient!n;")
     public static final SoftLruHashTable types = new SoftLruHashTable(64);
 
     @OriginalMember(owner = "client!gm", name = "ib", descriptor = "Lclient!ve;")
@@ -24,9 +24,9 @@ public class NpcTypeList {
     @OriginalMember(owner = "client!eh", name = "f", descriptor = "Lclient!ve;")
     public static Js5 archive;
 
-    @OriginalMember(owner = "runetek4.client!rg", name = "b", descriptor = "(II)Lclient!me;")
+    @OriginalMember(owner = "client!rg", name = "b", descriptor = "(II)Lclient!me;")
     public static NpcType get(@OriginalArg(0) int id) {
-        @Pc(10) NpcType npcType = (NpcType) types.get((long) id);
+        @Pc(10) NpcType npcType = (NpcType) types.get(id);
         if (npcType != null) {
             return npcType;
         }
@@ -37,7 +37,7 @@ public class NpcTypeList {
             npcType.decode(new Packet(bytes));
         }
         npcType.postDecode();
-        types.put(npcType, (long) id);
+        types.put(npcType, id);
         return npcType;
     }
 
@@ -52,33 +52,33 @@ public class NpcTypeList {
         return arg0 >>> 7;
     }
 
-    @OriginalMember(owner = "runetek4.client!oe", name = "a", descriptor = "(IZ)I")
+    @OriginalMember(owner = "client!oe", name = "a", descriptor = "(IZ)I")
     public static int getFileId(@OriginalArg(0) int arg0) {
         return arg0 & 0x7F;
     }
 
-    @OriginalMember(owner = "runetek4.client!t", name = "b", descriptor = "(B)V")
+    @OriginalMember(owner = "client!t", name = "b", descriptor = "(B)V")
     public static void removeSoft() {
         types.removeSoft();
         models.removeSoft();
         headModels.removeSoft();
     }
 
-    @OriginalMember(owner = "runetek4.client!qi", name = "e", descriptor = "(B)V")
+    @OriginalMember(owner = "client!qi", name = "e", descriptor = "(B)V")
     public static void clear() {
         types.clean();
         models.clean();
         headModels.clean();
     }
 
-    @OriginalMember(owner = "runetek4.client!ra", name = "c", descriptor = "(BI)V")
+    @OriginalMember(owner = "client!ra", name = "c", descriptor = "(BI)V")
     public static void method3706() {
         types.clean(5);
         models.clean(5);
         headModels.clean(5);
     }
 
-    @OriginalMember(owner = "runetek4.client!wj", name = "b", descriptor = "(I)V")
+    @OriginalMember(owner = "client!wj", name = "b", descriptor = "(I)V")
     public static void method4649() {
         models.clean();
     }

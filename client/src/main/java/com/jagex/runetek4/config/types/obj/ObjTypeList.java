@@ -12,42 +12,42 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class ObjTypeList {
 
-	@OriginalMember(owner = "runetek4.client!jd", name = "c", descriptor = "Lclient!n;")
+	@OriginalMember(owner = "client!jd", name = "c", descriptor = "Lclient!n;")
 	public static final SoftLruHashTable objectSpriteCache = new SoftLruHashTable(100);
 
-	@OriginalMember(owner = "runetek4.client!tl", name = "c", descriptor = "Lclient!n;")
+	@OriginalMember(owner = "client!tl", name = "c", descriptor = "Lclient!n;")
 	public static final SoftLruHashTable models = new SoftLruHashTable(50);
 
 	@OriginalMember(owner = "client!cb", name = "Y", descriptor = "Lclient!n;")
 	public static final SoftLruHashTable types = new SoftLruHashTable(64);
 
-	@OriginalMember(owner = "runetek4.client!nh", name = "eb", descriptor = "I")
+	@OriginalMember(owner = "client!nh", name = "eb", descriptor = "I")
 	public static int capacity;
 
-	@OriginalMember(owner = "runetek4.client!fk", name = "j", descriptor = "[[I")
+	@OriginalMember(owner = "client!fk", name = "j", descriptor = "[[I")
 	public static int[][] anIntArrayArray10;
 
-	@OriginalMember(owner = "runetek4.client!um", name = "U", descriptor = "Lclient!dd;")
+	@OriginalMember(owner = "client!um", name = "U", descriptor = "Lclient!dd;")
 	public static SoftwareFont font;
 
-	@OriginalMember(owner = "runetek4.client!sj", name = "r", descriptor = "Lclient!ve;")
+	@OriginalMember(owner = "client!sj", name = "r", descriptor = "Lclient!ve;")
 	public static Js5 modelArchive;
 
-	@OriginalMember(owner = "runetek4.client!tg", name = "f", descriptor = "Z")
+	@OriginalMember(owner = "client!tg", name = "f", descriptor = "Z")
 	public static boolean aBoolean276;
 
-	@OriginalMember(owner = "runetek4.client!wa", name = "X", descriptor = "[Lclient!na;")
+	@OriginalMember(owner = "client!wa", name = "X", descriptor = "[Lclient!na;")
 	public static JString[] aClass100Array87 = null;
 
-	@OriginalMember(owner = "runetek4.client!ld", name = "g", descriptor = "[Lclient!na;")
+	@OriginalMember(owner = "client!ld", name = "g", descriptor = "[Lclient!na;")
 	public static JString[] aClass100Array104 = null;
 
-	@OriginalMember(owner = "runetek4.client!nd", name = "n", descriptor = "Lclient!ve;")
+	@OriginalMember(owner = "client!nd", name = "n", descriptor = "Lclient!ve;")
 	public static Js5 archive;
 
 	@OriginalMember(owner = "client!fk", name = "a", descriptor = "(IB)Lclient!h;")
     public static ObjType get(@OriginalArg(0) int id) {
-        @Pc(6) ObjType objType = (ObjType) types.get((long) id);
+        @Pc(6) ObjType objType = (ObjType) types.get(id);
         if (objType != null) {
             return objType;
         }
@@ -72,11 +72,11 @@ public final class ObjTypeList {
             objType.stockMarket = false;
             objType.op = aClass100Array87;
         }
-        types.put(objType, (long) id);
+        types.put(objType, id);
         return objType;
     }
 
-	@OriginalMember(owner = "runetek4.client!th", name = "a", descriptor = "(ZBLclient!ve;Lclient!dd;Lclient!ve;)V")
+	@OriginalMember(owner = "client!th", name = "a", descriptor = "(ZBLclient!ve;Lclient!dd;Lclient!ve;)V")
 	public static void init(@OriginalArg(2) Js5 arg0, @OriginalArg(3) SoftwareFont arg1, @OriginalArg(4) Js5 arg2) {
 		aBoolean276 = true;
 		modelArchive = arg2;
@@ -88,21 +88,21 @@ public final class ObjTypeList {
 		font = arg1;
 	}
 
-	@OriginalMember(owner = "runetek4.client!i", name = "r", descriptor = "(I)V")
+	@OriginalMember(owner = "client!i", name = "r", descriptor = "(I)V")
 	public static void removeSoft() {
 		types.removeSoft();
 		models.removeSoft();
 		objectSpriteCache.removeSoft();
 	}
 
-	@OriginalMember(owner = "runetek4.client!ob", name = "a", descriptor = "(B)V")
+	@OriginalMember(owner = "client!ob", name = "a", descriptor = "(B)V")
 	public static void clear() {
 		types.clean();
 		models.clean();
 		objectSpriteCache.clean();
 	}
 
-	@OriginalMember(owner = "runetek4.client!pf", name = "c", descriptor = "(II)V")
+	@OriginalMember(owner = "client!pf", name = "c", descriptor = "(II)V")
 	public static void clean() {
 		types.clean(5);
 		models.clean(5);
@@ -117,17 +117,17 @@ public final class ObjTypeList {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!rc", name = "a", descriptor = "(Z)V")
+	@OriginalMember(owner = "client!rc", name = "a", descriptor = "(Z)V")
 	public static void clearModels() {
 		models.clean();
 	}
 
-	@OriginalMember(owner = "runetek4.client!wa", name = "e", descriptor = "(B)V")
+	@OriginalMember(owner = "client!wa", name = "e", descriptor = "(B)V")
 	public static void clearSprites() {
 		objectSpriteCache.clean();
 	}
 
-	@OriginalMember(owner = "runetek4.client!ub", name = "a", descriptor = "(IB)I")
+	@OriginalMember(owner = "client!ub", name = "a", descriptor = "(IB)I")
 	public static int getFileId(@OriginalArg(0) int arg0) {
 		return arg0 & 0xFF;
 	}

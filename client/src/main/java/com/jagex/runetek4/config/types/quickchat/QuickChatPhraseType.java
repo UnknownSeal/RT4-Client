@@ -15,16 +15,16 @@ public final class QuickChatPhraseType extends SecondaryNode {
     @OriginalMember(owner = "client!bf", name = "C", descriptor = "[I")
     public static final int[] anIntArray51 = new int[] { 2, 2, 4, 2, 1, 8, 4, 1, 4, 4, 2, 1, 1, 1, 4, 1 };
 
-	@OriginalMember(owner = "runetek4.client!ld", name = "a", descriptor = "[I")
+	@OriginalMember(owner = "client!ld", name = "a", descriptor = "[I")
 	public static final int[] DYNAMIC_COMMAND_ENCODE_BYTES = new int[] { 2, 2, 4, 0, 1, 8, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0 };
 
-	@OriginalMember(owner = "runetek4.client!rc", name = "I", descriptor = "Lclient!na;")
+	@OriginalMember(owner = "client!rc", name = "I", descriptor = "Lclient!na;")
 	public static final JString aClass100_231 = JString.parse(")3)3)3");
 
-	@OriginalMember(owner = "runetek4.client!qg", name = "U", descriptor = "Lclient!na;")
+	@OriginalMember(owner = "client!qg", name = "U", descriptor = "Lclient!na;")
 	public static final JString aClass100_891 = JString.parse("");
 
-	@OriginalMember(owner = "runetek4.client!vh", name = "p", descriptor = "[I")
+	@OriginalMember(owner = "client!vh", name = "p", descriptor = "[I")
 	public static final int[] anIntArray412 = new int[] { 1, 0, 0, 0, 1, 0, 2, 1, 1, 1, 0, 2, 0, 0, 1, 0 };
 
 	@OriginalMember(owner = "client!cb", name = "L", descriptor = "[I")
@@ -42,7 +42,7 @@ public final class QuickChatPhraseType extends SecondaryNode {
 	@OriginalMember(owner = "client!cb", name = "O", descriptor = "Z")
 	public boolean aBoolean60 = true;
 
-	@OriginalMember(owner = "runetek4.client!vh", name = "a", descriptor = "(ILclient!wa;)Lclient!bd;")
+	@OriginalMember(owner = "client!vh", name = "a", descriptor = "(ILclient!wa;)Lclient!bd;")
 	public static QuickChatPhrase method3568(@OriginalArg(1) Packet arg0) {
 		@Pc(3) QuickChatPhrase local3 = new QuickChatPhrase();
 		local3.id = arg0.g2();

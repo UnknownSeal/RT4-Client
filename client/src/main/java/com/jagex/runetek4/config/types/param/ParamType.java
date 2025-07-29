@@ -8,42 +8,42 @@ import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-@OriginalClass("runetek4.client!hn")
+@OriginalClass("client!hn")
 public final class ParamType extends SecondaryNode {
 
-	@OriginalMember(owner = "runetek4.client!hn", name = "I", descriptor = "I")
+	@OriginalMember(owner = "client!hn", name = "I", descriptor = "I")
 	public int defaultInt;
 
-	@OriginalMember(owner = "runetek4.client!hn", name = "L", descriptor = "I")
+	@OriginalMember(owner = "client!hn", name = "L", descriptor = "I")
 	private int type;
 
-	@OriginalMember(owner = "runetek4.client!hn", name = "Q", descriptor = "Lclient!na;")
+	@OriginalMember(owner = "client!hn", name = "Q", descriptor = "Lclient!na;")
 	public JString defaultString;
 
-	@OriginalMember(owner = "runetek4.client!hn", name = "a", descriptor = "(ILclient!wa;I)V")
-	private void decode(@OriginalArg(0) int opcode, @OriginalArg(1) Packet arg1) {
+	@OriginalMember(owner = "client!hn", name = "a", descriptor = "(ILclient!wa;I)V")
+	private void decode(@OriginalArg(0) int opcode, @OriginalArg(1) Packet packet) {
 		if (opcode == 1) {
-			this.type = arg1.g1();
+			this.type = packet.g1();
 		} else if (opcode == 2) {
-			this.defaultInt = arg1.g4();
+			this.defaultInt = packet.g4();
 		} else if (opcode == 5) {
-			this.defaultString = arg1.gjstr();
+			this.defaultString = packet.gjstr();
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!hn", name = "a", descriptor = "(ILclient!wa;)V")
-	public final void decode(@OriginalArg(1) Packet arg0) {
+	@OriginalMember(owner = "client!hn", name = "a", descriptor = "(ILclient!wa;)V")
+	public void decode(@OriginalArg(1) Packet packet) {
 		while (true) {
-			@Pc(13) int opcode = arg0.g1();
+			@Pc(13) int opcode = packet.g1();
 			if (opcode == 0) {
 				return;
 			}
-			this.decode(opcode, arg0);
+			this.decode(opcode, packet);
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!hn", name = "f", descriptor = "(I)Z")
-	public final boolean isString() {
+	public boolean isString() {
 		return this.type == 115;
 	}
 }

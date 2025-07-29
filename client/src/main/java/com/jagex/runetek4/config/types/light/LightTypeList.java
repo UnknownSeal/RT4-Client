@@ -8,19 +8,20 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public class LightTypeList {
-    @OriginalMember(owner = "runetek4.client!rm", name = "d", descriptor = "Lclient!n;")
+    @OriginalMember(owner = "client!rm", name = "d", descriptor = "Lclient!n;")
     public static final SoftLruHashTable types = new SoftLruHashTable(64);
+
     @OriginalMember(owner = "client!gl", name = "a", descriptor = "Lclient!ve;")
     public static Js5 archive;
 
-    @OriginalMember(owner = "runetek4.client!id", name = "a", descriptor = "(Lclient!ve;B)V")
+    @OriginalMember(owner = "client!id", name = "a", descriptor = "(Lclient!ve;B)V")
     public static void init(@OriginalArg(0) Js5 arg0) {
         archive = arg0;
     }
 
-    @OriginalMember(owner = "runetek4.client!la", name = "a", descriptor = "(II)Lclient!ic;")
+    @OriginalMember(owner = "client!la", name = "a", descriptor = "(II)Lclient!ic;")
     public static LightType get(@OriginalArg(1) int arg0) {
-        @Pc(10) LightType local10 = (LightType) types.get((long) arg0);
+        @Pc(10) LightType local10 = (LightType) types.get(arg0);
         if (local10 != null) {
             return local10;
         }
@@ -29,7 +30,7 @@ public class LightTypeList {
         if (local26 != null) {
             local10.decode(new Packet(local26));
         }
-        types.put(local10, (long) arg0);
+        types.put(local10, arg0);
         return local10;
     }
 
@@ -43,7 +44,7 @@ public class LightTypeList {
         types.clean();
     }
 
-    @OriginalMember(owner = "runetek4.client!hd", name = "a", descriptor = "(I)V")
+    @OriginalMember(owner = "client!hd", name = "a", descriptor = "(I)V")
     public static void removeSoft() {
         types.removeSoft();
     }

@@ -1,4 +1,4 @@
-package com.jagex.runetek4;
+package com.jagex.runetek4.config.types.flo;
 
 import com.jagex.runetek4.util.ColorUtils;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -86,7 +86,7 @@ public final class FloType {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!be", name = "a", descriptor = "(II)I")
+	@OriginalMember(owner = "client!be", name = "a", descriptor = "(II)I")
 	public static int convertColor(@OriginalArg(1) int colour) {
 		return colour == 16711935 ? -1 : ColorUtils.rgbToHsl(colour);
 	}
