@@ -208,7 +208,7 @@ public class Game {
             Protocol.outboundBuffer.p4(Preferences.toInt());
             Preferences.sentToServer = true;
         }
-        SceneGraph.method846();
+        SceneGraph.updatePlayerPlane();
         if (Client.gameState != 30) {
             return;
         }

@@ -5679,18 +5679,18 @@ public final class ClientScriptRunner {
 						@Pc(358) int local358;
 						if (isBlocked && tiles[level][currentX][currentZ] != null) {
 							if (tiles[level][currentX][currentZ].wall != null) {
-								local191 = SceneGraph.method2251(direction1);
+								local191 = SceneGraph.getCollisionFlag(direction1);
 								if (tiles[level][currentX][currentZ].wall.typeA == local191 || tiles[level][currentX][currentZ].wall.typeB == local191) {
 									continue;
 								}
 								if (direction2 != 0) {
-									sceneType = SceneGraph.method2251(direction2);
+									sceneType = SceneGraph.getCollisionFlag(direction2);
 									if (sceneType == tiles[level][currentX][currentZ].wall.typeA || tiles[level][currentX][currentZ].wall.typeB == sceneType) {
 										continue;
 									}
 								}
 								if (direction3 != 0) {
-									sceneType = SceneGraph.method2251(direction3);
+									sceneType = SceneGraph.getCollisionFlag(direction3);
 									if (sceneType == tiles[level][currentX][currentZ].wall.typeA || sceneType == tiles[level][currentX][currentZ].wall.typeB) {
 										continue;
 									}

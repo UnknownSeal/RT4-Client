@@ -1414,7 +1414,7 @@ public class Protocol {
                                 j -= Camera.originX;
                                 local908 -= Camera.originZ;
                                 local1160 = i >> 28 & 0x3;
-                                SceneGraph.method1881(local1160, world, xp, local908, slot, j, count);
+                                SceneGraph.attachLocToTile(local1160, world, xp, local908, slot, j, count);
                                 opcode = -1;
                                 return true;
                             } else if (opcode == 0) {
@@ -2083,7 +2083,7 @@ public class Protocol {
                 if (local218 == 65535) {
                     local218 = -1;
                 }
-                SceneGraph.method1881(Player.plane, local39, local31, local19, local45, local23, local218);
+                SceneGraph.attachLocToTile(Player.plane, local39, local31, local19, local45, local23, local218);
             } else {
                 @Pc(633) int local633;
                 if (opcode == 202) {
