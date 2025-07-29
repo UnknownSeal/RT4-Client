@@ -1542,7 +1542,7 @@ public class WidgetList {
                                 continue;
                             }
                             if (widget.contentType == 1400) {
-                                WorldMap.method2225(renderX, renderY, widget.height, widget.width);
+                                WorldMap.render(renderX, renderY, widget.height, widget.width);
                                 widgetNeedsRedraw[rectangle] = true;
                                 rectangleRedraw[rectangle] = true;
                                 if (GlRenderer.enabled) {

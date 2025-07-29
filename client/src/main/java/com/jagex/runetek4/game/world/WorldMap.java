@@ -197,14 +197,14 @@ public class WorldMap {
     public static int[][][] scenery;
 
     @OriginalMember(owner = "client!jb", name = "a", descriptor = "(IZ)V")
-    public static void clear(@OriginalArg(1) boolean arg0) {
+    public static void clear(@OriginalArg(1) boolean preserveMapGroup) {
         aByteArrayArrayArray8 = null;
         underlayColors = null;
         widget = null;
         aByteArrayArrayArray3 = null;
         overlayColors = null;
         aByteArrayArrayArray10 = null;
-        if (arg0 && currentMap != null) {
+        if (preserveMapGroup && currentMap != null) {
             aClass100_724 = currentMap.group;
         } else {
             aClass100_724 = null;
@@ -232,59 +232,59 @@ public class WorldMap {
     }
 
     @OriginalMember(owner = "client!wa", name = "a", descriptor = "(IIIII)V")
-    public static void method2225(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
+    public static void render(@OriginalArg(0) int x, @OriginalArg(2) int y, @OriginalArg(3) int height, @OriginalArg(4) int width) {
         if (loadPercentage < 100) {
             load();
         }
         if (GlRenderer.enabled) {
-            GlRaster.setClip(arg0, arg1, arg0 + arg3, arg2 + arg1);
+            GlRaster.setClip(x, y, x + width, height + y);
         } else {
-            SoftwareRaster.setClip(arg0, arg1, arg0 + arg3, arg2 + arg1);
+            SoftwareRaster.setClip(x, y, x + width, height + y);
         }
-        @Pc(50) int local50;
-        @Pc(61) int local61;
+        @Pc(50) int centerX;
+        @Pc(61) int centerY;
         if (loadPercentage < 100) {
-            local50 = arg0 + arg3 / 2;
-            local61 = arg2 / 2 + arg1 - 18 - 20;
+            centerX = x + width / 2;
+            centerY = height / 2 + y - 18 - 20;
             if (GlRenderer.enabled) {
-                GlRaster.fillRect(arg0, arg1, arg3, arg2, 0);
-                GlRaster.drawRect(local50 - 152, local61, 304, 34, 9179409);
-                GlRaster.drawRect(local50 - 151, local61 + 1, 302, 32, 0);
-                GlRaster.fillRect(local50 - 150, local61 + 2, loadPercentage * 3, 30, 9179409);
-                GlRaster.fillRect(local50 + loadPercentage * 3 - 150, local61 - -2, 300 - loadPercentage * 3, 30, 0);
+                GlRaster.fillRect(x, y, width, height, 0);
+                GlRaster.drawRect(centerX - 152, centerY, 304, 34, 9179409);
+                GlRaster.drawRect(centerX - 151, centerY + 1, 302, 32, 0);
+                GlRaster.fillRect(centerX - 150, centerY + 2, loadPercentage * 3, 30, 9179409);
+                GlRaster.fillRect(centerX + loadPercentage * 3 - 150, centerY - -2, 300 - loadPercentage * 3, 30, 0);
             } else {
-                SoftwareRaster.fillRect(arg0, arg1, arg3, arg2, 0);
-                SoftwareRaster.drawRect(local50 - 152, local61, 304, 34, 9179409);
-                SoftwareRaster.drawRect(local50 - 151, local61 + 1, 302, 32, 0);
-                SoftwareRaster.fillRect(local50 - 150, local61 + 2, loadPercentage * 3, 30, 9179409);
-                SoftwareRaster.fillRect(loadPercentage * 3 + local50 - 150, local61 - -2, 300 - loadPercentage * 3, 30, 0);
+                SoftwareRaster.fillRect(x, y, width, height, 0);
+                SoftwareRaster.drawRect(centerX - 152, centerY, 304, 34, 9179409);
+                SoftwareRaster.drawRect(centerX - 151, centerY + 1, 302, 32, 0);
+                SoftwareRaster.fillRect(centerX - 150, centerY + 2, loadPercentage * 3, 30, 9179409);
+                SoftwareRaster.fillRect(loadPercentage * 3 + centerX - 150, centerY - -2, 300 - loadPercentage * 3, 30, 0);
             }
-            Fonts.b12Full.renderCenter(LocalizedText.LOADINGDOTDOTDOT, local50, local61 + 20, 16777215, -1);
+            Fonts.b12Full.renderCenter(LocalizedText.LOADINGDOTDOTDOT, centerX, centerY + 20, 16777215, -1);
             return;
         }
-        anInt1176 = (int) ((float) (arg2 * 2) / zoom);
-        ClientScriptRunner.worldMapViewportX = anInt435 - (int) ((float) arg3 / zoom);
-        @Pc(211) int local211 = anInt435 - (int) ((float) arg3 / zoom);
-        local50 = anInt919 - (int) ((float) arg2 / zoom);
-        ClientScriptRunner.worldMapViewportY = anInt919 - (int) ((float) arg2 / zoom);
-        @Pc(236) int local236 = anInt919 + (int) ((float) arg2 / zoom);
-        local61 = (int) ((float) arg3 / zoom) + anInt435;
-        anInt2387 = (int) ((float) (arg3 * 2) / zoom);
+        anInt1176 = (int) ((float) (height * 2) / zoom);
+        ClientScriptRunner.worldMapViewportX = anInt435 - (int) ((float) width / zoom);
+        @Pc(211) int leftBound = anInt435 - (int) ((float) width / zoom);
+        centerX = anInt919 - (int) ((float) height / zoom);
+        ClientScriptRunner.worldMapViewportY = anInt919 - (int) ((float) height / zoom);
+        @Pc(236) int bottomBound = anInt919 + (int) ((float) height / zoom);
+        centerY = (int) ((float) width / zoom) + anInt435;
+        anInt2387 = (int) ((float) (width * 2) / zoom);
         if (GlRenderer.enabled) {
-            if (aClass3_Sub2_Sub1_Sub1_2 == null || aClass3_Sub2_Sub1_Sub1_2.width != arg3 || aClass3_Sub2_Sub1_Sub1_2.height != arg2) {
+            if (aClass3_Sub2_Sub1_Sub1_2 == null || aClass3_Sub2_Sub1_Sub1_2.width != width || aClass3_Sub2_Sub1_Sub1_2.height != height) {
                 aClass3_Sub2_Sub1_Sub1_2 = null;
-                aClass3_Sub2_Sub1_Sub1_2 = new SoftwareSprite(arg3, arg2);
+                aClass3_Sub2_Sub1_Sub1_2 = new SoftwareSprite(width, height);
             }
-            SoftwareRaster.setSize(aClass3_Sub2_Sub1_Sub1_2.pixels, arg3, arg2);
-            renderMapToBuffer(arg3, 0, local61, local50, 0, local236, arg2, local211);
-            method1195(arg3, 0, local61, local236, arg2, 0, local211, local50);
-            method959(0, 0, local211, arg3, local236, local50, local61, arg2);
-            GlRaster.render(aClass3_Sub2_Sub1_Sub1_2.pixels, arg0, arg1, arg3, arg2);
+            SoftwareRaster.setSize(aClass3_Sub2_Sub1_Sub1_2.pixels, width, height);
+            renderMapToBuffer(width, 0, centerY, centerX, 0, bottomBound, height, leftBound);
+            method1195(width, 0, centerY, bottomBound, height, 0, leftBound, centerX);
+            method959(0, 0, leftBound, width, bottomBound, centerX, centerY, height);
+            GlRaster.render(aClass3_Sub2_Sub1_Sub1_2.pixels, x, y, width, height);
             SoftwareRaster.pixels = null;
         } else {
-            renderMapToBuffer(arg3 + arg0, arg1, local61, local50, arg0, local236, arg1 + arg2, local211);
-            method1195(arg0 + arg3, arg0, local61, local236, arg2 + arg1, arg1, local211, local50);
-            method959(arg0, arg1, local211, arg0 + arg3, local236, local50, local61, arg2 + arg1);
+            renderMapToBuffer(width + x, y, centerY, centerX, x, bottomBound, y + height, leftBound);
+            method1195(x + width, x, centerY, bottomBound, height + y, y, leftBound, centerX);
+            method959(x, y, leftBound, x + width, bottomBound, centerX, centerY, height + y);
         }
         if (mapFunctionCount > 0) {
             ClientScriptRunner.mapFunctionFlashTimer--;
@@ -296,18 +296,18 @@ public class WorldMap {
         if (!Cheat.displayFps) {
             return;
         }
-        @Pc(405) int local405 = arg1 + arg2 - 8;
-        @Pc(412) int local412 = arg0 + arg3 - 5;
-        Fonts.p12Full.renderRight(JString.concatenate(new JString[] { Cheat.DEBUG_FPS, JString.parseInt(GameShell.fps) }), local412, local405, 16776960, -1);
-        @Pc(434) Runtime local434 = Runtime.getRuntime();
-        @Pc(443) int local443 = (int) ((local434.totalMemory() - local434.freeMemory()) / 1024L);
-        @Pc(445) int local445 = 16776960;
-        @Pc(446) int local446 = local405 - 15;
-        if (local443 > 65536) {
-            local445 = 16711680;
+        @Pc(405) int debugY = y + height - 8;
+        @Pc(412) int debugX = x + width - 5;
+        Fonts.p12Full.renderRight(JString.concatenate(new JString[] { Cheat.DEBUG_FPS, JString.parseInt(GameShell.fps) }), debugX, debugY, 16776960, -1);
+        @Pc(434) Runtime runtime = Runtime.getRuntime();
+        @Pc(443) int memoryUsed = (int) ((runtime.totalMemory() - runtime.freeMemory()) / 1024L);
+        @Pc(445) int memoryColor = 16776960;
+        @Pc(446) int memoryY = debugY - 15;
+        if (memoryUsed > 65536) {
+            memoryColor = 16711680;
         }
-        Fonts.p12Full.renderRight(JString.concatenate(new JString[] { Cheat.MEM, JString.parseInt(local443), Cheat.DEBUG_MEMORY_UNIT}), local412, local446, local445, -1);
-        local405 = local446 - 15;
+        Fonts.p12Full.renderRight(JString.concatenate(new JString[] { Cheat.MEM, JString.parseInt(memoryUsed), Cheat.DEBUG_MEMORY_UNIT}), debugX, memoryY, memoryColor, -1);
+        debugY = memoryY - 15;
     }
 
     @OriginalMember(owner = "client!dk", name = "a", descriptor = "(Lclient!wa;Z)V")
@@ -897,15 +897,15 @@ public class WorldMap {
                 }
                 if (font != null) {
                     @Pc(211) int lineCount = Fonts.p11Full.splitParagraph(labels.text[local11], null, lines);
-                    local80 -= font.method1503() * (lineCount - 1) / 2;
-                    local80 += font.method1511() / 2;
+                    local80 -= font.getBaselineOffset() * (lineCount - 1) / 2;
+                    local80 += font.getLineHeight() / 2;
                     for (@Pc(231) int i = 0; i < lineCount; i++) {
                         @Pc(242) JString local242 = lines[i];
                         if (lineCount - 1 > i) {
                             local242.method3133(local242.length() - 4);
                         }
                         font.renderStringCenter(local242, local59, local80, textColor);
-                        local80 += font.method1503();
+                        local80 += font.getBaselineOffset();
                     }
                 }
             }
