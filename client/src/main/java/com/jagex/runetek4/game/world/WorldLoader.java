@@ -272,7 +272,7 @@ public class WorldLoader {
             terrainData = mapDataBuffers[regionIndex];
             if (terrainData != null) {
                 Client.audioLoop();
-                SceneGraph.method2203(PathFinder.collisionMaps, underWater, SceneGraph.centralZoneX * 8 - 48, worldZ, worldX, (SceneGraph.centralZoneZ - 6) * 8, terrainData);
+                SceneGraph.loadMapRegion(PathFinder.collisionMaps, underWater, SceneGraph.centralZoneX * 8 - 48, worldZ, worldX, (SceneGraph.centralZoneZ - 6) * 8, terrainData);
             }
         }
         for (regionIndex = 0; regionIndex < regionCount; regionIndex++) {
@@ -657,7 +657,7 @@ public class WorldLoader {
         }
         Client.unload();
         ClientProt.ping(true);
-        SceneGraph.method1169(PathFinder.collisionMaps, false);
+        SceneGraph.buildTiles(PathFinder.collisionMaps, false);
         if (GlRenderer.enabled) {
             LightingManager.method2395();
         }
@@ -670,9 +670,9 @@ public class WorldLoader {
             // TODO why is this here?
         }
         if (SceneGraph.allLevelsAreVisible()) {
-            SceneGraph.method2750(0);
+            SceneGraph.ensureTilesExist(0);
         } else {
-            SceneGraph.method2750(SceneGraph.firstVisibleLevel);
+            SceneGraph.ensureTilesExist(SceneGraph.firstVisibleLevel);
         }
         SceneGraph.unload();
         if (GlRenderer.enabled && hasUnderWaterMap) {
@@ -690,7 +690,7 @@ public class WorldLoader {
             }
             Client.unload();
             ClientProt.ping(true);
-            SceneGraph.method1169(PathFinder.collisionMaps, true);
+            SceneGraph.buildTiles(PathFinder.collisionMaps, true);
             ClientProt.ping(true);
             SceneGraph.unload();
             SceneGraph.setUnderwater(false);

@@ -265,13 +265,13 @@ public class SceneGraph {
     @OriginalMember(owner = "client!fc", name = "a", descriptor = "()V")
     public static void clear() {
         @Pc(3) int local3;
-        @Pc(9) int local9;
-        @Pc(14) int local14;
+        @Pc(9) int x;
+        @Pc(14) int z;
         if (surfaceGroundTiles != null) {
             for (local3 = 0; local3 < surfaceGroundTiles.length; local3++) {
-                for (local9 = 0; local9 < width; local9++) {
-                    for (local14 = 0; local14 < length; local14++) {
-                        surfaceGroundTiles[local3][local9][local14] = null;
+                for (x = 0; x < width; x++) {
+                    for (z = 0; z < length; z++) {
+                        surfaceGroundTiles[local3][x][z] = null;
                     }
                 }
             }
@@ -279,9 +279,9 @@ public class SceneGraph {
         surfaceHdTiles = null;
         if (underWaterGroundTiles != null) {
             for (local3 = 0; local3 < underWaterGroundTiles.length; local3++) {
-                for (local9 = 0; local9 < width; local9++) {
-                    for (local14 = 0; local14 < length; local14++) {
-                        underWaterGroundTiles[local3][local9][local14] = null;
+                for (x = 0; x < width; x++) {
+                    for (z = 0; z < length; z++) {
+                        underWaterGroundTiles[local3][x][z] = null;
                     }
                 }
             }
@@ -328,8 +328,8 @@ public class SceneGraph {
     }
 
     @OriginalMember(owner = "runetek4.client!wa", name = "a", descriptor = "(III)Lclient!bm;")
-    public static GroundDecor getGroundDecor(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
-        @Pc(7) Tile local7 = tiles[arg0][arg1][arg2];
+    public static GroundDecor getGroundDecor(@OriginalArg(0) int plane, @OriginalArg(1) int x, @OriginalArg(2) int z) {
+        @Pc(7) Tile local7 = tiles[plane][x][z];
         return local7 == null || local7.groundDecor == null ? null : local7.groundDecor;
     }
 
@@ -338,65 +338,65 @@ public class SceneGraph {
         if (tileHeights == null) {
             return 0;
         }
-        @Pc(12) int x = xFine >> 7;
-        @Pc(16) int z = zFine >> 7;
-        if (x < 0 || z < 0 || x > 103 || z > 103) {
+        @Pc(12) int tileX = xFine >> 7;
+        @Pc(16) int tileZ = zFine >> 7;
+        if (tileX < 0 || tileZ < 0 || tileX > 103 || tileZ > 103) {
             return 0;
         }
-        @Pc(36) int xFine2 = xFine & 0x7F;
-        @Pc(40) int zFine2 = zFine & 0x7F;
+        @Pc(36) int xOffset = xFine & 0x7F;
+        @Pc(40) int zOffset = zFine & 0x7F;
         @Pc(42) int virtualLevel = level;
-        if (level < 3 && (renderFlags[1][x][z] & 0x2) == 2) {
+        if (level < 3 && (renderFlags[1][tileX][tileZ] & 0x2) == 2) {
             virtualLevel = level + 1;
         }
-        @Pc(91) int heightZ0 = xFine2 * tileHeights[virtualLevel][x + 1][z + 1] + tileHeights[virtualLevel][x][z + 1] * (128 - xFine2) >> 7;
-        @Pc(118) int heightZ1 = xFine2 * tileHeights[virtualLevel][x + 1][z] + (128 - xFine2) * tileHeights[virtualLevel][x][z] >> 7;
-        return zFine2 * heightZ0 + (128 - zFine2) * heightZ1 >> 7;
+        @Pc(91) int interpolatedHeightNorth = xOffset * tileHeights[virtualLevel][tileX + 1][tileZ + 1] + tileHeights[virtualLevel][tileX][tileZ + 1] * (128 - xOffset) >> 7;
+        @Pc(118) int interpolatedHeightSouth = xOffset * tileHeights[virtualLevel][tileX + 1][tileZ] + (128 - xOffset) * tileHeights[virtualLevel][tileX][tileZ] >> 7;
+        return zOffset * interpolatedHeightNorth + (128 - zOffset) * interpolatedHeightSouth >> 7;
     }
 
     @OriginalMember(owner = "runetek4.client!ge", name = "a", descriptor = "(IIIIIIII)V")
-    public static void method1698(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int arg6) {
-        if (arg1 < 1 || arg4 < 1 || arg1 > 102 || arg4 > 102) {
+    public static void setLocationObject(@OriginalArg(0) int locId, @OriginalArg(1) int x, @OriginalArg(2) int plane, @OriginalArg(3) int rotation, @OriginalArg(4) int z, @OriginalArg(6) int shape, @OriginalArg(7) int layer) {
+        if (x < 1 || z < 1 || x > 102 || z > 102) {
             return;
         }
-        @Pc(39) int local39;
-        if (!allLevelsAreVisible() && (renderFlags[0][arg1][arg4] & 0x2) == 0) {
-            local39 = arg2;
-            if ((renderFlags[arg2][arg1][arg4] & 0x8) != 0) {
-                local39 = 0;
+        @Pc(39) int renderPlane;
+        if (!allLevelsAreVisible() && (renderFlags[0][x][z] & 0x2) == 0) {
+            renderPlane = plane;
+            if ((renderFlags[plane][x][z] & 0x8) != 0) {
+                renderPlane = 0;
             }
-            if (local39 != centralPlane) {
+            if (renderPlane != centralPlane) {
                 return;
             }
         }
-        local39 = arg2;
-        if (arg2 < 3 && (renderFlags[1][arg1][arg4] & 0x2) == 2) {
-            local39 = arg2 + 1;
+        renderPlane = plane;
+        if (plane < 3 && (renderFlags[1][x][z] & 0x2) == 2) {
+            renderPlane = plane + 1;
         }
-        method1144(arg4, arg1, arg2, arg6, local39, PathFinder.collisionMaps[arg2]);
-        if (arg0 >= 0) {
-            @Pc(92) boolean local92 = Preferences.showGroundDecorations;
+        method1144(z, x, plane, layer, renderPlane, PathFinder.collisionMaps[plane]);
+        if (locId >= 0) {
+            @Pc(92) boolean originalShowGroundDecorations = Preferences.showGroundDecorations;
             Preferences.showGroundDecorations = true;
-            addLoc(local39, false, arg2, false, PathFinder.collisionMaps[arg2], arg0, arg5, arg1, arg4, arg3);
-            Preferences.showGroundDecorations = local92;
+            addLoc(renderPlane, false, plane, false, PathFinder.collisionMaps[plane], locId, shape, x, z, rotation);
+            Preferences.showGroundDecorations = originalShowGroundDecorations;
         }
     }
 
     @OriginalMember(owner = "runetek4.client!vj", name = "a", descriptor = "(III)J")
-    public static long getWallKey(@OriginalArg(0) int level, @OriginalArg(1) int x, @OriginalArg(2) int z) {
-        @Pc(7) Tile tile = tiles[level][x][z];
+    public static long getWallKey(@OriginalArg(0) int plane, @OriginalArg(1) int x, @OriginalArg(2) int z) {
+        @Pc(7) Tile tile = tiles[plane][x][z];
         return tile == null || tile.wall == null ? 0L : tile.wall.key;
     }
 
     @OriginalMember(owner = "runetek4.client!l", name = "a", descriptor = "(III)J")
-    public static long getWallDecorKey(@OriginalArg(0) int level, @OriginalArg(1) int x, @OriginalArg(2) int z) {
-        @Pc(7) Tile tile = tiles[level][x][z];
+    public static long getWallDecorKey(@OriginalArg(0) int plane, @OriginalArg(1) int x, @OriginalArg(2) int z) {
+        @Pc(7) Tile tile = tiles[plane][x][z];
         return tile == null || tile.wallDecor == null ? 0L : tile.wallDecor.key;
     }
 
     @OriginalMember(owner = "runetek4.client!cl", name = "a", descriptor = "(III)J")
-    public static long getSceneryKey(@OriginalArg(0) int arg0, @OriginalArg(1) int x, @OriginalArg(2) int z) {
-        @Pc(7) Tile tile = tiles[arg0][x][z];
+    public static long getSceneryKey(@OriginalArg(0) int plane, @OriginalArg(1) int x, @OriginalArg(2) int z) {
+        @Pc(7) Tile tile = tiles[plane][x][z];
         if (tile == null) {
             return 0L;
         }
@@ -410,70 +410,70 @@ public class SceneGraph {
     }
 
     @OriginalMember(owner = "client!bj", name = "a", descriptor = "(III)J")
-    public static long getGroundDecorKey(@OriginalArg(0) int level, @OriginalArg(1) int x, @OriginalArg(2) int z) {
-        @Pc(7) Tile tile = tiles[level][x][z];
+    public static long getGroundDecorKey(@OriginalArg(0) int plane, @OriginalArg(1) int x, @OriginalArg(2) int z) {
+        @Pc(7) Tile tile = tiles[plane][x][z];
         return tile == null || tile.groundDecor == null ? 0L : tile.groundDecor.key;
     }
 
     @OriginalMember(owner = "client!sd", name = "c", descriptor = "(II)V")
-    public static void method3884(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
-        @Pc(7) Tile local7 = tiles[0][arg0][arg1];
-        for (@Pc(9) int local9 = 0; local9 < 3; local9++) {
-            @Pc(30) Tile local30 = tiles[local9][arg0][arg1] = tiles[local9 + 1][arg0][arg1];
-            if (local30 != null) {
-                local30.anInt672--;
-                for (@Pc(40) int local40 = 0; local40 < local30.sceneryLen; local40++) {
-                    @Pc(49) Scenery local49 = local30.scenery[local40];
-                    if ((local49.key >> 29 & 0x3L) == 2L && local49.xMin == arg0 && local49.zMin == arg1) {
-                        local49.level--;
+    public static void method3884(@OriginalArg(0) int x, @OriginalArg(1) int z) {
+        @Pc(7) Tile originalGroundTile = tiles[0][x][z];
+        for (@Pc(9) int plane = 0; plane < 3; plane++) {
+            @Pc(30) Tile tile = tiles[plane][x][z] = tiles[plane + 1][x][z];
+            if (tile != null) {
+                tile.anInt672--;
+                for (@Pc(40) int sceneryIndex = 0; sceneryIndex < tile.sceneryLen; sceneryIndex++) {
+                    @Pc(49) Scenery scenery = tile.scenery[sceneryIndex];
+                    if ((scenery.key >> 29 & 0x3L) == 2L && scenery.xMin == x && scenery.zMin == z) {
+                        scenery.level--;
                     }
                 }
             }
         }
-        if (tiles[0][arg0][arg1] == null) {
-            tiles[0][arg0][arg1] = new Tile(0, arg0, arg1);
+        if (tiles[0][x][z] == null) {
+            tiles[0][x][z] = new Tile(0, x, z);
         }
-        tiles[0][arg0][arg1].aClass3_Sub5_1 = local7;
-        tiles[3][arg0][arg1] = null;
+        tiles[0][x][z].aClass3_Sub5_1 = originalGroundTile;
+        tiles[3][x][z] = null;
     }
 
     @OriginalMember(owner = "runetek4.client!jk", name = "a", descriptor = "(IZ[BII[Lclient!mj;)V")
-    public static void readLocs(@OriginalArg(0) int arg0, @OriginalArg(1) boolean highmem, @OriginalArg(2) byte[] data, @OriginalArg(3) int arg3, @OriginalArg(5) CollisionMap[] arg4) {
+    public static void readLocs(@OriginalArg(0) int baseX, @OriginalArg(1) boolean highmem, @OriginalArg(2) byte[] data, @OriginalArg(3) int baseZ, @OriginalArg(5) CollisionMap[] collisionMaps) {
         @Pc(10) Packet packet = new Packet(data);
-        @Pc(12) int local12 = -1;
+        @Pc(12) int locId = -1;
         while (true) {
-            @Pc(16) int local16 = packet.gVarSmart();
-            if (local16 == 0) {
+            @Pc(16) int locIdDelta = packet.gVarSmart();
+            if (locIdDelta == 0) {
                 return;
             }
-            local12 += local16;
-            @Pc(27) int local27 = 0;
+            locId += locIdDelta;
+            @Pc(27) int position = 0;
             while (true) {
-                @Pc(31) int local31 = packet.gSmart1or2();
-                if (local31 == 0) {
+                @Pc(31) int positionDelta = packet.gSmart1or2();
+                if (positionDelta == 0) {
                     break;
                 }
-                local27 += local31 - 1;
-                @Pc(46) int local46 = local27 & 0x3F;
-                @Pc(50) int level = local27 >> 12;
-                @Pc(56) int local56 = local27 >> 6 & 0x3F;
-                @Pc(60) int local60 = packet.g1();
-                @Pc(64) int shape = local60 >> 2;
-                @Pc(68) int rotation = local60 & 0x3;
-                @Pc(72) int x = arg0 + local56;
-                @Pc(76) int z = local46 + arg3;
+                position += positionDelta - 1;
+                @Pc(46) int localZ = position & 0x3F;
+                @Pc(50) int level = position >> 12;
+                @Pc(56) int localX = position >> 6 & 0x3F;
+                @Pc(60) int shapeAndRotation = packet.g1();
+                @Pc(64) int shape = shapeAndRotation >> 2;
+                @Pc(68) int rotation = shapeAndRotation & 0x3;
+                @Pc(72) int x = baseX + localX;
+                @Pc(76) int z = localZ + baseZ;
                 if (x > 0 && z > 0 && x < 103 && z < 103) {
-                    @Pc(90) CollisionMap local90 = null;
+                    @Pc(90) CollisionMap collisionMap = null;
                     if (!highmem) {
-                        @Pc(95) int local95 = level;
+                        @Pc(95) int collisionLevel = level;
                         if ((renderFlags[1][x][z] & 0x2) == 2) {
-                            local95 = level - 1;
+                            collisionLevel = level - 1;
                         }
-                        if (local95 >= 0) {
-                            local90 = arg4[local95];
+                        if (collisionLevel >= 0) {
+                            collisionMap = collisionMaps[collisionLevel];
                         }
                     }
-                    addLoc(level, !highmem, level, highmem, local90, local12, shape, x, z, rotation);
+                    addLoc(level, !highmem, level, highmem, collisionMap, locId, shape, x, z, rotation);
                 }
             }
         }
@@ -539,20 +539,20 @@ public class SceneGraph {
 	}
 
     @OriginalMember(owner = "client!di", name = "a", descriptor = "([Lclient!mj;ZI)V")
-    public static void method1169(@OriginalArg(0) CollisionMap[] collisionMaps, @OriginalArg(1) boolean underwater) {
-        @Pc(10) int level2;
-        @Pc(15) int x;
+    public static void buildTiles(@OriginalArg(0) CollisionMap[] collisionMaps, @OriginalArg(1) boolean underwater) {
+        @Pc(10) int lightLevel;
+        @Pc(15) int tileX;
         if (!underwater) {
-            for (level2 = 0; level2 < 4; level2++) {
-                for (x = 0; x < 104; x++) {
-                    for (@Pc(22) int local22 = 0; local22 < 104; local22++) {
-                        if ((renderFlags[level2][x][local22] & 0x1) == 1) {
-                            @Pc(43) int transformedLevel = level2;
-                            if ((renderFlags[1][x][local22] & 0x2) == 2) {
-                                transformedLevel = level2 - 1;
+            for (lightLevel = 0; lightLevel < 4; lightLevel++) {
+                for (tileX = 0; tileX < 104; tileX++) {
+                    for (@Pc(22) int tileZ = 0; tileZ < 104; tileZ++) {
+                        if ((renderFlags[lightLevel][tileX][tileZ] & 0x1) == 1) {
+                            @Pc(43) int collisionLevel = lightLevel;
+                            if ((renderFlags[1][tileX][tileZ] & 0x2) == 2) {
+                                collisionLevel = lightLevel - 1;
                             }
-                            if (transformedLevel >= 0) {
-                                collisionMaps[transformedLevel].flagTile(local22, x);
+                            if (collisionLevel >= 0) {
+                                collisionMaps[collisionLevel].flagTile(tileZ, tileX);
                             }
                         }
                     }
@@ -573,199 +573,199 @@ public class SceneGraph {
                 anInt2293 = 8;
             }
         }
-        @Pc(128) byte levels;
+        @Pc(128) byte levelCount;
         if (underwater) {
-            levels = 1;
+            levelCount = 1;
         } else {
-            levels = 4;
+            levelCount = 4;
         }
-        level2 = anInt2293 >> 2 << 10;
-        @Pc(142) int[][] local142 = new int[104][104];
+        lightLevel = anInt2293 >> 2 << 10;
+        @Pc(142) int[][] underlayColorMap = new int[104][104];
         @Pc(146) int[][] levelLightMap = new int[104][104];
-        x = anInt4272 >> 1;
+        tileX = anInt4272 >> 1;
         @Pc(152) int level;
-        @Pc(168) int z0;
-        @Pc(173) int x0;
-        @Pc(178) int z;
-        @Pc(194) int underlayId;
-        @Pc(200) int local200;
-        @Pc(202) int dx;
-        @Pc(209) int dz;
+        @Pc(168) int z;
+        @Pc(173) int x;
+        @Pc(178) int lightZ;
+        @Pc(194) int underwaterDepth;
+        @Pc(200) int lightValue;
+        @Pc(202) int heightDx;
+        @Pc(209) int heightDz;
         @Pc(349) int len;
         @Pc(234) int normalX;
         @Pc(254) int normalY;
         @Pc(267) int normalZ;
-        for (level = 0; level < levels; level++) {
-            @Pc(159) byte[][] local159 = shadowmap[level];
-            @Pc(273) int local273;
-            @Pc(326) int local326;
-            @Pc(332) int local332;
-            @Pc(322) int local322;
+        for (level = 0; level < levelCount; level++) {
+            @Pc(159) byte[][] shadowData = shadowmap[level];
+            @Pc(273) int normalizedX;
+            @Pc(326) int normalizedY;
+            @Pc(332) int normalizedZ;
+            @Pc(322) int neighborZ;
             if (!GlRenderer.enabled) {
-                z0 = (int) Math.sqrt(5100.0D);
-                x0 = z0 * 768 >> 8;
-                for (z = 1; z < 103; z++) {
-                    for (underlayId = 1; underlayId < 103; underlayId++) {
-                        dz = tileHeights[level][underlayId][z + 1] - tileHeights[level][underlayId][z - 1];
-                        dx = tileHeights[level][underlayId + 1][z] - tileHeights[level][underlayId - 1][z];
-                        len = (int) Math.sqrt((double) (dx * dx + dz * dz + 65536));
-                        normalZ = (dz << 8) / len;
+                z = (int) Math.sqrt(5100.0D);
+                x = z * 768 >> 8;
+                for (lightZ = 1; lightZ < 103; lightZ++) {
+                    for (underwaterDepth = 1; underwaterDepth < 103; underwaterDepth++) {
+                        heightDz = tileHeights[level][underwaterDepth][lightZ + 1] - tileHeights[level][underwaterDepth][lightZ - 1];
+                        heightDx = tileHeights[level][underwaterDepth + 1][lightZ] - tileHeights[level][underwaterDepth - 1][lightZ];
+                        len = (int) Math.sqrt((double) (heightDx * heightDx + heightDz * heightDz + 65536));
+                        normalZ = (heightDz << 8) / len;
                         normalY = -65536 / len;
-                        normalX = (dx << 8) / len;
-                        local273 = (local159[underlayId][z] >> 1) + (local159[underlayId][z - 1] >> 2) + (local159[underlayId - -1][z] >> 3) + (local159[underlayId - 1][z] >> 2) + (local159[underlayId][z + 1] >> 3);
-                        local200 = (normalZ * -50 + normalX * -50 + normalY * -10) / x0 + 74;
-                        levelLightMap[underlayId][z] = local200 - local273;
+                        normalX = (heightDx << 8) / len;
+                        normalizedX = (shadowData[underwaterDepth][lightZ] >> 1) + (shadowData[underwaterDepth][lightZ - 1] >> 2) + (shadowData[underwaterDepth - -1][lightZ] >> 3) + (shadowData[underwaterDepth - 1][lightZ] >> 2) + (shadowData[underwaterDepth][lightZ + 1] >> 3);
+                        lightValue = (normalZ * -50 + normalX * -50 + normalY * -10) / x + 74;
+                        levelLightMap[underwaterDepth][lightZ] = lightValue - normalizedX;
                     }
                 }
             } else if (Preferences.highDetailLighting) {
-                for (z0 = 1; z0 < 103; z0++) {
-                    for (x0 = 1; x0 < 103; x0++) {
-                        underlayId = (local159[x0 + 1][z0] >> 3) + (local159[x0 - 1][z0] >> 2) + (local159[x0][z0 + -1] >> 2) + (local159[x0][z0 + 1] >> 3) + (local159[x0][z0] >> 1);
-                        levelLightMap[x0][z0] = 74 - underlayId;
+                for (z = 1; z < 103; z++) {
+                    for (x = 1; x < 103; x++) {
+                        underwaterDepth = (shadowData[x + 1][z] >> 3) + (shadowData[x - 1][z] >> 2) + (shadowData[x][z + -1] >> 2) + (shadowData[x][z + 1] >> 3) + (shadowData[x][z] >> 1);
+                        levelLightMap[x][z] = 74 - underwaterDepth;
                     }
                 }
             } else {
-                z0 = (int) FogManager.light0Position[0];
-                x0 = (int) FogManager.light0Position[1];
-                z = (int) FogManager.light0Position[2];
-                underlayId = (int) Math.sqrt((double) (x0 * x0 + z0 * z0 + z * z));
-                local200 = underlayId * 1024 >> 8;
-                for (dx = 1; dx < 103; dx++) {
-                    for (dz = 1; dz < 103; dz++) {
-                        normalX = tileHeights[level][dz + 1][dx] - tileHeights[level][dz - 1][dx];
-                        normalY = tileHeights[level][dz][dx + 1] - tileHeights[level][dz][dx - 1];
+                z = (int) FogManager.light0Position[0];
+                x = (int) FogManager.light0Position[1];
+                lightZ = (int) FogManager.light0Position[2];
+                underwaterDepth = (int) Math.sqrt((double) (x * x + z * z + lightZ * lightZ));
+                lightValue = underwaterDepth * 1024 >> 8;
+                for (heightDx = 1; heightDx < 103; heightDx++) {
+                    for (heightDz = 1; heightDz < 103; heightDz++) {
+                        normalX = tileHeights[level][heightDz + 1][heightDx] - tileHeights[level][heightDz - 1][heightDx];
+                        normalY = tileHeights[level][heightDz][heightDx + 1] - tileHeights[level][heightDz][heightDx - 1];
                         normalZ = (int) Math.sqrt((double) (normalX * normalX + normalY * normalY + 65536));
-                        local273 = (normalX << 8) / normalZ;
-                        local322 = (local159[dz][dx + 1] >> 3) + (local159[dz][dx - 1] >> 2) + (local159[dz - 1][dx] >> 2) + (local159[dz + 1][dx] >> 3) + (local159[dz][dx] >> 1);
-                        local326 = -65536 / normalZ;
-                        local332 = (normalY << 8) / normalZ;
-                        len = (z * local332 + z0 * local273 + local326 * x0) / local200 + 96;
-                        levelLightMap[dz][dx] = len - (int) ((float) local322 * 1.7F);
+                        normalizedX = (normalX << 8) / normalZ;
+                        neighborZ = (shadowData[heightDz][heightDx + 1] >> 3) + (shadowData[heightDz][heightDx - 1] >> 2) + (shadowData[heightDz - 1][heightDx] >> 2) + (shadowData[heightDz + 1][heightDx] >> 3) + (shadowData[heightDz][heightDx] >> 1);
+                        normalizedY = -65536 / normalZ;
+                        normalizedZ = (normalY << 8) / normalZ;
+                        len = (lightZ * normalizedZ + z * normalizedX + normalizedY * x) / lightValue + 96;
+                        levelLightMap[heightDz][heightDx] = len - (int) ((float) neighborZ * 1.7F);
                     }
                 }
             }
-            for (z0 = 0; z0 < 104; z0++) {
-                rowWeightedHue[z0] = 0;
-                rowSaturation[z0] = 0;
-                rowLightness[z0] = 0;
-                rowChroma[z0] = 0;
-                rowCount[z0] = 0;
+            for (z = 0; z < 104; z++) {
+                rowWeightedHue[z] = 0;
+                rowSaturation[z] = 0;
+                rowLightness[z] = 0;
+                rowChroma[z] = 0;
+                rowCount[z] = 0;
             }
-            for (z0 = -5; z0 < 104; z0++) {
-                for (x0 = 0; x0 < 104; x0++) {
-                    z = z0 + 5;
+            for (z = -5; z < 104; z++) {
+                for (x = 0; x < 104; x++) {
+                    lightZ = z + 5;
                     @Pc(729) int debugMag;
-                    if (z < 104) {
-                        underlayId = tileUnderlays[level][z][x0] & 0xFF;
-                        if (underlayId > 0) {
-                            @Pc(693) FluType flu = FluTypeList.get(underlayId - 1);
-                            rowWeightedHue[x0] += flu.weightedHue;
-                            rowSaturation[x0] += flu.saturation;
-                            rowLightness[x0] += flu.lightness;
-                            rowChroma[x0] += flu.chroma;
-                            debugMag = rowCount[x0]++;
+                    if (lightZ < 104) {
+                        underwaterDepth = tileUnderlays[level][lightZ][x] & 0xFF;
+                        if (underwaterDepth > 0) {
+                            @Pc(693) FluType flu = FluTypeList.get(underwaterDepth - 1);
+                            rowWeightedHue[x] += flu.weightedHue;
+                            rowSaturation[x] += flu.saturation;
+                            rowLightness[x] += flu.lightness;
+                            rowChroma[x] += flu.chroma;
+                            debugMag = rowCount[x]++;
                         }
                     }
-                    underlayId = z0 - 5;
-                    if (underlayId >= 0) {
-                        local200 = tileUnderlays[level][underlayId][x0] & 0xFF;
-                        if (local200 > 0) {
-                            @Pc(758) FluType local758 = FluTypeList.get(local200 - 1);
-                            rowWeightedHue[x0] -= local758.weightedHue;
-                            rowSaturation[x0] -= local758.saturation;
-                            rowLightness[x0] -= local758.lightness;
-                            rowChroma[x0] -= local758.chroma;
-                            debugMag = rowCount[x0]--;
+                    underwaterDepth = z - 5;
+                    if (underwaterDepth >= 0) {
+                        lightValue = tileUnderlays[level][underwaterDepth][x] & 0xFF;
+                        if (lightValue > 0) {
+                            @Pc(758) FluType local758 = FluTypeList.get(lightValue - 1);
+                            rowWeightedHue[x] -= local758.weightedHue;
+                            rowSaturation[x] -= local758.saturation;
+                            rowLightness[x] -= local758.lightness;
+                            rowChroma[x] -= local758.chroma;
+                            debugMag = rowCount[x]--;
                         }
                     }
                 }
-                if (z0 >= 0) {
-                    x0 = 0;
-                    underlayId = 0;
-                    z = 0;
-                    local200 = 0;
-                    dx = 0;
-                    for (dz = -5; dz < 104; dz++) {
-                        len = dz + 5;
+                if (z >= 0) {
+                    x = 0;
+                    underwaterDepth = 0;
+                    lightZ = 0;
+                    lightValue = 0;
+                    heightDx = 0;
+                    for (heightDz = -5; heightDz < 104; heightDz++) {
+                        len = heightDz + 5;
                         if (len < 104) {
-                            z += rowSaturation[len];
-                            dx += rowCount[len];
-                            x0 += rowWeightedHue[len];
-                            local200 += rowChroma[len];
-                            underlayId += rowLightness[len];
+                            lightZ += rowSaturation[len];
+                            heightDx += rowCount[len];
+                            x += rowWeightedHue[len];
+                            lightValue += rowChroma[len];
+                            underwaterDepth += rowLightness[len];
                         }
-                        normalX = dz - 5;
+                        normalX = heightDz - 5;
                         if (normalX >= 0) {
-                            z -= rowSaturation[normalX];
-                            local200 -= rowChroma[normalX];
-                            x0 -= rowWeightedHue[normalX];
-                            dx -= rowCount[normalX];
-                            underlayId -= rowLightness[normalX];
+                            lightZ -= rowSaturation[normalX];
+                            lightValue -= rowChroma[normalX];
+                            x -= rowWeightedHue[normalX];
+                            heightDx -= rowCount[normalX];
+                            underwaterDepth -= rowLightness[normalX];
                         }
-                        if (dz >= 0 && dx > 0) {
-                            local142[z0][dz] = ColorUtils.method1309(underlayId / dx, z / dx, x0 * 256 / local200);
+                        if (heightDz >= 0 && heightDx > 0) {
+                            underlayColorMap[z][heightDz] = ColorUtils.method1309(underwaterDepth / heightDx, lightZ / heightDx, x * 256 / lightValue);
                         }
                     }
                 }
             }
-            for (z0 = 1; z0 < 103; z0++) {
-                label771: for (x0 = 1; x0 < 103; x0++) {
-                    if (underwater || allLevelsAreVisible() || (renderFlags[0][z0][x0] & 0x2) != 0 || (renderFlags[level][z0][x0] & 0x10) == 0 && getRenderLevel(x0, z0, level) == centralPlane) {
+            for (z = 1; z < 103; z++) {
+                waterCheckLoop: for (x = 1; x < 103; x++) {
+                    if (underwater || allLevelsAreVisible() || (renderFlags[0][z][x] & 0x2) != 0 || (renderFlags[level][z][x] & 0x10) == 0 && getRenderLevel(x, z, level) == centralPlane) {
                         if (firstVisibleLevel > level) {
                             firstVisibleLevel = level;
                         }
-                        z = tileUnderlays[level][z0][x0] & 0xFF;
-                        underlayId = tileOverlays[level][z0][x0] & 0xFF;
-                        if (z > 0 || underlayId > 0) {
-                            dx = tileHeights[level][z0 + 1][x0];
-                            local200 = tileHeights[level][z0][x0];
-                            len = tileHeights[level][z0][x0 + 1];
-                            dz = tileHeights[level][z0 + 1][x0 + 1];
+                        lightZ = tileUnderlays[level][z][x] & 0xFF;
+                        underwaterDepth = tileOverlays[level][z][x] & 0xFF;
+                        if (lightZ > 0 || underwaterDepth > 0) {
+                            heightDx = tileHeights[level][z + 1][x];
+                            lightValue = tileHeights[level][z][x];
+                            len = tileHeights[level][z][x + 1];
+                            heightDz = tileHeights[level][z + 1][x + 1];
                             if (level > 0) {
-                                @Pc(1067) boolean local1067 = true;
-                                if (z == 0 && tileShapes[level][z0][x0] != 0) {
-                                    local1067 = false;
+                                @Pc(1067) boolean canOcclude = true;
+                                if (lightZ == 0 && tileShapes[level][z][x] != 0) {
+                                    canOcclude = false;
                                 }
-                                if (underlayId > 0 && !FloTypeList.method4395(underlayId - 1).occlude) {
-                                    local1067 = false;
+                                if (underwaterDepth > 0 && !FloTypeList.method4395(underwaterDepth - 1).occlude) {
+                                    canOcclude = false;
                                 }
-                                if (local1067 && local200 == dx && local200 == dz && len == local200) {
-                                    occludeFlags[level][z0][x0] |= 0x4;
+                                if (canOcclude && lightValue == heightDx && lightValue == heightDz && len == lightValue) {
+                                    occludeFlags[level][z][x] |= 0x4;
                                 }
                             }
-                            if (z <= 0) {
+                            if (lightZ <= 0) {
                                 normalX = -1;
                                 normalY = 0;
                             } else {
-                                normalX = local142[z0][x0];
-                                normalZ = (normalX & 0x7F) + x;
+                                normalX = underlayColorMap[z][x];
+                                normalZ = (normalX & 0x7F) + tileX;
                                 if (normalZ < 0) {
                                     normalZ = 0;
                                 } else if (normalZ > 127) {
                                     normalZ = 127;
                                 }
-                                local273 = (normalX & 0x380) + (normalX + level2 & 0xFC00) + normalZ;
-                                normalY = Rasterizer.palette[ColorUtils.multiplyLightnessSafe(96, local273)];
+                                normalizedX = (normalX & 0x380) + (normalX + lightLevel & 0xFC00) + normalZ;
+                                normalY = Rasterizer.palette[ColorUtils.multiplyLightnessSafe(96, normalizedX)];
                             }
-                            normalZ = levelLightMap[z0][x0];
-                            local332 = levelLightMap[z0][x0 + 1];
-                            local273 = levelLightMap[z0 + 1][x0];
-                            local326 = levelLightMap[z0 + 1][x0 + 1];
-                            if (underlayId == 0) {
-                                setTile(level, z0, x0, 0, 0, -1, local200, dx, dz, len, ColorUtils.multiplyLightnessSafe(normalZ, normalX), ColorUtils.multiplyLightnessSafe(local273, normalX), ColorUtils.multiplyLightnessSafe(local326, normalX), ColorUtils.multiplyLightnessSafe(local332, normalX), 0, 0, 0, 0, normalY, 0);
-                                if (GlRenderer.enabled && level > 0 && normalX != -1 && FluTypeList.get(z - 1).blockShadow) {
-                                    ShadowManager.method4197(0, 0, true, false, z0, x0, local200 - tileHeights[0][z0][x0], -tileHeights[0][z0 + 1][x0] + dx, dz - tileHeights[0][z0 + 1][x0 + 1], len - tileHeights[0][z0][x0 + 1]);
+                            normalZ = levelLightMap[z][x];
+                            normalizedZ = levelLightMap[z][x + 1];
+                            normalizedX = levelLightMap[z + 1][x];
+                            normalizedY = levelLightMap[z + 1][x + 1];
+                            if (underwaterDepth == 0) {
+                                setTile(level, z, x, 0, 0, -1, lightValue, heightDx, heightDz, len, ColorUtils.multiplyLightnessSafe(normalZ, normalX), ColorUtils.multiplyLightnessSafe(normalizedX, normalX), ColorUtils.multiplyLightnessSafe(normalizedY, normalX), ColorUtils.multiplyLightnessSafe(normalizedZ, normalX), 0, 0, 0, 0, normalY, 0);
+                                if (GlRenderer.enabled && level > 0 && normalX != -1 && FluTypeList.get(lightZ - 1).blockShadow) {
+                                    ShadowManager.method4197(0, 0, true, false, z, x, lightValue - tileHeights[0][z][x], -tileHeights[0][z + 1][x] + heightDx, heightDz - tileHeights[0][z + 1][x + 1], len - tileHeights[0][z][x + 1]);
                                 }
                                 if (GlRenderer.enabled && !underwater && anIntArrayArray11 != null && level == 0) {
-                                    for (local322 = z0 - 1; local322 <= z0 + 1; local322++) {
-                                        for (@Pc(1794) int local1794 = x0 - 1; local1794 <= x0 + 1; local1794++) {
-                                            if ((local322 != z0 || x0 != local1794) && local322 >= 0 && local322 < 104 && local1794 >= 0 && local1794 < 104) {
-                                                @Pc(1834) int local1834 = tileOverlays[level][local322][local1794] & 0xFF;
-                                                if (local1834 != 0) {
-                                                    @Pc(1842) FloType local1842 = FloTypeList.method4395(local1834 - 1);
-                                                    if (local1842.material != -1 && Rasterizer.textureProvider.getMaterialType(local1842.material) == 4) {
-                                                        anIntArrayArray11[z0][x0] = local1842.waterColor + (local1842.waterOpaity << 24);
-                                                        continue label771;
+                                    for (neighborZ = z - 1; neighborZ <= z + 1; neighborZ++) {
+                                        for (@Pc(1794) int neighborX = x - 1; neighborX <= x + 1; neighborX++) {
+                                            if ((neighborZ != z || x != neighborX) && neighborZ >= 0 && neighborZ < 104 && neighborX >= 0 && neighborX < 104) {
+                                                @Pc(1834) int neighborOverlayId = tileOverlays[level][neighborZ][neighborX] & 0xFF;
+                                                if (neighborOverlayId != 0) {
+                                                    @Pc(1842) FloType neighborFloType = FloTypeList.method4395(neighborOverlayId - 1);
+                                                    if (neighborFloType.material != -1 && Rasterizer.textureProvider.getMaterialType(neighborFloType.material) == 4) {
+                                                        anIntArrayArray11[z][x] = neighborFloType.waterColor + (neighborFloType.waterOpaity << 24);
+                                                        continue waterCheckLoop;
                                                     }
                                                 }
                                             }
@@ -773,25 +773,25 @@ public class SceneGraph {
                                     }
                                 }
                             } else {
-                                local322 = tileShapes[level][z0][x0] + 1;
-                                @Pc(1242) byte local1242 = tileAngles[level][z0][x0];
-                                @Pc(1248) FloType local1248 = FloTypeList.method4395(underlayId - 1);
-                                @Pc(1301) int local1301;
-                                @Pc(1353) int local1353;
-                                @Pc(1288) int local1288;
+                                neighborZ = tileShapes[level][z][x] + 1;
+                                @Pc(1242) byte tileAngle = tileAngles[level][z][x];
+                                @Pc(1248) FloType floType = FloTypeList.method4395(underwaterDepth - 1);
+                                @Pc(1301) int baseColor;
+                                @Pc(1353) int overlayColor;
+                                @Pc(1288) int materialId;
                                 if (GlRenderer.enabled && !underwater && anIntArrayArray11 != null && level == 0) {
-                                    if (local1248.material != -1 && Rasterizer.textureProvider.getMaterialType(local1248.material) == 4) {
-                                        anIntArrayArray11[z0][x0] = (local1248.waterOpaity << 24) + local1248.waterColor;
+                                    if (floType.material != -1 && Rasterizer.textureProvider.getMaterialType(floType.material) == 4) {
+                                        anIntArrayArray11[z][x] = (floType.waterOpaity << 24) + floType.waterColor;
                                     } else {
-                                        label737: for (local1288 = z0 - 1; local1288 <= z0 + 1; local1288++) {
-                                            for (local1301 = x0 - 1; local1301 <= x0 + 1; local1301++) {
-                                                if ((z0 != local1288 || local1301 != x0) && local1288 >= 0 && local1288 < 104 && local1301 >= 0 && local1301 < 104) {
-                                                    local1353 = tileOverlays[level][local1288][local1301] & 0xFF;
-                                                    if (local1353 != 0) {
-                                                        @Pc(1366) FloType local1366 = FloTypeList.method4395(local1353 - 1);
-                                                        if (local1366.material != -1 && Rasterizer.textureProvider.getMaterialType(local1366.material) == 4) {
-                                                            anIntArrayArray11[z0][x0] = local1366.waterColor + (local1366.waterOpaity << 24);
-                                                            break label737;
+                                        neighborWaterCheck: for (materialId = z - 1; materialId <= z + 1; materialId++) {
+                                            for (baseColor = x - 1; baseColor <= x + 1; baseColor++) {
+                                                if ((z != materialId || baseColor != x) && materialId >= 0 && materialId < 104 && baseColor >= 0 && baseColor < 104) {
+                                                    overlayColor = tileOverlays[level][materialId][baseColor] & 0xFF;
+                                                    if (overlayColor != 0) {
+                                                        @Pc(1366) FloType neighborFloType = FloTypeList.method4395(overlayColor - 1);
+                                                        if (neighborFloType.material != -1 && Rasterizer.textureProvider.getMaterialType(neighborFloType.material) == 4) {
+                                                            anIntArrayArray11[z][x] = neighborFloType.waterColor + (neighborFloType.waterOpaity << 24);
+                                                            break neighborWaterCheck;
                                                         }
                                                     }
                                                 }
@@ -799,43 +799,43 @@ public class SceneGraph {
                                         }
                                     }
                                 }
-                                local1288 = local1248.material;
-                                if (local1288 >= 0 && !Rasterizer.textureProvider.method3236(local1288)) {
-                                    local1288 = -1;
+                                materialId = floType.material;
+                                if (materialId >= 0 && !Rasterizer.textureProvider.method3236(materialId)) {
+                                    materialId = -1;
                                 }
-                                @Pc(1458) int local1458;
-                                @Pc(1429) int local1429;
-                                if (local1288 >= 0) {
-                                    local1301 = -1;
-                                    local1353 = Rasterizer.palette[ColorUtils.multiplyLightnessGrayscale(Rasterizer.textureProvider.getAverageColor(local1288), 96)];
-                                } else if (local1248.baseColor == -1) {
-                                    local1301 = -2;
-                                    local1353 = 0;
+                                @Pc(1458) int adjustedSaturation;
+                                @Pc(1429) int adjustedHue;
+                                if (materialId >= 0) {
+                                    baseColor = -1;
+                                    overlayColor = Rasterizer.palette[ColorUtils.multiplyLightnessGrayscale(Rasterizer.textureProvider.getAverageColor(materialId), 96)];
+                                } else if (floType.baseColor == -1) {
+                                    baseColor = -2;
+                                    overlayColor = 0;
                                 } else {
-                                    local1301 = local1248.baseColor;
-                                    local1429 = x + (local1301 & 0x7F);
-                                    if (local1429 < 0) {
-                                        local1429 = 0;
-                                    } else if (local1429 > 127) {
-                                        local1429 = 127;
+                                    baseColor = floType.baseColor;
+                                    adjustedHue = tileX + (baseColor & 0x7F);
+                                    if (adjustedHue < 0) {
+                                        adjustedHue = 0;
+                                    } else if (adjustedHue > 127) {
+                                        adjustedHue = 127;
                                     }
-                                    local1458 = (local1301 & 0x380) + ((local1301 + level2 & 0xFC00) + local1429);
-                                    local1353 = Rasterizer.palette[ColorUtils.multiplyLightnessGrayscale(local1458, 96)];
+                                    adjustedSaturation = (baseColor & 0x380) + ((baseColor + lightLevel & 0xFC00) + adjustedHue);
+                                    overlayColor = Rasterizer.palette[ColorUtils.multiplyLightnessGrayscale(adjustedSaturation, 96)];
                                 }
-                                if (local1248.secondaryColor >= 0) {
-                                    local1429 = local1248.secondaryColor;
-                                    local1458 = x + (local1429 & 0x7F);
-                                    if (local1458 < 0) {
-                                        local1458 = 0;
-                                    } else if (local1458 > 127) {
-                                        local1458 = 127;
+                                if (floType.secondaryColor >= 0) {
+                                    adjustedHue = floType.secondaryColor;
+                                    adjustedSaturation = tileX + (adjustedHue & 0x7F);
+                                    if (adjustedSaturation < 0) {
+                                        adjustedSaturation = 0;
+                                    } else if (adjustedSaturation > 127) {
+                                        adjustedSaturation = 127;
                                     }
-                                    @Pc(1529) int local1529 = (local1429 & 0x380) + ((local1429 + level2 & 0xFC00) + local1458);
-                                    local1353 = Rasterizer.palette[ColorUtils.multiplyLightnessGrayscale(local1529, 96)];
+                                    @Pc(1529) int secondaryColorValue = (adjustedHue & 0x380) + ((adjustedHue + lightLevel & 0xFC00) + adjustedSaturation);
+                                    overlayColor = Rasterizer.palette[ColorUtils.multiplyLightnessGrayscale(secondaryColorValue, 96)];
                                 }
-                                setTile(level, z0, x0, local322, local1242, local1288, local200, dx, dz, len, ColorUtils.multiplyLightnessSafe(normalZ, normalX), ColorUtils.multiplyLightnessSafe(local273, normalX), ColorUtils.multiplyLightnessSafe(local326, normalX), ColorUtils.multiplyLightnessSafe(local332, normalX), ColorUtils.multiplyLightnessGrayscale(local1301, normalZ), ColorUtils.multiplyLightnessGrayscale(local1301, local273), ColorUtils.multiplyLightnessGrayscale(local1301, local326), ColorUtils.multiplyLightnessGrayscale(local1301, local332), normalY, local1353);
+                                setTile(level, z, x, neighborZ, tileAngle, materialId, lightValue, heightDx, heightDz, len, ColorUtils.multiplyLightnessSafe(normalZ, normalX), ColorUtils.multiplyLightnessSafe(normalizedX, normalX), ColorUtils.multiplyLightnessSafe(normalizedY, normalX), ColorUtils.multiplyLightnessSafe(normalizedZ, normalX), ColorUtils.multiplyLightnessGrayscale(baseColor, normalZ), ColorUtils.multiplyLightnessGrayscale(baseColor, normalizedX), ColorUtils.multiplyLightnessGrayscale(baseColor, normalizedY), ColorUtils.multiplyLightnessGrayscale(baseColor, normalizedZ), normalY, overlayColor);
                                 if (GlRenderer.enabled && level > 0) {
-                                    ShadowManager.method4197(local322, local1242, local1301 == -2 || !local1248.hardShadow, normalX == -1 || !FluTypeList.get(z - 1).blockShadow, z0, x0, local200 - tileHeights[0][z0][x0], dx - tileHeights[0][z0 + 1][x0], dz - tileHeights[0][z0 + 1][x0 + 1], -tileHeights[0][z0][x0 + 1] + len);
+                                    ShadowManager.method4197(neighborZ, tileAngle, baseColor == -2 || !floType.hardShadow, normalX == -1 || !FluTypeList.get(lightZ - 1).blockShadow, z, x, lightValue - tileHeights[0][z][x], heightDx - tileHeights[0][z + 1][x], heightDz - tileHeights[0][z + 1][x + 1], -tileHeights[0][z][x + 1] + len);
                                 }
                             }
                         }
@@ -843,41 +843,41 @@ public class SceneGraph {
                 }
             }
             if (GlRenderer.enabled) {
-                @Pc(1888) float[][] local1888 = new float[105][105];
-                @Pc(1892) int[][] local1892 = tileHeights[level];
-                @Pc(1896) float[][] local1896 = new float[105][105];
-                @Pc(1900) float[][] local1900 = new float[105][105];
-                local200 = 1;
+                @Pc(1888) float[][] normalXMap = new float[105][105];
+                @Pc(1892) int[][] heightMap = tileHeights[level];
+                @Pc(1896) float[][] normalYMap = new float[105][105];
+                @Pc(1900) float[][] normalZMap = new float[105][105];
+                lightValue = 1;
                 while (true) {
-                    if (local200 > 103) {
-                        @Pc(2025) GlTile[] local2025;
+                    if (lightValue > 103) {
+                        @Pc(2025) GlTile[] baseTiles;
                         if (underwater) {
-                            local2025 = method3501(renderFlags, tileShapes[level], tileUnderlays[level], levelLightMap, local1896, anIntArrayArray11, tileOverlays[level], tileAngles[level], local1888, level, local1900, local142, tileHeights[level], surfaceTileHeights[0]);
-                            method2280(level, local2025);
+                            baseTiles = method3501(renderFlags, tileShapes[level], tileUnderlays[level], levelLightMap, normalYMap, anIntArrayArray11, tileOverlays[level], tileAngles[level], normalXMap, level, normalZMap, underlayColorMap, tileHeights[level], surfaceTileHeights[0]);
+                            method2280(level, baseTiles);
                             break;
                         }
-                        local2025 = method3501(renderFlags, tileShapes[level], tileUnderlays[level], levelLightMap, local1896, null, tileOverlays[level], tileAngles[level], local1888, level, local1900, local142, tileHeights[level], null);
-                        @Pc(2049) GlTile[] local2049 = method2(local1896, local1888, tileHeights[level], level, local1900, tileAngles[level], levelLightMap, tileShapes[level], tileUnderlays[level], tileOverlays[level], renderFlags);
-                        @Pc(2057) GlTile[] local2057 = new GlTile[local2025.length + local2049.length];
-                        for (len = 0; len < local2025.length; len++) {
-                            local2057[len] = local2025[len];
+                        baseTiles = method3501(renderFlags, tileShapes[level], tileUnderlays[level], levelLightMap, normalYMap, null, tileOverlays[level], tileAngles[level], normalXMap, level, normalZMap, underlayColorMap, tileHeights[level], null);
+                        @Pc(2049) GlTile[] additionalTiles = method2(normalYMap, normalXMap, tileHeights[level], level, normalZMap, tileAngles[level], levelLightMap, tileShapes[level], tileUnderlays[level], tileOverlays[level], renderFlags);
+                        @Pc(2057) GlTile[] combinedTiles = new GlTile[baseTiles.length + additionalTiles.length];
+                        for (len = 0; len < baseTiles.length; len++) {
+                            combinedTiles[len] = baseTiles[len];
                         }
-                        for (len = 0; len < local2049.length; len++) {
-                            local2057[local2025.length + len] = local2049[len];
+                        for (len = 0; len < additionalTiles.length; len++) {
+                            combinedTiles[baseTiles.length + len] = additionalTiles[len];
                         }
-                        method2280(level, local2057);
-                        method3393(local1900, tileUnderlays[level], tileAngles[level], LightingManager.lights, level, LightingManager.lightCount, local1896, tileShapes[level], tileOverlays[level], tileHeights[level], local1888);
+                        method2280(level, combinedTiles);
+                        method3393(normalZMap, tileUnderlays[level], tileAngles[level], LightingManager.lights, level, LightingManager.lightCount, normalYMap, tileShapes[level], tileOverlays[level], tileHeights[level], normalXMap);
                         break;
                     }
-                    for (dx = 1; dx <= 103; dx++) {
-                        len = local1892[dx][local200 + 1] - local1892[dx][local200 - 1];
-                        dz = local1892[dx + 1][local200] - local1892[dx - 1][local200];
-                        @Pc(1962) float local1962 = (float) Math.sqrt((double) (dz * dz + len * len + 65536));
-                        local1888[dx][local200] = (float) dz / local1962;
-                        local1896[dx][local200] = -256.0F / local1962;
-                        local1900[dx][local200] = (float) len / local1962;
+                    for (heightDx = 1; heightDx <= 103; heightDx++) {
+                        len = heightMap[heightDx][lightValue + 1] - heightMap[heightDx][lightValue - 1];
+                        heightDz = heightMap[heightDx + 1][lightValue] - heightMap[heightDx - 1][lightValue];
+                        @Pc(1962) float normalLength = (float) Math.sqrt((double) (heightDz * heightDz + len * len + 65536));
+                        normalXMap[heightDx][lightValue] = (float) heightDz / normalLength;
+                        normalYMap[heightDx][lightValue] = -256.0F / normalLength;
+                        normalZMap[heightDx][lightValue] = (float) len / normalLength;
                     }
-                    local200++;
+                    lightValue++;
                 }
             }
             tileUnderlays[level] = null;
@@ -890,122 +890,122 @@ public class SceneGraph {
         if (underwater) {
             return;
         }
-        @Pc(2204) int local2204;
+        @Pc(2204) int coord;
         for (level = 0; level < 104; level++) {
-            for (local2204 = 0; local2204 < 104; local2204++) {
-                if ((renderFlags[1][level][local2204] & 0x2) == 2) {
-                    method3884(level, local2204);
+            for (coord = 0; coord < 104; coord++) {
+                if ((renderFlags[1][level][coord] & 0x2) == 2) {
+                    method3884(level, coord);
                 }
             }
         }
         for (level = 0; level < 4; level++) {
-            for (local2204 = 0; local2204 <= 104; local2204++) {
-                for (z0 = 0; z0 <= 104; z0++) {
-                    if ((occludeFlags[level][z0][local2204] & 0x1) != 0) {
-                        local200 = level;
-                        for (x0 = local2204; x0 > 0 && (occludeFlags[level][z0][x0 - 1] & 0x1) != 0; x0--) {
+            for (coord = 0; coord <= 104; coord++) {
+                for (z = 0; z <= 104; z++) {
+                    if ((occludeFlags[level][z][coord] & 0x1) != 0) {
+                        lightValue = level;
+                        for (x = coord; x > 0 && (occludeFlags[level][z][x - 1] & 0x1) != 0; x--) {
                             // TODO why is this here?
                         }
-                        underlayId = level;
-                        for (z = local2204; z < 104 && (occludeFlags[level][z0][z + 1] & 0x1) != 0; z++) {
+                        underwaterDepth = level;
+                        for (lightZ = coord; lightZ < 104 && (occludeFlags[level][z][lightZ + 1] & 0x1) != 0; lightZ++) {
                             // TODO why is this here?
                         }
-                        label454: while (underlayId > 0) {
-                            for (dx = x0; dx <= z; dx++) {
-                                if ((occludeFlags[underlayId - 1][z0][dx] & 0x1) == 0) {
-                                    break label454;
+                        findLowerLevel: while (underwaterDepth > 0) {
+                            for (heightDx = x; heightDx <= lightZ; heightDx++) {
+                                if ((occludeFlags[underwaterDepth - 1][z][heightDx] & 0x1) == 0) {
+                                    break findLowerLevel;
                                 }
                             }
-                            underlayId--;
+                            underwaterDepth--;
                         }
-                        label443: while (local200 < 3) {
-                            for (dx = x0; dx <= z; dx++) {
-                                if ((occludeFlags[local200 + 1][z0][dx] & 0x1) == 0) {
-                                    break label443;
+                        findUpperLevel: while (lightValue < 3) {
+                            for (heightDx = x; heightDx <= lightZ; heightDx++) {
+                                if ((occludeFlags[lightValue + 1][z][heightDx] & 0x1) == 0) {
+                                    break findUpperLevel;
                                 }
                             }
-                            local200++;
+                            lightValue++;
                         }
-                        dx = (local200 + 1 - underlayId) * (-x0 + (z - -1));
-                        if (dx >= 8) {
-                            len = tileHeights[local200][z0][x0] - 240;
-                            normalX = tileHeights[underlayId][z0][x0];
-                            SceneGraph_Class120.method4647(1, z0 * 128, z0 * 128, x0 * 128, z * 128 + 128, len, normalX);
-                            for (normalY = underlayId; normalY <= local200; normalY++) {
-                                for (normalZ = x0; normalZ <= z; normalZ++) {
-                                    occludeFlags[normalY][z0][normalZ] &= 0xFFFFFFFE;
+                        heightDx = (lightValue + 1 - underwaterDepth) * (-x + (lightZ - -1));
+                        if (heightDx >= 8) {
+                            len = tileHeights[lightValue][z][x] - 240;
+                            normalX = tileHeights[underwaterDepth][z][x];
+                            SceneGraph_Class120.method4647(1, z * 128, z * 128, x * 128, lightZ * 128 + 128, len, normalX);
+                            for (normalY = underwaterDepth; normalY <= lightValue; normalY++) {
+                                for (normalZ = x; normalZ <= lightZ; normalZ++) {
+                                    occludeFlags[normalY][z][normalZ] &= 0xFFFFFFFE;
                                 }
                             }
                         }
                     }
-                    if ((occludeFlags[level][z0][local2204] & 0x2) != 0) {
-                        for (x0 = z0; x0 > 0 && (occludeFlags[level][x0 - 1][local2204] & 0x2) != 0; x0--) {
+                    if ((occludeFlags[level][z][coord] & 0x2) != 0) {
+                        for (x = z; x > 0 && (occludeFlags[level][x - 1][coord] & 0x2) != 0; x--) {
                             // TODO why is this here?
                         }
-                        local200 = level;
-                        underlayId = level;
-                        for (z = z0; z < 104 && (occludeFlags[level][z + 1][local2204] & 0x2) != 0; z++) {
+                        lightValue = level;
+                        underwaterDepth = level;
+                        for (lightZ = z; lightZ < 104 && (occludeFlags[level][lightZ + 1][coord] & 0x2) != 0; lightZ++) {
                             // TODO why is this here?
                         }
-                        label508: while (underlayId > 0) {
-                            for (dx = x0; dx <= z; dx++) {
-                                if ((occludeFlags[underlayId - 1][dx][local2204] & 0x2) == 0) {
-                                    break label508;
+                        findLowerLevelY: while (underwaterDepth > 0) {
+                            for (heightDx = x; heightDx <= lightZ; heightDx++) {
+                                if ((occludeFlags[underwaterDepth - 1][heightDx][coord] & 0x2) == 0) {
+                                    break findLowerLevelY;
                                 }
                             }
-                            underlayId--;
+                            underwaterDepth--;
                         }
-                        label497: while (local200 < 3) {
-                            for (dx = x0; dx <= z; dx++) {
-                                if ((occludeFlags[local200 + 1][dx][local2204] & 0x2) == 0) {
-                                    break label497;
+                        findUpperLevelY: while (lightValue < 3) {
+                            for (heightDx = x; heightDx <= lightZ; heightDx++) {
+                                if ((occludeFlags[lightValue + 1][heightDx][coord] & 0x2) == 0) {
+                                    break findUpperLevelY;
                                 }
                             }
-                            local200++;
+                            lightValue++;
                         }
-                        dx = (z + 1 - x0) * (-underlayId + local200 - -1);
-                        if (dx >= 8) {
-                            len = tileHeights[local200][x0][local2204] - 240;
-                            normalX = tileHeights[underlayId][x0][local2204];
-                            SceneGraph_Class120.method4647(2, x0 * 128, z * 128 + 128, local2204 * 128, local2204 * 128, len, normalX);
-                            for (normalY = underlayId; normalY <= local200; normalY++) {
-                                for (normalZ = x0; normalZ <= z; normalZ++) {
-                                    occludeFlags[normalY][normalZ][local2204] &= 0xFFFFFFFD;
+                        heightDx = (lightZ + 1 - x) * (-underwaterDepth + lightValue - -1);
+                        if (heightDx >= 8) {
+                            len = tileHeights[lightValue][x][coord] - 240;
+                            normalX = tileHeights[underwaterDepth][x][coord];
+                            SceneGraph_Class120.method4647(2, x * 128, lightZ * 128 + 128, coord * 128, coord * 128, len, normalX);
+                            for (normalY = underwaterDepth; normalY <= lightValue; normalY++) {
+                                for (normalZ = x; normalZ <= lightZ; normalZ++) {
+                                    occludeFlags[normalY][normalZ][coord] &= 0xFFFFFFFD;
                                 }
                             }
                         }
                     }
-                    if ((occludeFlags[level][z0][local2204] & 0x4) != 0) {
-                        x0 = z0;
-                        z = z0;
-                        for (underlayId = local2204; underlayId > 0 && (occludeFlags[level][z0][underlayId - 1] & 0x4) != 0; underlayId--) {
+                    if ((occludeFlags[level][z][coord] & 0x4) != 0) {
+                        x = z;
+                        lightZ = z;
+                        for (underwaterDepth = coord; underwaterDepth > 0 && (occludeFlags[level][z][underwaterDepth - 1] & 0x4) != 0; underwaterDepth--) {
                             // TODO why is this here?
                         }
-                        for (local200 = local2204; local200 < 104 && (occludeFlags[level][z0][local200 + 1] & 0x4) != 0; local200++) {
+                        for (lightValue = coord; lightValue < 104 && (occludeFlags[level][z][lightValue + 1] & 0x4) != 0; lightValue++) {
                             // TODO why is this here?
                         }
-                        label562: while (x0 > 0) {
-                            for (dx = underlayId; dx <= local200; dx++) {
-                                if ((occludeFlags[level][x0 - 1][dx] & 0x4) == 0) {
-                                    break label562;
+                        expandNegativeX: while (x > 0) {
+                            for (heightDx = underwaterDepth; heightDx <= lightValue; heightDx++) {
+                                if ((occludeFlags[level][x - 1][heightDx] & 0x4) == 0) {
+                                    break expandNegativeX;
                                 }
                             }
-                            x0--;
+                            x--;
                         }
-                        label551: while (z < 104) {
-                            for (dx = underlayId; dx <= local200; dx++) {
-                                if ((occludeFlags[level][z + 1][dx] & 0x4) == 0) {
-                                    break label551;
+                        expandPositiveX: while (lightZ < 104) {
+                            for (heightDx = underwaterDepth; heightDx <= lightValue; heightDx++) {
+                                if ((occludeFlags[level][lightZ + 1][heightDx] & 0x4) == 0) {
+                                    break expandPositiveX;
                                 }
                             }
-                            z++;
+                            lightZ++;
                         }
-                        if ((z + 1 - x0) * (local200 - (underlayId - 1)) >= 4) {
-                            dx = tileHeights[level][x0][underlayId];
-                            SceneGraph_Class120.method4647(4, x0 * 128, z * 128 + 128, underlayId * 128, local200 * 128 + 128, dx, dx);
-                            for (dz = x0; dz <= z; dz++) {
-                                for (len = underlayId; len <= local200; len++) {
-                                    occludeFlags[level][dz][len] &= 0xFFFFFFFB;
+                        if ((lightZ + 1 - x) * (lightValue - (underwaterDepth - 1)) >= 4) {
+                            heightDx = tileHeights[level][x][underwaterDepth];
+                            SceneGraph_Class120.method4647(4, x * 128, lightZ * 128 + 128, underwaterDepth * 128, lightValue * 128 + 128, heightDx, heightDx);
+                            for (heightDz = x; heightDz <= lightZ; heightDz++) {
+                                for (len = underwaterDepth; len <= lightValue; len++) {
+                                    occludeFlags[level][heightDz][len] &= 0xFFFFFFFB;
                                 }
                             }
                         }
@@ -1021,12 +1021,12 @@ public class SceneGraph {
     }
 
     @OriginalMember(owner = "runetek4.client!lg", name = "a", descriptor = "(I)V")
-    public static void method2750(@OriginalArg(0) int arg0) {
-        anInt5276 = arg0;
-        for (@Pc(3) int local3 = 0; local3 < width; local3++) {
-            for (@Pc(8) int local8 = 0; local8 < length; local8++) {
-                if (tiles[arg0][local3][local8] == null) {
-                    tiles[arg0][local3][local8] = new Tile(arg0, local3, local8);
+    public static void ensureTilesExist(@OriginalArg(0) int plane) {
+        anInt5276 = plane;
+        for (@Pc(3) int x = 0; x < width; x++) {
+            for (@Pc(8) int z = 0; z < length; z++) {
+                if (tiles[plane][x][z] == null) {
+                    tiles[plane][x][z] = new Tile(plane, x, z);
                 }
             }
         }
@@ -1062,7 +1062,7 @@ public class SceneGraph {
     }
 
     @OriginalMember(owner = "runetek4.client!p", name = "a", descriptor = "(IZIZLclient!mj;IIIBII)V")
-    public static void addLoc(@OriginalArg(0) int currentlevel, @OriginalArg(1) boolean lowmem, @OriginalArg(2) int level, @OriginalArg(3) boolean highmem, @OriginalArg(4) CollisionMap collision, @OriginalArg(5) int arg5, @OriginalArg(6) int shape, @OriginalArg(7) int x, @OriginalArg(9) int z, @OriginalArg(10) int rotation) {
+    public static void addLoc(@OriginalArg(0) int currentlevel, @OriginalArg(1) boolean lowmem, @OriginalArg(2) int level, @OriginalArg(3) boolean highmem, @OriginalArg(4) CollisionMap collision, @OriginalArg(5) int locId, @OriginalArg(6) int shape, @OriginalArg(7) int x, @OriginalArg(9) int z, @OriginalArg(10) int rotation) {
         if (lowmem && !allLevelsAreVisible() && (renderFlags[0][x][z] & 0x2) == 0) {
             if ((renderFlags[level][x][z] & 0x10) != 0) {
                 return;
@@ -1074,7 +1074,7 @@ public class SceneGraph {
         if (level < firstVisibleLevel) {
             firstVisibleLevel = level;
         }
-        @Pc(62) LocType locType = LocTypeList.get(arg5);
+        @Pc(62) LocType locType = LocTypeList.get(locId);
         if (GlRenderer.enabled && locType.istexture) {
             return;
         }
@@ -1106,8 +1106,8 @@ public class SceneGraph {
             north = z + (length + 1 >> 1);
         }
         @Pc(153) int[][] currentHeightmap = tileHeights[currentlevel];
-        @Pc(165) int local165 = (width << 6) + (x << 7);
-        @Pc(173) int local173 = (length << 6) + (z << 7);
+        @Pc(165) int fineX = (width << 6) + (x << 7);
+        @Pc(173) int fineZ = (length << 6) + (z << 7);
         @Pc(199) int averageY = currentHeightmap[west][north] + currentHeightmap[east][south] + currentHeightmap[west][south] + currentHeightmap[east][north] >> 2;
         @Pc(201) int diffAverageY = 0;
         @Pc(213) int[][] heightmap;
@@ -1134,20 +1134,20 @@ public class SceneGraph {
         if (locType.hasBackgroundSound()) {
             AreaSoundManager.add(z, locType, rotation, null, x, level, null);
         }
-        @Pc(330) boolean local330 = locType.hardshadow & !highmem;
-        bitset |= (long) arg5 << 32;
+        @Pc(330) boolean hasShadow = locType.hardshadow & !highmem;
+        bitset |= (long) locId << 32;
         @Pc(387) Entity entity;
-        @Pc(403) LocEntity local403;
+        @Pc(403) LocEntity locEntity;
         if (shape == LocType.GROUND_DECOR) {
             if (Preferences.showGroundDecorations || locType.active != 0 || locType.blockwalk == 1 || locType.forcedecor) {
                 if (locType.anim == -1 && locType.multiloc == null && !locType.aBoolean214) {
-                    local403 = locType.method3428(rotation, local165, currentHeightmap, 22, averageY, heightmap, lowmem, null, local330, local173);
-                    if (GlRenderer.enabled && local330) {
-                        ShadowManager.method4211(local403.sprite, local165, diffAverageY, local173);
+                    locEntity = locType.method3428(rotation, fineX, currentHeightmap, 22, averageY, heightmap, lowmem, null, hasShadow, fineZ);
+                    if (GlRenderer.enabled && hasShadow) {
+                        ShadowManager.method4211(locEntity.sprite, fineX, diffAverageY, fineZ);
                     }
-                    entity = local403.model;
+                    entity = locEntity.model;
                 } else {
-                    entity = new Loc(arg5, 22, rotation, currentlevel, x, z, locType.anim, locType.randomanimframe, null);
+                    entity = new Loc(locId, 22, rotation, currentlevel, x, z, locType.anim, locType.randomanimframe, null);
                 }
                 setGroundDecor(level, x, z, averageY, entity, bitset, locType.renderUnderFeet);
                 if (locType.blockwalk == 1 && collision != null) {
@@ -1156,28 +1156,28 @@ public class SceneGraph {
             }
         } else if (shape == LocType.CENTREPIECE_STRAIGHT || shape == LocType.CENTREPIECE_DIAGONAL) {
             if (locType.anim == -1 && locType.multiloc == null && !locType.aBoolean214) {
-                local403 = locType.method3428(shape == LocType.CENTREPIECE_DIAGONAL ? rotation + 4 : rotation, local165, currentHeightmap, 10, averageY, heightmap, lowmem, null, local330, local173);
-                if (GlRenderer.enabled && local330) {
-                    ShadowManager.method4211(local403.sprite, local165, diffAverageY, local173);
+                locEntity = locType.method3428(shape == LocType.CENTREPIECE_DIAGONAL ? rotation + 4 : rotation, fineX, currentHeightmap, 10, averageY, heightmap, lowmem, null, hasShadow, fineZ);
+                if (GlRenderer.enabled && hasShadow) {
+                    ShadowManager.method4211(locEntity.sprite, fineX, diffAverageY, fineZ);
                 }
-                entity = local403.model;
+                entity = locEntity.model;
             } else {
-                entity = new Loc(arg5, 10, shape == 11 ? rotation + 4 : rotation, currentlevel, x, z, locType.anim, locType.randomanimframe, null);
+                entity = new Loc(locId, 10, shape == 11 ? rotation + 4 : rotation, currentlevel, x, z, locType.anim, locType.randomanimframe, null);
             }
             if (entity != null) {
-                @Pc(531) boolean local531 = method35(level, x, z, averageY, width, length, entity, bitset);
-                if (locType.hashardshadow && local531 && lowmem) {
-                    @Pc(541) int local541 = 15;
+                @Pc(531) boolean wasAdded = method35(level, x, z, averageY, width, length, entity, bitset);
+                if (locType.hashardshadow && wasAdded && lowmem) {
+                    @Pc(541) int shadowRadius = 15;
                     if (entity instanceof Model) {
-                        local541 = ((Model) entity).getLengthXZ() / 4;
-                        if (local541 > 30) {
-                            local541 = 30;
+                        shadowRadius = ((Model) entity).getLengthXZ() / 4;
+                        if (shadowRadius > 30) {
+                            shadowRadius = 30;
                         }
                     }
-                    for (@Pc(560) int local560 = 0; local560 <= width; local560++) {
-                        for (@Pc(565) int local565 = 0; local565 <= length; local565++) {
-                            if (shadowmap[level][x + local560][local565 + z] < local541) {
-                                shadowmap[level][x + local560][z + local565] = (byte) local541;
+                    for (@Pc(560) int offsetX = 0; offsetX <= width; offsetX++) {
+                        for (@Pc(565) int offsetZ = 0; offsetZ <= length; offsetZ++) {
+                            if (shadowmap[level][x + offsetX][offsetZ + z] < shadowRadius) {
+                                shadowmap[level][x + offsetX][z + offsetZ] = (byte) shadowRadius;
                             }
                         }
                     }
@@ -1188,13 +1188,13 @@ public class SceneGraph {
             }
         } else if (shape >= LocType.ROOF_STRAIGHT) {
             if (locType.anim == -1 && locType.multiloc == null && !locType.aBoolean214) {
-                local403 = locType.method3428(rotation, local165, currentHeightmap, shape, averageY, heightmap, lowmem, null, local330, local173);
-                if (GlRenderer.enabled && local330) {
-                    ShadowManager.method4211(local403.sprite, local165, diffAverageY, local173);
+                locEntity = locType.method3428(rotation, fineX, currentHeightmap, shape, averageY, heightmap, lowmem, null, hasShadow, fineZ);
+                if (GlRenderer.enabled && hasShadow) {
+                    ShadowManager.method4211(locEntity.sprite, fineX, diffAverageY, fineZ);
                 }
-                entity = local403.model;
+                entity = locEntity.model;
             } else {
-                entity = new Loc(arg5, shape, rotation, currentlevel, x, z, locType.anim, locType.randomanimframe, null);
+                entity = new Loc(locId, shape, rotation, currentlevel, x, z, locType.anim, locType.randomanimframe, null);
             }
             method35(level, x, z, averageY, 1, 1, entity, bitset);
             if (lowmem && shape >= 12 && shape <= 17 && shape != 13 && level > 0) {
@@ -1205,13 +1205,13 @@ public class SceneGraph {
             }
         } else if (shape == LocType.WALL_STRAIGHT) {
             if (locType.anim == -1 && locType.multiloc == null && !locType.aBoolean214) {
-                local403 = locType.method3428(rotation, local165, currentHeightmap, 0, averageY, heightmap, lowmem, null, local330, local173);
-                if (GlRenderer.enabled && local330) {
-                    ShadowManager.method4211(local403.sprite, local165, diffAverageY, local173);
+                locEntity = locType.method3428(rotation, fineX, currentHeightmap, 0, averageY, heightmap, lowmem, null, hasShadow, fineZ);
+                if (GlRenderer.enabled && hasShadow) {
+                    ShadowManager.method4211(locEntity.sprite, fineX, diffAverageY, fineZ);
                 }
-                entity = local403.model;
+                entity = locEntity.model;
             } else {
-                entity = new Loc(arg5, 0, rotation, currentlevel, x, z, locType.anim, locType.randomanimframe, null);
+                entity = new Loc(locId, 0, rotation, currentlevel, x, z, locType.anim, locType.randomanimframe, null);
             }
             addWall(level, x, z, averageY, entity, null, ROTATION_WALL_TYPE[rotation], 0, bitset);
             if (lowmem) {
@@ -1257,13 +1257,13 @@ public class SceneGraph {
             }
         } else if (shape == LocType.WALL_DIAGONAL_CORNER) {
             if (locType.anim == -1 && locType.multiloc == null && !locType.aBoolean214) {
-                local403 = locType.method3428(rotation, local165, currentHeightmap, 1, averageY, heightmap, lowmem, null, local330, local173);
-                if (GlRenderer.enabled && local330) {
-                    ShadowManager.method4211(local403.sprite, local165, diffAverageY, local173);
+                locEntity = locType.method3428(rotation, fineX, currentHeightmap, 1, averageY, heightmap, lowmem, null, hasShadow, fineZ);
+                if (GlRenderer.enabled && hasShadow) {
+                    ShadowManager.method4211(locEntity.sprite, fineX, diffAverageY, fineZ);
                 }
-                entity = local403.model;
+                entity = locEntity.model;
             } else {
-                entity = new Loc(arg5, 1, rotation, currentlevel, x, z, locType.anim, locType.randomanimframe, null);
+                entity = new Loc(locId, 1, rotation, currentlevel, x, z, locType.anim, locType.randomanimframe, null);
             }
             addWall(level, x, z, averageY, entity, null, Wall.ROTATION_WALL_CORNER_TYPE[rotation], 0, bitset);
             if (locType.hashardshadow && lowmem) {
@@ -1281,27 +1281,27 @@ public class SceneGraph {
                 collision.addWall(x, z, shape, rotation, locType.blockrange);
             }
         } else {
-            @Pc(1226) int local1226;
+            @Pc(1226) int wallOffset;
             if (shape == LocType.WALL_L) {
-                local1226 = rotation + 1 & 0x3;
-                @Pc(1269) Entity local1269;
-                @Pc(1254) Entity local1254;
+                wallOffset = rotation + 1 & 0x3;
+                @Pc(1269) Entity secondaryWall;
+                @Pc(1254) Entity primaryWall;
                 if (locType.anim == -1 && locType.multiloc == null && !locType.aBoolean214) {
-                    @Pc(1287) LocEntity local1287 = locType.method3428(rotation + 4, local165, currentHeightmap, 2, averageY, heightmap, lowmem, null, local330, local173);
-                    if (GlRenderer.enabled && local330) {
-                        ShadowManager.method4211(local1287.sprite, local165, diffAverageY, local173);
+                    @Pc(1287) LocEntity wallEntity = locType.method3428(rotation + 4, fineX, currentHeightmap, 2, averageY, heightmap, lowmem, null, hasShadow, fineZ);
+                    if (GlRenderer.enabled && hasShadow) {
+                        ShadowManager.method4211(wallEntity.sprite, fineX, diffAverageY, fineZ);
                     }
-                    local1254 = local1287.model;
-                    local1287 = locType.method3428(local1226, local165, currentHeightmap, 2, averageY, heightmap, lowmem, null, local330, local173);
-                    if (GlRenderer.enabled && local330) {
-                        ShadowManager.method4211(local1287.sprite, local165, diffAverageY, local173);
+                    primaryWall = wallEntity.model;
+                    wallEntity = locType.method3428(wallOffset, fineX, currentHeightmap, 2, averageY, heightmap, lowmem, null, hasShadow, fineZ);
+                    if (GlRenderer.enabled && hasShadow) {
+                        ShadowManager.method4211(wallEntity.sprite, fineX, diffAverageY, fineZ);
                     }
-                    local1269 = local1287.model;
+                    secondaryWall = wallEntity.model;
                 } else {
-                    local1254 = new Loc(arg5, 2, rotation + 4, currentlevel, x, z, locType.anim, locType.randomanimframe, null);
-                    local1269 = new Loc(arg5, 2, local1226, currentlevel, x, z, locType.anim, locType.randomanimframe, null);
+                    primaryWall = new Loc(locId, 2, rotation + 4, currentlevel, x, z, locType.anim, locType.randomanimframe, null);
+                    secondaryWall = new Loc(locId, 2, wallOffset, currentlevel, x, z, locType.anim, locType.randomanimframe, null);
                 }
-                addWall(level, x, z, averageY, local1254, local1269, ROTATION_WALL_TYPE[rotation], ROTATION_WALL_TYPE[local1226], bitset);
+                addWall(level, x, z, averageY, primaryWall, secondaryWall, ROTATION_WALL_TYPE[rotation], ROTATION_WALL_TYPE[wallOffset], bitset);
                 if (locType.occlude && lowmem) {
                     if (rotation == 0) {
                         occludeFlags[level][x][z] |= 0x1;
@@ -1325,13 +1325,13 @@ public class SceneGraph {
                 }
             } else if (shape == LocType.WALL_SQUARE_CORNER) {
                 if (locType.anim == -1 && locType.multiloc == null && !locType.aBoolean214) {
-                    local403 = locType.method3428(rotation, local165, currentHeightmap, 3, averageY, heightmap, lowmem, null, local330, local173);
-                    if (GlRenderer.enabled && local330) {
-                        ShadowManager.method4211(local403.sprite, local165, diffAverageY, local173);
+                    locEntity = locType.method3428(rotation, fineX, currentHeightmap, 3, averageY, heightmap, lowmem, null, hasShadow, fineZ);
+                    if (GlRenderer.enabled && hasShadow) {
+                        ShadowManager.method4211(locEntity.sprite, fineX, diffAverageY, fineZ);
                     }
-                    entity = local403.model;
+                    entity = locEntity.model;
                 } else {
-                    entity = new Loc(arg5, 3, rotation, currentlevel, x, z, locType.anim, locType.randomanimframe, null);
+                    entity = new Loc(locId, 3, rotation, currentlevel, x, z, locType.anim, locType.randomanimframe, null);
                 }
                 addWall(level, x, z, averageY, entity, null, Wall.ROTATION_WALL_CORNER_TYPE[rotation], 0, bitset);
                 if (locType.hashardshadow && lowmem) {
@@ -1350,13 +1350,13 @@ public class SceneGraph {
                 }
             } else if (shape == LocType.WALL_DIAGONAL) {
                 if (locType.anim == -1 && locType.multiloc == null && !locType.aBoolean214) {
-                    local403 = locType.method3428(rotation, local165, currentHeightmap, shape, averageY, heightmap, lowmem, null, local330, local173);
-                    if (GlRenderer.enabled && local330) {
-                        ShadowManager.method4211(local403.sprite, local165, diffAverageY, local173);
+                    locEntity = locType.method3428(rotation, fineX, currentHeightmap, shape, averageY, heightmap, lowmem, null, hasShadow, fineZ);
+                    if (GlRenderer.enabled && hasShadow) {
+                        ShadowManager.method4211(locEntity.sprite, fineX, diffAverageY, fineZ);
                     }
-                    entity = local403.model;
+                    entity = locEntity.model;
                 } else {
-                    entity = new Loc(arg5, shape, rotation, currentlevel, x, z, locType.anim, locType.randomanimframe, null);
+                    entity = new Loc(locId, shape, rotation, currentlevel, x, z, locType.anim, locType.randomanimframe, null);
                 }
                 method35(level, x, z, averageY, 1, 1, entity, bitset);
                 if (locType.blockwalk != 0 && collision != null) {
@@ -1367,89 +1367,89 @@ public class SceneGraph {
                 }
             } else if (shape == LocType.WALLDECOR_STRAIGHT_NOOFFSET) {
                 if (locType.anim == -1 && locType.multiloc == null && !locType.aBoolean214) {
-                    local403 = locType.method3428(rotation, local165, currentHeightmap, 4, averageY, heightmap, lowmem, null, local330, local173);
-                    if (GlRenderer.enabled && local330) {
-                        ShadowManager.method4211(local403.sprite, local165, diffAverageY, local173);
+                    locEntity = locType.method3428(rotation, fineX, currentHeightmap, 4, averageY, heightmap, lowmem, null, hasShadow, fineZ);
+                    if (GlRenderer.enabled && hasShadow) {
+                        ShadowManager.method4211(locEntity.sprite, fineX, diffAverageY, fineZ);
                     }
-                    entity = local403.model;
+                    entity = locEntity.model;
                 } else {
-                    entity = new Loc(arg5, 4, rotation, currentlevel, x, z, locType.anim, locType.randomanimframe, null);
+                    entity = new Loc(locId, 4, rotation, currentlevel, x, z, locType.anim, locType.randomanimframe, null);
                 }
                 addWallDecoration(level, x, z, averageY, entity, null, ROTATION_WALL_TYPE[rotation], 0, 0, 0, bitset);
             } else {
-                @Pc(1889) long local1889;
-                @Pc(1934) Entity local1934;
-                @Pc(1950) LocEntity local1950;
+                @Pc(1889) long existingWallKey;
+                @Pc(1934) Entity wallDecor;
+                @Pc(1950) LocEntity wallDecorEntity;
                 if (shape == LocType.WALLDECOR_STRAIGHT_OFFSET) {
-                    local1226 = 16;
-                    local1889 = getWallKey(level, x, z);
-                    if (local1889 != 0L) {
-                        local1226 = LocTypeList.get(Integer.MAX_VALUE & (int) (local1889 >>> 32)).walloff;
+                    wallOffset = 16;
+                    existingWallKey = getWallKey(level, x, z);
+                    if (existingWallKey != 0L) {
+                        wallOffset = LocTypeList.get(Integer.MAX_VALUE & (int) (existingWallKey >>> 32)).walloff;
                     }
                     if (locType.anim == -1 && locType.multiloc == null && !locType.aBoolean214) {
-                        local1950 = locType.method3428(rotation, local165, currentHeightmap, 4, averageY, heightmap, lowmem, null, local330, local173);
-                        if (GlRenderer.enabled && local330) {
-                            ShadowManager.method4211(local1950.sprite, local165 - WALL_DECORATION_ROTATION_FORWARD_X[rotation] * 8, diffAverageY, local173 - WALL_DECORATION_ROTATION_FORWARD_Z[rotation] * 8);
+                        wallDecorEntity = locType.method3428(rotation, fineX, currentHeightmap, 4, averageY, heightmap, lowmem, null, hasShadow, fineZ);
+                        if (GlRenderer.enabled && hasShadow) {
+                            ShadowManager.method4211(wallDecorEntity.sprite, fineX - WALL_DECORATION_ROTATION_FORWARD_X[rotation] * 8, diffAverageY, fineZ - WALL_DECORATION_ROTATION_FORWARD_Z[rotation] * 8);
                         }
-                        local1934 = local1950.model;
+                        wallDecor = wallDecorEntity.model;
                     } else {
-                        local1934 = new Loc(arg5, 4, rotation, currentlevel, x, z, locType.anim, locType.randomanimframe, null);
+                        wallDecor = new Loc(locId, 4, rotation, currentlevel, x, z, locType.anim, locType.randomanimframe, null);
                     }
-                    addWallDecoration(level, x, z, averageY, local1934, null, ROTATION_WALL_TYPE[rotation], 0, local1226 * WALL_DECORATION_ROTATION_FORWARD_X[rotation], WALL_DECORATION_ROTATION_FORWARD_Z[rotation] * local1226, bitset);
+                    addWallDecoration(level, x, z, averageY, wallDecor, null, ROTATION_WALL_TYPE[rotation], 0, wallOffset * WALL_DECORATION_ROTATION_FORWARD_X[rotation], WALL_DECORATION_ROTATION_FORWARD_Z[rotation] * wallOffset, bitset);
                 } else if (shape == LocType.WALLDECOR_DIAGONAL_OFFSET) {
-                    local1226 = 8;
-                    local1889 = getWallKey(level, x, z);
-                    if (local1889 != 0L) {
-                        local1226 = LocTypeList.get(Integer.MAX_VALUE & (int) (local1889 >>> 32)).walloff / 2;
+                    wallOffset = 8;
+                    existingWallKey = getWallKey(level, x, z);
+                    if (existingWallKey != 0L) {
+                        wallOffset = LocTypeList.get(Integer.MAX_VALUE & (int) (existingWallKey >>> 32)).walloff / 2;
                     }
                     if (locType.anim == -1 && locType.multiloc == null && !locType.aBoolean214) {
-                        local1950 = locType.method3428(rotation + 4, local165, currentHeightmap, 4, averageY, heightmap, lowmem, null, local330, local173);
-                        if (GlRenderer.enabled && local330) {
-                            ShadowManager.method4211(local1950.sprite, local165 - anIntArray565[rotation] * 8, diffAverageY, local173 - anIntArray154[rotation] * 8);
+                        wallDecorEntity = locType.method3428(rotation + 4, fineX, currentHeightmap, 4, averageY, heightmap, lowmem, null, hasShadow, fineZ);
+                        if (GlRenderer.enabled && hasShadow) {
+                            ShadowManager.method4211(wallDecorEntity.sprite, fineX - anIntArray565[rotation] * 8, diffAverageY, fineZ - anIntArray154[rotation] * 8);
                         }
-                        local1934 = local1950.model;
+                        wallDecor = wallDecorEntity.model;
                     } else {
-                        local1934 = new Loc(arg5, 4, rotation + 4, currentlevel, x, z, locType.anim, locType.randomanimframe, null);
+                        wallDecor = new Loc(locId, 4, rotation + 4, currentlevel, x, z, locType.anim, locType.randomanimframe, null);
                     }
-                    addWallDecoration(level, x, z, averageY, local1934, null, 256, rotation, local1226 * anIntArray565[rotation], local1226 * anIntArray154[rotation], bitset);
+                    addWallDecoration(level, x, z, averageY, wallDecor, null, 256, rotation, wallOffset * anIntArray565[rotation], wallOffset * anIntArray154[rotation], bitset);
                 } else if (shape == LocType.WALLDECOR_DIAGONAL_NOOFFSET) {
-                    @Pc(2137) int local2137 = rotation + 2 & 0x3;
+                    @Pc(2137) int oppositeRotation = rotation + 2 & 0x3;
                     if (locType.anim == -1 && locType.multiloc == null && !locType.aBoolean214) {
-                        @Pc(2183) LocEntity local2183 = locType.method3428(local2137 + 4, local165, currentHeightmap, 4, averageY, heightmap, lowmem, null, local330, local173);
-                        if (GlRenderer.enabled && local330) {
-                            ShadowManager.method4211(local2183.sprite, local165, diffAverageY, local173);
+                        @Pc(2183) LocEntity decorEntity = locType.method3428(oppositeRotation + 4, fineX, currentHeightmap, 4, averageY, heightmap, lowmem, null, hasShadow, fineZ);
+                        if (GlRenderer.enabled && hasShadow) {
+                            ShadowManager.method4211(decorEntity.sprite, fineX, diffAverageY, fineZ);
                         }
-                        entity = local2183.model;
+                        entity = decorEntity.model;
                     } else {
-                        entity = new Loc(arg5, 4, local2137 + 4, currentlevel, x, z, locType.anim, locType.randomanimframe, null);
+                        entity = new Loc(locId, 4, oppositeRotation + 4, currentlevel, x, z, locType.anim, locType.randomanimframe, null);
                     }
-                    addWallDecoration(level, x, z, averageY, entity, null, 256, local2137, 0, 0, bitset);
+                    addWallDecoration(level, x, z, averageY, entity, null, 256, oppositeRotation, 0, 0, bitset);
                 } else if (shape == LocType.WALLDECOR_DIAGONAL_BOTH) {
-                    local1226 = 8;
-                    local1889 = getWallKey(level, x, z);
-                    if (local1889 != 0L) {
-                        local1226 = LocTypeList.get(Integer.MAX_VALUE & (int) (local1889 >>> 32)).walloff / 2;
+                    wallOffset = 8;
+                    existingWallKey = getWallKey(level, x, z);
+                    if (existingWallKey != 0L) {
+                        wallOffset = LocTypeList.get(Integer.MAX_VALUE & (int) (existingWallKey >>> 32)).walloff / 2;
                     }
-                    @Pc(2244) int local2244 = rotation + 2 & 0x3;
-                    @Pc(2289) Entity local2289;
+                    @Pc(2244) int oppositeRotation2 = rotation + 2 & 0x3;
+                    @Pc(2289) Entity secondaryDecor;
                     if (locType.anim == -1 && locType.multiloc == null && !locType.aBoolean214) {
-                        @Pc(2297) int local2297 = anIntArray154[rotation] * 8;
-                        @Pc(2303) int local2303 = anIntArray565[rotation] * 8;
-                        @Pc(2319) LocEntity local2319 = locType.method3428(rotation + 4, local165, currentHeightmap, 4, averageY, heightmap, lowmem, null, local330, local173);
-                        if (GlRenderer.enabled && local330) {
-                            ShadowManager.method4211(local2319.sprite, local165 - local2303, diffAverageY, local173 - local2297);
+                        @Pc(2297) int offsetZ8 = anIntArray154[rotation] * 8;
+                        @Pc(2303) int offsetX8 = anIntArray565[rotation] * 8;
+                        @Pc(2319) LocEntity decorEntity2 = locType.method3428(rotation + 4, fineX, currentHeightmap, 4, averageY, heightmap, lowmem, null, hasShadow, fineZ);
+                        if (GlRenderer.enabled && hasShadow) {
+                            ShadowManager.method4211(decorEntity2.sprite, fineX - offsetX8, diffAverageY, fineZ - offsetZ8);
                         }
-                        local1934 = local2319.model;
-                        local2319 = locType.method3428(local2244 + 4, local165, currentHeightmap, 4, averageY, heightmap, lowmem, null, local330, local173);
-                        if (GlRenderer.enabled && local330) {
-                            ShadowManager.method4211(local2319.sprite, local165 - local2303, diffAverageY, local173 - local2297);
+                        wallDecor = decorEntity2.model;
+                        decorEntity2 = locType.method3428(oppositeRotation2 + 4, fineX, currentHeightmap, 4, averageY, heightmap, lowmem, null, hasShadow, fineZ);
+                        if (GlRenderer.enabled && hasShadow) {
+                            ShadowManager.method4211(decorEntity2.sprite, fineX - offsetX8, diffAverageY, fineZ - offsetZ8);
                         }
-                        local2289 = local2319.model;
+                        secondaryDecor = decorEntity2.model;
                     } else {
-                        local1934 = new Loc(arg5, 4, rotation + 4, currentlevel, x, z, locType.anim, locType.randomanimframe, null);
-                        local2289 = new Loc(arg5, 4, local2244 + 4, currentlevel, x, z, locType.anim, locType.randomanimframe, null);
+                        wallDecor = new Loc(locId, 4, rotation + 4, currentlevel, x, z, locType.anim, locType.randomanimframe, null);
+                        secondaryDecor = new Loc(locId, 4, oppositeRotation2 + 4, currentlevel, x, z, locType.anim, locType.randomanimframe, null);
                     }
-                    addWallDecoration(level, x, z, averageY, local1934, local2289, 256, rotation, local1226 * anIntArray565[rotation], anIntArray154[rotation] * local1226, bitset);
+                    addWallDecoration(level, x, z, averageY, wallDecor, secondaryDecor, 256, rotation, wallOffset * anIntArray565[rotation], anIntArray154[rotation] * wallOffset, bitset);
                 }
             }
         }
@@ -1508,187 +1508,187 @@ public class SceneGraph {
     }
 
     @OriginalMember(owner = "runetek4.client!wa", name = "a", descriptor = "([Lclient!mj;ZIIIII[B)V")
-    public static void method2203(@OriginalArg(0) CollisionMap[] arg0, @OriginalArg(1) boolean arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) byte[] arg6) {
-        @Pc(14) int local14;
-        @Pc(21) int local21;
-        if (!arg1) {
-            for (@Pc(9) int local9 = 0; local9 < 4; local9++) {
-                for (local14 = 0; local14 < 64; local14++) {
-                    for (local21 = 0; local21 < 64; local21++) {
-                        if (arg4 + local14 > 0 && local14 + arg4 < 103 && arg3 + local21 > 0 && local21 + arg3 < 103) {
-                            arg0[local9].flags[local14 + arg4][arg3 + local21] &= 0xFEFFFFFF;
+    public static void loadMapRegion(@OriginalArg(0) CollisionMap[] collisionMaps, @OriginalArg(1) boolean underwater, @OriginalArg(2) int offsetX, @OriginalArg(3) int baseZ, @OriginalArg(5) int baseX, @OriginalArg(6) int offsetZ, @OriginalArg(7) byte[] mapData) {
+        @Pc(14) int x;
+        @Pc(21) int z;
+        if (!underwater) {
+            for (@Pc(9) int plane = 0; plane < 4; plane++) {
+                for (x = 0; x < 64; x++) {
+                    for (z = 0; z < 64; z++) {
+                        if (baseX + x > 0 && x + baseX < 103 && baseZ + z > 0 && z + baseZ < 103) {
+                            collisionMaps[plane].flags[x + baseX][baseZ + z] &= 0xFEFFFFFF;
                         }
                     }
                 }
             }
         }
-        @Pc(95) Packet local95 = new Packet(arg6);
-        @Pc(99) byte local99;
-        if (arg1) {
-            local99 = 1;
+        @Pc(95) Packet packet = new Packet(mapData);
+        @Pc(99) byte planeCount;
+        if (underwater) {
+            planeCount = 1;
         } else {
-            local99 = 4;
+            planeCount = 4;
         }
-        @Pc(117) int local117;
-        for (local14 = 0; local14 < local99; local14++) {
-            for (local21 = 0; local21 < 64; local21++) {
-                for (local117 = 0; local117 < 64; local117++) {
-                    readTile(arg2, arg5, arg1, local95, local117 + arg3, arg4 + local21, 0, local14);
+        @Pc(117) int tileZ;
+        for (x = 0; x < planeCount; x++) {
+            for (z = 0; z < 64; z++) {
+                for (tileZ = 0; tileZ < 64; tileZ++) {
+                    readTile(offsetX, offsetZ, underwater, packet, tileZ + baseZ, baseX + z, 0, x);
                 }
             }
         }
-        @Pc(146) boolean local146 = false;
-        @Pc(243) int local243;
+        @Pc(146) boolean hasHeightData = false;
+        @Pc(243) int startX;
         @Pc(188) int local188;
-        @Pc(190) int local190;
-        @Pc(194) int local194;
-        while (local95.offset < local95.data.length) {
-            local21 = local95.g1();
-            if (local21 != 129) {
-                local95.offset--;
+        @Pc(190) int startZ;
+        @Pc(194) int endZ;
+        while (packet.offset < packet.data.length) {
+            z = packet.g1();
+            if (z != 129) {
+                packet.offset--;
                 break;
             }
-            for (local117 = 0; local117 < 4; local117++) {
-                @Pc(168) byte local168 = local95.g1s();
-                if (local168 == 0) {
-                    local243 = arg4;
-                    if (arg4 < 0) {
-                        local243 = 0;
-                    } else if (arg4 >= 104) {
-                        local243 = 104;
+            for (tileZ = 0; tileZ < 4; tileZ++) {
+                @Pc(168) byte heightDataType = packet.g1s();
+                if (heightDataType == 0) {
+                    startX = baseX;
+                    if (baseX < 0) {
+                        startX = 0;
+                    } else if (baseX >= 104) {
+                        startX = 104;
                     }
-                    local190 = arg3;
-                    if (arg3 < 0) {
-                        local190 = 0;
-                    } else if (arg3 >= 104) {
-                        local190 = 104;
+                    startZ = baseZ;
+                    if (baseZ < 0) {
+                        startZ = 0;
+                    } else if (baseZ >= 104) {
+                        startZ = 104;
                     }
-                    local188 = arg4 + 64;
-                    local194 = arg3 + 64;
-                    if (local194 < 0) {
-                        local194 = 0;
-                    } else if (local194 >= 104) {
-                        local194 = 104;
+                    local188 = baseX + 64;
+                    endZ = baseZ + 64;
+                    if (endZ < 0) {
+                        endZ = 0;
+                    } else if (endZ >= 104) {
+                        endZ = 104;
                     }
                     if (local188 < 0) {
                         local188 = 0;
                     } else if (local188 >= 104) {
                         local188 = 104;
                     }
-                    while (local243 < local188) {
-                        while (local190 < local194) {
-                            aByteArrayArrayArray13[local117][local243][local190] = 0;
-                            local190++;
+                    while (startX < local188) {
+                        while (startZ < endZ) {
+                            aByteArrayArrayArray13[tileZ][startX][startZ] = 0;
+                            startZ++;
                         }
-                        local243++;
+                        startX++;
                     }
-                } else if (local168 == 1) {
-                    for (local243 = 0; local243 < 64; local243 += 4) {
+                } else if (heightDataType == 1) {
+                    for (startX = 0; startX < 64; startX += 4) {
                         for (local188 = 0; local188 < 64; local188 += 4) {
-                            @Pc(305) byte local305 = local95.g1s();
-                            for (local194 = local243 + arg4; local194 < arg4 + local243 + 4; local194++) {
-                                for (@Pc(320) int local320 = arg3 + local188; local320 < arg3 + local188 + 4; local320++) {
-                                    if (local194 >= 0 && local194 < 104 && local320 >= 0 && local320 < 104) {
-                                        aByteArrayArrayArray13[local117][local194][local320] = local305;
+                            @Pc(305) byte heightValue = packet.g1s();
+                            for (endZ = startX + baseX; endZ < baseX + startX + 4; endZ++) {
+                                for (@Pc(320) int tileZ2 = baseZ + local188; tileZ2 < baseZ + local188 + 4; tileZ2++) {
+                                    if (endZ >= 0 && endZ < 104 && tileZ2 >= 0 && tileZ2 < 104) {
+                                        aByteArrayArrayArray13[tileZ][endZ][tileZ2] = heightValue;
                                     }
                                 }
                             }
                         }
                     }
-                } else if (local168 == 2 && local117 > 0) {
-                    local188 = arg4 + 64;
-                    local190 = arg3;
-                    local194 = arg3 + 64;
+                } else if (heightDataType == 2 && tileZ > 0) {
+                    local188 = baseX + 64;
+                    startZ = baseZ;
+                    endZ = baseZ + 64;
                     if (local188 < 0) {
                         local188 = 0;
                     } else if (local188 >= 104) {
                         local188 = 104;
                     }
-                    if (arg3 < 0) {
-                        local190 = 0;
-                    } else if (arg3 >= 104) {
-                        local190 = 104;
+                    if (baseZ < 0) {
+                        startZ = 0;
+                    } else if (baseZ >= 104) {
+                        startZ = 104;
                     }
-                    if (local194 < 0) {
-                        local194 = 0;
-                    } else if (local194 >= 104) {
-                        local194 = 104;
+                    if (endZ < 0) {
+                        endZ = 0;
+                    } else if (endZ >= 104) {
+                        endZ = 104;
                     }
-                    local243 = arg4;
-                    if (arg4 < 0) {
-                        local243 = 0;
-                    } else if (arg4 >= 104) {
-                        local243 = 104;
+                    startX = baseX;
+                    if (baseX < 0) {
+                        startX = 0;
+                    } else if (baseX >= 104) {
+                        startX = 104;
                     }
-                    while (local188 > local243) {
-                        while (local190 < local194) {
-                            aByteArrayArrayArray13[local117][local243][local190] = aByteArrayArrayArray13[local117 - 1][local243][local190];
-                            local190++;
+                    while (local188 > startX) {
+                        while (startZ < endZ) {
+                            aByteArrayArrayArray13[tileZ][startX][startZ] = aByteArrayArrayArray13[tileZ - 1][startX][startZ];
+                            startZ++;
                         }
-                        local243++;
+                        startX++;
                     }
                 }
             }
-            local146 = true;
+            hasHeightData = true;
         }
-        @Pc(515) int local515;
-        if (GlRenderer.enabled && !arg1) {
-            @Pc(490) Environment local490 = null;
-            label270: while (true) {
-                label263: do {
-                    while (local95.offset < local95.data.length) {
-                        local117 = local95.g1();
-                        if (local117 != 0) {
-                            if (local117 != 1) {
+        @Pc(515) int lightCount;
+        if (GlRenderer.enabled && !underwater) {
+            @Pc(490) Environment environment = null;
+            environmentProcessingComplete: while (true) {
+                lightProcessingLoop: do {
+                    while (packet.offset < packet.data.length) {
+                        tileZ = packet.g1();
+                        if (tileZ != 0) {
+                            if (tileZ != 1) {
                                 throw new IllegalStateException();
                             }
-                            local515 = local95.g1();
-                            continue label263;
+                            lightCount = packet.g1();
+                            continue lightProcessingLoop;
                         }
-                        local490 = new Environment(local95);
+                        environment = new Environment(packet);
                     }
-                    if (local490 == null) {
-                        local490 = new Environment();
+                    if (environment == null) {
+                        environment = new Environment();
                     }
-                    for (local117 = 0; local117 < 8; local117++) {
-                        for (local515 = 0; local515 < 8; local515++) {
-                            local243 = local117 + (arg4 >> 3);
-                            local188 = (arg3 >> 3) + local515;
-                            if (local243 >= 0 && local243 < 13 && local188 >= 0 && local188 < 13) {
-                                FogManager.chunksAtmosphere[local243][local188] = local490;
+                    for (tileZ = 0; tileZ < 8; tileZ++) {
+                        for (lightCount = 0; lightCount < 8; lightCount++) {
+                            startX = tileZ + (baseX >> 3);
+                            local188 = (baseZ >> 3) + lightCount;
+                            if (startX >= 0 && startX < 13 && local188 >= 0 && local188 < 13) {
+                                FogManager.chunksAtmosphere[startX][local188] = environment;
                             }
                         }
                     }
-                    break label270;
-                } while (local515 <= 0);
-                for (local243 = 0; local243 < local515; local243++) {
-                    @Pc(529) Light local529 = new Light(local95);
-                    if (local529.anInt2243 == 31) {
-                        @Pc(541) LightType local541 = LightTypeList.get(local95.g2());
-                        local529.method1762(local541.anInt2865, local541.anInt2873, local541.anInt2867, local541.anInt2872);
+                    break environmentProcessingComplete;
+                } while (lightCount <= 0);
+                for (startX = 0; startX < lightCount; startX++) {
+                    @Pc(529) Light light = new Light(packet);
+                    if (light.anInt2243 == 31) {
+                        @Pc(541) LightType lightType = LightTypeList.get(packet.g2());
+                        light.method1762(lightType.anInt2865, lightType.anInt2873, lightType.anInt2867, lightType.anInt2872);
                     }
-                    local529.z += arg3 << 7;
-                    local529.x += arg4 << 7;
-                    local194 = local529.z >> 7;
-                    local190 = local529.x >> 7;
-                    if (local190 >= 0 && local194 >= 0 && local190 < 104 && local194 < 104) {
-                        local529.aBoolean125 = (renderFlags[1][local190][local194] & 0x2) != 0;
-                        local529.y = tileHeights[local529.level][local190][local194] - local529.y;
-                        LightingManager.method2389(local529);
+                    light.z += baseZ << 7;
+                    light.x += baseX << 7;
+                    endZ = light.z >> 7;
+                    startZ = light.x >> 7;
+                    if (startZ >= 0 && endZ >= 0 && startZ < 104 && endZ < 104) {
+                        light.aBoolean125 = (renderFlags[1][startZ][endZ] & 0x2) != 0;
+                        light.y = tileHeights[light.level][startZ][endZ] - light.y;
+                        LightingManager.method2389(light);
                     }
                 }
             }
         }
-        if (local146) {
+        if (hasHeightData) {
             return;
         }
-        for (local21 = 0; local21 < 4; local21++) {
-            for (local117 = 0; local117 < 16; local117++) {
-                for (local515 = 0; local515 < 16; local515++) {
-                    local243 = (arg4 >> 2) + local117;
-                    local188 = local515 + (arg3 >> 2);
-                    if (local243 >= 0 && local243 < 26 && local188 >= 0 && local188 < 26) {
-                        aByteArrayArrayArray13[local21][local243][local188] = 0;
+        for (z = 0; z < 4; z++) {
+            for (tileZ = 0; tileZ < 16; tileZ++) {
+                for (lightCount = 0; lightCount < 16; lightCount++) {
+                    startX = (baseX >> 2) + tileZ;
+                    local188 = lightCount + (baseZ >> 2);
+                    if (startX >= 0 && startX < 26 && local188 >= 0 && local188 < 26) {
+                        aByteArrayArrayArray13[z][startX][local188] = 0;
                     }
                 }
             }

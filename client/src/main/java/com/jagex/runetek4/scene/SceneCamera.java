@@ -15,26 +15,26 @@ public class SceneCamera {
             Camera.orbitCameraPitch = 383;
         }
         Camera.orbitCameraYaw &= 0x7FF;
-        @Pc(33) int local33 = Camera.cameraX >> 7;
-        @Pc(37) int local37 = Camera.cameraZ >> 7;
-        @Pc(43) int local43 = SceneGraph.getTileHeight(Player.plane, Camera.cameraX, Camera.cameraZ);
-        @Pc(45) int local45 = 0;
+        @Pc(33) int cameraTileX = Camera.cameraX >> 7;
+        @Pc(37) int cameraTileZ = Camera.cameraZ >> 7;
+        @Pc(43) int cameraBaseHeight = SceneGraph.getTileHeight(Player.plane, Camera.cameraX, Camera.cameraZ);
+        @Pc(45) int maxHeightDifference = 0;
         @Pc(64) int local64;
-        if (local33 > 3 && local37 > 3 && local33 < 100 && local37 < 100) {
-            for (local64 = local33 - 4; local64 <= local33 + 4; local64++) {
-                for (@Pc(73) int local73 = local37 - 4; local73 <= local37 + 4; local73++) {
-                    @Pc(80) int local80 = Player.plane;
-                    if (local80 < 3 && (SceneGraph.renderFlags[1][local64][local73] & 0x2) == 2) {
-                        local80++;
+        if (cameraTileX > 3 && cameraTileZ > 3 && cameraTileX < 100 && cameraTileZ < 100) {
+            for (local64 = cameraTileX - 4; local64 <= cameraTileX + 4; local64++) {
+                for (@Pc(73) int tileZ = cameraTileZ - 4; tileZ <= cameraTileZ + 4; tileZ++) {
+                    @Pc(80) int checkPlane = Player.plane;
+                    if (checkPlane < 3 && (SceneGraph.renderFlags[1][local64][tileZ] & 0x2) == 2) {
+                        checkPlane++;
                     }
-                    @Pc(117) int local117 = (SceneGraph.aByteArrayArrayArray13[local80][local64][local73] & 0xFF) * 8 + local43 - SceneGraph.tileHeights[local80][local64][local73];
-                    if (local117 > local45) {
-                        local45 = local117;
+                    @Pc(117) int heightDifference = (SceneGraph.aByteArrayArrayArray13[checkPlane][local64][tileZ] & 0xFF) * 8 + cameraBaseHeight - SceneGraph.tileHeights[checkPlane][local64][tileZ];
+                    if (heightDifference > maxHeightDifference) {
+                        maxHeightDifference = heightDifference;
                     }
                 }
             }
         }
-        local64 = local45 * 192;
+        local64 = maxHeightDifference * 192;
         if (local64 > 98048) {
             local64 = 98048;
         }

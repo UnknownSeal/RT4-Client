@@ -87,7 +87,7 @@ public final class ChangeLocRequest extends Node {
 					request.setLoops--;
 				}
 				if (request.setLoops == 0 && request.x >= 1 && request.z >= 1 && request.x <= 102 && request.z <= 102 && (request.anInt929 < 0 || isLocTypeReady(request.anInt929, request.anInt926))) {
-					SceneGraph.method1698(request.anInt929, request.x, request.level, request.anInt922, request.z, request.anInt926, request.layer);
+					SceneGraph.setLocationObject(request.anInt929, request.x, request.level, request.anInt922, request.z, request.anInt926, request.layer);
 					request.setLoops = -1;
 					if (request.originalId == request.anInt929 && request.originalId == -1) {
 						request.unlink();
@@ -96,7 +96,7 @@ public final class ChangeLocRequest extends Node {
 					}
 				}
 			} else if (request.originalId < 0 || isLocTypeReady(request.originalId, request.originalShape)) {
-				SceneGraph.method1698(request.originalId, request.x, request.level, request.originalAngle, request.z, request.originalShape, request.layer);
+				SceneGraph.setLocationObject(request.originalId, request.x, request.level, request.originalAngle, request.z, request.originalShape, request.layer);
 				request.unlink();
 			}
 		}
