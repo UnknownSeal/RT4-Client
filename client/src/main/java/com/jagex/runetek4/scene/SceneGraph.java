@@ -3,6 +3,8 @@ package com.jagex.runetek4.scene;
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.audio.spatial.AreaSoundManager;
 import com.jagex.runetek4.client.Preferences;
+import com.jagex.runetek4.config.types.flo.FloType;
+import com.jagex.runetek4.config.types.flo.FloTypeList;
 import com.jagex.runetek4.config.types.flu.FluType;
 import com.jagex.runetek4.config.types.flu.FluTypeList;
 import com.jagex.runetek4.config.types.light.LightTypeList;

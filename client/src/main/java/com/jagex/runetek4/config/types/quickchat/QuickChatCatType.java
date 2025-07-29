@@ -8,31 +8,31 @@ import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-@OriginalClass("runetek4.client!bc")
+@OriginalClass("client!bc")
 public final class QuickChatCatType extends SecondaryNode {
 
-	@OriginalMember(owner = "runetek4.client!bc", name = "O", descriptor = "[I")
+	@OriginalMember(owner = "client!bc", name = "O", descriptor = "[I")
 	public int[] phraseShortcuts;
 
-	@OriginalMember(owner = "runetek4.client!bc", name = "P", descriptor = "[I")
+	@OriginalMember(owner = "client!bc", name = "P", descriptor = "[I")
 	public int[] subcategories;
 
-	@OriginalMember(owner = "runetek4.client!bc", name = "T", descriptor = "[I")
+	@OriginalMember(owner = "client!bc", name = "T", descriptor = "[I")
 	public int[] subcategoryShortcuts;
 
-	@OriginalMember(owner = "runetek4.client!bc", name = "Y", descriptor = "Lclient!na;")
+	@OriginalMember(owner = "client!bc", name = "Y", descriptor = "Lclient!na;")
 	public JString description;
 
-	@OriginalMember(owner = "runetek4.client!bc", name = "ab", descriptor = "[I")
+	@OriginalMember(owner = "client!bc", name = "ab", descriptor = "[I")
 	public int[] phrases;
 
-	@OriginalMember(owner = "runetek4.client!si", name = "a", descriptor = "(ZB)I")
+	@OriginalMember(owner = "client!si", name = "a", descriptor = "(ZB)I")
 	public static int method3933(@OriginalArg(1) byte arg0) {
 		return arg0 & 0xFF;
 	}
 
-	@OriginalMember(owner = "runetek4.client!bc", name = "d", descriptor = "(I)V")
-	public final void method465() {
+	@OriginalMember(owner = "client!bc", name = "d", descriptor = "(I)V")
+	public void method465() {
 		@Pc(8) int local8;
 		if (this.phrases != null) {
 			for (local8 = 0; local8 < this.phrases.length; local8++) {
@@ -46,8 +46,8 @@ public final class QuickChatCatType extends SecondaryNode {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!bc", name = "c", descriptor = "(II)I")
-	public final int method466(@OriginalArg(0) int arg0) {
+	@OriginalMember(owner = "client!bc", name = "c", descriptor = "(II)I")
+	public int method466(@OriginalArg(0) int arg0) {
 		if (this.phrases == null) {
 			return -1;
 		}
@@ -59,7 +59,7 @@ public final class QuickChatCatType extends SecondaryNode {
 		return -1;
 	}
 
-	@OriginalMember(owner = "runetek4.client!bc", name = "a", descriptor = "(Lclient!wa;II)V")
+	@OriginalMember(owner = "client!bc", name = "a", descriptor = "(Lclient!wa;II)V")
 	private void method467(@OriginalArg(0) Packet arg0, @OriginalArg(2) int opcode) {
 		if (opcode == 1) {
 			this.description = arg0.gjstr();
@@ -88,7 +88,7 @@ public final class QuickChatCatType extends SecondaryNode {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!bc", name = "a", descriptor = "(BI)I")
+	@OriginalMember(owner = "client!bc", name = "a", descriptor = "(BI)I")
 	public final int method469(@OriginalArg(1) int arg0) {
 		if (this.subcategories == null) {
 			return -1;
@@ -101,7 +101,7 @@ public final class QuickChatCatType extends SecondaryNode {
 		return -1;
 	}
 
-	@OriginalMember(owner = "runetek4.client!bc", name = "a", descriptor = "(Lclient!wa;B)V")
+	@OriginalMember(owner = "client!bc", name = "a", descriptor = "(Lclient!wa;B)V")
 	public final void method470(@OriginalArg(0) Packet arg0) {
 		while (true) {
 			@Pc(12) int local12 = arg0.g1();

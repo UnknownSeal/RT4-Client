@@ -29,20 +29,27 @@ import com.jagex.runetek4.core.io.Packet;
 @OriginalClass("client!me")
 public final class NpcType {
 
-	@OriginalMember(owner = "runetek4.client!id", name = "e", descriptor = "[I")
+	@OriginalMember(owner = "client!id", name = "e", descriptor = "[I")
 	public static final int[] anIntArray259 = new int[14];
-	@OriginalMember(owner = "runetek4.client!lg", name = "c", descriptor = "[Lclient!tk;")
+
+	@OriginalMember(owner = "client!lg", name = "c", descriptor = "[Lclient!tk;")
 	public static final SeqType[] aClass144Array1 = new SeqType[14];
+
 	@OriginalMember(owner = "client!ag", name = "cb", descriptor = "[Lclient!cl;")
 	public static final AnimFrameset[] aClass3_Sub2_Sub7Array1 = new AnimFrameset[14];
+
 	@OriginalMember(owner = "client!fk", name = "k", descriptor = "[I")
 	public static final int[] anIntArray147 = new int[14];
-	@OriginalMember(owner = "runetek4.client!rg", name = "A", descriptor = "[I")
+
+	@OriginalMember(owner = "client!rg", name = "A", descriptor = "[I")
 	public static final int[] anIntArray492 = new int[14];
-	@OriginalMember(owner = "runetek4.client!kd", name = "mb", descriptor = "[Lclient!cl;")
+
+	@OriginalMember(owner = "client!kd", name = "mb", descriptor = "[Lclient!cl;")
 	public static final AnimFrameset[] aClass3_Sub2_Sub7Array5 = new AnimFrameset[14];
+
 	@OriginalMember(owner = "client!en", name = "t", descriptor = "[I")
 	public static final int[] anIntArray148 = new int[14];
+
 	@OriginalMember(owner = "client!me", name = "b", descriptor = "[S")
 	private short[] retex_d;
 
@@ -97,7 +104,7 @@ public final class NpcType {
 	@OriginalMember(owner = "client!me", name = "r", descriptor = "S")
 	public short spotshadowcolour_2 = 0;
 
-	@OriginalMember(owner = "runetek4.client!vk", name = "d", descriptor = "Lclient!na;")
+	@OriginalMember(owner = "client!vk", name = "d", descriptor = "Lclient!na;")
 	public static final JString aClass100_1010 = JString.parse("null");
 
 	@OriginalMember(owner = "client!me", name = "L", descriptor = "Lclient!na;")

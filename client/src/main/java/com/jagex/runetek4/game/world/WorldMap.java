@@ -1,6 +1,8 @@
 package com.jagex.runetek4.game.world;
 
 import com.jagex.runetek4.*;
+import com.jagex.runetek4.config.types.flo.FloType;
+import com.jagex.runetek4.config.types.flo.FloTypeList;
 import com.jagex.runetek4.data.cache.media.SoftwareSprite;
 import com.jagex.runetek4.data.cache.media.component.Widget;
 import com.jagex.runetek4.client.GameShell;

@@ -14,7 +14,8 @@ public final class FluTypeList {
 
 	@OriginalMember(owner = "client!sd", name = "S", descriptor = "I")
 	public static int anInt5063 = 100;
-	@OriginalMember(owner = "runetek4.client!oj", name = "x", descriptor = "Lclient!ve;")
+
+	@OriginalMember(owner = "client!oj", name = "x", descriptor = "Lclient!ve;")
 	public static Js5 archive;
 
 	@OriginalMember(owner = "client!sd", name = "f", descriptor = "(B)V")
@@ -24,7 +25,7 @@ public final class FluTypeList {
 
 	@OriginalMember(owner = "runetek4.client!qc", name = "a", descriptor = "(ZI)Lclient!ni;")
 	public static FluType get(@OriginalArg(1) int arg0) {
-		@Pc(10) FluType floorUnderlay = (FluType) types.get((long) arg0);
+		@Pc(10) FluType floorUnderlay = (FluType) types.get(arg0);
 		if (floorUnderlay != null) {
 			return floorUnderlay;
 		}
@@ -33,11 +34,11 @@ public final class FluTypeList {
 		if (local27 != null) {
 			floorUnderlay.decode(new Packet(local27));
 		}
-		types.put(floorUnderlay, (long) arg0);
+		types.put(floorUnderlay, arg0);
 		return floorUnderlay;
 	}
 
-	@OriginalMember(owner = "runetek4.client!hc", name = "a", descriptor = "(Lclient!ve;I)V")
+	@OriginalMember(owner = "client!hc", name = "a", descriptor = "(Lclient!ve;I)V")
 	public static void init(@OriginalArg(0) Js5 arg0) {
 		archive = arg0;
 	}

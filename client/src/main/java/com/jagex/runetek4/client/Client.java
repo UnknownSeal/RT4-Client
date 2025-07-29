@@ -80,7 +80,7 @@ import com.jagex.runetek4.clientscript.DelayedStateChange;
 import com.jagex.runetek4.config.types.bas.BasTypeList;
 import com.jagex.runetek4.data.cache.media.component.Widget;
 import com.jagex.runetek4.entity.entity.Npc;
-import com.jagex.runetek4.FloTypeList;
+import com.jagex.runetek4.config.types.flo.FloTypeList;
 import com.jagex.runetek4.entity.entity.PlayerAppearance;
 import com.jagex.runetek4.input.Keyboard;
 import com.jagex.runetek4.input.MouseCapturer;

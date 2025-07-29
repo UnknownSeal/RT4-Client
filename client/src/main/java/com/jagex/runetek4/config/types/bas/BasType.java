@@ -9,7 +9,7 @@ import org.openrs2.deob.annotation.Pc;
 @OriginalClass("client!ck")
 public final class BasType {
 
-	@OriginalMember(owner = "runetek4.client!ac", name = "l", descriptor = "Lclient!ck;")
+	@OriginalMember(owner = "client!ac", name = "l", descriptor = "Lclient!ck;")
 	public static final BasType DEFAULT = new BasType();
 	
 	@OriginalMember(owner = "client!ck", name = "g", descriptor = "[[I")

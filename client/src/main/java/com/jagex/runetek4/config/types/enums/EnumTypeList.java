@@ -8,8 +8,9 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public class EnumTypeList {
-    @OriginalMember(owner = "runetek4.client!lj", name = "p", descriptor = "Lclient!gn;")
+    @OriginalMember(owner = "client!lj", name = "p", descriptor = "Lclient!gn;")
     public static final LruHashTable types = new LruHashTable(128);
+
     @OriginalMember(owner = "client!gk", name = "e", descriptor = "Lclient!ve;")
     public static Js5 archive;
 
@@ -18,9 +19,9 @@ public class EnumTypeList {
         archive = arg0;
     }
 
-    @OriginalMember(owner = "runetek4.client!ui", name = "a", descriptor = "(IZ)Lclient!ml;")
+    @OriginalMember(owner = "client!ui", name = "a", descriptor = "(IZ)Lclient!ml;")
     public static EnumType get(@OriginalArg(0) int id) {
-        @Pc(10) EnumType enumType = (EnumType) types.get((long) id);
+        @Pc(10) EnumType enumType = (EnumType) types.get(id);
         if (enumType != null) {
             return enumType;
         }
@@ -29,16 +30,16 @@ public class EnumTypeList {
         if (bytes != null) {
             enumType.decode(new Packet(bytes));
         }
-        types.put(enumType, (long) id);
+        types.put(enumType, id);
         return enumType;
     }
 
-    @OriginalMember(owner = "runetek4.client!i", name = "e", descriptor = "(BI)I")
+    @OriginalMember(owner = "client!i", name = "e", descriptor = "(BI)I")
     public static int getFileId(@OriginalArg(1) int arg0) {
         return arg0 & 0xFF;
     }
 
-    @OriginalMember(owner = "runetek4.client!hi", name = "a", descriptor = "(BI)I")
+    @OriginalMember(owner = "client!hi", name = "a", descriptor = "(BI)I")
     public static int getGroupId(@OriginalArg(1) int arg0) {
         return arg0 >>> 8;
     }

@@ -15,27 +15,27 @@ public final class IDKTypeList {
 	@OriginalMember(owner = "client!bd", name = "g", descriptor = "Lclient!ve;")
 	public static Js5 modelsArchive;
 
-	@OriginalMember(owner = "runetek4.client!ri", name = "c", descriptor = "Lclient!ve;")
+	@OriginalMember(owner = "client!ri", name = "c", descriptor = "Lclient!ve;")
 	public static Js5 archive;
 
 	@OriginalMember(owner = "client!ec", name = "z", descriptor = "I")
 	public static int count;
 
-	@OriginalMember(owner = "runetek4.client!oi", name = "a", descriptor = "(I)V")
+	@OriginalMember(owner = "client!oi", name = "a", descriptor = "(I)V")
 	public static void removeSoft() {
 		types.removeSoft();
 	}
 
-	@OriginalMember(owner = "runetek4.client!jl", name = "a", descriptor = "(ILclient!ve;Lclient!ve;)V")
+	@OriginalMember(owner = "client!jl", name = "a", descriptor = "(ILclient!ve;Lclient!ve;)V")
 	public static void init(@OriginalArg(1) Js5 arg0, @OriginalArg(2) Js5 arg1) {
 		modelsArchive = arg0;
 		archive = arg1;
 		count = archive.getGroupCapacity(3);
 	}
 
-	@OriginalMember(owner = "runetek4.client!gg", name = "d", descriptor = "(II)Lclient!dm;")
+	@OriginalMember(owner = "client!gg", name = "d", descriptor = "(II)Lclient!dm;")
 	public static IDKType get(@OriginalArg(0) int arg0) {
-		@Pc(10) IDKType idkType = (IDKType) types.get((long) arg0);
+		@Pc(10) IDKType idkType = (IDKType) types.get(arg0);
 		if (idkType != null) {
 			return idkType;
 		}
@@ -44,11 +44,11 @@ public final class IDKTypeList {
 		if (bytes != null) {
 			idkType.decode(new Packet(bytes));
 		}
-		types.put(idkType, (long) arg0);
+		types.put(idkType, arg0);
 		return idkType;
 	}
 
-    @OriginalMember(owner = "runetek4.client!te", name = "a", descriptor = "(IZ)V")
+    @OriginalMember(owner = "client!te", name = "a", descriptor = "(IZ)V")
     public static void clean() {
         types.clean(5);
     }

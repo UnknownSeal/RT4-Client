@@ -14,21 +14,21 @@ public class CursorTypeList {
     @OriginalMember(owner = "client!ge", name = "i", descriptor = "Lclient!n;")
     public static final SoftLruHashTable types = new SoftLruHashTable(64);
 
-    @OriginalMember(owner = "runetek4.client!tk", name = "j", descriptor = "Lclient!ve;")
+    @OriginalMember(owner = "client!tk", name = "j", descriptor = "Lclient!ve;")
     public static Js5 spritesArchive;
 
-    @OriginalMember(owner = "runetek4.client!mc", name = "Z", descriptor = "Lclient!ve;")
+    @OriginalMember(owner = "client!mc", name = "Z", descriptor = "Lclient!ve;")
     public static Js5 archive;
 
-    @OriginalMember(owner = "runetek4.client!u", name = "a", descriptor = "(BLclient!ve;Lclient!ve;)V")
+    @OriginalMember(owner = "client!u", name = "a", descriptor = "(BLclient!ve;Lclient!ve;)V")
     public static void init(@OriginalArg(1) Js5 arg0, @OriginalArg(2) Js5 arg1) {
         archive = arg0;
         spritesArchive = arg1;
     }
 
-    @OriginalMember(owner = "runetek4.client!qg", name = "d", descriptor = "(II)Lclient!ia;")
+    @OriginalMember(owner = "client!qg", name = "d", descriptor = "(II)Lclient!ia;")
     public static CursorType get(@OriginalArg(0) int arg0) {
-        @Pc(10) CursorType local10 = (CursorType) types.get((long) arg0);
+        @Pc(10) CursorType local10 = (CursorType) types.get(arg0);
         if (local10 != null) {
             return local10;
         }
@@ -37,7 +37,7 @@ public class CursorTypeList {
         if (local20 != null) {
             local10.decode(new Packet(local20));
         }
-        types.put(local10, (long) arg0);
+        types.put(local10, arg0);
         return local10;
     }
 

@@ -8,14 +8,15 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public class InvTypeList {
-    @OriginalMember(owner = "runetek4.client!ha", name = "p", descriptor = "Lclient!gn;")
+    @OriginalMember(owner = "client!ha", name = "p", descriptor = "Lclient!gn;")
     public static final LruHashTable types = new LruHashTable(64);
+
     @OriginalMember(owner = "client!al", name = "q", descriptor = "Lclient!ve;")
     public static Js5 archive;
 
-    @OriginalMember(owner = "runetek4.client!u", name = "a", descriptor = "(II)Lclient!md;")
+    @OriginalMember(owner = "client!u", name = "a", descriptor = "(II)Lclient!md;")
     public static InvType get(@OriginalArg(0) int id) {
-        @Pc(16) InvType invType = (InvType) types.get((long) id);
+        @Pc(16) InvType invType = (InvType) types.get(id);
         if (invType != null) {
             return invType;
         }
@@ -24,7 +25,7 @@ public class InvTypeList {
         if (bytes != null) {
             invType.decode(new Packet(bytes));
         }
-        types.put(invType, (long) id);
+        types.put(invType, id);
         return invType;
     }
 

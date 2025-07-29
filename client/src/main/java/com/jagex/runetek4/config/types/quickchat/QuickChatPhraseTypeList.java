@@ -11,27 +11,27 @@ import org.openrs2.deob.annotation.Pc;
 
 public class QuickChatPhraseTypeList {
 
-    @OriginalMember(owner = "runetek4.client!ud", name = "P", descriptor = "Lclient!gn;")
+    @OriginalMember(owner = "client!ud", name = "P", descriptor = "Lclient!gn;")
     public static final LruHashTable types = new LruHashTable(64);
 
     @OriginalMember(owner = "client!ck", name = "C", descriptor = "I")
     public static int anInt1047 = 0;
 
-    @OriginalMember(owner = "runetek4.client!le", name = "e", descriptor = "I")
+    @OriginalMember(owner = "client!le", name = "e", descriptor = "I")
     public static int anInt3490 = 0;
 
-    @OriginalMember(owner = "runetek4.client!vf", name = "n", descriptor = "Lclient!ve;")
+    @OriginalMember(owner = "client!vf", name = "n", descriptor = "Lclient!ve;")
     public static Js5 configClientLarge;
 
-    @OriginalMember(owner = "runetek4.client!id", name = "j", descriptor = "Lclient!of;")
+    @OriginalMember(owner = "client!id", name = "j", descriptor = "Lclient!of;")
     public static QuickChatCommandDecoder decoder = null;
 
-    @OriginalMember(owner = "runetek4.client!te", name = "y", descriptor = "Lclient!ve;")
+    @OriginalMember(owner = "client!te", name = "y", descriptor = "Lclient!ve;")
     public static Js5 configClientSmall;
 
-    @OriginalMember(owner = "runetek4.client!sj", name = "b", descriptor = "(II)Lclient!cb;")
+    @OriginalMember(owner = "client!sj", name = "b", descriptor = "(II)Lclient!cb;")
     public static QuickChatPhraseType get(@OriginalArg(1) int id) {
-        @Pc(10) QuickChatPhraseType quickChatPhrase = (QuickChatPhraseType) types.get((long) id);
+        @Pc(10) QuickChatPhraseType quickChatPhrase = (QuickChatPhraseType) types.get(id);
         if (quickChatPhrase != null) {
             return quickChatPhrase;
         }
@@ -50,7 +50,7 @@ public class QuickChatPhraseTypeList {
         if (id >= 32768) {
             quickChatPhraseType.postDecode();
         }
-        types.put(quickChatPhraseType, (long) id);
+        types.put(quickChatPhraseType, id);
         return quickChatPhraseType;
     }
 

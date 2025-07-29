@@ -8,25 +8,25 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public class MSITypeList {
-    @OriginalMember(owner = "runetek4.client!rl", name = "P", descriptor = "Lclient!n;")
+    @OriginalMember(owner = "client!rl", name = "P", descriptor = "Lclient!n;")
     public static final SoftLruHashTable sprites = new SoftLruHashTable(64);
 
-    @OriginalMember(owner = "runetek4.client!sk", name = "hb", descriptor = "Lclient!n;")
+    @OriginalMember(owner = "client!sk", name = "hb", descriptor = "Lclient!n;")
     public static final SoftLruHashTable types = new SoftLruHashTable(64);
 
-    @OriginalMember(owner = "runetek4.client!uf", name = "r", descriptor = "Lclient!ve;")
+    @OriginalMember(owner = "client!uf", name = "r", descriptor = "Lclient!ve;")
     public static Js5 spritesArchive;
 
-    @OriginalMember(owner = "runetek4.client!nk", name = "E", descriptor = "I")
+    @OriginalMember(owner = "client!nk", name = "E", descriptor = "I")
 	public static int redDelta;
 
     @OriginalMember(owner = "client!gl", name = "e", descriptor = "I")
     public static int greenDelta;
 
-    @OriginalMember(owner = "runetek4.client!vk", name = "o", descriptor = "I")
+    @OriginalMember(owner = "client!vk", name = "o", descriptor = "I")
     public static int blueDelta;
 
-    @OriginalMember(owner = "runetek4.client!hj", name = "m", descriptor = "Lclient!ve;")
+    @OriginalMember(owner = "client!hj", name = "m", descriptor = "Lclient!ve;")
     public static Js5 archive;
 
     @OriginalMember(owner = "client!da", name = "c", descriptor = "(II)Lclient!aa;")
@@ -44,7 +44,7 @@ public class MSITypeList {
         return local10;
     }
 
-    @OriginalMember(owner = "runetek4.client!og", name = "a", descriptor = "(Lclient!ve;Lclient!ve;B)V")
+    @OriginalMember(owner = "client!og", name = "a", descriptor = "(Lclient!ve;Lclient!ve;B)V")
     public static void init(@OriginalArg(0) Js5 arg0, @OriginalArg(1) Js5 arg1) {
         spritesArchive = arg1;
         @Pc(12) int local12 = (int) (Math.random() * 21.0D) - 10;
@@ -58,19 +58,19 @@ public class MSITypeList {
         redDelta = local40 + local33;
     }
 
-    @OriginalMember(owner = "runetek4.client!qg", name = "h", descriptor = "(I)V")
+    @OriginalMember(owner = "client!qg", name = "h", descriptor = "(I)V")
     public static void clear() {
         types.clean();
         sprites.clean();
     }
 
-    @OriginalMember(owner = "runetek4.client!vl", name = "b", descriptor = "(I)V")
+    @OriginalMember(owner = "client!vl", name = "b", descriptor = "(I)V")
 	public static void removeSoft() {
 		types.removeSoft();
 		sprites.removeSoft();
 	}
 
-    @OriginalMember(owner = "runetek4.client!wh", name = "a", descriptor = "(II)V")
+    @OriginalMember(owner = "client!wh", name = "a", descriptor = "(II)V")
     public static void clean() {
         types.clean(5);
         sprites.clean(5);

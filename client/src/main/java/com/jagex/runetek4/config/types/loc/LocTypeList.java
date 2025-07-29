@@ -8,30 +8,30 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public class LocTypeList {
-    @OriginalMember(owner = "runetek4.client!nf", name = "f", descriptor = "Lclient!n;")
+    @OriginalMember(owner = "client!nf", name = "f", descriptor = "Lclient!n;")
     public static final SoftLruHashTable modelCacheStatic = new SoftLruHashTable(500);
 
-    @OriginalMember(owner = "runetek4.client!oe", name = "j", descriptor = "Lclient!n;")
+    @OriginalMember(owner = "client!oe", name = "j", descriptor = "Lclient!n;")
     public static final SoftLruHashTable types = new SoftLruHashTable(64);
 
-    @OriginalMember(owner = "runetek4.client!he", name = "fb", descriptor = "Lclient!n;")
+    @OriginalMember(owner = "client!he", name = "fb", descriptor = "Lclient!n;")
     public static final SoftLruHashTable aClass99_14 = new SoftLruHashTable(30);
 
-    @OriginalMember(owner = "runetek4.client!vf", name = "l", descriptor = "Lclient!n;")
+    @OriginalMember(owner = "client!vf", name = "l", descriptor = "Lclient!n;")
     public static final SoftLruHashTable aClass99_36 = new SoftLruHashTable(50);
 
-    @OriginalMember(owner = "runetek4.client!jg", name = "j", descriptor = "Lclient!ve;")
+    @OriginalMember(owner = "client!jg", name = "j", descriptor = "Lclient!ve;")
     public static Js5 modelsArchive;
 
     @OriginalMember(owner = "client!cg", name = "c", descriptor = "Z")
     public static boolean allowMembers;
 
-    @OriginalMember(owner = "runetek4.client!lg", name = "g", descriptor = "Lclient!ve;")
+    @OriginalMember(owner = "client!lg", name = "g", descriptor = "Lclient!ve;")
     public static Js5 locsArchive;
 
-    @OriginalMember(owner = "runetek4.client!wc", name = "a", descriptor = "(II)Lclient!pb;")
+    @OriginalMember(owner = "client!wc", name = "a", descriptor = "(II)Lclient!pb;")
     public static LocType get(@OriginalArg(1) int id) {
-        @Pc(15) LocType locType = (LocType) types.get((long) id);
+        @Pc(15) LocType locType = (LocType) types.get(id);
         if (locType != null) {
             return locType;
         }
@@ -49,11 +49,11 @@ public class LocTypeList {
             locType.blockwalk = 0;
             locType.blockrange = false;
         }
-        types.put(locType, (long) id);
+        types.put(locType, id);
         return locType;
     }
 
-    @OriginalMember(owner = "runetek4.client!oe", name = "b", descriptor = "(I)V")
+    @OriginalMember(owner = "client!oe", name = "b", descriptor = "(I)V")
     public static void removeSoft() {
         types.removeSoft();
         modelCacheStatic.removeSoft();
@@ -61,7 +61,7 @@ public class LocTypeList {
         aClass99_36.removeSoft();
     }
 
-    @OriginalMember(owner = "runetek4.client!hb", name = "c", descriptor = "(I)V")
+    @OriginalMember(owner = "client!hb", name = "c", descriptor = "(I)V")
     public static void clear() {
         types.clean();
         modelCacheStatic.clean();
@@ -69,7 +69,7 @@ public class LocTypeList {
         aClass99_36.clean();
     }
 
-    @OriginalMember(owner = "runetek4.client!oi", name = "a", descriptor = "(ILclient!ve;Lclient!ve;Z)V")
+    @OriginalMember(owner = "client!oi", name = "a", descriptor = "(ILclient!ve;Lclient!ve;Z)V")
     public static void init(@OriginalArg(1) Js5 arg0, @OriginalArg(2) Js5 arg1) {
         allowMembers = true;
         modelsArchive = arg1;
@@ -81,12 +81,12 @@ public class LocTypeList {
         return id & 0xFF;
     }
 
-    @OriginalMember(owner = "runetek4.client!ui", name = "c", descriptor = "(II)I")
+    @OriginalMember(owner = "client!ui", name = "c", descriptor = "(II)I")
     public static int getGroupId(@OriginalArg(0) int id) {
         return id >>> 8;
     }
 
-    @OriginalMember(owner = "runetek4.client!va", name = "b", descriptor = "(II)V")
+    @OriginalMember(owner = "client!va", name = "b", descriptor = "(II)V")
     public static void clean() {
         types.clean(5);
         modelCacheStatic.clean(5);
@@ -94,7 +94,7 @@ public class LocTypeList {
         aClass99_36.clean(5);
     }
 
-    @OriginalMember(owner = "runetek4.client!pe", name = "a", descriptor = "(BZ)V")
+    @OriginalMember(owner = "client!pe", name = "a", descriptor = "(BZ)V")
     public static void setAllowMembers(@OriginalArg(1) boolean arg0) {
         if (arg0 != allowMembers) {
             allowMembers = arg0;
