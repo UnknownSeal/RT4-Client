@@ -342,40 +342,40 @@ public class NpcList {
         if (arg0.animationDelay > 0) {
             arg0.animationDelay--;
         }
-        for (local156 = 0; local156 < arg0.aPathingEntityClass147Array3.length; local156++) {
-            @Pc(545) PathingEntity_Class147 local545 = arg0.aPathingEntityClass147Array3[local156];
+        for (local156 = 0; local156 < arg0.layeredAnimations.length; local156++) {
+            @Pc(545) PathingEntity_Class147 local545 = arg0.layeredAnimations[local156];
             if (local545 != null) {
-                if (local545.anInt5408 > 0) {
-                    local545.anInt5408--;
+                if (local545.delay > 0) {
+                    local545.delay--;
                 } else {
-                    @Pc(570) SeqType local570 = SeqTypeList.get(local545.anInt5396);
+                    @Pc(570) SeqType local570 = SeqTypeList.get(local545.sequenceId);
                     if (local570 == null || local570.frames == null) {
-                        arg0.aPathingEntityClass147Array3[local156] = null;
+                        arg0.layeredAnimations[local156] = null;
                     } else {
-                        local545.anInt5404++;
-                        if (local545.anInt5399 < local570.frames.length && local545.anInt5404 > local570.frameDelay[local545.anInt5399]) {
-                            local545.anInt5399++;
-                            local545.anInt5404 = 1;
-                            SoundPlayer.playSeqSound(arg0.zFine, local570, arg0.xFine, arg0 == PlayerList.self, local545.anInt5399);
+                        local545.loopCount++;
+                        if (local545.frameIndex < local570.frames.length && local545.loopCount > local570.frameDelay[local545.frameIndex]) {
+                            local545.frameIndex++;
+                            local545.loopCount = 1;
+                            SoundPlayer.playSeqSound(arg0.zFine, local570, arg0.xFine, arg0 == PlayerList.self, local545.frameIndex);
                         }
-                        if (local570.frames.length <= local545.anInt5399) {
-                            local545.anInt5400++;
-                            local545.anInt5399 -= local570.replayOff;
-                            if (local570.replayCount <= local545.anInt5400) {
-                                arg0.aPathingEntityClass147Array3[local156] = null;
-                            } else if (local545.anInt5399 >= 0 && local545.anInt5399 < local570.frames.length) {
-                                SoundPlayer.playSeqSound(arg0.zFine, local570, arg0.xFine, PlayerList.self == arg0, local545.anInt5399);
+                        if (local570.frames.length <= local545.frameIndex) {
+                            local545.frameTime++;
+                            local545.frameIndex -= local570.replayOff;
+                            if (local570.replayCount <= local545.frameTime) {
+                                arg0.layeredAnimations[local156] = null;
+                            } else if (local545.frameIndex >= 0 && local545.frameIndex < local570.frames.length) {
+                                SoundPlayer.playSeqSound(arg0.zFine, local570, arg0.xFine, PlayerList.self == arg0, local545.frameIndex);
                             } else {
-                                arg0.aPathingEntityClass147Array3[local156] = null;
+                                arg0.layeredAnimations[local156] = null;
                             }
                         }
-                        local545.anInt5398 = local545.anInt5399 + 1;
-                        if (local570.frames.length <= local545.anInt5398) {
-                            local545.anInt5398 -= local570.replayOff;
-                            if (local545.anInt5400 + 1 >= local570.replayCount) {
-                                local545.anInt5398 = -1;
-                            } else if (local545.anInt5398 < 0 || local570.frames.length <= local545.anInt5398) {
-                                local545.anInt5398 = -1;
+                        local545.direction = local545.frameIndex + 1;
+                        if (local570.frames.length <= local545.direction) {
+                            local545.direction -= local570.replayOff;
+                            if (local545.frameTime + 1 >= local570.replayCount) {
+                                local545.direction = -1;
+                            } else if (local545.direction < 0 || local570.frames.length <= local545.direction) {
+                                local545.direction = -1;
                             }
                         }
                     }

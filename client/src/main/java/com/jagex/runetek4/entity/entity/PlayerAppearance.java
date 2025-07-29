@@ -413,12 +413,12 @@ public final class PlayerAppearance {
 		@Pc(979) int local979;
 		for (translateY = 0; translateY < translateX; translateY++) {
 			if (animationStates[translateY] != null) {
-				@Pc(858) SeqType layerSequence = SeqTypeList.get(animationStates[translateY].anInt5396);
+				@Pc(858) SeqType layerSequence = SeqTypeList.get(animationStates[translateY].sequenceId);
 				if (layerSequence.frames != null) {
 					hasUnreadyModels = true;
 					layerSequences[translateY] = layerSequence;
-					rotateX = animationStates[translateY].anInt5399;
-					rotateY = animationStates[translateY].anInt5398;
+					rotateX = animationStates[translateY].frameIndex;
+					rotateY = animationStates[translateY].direction;
 					rotateZ = layerSequence.frames[rotateX];
 					primaryFramesets[translateY] = SeqTypeList.getAnimFrameset(rotateZ >>> 16);
 					rotateZ &= 0xFFFF;
@@ -430,7 +430,7 @@ public final class PlayerAppearance {
 					}
 					if ((layerSequence.tween || SeqType.applyTweening) && rotateY != -1 && rotateY < layerSequence.frames.length) {
 						frameDelays[translateY] = layerSequence.frameDelay[rotateX];
-						frameTimes[translateY] = animationStates[translateY].anInt5404;
+						frameTimes[translateY] = animationStates[translateY].loopCount;
 						local979 = layerSequence.frames[rotateY];
 						tweenFramesets[translateY] = SeqTypeList.getAnimFrameset(local979 >>> 16);
 						@Pc(991) int local991 = local979 & 0xFFFF;

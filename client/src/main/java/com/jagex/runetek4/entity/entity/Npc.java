@@ -64,7 +64,7 @@ public final class Npc extends PathingEntity {
 		}
 		@Pc(29) SeqType local29 = this.primarySeqId != -1 && this.animationDelay == 0 ? SeqTypeList.get(this.primarySeqId) : null;
 		@Pc(53) SeqType local53 = this.movementSeqId == -1 || this.movementSeqId == this.getBasType().readyanim && local29 != null ? null : SeqTypeList.get(this.movementSeqId);
-		@Pc(74) Model body = this.type.getBodyModel(this.aPathingEntityClass147Array3, this.anInt3388, this.anInt3407, this.animationDirection, this.animationFrame, this.animationFrameDelay, local53, this.anInt3396, local29);
+		@Pc(74) Model body = this.type.getBodyModel(this.layeredAnimations, this.anInt3388, this.anInt3407, this.animationDirection, this.animationFrame, this.animationFrameDelay, local53, this.anInt3396, local29);
 		if (body == null) {
 			return;
 		}
