@@ -103,7 +103,7 @@ public final class Widget {
 	public Object[] onDialogAbort;
 
 	@OriginalMember(owner = "client!be", name = "gb", descriptor = "[I")
-	public int[] anIntArray37;
+	public int[] compassPixelOffsets;
 
 	@OriginalMember(owner = "client!be", name = "kb", descriptor = "[I")
 	public int[] varcTriggers;
@@ -175,7 +175,7 @@ public final class Widget {
 	public int[] varpTriggers;
 
 	@OriginalMember(owner = "client!be", name = "Tc", descriptor = "[I")
-	public int[] anIntArray45;
+	public int[] compassPixelWidths;
 
 	@OriginalMember(owner = "client!be", name = "Xc", descriptor = "[Ljava/lang/Object;")
 	public Object[] onDragStart;
@@ -466,7 +466,7 @@ public final class Widget {
 	public int shadowColor = 0;
 
 	@OriginalMember(owner = "client!be", name = "fd", descriptor = "Lclient!be;")
-	public Widget aClass13_5 = null;
+	public Widget parent = null;
 
 	@OriginalMember(owner = "client!be", name = "od", descriptor = "I")
 	public int updatedStatsReaderIndex = 0;
@@ -557,7 +557,7 @@ public final class Widget {
 
 	@OriginalMember(owner = "client!be", name = "a", descriptor = "(I)Z")
 	public boolean method478() {
-		if (this.anIntArray37 != null) {
+		if (this.compassPixelOffsets != null) {
 			return true;
 		}
 		@Pc(18) SoftwareIndexedSprite local18 = SpriteLoader.loadSoftwareIndexedSprite(this.spriteId, WidgetList.gameImageJs5);
@@ -565,8 +565,8 @@ public final class Widget {
 			return false;
 		}
 		local18.trim();
-		this.anIntArray37 = new int[local18.height];
-		this.anIntArray45 = new int[local18.height];
+		this.compassPixelOffsets = new int[local18.height];
+		this.compassPixelWidths = new int[local18.height];
 		for (@Pc(37) int local37 = 0; local37 < local18.height; local37++) {
 			@Pc(47) int local47 = 0;
 			@Pc(50) int local50 = local18.width;
@@ -583,8 +583,8 @@ public final class Widget {
 					break;
 				}
 			}
-			this.anIntArray37[local37] = local47;
-			this.anIntArray45[local37] = local50 - local47;
+			this.compassPixelOffsets[local37] = local47;
+			this.compassPixelWidths[local37] = local50 - local47;
 		}
 		return true;
 	}

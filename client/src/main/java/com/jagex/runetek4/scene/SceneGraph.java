@@ -2,6 +2,7 @@ package com.jagex.runetek4.scene;
 
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.audio.spatial.AreaSoundManager;
+import com.jagex.runetek4.client.Client;
 import com.jagex.runetek4.client.Preferences;
 import com.jagex.runetek4.config.types.flo.FloType;
 import com.jagex.runetek4.config.types.flo.FloTypeList;
@@ -14,11 +15,15 @@ import com.jagex.runetek4.core.datastruct.LinkedList;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.config.types.loc.LocType;
 import com.jagex.runetek4.config.types.light.LightType;
+import com.jagex.runetek4.data.js5.Js5TextureProvider;
 import com.jagex.runetek4.entity.entity.Entity;
 import com.jagex.runetek4.entity.entity.Player;
 import com.jagex.runetek4.game.logic.CollisionMap;
 import com.jagex.runetek4.game.logic.PathFinder;
 import com.jagex.runetek4.game.world.WorldLoader;
+import com.jagex.runetek4.graphics.font.Fonts;
+import com.jagex.runetek4.graphics.gl.GlModel;
+import com.jagex.runetek4.graphics.gl.GlRaster;
 import com.jagex.runetek4.graphics.gl.GlRenderer;
 import com.jagex.runetek4.graphics.gl.GlTile;
 import com.jagex.runetek4.graphics.environment.Environment;
@@ -27,10 +32,13 @@ import com.jagex.runetek4.graphics.model.Model;
 import com.jagex.runetek4.entity.loc.Loc;
 import com.jagex.runetek4.entity.loc.LocEntity;
 import com.jagex.runetek4.entity.loc.ObjStackEntity;
+import com.jagex.runetek4.graphics.model.RawModel;
 import com.jagex.runetek4.graphics.raster.Rasterizer;
+import com.jagex.runetek4.graphics.raster.SoftwareRaster;
 import com.jagex.runetek4.graphics.render.MaterialManager;
 import com.jagex.runetek4.graphics.render.UnderwaterMaterialRenderer;
 import com.jagex.runetek4.graphics.render.WaterMaterialRenderer;
+import com.jagex.runetek4.network.Protocol;
 import com.jagex.runetek4.scene.tile.*;
 import com.jagex.runetek4.clientscript.ClientScriptRunner;
 import com.jagex.runetek4.ui.widget.MiniMap;
@@ -39,6 +47,7 @@ import com.jagex.runetek4.util.ArrayUtils;
 import com.jagex.runetek4.util.ColorUtils;
 import com.jagex.runetek4.util.math.MathUtils;
 import com.jagex.runetek4.util.math.PerlinNoise;
+import com.jagex.runetek4.util.string.LocalizedText;
 import com.jogamp.opengl.GL2;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -5561,5 +5570,153 @@ public class SceneGraph {
             }
         }
         MiniMenu.aBoolean187 = false;
+    }
+
+    @OriginalMember(owner = "runetek4.client!ui", name = "a", descriptor = "(IIZIII)V")
+    public static void drawScene(@OriginalArg(1) int height, @OriginalArg(2) boolean skipEntityUpdates, @OriginalArg(3) int x, @OriginalArg(4) int width, @OriginalArg(5) int y) {
+        ClientScriptRunner.anInt3325++;
+        ClientScriptRunner.resetTileOccupancy();
+        if (!skipEntityUpdates) {
+            ClientScriptRunner.pushPlayers(true);
+            ClientScriptRunner.pushNpcs(true);
+            ClientScriptRunner.pushPlayers(false);
+        }
+        ClientScriptRunner.pushNpcs(false);
+        if (!skipEntityUpdates) {
+            ClientScriptRunner.updateSceneProjectiles();
+        }
+        ClientScriptRunner.updateSpotAnims();
+        if (GlRenderer.enabled) {
+            ClientScriptRunner.method2314(width, y, height, x, true);
+            x = ClientScriptRunner.anInt983;
+            y = ClientScriptRunner.anInt773;
+            width = ClientScriptRunner.anInt4055;
+            height = ClientScriptRunner.anInt5377;
+        }
+        @Pc(59) int pitch;
+        @Pc(57) int cameraY;
+        if (Camera.cameraType == 1) {
+            cameraY = Camera.cameraAnticheatAngle + Camera.orbitCameraYaw & 0x7FF;
+            pitch = Camera.orbitCameraPitch;
+            if (pitch < Camera.cameraPitchClamp / 256) {
+                pitch = Camera.cameraPitchClamp / 256;
+            }
+            if (Camera.cameraModifierEnabled[4] && Camera.cameraAmplitude[4] + 128 > pitch) {
+                pitch = Camera.cameraAmplitude[4] + 128;
+            }
+            Camera.orbitCamera(Camera.cameraX, height, getTileHeight(Player.plane, PlayerList.self.xFine, PlayerList.self.zFine) - 50, 600 + (pitch * 3), cameraY, Camera.cameraZ, pitch);
+        }
+        cameraY = Camera.cameraY;
+        pitch = Camera.renderX;
+        @Pc(121) int cameraZ = Camera.renderZ;
+        @Pc(123) int cameraPitch = Camera.cameraPitch;
+        @Pc(125) int cameraYaw = Camera.cameraYaw;
+        @Pc(127) int type;
+        @Pc(171) int jitter;
+        for (type = 0; type < 5; type++) {
+            if (Camera.cameraModifierEnabled[type]) {
+                jitter = (int) ((double) -Camera.cameraModifierJitter[type] + (double) (Camera.cameraModifierJitter[type] * 2 + 1) * Math.random() + Math.sin((double) Protocol.cameraModifierCycle[type] * ((double) Camera.cameraFrequency[type] / 100.0D)) * (double) Camera.cameraAmplitude[type]);
+                if (type == 3) {
+                    Camera.cameraYaw = jitter + Camera.cameraYaw & 0x7FF;
+                }
+                if (type == 4) {
+                    Camera.cameraPitch += jitter;
+                    if (Camera.cameraPitch < 128) {
+                        Camera.cameraPitch = 128;
+                    }
+                    if (Camera.cameraPitch > 383) {
+                        Camera.cameraPitch = 383;
+                    }
+                }
+                if (type == 2) {
+                    Camera.renderZ += jitter;
+                }
+                if (type == 1) {
+                    Camera.cameraY += jitter;
+                }
+                if (type == 0) {
+                    Camera.renderX += jitter;
+                }
+            }
+        }
+        ClientScriptRunner.performVisibilityCulling();
+        if (GlRenderer.enabled) {
+            GlRaster.setClip(x, y, x + width, y - -height);
+            @Pc(248) float local248 = (float) Camera.cameraPitch * 0.17578125F;
+            @Pc(253) float local253 = (float) Camera.cameraYaw * 0.17578125F;
+            if (Camera.cameraType == 3) {
+                local248 = Camera.pitchRadians * 360.0F / 6.2831855F;
+                local253 = Camera.yawRadians * 360.0F / 6.2831855F;
+            }
+            GlRenderer.method4171(x, y, width, height, width / 2 + x, y - -(height / 2), local248, local253, ClientScriptRunner.anInt5029, ClientScriptRunner.anInt5029);
+        } else {
+            SoftwareRaster.setClip(x, y, width + x, height + y);
+            Rasterizer.prepare();
+        }
+        if (ClientScriptRunner.menuVisible || ClientScriptRunner.scriptMouseX < x || ClientScriptRunner.scriptMouseX >= width + x || y > ClientScriptRunner.scriptMouseY || height + y <= ClientScriptRunner.scriptMouseY) {
+            RawModel.allowInput = false;
+            MiniMenu.anInt7 = 0;
+        } else {
+            RawModel.allowInput = true;
+            MiniMenu.anInt7 = 0;
+            jitter = Rasterizer.screenUpperX;
+            @Pc(344) int local344 = Rasterizer.screenLowerY;
+            type = Rasterizer.screenLowerX;
+            GlModel.anInt3582 = type + (jitter - type) * (-x + ClientScriptRunner.scriptMouseX) / width;
+            @Pc(361) int local361 = Rasterizer.screenUpperY;
+            RawModel.anInt1053 = (local361 - local344) * (ClientScriptRunner.scriptMouseY - y) / height + local344;
+        }
+        Client.audioLoop();
+        @Pc(387) byte local387 = ClientScriptRunner.getRoofVisibilityMode() == 2 ? (byte) ClientScriptRunner.anInt3325 : 1;
+        if (GlRenderer.enabled) {
+            GlRenderer.restoreLighting();
+            GlRenderer.setDepthTestEnabled(true);
+            GlRenderer.setFogEnabled(true);
+            if (Client.gameState == 10) {
+                jitter = FogManager.method2235(Protocol.sceneDelta, Camera.renderZ >> 10, Preferences.brightness, Camera.renderX >> 10);
+            } else {
+                jitter = FogManager.method2235(Protocol.sceneDelta, PlayerList.self.movementQueueZ[0] >> 3, Preferences.brightness, PlayerList.self.movementQueueX[0] >> 3);
+            }
+            LightingManager.method2394(Client.loop, !Preferences.flickeringEffectsOn);
+            GlRenderer.clearColorAndDepthBuffers(jitter);
+            MaterialManager.method2731(Camera.cameraPitch, Camera.renderZ, Camera.cameraY, Camera.renderX, Camera.cameraYaw);
+            GlRenderer.anInt5323 = Client.loop;
+            method2954(Camera.renderX, Camera.cameraY, Camera.renderZ, Camera.cameraPitch, Camera.cameraYaw, ClientScriptRunner.tileMarkings, ClientScriptRunner.maxHeights, ClientScriptRunner.anIntArray338, ClientScriptRunner.anIntArray518, ClientScriptRunner.anIntArray134, ClientScriptRunner.anIntArray476, Player.plane + 1, local387, PlayerList.self.xFine >> 7, PlayerList.self.zFine >> 7);
+            ClientScriptRunner.aBoolean299 = true;
+            LightingManager.method2390();
+            MaterialManager.method2731(0, 0, 0, 0, 0);
+            Client.audioLoop();
+            ClientScriptRunner.clearAllScenery();
+            ClientScriptRunner.drawOverheads(y, width, x, ClientScriptRunner.anInt5029, height, ClientScriptRunner.anInt5029);
+            MiniMap.method4000(width, x, height, ClientScriptRunner.anInt5029, ClientScriptRunner.anInt5029, y);
+        } else {
+            SoftwareRaster.fillRect(x, y, width, height, 0);
+            method2954(Camera.renderX, Camera.cameraY, Camera.renderZ, Camera.cameraPitch, Camera.cameraYaw, ClientScriptRunner.tileMarkings, ClientScriptRunner.maxHeights, ClientScriptRunner.anIntArray338, ClientScriptRunner.anIntArray518, ClientScriptRunner.anIntArray134, ClientScriptRunner.anIntArray476, Player.plane + 1, local387, PlayerList.self.xFine >> 7, PlayerList.self.zFine >> 7);
+            Client.audioLoop();
+            ClientScriptRunner.clearAllScenery();
+            ClientScriptRunner.drawOverheads(y, width, x, 256, height, 256);
+            MiniMap.method4000(width, x, height, 256, 256, y);
+        }
+        ((Js5TextureProvider) Rasterizer.textureProvider).method3239(Protocol.sceneDelta);
+        Player.method2310(width, y, height, x);
+        Camera.cameraPitch = cameraPitch;
+        Camera.renderZ = cameraZ;
+        Camera.cameraY = cameraY;
+        Camera.renderX = pitch;
+        Camera.cameraYaw = cameraYaw;
+        if (ClientScriptRunner.aBoolean43 && Client.js5NetQueue.getUrgentRequestCount() == 0) {
+            ClientScriptRunner.aBoolean43 = false;
+        }
+        if (ClientScriptRunner.aBoolean43) {
+            if (GlRenderer.enabled) {
+                GlRaster.fillRect(x, y, width, height, 0);
+            } else {
+                SoftwareRaster.fillRect(x, y, width, height, 0);
+            }
+            Fonts.drawTextOnScreen(false, LocalizedText.LOADING);
+        }
+        if (!skipEntityUpdates && !ClientScriptRunner.aBoolean43 && !ClientScriptRunner.menuVisible && x <= ClientScriptRunner.scriptMouseX && width + x > ClientScriptRunner.scriptMouseX && y <= ClientScriptRunner.scriptMouseY && height + y > ClientScriptRunner.scriptMouseY) {
+            MiniMenu.addEntries(y, width, height, x, ClientScriptRunner.scriptMouseY, ClientScriptRunner.scriptMouseX);
+        }
     }
 }

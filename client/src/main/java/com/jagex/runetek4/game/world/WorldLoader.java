@@ -777,10 +777,10 @@ public class WorldLoader {
                         local198.lastSeenLoop = Client.loop;
                         local198.setNpcType(local148);
                         local198.setSize(local198.type.size);
-                        local198.dstYaw = local198.anInt3381 = PathingEntity.ANGLES[local198.type.respawndir];
+                        local198.dstYaw = local198.orientation = PathingEntity.ANGLES[local198.type.respawndir];
                         local198.anInt3376 = local198.type.turnspeed;
                         if (local198.anInt3376 == 0) {
-                            local198.anInt3381 = 0;
+                            local198.orientation = 0;
                         }
                         local198.anInt3365 = local198.type.nas;
                         local198.teleport(local198.getSize(), local125, local142, true);

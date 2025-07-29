@@ -420,9 +420,9 @@ public class Game {
                 WidgetList.clickedInventoryWidget = null;
             }
         }
-        WidgetList.aBoolean174 = false;
-        WidgetList.aClass13_12 = null;
-        WidgetList.aBoolean83 = false;
+        WidgetList.dragActive = false;
+        WidgetList.targetWidget = null;
+        WidgetList.canDrag = false;
         WidgetList.keyQueueSize = 0;
         widget = WidgetList.aClass13_22;
         WidgetList.aClass13_22 = null;
@@ -458,8 +458,8 @@ public class Game {
                                             if (WorldMap.widget == null) {
                                                 WidgetList.anInt3337 = 0;
                                             }
-                                            if (ClientScriptRunner.aClass13_14 != null) {
-                                                ClientScriptRunner.method28();
+                                            if (ClientScriptRunner.dragWidget != null) {
+                                                ClientScriptRunner.handleWidgetDrag();
                                             }
                                             if (LoginManager.staffModLevel > 0 && Keyboard.pressedKeys[82] && Keyboard.pressedKeys[81] && MouseWheel.wheelRotation != 0) {
                                                 y = Player.plane - MouseWheel.wheelRotation;

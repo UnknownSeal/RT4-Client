@@ -38,10 +38,10 @@ public final class Mouse implements MouseListener, MouseMotionListener, FocusLis
 	public static int pressedButton = 0;
 
     @OriginalMember(owner = "runetek4.client!wl", name = "u", descriptor = "I")
-    public static int anInt5895 = 0;
+    public static int lastClickY = 0;
 
 	@OriginalMember(owner = "runetek4.client!wi", name = "W", descriptor = "I")
-	public static int anInt5850 = 0;
+	public static int lastClickX = 0;
 
 	@OriginalMember(owner = "runetek4.client!he", name = "bb", descriptor = "Lclient!ug;")
 	public static Mouse instance = new Mouse();

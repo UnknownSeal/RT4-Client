@@ -737,7 +737,7 @@ public final class Client extends GameShell {
 		ClientScriptRunner.neverRemoveRoofs = false;
 		aShortArray88 = aShortArray19 = aShortArray74 = aShortArray87 = new short[256];
 		LoginManager.method4637();
-		WidgetList.aBoolean298 = false;
+		WidgetList.hasScrollbar = false;
 		ClientProt.sendWindowDetails();
 	}
 
@@ -1280,8 +1280,8 @@ public final class Client extends GameShell {
 									do {
 										priorityRequest = (WidgetEvent) WidgetList.lowPriorityRequests.removeHead();
 										if (priorityRequest == null) {
-											if (ClientScriptRunner.aClass13_14 != null) {
-												ClientScriptRunner.method28();
+											if (ClientScriptRunner.dragWidget != null) {
+												ClientScriptRunner.handleWidgetDrag();
 											}
 											if (Protocol.openUrlRequest != null && Protocol.openUrlRequest.status == 1) {
 												if (Protocol.openUrlRequest.result != null) {

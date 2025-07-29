@@ -75,7 +75,7 @@ public final class Npc extends PathingEntity {
 		}
 		@Pc(140) Model model;
 		if (Preferences.characterShadowsOn && local84.spotshadow) {
-			model = ShadowModelList.method1043(this.type.spotshadowtrans_1, this.seqStretches, local53 == null ? local29 : local53, this.xFine, this.type.spotshadowcolour_2, this.zFine, this.type.spotshadowcolour_1, this.type.size, body, orientation, local53 == null ? this.animationFrameDelay : this.anInt3407, this.anInt3424, this.type.spotshadowtrans_2);
+			model = ShadowModelList.method1043(this.type.spotshadowtrans_1, this.seqStretches, local53 == null ? local29 : local53, this.xFine, this.type.spotshadowcolour_2, this.zFine, this.type.spotshadowcolour_1, this.type.size, body, orientation, local53 == null ? this.animationFrameDelay : this.anInt3407, this.groundHeight, this.type.spotshadowtrans_2);
 			if (GlRenderer.enabled) {
 				@Pc(144) float local144 = GlRenderer.method4179();
 				@Pc(146) float local146 = GlRenderer.method4166();

@@ -104,7 +104,7 @@ public class NpcList {
             e.faceY = 0;
             e.faceX = 0;
         }
-        index = e.dstYaw - e.anInt3381 & 0x7FF;
+        index = e.dstYaw - e.orientation & 0x7FF;
         if (index == 0) {
             e.anInt3385 = 0;
             e.anInt3414 = 0;
@@ -112,10 +112,10 @@ public class NpcList {
             e.anInt3385++;
             @Pc(226) boolean local226;
             if (index > 1024) {
-                e.anInt3381 -= e.anInt3376;
+                e.orientation -= e.anInt3376;
                 local226 = true;
                 if (index < e.anInt3376 || index > 2048 - e.anInt3376) {
-                    e.anInt3381 = e.dstYaw;
+                    e.orientation = e.dstYaw;
                     local226 = false;
                 }
                 if (local13.readyanim == e.movementSeqId && (e.anInt3385 > 25 || local226)) {
@@ -127,10 +127,10 @@ public class NpcList {
                 }
             } else {
                 local226 = true;
-                e.anInt3381 += e.anInt3376;
+                e.orientation += e.anInt3376;
                 if (e.anInt3376 > index || index > 2048 - e.anInt3376) {
                     local226 = false;
-                    e.anInt3381 = e.dstYaw;
+                    e.orientation = e.dstYaw;
                 }
                 if (local13.readyanim == e.movementSeqId && (e.anInt3385 > 25 || local226)) {
                     if (local13.standingCWTurn == -1) {
@@ -140,7 +140,7 @@ public class NpcList {
                     }
                 }
             }
-            e.anInt3381 &= 0x7FF;
+            e.orientation &= 0x7FF;
         } else {
             if (local13.readyanim == e.movementSeqId && e.anInt3385 > 25) {
                 if (local13.standingCWTurn == -1) {
@@ -237,7 +237,7 @@ public class NpcList {
             } else {
                 e.anInt3387 += e.anInt3414;
             }
-            e.anInt3381 = e.anInt3377 >> 5;
+            e.orientation = e.anInt3377 >> 5;
         }
     }
 
@@ -431,7 +431,7 @@ public class NpcList {
         if (arg0.anInt3431 == 3) {
             arg0.dstYaw = 512;
         }
-        arg0.anInt3381 = arg0.dstYaw;
+        arg0.orientation = arg0.dstYaw;
     }
 
     @OriginalMember(owner = "runetek4.client!ia", name = "a", descriptor = "(BLclient!fe;)V")
@@ -483,7 +483,7 @@ public class NpcList {
         } else {
             arg0.dstYaw = 1536;
         }
-        @Pc(224) int local224 = arg0.dstYaw - arg0.anInt3381 & 0x7FF;
+        @Pc(224) int local224 = arg0.dstYaw - arg0.orientation & 0x7FF;
         @Pc(227) int local227 = local9.walkFullTurnAnimationId;
         if (local224 > 1024) {
             local224 -= 2048;
@@ -506,7 +506,7 @@ public class NpcList {
             local233 = ((Npc) arg0).type.walksmoothing;
         }
         if (local233) {
-            if (arg0.anInt3381 != arg0.dstYaw && arg0.faceEntity == -1 && arg0.anInt3376 != 0) {
+            if (arg0.orientation != arg0.dstYaw && arg0.faceEntity == -1 && arg0.anInt3376 != 0) {
                 local273 = 2;
             }
             if (arg0.movementQueueSize > 2) {

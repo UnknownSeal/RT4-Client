@@ -49,7 +49,7 @@ public final class SpotAnim extends Entity {
 	private final int anInt596;
 
 	@OriginalMember(owner = "runetek4.client!bh", name = "K", descriptor = "I")
-	public final int anInt599;
+	public final int y;
 
 	@OriginalMember(owner = "runetek4.client!bh", name = "J", descriptor = "Lclient!tk;")
 	private SeqType aClass144_1;
@@ -61,7 +61,7 @@ public final class SpotAnim extends Entity {
 		this.level = level;
 		this.startCycle = arg6 + arg5;
 		this.anInt596 = arg0;
-		this.anInt599 = arg4;
+		this.y = arg4;
 		@Pc(42) int local42 = SpotAnimTypeList.get(this.anInt596).seqId;
 		if (local42 == -1) {
 			this.seqComplete = true;

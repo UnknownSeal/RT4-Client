@@ -193,8 +193,8 @@ public class LoginManager {
     public static void method1841() {
         if (!ClientScriptRunner.menuVisible) {
             if (MiniMenu.menuState != 0) {
-                ClientScriptRunner.scriptMouseX = Mouse.anInt5850;
-                ClientScriptRunner.scriptMouseY = Mouse.anInt5895;
+                ClientScriptRunner.scriptMouseX = Mouse.lastClickX;
+                ClientScriptRunner.scriptMouseY = Mouse.lastClickY;
             } else if (Mouse.clickButton == 0) {
                 ClientScriptRunner.scriptMouseX = Mouse.lastMouseX;
                 ClientScriptRunner.scriptMouseY = Mouse.lastMouseY;
@@ -238,7 +238,7 @@ public class LoginManager {
         }
         MiniMenu.sort();
         if (ClientScriptRunner.menuVisible) {
-            if (WidgetList.aBoolean298) {
+            if (WidgetList.hasScrollbar) {
                 MiniMenu.drawB();
             } else {
                 MiniMenu.drawA();

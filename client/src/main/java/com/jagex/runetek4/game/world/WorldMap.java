@@ -18,6 +18,7 @@ import com.jagex.runetek4.config.types.msi.MSIType;
 import com.jagex.runetek4.graphics.gl.GlRaster;
 import com.jagex.runetek4.graphics.gl.GlRenderer;
 import com.jagex.runetek4.graphics.font.Fonts;
+import com.jagex.runetek4.ui.sprite.GlSprite;
 import com.jagex.runetek4.util.string.JString;
 import com.jagex.runetek4.util.string.LocalizedText;
 import com.jagex.runetek4.game.map.Map;
@@ -79,13 +80,13 @@ public class WorldMap {
     public static final JString[] lines = new JString[5];
 
     @OriginalMember(owner = "client!fi", name = "j", descriptor = "Lclient!qf;")
-    public static Sprite aClass3_Sub2_Sub1_2;
+    public static Sprite cachedMapSprite;
 
     @OriginalMember(owner = "client!dc", name = "O", descriptor = "I")
     public static int loadPercentage = 0;
 
     @OriginalMember(owner = "client!qf", name = "S", descriptor = "I")
-    public static int anInt1864;
+    public static int mapFunctionCount;
 
     @OriginalMember(owner = "client!oi", name = "m", descriptor = "I")
     public static int length;
@@ -190,7 +191,7 @@ public class WorldMap {
     public static int anInt5212;
 
     @OriginalMember(owner = "client!al", name = "e", descriptor = "I")
-    public static int anInt172;
+    public static int selectedMapFunctionId;
 
     @OriginalMember(owner = "client!eh", name = "g", descriptor = "[[[I")
     public static int[][][] scenery;
@@ -225,7 +226,7 @@ public class WorldMap {
         font14 = null;
         font17 = null;
         font19 = null;
-        aClass3_Sub2_Sub1_2 = null;
+        cachedMapSprite = null;
         anInt3482 = -1;
         aClass3_Sub2_Sub1_Sub1_2 = null;
     }
@@ -262,10 +263,10 @@ public class WorldMap {
             return;
         }
         anInt1176 = (int) ((float) (arg2 * 2) / zoom);
-        ClientScriptRunner.anInt2882 = anInt435 - (int) ((float) arg3 / zoom);
+        ClientScriptRunner.worldMapViewportX = anInt435 - (int) ((float) arg3 / zoom);
         @Pc(211) int local211 = anInt435 - (int) ((float) arg3 / zoom);
         local50 = anInt919 - (int) ((float) arg2 / zoom);
-        ClientScriptRunner.anInt2884 = anInt919 - (int) ((float) arg2 / zoom);
+        ClientScriptRunner.worldMapViewportY = anInt919 - (int) ((float) arg2 / zoom);
         @Pc(236) int local236 = anInt919 + (int) ((float) arg2 / zoom);
         local61 = (int) ((float) arg3 / zoom) + anInt435;
         anInt2387 = (int) ((float) (arg3 * 2) / zoom);
@@ -275,21 +276,21 @@ public class WorldMap {
                 aClass3_Sub2_Sub1_Sub1_2 = new SoftwareSprite(arg3, arg2);
             }
             SoftwareRaster.setSize(aClass3_Sub2_Sub1_Sub1_2.pixels, arg3, arg2);
-            method4364(arg3, 0, local61, local50, 0, local236, arg2, local211);
+            renderMapToBuffer(arg3, 0, local61, local50, 0, local236, arg2, local211);
             method1195(arg3, 0, local61, local236, arg2, 0, local211, local50);
             method959(0, 0, local211, arg3, local236, local50, local61, arg2);
             GlRaster.render(aClass3_Sub2_Sub1_Sub1_2.pixels, arg0, arg1, arg3, arg2);
             SoftwareRaster.pixels = null;
         } else {
-            method4364(arg3 + arg0, arg1, local61, local50, arg0, local236, arg1 + arg2, local211);
+            renderMapToBuffer(arg3 + arg0, arg1, local61, local50, arg0, local236, arg1 + arg2, local211);
             method1195(arg0 + arg3, arg0, local61, local236, arg2 + arg1, arg1, local211, local50);
             method959(arg0, arg1, local211, arg0 + arg3, local236, local50, local61, arg2 + arg1);
         }
-        if (anInt1864 > 0) {
-            ClientScriptRunner.anInt2428--;
-            if (ClientScriptRunner.anInt2428 == 0) {
-                ClientScriptRunner.anInt2428 = 20;
-                anInt1864--;
+        if (mapFunctionCount > 0) {
+            ClientScriptRunner.mapFunctionFlashTimer--;
+            if (ClientScriptRunner.mapFunctionFlashTimer == 0) {
+                ClientScriptRunner.mapFunctionFlashTimer = 20;
+                mapFunctionCount--;
             }
         }
         if (!Cheat.displayFps) {
@@ -1340,7 +1341,7 @@ public class WorldMap {
     }
 
     @OriginalMember(owner = "runetek4.client!rg", name = "a", descriptor = "(IIIIIIIII)V")
-    public static void method4364(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int arg6, @OriginalArg(8) int arg7) {
+    public static void renderMapToBuffer(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int arg6, @OriginalArg(8) int arg7) {
         @Pc(7) int local7 = arg2 - arg7;
         @Pc(16) int local16 = (arg0 - arg4 << 16) / local7;
         @Pc(21) int local21 = arg5 - arg3;
@@ -1352,11 +1353,11 @@ public class WorldMap {
     public static void method3991(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(8) int arg5, @OriginalArg(9) int arg6, @OriginalArg(10) int arg7) {
         @Pc(9) int local9 = arg2 - arg4;
         @Pc(11) int local11 = -1;
-        if (anInt1864 > 0) {
-            if (ClientScriptRunner.anInt2428 <= 10) {
-                local11 = ClientScriptRunner.anInt2428 * 5;
+        if (mapFunctionCount > 0) {
+            if (ClientScriptRunner.mapFunctionFlashTimer <= 10) {
+                local11 = ClientScriptRunner.mapFunctionFlashTimer * 5;
             } else {
-                local11 = 50 - (ClientScriptRunner.anInt2428 - 10) * 5;
+                local11 = 50 - (ClientScriptRunner.mapFunctionFlashTimer - 10) * 5;
             }
         }
         @Pc(39) int local39 = arg1 - arg6;
@@ -1384,7 +1385,7 @@ public class WorldMap {
                                 if (local209 != 0) {
                                     @Pc(222) LocType local222 = LocTypeList.get(local209 - 1);
                                     if (!MapList.aBooleanArray130[local222.mapfunction]) {
-                                        if (local11 != -1 && local222.mapfunction == anInt172) {
+                                        if (local11 != -1 && local222.mapfunction == selectedMapFunctionId) {
                                             @Pc(243) MapFunction local243 = new MapFunction();
                                             local243.x = local65;
                                             local243.z = local144;
@@ -1413,9 +1414,9 @@ public class WorldMap {
 
     @OriginalMember(owner = "runetek4.client!va", name = "c", descriptor = "(BI)V")
     public static void method4444(@OriginalArg(1) int arg0) {
-        anInt172 = arg0;
-        ClientScriptRunner.anInt2428 = 20;
-        anInt1864 = 3;
+        selectedMapFunctionId = arg0;
+        ClientScriptRunner.mapFunctionFlashTimer = 20;
+        mapFunctionCount = 3;
     }
 
     @OriginalMember(owner = "runetek4.client!wl", name = "a", descriptor = "([IIIIIIIIIZB)V")
@@ -1898,6 +1899,73 @@ public class WorldMap {
                     local79++;
                 }
                 local79 += local99;
+            }
+        }
+    }
+
+    @OriginalMember(owner = "client!a", name = "a", descriptor = "(IIIII)V")
+    public static void renderWorldMap(@OriginalArg(0) int x, @OriginalArg(1) int height, @OriginalArg(2) int width, @OriginalArg(4) int y) {
+        if (GlRenderer.enabled) {
+            GlRaster.setClip(x, y, width + x, height + y);
+            GlRaster.fillRect(x, y, width, height, 0);
+        } else {
+            SoftwareRaster.setClip(x, y, width + x, y + height);
+            SoftwareRaster.fillRect(x, y, width, height, 0);
+        }
+
+        if (loadPercentage < 100) {
+            return;
+        }
+
+        if (cachedMapSprite == null || width != cachedMapSprite.width || cachedMapSprite.height != height) {
+            @Pc(63) SoftwareSprite mapSprite = new SoftwareSprite(width, height);
+            SoftwareRaster.setSize(mapSprite.pixels, width, height);
+            renderMapToBuffer(width, 0, WorldMap.width, 0, 0, length, height, 0);
+            if (GlRenderer.enabled) {
+                cachedMapSprite = new GlSprite(mapSprite);
+            } else {
+                cachedMapSprite = mapSprite;
+            }
+            if (GlRenderer.enabled) {
+                SoftwareRaster.pixels = null;
+            } else {
+                SoftwareRaster.frameBuffer.makeTarget();
+            }
+        }
+        cachedMapSprite.drawPixels(x, y);
+        @Pc(147) int viewportY = height * ClientScriptRunner.worldMapViewportY / length + y;
+        @Pc(153) int viewportHeight = anInt1176 * height / length;
+        @Pc(161) int viewportX = x + width * ClientScriptRunner.worldMapViewportX / WorldMap.width;
+        @Pc(167) int viewportWidth = width * anInt2387 / WorldMap.width;
+        @Pc(169) int viewportColor = 16711680;
+        if (Client.game == 1) {
+            viewportColor = 16777215;
+        }
+        if (GlRenderer.enabled) {
+            GlRaster.fillRectAlpha(viewportX, viewportY, viewportWidth, viewportHeight, viewportColor, 128);
+            GlRaster.drawRect(viewportX, viewportY, viewportWidth, viewportHeight, viewportColor);
+        } else {
+            SoftwareRaster.fillRectAlpha(viewportX, viewportY, viewportWidth, viewportHeight, viewportColor, 128);
+            SoftwareRaster.drawRect(viewportX, viewportY, viewportWidth, viewportHeight, viewportColor);
+        }
+        if (mapFunctionCount <= 0) {
+            return;
+        }
+        @Pc(225) int alpha;
+        if (ClientScriptRunner.mapFunctionFlashTimer > 10) {
+            alpha = (20 - ClientScriptRunner.mapFunctionFlashTimer) * 25;
+        } else {
+            alpha = ClientScriptRunner.mapFunctionFlashTimer * 25;
+        }
+        for (@Pc(238) MapFunction mapFunction = (MapFunction) mapFunctions.head(); mapFunction != null; mapFunction = (MapFunction) mapFunctions.next()) {
+            if (mapFunction.id == selectedMapFunctionId) {
+                @Pc(267) int local267 = width * mapFunction.x / WorldMap.width + x;
+                @Pc(258) int local258 = y + mapFunction.z * height / length;
+                if (GlRenderer.enabled) {
+                    GlRaster.fillRectAlpha(local267 - 2, local258 - 2, 4, 4, 16776960, alpha);
+                } else {
+                    SoftwareRaster.fillRectAlpha(local267 - 2, local258 - 2, 4, 4, 16776960, alpha);
+                }
             }
         }
     }
