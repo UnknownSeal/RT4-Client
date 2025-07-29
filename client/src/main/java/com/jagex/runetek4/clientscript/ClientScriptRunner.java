@@ -3428,7 +3428,7 @@ public final class ClientScriptRunner {
 															chatTypedLowercase = EMPTY_STRING;
 														} else {
 															chatTypedLowercase = WorldMap.labels.text[componentId];
-															j = WorldMap.labels.method3894(componentId);
+															j = WorldMap.labels.getLowerTwoBits(componentId);
 														}
 														chatTypedLowercase = chatTypedLowercase.method3140(aClass100_639, aClass100_10);
 														scriptStringValues[ssp++] = chatTypedLowercase;
@@ -3442,7 +3442,7 @@ public final class ClientScriptRunner {
 															chatTypedLowercase = EMPTY_STRING;
 														} else {
 															chatTypedLowercase = WorldMap.labels.text[componentId];
-															j = WorldMap.labels.method3894(componentId);
+															j = WorldMap.labels.getLowerTwoBits(componentId);
 														}
 														chatTypedLowercase = chatTypedLowercase.method3140(aClass100_639, aClass100_10);
 														scriptStringValues[ssp++] = chatTypedLowercase;

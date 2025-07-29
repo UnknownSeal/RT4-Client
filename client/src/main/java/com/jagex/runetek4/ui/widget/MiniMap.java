@@ -151,7 +151,7 @@ public class MiniMap {
             @Pc(271) int local271;
             if (WorldLoader.mapElementList != null) {
                 for (@Pc(117) int local117 = 0; local117 < WorldLoader.mapElementList.anInt5074; local117++) {
-                    if (WorldLoader.mapElementList.method3892(local117)) {
+                    if (WorldLoader.mapElementList.hasFlag4Set(local117)) {
                         flagX = (WorldLoader.mapElementList.aShortArray73[local117] - Camera.originX) * 4 + 2 - PlayerList.self.xFine / 32;
                         local150 = MathUtils.sin[angle];
                         local154 = MathUtils.cos[angle];
@@ -160,10 +160,10 @@ public class MiniMap {
                         flagZ = (WorldLoader.mapElementList.aShortArray72[local117] - Camera.originZ) * 4 + 2 - PlayerList.self.zFine / 32;
                         @Pc(189) int local189 = local154 * 256 / (minimapZoom + 256);
                         npcZ = flagZ * local189 - flagX * local164 >> 16;
-                        if (WorldLoader.mapElementList.method3894(local117) == 1) {
+                        if (WorldLoader.mapElementList.getLowerTwoBits(local117) == 1) {
                             local156 = Fonts.p12Full;
                         }
-                        if (WorldLoader.mapElementList.method3894(local117) == 2) {
+                        if (WorldLoader.mapElementList.getLowerTwoBits(local117) == 2) {
                             local156 = Fonts.b12Full;
                         }
                         npcX = local164 * flagZ + local189 * flagX >> 16;

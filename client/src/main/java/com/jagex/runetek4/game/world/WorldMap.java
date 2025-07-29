@@ -841,11 +841,11 @@ public class WorldMap {
     @OriginalMember(owner = "client!cn", name = "a", descriptor = "(BIIIIIIII)V")
     public static void method959(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int arg6, @OriginalArg(8) int arg7) {
         for (@Pc(11) int local11 = 0; local11 < labels.anInt5074; local11++) {
-            if (labels.method3890(local11)) {
+            if (labels.hasFlag8Set(local11)) {
                 @Pc(32) int local32 = labels.aShortArray73[local11] - originX;
                 @Pc(43) int local43 = originZ + length - labels.aShortArray72[local11] - 1;
                 @Pc(59) int local59 = arg0 + (arg3 - arg0) * (local32 - arg2) / (arg6 - arg2);
-                @Pc(64) int textsize = labels.method3894(local11);
+                @Pc(64) int textsize = labels.getLowerTwoBits(local11);
                 @Pc(80) int local80 = (arg7 - arg1) * (local43 - arg5) / (arg4 - arg5) + arg1;
                 @Pc(82) int textColor = 16777215;
                 @Pc(84) WorldMapFont font = null;
@@ -1047,7 +1047,7 @@ public class WorldMap {
             return -1;
         }
         while (anInt5212 < labels.anInt5074) {
-            if (labels.method3897(anInt5212)) {
+            if (labels.isFlag16Clear(anInt5212)) {
                 return anInt5212++;
             }
             anInt5212++;
