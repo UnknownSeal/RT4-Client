@@ -4,11 +4,11 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.io.UnsupportedEncodingException;
 
-import com.jagex.runetek4.WidgetString;
+import com.jagex.runetek4.ComponentString;
 import com.jagex.runetek4.clientscript.ClientScriptRunner;
 import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.core.datastruct.JagStringWrapper;
-import com.jagex.runetek4.data.cache.media.component.Widget;
+import com.jagex.runetek4.data.cache.media.component.Component;
 import com.jagex.runetek4.entity.entity.Player;
 import com.jagex.runetek4.util.data.Base37;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -17,7 +17,7 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("runetek4.client!na")
-public final class JString implements WidgetString {
+public final class JString implements ComponentString {
 
 	@OriginalMember(owner = "runetek4.client!pa", name = "O", descriptor = "Lclient!na;")
 	public static final JString EMPTY = parse("");
@@ -316,7 +316,7 @@ public final class JString implements WidgetString {
 	}
 
     @OriginalMember(owner = "runetek4.client!k", name = "a", descriptor = "(Lclient!be;Lclient!na;I)Lclient!na;")
-    public static JString processStringTokens(@OriginalArg(0) Widget widget, @OriginalArg(1) JString string) {
+    public static JString processStringTokens(@OriginalArg(0) Component component, @OriginalArg(1) JString string) {
         if (string.indexOf(PERCENT_SIGN) == -1) {
             return string;
         }
@@ -354,19 +354,19 @@ public final class JString implements WidgetString {
                                                     string = concatenate(new JString[] { string.substring(pos, 0), replacement, string.substring(pos + 4) });
                                                 }
                                             }
-                                            string = concatenate(new JString[] { string.substring(pos, 0), StringUtils.toString(ClientScriptRunner.executeClientscript(4, widget)), string.substring(pos + 2) });
+                                            string = concatenate(new JString[] { string.substring(pos, 0), StringUtils.toString(ClientScriptRunner.executeClientscript(4, component)), string.substring(pos + 2) });
                                         }
                                     }
-                                    string = concatenate(new JString[] { string.substring(pos, 0), StringUtils.toString(ClientScriptRunner.executeClientscript(3, widget)), string.substring(pos + 2) });
+                                    string = concatenate(new JString[] { string.substring(pos, 0), StringUtils.toString(ClientScriptRunner.executeClientscript(3, component)), string.substring(pos + 2) });
                                 }
                             }
-                            string = concatenate(new JString[] { string.substring(pos, 0), StringUtils.toString(ClientScriptRunner.executeClientscript(2, widget)), string.substring(pos + 2) });
+                            string = concatenate(new JString[] { string.substring(pos, 0), StringUtils.toString(ClientScriptRunner.executeClientscript(2, component)), string.substring(pos + 2) });
                         }
                     }
-                    string = concatenate(new JString[] { string.substring(pos, 0), StringUtils.toString(ClientScriptRunner.executeClientscript(1, widget)), string.substring(pos + 2) });
+                    string = concatenate(new JString[] { string.substring(pos, 0), StringUtils.toString(ClientScriptRunner.executeClientscript(1, component)), string.substring(pos + 2) });
                 }
             }
-            string = concatenate(new JString[] { string.substring(pos, 0), StringUtils.toString(ClientScriptRunner.executeClientscript(0, widget)), string.substring(pos + 2) });
+            string = concatenate(new JString[] { string.substring(pos, 0), StringUtils.toString(ClientScriptRunner.executeClientscript(0, component)), string.substring(pos + 2) });
         }
     }
 

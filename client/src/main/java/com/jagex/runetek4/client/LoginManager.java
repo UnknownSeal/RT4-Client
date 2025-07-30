@@ -3,7 +3,7 @@ package com.jagex.runetek4.client;
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.audio.spatial.AreaSoundManager;
 import com.jagex.runetek4.data.cache.CacheArchive;
-import com.jagex.runetek4.data.cache.media.component.Widget;
+import com.jagex.runetek4.data.cache.media.component.Component;
 import com.jagex.runetek4.config.types.loc.LocTypeList;
 import com.jagex.runetek4.config.types.obj.ObjTypeList;
 import com.jagex.runetek4.core.io.Packet;
@@ -26,9 +26,9 @@ import com.jagex.runetek4.graphics.raster.SoftwareRaster;
 import com.jagex.runetek4.scene.SceneGraph;
 import com.jagex.runetek4.clientscript.ClientScriptRunner;
 import com.jagex.runetek4.ui.sprite.Sprite;
-import com.jagex.runetek4.ui.widget.WidgetList;
-import com.jagex.runetek4.ui.widget.MiniMap;
-import com.jagex.runetek4.ui.widget.MiniMenu;
+import com.jagex.runetek4.ui.component.ComponentList;
+import com.jagex.runetek4.ui.component.MiniMap;
+import com.jagex.runetek4.ui.component.MiniMenu;
 import com.jagex.runetek4.util.debug.Cheat;
 import com.jagex.runetek4.game.world.WorldList;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -109,7 +109,7 @@ public class LoginManager {
     public static boolean aBoolean247 = false;
 
     @OriginalMember(owner = "runetek4.client!qf", name = "X", descriptor = "Lclient!be;")
-    public static Widget hoveredWidget = null;
+    public static Component hoveredComponent = null;
 
     @OriginalMember(owner = "runetek4.client!qg", name = "W", descriptor = "Z")
     public static boolean playerMember = false;
@@ -208,27 +208,27 @@ public class LoginManager {
             MiniMenu.actions[0] = 1005;
             MiniMenu.cursors[0] = MiniMenu.defaultCursor;
         }
-        if (WidgetList.topLevelInterface != -1) {
-            WidgetList.method1949(WidgetList.topLevelInterface);
+        if (ComponentList.topLevelInterface != -1) {
+            ComponentList.updateInterfaceState(ComponentList.topLevelInterface);
         }
-        @Pc(60) int widgetIndex;
-        for (widgetIndex = 0; widgetIndex < WidgetList.rectangles; widgetIndex++) {
-            if (WidgetList.widgetNeedsRedraw[widgetIndex]) {
-                WidgetList.rectangleRedraw[widgetIndex] = true;
+        @Pc(60) int componentIndex;
+        for (componentIndex = 0; componentIndex < ComponentList.rectangles; componentIndex++) {
+            if (ComponentList.componentNeedsRedraw[componentIndex]) {
+                ComponentList.rectangleRedraw[componentIndex] = true;
             }
-            WidgetList.widgetRedrawPrevious[widgetIndex] = WidgetList.widgetNeedsRedraw[widgetIndex];
-            WidgetList.widgetNeedsRedraw[widgetIndex] = false;
+            ComponentList.componentRedrawPrevious[componentIndex] = ComponentList.componentNeedsRedraw[componentIndex];
+            ComponentList.componentNeedsRedraw[componentIndex] = false;
         }
-        hoveredWidget = null;
+        hoveredComponent = null;
         ClientScriptRunner.anInt2503 = -1;
-        WidgetList.anInt5574 = -1;
-        WidgetList.mouseOverInventoryInterface = null;
+        ComponentList.anInt5574 = -1;
+        ComponentList.mouseOverInventoryComponent = null;
         if (GlRenderer.enabled) {
             ClientScriptRunner.aBoolean299 = true;
         }
-        WidgetList.anInt4311 = Client.loop;
-        if (WidgetList.topLevelInterface != -1) {
-            WidgetList.rectangles = 0;
+        ComponentList.currentFrameLoop = Client.loop;
+        if (ComponentList.topLevelInterface != -1) {
+            ComponentList.rectangles = 0;
             CacheArchive.method182();
         }
         if (GlRenderer.enabled) {
@@ -238,21 +238,21 @@ public class LoginManager {
         }
         MiniMenu.sortMenuActions();
         if (ClientScriptRunner.menuVisible) {
-            if (WidgetList.hasScrollbar) {
+            if (ComponentList.hasScrollbar) {
                 MiniMenu.drawContextMenu();
             } else {
                 MiniMenu.drawSimpleMenu();
             }
-        } else if (hoveredWidget != null) {
-            MiniMenu.drawMenuText(hoveredWidget, ClientScriptRunner.anInt3484, ClientScriptRunner.anInt3260);
+        } else if (hoveredComponent != null) {
+            MiniMenu.drawMenuText(hoveredComponent, ClientScriptRunner.anInt3484, ClientScriptRunner.anInt3260);
         } else if (ClientScriptRunner.anInt2503 != -1) {
-            MiniMenu.drawMenuText(null, WidgetList.anInt5574, ClientScriptRunner.anInt2503);
+            MiniMenu.drawMenuText(null, ComponentList.anInt5574, ClientScriptRunner.anInt2503);
         }
-        widgetIndex = ClientScriptRunner.menuVisible ? -1 : MiniMenu.getShiftClickOption();
-        if (widgetIndex == -1) {
-            widgetIndex = ClientScriptRunner.anInt5794;
+        componentIndex = ClientScriptRunner.menuVisible ? -1 : MiniMenu.getShiftClickOption();
+        if (componentIndex == -1) {
+            componentIndex = ClientScriptRunner.anInt5794;
         }
-        WidgetList.method1750(widgetIndex);
+        ComponentList.setCursor(componentIndex);
         if (MiniMenu.anInt3096 == 1) {
             MiniMenu.anInt3096 = 2;
         }
@@ -260,18 +260,18 @@ public class LoginManager {
             Protocol.anInt4422 = 2;
         }
         if (Cheat.rectDebug == 3) {
-            for (@Pc(189) int rectIndex = 0; rectIndex < WidgetList.rectangles; rectIndex++) {
-                if (WidgetList.widgetRedrawPrevious[rectIndex]) {
+            for (@Pc(189) int rectIndex = 0; rectIndex < ComponentList.rectangles; rectIndex++) {
+                if (ComponentList.componentRedrawPrevious[rectIndex]) {
                     if (GlRenderer.enabled) {
-                        GlRaster.fillRectAlpha(WidgetList.rectangleX[rectIndex], WidgetList.rectangleY[rectIndex], WidgetList.rectangleWidth[rectIndex], WidgetList.rectangleHeight[rectIndex], 16711935, 128);
+                        GlRaster.fillRectAlpha(ComponentList.rectangleX[rectIndex], ComponentList.rectangleY[rectIndex], ComponentList.rectangleWidth[rectIndex], ComponentList.rectangleHeight[rectIndex], 16711935, 128);
                     } else {
-                        SoftwareRaster.fillRectAlpha(WidgetList.rectangleX[rectIndex], WidgetList.rectangleY[rectIndex], WidgetList.rectangleWidth[rectIndex], WidgetList.rectangleHeight[rectIndex], 16711935, 128);
+                        SoftwareRaster.fillRectAlpha(ComponentList.rectangleX[rectIndex], ComponentList.rectangleY[rectIndex], ComponentList.rectangleWidth[rectIndex], ComponentList.rectangleHeight[rectIndex], 16711935, 128);
                     }
-                } else if (WidgetList.rectangleRedraw[rectIndex]) {
+                } else if (ComponentList.rectangleRedraw[rectIndex]) {
                     if (GlRenderer.enabled) {
-                        GlRaster.fillRectAlpha(WidgetList.rectangleX[rectIndex], WidgetList.rectangleY[rectIndex], WidgetList.rectangleWidth[rectIndex], WidgetList.rectangleHeight[rectIndex], 16711680, 128);
+                        GlRaster.fillRectAlpha(ComponentList.rectangleX[rectIndex], ComponentList.rectangleY[rectIndex], ComponentList.rectangleWidth[rectIndex], ComponentList.rectangleHeight[rectIndex], 16711680, 128);
                     } else {
-                        SoftwareRaster.fillRectAlpha(WidgetList.rectangleX[rectIndex], WidgetList.rectangleY[rectIndex], WidgetList.rectangleWidth[rectIndex], WidgetList.rectangleHeight[rectIndex], 16711680, 128);
+                        SoftwareRaster.fillRectAlpha(ComponentList.rectangleX[rectIndex], ComponentList.rectangleY[rectIndex], ComponentList.rectangleWidth[rectIndex], ComponentList.rectangleHeight[rectIndex], 16711680, 128);
                     }
                 }
             }
@@ -771,7 +771,7 @@ public class LoginManager {
         Camera.cameraType = 1;
         Client.processGameStatus(30);
         for (i = 0; i < 100; i++) {
-            WidgetList.widgetNeedsRedraw[i] = true;
+            ComponentList.componentNeedsRedraw[i] = true;
         }
         ClientProt.sendWindowDetails();
     }

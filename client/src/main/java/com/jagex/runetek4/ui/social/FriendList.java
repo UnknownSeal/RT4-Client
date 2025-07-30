@@ -7,7 +7,7 @@ import com.jagex.runetek4.client.LoginManager;
 import com.jagex.runetek4.util.string.JString;
 import com.jagex.runetek4.util.string.LocalizedText;
 import com.jagex.runetek4.network.Protocol;
-import com.jagex.runetek4.ui.widget.WidgetList;
+import com.jagex.runetek4.ui.component.ComponentList;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -92,7 +92,7 @@ public class FriendList {
         ranks[friendCount] = 0;
         friendGame[friendCount] = false;
         friendCount++;
-        transmitAt = WidgetList.transmitTimer;
+        transmitAt = ComponentList.transmitTimer;
         Protocol.outboundBuffer.pIsaac1(120);
         Protocol.outboundBuffer.p8(username);
     }
@@ -113,7 +113,7 @@ public class FriendList {
                     ranks[i] = ranks[i + 1];
                     friendGame[i] = friendGame[i + 1];
                 }
-                transmitAt = WidgetList.transmitTimer;
+                transmitAt = ComponentList.transmitTimer;
                 Protocol.outboundBuffer.pIsaac1(57);
                 Protocol.outboundBuffer.p8(username);
                 break;

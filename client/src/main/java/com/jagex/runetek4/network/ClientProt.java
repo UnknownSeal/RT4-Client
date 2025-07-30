@@ -1,7 +1,7 @@
 package com.jagex.runetek4.network;
 
 import com.jagex.runetek4.*;
-import com.jagex.runetek4.data.cache.media.component.Widget;
+import com.jagex.runetek4.data.cache.media.component.Component;
 import com.jagex.runetek4.ui.chat.Chat;
 import com.jagex.runetek4.client.GameShell;
 import com.jagex.runetek4.client.LoginManager;
@@ -14,9 +14,9 @@ import com.jagex.runetek4.input.Keyboard;
 import com.jagex.runetek4.util.string.JString;
 import com.jagex.runetek4.util.string.LocalizedText;
 import com.jagex.runetek4.clientscript.ClientScriptRunner;
-import com.jagex.runetek4.ui.widget.WidgetList;
-import com.jagex.runetek4.ui.widget.MiniMenu;
-import com.jagex.runetek4.ui.events.WidgetEvent;
+import com.jagex.runetek4.ui.component.ComponentList;
+import com.jagex.runetek4.ui.component.MiniMenu;
+import com.jagex.runetek4.ui.events.ComponentEvent;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -35,12 +35,12 @@ public class ClientProt {
 
     @OriginalMember(owner = "runetek4.client!vg", name = "a", descriptor = "(Lclient!na;IIBI)V")
     public static void method4512(@OriginalArg(0) JString arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(4) int arg3) {
-        @Pc(8) Widget local8 = WidgetList.getCreatedComponent(arg3, arg1);
+        @Pc(8) Component local8 = ComponentList.getCreatedComponent(arg3, arg1);
         if (local8 == null) {
             return;
         }
         if (local8.onOptionClick != null) {
-            @Pc(19) WidgetEvent local19 = new WidgetEvent();
+            @Pc(19) ComponentEvent local19 = new ComponentEvent();
             local19.arguments = local8.onOptionClick;
             local19.source = local8;
             local19.opBase = arg0;
@@ -51,7 +51,7 @@ public class ClientProt {
         if (local8.contentType > 0) {
             local37 = MiniMenu.shouldTriggerIdleTimeout(local8);
         }
-        if (!local37 || !WidgetList.getServerActiveProperties(local8).isButtonEnabled(arg2 - 1)) {
+        if (!local37 || !ComponentList.getServerActiveProperties(local8).isButtonEnabled(arg2 - 1)) {
             return;
         }
         if (arg2 == 1) {

@@ -15,7 +15,7 @@ import com.jagex.runetek4.graphics.model.RawModel;
 import com.jagex.runetek4.graphics.raster.Rasterizer;
 import com.jagex.runetek4.graphics.render.MaterialManager;
 import com.jagex.runetek4.ui.sprite.SoftwareIndexedSprite;
-import com.jagex.runetek4.ui.widget.MiniMenu;
+import com.jagex.runetek4.ui.component.MiniMenu;
 import com.jagex.runetek4.util.ArrayUtils;
 import com.jagex.runetek4.util.ColorUtils;
 import com.jagex.runetek4.util.math.MathUtils;

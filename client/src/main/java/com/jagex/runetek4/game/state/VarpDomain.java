@@ -9,7 +9,7 @@ import com.jagex.runetek4.config.types.varp.VarpTypeList;
 import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.core.datastruct.LongNode;
 import com.jagex.runetek4.util.string.JString;
-import com.jagex.runetek4.ui.widget.WidgetList;
+import com.jagex.runetek4.ui.component.ComponentList;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -51,7 +51,7 @@ public class VarpDomain {
 
     @OriginalMember(owner = "client!gl", name = "a", descriptor = "(II)V")
     public static void refreshMagicVarp(@OriginalArg(1) int varpIndex) {
-        WidgetList.redrawActiveInterfaces();
+        ComponentList.redrawActiveInterfaces();
         AreaSoundManager.setObjectSounds();
         @Pc(17) int varpType = VarpTypeList.get(varpIndex).clientCode;
         if (varpType == 0) {

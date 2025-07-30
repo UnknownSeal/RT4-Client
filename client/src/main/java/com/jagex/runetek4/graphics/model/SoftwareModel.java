@@ -5,7 +5,7 @@ import com.jagex.runetek4.graphics.raster.Rasterizer;
 import com.jagex.runetek4.graphics.geometry.TriangleNormal;
 import com.jagex.runetek4.graphics.geometry.VertexNormal;
 import com.jagex.runetek4.graphics.gl.GlModel;
-import com.jagex.runetek4.ui.widget.MiniMenu;
+import com.jagex.runetek4.ui.component.MiniMenu;
 import com.jagex.runetek4.util.ArrayUtils;
 import com.jagex.runetek4.util.ColorUtils;
 import com.jagex.runetek4.util.math.MathUtils;

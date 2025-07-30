@@ -21,7 +21,7 @@ import com.jagex.runetek4.client.*;
 import com.jagex.runetek4.config.types.npc.NpcType;
 import com.jagex.runetek4.config.types.obj.ObjType;
 import com.jagex.runetek4.data.cache.media.Font;
-import com.jagex.runetek4.data.cache.media.component.Widget;
+import com.jagex.runetek4.data.cache.media.component.Component;
 import com.jagex.runetek4.config.types.enums.EnumTypeList;
 import com.jagex.runetek4.config.types.idk.IDKTypeList;
 import com.jagex.runetek4.config.types.inv.InvTypeList;
@@ -78,10 +78,10 @@ import com.jagex.runetek4.ui.sprite.Sprite;
 import com.jagex.runetek4.ui.sprite.SpriteLoader;
 import com.jagex.runetek4.ui.sprite.Sprites;
 import com.jagex.runetek4.game.stockmarket.StockMarketManager;
-import com.jagex.runetek4.ui.widget.WidgetList;
-import com.jagex.runetek4.ui.widget.MiniMap;
-import com.jagex.runetek4.ui.widget.MiniMenu;
-import com.jagex.runetek4.ui.events.WidgetEvent;
+import com.jagex.runetek4.ui.component.ComponentList;
+import com.jagex.runetek4.ui.component.MiniMap;
+import com.jagex.runetek4.ui.component.MiniMenu;
+import com.jagex.runetek4.ui.events.ComponentEvent;
 import com.jagex.runetek4.util.*;
 import com.jagex.runetek4.util.data.Base37;
 import com.jagex.runetek4.util.debug.Cheat;
@@ -221,7 +221,7 @@ public final class ClientScriptRunner {
 	public static boolean menuVisible = false;
 
 	@OriginalMember(owner = "runetek4.client!d", name = "R", descriptor = "Lclient!be;")
-	public static Widget aClass13_10 = null;
+	public static Component modalBackgroundComponent = null;
 
 	@OriginalMember(owner = "client!bi", name = "jb", descriptor = "Z")
 	public static boolean aBoolean43 = true;
@@ -230,13 +230,13 @@ public final class ClientScriptRunner {
 	public static boolean neverRemoveRoofs = false;
 
 	@OriginalMember(owner = "runetek4.client!ib", name = "e", descriptor = "Lclient!be;")
-	public static Widget dragWidget = null;
+	public static Component dragComponent = null;
 
 	@OriginalMember(owner = "runetek4.client!nm", name = "W", descriptor = "Lclient!na;")
 	public static JString url;
 
 	@OriginalMember(owner = "runetek4.client!th", name = "m", descriptor = "[Lclient!be;")
-	public static Widget[] aClass13Array13;
+	public static Component[] aClass13Array13;
 
 	@OriginalMember(owner = "runetek4.client!k", name = "j", descriptor = "I")
 	public static int anInt3126;
@@ -245,7 +245,7 @@ public final class ClientScriptRunner {
 	public static int anInt4696;
 
 	@OriginalMember(owner = "runetek4.client!ac", name = "p", descriptor = "Lclient!be;")
-	public static Widget containerWidget = null;
+	public static Component containerComponent = null;
 
 	@OriginalMember(owner = "runetek4.client!km", name = "pc", descriptor = "Z")
 	public static boolean isDragging = false;
@@ -305,10 +305,10 @@ public final class ClientScriptRunner {
 	public static QuickChatPhrase activePhrase;
 
 	@OriginalMember(owner = "runetek4.client!wf", name = "j", descriptor = "Lclient!be;")
-	public static Widget secondaryActiveWidget;
+	public static Component secondaryActiveComponent;
 
 	@OriginalMember(owner = "runetek4.client!sg", name = "i", descriptor = "Lclient!be;")
-	public static Widget primaryActiveWidget;
+	public static Component primaryActiveComponent;
 
 	@OriginalMember(owner = "runetek4.client!og", name = "g", descriptor = "[Lclient!na;")
 	public static JString[] stringLocals;
@@ -388,85 +388,85 @@ public final class ClientScriptRunner {
 	}
 
 	@OriginalMember(owner = "runetek4.client!ac", name = "b", descriptor = "(I)V")
-	public static void handleWidgetDrag() {
-		WidgetList.redraw(dragWidget);
+	public static void handleComponentDrag() {
+		ComponentList.redraw(dragComponent);
 		dragTime++;
-		if (WidgetList.canDrag && WidgetList.dragActive) {
+		if (ComponentList.canDrag && ComponentList.dragActive) {
 			@Pc(30) int mouseX = Mouse.lastMouseX;
 			mouseX -= dragStartX;
 			if (minX > mouseX) {
 				mouseX = minX;
 			}
 			@Pc(41) int mouseY = Mouse.lastMouseY;
-			if (minX + containerWidget.width < mouseX - -dragWidget.width) {
-				mouseX = minX + containerWidget.width - dragWidget.width;
+			if (minX + containerComponent.width < mouseX - -dragComponent.width) {
+				mouseX = minX + containerComponent.width - dragComponent.width;
 			}
 			mouseY -= dragStartY;
-			if (mouseY < WidgetList.minY) {
-				mouseY = WidgetList.minY;
+			if (mouseY < ComponentList.minY) {
+				mouseY = ComponentList.minY;
 			}
-			if (WidgetList.minY + containerWidget.height < mouseY - -dragWidget.height) {
-				mouseY = WidgetList.minY + containerWidget.height - dragWidget.height;
+			if (ComponentList.minY + containerComponent.height < mouseY - -dragComponent.height) {
+				mouseY = ComponentList.minY + containerComponent.height - dragComponent.height;
 			}
-			@Pc(109) int deltaY = mouseY - WidgetList.lastMouseY;
-			@Pc(114) int deltaX = mouseX - WidgetList.lastMouseX;
-			@Pc(122) int relativeMouseX = mouseX + containerWidget.scrollX - minX;
-			@Pc(130) int relativeMouseY = containerWidget.scrollY + mouseY - WidgetList.minY;
-			@Pc(133) int deadzone = dragWidget.dragDeadzone;
-			if (dragTime > dragWidget.dragDeadtime && (deadzone < deltaX || -deadzone > deltaX || deltaY > deadzone || deltaY < -deadzone)) {
+			@Pc(109) int deltaY = mouseY - ComponentList.lastMouseY;
+			@Pc(114) int deltaX = mouseX - ComponentList.lastMouseX;
+			@Pc(122) int relativeMouseX = mouseX + containerComponent.scrollX - minX;
+			@Pc(130) int relativeMouseY = containerComponent.scrollY + mouseY - ComponentList.minY;
+			@Pc(133) int deadzone = dragComponent.dragDeadzone;
+			if (dragTime > dragComponent.dragDeadtime && (deadzone < deltaX || -deadzone > deltaX || deltaY > deadzone || deltaY < -deadzone)) {
 				isDragging = true;
 			}
-			@Pc(176) WidgetEvent event;
-			if (dragWidget.onDragStart != null && isDragging) {
-				event = new WidgetEvent();
-				event.source = dragWidget;
-				event.arguments = dragWidget.onDragStart;
+			@Pc(176) ComponentEvent event;
+			if (dragComponent.onDragStart != null && isDragging) {
+				event = new ComponentEvent();
+				event.source = dragComponent;
+				event.arguments = dragComponent.onDragStart;
 				event.mouseX = relativeMouseX;
 				event.mouseY = relativeMouseY;
 				run(event);
 			}
 			if (Mouse.pressedButton == 0) {
 				if (isDragging) {
-					if (dragWidget.onDragRelease != null) {
-						event = new WidgetEvent();
+					if (dragComponent.onDragRelease != null) {
+						event = new ComponentEvent();
 						event.mouseY = relativeMouseY;
-						event.target = WidgetList.targetWidget;
+						event.target = ComponentList.targetComponent;
 						event.mouseX = relativeMouseX;
-						event.arguments = dragWidget.onDragRelease;
-						event.source = dragWidget;
+						event.arguments = dragComponent.onDragRelease;
+						event.source = dragComponent;
 						run(event);
 					}
-					if (WidgetList.targetWidget != null && WidgetList.canAcceptDrop(dragWidget) != null) {
+					if (ComponentList.targetComponent != null && ComponentList.canAcceptDrop(dragComponent) != null) {
 						Protocol.outboundBuffer.pIsaac1(79);
-						Protocol.outboundBuffer.p4_alt3(dragWidget.id);
-						Protocol.outboundBuffer.p2_alt1(WidgetList.targetWidget.createdComponentId);
-						Protocol.outboundBuffer.p4(WidgetList.targetWidget.id);
-						Protocol.outboundBuffer.p2_alt1(dragWidget.createdComponentId);
+						Protocol.outboundBuffer.p4_alt3(dragComponent.id);
+						Protocol.outboundBuffer.p2_alt1(ComponentList.targetComponent.createdComponentId);
+						Protocol.outboundBuffer.p4(ComponentList.targetComponent.id);
+						Protocol.outboundBuffer.p2_alt1(dragComponent.createdComponentId);
 					}
-				} else if ((VarpDomain.oneMouseButton == 1 || MiniMenu.isWidgetAction(MiniMenu.menuActionRow - 1)) && MiniMenu.menuActionRow > 2) {
+				} else if ((VarpDomain.oneMouseButton == 1 || MiniMenu.isComponentAction(MiniMenu.menuActionRow - 1)) && MiniMenu.menuActionRow > 2) {
 					determineMenuSize();
 				} else if (MiniMenu.menuActionRow > 0) {
 					MiniMenu.processMenuActions();
 				}
-				dragWidget = null;
+				dragComponent = null;
 			}
 		} else if (dragTime > 1) {
-			dragWidget = null;
+			dragComponent = null;
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!gi", name = "a", descriptor = "(ILclient!jl;)V")
-	public static void run(@OriginalArg(1) WidgetEvent request) {
+	public static void run(@OriginalArg(1) ComponentEvent request) {
 		run(200000, request);
 	}
 
 	@OriginalMember(owner = "runetek4.client!we", name = "a", descriptor = "(BILclient!be;)I")
-	public static int executeClientscript(@OriginalArg(1) int scriptIndex, @OriginalArg(2) Widget widget) {
-		if (widget.scripts == null || scriptIndex >= widget.scripts.length) {
+	public static int executeClientscript(@OriginalArg(1) int scriptIndex, @OriginalArg(2) Component component) {
+		if (component.scripts == null || scriptIndex >= component.scripts.length) {
 			return -2;
 		}
 		try {
-			@Pc(33) int[] script = widget.scripts[scriptIndex];
+			@Pc(33) int[] script = component.scripts[scriptIndex];
 			@Pc(35) byte accumulatorMode = 0;
 			@Pc(37) int accumulator = 0;
 			@Pc(39) int pc = 0;
@@ -496,13 +496,13 @@ public final class ClientScriptRunner {
 					value = PlayerSkillXpTable.experience[script[pc++]];
 				}
 				@Pc(124) int pc2;
-				@Pc(135) Widget com;
+				@Pc(135) Component com;
 				@Pc(140) int pc3;
 				@Pc(152) int j;
 				if (opcode == 4) { // load_inv_count {interface id} {obj id}
 					pc2 = script[pc++] << 16;
 					@Pc(131) int componentId = pc2 + script[pc++];
-					com = WidgetList.getComponent(componentId);
+					com = ComponentList.getComponent(componentId);
 					pc3 = script[pc++];
 					if (pc3 != -1 && (!ObjTypeList.get(pc3).members || LoginManager.membersWorld)) {
 						for (j = 0; j < com.invSlotObjId.length; j++) {
@@ -534,7 +534,7 @@ public final class ClientScriptRunner {
 				if (opcode == 10) { // load_inv_contains {interface id} {obj id}
 					pc2 = script[pc++] << 16;
 					pc2 += script[pc++];
-					com = WidgetList.getComponent(pc2);
+					com = ComponentList.getComponent(pc2);
 					pc3 = script[pc++];
 					if (pc3 != -1 && (!ObjTypeList.get(pc3).members || LoginManager.membersWorld)) {
 						for (j = 0; j < com.invSlotObjId.length; j++) {
@@ -593,22 +593,22 @@ public final class ClientScriptRunner {
 	}
 
 	@OriginalMember(owner = "runetek4.client!md", name = "a", descriptor = "(Lclient!be;I)Z")
-	public static boolean isTrue(@OriginalArg(0) Widget widget) {
-		if (widget.cs1ComparisonOpcodes == null) {
+	public static boolean isTrue(@OriginalArg(0) Component component) {
+		if (component.cs1ComparisonOpcodes == null) {
 			return false;
 		}
-		for (@Pc(14) int i = 0; i < widget.cs1ComparisonOpcodes.length; i++) {
-			@Pc(34) int value = executeClientscript(i, widget);
-			@Pc(39) int operand = widget.scriptOperand[i];
-			if (widget.cs1ComparisonOpcodes[i] == 2) {
+		for (@Pc(14) int i = 0; i < component.cs1ComparisonOpcodes.length; i++) {
+			@Pc(34) int value = executeClientscript(i, component);
+			@Pc(39) int operand = component.scriptOperand[i];
+			if (component.cs1ComparisonOpcodes[i] == 2) {
 				if (operand <= value) {
 					return false;
 				}
-			} else if (widget.cs1ComparisonOpcodes[i] == 3) {
+			} else if (component.cs1ComparisonOpcodes[i] == 3) {
 				if (value <= operand) {
 					return false;
 				}
-			} else if (widget.cs1ComparisonOpcodes[i] == 4) {
+			} else if (component.cs1ComparisonOpcodes[i] == 4) {
 				if (value == operand) {
 					return false;
 				}
@@ -620,7 +620,7 @@ public final class ClientScriptRunner {
 	}
 
 	@OriginalMember(owner = "client!h", name = "a", descriptor = "(BILclient!jl;)V")
-	public static void run(@OriginalArg(1) int maxCycles, @OriginalArg(2) WidgetEvent request) {
+	public static void run(@OriginalArg(1) int maxCycles, @OriginalArg(2) ComponentEvent request) {
 		@Pc(4) Object[] listeners = request.arguments;
 		@Pc(10) int sid = (Integer) listeners[0];
 		@Pc(14) ClientScript clientScript = ClientScriptList.get(sid);
@@ -959,11 +959,11 @@ public final class ClientScriptRunner {
 				} else {
 					secondary = false;
 				}
-				@Pc(1182) Widget createdWidget;
+				@Pc(1182) Component createdComponent;
 				@Pc(1052) int j;
-				@Pc(1063) Widget widget;
+				@Pc(1063) Component component;
 				@Pc(1087) int childId;
-				@Pc(1256) Widget local1256;
+				@Pc(1256) Component local1256;
 				if (opcode < 300) {
 					if (opcode == 100) {
 						// cc_create
@@ -972,70 +972,70 @@ public final class ClientScriptRunner {
 						interfaceType = scriptIntValues[isp + 1];
 						j = scriptIntValues[isp + 2];
 						if (interfaceType != 0) {
-							widget = WidgetList.getComponent(componentId);
-							if (widget.createdWidgets == null) {
-								widget.createdWidgets = new Widget[j + 1];
+							component = ComponentList.getComponent(componentId);
+							if (component.createdComponents == null) {
+								component.createdComponents = new Component[j + 1];
 							}
-							if (j >= widget.createdWidgets.length) {
-								@Pc(1085) Widget[] createdWidgets = new Widget[j + 1];
-								for (childId = 0; childId < widget.createdWidgets.length; childId++) {
-									createdWidgets[childId] = widget.createdWidgets[childId];
+							if (j >= component.createdComponents.length) {
+								@Pc(1085) Component[] createdComponents = new Component[j + 1];
+								for (childId = 0; childId < component.createdComponents.length; childId++) {
+									createdComponents[childId] = component.createdComponents[childId];
 								}
-								widget.createdWidgets = createdWidgets;
+								component.createdComponents = createdComponents;
 							}
-							if (j > 0 && widget.createdWidgets[j - 1] == null) {
+							if (j > 0 && component.createdComponents[j - 1] == null) {
 								throw new RuntimeException("Gap at:" + (j - 1));
 							}
-							@Pc(1137) Widget local1137 = new Widget();
+							@Pc(1137) Component local1137 = new Component();
 							local1137.if3 = true;
 							local1137.createdComponentId = j;
-							local1137.overlayer = local1137.id = widget.id;
+							local1137.overlayer = local1137.id = component.id;
 							local1137.type = interfaceType;
-							widget.createdWidgets[j] = local1137;
+							component.createdComponents[j] = local1137;
 							if (secondary) {
-								secondaryActiveWidget = local1137;
+								secondaryActiveComponent = local1137;
 							} else {
-								primaryActiveWidget = local1137;
+								primaryActiveComponent = local1137;
 							}
-							WidgetList.redraw(widget);
+							ComponentList.redraw(component);
 							continue;
 						}
 						throw new RuntimeException();
 					}
-					@Pc(1204) Widget widget2;
+					@Pc(1204) Component component2;
 					if (opcode == 101) {
 						// cc_delete
-						createdWidget = secondary ? secondaryActiveWidget : primaryActiveWidget;
-						if (createdWidget.createdComponentId == -1) {
+						createdComponent = secondary ? secondaryActiveComponent : primaryActiveComponent;
+						if (createdComponent.createdComponentId == -1) {
 							if (!secondary) {
 								throw new RuntimeException("Tried to cc_delete static active-component!");
 							}
 							throw new RuntimeException("Tried to .cc_delete static .active-component!");
 						}
-						widget2 = WidgetList.getComponent(createdWidget.id);
-						widget2.createdWidgets[createdWidget.createdComponentId] = null;
-						WidgetList.redraw(widget2);
+						component2 = ComponentList.getComponent(createdComponent.id);
+						component2.createdComponents[createdComponent.createdComponentId] = null;
+						ComponentList.redraw(component2);
 						continue;
 					}
 					if (opcode == 102) {
 						// cc_deleteall
 						isp--;
-						createdWidget = WidgetList.getComponent(scriptIntValues[isp]);
-						createdWidget.createdWidgets = null;
-						WidgetList.redraw(createdWidget);
+						createdComponent = ComponentList.getComponent(scriptIntValues[isp]);
+						createdComponent.createdComponents = null;
+						ComponentList.redraw(createdComponent);
 						continue;
 					}
 					if (opcode == 200) {
 						isp -= 2;
 						componentId = scriptIntValues[isp];
 						interfaceType = scriptIntValues[isp + 1];
-						local1256 = WidgetList.getCreatedComponent(componentId, interfaceType);
+						local1256 = ComponentList.getCreatedComponent(componentId, interfaceType);
 						if (local1256 != null && interfaceType != -1) {
 							scriptIntValues[isp++] = 1;
 							if (secondary) {
-								secondaryActiveWidget = local1256;
+								secondaryActiveComponent = local1256;
 							} else {
-								primaryActiveWidget = local1256;
+								primaryActiveComponent = local1256;
 							}
 							continue;
 						}
@@ -1045,15 +1045,15 @@ public final class ClientScriptRunner {
 					if (opcode == 201) {
 						isp--;
 						componentId = scriptIntValues[isp];
-						widget2 = WidgetList.getComponent(componentId);
-						if (widget2 == null) {
+						component2 = ComponentList.getComponent(componentId);
+						if (component2 == null) {
 							scriptIntValues[isp++] = 0;
 						} else {
 							scriptIntValues[isp++] = 1;
 							if (secondary) {
-								secondaryActiveWidget = widget2;
+								secondaryActiveComponent = component2;
 							} else {
-								primaryActiveWidget = widget2;
+								primaryActiveComponent = component2;
 							}
 						}
 						continue;
@@ -1102,110 +1102,110 @@ public final class ClientScriptRunner {
 							@Pc(2522) JString chatTypedLowercase;
 							if (opcode >= 1100 && opcode < 1200 || !(opcode < 2100 || opcode >= 2200)) {
 								if (opcode < 2000) {
-									createdWidget = secondary ? secondaryActiveWidget : primaryActiveWidget;
+									createdComponent = secondary ? secondaryActiveComponent : primaryActiveComponent;
 								} else {
 									opcode -= 1000;
 									isp--;
-									createdWidget = WidgetList.getComponent(scriptIntValues[isp]);
+									createdComponent = ComponentList.getComponent(scriptIntValues[isp]);
 								}
 								if (opcode == 1100) {
 									// setscrollpos
 									isp -= 2;
-									createdWidget.scrollX = scriptIntValues[isp];
-									if (createdWidget.scrollX > createdWidget.scrollMaxH - createdWidget.width) {
-										createdWidget.scrollX = createdWidget.scrollMaxH - createdWidget.width;
+									createdComponent.scrollX = scriptIntValues[isp];
+									if (createdComponent.scrollX > createdComponent.scrollMaxH - createdComponent.width) {
+										createdComponent.scrollX = createdComponent.scrollMaxH - createdComponent.width;
 									}
-									if (createdWidget.scrollX < 0) {
-										createdWidget.scrollX = 0;
+									if (createdComponent.scrollX < 0) {
+										createdComponent.scrollX = 0;
 									}
-									createdWidget.scrollY = scriptIntValues[isp + 1];
-									if (createdWidget.scrollY > createdWidget.scrollMaxV - createdWidget.height) {
-										createdWidget.scrollY = createdWidget.scrollMaxV - createdWidget.height;
+									createdComponent.scrollY = scriptIntValues[isp + 1];
+									if (createdComponent.scrollY > createdComponent.scrollMaxV - createdComponent.height) {
+										createdComponent.scrollY = createdComponent.scrollMaxV - createdComponent.height;
 									}
-									if (createdWidget.scrollY < 0) {
-										createdWidget.scrollY = 0;
+									if (createdComponent.scrollY < 0) {
+										createdComponent.scrollY = 0;
 									}
-									WidgetList.redraw(createdWidget);
-									if (createdWidget.createdComponentId == -1) {
-										DelayedStateChange.setComponentScrollPositionClient(createdWidget.id);
+									ComponentList.redraw(createdComponent);
+									if (createdComponent.createdComponentId == -1) {
+										DelayedStateChange.setComponentScrollPositionClient(createdComponent.id);
 									}
 									continue;
 								}
 								if (opcode == 1101) {
 									// setcolor
 									isp--;
-									createdWidget.color = scriptIntValues[isp];
-									WidgetList.redraw(createdWidget);
-									if (createdWidget.createdComponentId == -1) {
-										DelayedStateChange.setComponentColorClient(createdWidget.id);
+									createdComponent.color = scriptIntValues[isp];
+									ComponentList.redraw(createdComponent);
+									if (createdComponent.createdComponentId == -1) {
+										DelayedStateChange.setComponentColorClient(createdComponent.id);
 									}
 									continue;
 								}
 								if (opcode == 1102) {
 									// setfill
 									isp--;
-									createdWidget.filled = scriptIntValues[isp] == 1;
-									WidgetList.redraw(createdWidget);
+									createdComponent.filled = scriptIntValues[isp] == 1;
+									ComponentList.redraw(createdComponent);
 									continue;
 								}
 								if (opcode == 1103) {
 									// settrans
 									isp--;
-									createdWidget.alpha = scriptIntValues[isp];
-									WidgetList.redraw(createdWidget);
+									createdComponent.alpha = scriptIntValues[isp];
+									ComponentList.redraw(createdComponent);
 									continue;
 								}
 								if (opcode == 1104) {
 									// setlinewid
 									isp--;
-									createdWidget.lineWidth = scriptIntValues[isp];
-									WidgetList.redraw(createdWidget);
+									createdComponent.lineWidth = scriptIntValues[isp];
+									ComponentList.redraw(createdComponent);
 									continue;
 								}
 								if (opcode == 1105) {
 									// setgraphic
 									isp--;
-									createdWidget.spriteId = scriptIntValues[isp];
-									WidgetList.redraw(createdWidget);
+									createdComponent.spriteId = scriptIntValues[isp];
+									ComponentList.redraw(createdComponent);
 									continue;
 								}
 								if (opcode == 1106) {
 									isp--;
-									createdWidget.angle2d = scriptIntValues[isp];
-									WidgetList.redraw(createdWidget);
+									createdComponent.angle2d = scriptIntValues[isp];
+									ComponentList.redraw(createdComponent);
 									continue;
 								}
 								if (opcode == 1107) {
 									// settiling
 									isp--;
-									createdWidget.spriteTiling = scriptIntValues[isp] == 1;
-									WidgetList.redraw(createdWidget);
+									createdComponent.spriteTiling = scriptIntValues[isp] == 1;
+									ComponentList.redraw(createdComponent);
 									continue;
 								}
 								if (opcode == 1108) {
 									// setmodel
-									createdWidget.modelType = 1;
+									createdComponent.modelType = 1;
 									isp--;
-									createdWidget.modelId = scriptIntValues[isp];
-									WidgetList.redraw(createdWidget);
-									if (createdWidget.createdComponentId == -1) {
-										DelayedStateChange.setComponentModelClient(createdWidget.id);
+									createdComponent.modelId = scriptIntValues[isp];
+									ComponentList.redraw(createdComponent);
+									if (createdComponent.createdComponentId == -1) {
+										DelayedStateChange.setComponentModelClient(createdComponent.id);
 									}
 									continue;
 								}
 								if (opcode == 1109) {
 									// setmodelangle
 									isp -= 6;
-									createdWidget.modelXOffset = scriptIntValues[isp];
-									createdWidget.modelZOffset = scriptIntValues[isp + 1];
-									createdWidget.modelXAngle = scriptIntValues[isp + 2];
-									createdWidget.modelYAngle = scriptIntValues[isp + 3];
-									createdWidget.modelYOffset = scriptIntValues[isp + 4];
-									createdWidget.modelZoom = scriptIntValues[isp + 5];
-									WidgetList.redraw(createdWidget);
-									if (createdWidget.createdComponentId == -1) {
-										DelayedStateChange.setComponentModelAngleClient(createdWidget.id);
-										DelayedStateChange.setComponentModelOffsetClient(createdWidget.id);
+									createdComponent.modelXOffset = scriptIntValues[isp];
+									createdComponent.modelZOffset = scriptIntValues[isp + 1];
+									createdComponent.modelXAngle = scriptIntValues[isp + 2];
+									createdComponent.modelYAngle = scriptIntValues[isp + 3];
+									createdComponent.modelYOffset = scriptIntValues[isp + 4];
+									createdComponent.modelZoom = scriptIntValues[isp + 5];
+									ComponentList.redraw(createdComponent);
+									if (createdComponent.createdComponentId == -1) {
+										DelayedStateChange.setComponentModelAngleClient(createdComponent.id);
+										DelayedStateChange.setComponentModelOffsetClient(createdComponent.id);
 									}
 									continue;
 								}
@@ -1213,197 +1213,197 @@ public final class ClientScriptRunner {
 									// setmodelanim
 									isp--;
 									interfaceType = scriptIntValues[isp];
-									if (createdWidget.modelSeqId != interfaceType) {
-										createdWidget.modelSeqId = interfaceType;
-										createdWidget.anInt510 = 0;
-										createdWidget.anInt500 = 0;
-										createdWidget.anInt496 = 1;
-										WidgetList.redraw(createdWidget);
+									if (createdComponent.modelSeqId != interfaceType) {
+										createdComponent.modelSeqId = interfaceType;
+										createdComponent.animationId = 0;
+										createdComponent.animationDelay = 0;
+										createdComponent.animationFrame = 1;
+										ComponentList.redraw(createdComponent);
 									}
-									if (createdWidget.createdComponentId == -1) {
-										DelayedStateChange.setComponentModelAnimClient(createdWidget.id);
+									if (createdComponent.createdComponentId == -1) {
+										DelayedStateChange.setComponentModelAnimClient(createdComponent.id);
 									}
 									continue;
 								}
 								if (opcode == 1111) {
 									// setmodelorthog
 									isp--;
-									createdWidget.modelOrtho = scriptIntValues[isp] == 1;
-									WidgetList.redraw(createdWidget);
+									createdComponent.modelOrtho = scriptIntValues[isp] == 1;
+									ComponentList.redraw(createdComponent);
 									continue;
 								}
 								if (opcode == 1112) {
 									// settext
 									ssp--;
 									chatTypedLowercase = scriptStringValues[ssp];
-									if (!chatTypedLowercase.strEquals(createdWidget.text)) {
-										createdWidget.text = chatTypedLowercase;
-										WidgetList.redraw(createdWidget);
+									if (!chatTypedLowercase.strEquals(createdComponent.text)) {
+										createdComponent.text = chatTypedLowercase;
+										ComponentList.redraw(createdComponent);
 									}
-									if (createdWidget.createdComponentId == -1) {
-										DelayedStateChange.setComponentTextClient(createdWidget.id);
+									if (createdComponent.createdComponentId == -1) {
+										DelayedStateChange.setComponentTextClient(createdComponent.id);
 									}
 									continue;
 								}
 								if (opcode == 1113) {
 									// settextfont
 									isp--;
-									createdWidget.fontId = scriptIntValues[isp];
-									WidgetList.redraw(createdWidget);
+									createdComponent.fontId = scriptIntValues[isp];
+									ComponentList.redraw(createdComponent);
 									continue;
 								}
 								if (opcode == 1114) {
 									// settextalign
 									isp -= 3;
-									createdWidget.halign = scriptIntValues[isp];
-									createdWidget.valign = scriptIntValues[isp + 1];
-									createdWidget.vpadding = scriptIntValues[isp + 2];
-									WidgetList.redraw(createdWidget);
+									createdComponent.halign = scriptIntValues[isp];
+									createdComponent.valign = scriptIntValues[isp + 1];
+									createdComponent.vpadding = scriptIntValues[isp + 2];
+									ComponentList.redraw(createdComponent);
 									continue;
 								}
 								if (opcode == 1115) {
 									// settextshadow
 									isp--;
-									createdWidget.shadowed = scriptIntValues[isp] == 1;
-									WidgetList.redraw(createdWidget);
+									createdComponent.shadowed = scriptIntValues[isp] == 1;
+									ComponentList.redraw(createdComponent);
 									continue;
 								}
 								if (opcode == 1116) {
 									isp--;
-									createdWidget.outlineThickness = scriptIntValues[isp];
-									WidgetList.redraw(createdWidget);
+									createdComponent.outlineThickness = scriptIntValues[isp];
+									ComponentList.redraw(createdComponent);
 									continue;
 								}
 								if (opcode == 1117) {
 									isp--;
-									createdWidget.shadowColor = scriptIntValues[isp];
-									WidgetList.redraw(createdWidget);
+									createdComponent.shadowColor = scriptIntValues[isp];
+									ComponentList.redraw(createdComponent);
 									continue;
 								}
 								if (opcode == 1118) {
 									isp--;
-									createdWidget.vFlip = scriptIntValues[isp] == 1;
-									WidgetList.redraw(createdWidget);
+									createdComponent.vFlip = scriptIntValues[isp] == 1;
+									ComponentList.redraw(createdComponent);
 									continue;
 								}
 								if (opcode == 1119) {
 									isp--;
-									createdWidget.hFlip = scriptIntValues[isp] == 1;
-									WidgetList.redraw(createdWidget);
+									createdComponent.hFlip = scriptIntValues[isp] == 1;
+									ComponentList.redraw(createdComponent);
 									continue;
 								}
 								if (opcode == 1120) {
 									isp -= 2;
-									createdWidget.scrollMaxH = scriptIntValues[isp];
-									createdWidget.scrollMaxV = scriptIntValues[isp + 1];
-									WidgetList.redraw(createdWidget);
-									if (createdWidget.type == 0) {
-										WidgetList.method531(createdWidget, false);
+									createdComponent.scrollMaxH = scriptIntValues[isp];
+									createdComponent.scrollMaxV = scriptIntValues[isp + 1];
+									ComponentList.redraw(createdComponent);
+									if (createdComponent.type == 0) {
+										ComponentList.updateContainerLayout(createdComponent, false);
 									}
 									continue;
 								}
 								if (opcode == 1121) {
 									isp -= 2;
-									createdWidget.aShort11 = (short) scriptIntValues[isp];
-									createdWidget.aShort10 = (short) scriptIntValues[isp + 1];
-									WidgetList.redraw(createdWidget);
+									createdComponent.aShort11 = (short) scriptIntValues[isp];
+									createdComponent.aShort10 = (short) scriptIntValues[isp + 1];
+									ComponentList.redraw(createdComponent);
 									continue;
 								}
 								if (opcode == 1122) {
 									isp--;
-									createdWidget.hasAlpha = scriptIntValues[isp] == 1;
-									WidgetList.redraw(createdWidget);
+									createdComponent.hasAlpha = scriptIntValues[isp] == 1;
+									ComponentList.redraw(createdComponent);
 									continue;
 								}
 								if (opcode == 1123) {
 									isp--;
-									createdWidget.modelZoom = scriptIntValues[isp];
-									WidgetList.redraw(createdWidget);
-									if (createdWidget.createdComponentId == -1) {
-										DelayedStateChange.setComponentModelAngleClient(createdWidget.id);
+									createdComponent.modelZoom = scriptIntValues[isp];
+									ComponentList.redraw(createdComponent);
+									if (createdComponent.createdComponentId == -1) {
+										DelayedStateChange.setComponentModelAngleClient(createdComponent.id);
 									}
 									continue;
 								}
 							} else if (opcode >= 1200 && opcode < 1300 || !(opcode < 2200 || opcode >= 2300)) {
 								if (opcode < 2000) {
-									createdWidget = secondary ? secondaryActiveWidget : primaryActiveWidget;
+									createdComponent = secondary ? secondaryActiveComponent : primaryActiveComponent;
 								} else {
 									isp--;
-									createdWidget = WidgetList.getComponent(scriptIntValues[isp]);
+									createdComponent = ComponentList.getComponent(scriptIntValues[isp]);
 									opcode -= 1000;
 								}
-								WidgetList.redraw(createdWidget);
+								ComponentList.redraw(createdComponent);
 								if (opcode == 1200 || opcode == 1205) {
 									isp -= 2;
 									j = scriptIntValues[isp + 1];
 									interfaceType = scriptIntValues[isp];
-									if (createdWidget.createdComponentId == -1) {
-										DelayedStateChange.setComponentObjClient(createdWidget.id);
-										DelayedStateChange.setComponentModelAngleClient(createdWidget.id);
-										DelayedStateChange.setComponentModelOffsetClient(createdWidget.id);
+									if (createdComponent.createdComponentId == -1) {
+										DelayedStateChange.setComponentObjClient(createdComponent.id);
+										DelayedStateChange.setComponentModelAngleClient(createdComponent.id);
+										DelayedStateChange.setComponentModelOffsetClient(createdComponent.id);
 									}
 									if (interfaceType == -1) {
-										createdWidget.modelId = -1;
-										createdWidget.modelType = 1;
-										createdWidget.objId = -1;
+										createdComponent.modelId = -1;
+										createdComponent.modelType = 1;
+										createdComponent.objId = -1;
 									} else {
-										createdWidget.objId = interfaceType;
-										createdWidget.objCount = j;
+										createdComponent.objId = interfaceType;
+										createdComponent.objCount = j;
 										@Pc(13416) ObjType local13416 = ObjTypeList.get(interfaceType);
-										createdWidget.modelYOffset = local13416.zAngle2D;
-										createdWidget.modelXOffset = local13416.xof2d;
-										createdWidget.modelXAngle = local13416.xan2d;
-										createdWidget.modelZOffset = local13416.yof2d;
-										createdWidget.modelYAngle = local13416.yan2d;
-										createdWidget.modelZoom = local13416.zoom2d;
-										if (createdWidget.anInt451 > 0) {
-											createdWidget.modelZoom = createdWidget.modelZoom * 32 / createdWidget.anInt451;
-										} else if (createdWidget.baseWidth > 0) {
-											createdWidget.modelZoom = createdWidget.modelZoom * 32 / createdWidget.baseWidth;
+										createdComponent.modelYOffset = local13416.zAngle2D;
+										createdComponent.modelXOffset = local13416.xof2d;
+										createdComponent.modelXAngle = local13416.xan2d;
+										createdComponent.modelZOffset = local13416.yof2d;
+										createdComponent.modelYAngle = local13416.yan2d;
+										createdComponent.modelZoom = local13416.zoom2d;
+										if (createdComponent.anInt451 > 0) {
+											createdComponent.modelZoom = createdComponent.modelZoom * 32 / createdComponent.anInt451;
+										} else if (createdComponent.baseWidth > 0) {
+											createdComponent.modelZoom = createdComponent.modelZoom * 32 / createdComponent.baseWidth;
 										}
 										if (opcode == 1205) {
-											createdWidget.objDrawText = false;
+											createdComponent.objDrawText = false;
 										} else {
-											createdWidget.objDrawText = true;
+											createdComponent.objDrawText = true;
 										}
 									}
 									continue;
 								}
 								if (opcode == 1201) {
 									// setnpchead
-									createdWidget.modelType = 2;
+									createdComponent.modelType = 2;
 									isp--;
-									createdWidget.modelId = scriptIntValues[isp];
-									if (createdWidget.createdComponentId == -1) {
-										DelayedStateChange.setComponentModelClient(createdWidget.id);
+									createdComponent.modelId = scriptIntValues[isp];
+									if (createdComponent.createdComponentId == -1) {
+										DelayedStateChange.setComponentModelClient(createdComponent.id);
 									}
 									continue;
 								}
 								if (opcode == 1202) {
 									// setplayerhead_self
-									createdWidget.modelType = 3;
-									createdWidget.modelId = PlayerList.self.appearance.getHeadModelId();
-									if (createdWidget.createdComponentId == -1) {
-										DelayedStateChange.setComponentModelClient(createdWidget.id);
+									createdComponent.modelType = 3;
+									createdComponent.modelId = PlayerList.self.appearance.getHeadModelId();
+									if (createdComponent.createdComponentId == -1) {
+										DelayedStateChange.setComponentModelClient(createdComponent.id);
 									}
 									continue;
 								}
 								if (opcode == 1203) {
 									// setnpcmodel
-									createdWidget.modelType = 6;
+									createdComponent.modelType = 6;
 									isp--;
-									createdWidget.modelId = scriptIntValues[isp];
-									if (createdWidget.createdComponentId == -1) {
-										DelayedStateChange.setComponentModelClient(createdWidget.id);
+									createdComponent.modelId = scriptIntValues[isp];
+									if (createdComponent.createdComponentId == -1) {
+										DelayedStateChange.setComponentModelClient(createdComponent.id);
 									}
 									continue;
 								}
 								if (opcode == 1204) {
-									createdWidget.modelType = 5;
+									createdComponent.modelType = 5;
 									isp--;
-									createdWidget.modelId = scriptIntValues[isp];
-									if (createdWidget.createdComponentId == -1) {
-										DelayedStateChange.setComponentModelClient(createdWidget.id);
+									createdComponent.modelId = scriptIntValues[isp];
+									if (createdComponent.createdComponentId == -1) {
+										DelayedStateChange.setComponentModelClient(createdComponent.id);
 									}
 									continue;
 								}
@@ -1411,18 +1411,18 @@ public final class ClientScriptRunner {
 								if (opcode >= 2000) {
 									// if_
 									isp--;
-									createdWidget = WidgetList.getComponent(scriptIntValues[isp]);
+									createdComponent = ComponentList.getComponent(scriptIntValues[isp]);
 									opcode -= 1000;
 								} else {
 									// cc_
-									createdWidget = secondary ? secondaryActiveWidget : primaryActiveWidget;
+									createdComponent = secondary ? secondaryActiveComponent : primaryActiveComponent;
 								}
 								if (opcode == 1300) {
 									isp--;
 									interfaceType = scriptIntValues[isp] - 1;
 									if (interfaceType >= 0 && interfaceType <= 9) {
 										ssp--;
-										createdWidget.method480(scriptStringValues[ssp], interfaceType);
+										createdComponent.method480(scriptStringValues[ssp], interfaceType);
 										continue;
 									}
 									ssp--;
@@ -1432,43 +1432,43 @@ public final class ClientScriptRunner {
 									isp -= 2;
 									j = scriptIntValues[isp + 1];
 									interfaceType = scriptIntValues[isp];
-									createdWidget.parent = WidgetList.getCreatedComponent(interfaceType, j);
+									createdComponent.parent = ComponentList.getCreatedComponent(interfaceType, j);
 									continue;
 								}
 								if (opcode == 1302) {
 									isp--;
-									createdWidget.dragRenderBehavior = scriptIntValues[isp] == 1;
+									createdComponent.dragRenderBehavior = scriptIntValues[isp] == 1;
 									continue;
 								}
 								if (opcode == 1303) {
 									isp--;
-									createdWidget.dragDeadzone = scriptIntValues[isp];
+									createdComponent.dragDeadzone = scriptIntValues[isp];
 									continue;
 								}
 								if (opcode == 1304) {
 									isp--;
-									createdWidget.dragDeadtime = scriptIntValues[isp];
+									createdComponent.dragDeadtime = scriptIntValues[isp];
 									continue;
 								}
 								if (opcode == 1305) {
 									ssp--;
-									createdWidget.optionBase = scriptStringValues[ssp];
+									createdComponent.optionBase = scriptStringValues[ssp];
 									continue;
 								}
 								if (opcode == 1306) {
 									ssp--;
-									createdWidget.optionCircumfix = scriptStringValues[ssp];
+									createdComponent.optionCircumfix = scriptStringValues[ssp];
 									continue;
 								}
 								if (opcode == 1307) {
-									createdWidget.ops = null;
+									createdComponent.ops = null;
 									continue;
 								}
 								if (opcode == 1308) {
 									isp--;
-									createdWidget.anInt484 = scriptIntValues[isp];
+									createdComponent.anInt484 = scriptIntValues[isp];
 									isp--;
-									createdWidget.anInt499 = scriptIntValues[isp];
+									createdComponent.anInt499 = scriptIntValues[isp];
 									continue;
 								}
 								if (opcode == 1309) {
@@ -1477,7 +1477,7 @@ public final class ClientScriptRunner {
 									isp--;
 									j = scriptIntValues[isp];
 									if (j >= 1 && j <= 10) {
-										createdWidget.method477(j - 1, interfaceType);
+										createdComponent.method477(j - 1, interfaceType);
 									}
 									continue;
 								}
@@ -1486,12 +1486,12 @@ public final class ClientScriptRunner {
 								if (opcode >= 1400 && opcode < 1500 || opcode >= 2400 && opcode < 2500) {
 									if (opcode < 2000) {
 										// if_
-										createdWidget = secondary ? secondaryActiveWidget : primaryActiveWidget;
+										createdComponent = secondary ? secondaryActiveComponent : primaryActiveComponent;
 									} else {
 										// cc_
 										opcode -= 1000;
 										isp--;
-										createdWidget = WidgetList.getComponent(scriptIntValues[isp]);
+										createdComponent = ComponentList.getComponent(scriptIntValues[isp]);
 									}
 									@Pc(12937) int[] local12937 = null;
 									ssp--;
@@ -1525,316 +1525,316 @@ public final class ClientScriptRunner {
 									} else {
 										arguments[0] = Integer.valueOf(start);
 									}
-									createdWidget.aBoolean25 = true;
+									createdComponent.interactive = true;
 									if (opcode == 1400) {
-										createdWidget.onClickRepeat = arguments;
+										createdComponent.onClickRepeat = arguments;
 									} else if (opcode == 1401) {
-										createdWidget.onHold = arguments;
+										createdComponent.onHold = arguments;
 									} else if (opcode == 1402) {
-										createdWidget.onRelease = arguments;
+										createdComponent.onRelease = arguments;
 									} else if (opcode == 1403) {
-										createdWidget.onMouseOver = arguments;
+										createdComponent.onMouseOver = arguments;
 									} else if (opcode == 1404) {
-										createdWidget.onMouseLeave = arguments;
+										createdComponent.onMouseLeave = arguments;
 									} else if (opcode == 1405) {
-										createdWidget.onDragStart = arguments;
+										createdComponent.onDragStart = arguments;
 									} else if (opcode == 1406) {
-										createdWidget.onUseWith = arguments;
+										createdComponent.onUseWith = arguments;
 									} else if (opcode == 1407) {
-										createdWidget.varpTriggers = local12937;
-										createdWidget.onVarpTransmit = arguments;
+										createdComponent.varpTriggers = local12937;
+										createdComponent.onVarpTransmit = arguments;
 									} else if (opcode == 1408) {
-										createdWidget.onTimer = arguments;
+										createdComponent.onTimer = arguments;
 									} else if (opcode == 1409) {
-										createdWidget.onOptionClick = arguments;
+										createdComponent.onOptionClick = arguments;
 									} else if (opcode == 1410) {
-										createdWidget.onDragRelease = arguments;
+										createdComponent.onDragRelease = arguments;
 									} else if (opcode == 1411) {
-										createdWidget.onDrag = arguments;
+										createdComponent.onDrag = arguments;
 									} else if (opcode == 1412) {
-										createdWidget.onMouseRepeat = arguments;
+										createdComponent.onMouseRepeat = arguments;
 									} else if (opcode == 1414) {
-										createdWidget.inventoryTriggers = local12937;
-										createdWidget.onInvTransmit = arguments;
+										createdComponent.inventoryTriggers = local12937;
+										createdComponent.onInvTransmit = arguments;
 									} else if (opcode == 1415) {
-										createdWidget.statTriggers = local12937;
-										createdWidget.onStatTransmit = arguments;
+										createdComponent.statTriggers = local12937;
+										createdComponent.onStatTransmit = arguments;
 									} else if (opcode == 1416) {
-										createdWidget.onUse = arguments;
+										createdComponent.onUse = arguments;
 									} else if (opcode == 1417) {
-										createdWidget.onScroll = arguments;
+										createdComponent.onScroll = arguments;
 									} else if (opcode == 1418) {
-										createdWidget.onMsg = arguments;
+										createdComponent.onMsg = arguments;
 									} else if (opcode == 1419) {
-										createdWidget.onKey = arguments;
+										createdComponent.onKey = arguments;
 									} else if (opcode == 1420) {
-										createdWidget.onFriendTransmit = arguments;
+										createdComponent.onFriendTransmit = arguments;
 									} else if (opcode == 1421) {
-										createdWidget.onClanTransmit = arguments;
+										createdComponent.onClanTransmit = arguments;
 									} else if (opcode == 1422) {
-										createdWidget.onMiscTransmit = arguments;
+										createdComponent.onMiscTransmit = arguments;
 									} else if (opcode == 1423) {
-										createdWidget.onDialogAbort = arguments;
+										createdComponent.onDialogAbort = arguments;
 									} else if (opcode == 1424) {
-										createdWidget.onWidgetsOpenClose = arguments;
+										createdComponent.onComponentsOpenClose = arguments;
 									} else if (opcode == 1425) {
-										createdWidget.onStockTransmit = arguments;
+										createdComponent.onStockTransmit = arguments;
 									} else if (opcode == 1426) {
-										createdWidget.onMinimapUnlock = arguments;
+										createdComponent.onMinimapUnlock = arguments;
 									} else if (opcode == 1427) {
-										createdWidget.onResize = arguments;
+										createdComponent.onResize = arguments;
 									} else if (opcode == 1428) {
-										createdWidget.onVarcTransmit = arguments;
-										createdWidget.varcTriggers = local12937;
+										createdComponent.onVarcTransmit = arguments;
+										createdComponent.varcTriggers = local12937;
 									} else if (opcode == 1429) {
-										createdWidget.varcstrTriggers = local12937;
-										createdWidget.onVarcstrTransmit = arguments;
+										createdComponent.varcstrTriggers = local12937;
+										createdComponent.onVarcstrTransmit = arguments;
 									}
 									continue;
 								}
 								if (opcode < 1600) {
-									createdWidget = secondary ? secondaryActiveWidget : primaryActiveWidget;
+									createdComponent = secondary ? secondaryActiveComponent : primaryActiveComponent;
 									if (opcode == 1500) {
 										// cc_getx
-										scriptIntValues[isp++] = createdWidget.x;
+										scriptIntValues[isp++] = createdComponent.x;
 										continue;
 									}
 									if (opcode == 1501) {
 										// cc_gety
-										scriptIntValues[isp++] = createdWidget.y;
+										scriptIntValues[isp++] = createdComponent.y;
 										continue;
 									}
 									if (opcode == 1502) {
 										// cc_getwidth
-										scriptIntValues[isp++] = createdWidget.width;
+										scriptIntValues[isp++] = createdComponent.width;
 										continue;
 									}
 									if (opcode == 1503) {
 										// cc_getheight
-										scriptIntValues[isp++] = createdWidget.height;
+										scriptIntValues[isp++] = createdComponent.height;
 										continue;
 									}
 									if (opcode == 1504) {
 										// cc_gethide
-										scriptIntValues[isp++] = createdWidget.hidden ? 1 : 0;
+										scriptIntValues[isp++] = createdComponent.hidden ? 1 : 0;
 										continue;
 									}
 									if (opcode == 1505) {
 										// set_getlayer
-										scriptIntValues[isp++] = createdWidget.overlayer;
+										scriptIntValues[isp++] = createdComponent.overlayer;
 										continue;
 									}
 								} else if (opcode < 1700) {
-									createdWidget = secondary ? secondaryActiveWidget : primaryActiveWidget;
+									createdComponent = secondary ? secondaryActiveComponent : primaryActiveComponent;
 									if (opcode == 1600) {
 										// cc_getscrollx
-										scriptIntValues[isp++] = createdWidget.scrollX;
+										scriptIntValues[isp++] = createdComponent.scrollX;
 										continue;
 									}
 									if (opcode == 1601) {
 										// cc_getscrolly
-										scriptIntValues[isp++] = createdWidget.scrollY;
+										scriptIntValues[isp++] = createdComponent.scrollY;
 										continue;
 									}
 									if (opcode == 1602) {
-										scriptStringValues[ssp++] = createdWidget.text;
+										scriptStringValues[ssp++] = createdComponent.text;
 										continue;
 									}
 									if (opcode == 1603) {
-										scriptIntValues[isp++] = createdWidget.scrollMaxH;
+										scriptIntValues[isp++] = createdComponent.scrollMaxH;
 										continue;
 									}
 									if (opcode == 1604) {
-										scriptIntValues[isp++] = createdWidget.scrollMaxV;
+										scriptIntValues[isp++] = createdComponent.scrollMaxV;
 										continue;
 									}
 									if (opcode == 1605) {
-										scriptIntValues[isp++] = createdWidget.modelZoom;
+										scriptIntValues[isp++] = createdComponent.modelZoom;
 										continue;
 									}
 									if (opcode == 1606) {
-										scriptIntValues[isp++] = createdWidget.modelXAngle;
+										scriptIntValues[isp++] = createdComponent.modelXAngle;
 										continue;
 									}
 									if (opcode == 1607) {
-										scriptIntValues[isp++] = createdWidget.modelYOffset;
+										scriptIntValues[isp++] = createdComponent.modelYOffset;
 										continue;
 									}
 									if (opcode == 1608) {
-										scriptIntValues[isp++] = createdWidget.modelYAngle;
+										scriptIntValues[isp++] = createdComponent.modelYAngle;
 										continue;
 									}
 									if (opcode == 1609) {
-										scriptIntValues[isp++] = createdWidget.alpha;
+										scriptIntValues[isp++] = createdComponent.alpha;
 										continue;
 									}
 									if (opcode == 1610) {
-										scriptIntValues[isp++] = createdWidget.modelXOffset;
+										scriptIntValues[isp++] = createdComponent.modelXOffset;
 										continue;
 									}
 									if (opcode == 1611) {
-										scriptIntValues[isp++] = createdWidget.modelZOffset;
+										scriptIntValues[isp++] = createdComponent.modelZOffset;
 										continue;
 									}
 									if (opcode == 1612) {
-										scriptIntValues[isp++] = createdWidget.spriteId;
+										scriptIntValues[isp++] = createdComponent.spriteId;
 										continue;
 									}
 								} else if (opcode < 1800) {
-									createdWidget = secondary ? secondaryActiveWidget : primaryActiveWidget;
+									createdComponent = secondary ? secondaryActiveComponent : primaryActiveComponent;
 									if (opcode == 1700) {
-										scriptIntValues[isp++] = createdWidget.objId;
+										scriptIntValues[isp++] = createdComponent.objId;
 										continue;
 									}
 									if (opcode == 1701) {
-										if (createdWidget.objId == -1) {
+										if (createdComponent.objId == -1) {
 											scriptIntValues[isp++] = 0;
 										} else {
-											scriptIntValues[isp++] = createdWidget.objCount;
+											scriptIntValues[isp++] = createdComponent.objCount;
 										}
 										continue;
 									}
 									if (opcode == 1702) {
-										scriptIntValues[isp++] = createdWidget.createdComponentId;
+										scriptIntValues[isp++] = createdComponent.createdComponentId;
 										continue;
 									}
 								} else if (opcode < 1900) {
-									createdWidget = secondary ? secondaryActiveWidget : primaryActiveWidget;
+									createdComponent = secondary ? secondaryActiveComponent : primaryActiveComponent;
 									if (opcode == 1800) {
-										scriptIntValues[isp++] = WidgetList.getServerActiveProperties(createdWidget).getTargetMask();
+										scriptIntValues[isp++] = ComponentList.getServerActiveProperties(createdComponent).getTargetMask();
 										continue;
 									}
 									if (opcode == 1801) {
 										isp--;
 										interfaceType = scriptIntValues[isp];
 										interfaceType--;
-										if (createdWidget.ops != null && interfaceType < createdWidget.ops.length && createdWidget.ops[interfaceType] != null) {
-											scriptStringValues[ssp++] = createdWidget.ops[interfaceType];
+										if (createdComponent.ops != null && interfaceType < createdComponent.ops.length && createdComponent.ops[interfaceType] != null) {
+											scriptStringValues[ssp++] = createdComponent.ops[interfaceType];
 											continue;
 										}
 										scriptStringValues[ssp++] = EMPTY_STRING;
 										continue;
 									}
 									if (opcode == 1802) {
-										if (createdWidget.optionBase == null) {
+										if (createdComponent.optionBase == null) {
 											scriptStringValues[ssp++] = EMPTY_STRING;
 										} else {
-											scriptStringValues[ssp++] = createdWidget.optionBase;
+											scriptStringValues[ssp++] = createdComponent.optionBase;
 										}
 										continue;
 									}
 								} else if (opcode < 2600) {
 									isp--;
-									createdWidget = WidgetList.getComponent(scriptIntValues[isp]);
+									createdComponent = ComponentList.getComponent(scriptIntValues[isp]);
 									if (opcode == 2500) {
 										// if_getx
-										scriptIntValues[isp++] = createdWidget.x;
+										scriptIntValues[isp++] = createdComponent.x;
 										continue;
 									}
 									if (opcode == 2501) {
 										// if_gety
-										scriptIntValues[isp++] = createdWidget.y;
+										scriptIntValues[isp++] = createdComponent.y;
 										continue;
 									}
 									if (opcode == 2502) {
 										// if_getwidth
-										scriptIntValues[isp++] = createdWidget.width;
+										scriptIntValues[isp++] = createdComponent.width;
 										continue;
 									}
 									if (opcode == 2503) {
 										// if_getheight
-										scriptIntValues[isp++] = createdWidget.height;
+										scriptIntValues[isp++] = createdComponent.height;
 										continue;
 									}
 									if (opcode == 2504) {
 										// if_gethide
-										scriptIntValues[isp++] = createdWidget.hidden ? 1 : 0;
+										scriptIntValues[isp++] = createdComponent.hidden ? 1 : 0;
 										continue;
 									}
 									if (opcode == 2505) {
 										// if_getlayer
-										scriptIntValues[isp++] = createdWidget.overlayer;
+										scriptIntValues[isp++] = createdComponent.overlayer;
 										continue;
 									}
 								} else if (opcode < 2700) {
 									isp--;
-									createdWidget = WidgetList.getComponent(scriptIntValues[isp]);
+									createdComponent = ComponentList.getComponent(scriptIntValues[isp]);
 									if (opcode == 2600) {
 										// if_getscrollx
-										scriptIntValues[isp++] = createdWidget.scrollX;
+										scriptIntValues[isp++] = createdComponent.scrollX;
 										continue;
 									}
 									if (opcode == 2601) {
 										// if_getscrolly
-										scriptIntValues[isp++] = createdWidget.scrollY;
+										scriptIntValues[isp++] = createdComponent.scrollY;
 										continue;
 									}
 									if (opcode == 2602) {
-										scriptStringValues[ssp++] = createdWidget.text;
+										scriptStringValues[ssp++] = createdComponent.text;
 										continue;
 									}
 									if (opcode == 2603) {
-										scriptIntValues[isp++] = createdWidget.scrollMaxH;
+										scriptIntValues[isp++] = createdComponent.scrollMaxH;
 										continue;
 									}
 									if (opcode == 2604) {
-										scriptIntValues[isp++] = createdWidget.scrollMaxV;
+										scriptIntValues[isp++] = createdComponent.scrollMaxV;
 										continue;
 									}
 									if (opcode == 2605) {
-										scriptIntValues[isp++] = createdWidget.modelZoom;
+										scriptIntValues[isp++] = createdComponent.modelZoom;
 										continue;
 									}
 									if (opcode == 2606) {
-										scriptIntValues[isp++] = createdWidget.modelXAngle;
+										scriptIntValues[isp++] = createdComponent.modelXAngle;
 										continue;
 									}
 									if (opcode == 2607) {
-										scriptIntValues[isp++] = createdWidget.modelYOffset;
+										scriptIntValues[isp++] = createdComponent.modelYOffset;
 										continue;
 									}
 									if (opcode == 2608) {
-										scriptIntValues[isp++] = createdWidget.modelYAngle;
+										scriptIntValues[isp++] = createdComponent.modelYAngle;
 										continue;
 									}
 									if (opcode == 2609) {
-										scriptIntValues[isp++] = createdWidget.alpha;
+										scriptIntValues[isp++] = createdComponent.alpha;
 										continue;
 									}
 									if (opcode == 2610) {
-										scriptIntValues[isp++] = createdWidget.modelXOffset;
+										scriptIntValues[isp++] = createdComponent.modelXOffset;
 										continue;
 									}
 									if (opcode == 2611) {
-										scriptIntValues[isp++] = createdWidget.modelZOffset;
+										scriptIntValues[isp++] = createdComponent.modelZOffset;
 										continue;
 									}
 									if (opcode == 2612) {
-										scriptIntValues[isp++] = createdWidget.spriteId;
+										scriptIntValues[isp++] = createdComponent.spriteId;
 										continue;
 									}
 								} else if (opcode < 2800) {
 									if (opcode == 2700) {
 										isp--;
-										createdWidget = WidgetList.getComponent(scriptIntValues[isp]);
-										scriptIntValues[isp++] = createdWidget.objId;
+										createdComponent = ComponentList.getComponent(scriptIntValues[isp]);
+										scriptIntValues[isp++] = createdComponent.objId;
 										continue;
 									}
 									if (opcode == 2701) {
 										isp--;
-										createdWidget = WidgetList.getComponent(scriptIntValues[isp]);
-										if (createdWidget.objId == -1) {
+										createdComponent = ComponentList.getComponent(scriptIntValues[isp]);
+										if (createdComponent.objId == -1) {
 											scriptIntValues[isp++] = 0;
 										} else {
-											scriptIntValues[isp++] = createdWidget.objCount;
+											scriptIntValues[isp++] = createdComponent.objCount;
 										}
 										continue;
 									}
 									if (opcode == 2702) {
 										isp--;
 										componentId = scriptIntValues[isp];
-										@Pc(12566) SubInterface subInterface = (SubInterface) WidgetList.openInterfaces.get((long) componentId);
-										if (subInterface == null) {
+										@Pc(12566) SubInterface SubInterface = (SubInterface) ComponentList.openInterfaces.get((long) componentId);
+										if (SubInterface == null) {
 											scriptIntValues[isp++] = 0;
 										} else {
 											scriptIntValues[isp++] = 1;
@@ -1843,14 +1843,14 @@ public final class ClientScriptRunner {
 									}
 									if (opcode == 2703) {
 										isp--;
-										createdWidget = WidgetList.getComponent(scriptIntValues[isp]);
-										if (createdWidget.createdWidgets == null) {
+										createdComponent = ComponentList.getComponent(scriptIntValues[isp]);
+										if (createdComponent.createdComponents == null) {
 											scriptIntValues[isp++] = 0;
 											continue;
 										}
-										interfaceType = createdWidget.createdWidgets.length;
-										for (j = 0; j < createdWidget.createdWidgets.length; j++) {
-											if (createdWidget.createdWidgets[j] == null) {
+										interfaceType = createdComponent.createdComponents.length;
+										for (j = 0; j < createdComponent.createdComponents.length; j++) {
+											if (createdComponent.createdComponents[j] == null) {
 												interfaceType = j;
 												break;
 											}
@@ -1862,8 +1862,8 @@ public final class ClientScriptRunner {
 										isp -= 2;
 										componentId = scriptIntValues[isp];
 										interfaceType = scriptIntValues[isp + 1];
-										@Pc(12663) SubInterface subInterface = (SubInterface) WidgetList.openInterfaces.get((long) componentId);
-										if (subInterface != null && subInterface.interfaceId == interfaceType) {
+										@Pc(12663) SubInterface SubInterface = (SubInterface) ComponentList.openInterfaces.get((long) componentId);
+										if (SubInterface != null && SubInterface.interfaceId == interfaceType) {
 											scriptIntValues[isp++] = 1;
 											continue;
 										}
@@ -1872,27 +1872,27 @@ public final class ClientScriptRunner {
 									}
 								} else if (opcode < 2900) {
 									isp--;
-									createdWidget = WidgetList.getComponent(scriptIntValues[isp]);
+									createdComponent = ComponentList.getComponent(scriptIntValues[isp]);
 									if (opcode == 2800) {
-										scriptIntValues[isp++] = WidgetList.getServerActiveProperties(createdWidget).getTargetMask();
+										scriptIntValues[isp++] = ComponentList.getServerActiveProperties(createdComponent).getTargetMask();
 										continue;
 									}
 									if (opcode == 2801) {
 										isp--;
 										interfaceType = scriptIntValues[isp];
 										interfaceType--;
-										if (createdWidget.ops != null && createdWidget.ops.length > interfaceType && createdWidget.ops[interfaceType] != null) {
-											scriptStringValues[ssp++] = createdWidget.ops[interfaceType];
+										if (createdComponent.ops != null && createdComponent.ops.length > interfaceType && createdComponent.ops[interfaceType] != null) {
+											scriptStringValues[ssp++] = createdComponent.ops[interfaceType];
 											continue;
 										}
 										scriptStringValues[ssp++] = EMPTY_STRING;
 										continue;
 									}
 									if (opcode == 2802) {
-										if (createdWidget.optionBase == null) {
+										if (createdComponent.optionBase == null) {
 											scriptStringValues[ssp++] = EMPTY_STRING;
 										} else {
-											scriptStringValues[ssp++] = createdWidget.optionBase;
+											scriptStringValues[ssp++] = createdComponent.optionBase;
 										}
 										continue;
 									}
@@ -1911,7 +1911,7 @@ public final class ClientScriptRunner {
 										continue;
 									}
 									if (opcode == 3103) {
-										WidgetList.closeModal();
+										ComponentList.closeModal();
 										continue;
 									}
 									if (opcode == 3104) {
@@ -1953,16 +1953,16 @@ public final class ClientScriptRunner {
 										interfaceType = scriptIntValues[isp + 1];
 										componentId = scriptIntValues[isp];
 										j = scriptIntValues[isp + 2];
-										widget = WidgetList.getComponent(j);
-										startWidgetDrag(interfaceType, componentId, widget);
+										component = ComponentList.getComponent(j);
+										startComponentDrag(interfaceType, componentId, component);
 										continue;
 									}
 									if (opcode == 3109) {
 										isp -= 2;
 										componentId = scriptIntValues[isp];
-										local1256 = secondary ? secondaryActiveWidget : primaryActiveWidget;
+										local1256 = secondary ? secondaryActiveComponent : primaryActiveComponent;
 										interfaceType = scriptIntValues[isp + 1];
-										startWidgetDrag(interfaceType, componentId, local1256);
+										startComponentDrag(interfaceType, componentId, local1256);
 										continue;
 									}
 									if (opcode == 3110) {
@@ -3724,12 +3724,12 @@ public final class ClientScriptRunner {
 														Client.js5Archive8.isFileReady(LoginManager.anInt2261);
 														Client.js5Archive8.isFileReady(LoginManager.anInt3324);
 														Client.js5Archive8.isFileReady(LoginManager.anInt5556);
-														WidgetList.hasScrollbar = true;
+														ComponentList.hasScrollbar = true;
 														continue;
 													}
 													if (opcode == 5425) {
 														LoginManager.method4637();
-														WidgetList.hasScrollbar = false;
+														ComponentList.hasScrollbar = false;
 														continue;
 													}
 													if (opcode == 5426) {
@@ -4300,7 +4300,7 @@ public final class ClientScriptRunner {
 														continue;
 													}
 													if (opcode == 6203) {
-														method2314(WidgetList.aClass13_26.width, 0, WidgetList.aClass13_26.height, 0, false);
+														method2314(ComponentList.specialComponent.width, 0, ComponentList.specialComponent.height, 0, false);
 														scriptIntValues[isp++] = anInt4055;
 														scriptIntValues[isp++] = anInt5377;
 														continue;
@@ -4729,17 +4729,17 @@ public final class ClientScriptRunner {
 							}
 						} else {
 							if (opcode < 2000) {
-								createdWidget = secondary ? secondaryActiveWidget : primaryActiveWidget;
+								createdComponent = secondary ? secondaryActiveComponent : primaryActiveComponent;
 							} else {
 								isp--;
-								createdWidget = WidgetList.getComponent(scriptIntValues[isp]);
+								createdComponent = ComponentList.getComponent(scriptIntValues[isp]);
 								opcode -= 1000;
 							}
 							if (opcode == 1000) {
 								// setposition
 								isp -= 4;
-								createdWidget.baseX = scriptIntValues[isp];
-								createdWidget.baseY = scriptIntValues[isp + 1];
+								createdComponent.baseX = scriptIntValues[isp];
+								createdComponent.baseY = scriptIntValues[isp + 1];
 								j = scriptIntValues[isp + 3];
 								if (j < 0) {
 									j = 0;
@@ -4752,22 +4752,22 @@ public final class ClientScriptRunner {
 								} else if (interfaceType > 5) {
 									interfaceType = 5;
 								}
-								createdWidget.xMode = (byte) j;
-								createdWidget.yMode = (byte) interfaceType;
-								WidgetList.redraw(createdWidget);
-								WidgetList.update(createdWidget);
-								if (createdWidget.createdComponentId == -1) {
-									DelayedStateChange.setComponentPositionClient(createdWidget.id);
+								createdComponent.xMode = (byte) j;
+								createdComponent.yMode = (byte) interfaceType;
+								ComponentList.redraw(createdComponent);
+								ComponentList.update(createdComponent);
+								if (createdComponent.createdComponentId == -1) {
+									DelayedStateChange.setComponentPositionClient(createdComponent.id);
 								}
 								continue;
 							}
 							if (opcode == 1001) {
 								// setsize
 								isp -= 4;
-								createdWidget.baseWidth = scriptIntValues[isp];
-								createdWidget.baseHeight = scriptIntValues[isp + 1];
-								createdWidget.anInt451 = 0;
-								createdWidget.anInt526 = 0;
+								createdComponent.baseWidth = scriptIntValues[isp];
+								createdComponent.baseHeight = scriptIntValues[isp + 1];
+								createdComponent.anInt451 = 0;
+								createdComponent.anInt526 = 0;
 								interfaceType = scriptIntValues[isp + 2];
 								j = scriptIntValues[isp + 3];
 								if (j < 0) {
@@ -4775,17 +4775,17 @@ public final class ClientScriptRunner {
 								} else if (j > 4) {
 									j = 4;
 								}
-								createdWidget.dynamicHeightValue = (byte) j;
+								createdComponent.dynamicHeightValue = (byte) j;
 								if (interfaceType < 0) {
 									interfaceType = 0;
 								} else if (interfaceType > 4) {
 									interfaceType = 4;
 								}
-								createdWidget.dynamicWidthValue = (byte) interfaceType;
-								WidgetList.redraw(createdWidget);
-								WidgetList.update(createdWidget);
-								if (createdWidget.type == 0) {
-									WidgetList.method531(createdWidget, false);
+								createdComponent.dynamicWidthValue = (byte) interfaceType;
+								ComponentList.redraw(createdComponent);
+								ComponentList.update(createdComponent);
+								if (createdComponent.type == 0) {
+									ComponentList.updateContainerLayout(createdComponent, false);
 								}
 								continue;
 							}
@@ -4793,30 +4793,30 @@ public final class ClientScriptRunner {
 								// sethide
 								isp--;
 								local1552 = scriptIntValues[isp] == 1;
-								if (local1552 != createdWidget.hidden) {
-									createdWidget.hidden = local1552;
-									WidgetList.redraw(createdWidget);
+								if (local1552 != createdComponent.hidden) {
+									createdComponent.hidden = local1552;
+									ComponentList.redraw(createdComponent);
 								}
-								if (createdWidget.createdComponentId == -1) {
-									DelayedStateChange.setComponentHiddenClient(createdWidget.id);
+								if (createdComponent.createdComponentId == -1) {
+									DelayedStateChange.setComponentHiddenClient(createdComponent.id);
 								}
 								continue;
 							}
 							if (opcode == 1004) {
 								// setaspect
 								isp -= 2;
-								createdWidget.aspectWidth = scriptIntValues[isp];
-								createdWidget.aspectHeight = scriptIntValues[isp + 1];
-								WidgetList.redraw(createdWidget);
-								WidgetList.update(createdWidget);
-								if (createdWidget.type == 0) {
-									WidgetList.method531(createdWidget, false);
+								createdComponent.aspectWidth = scriptIntValues[isp];
+								createdComponent.aspectHeight = scriptIntValues[isp + 1];
+								ComponentList.redraw(createdComponent);
+								ComponentList.update(createdComponent);
+								if (createdComponent.type == 0) {
+									ComponentList.updateContainerLayout(createdComponent, false);
 								}
 								continue;
 							}
 							if (opcode == 1005) {
 								isp--;
-								createdWidget.noClickThrough = scriptIntValues[isp] == 1;
+								createdComponent.noClickThrough = scriptIntValues[isp] == 1;
 								continue;
 							}
 						}
@@ -4851,7 +4851,7 @@ public final class ClientScriptRunner {
 	@OriginalMember(owner = "client!gn", name = "b", descriptor = "(Z)V")
 	public static void method1807() {
 		for (@Pc(11) int local11 = 0; local11 < 100; local11++) {
-			WidgetList.widgetNeedsRedraw[local11] = true;
+			ComponentList.componentNeedsRedraw[local11] = true;
 		}
 	}
 
@@ -6033,19 +6033,19 @@ public final class ClientScriptRunner {
 		}
 		if (MiniMenu.menuState == 1) {
 			if (scriptMouseX == Mouse.lastClickX && Mouse.lastClickY == scriptMouseY) {
-				WidgetList.menuHeight = MiniMenu.menuActionRow * 15 + (WidgetList.hasScrollbar ? 26 : 22);
+				ComponentList.menuHeight = MiniMenu.menuActionRow * 15 + (ComponentList.hasScrollbar ? 26 : 22);
 				MiniMenu.menuState = 0;
-				WidgetList.menuY = menuY;
-				WidgetList.menuX = local27;
+				ComponentList.menuY = menuY;
+				ComponentList.menuX = local27;
 				menuVisible = true;
-				WidgetList.menuWidth = maxWidth;
+				ComponentList.menuWidth = maxWidth;
 			}
 		} else if (scriptMouseX == Mouse.mouseClickX && scriptMouseY == Mouse.mouseClickY) {
-			WidgetList.menuX = local27;
+			ComponentList.menuX = local27;
 			MiniMenu.menuState = 0;
-			WidgetList.menuWidth = maxWidth;
-			WidgetList.menuY = menuY;
-			WidgetList.menuHeight = (WidgetList.hasScrollbar ? 26 : 22) + MiniMenu.menuActionRow * 15;
+			ComponentList.menuWidth = maxWidth;
+			ComponentList.menuY = menuY;
+			ComponentList.menuHeight = (ComponentList.hasScrollbar ? 26 : 22) + MiniMenu.menuActionRow * 15;
 			menuVisible = true;
 		} else {
 			Mouse.lastClickY = Mouse.mouseClickY;
@@ -6057,26 +6057,26 @@ public final class ClientScriptRunner {
 
 	//TODO move somewhere else
 	@OriginalMember(owner = "client!ag", name = "a", descriptor = "(IIIIIIIII)V")
-	public static void renderOrInvalidateWidget(@OriginalArg(1) int widgetId, @OriginalArg(2) int x, @OriginalArg(3) int y, @OriginalArg(4) int width, @OriginalArg(5) int invalidateId, @OriginalArg(6) int height, @OriginalArg(7) int clipX, @OriginalArg(8) int clipY) {
-		if (WidgetList.load(widgetId)) {
-			WidgetList.renderWidget(x, clipY, width, WidgetList.cachedWidgets[widgetId], y, -1, clipX, height, invalidateId);
+	public static void renderOrInvalidateComponent(@OriginalArg(1) int widgetId, @OriginalArg(2) int x, @OriginalArg(3) int y, @OriginalArg(4) int width, @OriginalArg(5) int invalidateId, @OriginalArg(6) int height, @OriginalArg(7) int clipX, @OriginalArg(8) int clipY) {
+		if (ComponentList.load(widgetId)) {
+			ComponentList.renderComponent(x, clipY, width, ComponentList.cachedComponents[widgetId], y, -1, clipX, height, invalidateId);
 		} else if (invalidateId == -1) {
 			for (@Pc(27) int i = 0; i < 100; i++) {
-				WidgetList.widgetNeedsRedraw[i] = true;
+				ComponentList.componentNeedsRedraw[i] = true;
 			}
 		} else {
-			WidgetList.widgetNeedsRedraw[invalidateId] = true;
+			ComponentList.componentNeedsRedraw[invalidateId] = true;
 		}
 	}
 
 	//TODO move somewhere else
 	@OriginalMember(owner = "client!da", name = "a", descriptor = "(IIILclient!be;)V")
-	public static void startWidgetDrag(@OriginalArg(0) int startY, @OriginalArg(1) int startX, @OriginalArg(3) Widget widget) {
-		if (dragWidget != null || menuVisible || (widget == null || getWidgetContainer(widget) == null)) {
+	public static void startComponentDrag(@OriginalArg(0) int startY, @OriginalArg(1) int startX, @OriginalArg(3) Component component) {
+		if (dragComponent != null || menuVisible || (component == null || getWidgetContainer(component) == null)) {
 			return;
 		}
-		dragWidget = widget;
-		containerWidget = getWidgetContainer(widget);
+		dragComponent = component;
+		containerComponent = getWidgetContainer(component);
 		dragStartX = startX;
 		isDragging = false;
 		dragTime = 0;
@@ -6085,10 +6085,10 @@ public final class ClientScriptRunner {
 
 	//TODO move somewhere else
 	@OriginalMember(owner = "client!ha", name = "a", descriptor = "(ILclient!be;)Lclient!be;")
-	public static Widget getWidgetContainer(@OriginalArg(1) Widget widget) {
-		@Pc(12) Widget container = WidgetList.canAcceptDrop(widget);
+	public static Component getWidgetContainer(@OriginalArg(1) Component component) {
+		@Pc(12) Component container = ComponentList.canAcceptDrop(component);
 		if (container == null) {
-			container = widget.parent;
+			container = component.parent;
 		}
 		return container;
 	}

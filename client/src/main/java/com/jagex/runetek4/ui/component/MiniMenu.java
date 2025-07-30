@@ -1,4 +1,4 @@
-package com.jagex.runetek4.ui.widget;
+package com.jagex.runetek4.ui.component;
 
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.ui.chat.Chat;
@@ -7,7 +7,7 @@ import com.jagex.runetek4.config.types.npc.NpcType;
 import com.jagex.runetek4.config.types.obj.ObjType;
 import com.jagex.runetek4.data.cache.media.Font;
 import com.jagex.runetek4.data.cache.media.SoftwareSprite;
-import com.jagex.runetek4.data.cache.media.component.Widget;
+import com.jagex.runetek4.data.cache.media.component.Component;
 import com.jagex.runetek4.client.Client;
 import com.jagex.runetek4.config.types.loc.LocTypeList;
 import com.jagex.runetek4.config.types.obj.ObjTypeList;
@@ -39,8 +39,7 @@ import com.jagex.runetek4.scene.SceneGraph;
 import com.jagex.runetek4.clientscript.ClientScriptRunner;
 import com.jagex.runetek4.ui.sprite.SoftwareAlphaSprite;
 import com.jagex.runetek4.ui.sprite.Sprites;
-import com.jagex.runetek4.ui.components.Crosshair;
-import com.jagex.runetek4.ui.events.WidgetEvent;
+import com.jagex.runetek4.ui.events.ComponentEvent;
 import com.jagex.runetek4.util.ArrayUtils;
 import com.jagex.runetek4.util.debug.Cheat;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -131,7 +130,7 @@ public class MiniMenu {
     @OriginalMember(owner = "runetek4.client!em", name = "D", descriptor = "I")
     public static int gregorianDateSeed;
     @OriginalMember(owner = "runetek4.client!hj", name = "e", descriptor = "I")
-    public static int useWithWidgetId;
+    public static int useWithComponentId;
     @OriginalMember(owner = "runetek4.client!u", name = "i", descriptor = "I")
     public static int useWithCursor;
     @OriginalMember(owner = "client!be", name = "Ec", descriptor = "I")
@@ -143,7 +142,7 @@ public class MiniMenu {
     @OriginalMember(owner = "runetek4.client!uf", name = "t", descriptor = "I")
     public static int anInt5444 = 0;
     @OriginalMember(owner = "runetek4.client!v", name = "b", descriptor = "Lclient!be;")
-    public static Widget pressedInventoryWidget;
+    public static Component pressedInventoryComponent;
     @OriginalMember(owner = "runetek4.client!aa", name = "a", descriptor = "I")
     public static int pickedEntityCount = 0;
     @OriginalMember(owner = "runetek4.client!id", name = "k", descriptor = "I")
@@ -254,8 +253,8 @@ public class MiniMenu {
     public static int targetPlane = 0;
 
     @OriginalMember(owner = "runetek4.client!ud", name = "a", descriptor = "(ILclient!be;)Z")
-    public static boolean shouldTriggerIdleTimeout(@OriginalArg(1) Widget widget) {
-        if (widget.contentType == 205) {
+    public static boolean shouldTriggerIdleTimeout(@OriginalArg(1) Component component) {
+        if (component.contentType == 205) {
             Protocol.idleTimeout = 250;
             return true;
         } else {
@@ -268,16 +267,16 @@ public class MiniMenu {
         if (!useWithActive) {
             return;
         }
-        @Pc(19) Widget widget = WidgetList.getCreatedComponent(useWithWidgetId, useWithSlot);
-        if (widget != null && widget.onUseWith != null) {
-            @Pc(29) WidgetEvent local29 = new WidgetEvent();
-            local29.arguments = widget.onUseWith;
-            local29.source = widget;
+        @Pc(19) Component component = ComponentList.getCreatedComponent(useWithComponentId, useWithSlot);
+        if (component != null && component.onUseWith != null) {
+            @Pc(29) ComponentEvent local29 = new ComponentEvent();
+            local29.arguments = component.onUseWith;
+            local29.source = component;
             ClientScriptRunner.run(local29);
         }
         useWithActive = false;
         defaultCursor = -1;
-        WidgetList.redraw(widget);
+        ComponentList.redraw(component);
     }
 
     @OriginalMember(owner = "runetek4.client!hj", name = "a", descriptor = "(IJBLclient!na;ISLclient!na;I)V")
@@ -296,55 +295,55 @@ public class MiniMenu {
     }
 
     @OriginalMember(owner = "runetek4.client!va", name = "a", descriptor = "(IZILclient!be;)V")
-    public static void addComponentEntries(@OriginalArg(0) int mouseY, @OriginalArg(2) int mouseX, @OriginalArg(3) Widget widget) {
-        if (widget.buttonType == 1) {
-            addActionRow(-1, 0L, JString.EMPTY, 0, (short) 8, widget.option, widget.id);
+    public static void addComponentEntries(@OriginalArg(0) int mouseY, @OriginalArg(2) int mouseX, @OriginalArg(3) Component component) {
+        if (component.buttonType == 1) {
+            addActionRow(-1, 0L, JString.EMPTY, 0, (short) 8, component.option, component.id);
         }
         @Pc(47) JString ops;
-        if (widget.buttonType == 2 && !useWithActive) {
-            ops = MiniMap.getTargetVerb(widget);
+        if (component.buttonType == 2 && !useWithActive) {
+            ops = MiniMap.getTargetVerb(component);
             if (ops != null) {
-                addActionRow(-1, 0L, JString.concatenate(new JString[] { GREEN, widget.optionSuffix}), -1, (short) 32, ops, widget.id);
+                addActionRow(-1, 0L, JString.concatenate(new JString[] { GREEN, component.optionSuffix}), -1, (short) 32, ops, component.id);
             }
         }
-        if (widget.buttonType == 3) {
-            addActionRow(-1, 0L, JString.EMPTY, 0, (short) 28, LocalizedText.CLOSE, widget.id);
+        if (component.buttonType == 3) {
+            addActionRow(-1, 0L, JString.EMPTY, 0, (short) 28, LocalizedText.CLOSE, component.id);
         }
-        if (widget.buttonType == 4) {
-            addActionRow(-1, 0L, JString.EMPTY, 0, (short) 59, widget.option, widget.id);
+        if (component.buttonType == 4) {
+            addActionRow(-1, 0L, JString.EMPTY, 0, (short) 59, component.option, component.id);
         }
-        if (widget.buttonType == 5) {
-            addActionRow(-1, 0L, JString.EMPTY, 0, (short) 51, widget.option, widget.id);
+        if (component.buttonType == 5) {
+            addActionRow(-1, 0L, JString.EMPTY, 0, (short) 51, component.option, component.id);
         }
-        if (widget.buttonType == 6 && ClientScriptRunner.aClass13_10 == null) {
-            addActionRow(-1, 0L, JString.EMPTY, -1, (short) 41, widget.option, widget.id);
+        if (component.buttonType == 6 && ClientScriptRunner.modalBackgroundComponent == null) {
+            addActionRow(-1, 0L, JString.EMPTY, -1, (short) 41, component.option, component.id);
         }
         @Pc(173) int row;
         @Pc(171) int slotIndex;
-        if (widget.type == 2) {
+        if (component.type == 2) {
             slotIndex = 0;
-            for (row = 0; row < widget.baseHeight; row++) {
-                for (@Pc(183) int col = 0; col < widget.baseWidth; col++) {
-                    @Pc(195) int slotX = (widget.invMarginX + 32) * col;
-                    @Pc(202) int slotY = (widget.invMarginY + 32) * row;
+            for (row = 0; row < component.baseHeight; row++) {
+                for (@Pc(183) int col = 0; col < component.baseWidth; col++) {
+                    @Pc(195) int slotX = (component.invMarginX + 32) * col;
+                    @Pc(202) int slotY = (component.invMarginY + 32) * row;
                     if (slotIndex < 20) {
-                        slotY += widget.invOffsetY[slotIndex];
-                        slotX += widget.invOffsetX[slotIndex];
+                        slotY += component.invOffsetY[slotIndex];
+                        slotX += component.invOffsetX[slotIndex];
                     }
                     if (mouseX >= slotX && slotY <= mouseY && slotX + 32 > mouseX && slotY + 32 > mouseY) {
-                        WidgetList.mouseOverInventoryInterface = widget;
+                        ComponentList.mouseOverInventoryComponent = component;
                         mouseInvInterfaceIndex = slotIndex;
-                        if (widget.invSlotObjId[slotIndex] > 0) {
-                            @Pc(267) ServerActiveProperties serverProps = WidgetList.getServerActiveProperties(widget);
-                            @Pc(276) ObjType objType = ObjTypeList.get(widget.invSlotObjId[slotIndex] - 1);
+                        if (component.invSlotObjId[slotIndex] > 0) {
+                            @Pc(267) ServerActiveProperties serverProps = ComponentList.getServerActiveProperties(component);
+                            @Pc(276) ObjType objType = ObjTypeList.get(component.invSlotObjId[slotIndex] - 1);
                             if (anInt5014 == 1 && serverProps.isObjOpsEnabled()) {
-                                if (MiniMap.anInt5062 != widget.id || anInt4370 != slotIndex) {
-                                    addActionRow(-1, (long) objType.id, JString.concatenate(new JString[] { aClass100_203, aClass100_947, objType.name}), slotIndex, (short) 40, LocalizedText.USE, widget.id);
+                                if (MiniMap.anInt5062 != component.id || anInt4370 != slotIndex) {
+                                    addActionRow(-1, (long) objType.id, JString.concatenate(new JString[] { aClass100_203, aClass100_947, objType.name}), slotIndex, (short) 40, LocalizedText.USE, component.id);
                                 }
                             } else if (useWithActive && serverProps.isObjOpsEnabled()) {
                                 @Pc(596) ParamType local596 = useWithParam == -1 ? null : ParamTypeList.get(useWithParam);
                                 if ((useWithMask & 0x10) != 0 && (local596 == null || objType.getParam(local596.defaultInt, useWithParam) != local596.defaultInt)) {
-                                    addActionRow(useWithCursor, (long) objType.id, JString.concatenate(new JString[] { aClass100_466, aClass100_947, objType.name}), slotIndex, (short) 3, aClass100_545, widget.id);
+                                    addActionRow(useWithCursor, (long) objType.id, JString.concatenate(new JString[] { aClass100_466, aClass100_947, objType.name}), slotIndex, (short) 3, aClass100_545, component.id);
                                 }
                             } else {
                                 @Pc(296) JString[] objOps = objType.iop;
@@ -361,12 +360,12 @@ public class MiniMenu {
                                             } else {
                                                 actionId = 58;
                                             }
-                                            addActionRow(-1, (long) objType.id, JString.concatenate(new JString[] { aClass100_32, objType.name}), slotIndex, actionId, objOps[opIndex], widget.id);
+                                            addActionRow(-1, (long) objType.id, JString.concatenate(new JString[] { aClass100_32, objType.name}), slotIndex, actionId, objOps[opIndex], component.id);
                                         }
                                     }
                                 }
                                 if (serverProps.isObjUseEnabled()) {
-                                    addActionRow(MiniMap.anInt4075, (long) objType.id, JString.concatenate(new JString[] { aClass100_32, objType.name}), slotIndex, (short) 22, LocalizedText.USE, widget.id);
+                                    addActionRow(MiniMap.anInt4075, (long) objType.id, JString.concatenate(new JString[] { aClass100_32, objType.name}), slotIndex, (short) 22, LocalizedText.USE, component.id);
                                 }
                                 if (serverProps.isObjOpsEnabled() && objOps != null) {
                                     for (opIndex = 2; opIndex >= 0; opIndex--) {
@@ -381,11 +380,11 @@ public class MiniMenu {
                                             if (opIndex == 2) {
                                                 actionId = 43;
                                             }
-                                            addActionRow(-1, (long) objType.id, JString.concatenate(new JString[] { aClass100_32, objType.name}), slotIndex, actionId, objOps[opIndex], widget.id);
+                                            addActionRow(-1, (long) objType.id, JString.concatenate(new JString[] { aClass100_32, objType.name}), slotIndex, actionId, objOps[opIndex], component.id);
                                         }
                                     }
                                 }
-                                objOps = widget.invOptions;
+                                objOps = component.invOptions;
                                 if (aBoolean237) {
                                     objOps = annotateOps(objOps);
                                 }
@@ -408,11 +407,11 @@ public class MiniMenu {
                                             if (opIndex == 4) {
                                                 actionId = 13;
                                             }
-                                            addActionRow(-1, (long) objType.id, JString.concatenate(new JString[] { aClass100_32, objType.name}), slotIndex, actionId, objOps[opIndex], widget.id);
+                                            addActionRow(-1, (long) objType.id, JString.concatenate(new JString[] { aClass100_32, objType.name}), slotIndex, actionId, objOps[opIndex], component.id);
                                         }
                                     }
                                 }
-                                addActionRow(MiniMap.anInt5073, (long) objType.id, JString.concatenate(new JString[] { aClass100_32, objType.name}), slotIndex, (short) 1006, LocalizedText.EXAMINE, widget.id);
+                                addActionRow(MiniMap.anInt5073, (long) objType.id, JString.concatenate(new JString[] { aClass100_32, objType.name}), slotIndex, (short) 1006, LocalizedText.EXAMINE, component.id);
                             }
                         }
                     }
@@ -420,31 +419,31 @@ public class MiniMenu {
                 }
             }
         }
-        if (!widget.if3) {
+        if (!component.if3) {
             return;
         }
         if (!useWithActive) {
             for (slotIndex = 9; slotIndex >= 5; slotIndex--) {
-                @Pc(765) JString local765 = WidgetList.getOp(widget, slotIndex);
+                @Pc(765) JString local765 = ComponentList.getOp(component, slotIndex);
                 if (local765 != null) {
-                    addActionRow(getOpCursor(slotIndex, widget), (long) (slotIndex + 1), widget.optionBase, widget.createdComponentId, (short) 1003, local765, widget.id);
+                    addActionRow(getOpCursor(slotIndex, component), (long) (slotIndex + 1), component.optionBase, component.createdComponentId, (short) 1003, local765, component.id);
                 }
             }
-            ops = MiniMap.getTargetVerb(widget);
+            ops = MiniMap.getTargetVerb(component);
             if (ops != null) {
-                addActionRow(-1, 0L, widget.optionBase, widget.createdComponentId, (short) 32, ops, widget.id);
+                addActionRow(-1, 0L, component.optionBase, component.createdComponentId, (short) 32, ops, component.id);
             }
             for (row = 4; row >= 0; row--) {
-                @Pc(828) JString local828 = WidgetList.getOp(widget, row);
+                @Pc(828) JString local828 = ComponentList.getOp(component, row);
                 if (local828 != null) {
-                    addActionRow(getOpCursor(row, widget), (long) (row + 1), widget.optionBase, widget.createdComponentId, (short) 9, local828, widget.id);
+                    addActionRow(getOpCursor(row, component), (long) (row + 1), component.optionBase, component.createdComponentId, (short) 9, local828, component.id);
                 }
             }
-            if (WidgetList.getServerActiveProperties(widget).isResumePauseButtonEnabled()) {
-                addActionRow(-1, 0L, JString.EMPTY, widget.createdComponentId, (short) 41, LocalizedText.CONTINUE, widget.id);
+            if (ComponentList.getServerActiveProperties(component).isResumePauseButtonEnabled()) {
+                addActionRow(-1, 0L, JString.EMPTY, component.createdComponentId, (short) 41, LocalizedText.CONTINUE, component.id);
             }
-        } else if (WidgetList.getServerActiveProperties(widget).isUseTarget() && (useWithMask & 0x20) != 0) {
-            addActionRow(useWithCursor, 0L, JString.concatenate(new JString[] { aClass100_466, aClass100_408, widget.optionBase}), widget.createdComponentId, (short) 12, aClass100_545, widget.id);
+        } else if (ComponentList.getServerActiveProperties(component).isUseTarget() && (useWithMask & 0x20) != 0) {
+            addActionRow(useWithCursor, 0L, JString.concatenate(new JString[] { aClass100_466, aClass100_408, component.optionBase}), component.createdComponentId, (short) 12, aClass100_545, component.id);
         }
     }
 
@@ -499,10 +498,10 @@ public class MiniMenu {
 
     @OriginalMember(owner = "runetek4.client!ij", name = "a", descriptor = "(B)V")
     public static void drawContextMenu() {
-        @Pc(3) int menuX = WidgetList.menuX;
-        @Pc(9) int menuY = WidgetList.menuY;
-        @Pc(11) int menuHeight = WidgetList.menuHeight;
-        @Pc(13) int menuWidth = WidgetList.menuWidth;
+        @Pc(3) int menuX = ComponentList.menuX;
+        @Pc(9) int menuY = ComponentList.menuY;
+        @Pc(11) int menuHeight = ComponentList.menuHeight;
+        @Pc(13) int menuWidth = ComponentList.menuWidth;
         if (LoginManager.loginSprite2 == null || LoginManager.loginSprite5 == null) {
             if (Client.js5Archive8.isFileReady(LoginManager.anInt1736) && Client.js5Archive8.isFileReady(LoginManager.anInt4073)) {
                 LoginManager.loginSprite2 = SoftwareSprite.loadSoftwareAlphaSprite(Client.js5Archive8, LoginManager.anInt1736);
@@ -599,15 +598,15 @@ public class MiniMenu {
             }
             Fonts.b12Full.renderLeft(getOp(rowIndex), menuX + 3, rowY, textColor, 0);
         }
-        WidgetList.forceRedrawScreen(WidgetList.menuX, WidgetList.menuY, WidgetList.menuHeight, WidgetList.menuWidth);
+        ComponentList.forceRedrawScreen(ComponentList.menuX, ComponentList.menuY, ComponentList.menuHeight, ComponentList.menuWidth);
     }
 
     @OriginalMember(owner = "runetek4.client!lf", name = "b", descriptor = "(I)V")
     public static void drawSimpleMenu() {
-        @Pc(3) int menuY = WidgetList.menuY;
-        @Pc(9) int menuWidth = WidgetList.menuWidth;
-        @Pc(11) int menuX = WidgetList.menuX;
-        @Pc(15) int menuHeight = WidgetList.menuHeight;
+        @Pc(3) int menuY = ComponentList.menuY;
+        @Pc(9) int menuWidth = ComponentList.menuWidth;
+        @Pc(11) int menuX = ComponentList.menuX;
+        @Pc(15) int menuHeight = ComponentList.menuHeight;
         if (GlRenderer.enabled) {
             GlRaster.fillRect(menuX, menuY, menuWidth, menuHeight, 6116423);
             GlRaster.fillRect(menuX + 1, menuY + 1, menuWidth - 2, 16, 0);
@@ -628,26 +627,26 @@ public class MiniMenu {
             }
             Fonts.b12Full.renderLeft(getOp(rowIndex), menuX + 3, rowY, textColor, 0);
         }
-        WidgetList.forceRedrawScreen(WidgetList.menuX, WidgetList.menuY, WidgetList.menuHeight, WidgetList.menuWidth);
+        ComponentList.forceRedrawScreen(ComponentList.menuX, ComponentList.menuY, ComponentList.menuHeight, ComponentList.menuWidth);
     }
 
     @OriginalMember(owner = "client!dm", name = "a", descriptor = "(Lclient!be;III)V")
-    public static void drawMenuText(@OriginalArg(0) Widget widget, @OriginalArg(2) int y, @OriginalArg(3) int x) {
+    public static void drawMenuText(@OriginalArg(0) Component component, @OriginalArg(2) int y, @OriginalArg(3) int x) {
         if (menuActionRow < 2 && anInt5014 == 0 && !useWithActive) {
             return;
         }
         @Pc(24) JString actionText = getActionText();
-        if (widget == null) {
+        if (component == null) {
             @Pc(40) int textX = Fonts.b12Full.method2859(actionText, x + 4, y - -15, Client.aRandom1, gregorianDateSeed);
-            WidgetList.redrawScreen(x + 4, Fonts.b12Full.getStringWidth(actionText) + textX, y, 15);
+            ComponentList.redrawScreen(x + 4, Fonts.b12Full.getStringWidth(actionText) + textX, y, 15);
             return;
         }
-        @Pc(59) Font font = widget.getFont(Sprites.nameIcons);
+        @Pc(59) Font font = component.getFont(Sprites.nameIcons);
         if (font == null) {
             font = Fonts.b12Full;
         }
-        font.method2878(actionText, x, y, widget.width, widget.height, widget.color, widget.shadowColor, widget.halign, widget.valign, Client.aRandom1, gregorianDateSeed, textBounds);
-        WidgetList.redrawScreen(textBounds[0], textBounds[2], textBounds[1], textBounds[3]);
+        font.method2878(actionText, x, y, component.width, component.height, component.color, component.shadowColor, component.halign, component.valign, Client.aRandom1, gregorianDateSeed, textBounds);
+        ComponentList.redrawScreen(textBounds[0], textBounds[2], textBounds[1], textBounds[3]);
     }
 
     @OriginalMember(owner = "runetek4.client!wk", name = "a", descriptor = "(I[Lclient!na;)[Lclient!na;")
@@ -663,13 +662,13 @@ public class MiniMenu {
     }
 
     @OriginalMember(owner = "client!aj", name = "a", descriptor = "(BILclient!be;)I")
-    public static int getOpCursor(@OriginalArg(1) int opIndex, @OriginalArg(2) Widget widget) {
-        if (!WidgetList.getServerActiveProperties(widget).isButtonEnabled(opIndex) && widget.onOptionClick == null) {
+    public static int getOpCursor(@OriginalArg(1) int opIndex, @OriginalArg(2) Component component) {
+        if (!ComponentList.getServerActiveProperties(component).isButtonEnabled(opIndex) && component.onOptionClick == null) {
             return -1;
-        } else if (widget.opCursors == null || opIndex >= widget.opCursors.length) {
+        } else if (component.opCursors == null || opIndex >= component.opCursors.length) {
             return -1;
         } else {
-            return widget.opCursors[opIndex];
+            return component.opCursors[opIndex];
         }
     }
 
@@ -720,7 +719,7 @@ public class MiniMenu {
             Protocol.outboundBuffer.p2_alt3(anInt4997);
             Protocol.outboundBuffer.p2_alt3(keyInt);
             anInt2043 = 0;
-            pressedInventoryWidget = WidgetList.getComponent(param2);
+            pressedInventoryComponent = ComponentList.getComponent(param2);
             anInt5444 = param1;
         }
         @Pc(192) Npc npc;
@@ -766,7 +765,7 @@ public class MiniMenu {
             Protocol.outboundBuffer.p2_alt2(param1);
             Protocol.outboundBuffer.p4_alt3(param2);
             anInt2043 = 0;
-            pressedInventoryWidget = WidgetList.getComponent(param2);
+            pressedInventoryComponent = ComponentList.getComponent(param2);
             anInt5444 = param1;
         }
         if (actionCode == LOC_ACTION_1) {
@@ -777,7 +776,7 @@ public class MiniMenu {
             Protocol.outboundBuffer.p2(param2 + Camera.originZ);
         }
         if (actionCode == COMPONENT_ACTION_CLOSE) {
-            WidgetList.closeModal();
+            ComponentList.closeModal();
         }
         if (actionCode == COMPONENT_NPC_ACTION) {
             npc = NpcList.npcs[keyInt];
@@ -788,7 +787,7 @@ public class MiniMenu {
                 Crosshair.CrosshairCycle = 0;
                 Crosshair.y = Mouse.mouseClickY;
                 Protocol.outboundBuffer.pIsaac1(239);
-                Protocol.outboundBuffer.p4_alt1(useWithWidgetId);
+                Protocol.outboundBuffer.p4_alt1(useWithComponentId);
                 Protocol.outboundBuffer.p2_alt2(useWithSlot);
                 Protocol.outboundBuffer.p2_alt3(keyInt);
             }
@@ -827,17 +826,17 @@ public class MiniMenu {
             Protocol.outboundBuffer.pIsaac1(92);
             Protocol.outboundBuffer.p2_alt3(keyInt);
         }
-        @Pc(693) Widget widget;
+        @Pc(693) Component component;
         if (actionCode == OBJ_EXAMINE_IN_COMPONENT) {
-            widget = WidgetList.getComponent(param2);
-            if (widget == null || widget.invSlotObjCount[param1] < 100000) {
+            component = ComponentList.getComponent(param2);
+            if (component == null || component.invSlotObjCount[param1] < 100000) {
                 Protocol.outboundBuffer.pIsaac1(92);
                 Protocol.outboundBuffer.p2_alt3(keyInt);
             } else {
-                Chat.addMessage(JString.EMPTY, 0, JString.concatenate(new JString[] { JString.parseInt(widget.invSlotObjCount[param1]), aClass100_1039, ObjTypeList.get(keyInt).name}));
+                Chat.addMessage(JString.EMPTY, 0, JString.concatenate(new JString[] { JString.parseInt(component.invSlotObjCount[param1]), aClass100_1039, ObjTypeList.get(keyInt).name}));
             }
             anInt2043 = 0;
-            pressedInventoryWidget = WidgetList.getComponent(param2);
+            pressedInventoryComponent = ComponentList.getComponent(param2);
             anInt5444 = param1;
         }
         if (actionCode == WALK_HERE) {
@@ -847,7 +846,7 @@ public class MiniMenu {
                 if (LoginManager.staffModLevel > 0 && Keyboard.pressedKeys[82] && Keyboard.pressedKeys[81]) {
                     Cheat.teleport(Camera.originX + param1, Camera.originZ + param2, Player.plane);
                 } else if (PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 0, true, 0, param1, 0, 0, 1, param2, PlayerList.self.movementQueueX[0])) {
-                    Protocol.outboundBuffer.p1(WidgetList.anInt5);
+                    Protocol.outboundBuffer.p1(ComponentList.anInt5);
                     Protocol.outboundBuffer.p1(anInt2878);
                     Protocol.outboundBuffer.p2(Camera.orbitCameraYaw);
                     Protocol.outboundBuffer.p1(57);
@@ -884,18 +883,18 @@ public class MiniMenu {
             Protocol.outboundBuffer.p2_alt2(keyInt);
             Protocol.outboundBuffer.p4_alt1(param2);
             anInt2043 = 0;
-            pressedInventoryWidget = WidgetList.getComponent(param2);
+            pressedInventoryComponent = ComponentList.getComponent(param2);
             anInt5444 = param1;
         }
         if (actionCode == COMPONENT_OBJ_ACTION) {
             Protocol.outboundBuffer.pIsaac1(253);
-            Protocol.outboundBuffer.p4_alt1(useWithWidgetId);
+            Protocol.outboundBuffer.p4_alt1(useWithComponentId);
             Protocol.outboundBuffer.p2_alt3(param1);
             Protocol.outboundBuffer.p4_alt1(param2);
             Protocol.outboundBuffer.p2_alt2(keyInt);
             Protocol.outboundBuffer.p2_alt1(useWithSlot);
             anInt2043 = 0;
-            pressedInventoryWidget = WidgetList.getComponent(param2);
+            pressedInventoryComponent = ComponentList.getComponent(param2);
             anInt5444 = param1;
         }
         if (actionCode == UNKNOWN_10) {
@@ -910,10 +909,10 @@ public class MiniMenu {
                 Protocol.outboundBuffer.p2_alt1(keyInt);
             }
         }
-        if (actionCode == UNKNOWN_41 && ClientScriptRunner.aClass13_10 == null) {
-            sendWidgetContinue(param1, param2);
-            ClientScriptRunner.aClass13_10 = WidgetList.getCreatedComponent(param2, param1);
-            WidgetList.redraw(ClientScriptRunner.aClass13_10);
+        if (actionCode == UNKNOWN_41 && ClientScriptRunner.modalBackgroundComponent == null) {
+            sendComponentContinue(param1, param2);
+            ClientScriptRunner.modalBackgroundComponent = ComponentList.getCreatedComponent(param2, param1);
+            ComponentList.redraw(ClientScriptRunner.modalBackgroundComponent);
         }
         if (actionCode == LOC_ACTION_3) {
             PathFinder.findPathToLoc(key, param2, param1);
@@ -928,7 +927,7 @@ public class MiniMenu {
             Protocol.outboundBuffer.p2_alt1(param1);
             Protocol.outboundBuffer.p4_alt1(param2);
             anInt2043 = 0;
-            pressedInventoryWidget = WidgetList.getComponent(param2);
+            pressedInventoryComponent = ComponentList.getComponent(param2);
             anInt5444 = param1;
         }
         if (actionCode == OBJ_LOC_ACTION && PathFinder.findPathToLoc(key, param2, param1)) {
@@ -961,7 +960,7 @@ public class MiniMenu {
             Protocol.outboundBuffer.p2_alt2(param1);
             Protocol.outboundBuffer.p4rme(param2);
             anInt2043 = 0;
-            pressedInventoryWidget = WidgetList.getComponent(param2);
+            pressedInventoryComponent = ComponentList.getComponent(param2);
             anInt5444 = param1;
         }
         if (actionCode == UNKNOWN_21) {
@@ -995,20 +994,20 @@ public class MiniMenu {
             }
         }
         if (actionCode == UNKNOWN_32) {
-            widget = WidgetList.getCreatedComponent(param2, param1);
-            if (widget != null) {
+            component = ComponentList.getCreatedComponent(param2, param1);
+            if (component != null) {
                 handleUseWith();
-                @Pc(1493) ServerActiveProperties local1493 = WidgetList.getServerActiveProperties(widget);
-                startUseWith(param2, param1, local1493.getTargetMask(), local1493.targetParam, widget.anInt499, widget.anInt484);
+                @Pc(1493) ServerActiveProperties local1493 = ComponentList.getServerActiveProperties(component);
+                startUseWith(param2, param1, local1493.getTargetMask(), local1493.targetParam, component.anInt499, component.anInt484);
                 anInt5014 = 0;
-                aClass100_545 = MiniMap.getTargetVerb(widget);
+                aClass100_545 = MiniMap.getTargetVerb(component);
                 if (aClass100_545 == null) {
                     aClass100_545 = aClass100_1042;
                 }
-                if (widget.if3) {
-                    aClass100_466 = JString.concatenate(new JString[] { widget.optionBase, WHITE});
+                if (component.if3) {
+                    aClass100_466 = JString.concatenate(new JString[] { component.optionBase, WHITE});
                 } else {
-                    aClass100_466 = JString.concatenate(new JString[] {GREEN, widget.optionSuffix, WHITE});
+                    aClass100_466 = JString.concatenate(new JString[] {GREEN, component.optionSuffix, WHITE});
                 }
             }
             return;
@@ -1031,7 +1030,7 @@ public class MiniMenu {
             Protocol.outboundBuffer.p2_alt3(keyInt);
             Protocol.outboundBuffer.p2_alt3(param1);
             anInt2043 = 0;
-            pressedInventoryWidget = WidgetList.getComponent(param2);
+            pressedInventoryComponent = ComponentList.getComponent(param2);
             anInt5444 = param1;
         }
         if (actionCode == COMPONENT_PLAYER_ACTION) {
@@ -1044,7 +1043,7 @@ public class MiniMenu {
                 Crosshair.y = Mouse.mouseClickY;
                 Protocol.outboundBuffer.pIsaac1(195);
                 Protocol.outboundBuffer.p2_alt2(useWithSlot);
-                Protocol.outboundBuffer.p4_alt1(useWithWidgetId);
+                Protocol.outboundBuffer.p4_alt1(useWithComponentId);
                 Protocol.outboundBuffer.p2_alt3(keyInt);
             }
         }
@@ -1072,7 +1071,7 @@ public class MiniMenu {
             Protocol.outboundBuffer.p2(keyInt);
             Protocol.outboundBuffer.p4rme(param2);
             anInt2043 = 0;
-            pressedInventoryWidget = WidgetList.getComponent(param2);
+            pressedInventoryComponent = ComponentList.getComponent(param2);
             anInt5444 = param1;
         }
         if (actionCode == NPC_ACTION_5) {
@@ -1091,11 +1090,11 @@ public class MiniMenu {
         if (actionCode == LOGOUT_ACTION) {
             Protocol.outboundBuffer.pIsaac1(10);
             Protocol.outboundBuffer.p4(param2);
-            widget = WidgetList.getComponent(param2);
-            if (widget.scripts != null && widget.scripts[0][0] == 5) {
-                varp = widget.scripts[0][1];
-                if (VarpDomain.activeVarps[varp] != widget.scriptOperand[0]) {
-                    VarpDomain.activeVarps[varp] = widget.scriptOperand[0];
+            component = ComponentList.getComponent(param2);
+            if (component.scripts != null && component.scripts[0][0] == 5) {
+                varp = component.scripts[0][1];
+                if (VarpDomain.activeVarps[varp] != component.scriptOperand[0]) {
+                    VarpDomain.activeVarps[varp] = component.scriptOperand[0];
                     VarpDomain.refreshMagicVarp(varp);
                 }
             }
@@ -1118,9 +1117,9 @@ public class MiniMenu {
         if (actionCode == LOGOUT_ACTION_2) {
             Protocol.outboundBuffer.pIsaac1(10);
             Protocol.outboundBuffer.p4(param2);
-            widget = WidgetList.getComponent(param2);
-            if (widget.scripts != null && widget.scripts[0][0] == 5) {
-                varp = widget.scripts[0][1];
+            component = ComponentList.getComponent(param2);
+            if (component.scripts != null && component.scripts[0][0] == 5) {
+                varp = component.scripts[0][1];
                 VarpDomain.activeVarps[varp] = 1 - VarpDomain.activeVarps[varp];
                 VarpDomain.refreshMagicVarp(varp);
             }
@@ -1156,17 +1155,17 @@ public class MiniMenu {
                 setWalkTarget(Player.plane, param1, param2);
             } else if (keyInt == 1) {
                 Protocol.outboundBuffer.pIsaac1(131);
-                Protocol.outboundBuffer.p4_alt3(useWithWidgetId);
+                Protocol.outboundBuffer.p4_alt3(useWithComponentId);
                 Protocol.outboundBuffer.p2_alt2(Camera.originX + param1);
                 Protocol.outboundBuffer.p2_alt3(useWithSlot);
                 Protocol.outboundBuffer.p2_alt2(param2 + Camera.originZ);
             }
         }
         if (actionCode == UNKNOWN_8) {
-            widget = WidgetList.getComponent(param2);
+            component = ComponentList.getComponent(param2);
             @Pc(2287) boolean shouldProcess = true;
-            if (widget.contentType > 0) {
-                shouldProcess = shouldTriggerIdleTimeout(widget);
+            if (component.contentType > 0) {
+                shouldProcess = shouldTriggerIdleTimeout(component);
             }
             if (shouldProcess) {
                 Protocol.outboundBuffer.pIsaac1(10);
@@ -1194,7 +1193,7 @@ public class MiniMenu {
             Protocol.outboundBuffer.p2(param1);
             Protocol.outboundBuffer.p2_alt2(keyInt);
             anInt2043 = 0;
-            pressedInventoryWidget = WidgetList.getComponent(param2);
+            pressedInventoryComponent = ComponentList.getComponent(param2);
             anInt5444 = param1;
         }
         if (actionCode == UNKNOWN_24) {
@@ -1220,7 +1219,7 @@ public class MiniMenu {
             Protocol.outboundBuffer.p2_alt3(param2 + Camera.originZ);
             Protocol.outboundBuffer.p2_alt2(Camera.originX + param1);
             Protocol.outboundBuffer.p2_alt3(useWithSlot);
-            Protocol.outboundBuffer.p4rme(useWithWidgetId);
+            Protocol.outboundBuffer.p4rme(useWithComponentId);
             Protocol.outboundBuffer.p2_alt2((int) (key >>> 32) & Integer.MAX_VALUE);
         }
         if (actionCode == UNKNOWN_13) {
@@ -1229,7 +1228,7 @@ public class MiniMenu {
             Protocol.outboundBuffer.p2_alt2(param1);
             Protocol.outboundBuffer.p2_alt1(keyInt);
             anInt2043 = 0;
-            pressedInventoryWidget = WidgetList.getComponent(param2);
+            pressedInventoryComponent = ComponentList.getComponent(param2);
             anInt5444 = param1;
         }
         if (actionCode == PLAYER_ACTION_5) {
@@ -1246,12 +1245,12 @@ public class MiniMenu {
         }
         if (actionCode == UNKNOWN_22) {
             handleUseWith();
-            widget = WidgetList.getComponent(param2);
+            component = ComponentList.getComponent(param2);
             MiniMap.anInt5062 = param2;
             anInt4370 = param1;
             anInt5014 = 1;
             anInt4997 = keyInt;
-            WidgetList.redraw(widget);
+            ComponentList.redraw(component);
             aClass100_203 = JString.concatenate(new JString[] {aClass100_32, ObjTypeList.get(keyInt).name, WHITE});
             if (aClass100_203 == null) {
                 aClass100_203 = NULL;
@@ -1271,7 +1270,7 @@ public class MiniMenu {
             Protocol.outboundBuffer.p4rme(param2);
             Protocol.outboundBuffer.p2_alt3(keyInt);
             anInt2043 = 0;
-            pressedInventoryWidget = WidgetList.getComponent(param2);
+            pressedInventoryComponent = ComponentList.getComponent(param2);
             anInt5444 = param1;
         }
         if (actionCode == PLAYER_ACTION_1) {
@@ -1292,7 +1291,7 @@ public class MiniMenu {
             Protocol.outboundBuffer.p2_alt1(param1);
             Protocol.outboundBuffer.p2_alt1(keyInt);
             anInt2043 = 0;
-            pressedInventoryWidget = WidgetList.getComponent(param2);
+            pressedInventoryComponent = ComponentList.getComponent(param2);
             anInt5444 = param1;
         }
         if (actionCode == COMPONENT_OBJSTACK_ACTION) {
@@ -1305,7 +1304,7 @@ public class MiniMenu {
             Crosshair.CrosshairMode = 2;
             Crosshair.CrosshairCycle = 0;
             Protocol.outboundBuffer.pIsaac1(73);
-            Protocol.outboundBuffer.p4rme(useWithWidgetId);
+            Protocol.outboundBuffer.p4rme(useWithComponentId);
             Protocol.outboundBuffer.p2(Camera.originZ + param2);
             Protocol.outboundBuffer.p2_alt3(keyInt);
             Protocol.outboundBuffer.p2_alt3(param1 + Camera.originX);
@@ -1315,7 +1314,7 @@ public class MiniMenu {
             Protocol.outboundBuffer.pIsaac1(82);
             Protocol.outboundBuffer.p2(useWithSlot);
             Protocol.outboundBuffer.p4rme(param2);
-            Protocol.outboundBuffer.p4(useWithWidgetId);
+            Protocol.outboundBuffer.p4(useWithComponentId);
             Protocol.outboundBuffer.p2_alt3(param1);
         }
         if (actionCode == UNKNOWN_36) {
@@ -1374,13 +1373,13 @@ public class MiniMenu {
         }
         if (anInt5014 != 0) {
             anInt5014 = 0;
-            WidgetList.redraw(WidgetList.getComponent(MiniMap.anInt5062));
+            ComponentList.redraw(ComponentList.getComponent(MiniMap.anInt5062));
         }
         if (useWithActive) {
             handleUseWith();
         }
-        if (pressedInventoryWidget != null && anInt2043 == 0) {
-            WidgetList.redraw(pressedInventoryWidget);
+        if (pressedInventoryComponent != null && anInt2043 == 0) {
+            ComponentList.redraw(pressedInventoryComponent);
         }
     }
 
@@ -1418,8 +1417,8 @@ public class MiniMenu {
             @Pc(33) int worldX = (endX - startX) * (screenMinX - screenMaxX) / width + screenMaxX;
             worldY = screenMaxY + (screenMinY - screenMaxY) * (endY - startY) / height;
             if (useWithActive && (useWithMask & 0x40) != 0) {
-                @Pc(61) Widget widget = WidgetList.getCreatedComponent(useWithWidgetId, useWithSlot);
-                if (widget == null) {
+                @Pc(61) Component component = ComponentList.getCreatedComponent(useWithComponentId, useWithSlot);
+                if (component == null) {
                     handleUseWith();
                 } else {
                     addActionRow(useWithCursor, 0L, aClass100_961, worldX, (short) 11, aClass100_545, worldY);
@@ -1791,7 +1790,7 @@ public class MiniMenu {
     }
 
     @OriginalMember(owner = "runetek4.client!wi", name = "c", descriptor = "(II)Z")
-    public static boolean isWidgetAction(@OriginalArg(0) int menuIndex) {
+    public static boolean isComponentAction(@OriginalArg(0) int menuIndex) {
         if (menuIndex < 0) {
             return false;
         }
@@ -1803,22 +1802,22 @@ public class MiniMenu {
     }
 
     @OriginalMember(owner = "runetek4.client!ub", name = "b", descriptor = "(IIIIIII)V")
-    public static void startUseWith(@OriginalArg(0) int widgetId, @OriginalArg(1) int slot, @OriginalArg(2) int targetMask, @OriginalArg(3) int param, @OriginalArg(4) int cursor, @OriginalArg(6) int defaultCursordefaultCursor) {
-        @Pc(8) Widget widget = WidgetList.getCreatedComponent(widgetId, slot);
-        if (widget != null && widget.onUse != null) {
-            @Pc(19) WidgetEvent event = new WidgetEvent();
-            event.source = widget;
-            event.arguments = widget.onUse;
+    public static void startUseWith(@OriginalArg(0) int componentId, @OriginalArg(1) int slot, @OriginalArg(2) int targetMask, @OriginalArg(3) int param, @OriginalArg(4) int cursor, @OriginalArg(6) int defaultCursordefaultCursor) {
+        @Pc(8) Component component = ComponentList.getCreatedComponent(componentId, slot);
+        if (component != null && component.onUse != null) {
+            @Pc(19) ComponentEvent event = new ComponentEvent();
+            event.source = component;
+            event.arguments = component.onUse;
             ClientScriptRunner.run(event);
         }
         useWithSlot = slot;
         useWithParam = param;
-        useWithWidgetId = widgetId;
+        useWithComponentId = componentId;
         useWithMask = targetMask;
         useWithActive = true;
         useWithCursor = cursor;
         defaultCursor = defaultCursordefaultCursor;
-        WidgetList.redraw(widget);
+        ComponentList.redraw(component);
     }
 
     @OriginalMember(owner = "client!ej", name = "h", descriptor = "(I)V")
@@ -1847,7 +1846,7 @@ public class MiniMenu {
     }
 
     @OriginalMember(owner = "runetek4.client!aa", name = "a", descriptor = "(IZI)V")
-    public static void sendWidgetContinue(@OriginalArg(0) int componentId, @OriginalArg(2) int widgetId) {
+    public static void sendComponentContinue(@OriginalArg(0) int componentId, @OriginalArg(2) int widgetId) {
         Protocol.outboundBuffer.pIsaac1(132);
         Protocol.outboundBuffer.p4rme(widgetId);
         Protocol.outboundBuffer.p2_alt1(componentId);

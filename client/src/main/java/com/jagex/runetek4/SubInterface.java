@@ -11,5 +11,5 @@ public final class SubInterface extends Node {
 	public int interfaceId;
 
 	@OriginalMember(owner = "client!wk", name = "s", descriptor = "I")
-	public int anInt5879;
+	public int modalType;
 }

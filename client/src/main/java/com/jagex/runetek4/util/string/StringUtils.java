@@ -1,6 +1,6 @@
 package com.jagex.runetek4.util.string;
 
-import com.jagex.runetek4.ui.widget.MiniMenu;
+import com.jagex.runetek4.ui.component.MiniMenu;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;

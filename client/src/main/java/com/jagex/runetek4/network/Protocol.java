@@ -17,7 +17,7 @@ import com.jagex.runetek4.clientscript.DelayedStateChange;
 import com.jagex.runetek4.config.types.obj.ObjType;
 import com.jagex.runetek4.data.cache.media.Font;
 import com.jagex.runetek4.config.types.seq.SeqType;
-import com.jagex.runetek4.data.cache.media.component.Widget;
+import com.jagex.runetek4.data.cache.media.component.Component;
 import com.jagex.runetek4.config.types.npc.NpcTypeList;
 import com.jagex.runetek4.config.types.obj.ObjTypeList;
 import com.jagex.runetek4.config.types.quickchat.QuickChatPhraseTypeList;
@@ -54,10 +54,10 @@ import com.jagex.runetek4.ui.social.IgnoreList;
 import com.jagex.runetek4.ui.sprite.Sprites;
 import com.jagex.runetek4.game.stockmarket.StockMarketManager;
 import com.jagex.runetek4.game.stockmarket.StockMarketOffer;
-import com.jagex.runetek4.ui.widget.WidgetList;
-import com.jagex.runetek4.ui.widget.MiniMap;
-import com.jagex.runetek4.ui.widget.MiniMenu;
-import com.jagex.runetek4.ui.events.WidgetEvent;
+import com.jagex.runetek4.ui.component.ComponentList;
+import com.jagex.runetek4.ui.component.MiniMap;
+import com.jagex.runetek4.ui.component.MiniMenu;
+import com.jagex.runetek4.ui.events.ComponentEvent;
 import com.jagex.runetek4.util.data.Base37;
 import com.jagex.runetek4.util.math.MathUtils;
 import com.jagex.runetek4.util.system.SignLink;
@@ -173,7 +173,7 @@ public class Protocol {
     public static BufferedSocket gameServerSocket;
 
     @OriginalMember(owner = "runetek4.client!dg", name = "h", descriptor = "Lclient!be;")
-    public static Widget aClass13_11;
+    public static Component aClass13_11;
 
     @OriginalMember(owner = "runetek4.client!kf", name = "l", descriptor = "I")
     public static int anInt5235 = 0;
@@ -358,7 +358,7 @@ public class Protocol {
             }
             scriptArgs[0] = Integer.valueOf(inboundBuffer.g4());
             if (setVerifyID(tracknum)) {
-                @Pc(226) WidgetEvent request = new WidgetEvent();
+                @Pc(226) ComponentEvent request = new ComponentEvent();
                 request.arguments = scriptArgs;
                 ClientScriptRunner.run(request);
             }
@@ -573,7 +573,7 @@ public class Protocol {
             @Pc(1160) int local1160;
             @Pc(1245) boolean local1245;
             if (opcode == 55) {
-                ClanChat.transmitAt = WidgetList.transmitTimer;
+                ClanChat.transmitAt = ComponentList.transmitTimer;
                 username2 = inboundBuffer.g8();
                 if (username2 == 0L) {
                     ClanChat.owner = null;
@@ -694,12 +694,12 @@ public class Protocol {
                         if (reset == 2) {
                             WorldMap.reset();
                         }
-                        WidgetList.topLevelInterface = parent;
-                        WidgetList.method1753(parent);
-                        WidgetList.method3712(false);
-                        WidgetList.method1626(WidgetList.topLevelInterface);
+                        ComponentList.topLevelInterface = parent;
+                        ComponentList.resetComponentAnimations(parent);
+                        ComponentList.updateInterfaceLayout(false);
+                        ComponentList.runInterfaceInitScripts(ComponentList.topLevelInterface);
                         for (slot = 0; slot < 100; slot++) {
-                            WidgetList.widgetNeedsRedraw[slot] = true;
+                            ComponentList.componentNeedsRedraw[slot] = true;
                         }
                     }
                     opcode = -1;
@@ -726,7 +726,7 @@ public class Protocol {
                     return true;
                 } else if (opcode == 89) {
                     VarpDomain.resetVarBits();
-                    WidgetList.redrawActiveInterfaces();
+                    ComponentList.redrawActiveInterfaces();
                     VarpDomain.updatedVarpsWriterIndex += 32;
                     opcode = -1;
                     return true;
@@ -769,16 +769,16 @@ public class Protocol {
                         if (setVerifyID(verifyID)) {
                             for (i = count; i <= slot; i++) {
                                 local904 = (long) i + ((long) xp << 32);
-                                local1804 = (ServerActiveProperties) WidgetList.properties.get(local904);
+                                local1804 = (ServerActiveProperties) ComponentList.properties.get(local904);
                                 if (local1804 != null) {
                                     local1814 = new ServerActiveProperties(local1804.events, ii);
                                     local1804.unlink();
                                 } else if (i == -1) {
-                                    local1814 = new ServerActiveProperties(WidgetList.getComponent(xp).properties.events, ii);
+                                    local1814 = new ServerActiveProperties(ComponentList.getComponent(xp).properties.events, ii);
                                 } else {
                                     local1814 = new ServerActiveProperties(0, ii);
                                 }
-                                WidgetList.properties.put(local1814, local904);
+                                ComponentList.properties.put(local1814, local904);
                             }
                         }
                         opcode = -1;
@@ -890,7 +890,7 @@ public class Protocol {
                         return true;
                     } else if (opcode == 38) {
                         // UPDATE_STAT
-                        WidgetList.redrawActiveInterfaces();
+                        ComponentList.redrawActiveInterfaces();
                         ii = inboundBuffer.g1add();
                         xp = inboundBuffer.g4rme();
                         world = inboundBuffer.g1();
@@ -913,13 +913,13 @@ public class Protocol {
                         int verifyID = inboundBuffer.g2();
                         xp = inboundBuffer.g4();
                         if (setVerifyID(verifyID)) {
-                            @Pc(2441) SubInterface local2441 = (SubInterface) WidgetList.openInterfaces.get((long) xp);
+                            @Pc(2441) SubInterface local2441 = (SubInterface) ComponentList.openInterfaces.get((long) xp);
                             if (local2441 != null) {
-                                WidgetList.closeInterface(true, local2441);
+                                ComponentList.closeInterface(true, local2441);
                             }
-                            if (ClientScriptRunner.aClass13_10 != null) {
-                                WidgetList.redraw(ClientScriptRunner.aClass13_10);
-                                ClientScriptRunner.aClass13_10 = null;
+                            if (ClientScriptRunner.modalBackgroundComponent != null) {
+                                ComponentList.redraw(ClientScriptRunner.modalBackgroundComponent);
+                                ClientScriptRunner.modalBackgroundComponent = null;
                             }
                         }
                         opcode = -1;
@@ -970,12 +970,12 @@ public class Protocol {
                         return true;
                     } else if (opcode == 144) {
                         ii = inboundBuffer.p4rme();
-                        @Pc(2666) Widget local2666 = WidgetList.getComponent(ii);
+                        @Pc(2666) Component local2666 = ComponentList.getComponent(ii);
                         for (world = 0; world < local2666.invSlotObjId.length; world++) {
                             local2666.invSlotObjId[world] = -1;
                             local2666.invSlotObjId[world] = 0;
                         }
-                        WidgetList.redraw(local2666);
+                        ComponentList.redraw(local2666);
                         opcode = -1;
                         return true;
                     } else if (opcode == 130) {
@@ -1047,7 +1047,7 @@ public class Protocol {
                                 FriendList.friendGame[FriendList.friendCount] = ignored;
                                 FriendList.friendCount++;
                             }
-                            FriendList.transmitAt = WidgetList.transmitTimer;
+                            FriendList.transmitAt = ComponentList.transmitTimer;
                             local908 = FriendList.friendCount;
                             while (local908 > 0) {
                                 local908--;
@@ -1160,26 +1160,26 @@ public class Protocol {
                                 int verifyID = inboundBuffer.g2sub();
                                 world = inboundBuffer.g4rme();
                                 if (setVerifyID(verifyID)) {
-                                    @Pc(3449) SubInterface local3449 = (SubInterface) WidgetList.openInterfaces.get((long) ii);
-                                    local3456 = (SubInterface) WidgetList.openInterfaces.get((long) world);
+                                    @Pc(3449) SubInterface local3449 = (SubInterface) ComponentList.openInterfaces.get((long) ii);
+                                    local3456 = (SubInterface) ComponentList.openInterfaces.get((long) world);
                                     if (local3456 != null) {
-                                        WidgetList.closeInterface(local3449 == null || local3456.interfaceId != local3449.interfaceId, local3456);
+                                        ComponentList.closeInterface(local3449 == null || local3456.interfaceId != local3449.interfaceId, local3456);
                                     }
                                     if (local3449 != null) {
                                         local3449.unlink();
-                                        WidgetList.openInterfaces.put(local3449, (long) world);
+                                        ComponentList.openInterfaces.put(local3449, (long) world);
                                     }
-                                    @Pc(3490) Widget local3490 = WidgetList.getComponent(ii);
+                                    @Pc(3490) Component local3490 = ComponentList.getComponent(ii);
                                     if (local3490 != null) {
-                                        WidgetList.redraw(local3490);
+                                        ComponentList.redraw(local3490);
                                     }
-                                    local3490 = WidgetList.getComponent(world);
+                                    local3490 = ComponentList.getComponent(world);
                                     if (local3490 != null) {
-                                        WidgetList.redraw(local3490);
-                                        WidgetList.method531(local3490, true);
+                                        ComponentList.redraw(local3490);
+                                        ComponentList.updateContainerLayout(local3490, true);
                                     }
-                                    if (WidgetList.topLevelInterface != -1) {
-                                        WidgetList.runScripts(1, WidgetList.topLevelInterface);
+                                    if (ComponentList.topLevelInterface != -1) {
+                                        ComponentList.runScripts(1, ComponentList.topLevelInterface);
                                     }
                                 }
                                 opcode = -1;
@@ -1212,7 +1212,7 @@ public class Protocol {
                             } else if (opcode == 85) {
                                 Player.systemUpdateTimer = inboundBuffer.g2() * 30;
                                 opcode = -1;
-                                WidgetList.miscTransmitAt = WidgetList.transmitTimer;
+                                ComponentList.miscTransmitAt = ComponentList.transmitTimer;
                                 return true;
                             } else if (opcode == 114) {
                                 ReflectionCheck.push(GameShell.signLink, inboundBuffer, packetSize);
@@ -1229,14 +1229,14 @@ public class Protocol {
                                 return true;
                             } else if (opcode == 234) {
                                 // UPDATE_RUNENERGY
-                                WidgetList.redrawActiveInterfaces();
+                                ComponentList.redrawActiveInterfaces();
                                 Player.runEnergy = inboundBuffer.g1();
-                                WidgetList.miscTransmitAt = WidgetList.transmitTimer;
+                                ComponentList.miscTransmitAt = ComponentList.transmitTimer;
                                 opcode = -1;
                                 return true;
                             } else if (opcode == 209) {
-                                if (WidgetList.topLevelInterface != -1) {
-                                    WidgetList.runScripts(0, WidgetList.topLevelInterface);
+                                if (ComponentList.topLevelInterface != -1) {
+                                    ComponentList.runScripts(0, ComponentList.topLevelInterface);
                                 }
                                 opcode = -1;
                                 return true;
@@ -1258,9 +1258,9 @@ public class Protocol {
                                 return true;
                             } else if (opcode == 159) {
                                 // UPDATE_RUNWEIGHT
-                                WidgetList.redrawActiveInterfaces();
+                                ComponentList.redrawActiveInterfaces();
                                 Player.weightCarried = inboundBuffer.g2s();
-                                WidgetList.miscTransmitAt = WidgetList.transmitTimer;
+                                ComponentList.miscTransmitAt = ComponentList.transmitTimer;
                                 opcode = -1;
                                 return true;
                             } else if (opcode == 71) {
@@ -1309,9 +1309,9 @@ public class Protocol {
                                 int verifyID = inboundBuffer.g2sub();
                                 int interfaceID = inboundBuffer.g2();
                                 if (setVerifyID(verifyID)) {
-                                    SubInterface subInterface = (SubInterface) WidgetList.openInterfaces.get(windowID);
-                                    if (subInterface != null) {
-                                        WidgetList.closeInterface(interfaceID != subInterface.interfaceId, subInterface);
+                                    SubInterface SubInterface = (SubInterface) ComponentList.openInterfaces.get(windowID);
+                                    if (SubInterface != null) {
+                                        ComponentList.closeInterface(interfaceID != SubInterface.interfaceId, SubInterface);
                                     }
                                     openSubInterface(interfaceID, windowID, flags);
                                 }
@@ -1382,7 +1382,7 @@ public class Protocol {
                                     IgnoreList.encodedIgnores[ii] = inboundBuffer.g8();
                                     IgnoreList.ignoreNames[ii] = Base37.decode37(IgnoreList.encodedIgnores[ii]);
                                 }
-                                FriendList.transmitAt = WidgetList.transmitTimer;
+                                FriendList.transmitAt = ComponentList.transmitTimer;
                                 opcode = -1;
                                 return true;
                             } else if (opcode == 32) {
@@ -1549,7 +1549,7 @@ public class Protocol {
                                 opcode = -1;
                                 return true;
                             } else {
-                                @Pc(4956) Widget local4956;
+                                @Pc(4956) Component local4956;
                                 if (opcode == 22) {
                                     ii = inboundBuffer.g4();
                                     xp = inboundBuffer.g2();
@@ -1559,7 +1559,7 @@ public class Protocol {
                                     if (ii < 0) {
                                         local4956 = null;
                                     } else {
-                                        local4956 = WidgetList.getComponent(ii);
+                                        local4956 = ComponentList.getComponent(ii);
                                     }
                                     while (inboundBuffer.offset < packetSize) {
                                         slot = inboundBuffer.gSmart1or2();
@@ -1578,9 +1578,9 @@ public class Protocol {
                                         Inv.update(count - 1, slot, i, xp);
                                     }
                                     if (local4956 != null) {
-                                        WidgetList.redraw(local4956);
+                                        ComponentList.redraw(local4956);
                                     }
-                                    WidgetList.redrawActiveInterfaces();
+                                    ComponentList.redrawActiveInterfaces();
                                     Inv.updatedInventories[Inv.updatedInventoriesWriterIndex++ & 0x1F] = xp & 0x7FFF;
                                     opcode = -1;
                                     return true;
@@ -1604,7 +1604,7 @@ public class Protocol {
                                         StockMarketManager.offers[ii] = new StockMarketOffer(inboundBuffer);
                                     }
                                     opcode = -1;
-                                    StockMarketManager.transmitAt = WidgetList.transmitTimer;
+                                    StockMarketManager.transmitAt = ComponentList.transmitTimer;
                                     return true;
                                 } else if (opcode == 73) {
                                     ii = inboundBuffer.g2sub();
@@ -1637,23 +1637,23 @@ public class Protocol {
                                     if (setVerifyID(verifyID)) {
                                         for (i = slot; i <= xp; i++) {
                                             local904 = ((long) world << 32) + ((long) i);
-                                            local1804 = (ServerActiveProperties) WidgetList.properties.get(local904);
+                                            local1804 = (ServerActiveProperties) ComponentList.properties.get(local904);
                                             if (local1804 != null) {
                                                 local1814 = new ServerActiveProperties(count, local1804.targetParam);
                                                 local1804.unlink();
                                             } else if (i == -1) {
-                                                local1814 = new ServerActiveProperties(count, WidgetList.getComponent(world).properties.targetParam);
+                                                local1814 = new ServerActiveProperties(count, ComponentList.getComponent(world).properties.targetParam);
                                             } else {
                                                 local1814 = new ServerActiveProperties(count, -1);
                                             }
-                                            WidgetList.properties.put(local1814, local904);
+                                            ComponentList.properties.put(local1814, local904);
                                         }
                                     }
                                     opcode = -1;
                                     return true;
                                 } else if (opcode == 197) {
                                     FriendList.state = inboundBuffer.g1();
-                                    FriendList.transmitAt = WidgetList.transmitTimer;
+                                    FriendList.transmitAt = ComponentList.transmitTimer;
                                     opcode = -1;
                                     return true;
                                 } else if (opcode == 196) {
@@ -1698,7 +1698,7 @@ public class Protocol {
                                                 if (username2 == Player.name37) {
                                                     ClanChat.rank = local5325;
                                                 }
-                                                ClanChat.transmitAt = WidgetList.transmitTimer;
+                                                ClanChat.transmitAt = ComponentList.transmitTimer;
                                                 opcode = -1;
                                                 return true;
                                             }
@@ -1723,7 +1723,7 @@ public class Protocol {
                                         ClanChat.size++;
                                     }
                                     opcode = -1;
-                                    ClanChat.transmitAt = WidgetList.transmitTimer;
+                                    ClanChat.transmitAt = ComponentList.transmitTimer;
                                     return true;
                                 } else if (opcode == 50) {
                                     ii = inboundBuffer.g4();
@@ -1734,7 +1734,7 @@ public class Protocol {
                                     }
                                     int verifyID = inboundBuffer.g2le();
                                     if (setVerifyID(verifyID)) {
-                                        @Pc(5603) Widget com = WidgetList.getComponent(xp);
+                                        @Pc(5603) Component com = ComponentList.getComponent(xp);
                                         @Pc(5615) ObjType obj;
                                         if (com.if3) {
                                             DelayedStateChange.method3707(xp, ii, world);
@@ -1752,7 +1752,7 @@ public class Protocol {
                                             com.modelType = 4;
                                             com.modelId = world;
                                             com.modelYAngle = obj.yan2d;
-                                            WidgetList.redraw(com);
+                                            ComponentList.redraw(com);
                                         }
                                     }
                                     opcode = -1;
@@ -1764,7 +1764,7 @@ public class Protocol {
                                         xp += 32768;
                                     }
                                     if (ii >= 0) {
-                                        local4956 = WidgetList.getComponent(ii);
+                                        local4956 = ComponentList.getComponent(ii);
                                     } else {
                                         local4956 = null;
                                     }
@@ -1789,9 +1789,9 @@ public class Protocol {
                                         Inv.update(local1160 - 1, count, i, xp);
                                     }
                                     if (local4956 != null) {
-                                        WidgetList.redraw(local4956);
+                                        ComponentList.redraw(local4956);
                                     }
-                                    WidgetList.redrawActiveInterfaces();
+                                    ComponentList.redrawActiveInterfaces();
                                     Inv.updatedInventories[Inv.updatedInventoriesWriterIndex++ & 0x1F] = xp & 0x7FFF;
                                     opcode = -1;
                                     return true;
@@ -2981,30 +2981,30 @@ public class Protocol {
     @OriginalMember(owner = "client!dh", name = "a", descriptor = "(IIII)Lclient!wk;")
     public static SubInterface openSubInterface(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2) {
         @Pc(9) SubInterface local9 = new SubInterface();
-        local9.anInt5879 = arg2;
+        local9.modalType = arg2;
         local9.interfaceId = arg0;
-        WidgetList.openInterfaces.put(local9, arg1);
-        WidgetList.method1753(arg0);
-        @Pc(28) Widget local28 = WidgetList.getComponent(arg1);
+        ComponentList.openInterfaces.put(local9, arg1);
+        ComponentList.resetComponentAnimations(arg0);
+        @Pc(28) Component local28 = ComponentList.getComponent(arg1);
         if (local28 != null) {
-            WidgetList.redraw(local28);
+            ComponentList.redraw(local28);
         }
-        if (ClientScriptRunner.aClass13_10 != null) {
-            WidgetList.redraw(ClientScriptRunner.aClass13_10);
-            ClientScriptRunner.aClass13_10 = null;
+        if (ClientScriptRunner.modalBackgroundComponent != null) {
+            ComponentList.redraw(ClientScriptRunner.modalBackgroundComponent);
+            ClientScriptRunner.modalBackgroundComponent = null;
         }
         @Pc(45) int local45 = MiniMenu.menuActionRow;
         @Pc(53) int local53;
         for (local53 = 0; local53 < local45; local53++) {
-            if (WidgetList.method5(MiniMenu.actions[local53])) {
+            if (ComponentList.shouldRemoveMenuAction(MiniMenu.actions[local53])) {
                 MiniMenu.removeActionRow(local53);
             }
         }
         if (MiniMenu.menuActionRow == 1) {
             ClientScriptRunner.menuVisible = false;
-            WidgetList.redrawScreen(WidgetList.menuX, WidgetList.menuWidth, WidgetList.menuY, WidgetList.menuHeight);
+            ComponentList.redrawScreen(ComponentList.menuX, ComponentList.menuWidth, ComponentList.menuY, ComponentList.menuHeight);
         } else {
-            WidgetList.redrawScreen(WidgetList.menuX, WidgetList.menuWidth, WidgetList.menuY, WidgetList.menuHeight);
+            ComponentList.redrawScreen(ComponentList.menuX, ComponentList.menuWidth, ComponentList.menuY, ComponentList.menuHeight);
             local53 = Fonts.b12Full.getStringWidth(LocalizedText.CHOOSE_OPTION);
             for (@Pc(95) int local95 = 0; local95 < MiniMenu.menuActionRow; local95++) {
                 @Pc(104) int local104 = Fonts.b12Full.getStringWidth(MiniMenu.getOp(local95));
@@ -3012,22 +3012,22 @@ public class Protocol {
                     local53 = local104;
                 }
             }
-            WidgetList.menuWidth = local53 + 8;
-            WidgetList.menuHeight = MiniMenu.menuActionRow * 15 + (WidgetList.hasScrollbar ? 26 : 22);
+            ComponentList.menuWidth = local53 + 8;
+            ComponentList.menuHeight = MiniMenu.menuActionRow * 15 + (ComponentList.hasScrollbar ? 26 : 22);
         }
         if (local28 != null) {
-            WidgetList.method531(local28, false);
+            ComponentList.updateContainerLayout(local28, false);
         }
-        WidgetList.method1626(arg0);
-        if (WidgetList.topLevelInterface != -1) {
-            WidgetList.runScripts(1, WidgetList.topLevelInterface);
+        ComponentList.runInterfaceInitScripts(arg0);
+        if (ComponentList.topLevelInterface != -1) {
+            ComponentList.runScripts(1, ComponentList.topLevelInterface);
         }
         return local9;
     }
 
     @OriginalMember(owner = "client!ah", name = "b", descriptor = "(I)V")
     public static void method843() {
-        if (WidgetList.clickedInventoryWidget != null || ClientScriptRunner.dragWidget != null) {
+        if (ComponentList.clickedInventoryComponent != null || ClientScriptRunner.dragComponent != null) {
             return;
         }
         @Pc(20) int local20 = Mouse.clickButton;
@@ -3039,24 +3039,24 @@ public class Protocol {
                 if (local37 == 25 || local37 == 23 || local37 == 48 || local37 == 7 || local37 == 13 || local37 == 47 || local37 == 5 || local37 == 43 || local37 == 35 || local37 == 58 || local37 == 22 || local37 == 1006) {
                     local93 = MiniMenu.intArgs1[MiniMenu.menuActionRow - 1];
                     local99 = MiniMenu.intArgs2[MiniMenu.menuActionRow - 1];
-                    @Pc(103) Widget local103 = WidgetList.getComponent(local99);
-                    @Pc(106) ServerActiveProperties local106 = WidgetList.getServerActiveProperties(local103);
+                    @Pc(103) Component local103 = ComponentList.getComponent(local99);
+                    @Pc(106) ServerActiveProperties local106 = ComponentList.getServerActiveProperties(local103);
                     if (local106.isObjSwapEnabled() || local106.isObjReplaceEnabled()) {
-                        WidgetList.lastItemDragTime = 0;
-                        WidgetList.draggingClickedInventoryObject = false;
-                        if (WidgetList.clickedInventoryWidget != null) {
-                            WidgetList.redraw(WidgetList.clickedInventoryWidget);
+                        ComponentList.lastItemDragTime = 0;
+                        ComponentList.draggingClickedInventoryObject = false;
+                        if (ComponentList.clickedInventoryComponent != null) {
+                            ComponentList.redraw(ComponentList.clickedInventoryComponent);
                         }
-                        WidgetList.clickedInventoryWidget = WidgetList.getComponent(local99);
-                        WidgetList.clickedInventoryComponentX = Mouse.mouseClickX;
-                        WidgetList.clickedInventoryComponentY = Mouse.mouseClickY;
-                        WidgetList.selectedInventorySlot = local93;
-                        WidgetList.redraw(WidgetList.clickedInventoryWidget);
+                        ComponentList.clickedInventoryComponent = ComponentList.getComponent(local99);
+                        ComponentList.clickedInventoryComponentX = Mouse.mouseClickX;
+                        ComponentList.clickedInventoryComponentY = Mouse.mouseClickY;
+                        ComponentList.selectedInventorySlot = local93;
+                        ComponentList.redraw(ComponentList.clickedInventoryComponent);
                         return;
                     }
                 }
             }
-            if (local20 == 1 && (VarpDomain.oneMouseButton == 1 && MiniMenu.menuActionRow > 2 || MiniMenu.isWidgetAction(MiniMenu.menuActionRow - 1))) {
+            if (local20 == 1 && (VarpDomain.oneMouseButton == 1 && MiniMenu.menuActionRow > 2 || MiniMenu.isComponentAction(MiniMenu.menuActionRow - 1))) {
                 local20 = 2;
             }
             if (local20 == 2 && MiniMenu.menuActionRow > 0 || MiniMenu.menuState == 1) {
@@ -3071,23 +3071,23 @@ public class Protocol {
         if (local20 != 1) {
             local93 = Mouse.lastMouseY;
             local204 = Mouse.lastMouseX;
-            if (local204 < WidgetList.menuX - 10 || local204 > WidgetList.menuWidth + WidgetList.menuX + 10 || WidgetList.menuY - 10 > local93 || local93 > WidgetList.menuHeight + WidgetList.menuY + 10) {
+            if (local204 < ComponentList.menuX - 10 || local204 > ComponentList.menuWidth + ComponentList.menuX + 10 || ComponentList.menuY - 10 > local93 || local93 > ComponentList.menuHeight + ComponentList.menuY + 10) {
                 ClientScriptRunner.menuVisible = false;
-                WidgetList.redrawScreen(WidgetList.menuX, WidgetList.menuWidth, WidgetList.menuY, WidgetList.menuHeight);
+                ComponentList.redrawScreen(ComponentList.menuX, ComponentList.menuWidth, ComponentList.menuY, ComponentList.menuHeight);
             }
         }
         if (local20 != 1) {
             return;
         }
-        local204 = WidgetList.menuX;
-        local93 = WidgetList.menuY;
-        local99 = WidgetList.menuWidth;
+        local204 = ComponentList.menuX;
+        local93 = ComponentList.menuY;
+        local99 = ComponentList.menuWidth;
         @Pc(265) int local265 = Mouse.mouseClickX;
         @Pc(267) int local267 = Mouse.mouseClickY;
         @Pc(269) int local269 = -1;
         for (@Pc(271) int local271 = 0; local271 < MiniMenu.menuActionRow; local271++) {
             @Pc(289) int local289;
-            if (WidgetList.hasScrollbar) {
+            if (ComponentList.hasScrollbar) {
                 local289 = (MiniMenu.menuActionRow - local271 - 1) * 15 + local93 + 35;
             } else {
                 local289 = (MiniMenu.menuActionRow - local271 - 1) * 15 + local93 + 31;
@@ -3100,6 +3100,6 @@ public class Protocol {
             MiniMenu.doAction(local269);
         }
         ClientScriptRunner.menuVisible = false;
-        WidgetList.redrawScreen(WidgetList.menuX, WidgetList.menuWidth, WidgetList.menuY, WidgetList.menuHeight);
+        ComponentList.redrawScreen(ComponentList.menuX, ComponentList.menuWidth, ComponentList.menuY, ComponentList.menuHeight);
     }
 }

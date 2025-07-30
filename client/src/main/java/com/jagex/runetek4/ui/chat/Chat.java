@@ -1,7 +1,7 @@
 package com.jagex.runetek4.ui.chat;
 
 import com.jagex.runetek4.util.string.JString;
-import com.jagex.runetek4.ui.widget.WidgetList;
+import com.jagex.runetek4.ui.component.ComponentList;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -44,7 +44,7 @@ public class Chat {
         size++;
         types[0] = arg1;
         names[0] = arg4;
-        transmitAt = WidgetList.transmitTimer;
+        transmitAt = ComponentList.transmitTimer;
         phraseIds[0] = arg0;
         messages[0] = arg2;
         clans[0] = arg3;

@@ -1,4 +1,4 @@
-package com.jagex.runetek4.ui.widget;
+package com.jagex.runetek4.ui.component;
 
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.game.world.WorldLoader;
@@ -7,7 +7,7 @@ import com.jagex.runetek4.client.LoginManager;
 import com.jagex.runetek4.config.types.npc.NpcType;
 import com.jagex.runetek4.data.cache.media.Font;
 import com.jagex.runetek4.data.cache.media.SoftwareSprite;
-import com.jagex.runetek4.data.cache.media.component.Widget;
+import com.jagex.runetek4.data.cache.media.component.Component;
 import com.jagex.runetek4.client.Client;
 import com.jagex.runetek4.config.types.loc.LocTypeList;
 import com.jagex.runetek4.config.types.msi.MSITypeList;
@@ -101,13 +101,13 @@ public class MiniMap {
     public static int anInt5073 = -1;
 
     @OriginalMember(owner = "runetek4.client!em", name = "a", descriptor = "(Lclient!be;Lclient!qf;IIIBI)V")
-    public static void drawOnMinimap(@OriginalArg(0) Widget widget, @OriginalArg(1) Sprite sprite, @OriginalArg(2) int worldX, @OriginalArg(3) int worldZ, @OriginalArg(4) int offsetY, @OriginalArg(6) int offsetX) {
+    public static void drawOnMinimap(@OriginalArg(0) Component component, @OriginalArg(1) Sprite sprite, @OriginalArg(2) int worldX, @OriginalArg(3) int worldZ, @OriginalArg(4) int offsetY, @OriginalArg(6) int offsetX) {
         if (sprite == null) {
             return;
         }
         @Pc(21) int distanceSquared = worldZ * worldZ + worldX * worldX;
         @Pc(27) int rotatedAngle = minimapAnticheatAngle + Camera.orbitCameraYaw & 0x7FF;
-        @Pc(39) int maxRadius = Math.max(widget.width / 2, widget.height / 2) + 10;
+        @Pc(39) int maxRadius = Math.max(component.width / 2, component.height / 2) + 10;
         if (maxRadius * maxRadius < distanceSquared) {
             return;
         }
@@ -118,28 +118,28 @@ public class MiniMap {
         @Pc(81) int rotatedX = scaledSin * worldX + worldZ * scaledCos >> 16;
         @Pc(92) int rotatedZ = scaledCos * worldX - worldZ * scaledSin >> 16;
         if (GlRenderer.enabled) {
-            ((GlSprite) sprite).method1425(widget.width / 2 + offsetX + rotatedX - sprite.innerWidth / 2, widget.height / 2 + offsetY - (rotatedZ + sprite.innerHeight / 2), (GlSprite) widget.method489(false));
+            ((GlSprite) sprite).method1425(component.width / 2 + offsetX + rotatedX - sprite.innerWidth / 2, component.height / 2 + offsetY - (rotatedZ + sprite.innerHeight / 2), (GlSprite) component.method489(false));
         } else {
-            ((SoftwareSprite) sprite).drawImage(widget.width / 2 + offsetX + rotatedX - sprite.innerWidth / 2, -(sprite.innerHeight / 2) + widget.height / 2 + offsetY + -rotatedZ, widget.compassPixelOffsets, widget.compassPixelWidths);
+            ((SoftwareSprite) sprite).drawImage(component.width / 2 + offsetX + rotatedX - sprite.innerWidth / 2, -(sprite.innerHeight / 2) + component.height / 2 + offsetY + -rotatedZ, component.compassPixelOffsets, component.compassPixelWidths);
         }
     }
 
     @OriginalMember(owner = "runetek4.client!ed", name = "a", descriptor = "(IBIILclient!be;)V")
-    public static void render(@OriginalArg(0) int rectangle, @OriginalArg(2) int y, @OriginalArg(3) int x, @OriginalArg(4) Widget widget) {
+    public static void render(@OriginalArg(0) int rectangle, @OriginalArg(2) int y, @OriginalArg(3) int x, @OriginalArg(4) Component component) {
         Client.audioLoop();
         if (GlRenderer.enabled) {
-            GlRaster.setClip(x, y, x + widget.width, y + widget.height);
+            GlRaster.setClip(x, y, x + component.width, y + component.height);
         } else {
-            SoftwareRaster.setClip(x, y, x + widget.width, y + widget.height);
+            SoftwareRaster.setClip(x, y, x + component.width, y + component.height);
         }
         if (state != 2 && state != 5 && sprite != null) {
             @Pc(48) int angle = minimapAnticheatAngle + Camera.orbitCameraYaw & 0x7FF;
             @Pc(57) int anchorX = PlayerList.self.xFine / 32 + 48;
             @Pc(67) int anchorY = 464 - PlayerList.self.zFine / 32;
             if (GlRenderer.enabled) {
-                ((GlSprite) sprite).renderRotatedTransparent(x, y, widget.width, widget.height, anchorX, anchorY, angle, minimapZoom + 256, (GlSprite) widget.method489(false));
+                ((GlSprite) sprite).renderRotatedTransparent(x, y, component.width, component.height, anchorX, anchorY, angle, minimapZoom + 256, (GlSprite) component.method489(false));
             } else {
-                ((SoftwareSprite) sprite).renderRotated(x, y, widget.width, widget.height, anchorX, anchorY, angle, minimapZoom + 256, widget.compassPixelOffsets, widget.compassPixelWidths);
+                ((SoftwareSprite) sprite).renderRotated(x, y, component.width, component.height, anchorX, anchorY, angle, minimapZoom + 256, component.compassPixelOffsets, component.compassPixelWidths);
             }
             @Pc(146) int flagX;
             @Pc(181) int flagZ;
@@ -169,17 +169,17 @@ public class MiniMap {
                         npcX = scaledSin * flagZ + scaledCos * flagX >> 16;
                         local239 = font.getMaxLineWidth(WorldLoader.mapElementList.text[local117], 100);
                         @Pc(245) int textX = npcX - local239 / 2;
-                        if (textX >= -widget.width && textX <= widget.width && npcZ >= -widget.height && npcZ <= widget.height) {
+                        if (textX >= -component.width && textX <= component.width && npcZ >= -component.height && npcZ <= component.height) {
                             local271 = 16777215;
                             if (WorldLoader.mapElementList.anIntArray444[local117] != -1) {
                                 local271 = WorldLoader.mapElementList.anIntArray444[local117];
                             }
                             if (GlRenderer.enabled) {
-                                GlFont.method1188((GlSprite) widget.method489(false));
+                                GlFont.method1188((GlSprite) component.method489(false));
                             } else {
-                                SoftwareRaster.method2486(widget.compassPixelOffsets, widget.compassPixelWidths);
+                                SoftwareRaster.method2486(component.compassPixelOffsets, component.compassPixelWidths);
                             }
-                            font.renderParagraphAlpha(WorldLoader.mapElementList.text[local117], x + textX + widget.width / 2, y + widget.height / 2 + -npcZ, local239, 50, local271, 0, 1, 0, 0);
+                            font.renderParagraphAlpha(WorldLoader.mapElementList.text[local117], x + textX + component.width / 2, y + component.height / 2 + -npcZ, local239, 50, local271, 0, 1, 0, 0);
                             if (GlRenderer.enabled) {
                                 GlFont.method1173();
                             } else {
@@ -199,7 +199,7 @@ public class MiniMap {
                         continue;
                     }
                 }
-                drawOnMinimap(widget, Sprites.mapfuncs[locType.mapfunction], relativeX, flagZ, y, x);
+                drawOnMinimap(component, Sprites.mapfuncs[locType.mapfunction], relativeX, flagZ, y, x);
             }
             for (flagX = 0; flagX < 104; flagX++) {
                 for (flagZ = 0; flagZ < 104; flagZ++) {
@@ -207,7 +207,7 @@ public class MiniMap {
                     if (objStack != null) {
                         relativeZ = flagX * 4 + 2 - PlayerList.self.xFine / 32;
                         npcX = flagZ * 4 + 2 - PlayerList.self.zFine / 32;
-                        drawOnMinimap(widget, Sprites.mapdots[0], npcX, relativeZ, y, x);
+                        drawOnMinimap(component, Sprites.mapdots[0], npcX, relativeZ, y, x);
                     }
                 }
             }
@@ -222,9 +222,9 @@ public class MiniMap {
                         relativeZ = npc.xFine / 32 - PlayerList.self.xFine / 32;
                         npcX = npc.zFine / 32 - PlayerList.self.zFine / 32;
                         if (npcType.miniMapMarkerObjectEntry == -1) {
-                            drawOnMinimap(widget, Sprites.mapdots[1], npcX, relativeZ, y, x);
+                            drawOnMinimap(component, Sprites.mapdots[1], npcX, relativeZ, y, x);
                         } else {
-                            drawOnMinimap(widget, Sprites.mapfuncs[npcType.miniMapMarkerObjectEntry], npcX, relativeZ, y, x);
+                            drawOnMinimap(component, Sprites.mapfuncs[npcType.miniMapMarkerObjectEntry], npcX, relativeZ, y, x);
                         }
                     }
                 }
@@ -254,13 +254,13 @@ public class MiniMap {
                         isTeammate = true;
                     }
                     if (isFriend) {
-                        drawOnMinimap(widget, Sprites.mapdots[3], relativeZ, relativeX, y, x);
+                        drawOnMinimap(component, Sprites.mapdots[3], relativeZ, relativeX, y, x);
                     } else if (isClanMember) {
-                        drawOnMinimap(widget, Sprites.mapdots[5], relativeZ, relativeX, y, x);
+                        drawOnMinimap(component, Sprites.mapdots[5], relativeZ, relativeX, y, x);
                     } else if (isTeammate) {
-                        drawOnMinimap(widget, Sprites.mapdots[4], relativeZ, relativeX, y, x);
+                        drawOnMinimap(component, Sprites.mapdots[4], relativeZ, relativeX, y, x);
                     } else {
-                        drawOnMinimap(widget, Sprites.mapdots[2], relativeZ, relativeX, y, x);
+                        drawOnMinimap(component, Sprites.mapdots[2], relativeZ, relativeX, y, x);
                     }
                 }
             }
@@ -273,20 +273,20 @@ public class MiniMap {
                         if (npc != null) {
                             npcX = npc.xFine / 32 - PlayerList.self.xFine / 32;
                             npcZ = npc.zFine / 32 - PlayerList.self.zFine / 32;
-                            drawMinimapMark(marker.anInt4048, y, x, npcX, npcZ, widget);
+                            drawMinimapMark(marker.anInt4048, y, x, npcX, npcZ, component);
                         }
                     }
                     if (marker.type == 2) {
                         relativeZ = (marker.targetX - Camera.originX) * 4 + 2 - PlayerList.self.xFine / 32;
                         npcX = (-Camera.originZ + marker.anInt4046) * 4 + 2 - PlayerList.self.zFine / 32;
-                        drawMinimapMark(marker.anInt4048, y, x, relativeZ, npcX, widget);
+                        drawMinimapMark(marker.anInt4048, y, x, relativeZ, npcX, component);
                     }
                     if (marker.type == 10 && marker.actorTargetId >= 0 && PlayerList.players.length > marker.actorTargetId) {
                         @Pc(905) Player player = PlayerList.players[marker.actorTargetId];
                         if (player != null) {
                             npcZ = player.zFine / 32 - PlayerList.self.zFine / 32;
                             npcX = player.xFine / 32 - PlayerList.self.xFine / 32;
-                            drawMinimapMark(marker.anInt4048, y, x, npcX, npcZ, widget);
+                            drawMinimapMark(marker.anInt4048, y, x, npcX, npcZ, component);
                         }
                     }
                 }
@@ -294,22 +294,22 @@ public class MiniMap {
             if (LoginManager.mapFlagX != 0) {
                 flagX = LoginManager.mapFlagX * 4 + 2 - PlayerList.self.xFine / 32;
                 flagZ = LoginManager.mapFlagZ * 4 + 2 - PlayerList.self.zFine / 32;
-                drawOnMinimap(widget, Sprites.mapflags, flagZ, flagX, y, x);
+                drawOnMinimap(component, Sprites.mapflags, flagZ, flagX, y, x);
             }
             if (GlRenderer.enabled) {
-                GlRaster.fillRect(x + widget.width / 2 - 1, y + -1 - -(widget.height / 2), 3, 3, 16777215);
+                GlRaster.fillRect(x + component.width / 2 - 1, y + -1 - -(component.height / 2), 3, 3, 16777215);
             } else {
-                SoftwareRaster.fillRect(widget.width / 2 + x - 1, widget.height / 2 + -1 + y, 3, 3, 16777215);
+                SoftwareRaster.fillRect(component.width / 2 + x - 1, component.height / 2 + -1 + y, 3, 3, 16777215);
             }
         } else if (GlRenderer.enabled) {
-            @Pc(1041) Sprite fallbackSprite = widget.method489(false);
+            @Pc(1041) Sprite fallbackSprite = component.method489(false);
             if (fallbackSprite != null) {
                 fallbackSprite.render(x, y);
             }
         } else {
-            SoftwareRaster.method2504(x, y, widget.compassPixelOffsets, widget.compassPixelWidths);
+            SoftwareRaster.method2504(x, y, component.compassPixelOffsets, component.compassPixelWidths);
         }
-        WidgetList.rectangleRedraw[rectangle] = true;
+        ComponentList.rectangleRedraw[rectangle] = true;
     }
 
     @OriginalMember(owner = "runetek4.client!ma", name = "a", descriptor = "([IIIIII)V")
@@ -495,14 +495,14 @@ public class MiniMap {
     }
 
     @OriginalMember(owner = "runetek4.client!hi", name = "a", descriptor = "(IIIIILclient!be;Z)V")
-    public static void drawMinimapMark(@OriginalArg(0) int markType, @OriginalArg(1) int y, @OriginalArg(2) int z, @OriginalArg(3) int mapX, @OriginalArg(4) int mapY, @OriginalArg(5) Widget widget) {
+    public static void drawMinimapMark(@OriginalArg(0) int markType, @OriginalArg(1) int y, @OriginalArg(2) int z, @OriginalArg(3) int mapX, @OriginalArg(4) int mapY, @OriginalArg(5) Component component) {
         @Pc(13) int distanceSquared = mapX * mapX + mapY * mapY;
         if (distanceSquared > 360000) {
             return;
         }
-        @Pc(30) int radius = Math.min(widget.width / 2, widget.height / 2);
+        @Pc(30) int radius = Math.min(component.width / 2, component.height / 2);
         if (radius * radius >= distanceSquared) {
-            drawOnMinimap(widget, Sprites.mapmarkhints[markType], mapY, mapX, y, z);
+            drawOnMinimap(component, Sprites.mapmarkhints[markType], mapY, mapX, y, z);
             return;
         }
         radius -= 10;
@@ -517,20 +517,20 @@ public class MiniMap {
         @Pc(117) int edgeOffsetX = (int) (Math.sin(edgeAngle) * (double) radius);
         @Pc(124) int edgeOffsetY = (int) (Math.cos(edgeAngle) * (double) radius);
         if (GlRenderer.enabled) {
-            ((GlSprite) Sprites.hintMapEdge[markType]).method1428((widget.width / 2 + z + edgeOffsetX) * 16, (widget.height / 2 + y - edgeOffsetY) * 16, (int) (edgeAngle * 10430.378D));
+            ((GlSprite) Sprites.hintMapEdge[markType]).method1428((component.width / 2 + z + edgeOffsetX) * 16, (component.height / 2 + y - edgeOffsetY) * 16, (int) (edgeAngle * 10430.378D));
         } else {
-            ((SoftwareSprite) Sprites.hintMapEdge[markType]).method306(edgeOffsetX + widget.width / 2 + z - 10, widget.height / 2 + -10 + y + -edgeOffsetY, edgeAngle);
+            ((SoftwareSprite) Sprites.hintMapEdge[markType]).method306(edgeOffsetX + component.width / 2 + z - 10, component.height / 2 + -10 + y + -edgeOffsetY, edgeAngle);
         }
     }
 
     @OriginalMember(owner = "runetek4.client!hi", name = "a", descriptor = "(Lclient!be;B)Lclient!na;")
-    public static JString getTargetVerb(@OriginalArg(0) Widget widget) {
-        if (WidgetList.getServerActiveProperties(widget).getTargetMask() == 0) {
+    public static JString getTargetVerb(@OriginalArg(0) Component component) {
+        if (ComponentList.getServerActiveProperties(component).getTargetMask() == 0) {
             return null;
-        } else if (widget.optionCircumfix == null || widget.optionCircumfix.trim().length() == 0) {
+        } else if (component.optionCircumfix == null || component.optionCircumfix.trim().length() == 0) {
             return Cheat.qaOpTest ? HIDDEN_USE : null;
         } else {
-            return widget.optionCircumfix;
+            return component.optionCircumfix;
         }
     }
 
@@ -712,24 +712,24 @@ public class MiniMap {
     }
 
     @OriginalMember(owner = "client!mj", name = "a", descriptor = "(IILclient!be;IB)V")
-    public static void renderCompass(@OriginalArg(0) int x, @OriginalArg(1) int y, @OriginalArg(2) Widget widget, @OriginalArg(3) int rectangle) {
+    public static void renderCompass(@OriginalArg(0) int x, @OriginalArg(1) int y, @OriginalArg(2) Component component, @OriginalArg(3) int rectangle) {
         if (GlRenderer.enabled) {
-            GlRaster.setClip(x, y, widget.width + x, widget.height + y);
+            GlRaster.setClip(x, y, component.width + x, component.height + y);
         }
         if (state >= 3) {
             if (GlRenderer.enabled) {
-                @Pc(44) Sprite sprite = widget.method489(false);
+                @Pc(44) Sprite sprite = component.method489(false);
                 if (sprite != null) {
                     sprite.render(x, y);
                 }
             } else {
-                SoftwareRaster.method2504(x, y, widget.compassPixelOffsets, widget.compassPixelWidths);
+                SoftwareRaster.method2504(x, y, component.compassPixelOffsets, component.compassPixelWidths);
             }
         } else if (GlRenderer.enabled) {
-            ((GlSprite) Sprites.compass).renderRotatedTransparent(x, y, widget.width, widget.height, Sprites.compass.width / 2, Sprites.compass.height / 2, Camera.orbitCameraYaw, 256, (GlSprite) widget.method489(false));
+            ((GlSprite) Sprites.compass).renderRotatedTransparent(x, y, component.width, component.height, Sprites.compass.width / 2, Sprites.compass.height / 2, Camera.orbitCameraYaw, 256, (GlSprite) component.method489(false));
         } else {
-            ((SoftwareSprite) Sprites.compass).renderRotated(x, y, widget.width, widget.height, Sprites.compass.width / 2, Sprites.compass.height / 2, Camera.orbitCameraYaw, widget.compassPixelOffsets, widget.compassPixelWidths);
+            ((SoftwareSprite) Sprites.compass).renderRotated(x, y, component.width, component.height, Sprites.compass.width / 2, Sprites.compass.height / 2, Camera.orbitCameraYaw, component.compassPixelOffsets, component.compassPixelWidths);
         }
-        WidgetList.rectangleRedraw[rectangle] = true;
+        ComponentList.rectangleRedraw[rectangle] = true;
     }
 }
