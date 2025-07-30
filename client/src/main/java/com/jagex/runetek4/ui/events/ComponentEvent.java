@@ -2,15 +2,15 @@ package com.jagex.runetek4.ui.events;
 
 import com.jagex.runetek4.util.string.JString;
 import com.jagex.runetek4.core.node.Node;
-import com.jagex.runetek4.data.cache.media.component.Widget;
+import com.jagex.runetek4.data.cache.media.component.Component;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 
 @OriginalClass("runetek4.client!jl")
-public final class WidgetEvent extends Node {
+public final class ComponentEvent extends Node {
 
 	@OriginalMember(owner = "runetek4.client!jl", name = "q", descriptor = "Lclient!be;")
-	public Widget target;
+	public Component target;
 
 	@OriginalMember(owner = "runetek4.client!jl", name = "r", descriptor = "Lclient!na;")
 	public JString opBase;
@@ -28,7 +28,7 @@ public final class WidgetEvent extends Node {
 	public int op;
 
 	@OriginalMember(owner = "runetek4.client!jl", name = "C", descriptor = "Z")
-	public boolean aBoolean158;
+	public boolean shouldExecute;
 
 	@OriginalMember(owner = "runetek4.client!jl", name = "D", descriptor = "I")
 	public int mouseX;
@@ -37,5 +37,5 @@ public final class WidgetEvent extends Node {
 	public Object[] arguments;
 
 	@OriginalMember(owner = "runetek4.client!jl", name = "F", descriptor = "Lclient!be;")
-	public Widget source;
+	public Component source;
 }

@@ -178,7 +178,7 @@ public final class Keyboard implements KeyListener, FocusListener {
 	@OriginalMember(owner = "client!ag", name = "h", descriptor = "(I)V")
     public static void quit() {
         if (instance != null) {
-            @Pc(4) Keyboard local4 = instance;
+            @Pc(4) Keyboard keyboard = instance;
             synchronized (instance) {
                 instance = null;
             }
@@ -238,7 +238,7 @@ public final class Keyboard implements KeyListener, FocusListener {
 
 	@OriginalMember(owner = "client!c", name = "d", descriptor = "(I)Z")
 	public static boolean nextKey() {
-		@Pc(6) Keyboard local6 = instance;
+		@Pc(6) Keyboard keyboard = instance;
 		synchronized (instance) {
 			if (prevTypedQueueWriterIndex == typedQueueReaderIndex) {
 				return false;
@@ -253,7 +253,7 @@ public final class Keyboard implements KeyListener, FocusListener {
 
     @OriginalMember(owner = "client!fc", name = "b", descriptor = "(I)V")
     public static void loop() {
-        @Pc(12) Keyboard local12 = instance;
+        @Pc(12) Keyboard keyboard = instance;
         synchronized (instance) {
             typedQueueReaderIndex = prevTypedQueueWriterIndex;
             idleLoops++;

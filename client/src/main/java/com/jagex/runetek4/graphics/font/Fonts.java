@@ -8,7 +8,7 @@ import com.jagex.runetek4.data.js5.Js5;
 import com.jagex.runetek4.util.string.JString;
 import com.jagex.runetek4.graphics.raster.SoftwareRaster;
 import com.jagex.runetek4.ui.sprite.Sprites;
-import com.jagex.runetek4.ui.widget.WidgetList;
+import com.jagex.runetek4.ui.component.ComponentList;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -52,9 +52,9 @@ public class Fonts {
             SoftwareRaster.drawRect(6, 6, local24 + 8, 4 + 4 + local31, 16777215);
         }
         p12Full.drawInterfaceText(arg1, 10, 10, local24, local31, 16777215, -1, 1, 1, 0);
-        WidgetList.redrawScreen(6, local24 + 8, 6, local31 + 4 + 4);
+        ComponentList.redrawScreen(6, local24 + 8, 6, local31 + 4 + 4);
         if (!arg0) {
-            WidgetList.forceRedrawScreen(10, 10, local31, local24);
+            ComponentList.forceRedrawScreen(10, 10, local31, local24);
         } else if (GlRenderer.enabled) {
             GlRenderer.swapBuffers();
         } else {

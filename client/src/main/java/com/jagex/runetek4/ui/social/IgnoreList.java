@@ -6,7 +6,7 @@ import com.jagex.runetek4.ui.chat.Chat;
 import com.jagex.runetek4.util.string.JString;
 import com.jagex.runetek4.util.string.LocalizedText;
 import com.jagex.runetek4.network.Protocol;
-import com.jagex.runetek4.ui.widget.WidgetList;
+import com.jagex.runetek4.ui.component.ComponentList;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -62,7 +62,7 @@ public class IgnoreList {
         }
         encodedIgnores[ignoreCount] = username;
         ignoreNames[ignoreCount++] = Base37.decode37(username);
-        FriendList.transmitAt = WidgetList.transmitTimer;
+        FriendList.transmitAt = ComponentList.transmitTimer;
         Protocol.outboundBuffer.pIsaac1(34);
         Protocol.outboundBuffer.p8(username);
     }
@@ -79,7 +79,7 @@ public class IgnoreList {
                     encodedIgnores[local36] = encodedIgnores[local36 + 1];
                     ignoreNames[local36] = ignoreNames[local36 + 1];
                 }
-                FriendList.transmitAt = WidgetList.transmitTimer;
+                FriendList.transmitAt = ComponentList.transmitTimer;
                 Protocol.outboundBuffer.pIsaac1(213);
                 Protocol.outboundBuffer.p8(arg0);
                 break;

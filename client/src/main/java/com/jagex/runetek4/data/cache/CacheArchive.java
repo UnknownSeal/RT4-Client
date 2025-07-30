@@ -4,7 +4,7 @@ import com.jagex.runetek4.client.GameShell;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.clientscript.ClientScriptRunner;
 import com.jagex.runetek4.graphics.textureops.TextureOp29SubOp1;
-import com.jagex.runetek4.ui.widget.WidgetList;
+import com.jagex.runetek4.ui.component.ComponentList;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 
@@ -13,9 +13,9 @@ public final class CacheArchive {
 	@OriginalMember(owner = "client!al", name = "a", descriptor = "(Z)V")
 	public static void method182() {
 		ClientScriptRunner.aClass13Array13 = null;
-		ClientScriptRunner.renderOrInvalidateWidget(WidgetList.topLevelInterface, 0, GameShell.canvasWidth, 0, -1, GameShell.canvasHeigth, 0, 0);
+		ClientScriptRunner.renderOrInvalidateComponent(ComponentList.topLevelInterface, 0, GameShell.canvasWidth, 0, -1, GameShell.canvasHeigth, 0, 0);
 		if (ClientScriptRunner.aClass13Array13 != null) {
-			WidgetList.renderWidget(0, ClientScriptRunner.anInt3126, ClientScriptRunner.anInt4696, ClientScriptRunner.aClass13Array13, GameShell.canvasWidth, -1412584499, 0, GameShell.canvasHeigth, ClientScriptRunner.containerWidget.rectangle);
+			ComponentList.renderComponent(0, ClientScriptRunner.anInt3126, ClientScriptRunner.anInt4696, ClientScriptRunner.aClass13Array13, GameShell.canvasWidth, -1412584499, 0, GameShell.canvasHeigth, ClientScriptRunner.containerComponent.rectangle);
 			ClientScriptRunner.aClass13Array13 = null;
 		}
 	}
