@@ -24,8 +24,8 @@ import com.jagex.runetek4.graphics.model.SoftwareModel;
 import com.jagex.runetek4.graphics.lighting.ShadowModelList;
 import com.jagex.runetek4.entity.loc.Loc;
 import com.jagex.runetek4.ui.sprite.Sprites;
-import com.jagex.runetek4.ui.widget.MiniMap;
-import com.jagex.runetek4.ui.components.Crosshair;
+import com.jagex.runetek4.ui.component.MiniMap;
+import com.jagex.runetek4.ui.component.Crosshair;
 import com.jagex.runetek4.util.data.Base37;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -296,7 +296,7 @@ public final class Player extends PathingEntity {
 					break;
 				}
 				if (local134 >= 32768) {
-					local134 = Equipment.objIds[local134 - 32768];
+					local134 = Equipment.equipmentObjectIds[local134 - 32768];
 					equipmentIds[local102] = local134 | 0x40000000;
 					local175 = ObjTypeList.get(local134).team;
 					if (local175 != 0) {

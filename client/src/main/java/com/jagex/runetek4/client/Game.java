@@ -5,7 +5,7 @@ import com.jagex.runetek4.audio.core.SoundPlayer;
 import com.jagex.runetek4.audio.midi.MidiPlayer;
 import com.jagex.runetek4.audio.spatial.AreaSoundManager;
 import com.jagex.runetek4.audio.streaming.MusicPlayer;
-import com.jagex.runetek4.data.cache.media.component.Widget;
+import com.jagex.runetek4.data.cache.media.component.Component;
 import com.jagex.runetek4.ui.chat.OverHeadChat;
 import com.jagex.runetek4.game.logic.PathFinder;
 import com.jagex.runetek4.game.locs.AttachLocRequest;
@@ -16,7 +16,7 @@ import com.jagex.runetek4.network.Protocol;
 import com.jagex.runetek4.network.security.ReflectionCheck;
 import com.jagex.runetek4.scene.SceneGraph;
 import com.jagex.runetek4.clientscript.ClientScriptRunner;
-import com.jagex.runetek4.ui.widget.MiniMap;
+import com.jagex.runetek4.ui.component.MiniMap;
 import com.jagex.runetek4.input.Keyboard;
 import com.jagex.runetek4.input.MouseCapturer;
 import com.jagex.runetek4.entity.entity.Player;
@@ -24,10 +24,10 @@ import com.jagex.runetek4.clientscript.DelayedStateChange;
 import com.jagex.runetek4.entity.entity.NpcList;
 import com.jagex.runetek4.input.Mouse;
 import com.jagex.runetek4.input.MouseWheel;
-import com.jagex.runetek4.ui.widget.WidgetList;
-import com.jagex.runetek4.ui.widget.MiniMenu;
-import com.jagex.runetek4.ui.components.Crosshair;
-import com.jagex.runetek4.ui.events.WidgetEvent;
+import com.jagex.runetek4.ui.component.ComponentList;
+import com.jagex.runetek4.ui.component.MiniMenu;
+import com.jagex.runetek4.ui.component.Crosshair;
+import com.jagex.runetek4.ui.events.ComponentEvent;
 import com.jagex.runetek4.util.debug.Cheat;
 import com.jagex.runetek4.game.world.WorldMap;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -46,7 +46,7 @@ public class Game {
         }
         if (Player.systemUpdateTimer > 1) {
             Player.systemUpdateTimer--;
-            WidgetList.miscTransmitAt = WidgetList.transmitTimer;
+            ComponentList.miscTransmitAt = ComponentList.transmitTimer;
         }
         if (LoginManager.aBoolean247) {
             LoginManager.aBoolean247 = false;
@@ -176,8 +176,8 @@ public class Game {
             Protocol.anInt551--;
         }
         if (Preferences.aBoolean63) {
-            for (i = 0; i < WidgetList.keyQueueSize; i++) {
-                offset = WidgetList.keyCodes[i];
+            for (i = 0; i < ComponentList.keyQueueSize; i++) {
+                offset = ComponentList.keyCodes[i];
                 if (offset == 98 || offset == 99 || offset == 96 || offset == 97) {
                     Protocol.aBoolean228 = true;
                     break;
@@ -208,7 +208,7 @@ public class Game {
             Protocol.outboundBuffer.p4(Preferences.toInt());
             Preferences.sentToServer = true;
         }
-        SceneGraph.method846();
+        SceneGraph.updatePlayerPlane();
         if (Client.gameState != 30) {
             return;
         }
@@ -223,7 +223,7 @@ public class Game {
         PlayerList.updatePlayers();
         NpcList.updateNpcs();
         OverHeadChat.tickChatTimers(); // OverheadChat
-        if (WorldMap.widget != null) {
+        if (WorldMap.component != null) {
             WorldMap.method447();
         }
         // VarpDomain
@@ -243,109 +243,109 @@ public class Game {
                 VarcDomain.varcstrs[i] = change.stringArg;
                 VarcDomain.updatedVarcstrs[VarcDomain.updatedVarcstrsWriterIndex++ & 0x1F] = i;
             } else {
-                @Pc(773) Widget widget;
+                @Pc(773) Component component;
                 if (samples == 3) {
-                    widget = WidgetList.getComponent(i);
-                    if (!change.stringArg.strEquals(widget.text)) {
-                        widget.text = change.stringArg;
-                        WidgetList.redraw(widget);
+                    component = ComponentList.getComponent(i);
+                    if (!change.stringArg.strEquals(component.text)) {
+                        component.text = change.stringArg;
+                        ComponentList.redraw(component);
                     }
                 } else if (samples == 4) {
-                    widget = WidgetList.getComponent(i);
+                    component = ComponentList.getComponent(i);
                     x = change.intArg1;
                     dx = change.intArg2;
                     rand = change.intArg3;
-                    if (widget.modelType != x || widget.modelId != rand || dx != widget.anInt498) {
-                        widget.modelId = rand;
-                        widget.anInt498 = dx;
-                        widget.modelType = x;
-                        WidgetList.redraw(widget);
+                    if (component.modelType != x || component.modelId != rand || dx != component.anInt498) {
+                        component.modelId = rand;
+                        component.anInt498 = dx;
+                        component.modelType = x;
+                        ComponentList.redraw(component);
                     }
                 } else if (samples == 5) {
-                    widget = WidgetList.getComponent(i);
-                    if (widget.modelSeqId != change.intArg1 || change.intArg1 == -1) {
-                        widget.anInt496 = 1;
-                        widget.anInt500 = 0;
-                        widget.modelSeqId = change.intArg1;
-                        widget.anInt510 = 0;
-                        WidgetList.redraw(widget);
+                    component = ComponentList.getComponent(i);
+                    if (component.modelSeqId != change.intArg1 || change.intArg1 == -1) {
+                        component.animationFrame = 1;
+                        component.animationDelay = 0;
+                        component.modelSeqId = change.intArg1;
+                        component.animationId = 0;
+                        ComponentList.redraw(component);
                     }
                 } else if (samples == 6) {
                     y = change.intArg1;
                     x = y >> 10 & 0x1F;
                     dx = y & 0x1F;
                     rand = y >> 5 & 0x1F;
-                    @Pc(1189) Widget local1189 = WidgetList.getComponent(i);
+                    @Pc(1189) Component local1189 = ComponentList.getComponent(i);
                     dy = (dx << 3) + (rand << 11) + (x << 19);
                     if (dy != local1189.color) {
                         local1189.color = dy;
-                        WidgetList.redraw(local1189);
+                        ComponentList.redraw(local1189);
                     }
                 } else if (samples == 7) {
-                    widget = WidgetList.getComponent(i);
+                    component = ComponentList.getComponent(i);
                     // todo: this should not be necessary, data/server-related?
-                    if (widget != null) {
+                    if (component != null) {
                         @Pc(1145) boolean hidden = change.intArg1 == 1;
-                        if (hidden != widget.hidden) {
-                            widget.hidden = hidden;
-                            WidgetList.redraw(widget);
+                        if (hidden != component.hidden) {
+                            component.hidden = hidden;
+                            ComponentList.redraw(component);
                         }
                     }
                 } else if (samples == 8) {
-                    widget = WidgetList.getComponent(i);
-                    if (change.intArg1 != widget.modelXAngle || widget.modelYAngle != change.intArg3 || change.intArg2 != widget.modelZoom) {
-                        widget.modelXAngle = change.intArg1;
-                        widget.modelZoom = change.intArg2;
-                        widget.modelYAngle = change.intArg3;
-                        if (widget.objId != -1) {
-                            if (widget.anInt451 > 0) {
-                                widget.modelZoom = widget.modelZoom * 32 / widget.anInt451;
-                            } else if (widget.baseWidth > 0) {
-                                widget.modelZoom = widget.modelZoom * 32 / widget.baseWidth;
+                    component = ComponentList.getComponent(i);
+                    if (change.intArg1 != component.modelXAngle || component.modelYAngle != change.intArg3 || change.intArg2 != component.modelZoom) {
+                        component.modelXAngle = change.intArg1;
+                        component.modelZoom = change.intArg2;
+                        component.modelYAngle = change.intArg3;
+                        if (component.objId != -1) {
+                            if (component.anInt451 > 0) {
+                                component.modelZoom = component.modelZoom * 32 / component.anInt451;
+                            } else if (component.baseWidth > 0) {
+                                component.modelZoom = component.modelZoom * 32 / component.baseWidth;
                             }
                         }
-                        WidgetList.redraw(widget);
+                        ComponentList.redraw(component);
                     }
                 } else if (samples == 9) {
-                    widget = WidgetList.getComponent(i);
-                    if (change.intArg1 != widget.objId || widget.objCount != change.intArg3) {
-                        widget.objId = change.intArg1;
-                        widget.objCount = change.intArg3;
-                        WidgetList.redraw(widget);
+                    component = ComponentList.getComponent(i);
+                    if (change.intArg1 != component.objId || component.objCount != change.intArg3) {
+                        component.objId = change.intArg1;
+                        component.objCount = change.intArg3;
+                        ComponentList.redraw(component);
                     }
                 } else if (samples == 10) {
-                    widget = WidgetList.getComponent(i);
-                    if (widget.modelXOffset != change.intArg1 || change.intArg3 != widget.modelZOffset || widget.modelYOffset != change.intArg2) {
-                        widget.modelZOffset = change.intArg3;
-                        widget.modelYOffset = change.intArg2;
-                        widget.modelXOffset = change.intArg1;
-                        WidgetList.redraw(widget);
+                    component = ComponentList.getComponent(i);
+                    if (component.modelXOffset != change.intArg1 || change.intArg3 != component.modelZOffset || component.modelYOffset != change.intArg2) {
+                        component.modelZOffset = change.intArg3;
+                        component.modelYOffset = change.intArg2;
+                        component.modelXOffset = change.intArg1;
+                        ComponentList.redraw(component);
                     }
                 } else if (samples == 11) {
-                    widget = WidgetList.getComponent(i);
-                    widget.x = widget.baseX = change.intArg1;
-                    widget.yMode = 0;
-                    widget.xMode = 0;
-                    widget.y = widget.baseY = change.intArg3;
-                    WidgetList.redraw(widget);
+                    component = ComponentList.getComponent(i);
+                    component.x = component.baseX = change.intArg1;
+                    component.yMode = 0;
+                    component.xMode = 0;
+                    component.y = component.baseY = change.intArg3;
+                    ComponentList.redraw(component);
                 } else if (samples == 12) {
-                    widget = WidgetList.getComponent(i);
+                    component = ComponentList.getComponent(i);
                     x = change.intArg1;
-                    if (widget != null && widget.type == 0) {
-                        if (x > widget.scrollMaxV - widget.height) {
-                            x = widget.scrollMaxV - widget.height;
+                    if (component != null && component.type == 0) {
+                        if (x > component.scrollMaxV - component.height) {
+                            x = component.scrollMaxV - component.height;
                         }
                         if (x < 0) {
                             x = 0;
                         }
-                        if (x != widget.scrollY) {
-                            widget.scrollY = x;
-                            WidgetList.redraw(widget);
+                        if (x != component.scrollY) {
+                            component.scrollY = x;
+                            ComponentList.redraw(component);
                         }
                     }
                 } else if (samples == 13) {
-                    widget = WidgetList.getComponent(i);
-                    widget.modelRotationSpeed = change.intArg1;
+                    component = ComponentList.getComponent(i);
+                    component.modelRotationSpeed = change.intArg1;
                 }
             }
         }
@@ -357,109 +357,109 @@ public class Game {
             }
         }
         Protocol.sceneDelta++;
-        if (MiniMenu.pressedInventoryWidget != null) {
+        if (MiniMenu.pressedInventoryComponent != null) {
             MiniMenu.anInt2043++;
             if (MiniMenu.anInt2043 >= 15) {
-                WidgetList.redraw(MiniMenu.pressedInventoryWidget);
-                MiniMenu.pressedInventoryWidget = null;
+                ComponentList.redraw(MiniMenu.pressedInventoryComponent);
+                MiniMenu.pressedInventoryComponent = null;
             }
         }
-        @Pc(1361) Widget widget;
-        if (WidgetList.clickedInventoryWidget != null) {
-            WidgetList.redraw(WidgetList.clickedInventoryWidget);
-            if (WidgetList.clickedInventoryComponentX + 5 < Mouse.lastMouseX || Mouse.lastMouseX < WidgetList.clickedInventoryComponentX - 5 || WidgetList.clickedInventoryComponentY + 5 < Mouse.lastMouseY || WidgetList.clickedInventoryComponentY - 5 > Mouse.lastMouseY) {
-                WidgetList.draggingClickedInventoryObject = true;
+        @Pc(1361) Component component;
+        if (ComponentList.clickedInventoryComponent != null) {
+            ComponentList.redraw(ComponentList.clickedInventoryComponent);
+            if (ComponentList.clickedInventoryComponentX + 5 < Mouse.lastMouseX || Mouse.lastMouseX < ComponentList.clickedInventoryComponentX - 5 || ComponentList.clickedInventoryComponentY + 5 < Mouse.lastMouseY || ComponentList.clickedInventoryComponentY - 5 > Mouse.lastMouseY) {
+                ComponentList.draggingClickedInventoryObject = true;
             }
-            WidgetList.lastItemDragTime++;
+            ComponentList.lastItemDragTime++;
             if (Mouse.pressedButton == 0) {
-                if (WidgetList.draggingClickedInventoryObject && WidgetList.lastItemDragTime >= 5) {
-                    if (WidgetList.clickedInventoryWidget == WidgetList.mouseOverInventoryInterface && WidgetList.selectedInventorySlot != MiniMenu.mouseInvInterfaceIndex) {
-                        widget = WidgetList.clickedInventoryWidget;
+                if (ComponentList.draggingClickedInventoryObject && ComponentList.lastItemDragTime >= 5) {
+                    if (ComponentList.clickedInventoryComponent == ComponentList.mouseOverInventoryComponent && ComponentList.selectedInventorySlot != MiniMenu.mouseInvInterfaceIndex) {
+                        component = ComponentList.clickedInventoryComponent;
                         @Pc(1363) byte moveItemInsertionMode = 0;
-                        if (VarpDomain.bankInsertMode == 1 && widget.contentType == 206) {
+                        if (VarpDomain.bankInsertMode == 1 && component.contentType == 206) {
                             moveItemInsertionMode = 1;
                         }
-                        if (widget.invSlotObjId[MiniMenu.mouseInvInterfaceIndex] <= 0) {
+                        if (component.invSlotObjId[MiniMenu.mouseInvInterfaceIndex] <= 0) {
                             moveItemInsertionMode = 0;
                         }
-                        if (WidgetList.getServerActiveProperties(widget).isObjReplaceEnabled()) {
-                            y = WidgetList.selectedInventorySlot;
+                        if (ComponentList.getServerActiveProperties(component).isObjReplaceEnabled()) {
+                            y = ComponentList.selectedInventorySlot;
                             x = MiniMenu.mouseInvInterfaceIndex;
-                            widget.invSlotObjId[x] = widget.invSlotObjId[y];
-                            widget.invSlotObjCount[x] = widget.invSlotObjCount[y];
-                            widget.invSlotObjId[y] = -1;
-                            widget.invSlotObjCount[y] = 0;
+                            component.invSlotObjId[x] = component.invSlotObjId[y];
+                            component.invSlotObjCount[x] = component.invSlotObjCount[y];
+                            component.invSlotObjId[y] = -1;
+                            component.invSlotObjCount[y] = 0;
                         } else if (moveItemInsertionMode == 1) {
                             x = MiniMenu.mouseInvInterfaceIndex;
-                            y = WidgetList.selectedInventorySlot;
+                            y = ComponentList.selectedInventorySlot;
                             while (x != y) {
                                 if (y > x) {
-                                    widget.swapObjs(y - 1, y);
+                                    component.swapObjs(y - 1, y);
                                     y--;
                                 } else if (x > y) {
-                                    widget.swapObjs(y + 1, y);
+                                    component.swapObjs(y + 1, y);
                                     y++;
                                 }
                             }
                         } else {
-                            widget.swapObjs(MiniMenu.mouseInvInterfaceIndex, WidgetList.selectedInventorySlot);
+                            component.swapObjs(MiniMenu.mouseInvInterfaceIndex, ComponentList.selectedInventorySlot);
                         }
                         Protocol.outboundBuffer.pIsaac1(231);
-                        Protocol.outboundBuffer.p2(WidgetList.selectedInventorySlot);
-                        Protocol.outboundBuffer.p4_alt1(WidgetList.clickedInventoryWidget.id);
+                        Protocol.outboundBuffer.p2(ComponentList.selectedInventorySlot);
+                        Protocol.outboundBuffer.p4_alt1(ComponentList.clickedInventoryComponent.id);
                         Protocol.outboundBuffer.p2_alt2(MiniMenu.mouseInvInterfaceIndex);
                         Protocol.outboundBuffer.p1_alt3(moveItemInsertionMode);
                     }
-                } else if ((VarpDomain.oneMouseButton == 1 || MiniMenu.menuHasAddFriend(MiniMenu.menuActionRow - 1)) && MiniMenu.menuActionRow > 2) {
+                } else if ((VarpDomain.oneMouseButton == 1 || MiniMenu.isComponentAction(MiniMenu.menuActionRow - 1)) && MiniMenu.menuActionRow > 2) {
                     ClientScriptRunner.determineMenuSize();
                 } else if (MiniMenu.menuActionRow > 0) {
                     MiniMenu.processMenuActions();
                 }
                 Mouse.clickButton = 0;
                 MiniMenu.anInt2043 = 10;
-                WidgetList.clickedInventoryWidget = null;
+                ComponentList.clickedInventoryComponent = null;
             }
         }
-        WidgetList.dragActive = false;
-        WidgetList.targetWidget = null;
-        WidgetList.canDrag = false;
-        WidgetList.keyQueueSize = 0;
-        widget = WidgetList.aClass13_22;
-        WidgetList.aClass13_22 = null;
-        @Pc(1508) Widget local1508 = Protocol.aClass13_11;
+        ComponentList.dragActive = false;
+        ComponentList.targetComponent = null;
+        ComponentList.canDrag = false;
+        ComponentList.keyQueueSize = 0;
+        component = ComponentList.aClass13_22;
+        ComponentList.aClass13_22 = null;
+        @Pc(1508) Component local1508 = Protocol.aClass13_11;
         Protocol.aClass13_11 = null;
-        while (Keyboard.nextKey() && WidgetList.keyQueueSize < 128) {
-            WidgetList.keyCodes[WidgetList.keyQueueSize] = Keyboard.keyCode;
-            WidgetList.keyChars[WidgetList.keyQueueSize] = Keyboard.keyChar;
-            WidgetList.keyQueueSize++;
+        while (Keyboard.nextKey() && ComponentList.keyQueueSize < 128) {
+            ComponentList.keyCodes[ComponentList.keyQueueSize] = Keyboard.keyCode;
+            ComponentList.keyChars[ComponentList.keyQueueSize] = Keyboard.keyChar;
+            ComponentList.keyQueueSize++;
         }
         // WorldMap.component
-        WorldMap.widget = null;
-        if (WidgetList.topLevelInterface != -1) {
-            WidgetList.method1320(0, 0, 0, GameShell.canvasWidth, WidgetList.topLevelInterface, 0, GameShell.canvasHeigth);
+        WorldMap.component = null;
+        if (ComponentList.topLevelInterface != -1) {
+            ComponentList.renderInterface(0, 0, 0, GameShell.canvasWidth, ComponentList.topLevelInterface, 0, GameShell.canvasHeigth);
         }
-        WidgetList.transmitTimer++;
+        ComponentList.transmitTimer++;
         while (true) {
             // todo: this is actually split up into low/medium/high
-            @Pc(1569) Widget highPriorityWidget;
-            @Pc(1560) Widget highPrioritySource;
-            @Pc(1555) WidgetEvent highPriorityRequest;
+            @Pc(1569) Component highPriorityComponent;
+            @Pc(1560) Component highPrioritySource;
+            @Pc(1555) ComponentEvent highPriorityRequest;
             do {
-                highPriorityRequest = (WidgetEvent) WidgetList.highPriorityRequests.removeHead();
+                highPriorityRequest = (ComponentEvent) ComponentList.highPriorityRequests.removeHead();
                 if (highPriorityRequest == null) {
                     while (true) {
                         do {
-                            highPriorityRequest = (WidgetEvent) WidgetList.mediumPriorityRequests.removeHead();
+                            highPriorityRequest = (ComponentEvent) ComponentList.mediumPriorityRequests.removeHead();
                             if (highPriorityRequest == null) {
                                 while (true) {
                                     do {
-                                        highPriorityRequest = (WidgetEvent) WidgetList.lowPriorityRequests.removeHead();
+                                        highPriorityRequest = (ComponentEvent) ComponentList.lowPriorityRequests.removeHead();
                                         if (highPriorityRequest == null) {
-                                            if (WorldMap.widget == null) {
-                                                WidgetList.anInt3337 = 0;
+                                            if (WorldMap.component == null) {
+                                                ComponentList.anInt3337 = 0;
                                             }
-                                            if (ClientScriptRunner.dragWidget != null) {
-                                                ClientScriptRunner.handleWidgetDrag();
+                                            if (ClientScriptRunner.dragComponent != null) {
+                                                ClientScriptRunner.handleComponentDrag();
                                             }
                                             if (LoginManager.staffModLevel > 0 && Keyboard.pressedKeys[82] && Keyboard.pressedKeys[81] && MouseWheel.wheelRotation != 0) {
                                                 y = Player.plane - MouseWheel.wheelRotation;
@@ -473,17 +473,17 @@ public class Game {
                                             }
                                             if (LoginManager.staffModLevel > 0 && Keyboard.pressedKeys[82] && Keyboard.pressedKeys[81]) {
                                                 if (MiniMenu.clickTileX != -1) {
-                                                    Cheat.teleport(Camera.originX + MiniMenu.clickTileX, Camera.originZ + MiniMenu.anInt2954, Player.plane);
+                                                    Cheat.teleport(Camera.originX + MiniMenu.clickTileX, Camera.originZ + MiniMenu.clickTileZ, Player.plane);
                                                 }
                                                 Protocol.anInt4422 = 0;
                                                 MiniMenu.anInt3096 = 0;
                                             } else if (MiniMenu.anInt3096 == 2) {
                                                 if (MiniMenu.clickTileX != -1) {
                                                     Protocol.outboundBuffer.pIsaac1(131);
-                                                    Protocol.outboundBuffer.p4_alt3(MiniMenu.anInt2512);
+                                                    Protocol.outboundBuffer.p4_alt3(MiniMenu.useWithComponentId);
                                                     Protocol.outboundBuffer.p2_alt2(Camera.originX + MiniMenu.clickTileX);
-                                                    Protocol.outboundBuffer.p2_alt3(MiniMenu.anInt506);
-                                                    Protocol.outboundBuffer.p2_alt2(MiniMenu.anInt2954 + Camera.originZ);
+                                                    Protocol.outboundBuffer.p2_alt3(MiniMenu.useWithSlot);
+                                                    Protocol.outboundBuffer.p2_alt2(MiniMenu.clickTileZ + Camera.originZ);
                                                     Crosshair.CrosshairMode = 1;
                                                     Crosshair.CrosshairCycle = 0;
                                                     Crosshair.y = Mouse.mouseClickY;
@@ -493,7 +493,7 @@ public class Game {
                                             } else if (Protocol.anInt4422 == 2) {
                                                 if (MiniMenu.clickTileX != -1) {
                                                     Protocol.outboundBuffer.pIsaac1(179);
-                                                    Protocol.outboundBuffer.p2(Camera.originZ + MiniMenu.anInt2954);
+                                                    Protocol.outboundBuffer.p2(Camera.originZ + MiniMenu.clickTileZ);
                                                     Protocol.outboundBuffer.p2(MiniMenu.clickTileX + Camera.originX);
                                                     Crosshair.CrosshairCycle = 0;
                                                     Crosshair.CrosshairMode = 1;
@@ -502,7 +502,7 @@ public class Game {
                                                 }
                                                 Protocol.anInt4422 = 0;
                                             } else if (MiniMenu.clickTileX != -1 && MiniMenu.anInt3096 == 0 && Protocol.anInt4422 == 0) {
-                                                @Pc(1871) boolean success = PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 0, true, 0, MiniMenu.clickTileX, 0, 0, 0, MiniMenu.anInt2954, PlayerList.self.movementQueueX[0]);
+                                                @Pc(1871) boolean success = PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 0, true, 0, MiniMenu.clickTileX, 0, 0, 0, MiniMenu.clickTileZ, PlayerList.self.movementQueueX[0]);
                                                 if (success) {
                                                     Crosshair.y = Mouse.mouseClickY;
                                                     Crosshair.CrosshairCycle = 0;
@@ -512,20 +512,20 @@ public class Game {
                                             }
                                             MiniMenu.clickTileX = -1;
                                             Protocol.method843();
-                                            if (WidgetList.aClass13_22 != widget) {
-                                                if (widget != null) {
-                                                    WidgetList.redraw(widget);
+                                            if (ComponentList.aClass13_22 != component) {
+                                                if (component != null) {
+                                                    ComponentList.redraw(component);
                                                 }
-                                                if (WidgetList.aClass13_22 != null) {
-                                                    WidgetList.redraw(WidgetList.aClass13_22);
+                                                if (ComponentList.aClass13_22 != null) {
+                                                    ComponentList.redraw(ComponentList.aClass13_22);
                                                 }
                                             }
                                             if (local1508 != Protocol.aClass13_11 && ClientScriptRunner.anInt4504 == Protocol.anInt5235) {
                                                 if (local1508 != null) {
-                                                    WidgetList.redraw(local1508);
+                                                    ComponentList.redraw(local1508);
                                                 }
                                                 if (Protocol.aClass13_11 != null) {
-                                                    WidgetList.redraw(Protocol.aClass13_11);
+                                                    ComponentList.redraw(Protocol.aClass13_11);
                                                 }
                                             }
                                             if (Protocol.aClass13_11 == null) {
@@ -535,7 +535,7 @@ public class Game {
                                             } else if (Protocol.anInt5235 < ClientScriptRunner.anInt4504) {
                                                 Protocol.anInt5235++;
                                                 if (ClientScriptRunner.anInt4504 == Protocol.anInt5235) {
-                                                    WidgetList.redraw(Protocol.aClass13_11);
+                                                    ComponentList.redraw(Protocol.aClass13_11);
                                                 }
                                             }
                                             if (Camera.cameraType == 1) {
@@ -642,8 +642,8 @@ public class Game {
                                         if (highPrioritySource.createdComponentId < 0) {
                                             break;
                                         }
-                                        highPriorityWidget = WidgetList.getComponent(highPrioritySource.overlayer);
-                                    } while (highPriorityWidget == null || highPriorityWidget.createdWidgets == null || highPrioritySource.createdComponentId >= highPriorityWidget.createdWidgets.length || highPrioritySource != highPriorityWidget.createdWidgets[highPrioritySource.createdComponentId]);
+                                        highPriorityComponent = ComponentList.getComponent(highPrioritySource.overlayer);
+                                    } while (highPriorityComponent == null || highPriorityComponent.createdComponents == null || highPrioritySource.createdComponentId >= highPriorityComponent.createdComponents.length || highPrioritySource != highPriorityComponent.createdComponents[highPrioritySource.createdComponentId]);
                                     ClientScriptRunner.run(highPriorityRequest);
                                 }
                             }
@@ -651,8 +651,8 @@ public class Game {
                             if (highPrioritySource.createdComponentId < 0) {
                                 break;
                             }
-                            highPriorityWidget = WidgetList.getComponent(highPrioritySource.overlayer);
-                        } while (highPriorityWidget == null || highPriorityWidget.createdWidgets == null || highPriorityWidget.createdWidgets.length <= highPrioritySource.createdComponentId || highPriorityWidget.createdWidgets[highPrioritySource.createdComponentId] != highPrioritySource);
+                            highPriorityComponent = ComponentList.getComponent(highPrioritySource.overlayer);
+                        } while (highPriorityComponent == null || highPriorityComponent.createdComponents == null || highPriorityComponent.createdComponents.length <= highPrioritySource.createdComponentId || highPriorityComponent.createdComponents[highPrioritySource.createdComponentId] != highPrioritySource);
                         ClientScriptRunner.run(highPriorityRequest);
                     }
                 }
@@ -660,8 +660,8 @@ public class Game {
                 if (highPrioritySource.createdComponentId < 0) {
                     break;
                 }
-                highPriorityWidget = WidgetList.getComponent(highPrioritySource.overlayer);
-            } while (highPriorityWidget == null || highPriorityWidget.createdWidgets == null || highPrioritySource.createdComponentId >= highPriorityWidget.createdWidgets.length || highPriorityWidget.createdWidgets[highPrioritySource.createdComponentId] != highPrioritySource);
+                highPriorityComponent = ComponentList.getComponent(highPrioritySource.overlayer);
+            } while (highPriorityComponent == null || highPriorityComponent.createdComponents == null || highPrioritySource.createdComponentId >= highPriorityComponent.createdComponents.length || highPriorityComponent.createdComponents[highPrioritySource.createdComponentId] != highPrioritySource);
             ClientScriptRunner.run(highPriorityRequest);
         }
     }
@@ -717,7 +717,7 @@ public class Game {
         Camera.resetCameraEffects();
         Protocol.verifyId = 0;
         VarpDomain.resetVarBits();
-        WidgetList.method1596(true);
+        ComponentList.initializeLoginScreen(true);
     }
 
     @OriginalMember(owner = "client!nm", name = "a", descriptor = "(Z)V")

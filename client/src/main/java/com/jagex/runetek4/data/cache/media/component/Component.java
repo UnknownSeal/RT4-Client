@@ -18,14 +18,14 @@ import com.jagex.runetek4.ui.sprite.*;
 import com.jagex.runetek4.util.string.JString;
 import com.jagex.runetek4.util.string.LocalizedText;
 import com.jagex.runetek4.core.node.SoftLruHashTable;
-import com.jagex.runetek4.ui.widget.WidgetList;
+import com.jagex.runetek4.ui.component.ComponentList;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("client!be")
-public final class Widget {
+public final class Component {
 
 	@OriginalMember(owner = "runetek4.client!pf", name = "b", descriptor = "Lclient!n;")
 	public static final SoftLruHashTable sprites = new SoftLruHashTable(200);
@@ -46,7 +46,7 @@ public final class Widget {
 	public Object[] onStatTransmit;
 
 	@OriginalMember(owner = "client!be", name = "e", descriptor = "[Ljava/lang/Object;")
-	public Object[] anObjectArray3;
+	public Object[] onInterfaceOpen;
 
 	@OriginalMember(owner = "client!be", name = "g", descriptor = "[Ljava/lang/Object;")
 	public Object[] onVarcTransmit;
@@ -70,7 +70,7 @@ public final class Widget {
 	public int[] inventoryTriggers;
 
 	@OriginalMember(owner = "client!be", name = "v", descriptor = "[Ljava/lang/Object;")
-	public Object[] onWidgetsOpenClose;
+	public Object[] onComponentsOpenClose;
 
 	@OriginalMember(owner = "client!be", name = "x", descriptor = "Z")
 	public boolean vFlip;
@@ -121,7 +121,7 @@ public final class Widget {
 	public Object[] onDragRelease;
 
 	@OriginalMember(owner = "client!be", name = "Fb", descriptor = "[B")
-	public byte[] aByteArray7;
+	public byte[] hotkeyModifiers;
 
 	@OriginalMember(owner = "client!be", name = "Jb", descriptor = "[Ljava/lang/Object;")
 	public Object[] onResize;
@@ -133,7 +133,7 @@ public final class Widget {
 	public Object[] onMouseOver;
 
 	@OriginalMember(owner = "client!be", name = "Yb", descriptor = "[I")
-	public int[] anIntArray39;
+	public int[] opCursors;
 
 	@OriginalMember(owner = "client!be", name = "dc", descriptor = "[I")
 	public int[] invSlotObjId;
@@ -142,10 +142,10 @@ public final class Widget {
 	public Object[] onMsg;
 
 	@OriginalMember(owner = "client!be", name = "lc", descriptor = "[Lclient!be;")
-	public Widget[] createdWidgets;
+	public Component[] createdComponents;
 
 	@OriginalMember(owner = "client!be", name = "mc", descriptor = "[B")
-	public byte[] aByteArray8;
+	public byte[] hotkeys;
 
 	@OriginalMember(owner = "client!be", name = "rc", descriptor = "[Ljava/lang/Object;")
 	public Object[] onStockTransmit;
@@ -184,7 +184,7 @@ public final class Widget {
 	public int[][] scripts;
 
 	@OriginalMember(owner = "client!be", name = "bd", descriptor = "[I")
-	public int[] anIntArray46;
+	public int[] hotkeyDelays;
 
 	@OriginalMember(owner = "client!be", name = "cd", descriptor = "[I")
 	public int[] invOffsetY;
@@ -196,7 +196,7 @@ public final class Widget {
 	public int[] scriptOperand;
 
 	@OriginalMember(owner = "client!be", name = "nd", descriptor = "[I")
-	public int[] anIntArray49;
+	public int[] hotkeyCooldowns;
 
 	@OriginalMember(owner = "client!be", name = "qd", descriptor = "[Ljava/lang/Object;")
 	public Object[] onClanTransmit;
@@ -277,7 +277,7 @@ public final class Widget {
 	public int createdComponentId = -1;
 
 	@OriginalMember(owner = "client!be", name = "J", descriptor = "Z")
-	public boolean aBoolean24 = false;
+	public boolean mousePressed = false;
 
 	@OriginalMember(owner = "runetek4.client!ob", name = "e", descriptor = "Lclient!na;")
 	public static final JString EMPTY_STRING = JString.parse("");
@@ -286,7 +286,7 @@ public final class Widget {
 	public JString optionSuffix = EMPTY_STRING;
 
 	@OriginalMember(owner = "client!be", name = "i", descriptor = "Z")
-	public boolean aBoolean19 = false;
+	public boolean mouseHover = false;
 
 	@OriginalMember(owner = "client!be", name = "yb", descriptor = "I")
 	public int valign = 0;
@@ -316,7 +316,7 @@ public final class Widget {
 	public int rectangleLoop = -1;
 
 	@OriginalMember(owner = "client!be", name = "jc", descriptor = "I")
-	public int anInt496 = 1;
+	public int animationFrame = 1;
 
 	@OriginalMember(owner = "client!be", name = "Cb", descriptor = "I")
 	public int overColor = 0;
@@ -427,7 +427,7 @@ public final class Widget {
 	public byte yMode = 0;
 
 	@OriginalMember(owner = "client!be", name = "qc", descriptor = "I")
-	public int anInt500 = 0;
+	public int animationDelay = 0;
 
 	@OriginalMember(owner = "client!be", name = "uc", descriptor = "I")
 	public int fontId = -1;
@@ -466,7 +466,7 @@ public final class Widget {
 	public int shadowColor = 0;
 
 	@OriginalMember(owner = "client!be", name = "fd", descriptor = "Lclient!be;")
-	public Widget parent = null;
+	public Component parent = null;
 
 	@OriginalMember(owner = "client!be", name = "od", descriptor = "I")
 	public int updatedStatsReaderIndex = 0;
@@ -490,7 +490,7 @@ public final class Widget {
 	public int modelYAngle = 0;
 
 	@OriginalMember(owner = "client!be", name = "T", descriptor = "Z")
-	public boolean aBoolean25 = false;
+	public boolean interactive = false;
 
 	@OriginalMember(owner = "client!be", name = "vd", descriptor = "I")
 	public int baseX = 0;
@@ -505,7 +505,7 @@ public final class Widget {
 	public boolean objDrawText = true;
 
 	@OriginalMember(owner = "client!be", name = "Kc", descriptor = "I")
-	public int anInt510 = 0;
+	public int animationId = 0;
 
 	@OriginalMember(owner = "client!be", name = "mb", descriptor = "I")
 	public int updatedVarpsReaderIndex = 0;
@@ -539,20 +539,20 @@ public final class Widget {
 
 	@OriginalMember(owner = "client!be", name = "a", descriptor = "(IIB)V")
 	public void method477(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
-		if (this.anIntArray39 == null || this.anIntArray39.length <= arg0) {
+		if (this.opCursors == null || this.opCursors.length <= arg0) {
 			@Pc(18) int[] local18 = new int[arg0 + 1];
-			if (this.anIntArray39 != null) {
+			if (this.opCursors != null) {
 				@Pc(24) int local24;
-				for (local24 = 0; local24 < this.anIntArray39.length; local24++) {
-					local18[local24] = this.anIntArray39[local24];
+				for (local24 = 0; local24 < this.opCursors.length; local24++) {
+					local18[local24] = this.opCursors[local24];
 				}
-				for (local24 = this.anIntArray39.length; local24 < arg0; local24++) {
+				for (local24 = this.opCursors.length; local24 < arg0; local24++) {
 					local18[local24] = -1;
 				}
 			}
-			this.anIntArray39 = local18;
+			this.opCursors = local18;
 		}
-		this.anIntArray39[arg0] = arg1;
+		this.opCursors[arg0] = arg1;
 	}
 
 	@OriginalMember(owner = "client!be", name = "a", descriptor = "(I)Z")
@@ -560,7 +560,7 @@ public final class Widget {
 		if (this.compassPixelOffsets != null) {
 			return true;
 		}
-		@Pc(18) SoftwareIndexedSprite local18 = SpriteLoader.loadSoftwareIndexedSprite(this.spriteId, WidgetList.gameImageJs5);
+		@Pc(18) SoftwareIndexedSprite local18 = SpriteLoader.loadSoftwareIndexedSprite(this.spriteId, ComponentList.gameImageJs5);
 		if (local18 == null) {
 			return false;
 		}
@@ -836,7 +836,7 @@ public final class Widget {
 		if (local43 != null) {
 			return local43;
 		}
-		local43 = SpriteLoader.loadSprites(local29, WidgetList.gameImageJs5);
+		local43 = SpriteLoader.loadSprites(local29, ComponentList.gameImageJs5);
 		if (local43 == null) {
 			aBoolean72 = true;
 		} else {
@@ -860,7 +860,7 @@ public final class Widget {
 				local26[local28] = arg0.gjstr();
 			}
 		}
-		this.aBoolean25 = true;
+		this.interactive = true;
 		return local26;
 	}
 
@@ -908,7 +908,7 @@ public final class Widget {
 			if (local10 == 1) {
 				local61 = (Model) interfaceModelCache.get((local10 << 16) + local13);
 				if (local61 == null) {
-					@Pc(69) RawModel local69 = RawModel.create(WidgetList.aClass153_85, local13);
+					@Pc(69) RawModel local69 = RawModel.create(ComponentList.aClass153_85, local13);
 					if (local69 == null) {
 						aBoolean72 = true;
 						return null;
@@ -994,9 +994,9 @@ public final class Widget {
 		}
 		@Pc(85) SoftwareSprite local85;
 		if (this.hasAlpha) {
-			local85 = SoftwareSprite.loadSoftwareAlphaSprite(WidgetList.gameImageJs5, local12);
+			local85 = SoftwareSprite.loadSoftwareAlphaSprite(ComponentList.gameImageJs5, local12);
 		} else {
-			local85 = SpriteLoader.loadSoftwareSprite(0, WidgetList.gameImageJs5, local12);
+			local85 = SpriteLoader.loadSoftwareSprite(0, ComponentList.gameImageJs5, local12);
 		}
 		if (local85 == null) {
 			aBoolean72 = true;
@@ -1127,20 +1127,20 @@ public final class Widget {
 		@Pc(471) int local471 = packet.g1();
 		@Pc(497) int local497;
 		if (local471 != 0) {
-			this.anIntArray46 = new int[10];
-			this.aByteArray8 = new byte[10];
-			this.aByteArray7 = new byte[10];
+			this.hotkeyDelays = new int[10];
+			this.hotkeys = new byte[10];
+			this.hotkeyModifiers = new byte[10];
 			while (local471 != 0) {
 				local497 = (local471 >> 4) - 1;
 				local471 = packet.g1() | local471 << 8;
 				local471 &= 0xFFF;
 				if (local471 == 4095) {
-					this.anIntArray46[local497] = -1;
+					this.hotkeyDelays[local497] = -1;
 				} else {
-					this.anIntArray46[local497] = local471;
+					this.hotkeyDelays[local497] = local471;
 				}
-				this.aByteArray8[local497] = packet.g1s();
-				this.aByteArray7[local497] = packet.g1s();
+				this.hotkeys[local497] = packet.g1s();
+				this.hotkeyModifiers[local497] = packet.g1s();
 				local471 = packet.g1();
 			}
 		}
@@ -1157,15 +1157,15 @@ public final class Widget {
 		@Pc(584) int local584 = local497 >> 4;
 		if (local584 > 0) {
 			local567 = packet.g1();
-			this.anIntArray39 = new int[local567 + 1];
-			for (@Pc(599) int local599 = 0; local599 < this.anIntArray39.length; local599++) {
-				this.anIntArray39[local599] = -1;
+			this.opCursors = new int[local567 + 1];
+			for (@Pc(599) int local599 = 0; local599 < this.opCursors.length; local599++) {
+				this.opCursors[local599] = -1;
 			}
-			this.anIntArray39[local567] = packet.g2();
+			this.opCursors[local567] = packet.g2();
 		}
 		if (local584 > 1) {
 			local567 = packet.g1();
-			this.anIntArray39[local567] = packet.g2();
+			this.opCursors[local567] = packet.g2();
 		}
 		this.dragDeadzone = packet.g1();
 		this.dragDeadtime = packet.g1();
@@ -1187,7 +1187,7 @@ public final class Widget {
 			}
 		}
 		this.properties = new ServerActiveProperties(local175, local567);
-		this.anObjectArray3 = this.method485(packet);
+		this.onInterfaceOpen = this.method485(packet);
 		this.onMouseOver = this.method485(packet);
 		this.onMouseLeave = this.method485(packet);
 		this.onUseWith = this.method485(packet);
@@ -1224,7 +1224,7 @@ public final class Widget {
 		if (font != null) {
 			return font;
 		}
-		font = Font.getFont(this.fontId, WidgetList.gameImageJs5, WidgetList.aClass153_64);
+		font = Font.getFont(this.fontId, ComponentList.gameImageJs5, ComponentList.aClass153_64);
 		if (font == null) {
 			aBoolean72 = true;
 		} else {

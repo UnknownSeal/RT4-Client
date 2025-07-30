@@ -5,7 +5,7 @@ import com.jagex.runetek4.graphics.raster.Rasterizer;
 import com.jagex.runetek4.graphics.geometry.TriangleNormal;
 import com.jagex.runetek4.graphics.geometry.VertexNormal;
 import com.jagex.runetek4.graphics.gl.GlModel;
-import com.jagex.runetek4.ui.widget.MiniMenu;
+import com.jagex.runetek4.ui.component.MiniMenu;
 import com.jagex.runetek4.util.ArrayUtils;
 import com.jagex.runetek4.util.ColorUtils;
 import com.jagex.runetek4.util.math.MathUtils;
@@ -851,7 +851,7 @@ public final class SoftwareModel extends Model {
 				}
 				if (GlModel.anInt3582 >= v && GlModel.anInt3582 <= y && RawModel.anInt1053 >= x && RawModel.anInt1053 <= z) {
 					if (this.pickable) {
-						Model.aLongArray11[MiniMenu.anInt7++] = key;
+						Model.aLongArray11[MiniMenu.pickedEntityCount++] = key;
 					} else {
 						local190 = true;
 					}
@@ -1616,7 +1616,7 @@ public final class SoftwareModel extends Model {
 					}
 				} else {
 					if (arg1 && this.pointWithinTriangle(GlModel.anInt3582 + Rasterizer.centerX, RawModel.anInt1053 + Rasterizer.centerY, vertexScreenY[local51], vertexScreenY[local56], vertexScreenY[local61], local65, local69, local73)) {
-						Model.aLongArray11[MiniMenu.anInt7++] = arg2;
+						Model.aLongArray11[MiniMenu.pickedEntityCount++] = arg2;
 						arg1 = false;
 					}
 					if ((local65 - local69) * (vertexScreenY[local61] - vertexScreenY[local56]) - (vertexScreenY[local51] - vertexScreenY[local56]) * (local73 - local69) > 0) {

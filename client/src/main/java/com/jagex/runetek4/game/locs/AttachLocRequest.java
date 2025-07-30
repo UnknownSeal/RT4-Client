@@ -159,20 +159,20 @@ public final class AttachLocRequest extends Node {
 	}
 
 	@OriginalMember(owner = "runetek4.client!nh", name = "a", descriptor = "(IIIIIIIIIIIII)V")
-	public static void push(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) int arg8, @OriginalArg(9) int arg9, @OriginalArg(11) int arg10, @OriginalArg(12) int arg11) {
+	public static void push(@OriginalArg(0) int x1Delta, @OriginalArg(1) int setLoops, @OriginalArg(2) int entityId, @OriginalArg(3) int resetLoops, @OriginalArg(4) int z, @OriginalArg(5) int z1Delta, @OriginalArg(6) int angle, @OriginalArg(7) int x0Delta, @OriginalArg(8) int x, @OriginalArg(9) int shape, @OriginalArg(11) int z0Delta, @OriginalArg(12) int locId) {
 		@Pc(7) AttachLocRequest req = new AttachLocRequest();
-		req.angle = arg6;
-		req.resetLoops = arg3;
-		req.setLoops = arg1;
-		req.z1Delta = arg5;
-		req.entityId = arg2;
-		req.x = arg8;
-		req.z0Delta = arg10;
-		req.z = arg4;
-		req.locId = arg11;
-		req.x0Delta = arg7;
-		req.x1Delta = arg0;
-		req.shape = arg9;
+		req.angle = angle;
+		req.resetLoops = resetLoops;
+		req.setLoops = setLoops;
+		req.z1Delta = z1Delta;
+		req.entityId = entityId;
+		req.x = x;
+		req.z0Delta = z0Delta;
+		req.z = z;
+		req.locId = locId;
+		req.x0Delta = x0Delta;
+		req.x1Delta = x1Delta;
+		req.shape = shape;
 		queue.addTail(req);
 	}
 }

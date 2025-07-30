@@ -7,7 +7,7 @@ import com.jagex.runetek4.input.Keyboard;
 import com.jagex.runetek4.scene.SceneCamera;
 import com.jagex.runetek4.scene.SceneGraph;
 import com.jagex.runetek4.clientscript.ClientScriptRunner;
-import com.jagex.runetek4.ui.widget.WidgetList;
+import com.jagex.runetek4.ui.component.ComponentList;
 import com.jagex.runetek4.util.math.MathUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -339,8 +339,8 @@ public class Camera {
             cameraX += (targetPlayerX - cameraX) / 16;
         }
         if (Preferences.aBoolean63) {
-            for (@Pc(93) int keyIndex = 0; keyIndex < WidgetList.keyQueueSize; keyIndex++) {
-                @Pc(104) int keyCode = WidgetList.keyCodes[keyIndex];
+            for (@Pc(93) int keyIndex = 0; keyIndex < ComponentList.keyQueueSize; keyIndex++) {
+                @Pc(104) int keyCode = ComponentList.keyCodes[keyIndex];
                 if (keyCode == 98) {
                     orbitCameraPitch = orbitCameraPitch + 47 & 0xFFFFFFF0;
                 } else if (keyCode == Keyboard.KEY_UP) {

@@ -10,7 +10,7 @@ import com.jagex.runetek4.util.system.Timer;
 import com.jagex.runetek4.graphics.gl.GlRenderer;
 import com.jagex.runetek4.graphics.core.FrameBuffer;
 import com.jagex.runetek4.graphics.raster.SoftwareRaster;
-import com.jagex.runetek4.ui.widget.WidgetList;
+import com.jagex.runetek4.ui.component.ComponentList;
 import com.jagex.runetek4.util.system.SignLink;
 import com.jagex.runetek4.util.system.ThreadUtils;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -167,8 +167,8 @@ public abstract class GameShell extends Canvas implements Runnable, FocusListene
 		} else {
 			canvas.setLocation(leftMargin, topMargin);
 		}
-		if (WidgetList.topLevelInterface != -1) {
-			WidgetList.method3712(true);
+		if (ComponentList.topLevelInterface != -1) {
+			ComponentList.updateInterfaceLayout(true);
 		}
 		method2704();
 	}

@@ -74,11 +74,11 @@ import com.jagex.runetek4.ui.social.FriendList;
 import com.jagex.runetek4.ui.sprite.Sprites;
 import com.jagex.runetek4.game.stockmarket.StockMarketManager;
 import com.jagex.runetek4.game.stockmarket.StockMarketOffer;
-import com.jagex.runetek4.ui.widget.MiniMap;
+import com.jagex.runetek4.ui.component.MiniMap;
 import com.jagex.runetek4.game.inventory.Inv;
 import com.jagex.runetek4.clientscript.DelayedStateChange;
 import com.jagex.runetek4.config.types.bas.BasTypeList;
-import com.jagex.runetek4.data.cache.media.component.Widget;
+import com.jagex.runetek4.data.cache.media.component.Component;
 import com.jagex.runetek4.entity.entity.Npc;
 import com.jagex.runetek4.config.types.flo.FloTypeList;
 import com.jagex.runetek4.entity.entity.PlayerAppearance;
@@ -94,9 +94,9 @@ import com.jagex.runetek4.data.js5.index.Js5MasterIndex;
 import com.jagex.runetek4.data.js5.network.Js5CachedResourceProvider;
 import com.jagex.runetek4.graphics.raster.Rasterizer;
 import com.jagex.runetek4.entity.entity.Player;
-import com.jagex.runetek4.ui.widget.WidgetList;
-import com.jagex.runetek4.ui.widget.MiniMenu;
-import com.jagex.runetek4.ui.events.WidgetEvent;
+import com.jagex.runetek4.ui.component.ComponentList;
+import com.jagex.runetek4.ui.component.MiniMenu;
+import com.jagex.runetek4.ui.events.ComponentEvent;
 import com.jagex.runetek4.util.string.LangUtils;
 import com.jagex.runetek4.util.system.SignLink;
 import com.jagex.runetek4.util.debug.Cheat;
@@ -473,7 +473,7 @@ public final class Client extends GameShell {
 		LightTypeList.removeSoft();
 		CursorTypeList.removeSoft();
 		PlayerAppearance.removeSoft();
-		Widget.removeSoft();
+		Component.removeSoft();
 		HintArrowManager.removeSoft();
 		ShadowModelList.removeSoft();
 		HitBarList.hitBars.removeSoft();
@@ -510,7 +510,7 @@ public final class Client extends GameShell {
 		LightTypeList.clear();
 		CursorTypeList.clear();
 		PlayerAppearance.clear();
-		Widget.clear();
+		Component.clear();
 		if (modeWhat != 0) {
 			for (@Pc(54) int i = 0; i < Player.aByteArrayArray8.length; i++) {
 				Player.aByteArrayArray8[i] = null;
@@ -607,7 +607,7 @@ public final class Client extends GameShell {
 			TitleScreen.load(js5Archive8);
 		}
 		if (gameState == 10) {
-			WidgetList.method1596(false);
+			ComponentList.initializeLoginScreen(false);
 		}
 		if (gameState == 30) {
 			processGameStatus(25);
@@ -649,7 +649,7 @@ public final class Client extends GameShell {
 		PlayerList.playerCount = 0;
 		MiniMap.state = 0;
 		Camera.cameraAnticheatOffsetZ = (int) (Math.random() * 110.0D) - 55;
-		MiniMenu.aBoolean302 = false;
+		MiniMenu.useWithActive = false;
 		MiniMap.minimapZoom = (int) (Math.random() * 30.0D) - 20;
 		SoundPlayer.size = 0;
 		LoginManager.mapFlagX = 0;
@@ -694,16 +694,16 @@ public final class Client extends GameShell {
 		for (i = 0; i < VarcDomain.varcs.length; i++) {
 			VarcDomain.varcs[i] = -1;
 		}
-		if (WidgetList.topLevelInterface != -1) {
-			WidgetList.resetComponent(WidgetList.topLevelInterface);
+		if (ComponentList.topLevelInterface != -1) {
+			ComponentList.resetComponent(ComponentList.topLevelInterface);
 		}
-		for (@Pc(3755) SubInterface local3755 = (SubInterface) WidgetList.openInterfaces.head(); local3755 != null; local3755 = (SubInterface) WidgetList.openInterfaces.next()) {
-			WidgetList.closeInterface(true, local3755);
+		for (@Pc(3755) SubInterface local3755 = (SubInterface) ComponentList.openInterfaces.head(); local3755 != null; local3755 = (SubInterface) ComponentList.openInterfaces.next()) {
+			ComponentList.closeInterface(true, local3755);
 		}
-		WidgetList.topLevelInterface = -1;
-		WidgetList.openInterfaces = new HashTable(8);
-		WidgetList.createComponentMemoryBuffer();
-		ClientScriptRunner.aClass13_10 = null;
+		ComponentList.topLevelInterface = -1;
+		ComponentList.openInterfaces = new HashTable(8);
+		ComponentList.createComponentMemoryBuffer();
+		ClientScriptRunner.modalBackgroundComponent = null;
 		ClientScriptRunner.menuVisible = false;
 		MiniMenu.menuActionRow = 0;
 		PlayerAppearance.DEFAULT.set(new int[] { 0, 0, 0, 0, 0 }, -1, false, null, -1);
@@ -715,7 +715,7 @@ public final class Client extends GameShell {
 		Inv.clear();
 		ClientScriptRunner.aBoolean43 = true;
 		for (i = 0; i < 100; i++) {
-			WidgetList.widgetNeedsRedraw[i] = true;
+			ComponentList.componentNeedsRedraw[i] = true;
 		}
 		ClanChat.size = 0;
 		ClanChat.members = null;
@@ -737,7 +737,7 @@ public final class Client extends GameShell {
 		ClientScriptRunner.neverRemoveRoofs = false;
 		aShortArray88 = aShortArray19 = aShortArray74 = aShortArray87 = new short[256];
 		LoginManager.method4637();
-		WidgetList.hasScrollbar = false;
+		ComponentList.hasScrollbar = false;
 		ClientProt.sendWindowDetails();
 	}
 
@@ -804,7 +804,7 @@ public final class Client extends GameShell {
 		LightTypeList.clean();
 		CursorTypeList.clean();
 		PlayerAppearance.clean();
-		Widget.clean();
+		Component.clean();
 		HintArrowManager.clean();
 		ShadowModelList.clean();
 		HitBarList.hitBars.clean(5);
@@ -911,7 +911,7 @@ public final class Client extends GameShell {
 		}
 		if (GlRenderer.enabled) {
 			for (local80 = 0; local80 < 100; local80++) {
-				WidgetList.widgetNeedsRedraw[local80] = true;
+				ComponentList.componentNeedsRedraw[local80] = true;
 			}
 		}
 		if (gameState == 0) {
@@ -919,7 +919,7 @@ public final class Client extends GameShell {
 		} else if (gameState == 5) {
 			LoadingBar.render(false, Fonts.b12Full);
 		} else if (gameState == 10) {
-			WidgetList.method2460();
+			ComponentList.prepareFrame();
 		} else if (gameState == 25 || gameState == 28) {
 			if (WorldLoader.loadingScreenState == 1) {
 				if (anInt5150 < WorldLoader.mapFilesMissingCount) {
@@ -943,18 +943,18 @@ public final class Client extends GameShell {
 		}
 		if (GlRenderer.enabled && gameState != 0) {
 			GlRenderer.swapBuffers();
-			for (local80 = 0; local80 < WidgetList.rectangles; local80++) {
-				WidgetList.rectangleRedraw[local80] = false;
+			for (local80 = 0; local80 < ComponentList.rectangles; local80++) {
+				ComponentList.rectangleRedraw[local80] = false;
 			}
 		} else {
 			@Pc(388) Graphics local388;
 			if ((gameState == 30 || gameState == 10) && Cheat.rectDebug == 0 && !local158) {
 				try {
 					local388 = GameShell.canvas.getGraphics();
-					for (local84 = 0; local84 < WidgetList.rectangles; local84++) {
-						if (WidgetList.rectangleRedraw[local84]) {
-							SoftwareRaster.frameBuffer.drawAt(WidgetList.rectangleWidth[local84], WidgetList.rectangleX[local84], WidgetList.rectangleHeight[local84], local388, WidgetList.rectangleY[local84]);
-							WidgetList.rectangleRedraw[local84] = false;
+					for (local84 = 0; local84 < ComponentList.rectangles; local84++) {
+						if (ComponentList.rectangleRedraw[local84]) {
+							SoftwareRaster.frameBuffer.drawAt(ComponentList.rectangleWidth[local84], ComponentList.rectangleX[local84], ComponentList.rectangleHeight[local84], local388, ComponentList.rectangleY[local84]);
+							ComponentList.rectangleRedraw[local84] = false;
 						}
 					}
 				} catch (@Pc(423) Exception local423) {
@@ -964,8 +964,8 @@ public final class Client extends GameShell {
 				try {
 					local388 = GameShell.canvas.getGraphics();
 					SoftwareRaster.frameBuffer.draw(local388);
-					for (local84 = 0; local84 < WidgetList.rectangles; local84++) {
-						WidgetList.rectangleRedraw[local84] = false;
+					for (local84 = 0; local84 < ComponentList.rectangles; local84++) {
+						ComponentList.rectangleRedraw[local84] = false;
 					}
 				} catch (@Pc(453) Exception local453) {
 					GameShell.canvas.repaint();
@@ -975,7 +975,7 @@ public final class Client extends GameShell {
 		if (clean) {
 			clean();
 		}
-		if (Preferences.safeMode && gameState == 10 && WidgetList.topLevelInterface != -1) {
+		if (Preferences.safeMode && gameState == 10 && ComponentList.topLevelInterface != -1) {
 			Preferences.safeMode = false;
 			Preferences.write(GameShell.signLink);
 		}
@@ -1210,15 +1210,15 @@ public final class Client extends GameShell {
 
 	@OriginalMember(owner = "client!client", name = "d", descriptor = "(B)V")
 	private void mainUpdate() {
-		for (WidgetList.keyQueueSize = 0; Keyboard.nextKey() && WidgetList.keyQueueSize < 128; WidgetList.keyQueueSize++) {
-			WidgetList.keyCodes[WidgetList.keyQueueSize] = Keyboard.keyCode;
-			WidgetList.keyChars[WidgetList.keyQueueSize] = Keyboard.keyChar;
+		for (ComponentList.keyQueueSize = 0; Keyboard.nextKey() && ComponentList.keyQueueSize < 128; ComponentList.keyQueueSize++) {
+			ComponentList.keyCodes[ComponentList.keyQueueSize] = Keyboard.keyCode;
+			ComponentList.keyChars[ComponentList.keyQueueSize] = Keyboard.keyChar;
 		}
 		Protocol.sceneDelta++;
-		if (WidgetList.topLevelInterface != -1) {
-			WidgetList.method1320(0, 0, 0, GameShell.canvasWidth, WidgetList.topLevelInterface, 0, GameShell.canvasHeigth);
+		if (ComponentList.topLevelInterface != -1) {
+			ComponentList.renderInterface(0, 0, 0, GameShell.canvasWidth, ComponentList.topLevelInterface, 0, GameShell.canvasHeigth);
 		}
-		WidgetList.transmitTimer++;
+		ComponentList.transmitTimer++;
 		if (GlRenderer.enabled) {
 			nextNpc: for (@Pc(57) int local57 = 0; local57 < 32768; local57++) {
 				@Pc(66) Npc npcEntity = NpcList.npcs[local57];
@@ -1266,22 +1266,22 @@ public final class Client extends GameShell {
 			}
 		}
 		while (true) {
-			@Pc(374) WidgetEvent priorityRequest;
-			@Pc(379) Widget prioritySource;
-			@Pc(387) Widget priorityWidget;
+			@Pc(374) ComponentEvent priorityRequest;
+			@Pc(379) Component prioritySource;
+			@Pc(387) Component priorityComponent;
 			do {
-				priorityRequest = (WidgetEvent) WidgetList.highPriorityRequests.removeHead();
+				priorityRequest = (ComponentEvent) ComponentList.highPriorityRequests.removeHead();
 				if (priorityRequest == null) {
 					while (true) {
 						do {
-							priorityRequest = (WidgetEvent) WidgetList.mediumPriorityRequests.removeHead();
+							priorityRequest = (ComponentEvent) ComponentList.mediumPriorityRequests.removeHead();
 							if (priorityRequest == null) {
 								while (true) {
 									do {
-										priorityRequest = (WidgetEvent) WidgetList.lowPriorityRequests.removeHead();
+										priorityRequest = (ComponentEvent) ComponentList.lowPriorityRequests.removeHead();
 										if (priorityRequest == null) {
-											if (ClientScriptRunner.dragWidget != null) {
-												ClientScriptRunner.handleWidgetDrag();
+											if (ClientScriptRunner.dragComponent != null) {
+												ClientScriptRunner.handleComponentDrag();
 											}
 											if (Protocol.openUrlRequest != null && Protocol.openUrlRequest.status == 1) {
 												if (Protocol.openUrlRequest.result != null) {
@@ -1300,8 +1300,8 @@ public final class Client extends GameShell {
 										if (prioritySource.createdComponentId < 0) {
 											break;
 										}
-										priorityWidget = WidgetList.getComponent(prioritySource.overlayer);
-									} while (priorityWidget == null || priorityWidget.createdWidgets == null || priorityWidget.createdWidgets.length <= prioritySource.createdComponentId || prioritySource != priorityWidget.createdWidgets[prioritySource.createdComponentId]);
+										priorityComponent = ComponentList.getComponent(prioritySource.overlayer);
+									} while (priorityComponent == null || priorityComponent.createdComponents == null || priorityComponent.createdComponents.length <= prioritySource.createdComponentId || prioritySource != priorityComponent.createdComponents[prioritySource.createdComponentId]);
 									ClientScriptRunner.run(priorityRequest);
 								}
 							}
@@ -1309,8 +1309,8 @@ public final class Client extends GameShell {
 							if (prioritySource.createdComponentId < 0) {
 								break;
 							}
-							priorityWidget = WidgetList.getComponent(prioritySource.overlayer);
-						} while (priorityWidget == null || priorityWidget.createdWidgets == null || prioritySource.createdComponentId >= priorityWidget.createdWidgets.length || prioritySource != priorityWidget.createdWidgets[prioritySource.createdComponentId]);
+							priorityComponent = ComponentList.getComponent(prioritySource.overlayer);
+						} while (priorityComponent == null || priorityComponent.createdComponents == null || prioritySource.createdComponentId >= priorityComponent.createdComponents.length || prioritySource != priorityComponent.createdComponents[prioritySource.createdComponentId]);
 						ClientScriptRunner.run(priorityRequest);
 					}
 				}
@@ -1318,8 +1318,8 @@ public final class Client extends GameShell {
 				if (prioritySource.createdComponentId < 0) {
 					break;
 				}
-				priorityWidget = WidgetList.getComponent(prioritySource.overlayer);
-			} while (priorityWidget == null || priorityWidget.createdWidgets == null || priorityWidget.createdWidgets.length <= prioritySource.createdComponentId || prioritySource != priorityWidget.createdWidgets[prioritySource.createdComponentId]);
+				priorityComponent = ComponentList.getComponent(prioritySource.overlayer);
+			} while (priorityComponent == null || priorityComponent.createdComponents == null || priorityComponent.createdComponents.length <= prioritySource.createdComponentId || prioritySource != priorityComponent.createdComponents[prioritySource.createdComponentId]);
 			ClientScriptRunner.run(priorityRequest);
 		}
 	}
@@ -1600,7 +1600,7 @@ public final class Client extends GameShell {
 				SpotAnimTypeList.init(js5Archive7, js5Archive21);
 				VarBitTypeList.init(js5Archive22);
 				VarpTypeList.init(js5Archive2);
-				WidgetList.init(js5Archive13, js5Archive8, js5Archive3, js5Archive7);
+				ComponentList.init(js5Archive13, js5Archive8, js5Archive3, js5Archive7);
 				InvTypeList.init(js5Archive2);
 				EnumTypeList.init(js5Archive17);
 				QuickChatPhraseTypeList.init(js5Archive25, js5Archive24, new Js5QuickChatCommandDecoder());
@@ -1734,7 +1734,7 @@ public final class Client extends GameShell {
 			mainLoadState = 160;
 			mainLoadSecondaryText = LocalizedText.MAINLOAD150B;
 		} else if (mainLoadState == 160) {
-			WidgetList.method1596(true);
+			ComponentList.initializeLoginScreen(true);
 		}
 	}
 

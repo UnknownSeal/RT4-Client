@@ -16,7 +16,7 @@ import com.jagex.runetek4.network.Protocol;
 import com.jagex.runetek4.graphics.raster.Rasterizer;
 import com.jagex.runetek4.graphics.raster.SoftwareRaster;
 import com.jagex.runetek4.scene.SceneGraph;
-import com.jagex.runetek4.ui.widget.WidgetList;
+import com.jagex.runetek4.ui.component.ComponentList;
 import com.jagex.runetek4.util.ArrayUtils;
 import com.jagex.runetek4.util.system.SignLink;
 import com.jagex.runetek4.util.system.ThreadUtils;
@@ -314,14 +314,14 @@ public final class DisplayMode {
 		} else {
 			aBoolean156 = false;
 		}
-		if (WidgetList.topLevelInterface != -1) {
-			WidgetList.method3712(true);
+		if (ComponentList.topLevelInterface != -1) {
+			ComponentList.updateInterfaceLayout(true);
 		}
 		if (Protocol.gameServerSocket != null && (Client.gameState == 30 || Client.gameState == 25)) {
 			ClientProt.sendWindowDetails();
 		}
 		for (@Pc(466) int local466 = 0; local466 < 100; local466++) {
-			WidgetList.widgetNeedsRedraw[local466] = true;
+			ComponentList.componentNeedsRedraw[local466] = true;
 		}
 		GameShell.fullredraw = true;
 	}
