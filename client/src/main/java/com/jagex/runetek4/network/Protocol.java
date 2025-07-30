@@ -2997,7 +2997,7 @@ public class Protocol {
         @Pc(53) int local53;
         for (local53 = 0; local53 < local45; local53++) {
             if (WidgetList.method5(MiniMenu.actions[local53])) {
-                MiniMenu.remove(local53);
+                MiniMenu.removeActionRow(local53);
             }
         }
         if (MiniMenu.menuActionRow == 1) {
@@ -3056,7 +3056,7 @@ public class Protocol {
                     }
                 }
             }
-            if (local20 == 1 && (VarpDomain.oneMouseButton == 1 && MiniMenu.menuActionRow > 2 || MiniMenu.menuHasAddFriend(MiniMenu.menuActionRow - 1))) {
+            if (local20 == 1 && (VarpDomain.oneMouseButton == 1 && MiniMenu.menuActionRow > 2 || MiniMenu.isWidgetAction(MiniMenu.menuActionRow - 1))) {
                 local20 = 2;
             }
             if (local20 == 2 && MiniMenu.menuActionRow > 0 || MiniMenu.menuState == 1) {

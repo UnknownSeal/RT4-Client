@@ -649,7 +649,7 @@ public final class Client extends GameShell {
 		PlayerList.playerCount = 0;
 		MiniMap.state = 0;
 		Camera.cameraAnticheatOffsetZ = (int) (Math.random() * 110.0D) - 55;
-		MiniMenu.aBoolean302 = false;
+		MiniMenu.useWithActive = false;
 		MiniMap.minimapZoom = (int) (Math.random() * 30.0D) - 20;
 		SoundPlayer.size = 0;
 		LoginManager.mapFlagX = 0;

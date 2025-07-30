@@ -49,7 +49,7 @@ public class ClientProt {
         }
         @Pc(37) boolean local37 = true;
         if (local8.contentType > 0) {
-            local37 = MiniMenu.method4265(local8);
+            local37 = MiniMenu.shouldTriggerIdleTimeout(local8);
         }
         if (!local37 || !WidgetList.getServerActiveProperties(local8).isButtonEnabled(arg2 - 1)) {
             return;

@@ -281,7 +281,7 @@ public class WidgetList {
         @Pc(43) int local43;
         for (local43 = 0; local43 < local41; local43++) {
             if (method5(MiniMenu.actions[local43])) {
-                MiniMenu.remove(local43);
+                MiniMenu.removeActionRow(local43);
             }
         }
         if (MiniMenu.menuActionRow == 1) {
@@ -1515,12 +1515,12 @@ public class WidgetList {
                                 dragY = clipBottom2 * color + clipRight2 * cardMemory >> 11;
                                 local563 = PlayerList.self.xFine + dragY >> 7;
                                 local571 = PlayerList.self.zFine - objId >> 7;
-                                if (MiniMenu.aBoolean302 && (MiniMenu.anInt4999 & 0x40) != 0) {
-                                    @Pc(583) Widget local583 = getCreatedComponent(MiniMenu.anInt2512, MiniMenu.anInt506);
+                                if (MiniMenu.useWithActive && (MiniMenu.useWithMask & 0x40) != 0) {
+                                    @Pc(583) Widget local583 = getCreatedComponent(MiniMenu.useWithWidgetId, MiniMenu.useWithSlot);
                                     if (local583 == null) {
-                                        MiniMenu.method1294();
+                                        MiniMenu.handleUseWith();
                                     } else {
-                                        MiniMenu.addActionRow(MiniMenu.anInt5393, 1L, MiniMenu.aClass100_961, local563, (short) 11, MiniMenu.aClass100_545, local571);
+                                        MiniMenu.addActionRow(MiniMenu.useWithCursor, 1L, MiniMenu.aClass100_961, local563, (short) 11, MiniMenu.aClass100_545, local571);
                                     }
                                     continue;
                                 }

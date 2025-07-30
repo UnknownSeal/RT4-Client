@@ -410,7 +410,7 @@ public class Game {
                         Protocol.outboundBuffer.p2_alt2(MiniMenu.mouseInvInterfaceIndex);
                         Protocol.outboundBuffer.p1_alt3(moveItemInsertionMode);
                     }
-                } else if ((VarpDomain.oneMouseButton == 1 || MiniMenu.menuHasAddFriend(MiniMenu.menuActionRow - 1)) && MiniMenu.menuActionRow > 2) {
+                } else if ((VarpDomain.oneMouseButton == 1 || MiniMenu.isWidgetAction(MiniMenu.menuActionRow - 1)) && MiniMenu.menuActionRow > 2) {
                     ClientScriptRunner.determineMenuSize();
                 } else if (MiniMenu.menuActionRow > 0) {
                     MiniMenu.processMenuActions();
@@ -473,17 +473,17 @@ public class Game {
                                             }
                                             if (LoginManager.staffModLevel > 0 && Keyboard.pressedKeys[82] && Keyboard.pressedKeys[81]) {
                                                 if (MiniMenu.clickTileX != -1) {
-                                                    Cheat.teleport(Camera.originX + MiniMenu.clickTileX, Camera.originZ + MiniMenu.anInt2954, Player.plane);
+                                                    Cheat.teleport(Camera.originX + MiniMenu.clickTileX, Camera.originZ + MiniMenu.clickTileZ, Player.plane);
                                                 }
                                                 Protocol.anInt4422 = 0;
                                                 MiniMenu.anInt3096 = 0;
                                             } else if (MiniMenu.anInt3096 == 2) {
                                                 if (MiniMenu.clickTileX != -1) {
                                                     Protocol.outboundBuffer.pIsaac1(131);
-                                                    Protocol.outboundBuffer.p4_alt3(MiniMenu.anInt2512);
+                                                    Protocol.outboundBuffer.p4_alt3(MiniMenu.useWithWidgetId);
                                                     Protocol.outboundBuffer.p2_alt2(Camera.originX + MiniMenu.clickTileX);
-                                                    Protocol.outboundBuffer.p2_alt3(MiniMenu.anInt506);
-                                                    Protocol.outboundBuffer.p2_alt2(MiniMenu.anInt2954 + Camera.originZ);
+                                                    Protocol.outboundBuffer.p2_alt3(MiniMenu.useWithSlot);
+                                                    Protocol.outboundBuffer.p2_alt2(MiniMenu.clickTileZ + Camera.originZ);
                                                     Crosshair.CrosshairMode = 1;
                                                     Crosshair.CrosshairCycle = 0;
                                                     Crosshair.y = Mouse.mouseClickY;
@@ -493,7 +493,7 @@ public class Game {
                                             } else if (Protocol.anInt4422 == 2) {
                                                 if (MiniMenu.clickTileX != -1) {
                                                     Protocol.outboundBuffer.pIsaac1(179);
-                                                    Protocol.outboundBuffer.p2(Camera.originZ + MiniMenu.anInt2954);
+                                                    Protocol.outboundBuffer.p2(Camera.originZ + MiniMenu.clickTileZ);
                                                     Protocol.outboundBuffer.p2(MiniMenu.clickTileX + Camera.originX);
                                                     Crosshair.CrosshairCycle = 0;
                                                     Crosshair.CrosshairMode = 1;
@@ -502,7 +502,7 @@ public class Game {
                                                 }
                                                 Protocol.anInt4422 = 0;
                                             } else if (MiniMenu.clickTileX != -1 && MiniMenu.anInt3096 == 0 && Protocol.anInt4422 == 0) {
-                                                @Pc(1871) boolean success = PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 0, true, 0, MiniMenu.clickTileX, 0, 0, 0, MiniMenu.anInt2954, PlayerList.self.movementQueueX[0]);
+                                                @Pc(1871) boolean success = PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 0, true, 0, MiniMenu.clickTileX, 0, 0, 0, MiniMenu.clickTileZ, PlayerList.self.movementQueueX[0]);
                                                 if (success) {
                                                     Crosshair.y = Mouse.mouseClickY;
                                                     Crosshair.CrosshairCycle = 0;

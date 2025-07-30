@@ -236,17 +236,17 @@ public class LoginManager {
         } else {
             SoftwareRaster.resetBounds();
         }
-        MiniMenu.sort();
+        MiniMenu.sortMenuActions();
         if (ClientScriptRunner.menuVisible) {
             if (WidgetList.hasScrollbar) {
-                MiniMenu.drawB();
+                MiniMenu.drawContextMenu();
             } else {
-                MiniMenu.drawA();
+                MiniMenu.drawSimpleMenu();
             }
         } else if (hoveredWidget != null) {
-            MiniMenu.method1207(hoveredWidget, ClientScriptRunner.anInt3484, ClientScriptRunner.anInt3260);
+            MiniMenu.drawMenuText(hoveredWidget, ClientScriptRunner.anInt3484, ClientScriptRunner.anInt3260);
         } else if (ClientScriptRunner.anInt2503 != -1) {
-            MiniMenu.method1207(null, WidgetList.anInt5574, ClientScriptRunner.anInt2503);
+            MiniMenu.drawMenuText(null, WidgetList.anInt5574, ClientScriptRunner.anInt2503);
         }
         widgetIndex = ClientScriptRunner.menuVisible ? -1 : MiniMenu.getShiftClickOption();
         if (widgetIndex == -1) {

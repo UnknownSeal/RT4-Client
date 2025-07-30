@@ -2581,7 +2581,7 @@ public class SceneGraph {
                                                 renderPlainTile(tile.plainTile, occlusionLevel, anInt2886, anInt3038, anInt5205, anInt2222, tileX, tileZ, true);
                                             } else {
                                                 shouldDrawTile = true;
-                                                if (tile.plainTile.anInt4865 != 12345678 || MiniMenu.aBoolean187 && plane <= MiniMenu.anInt3902) {
+                                                if (tile.plainTile.anInt4865 != 12345678 || MiniMenu.walkTargetActive && plane <= MiniMenu.targetPlane) {
                                                     renderPlainTile(tile.plainTile, occlusionLevel, anInt2886, anInt3038, anInt5205, anInt2222, tileX, tileZ, false);
                                                 }
                                             }
@@ -4001,9 +4001,9 @@ public class SceneGraph {
         Rasterizer.alpha = 0;
         @Pc(475) int textureColor;
         if ((screenX3 - screenX4) * (screenY2 - screenY4) - (screenY3 - screenY4) * (screenX2 - screenX4) > 0) {
-            if (MiniMenu.aBoolean187 && pointInTriangle(MiniMenu.anInt2388 + Rasterizer.centerX, MiniMenu.anInt3259 + Rasterizer.centerY, screenY3, screenY4, screenY2, screenX3, screenX4, screenX2)) {
+            if (MiniMenu.walkTargetActive && pointInTriangle(MiniMenu.targetX + Rasterizer.centerX, MiniMenu.targetZ + Rasterizer.centerY, screenY3, screenY4, screenY2, screenX3, screenX4, screenX2)) {
                 MiniMenu.clickTileX = tileX;
-                MiniMenu.anInt2954 = tileZ;
+                MiniMenu.clickTileZ = tileZ;
             }
             if (!GlRenderer.enabled && !skipRendering) {
                 Rasterizer.testX = false;
@@ -4027,9 +4027,9 @@ public class SceneGraph {
         if ((screenX1 - screenX2) * (screenY4 - screenY2) - (screenY1 - screenY2) * (screenX4 - screenX2) <= 0) {
             return;
         }
-        if (MiniMenu.aBoolean187 && pointInTriangle(MiniMenu.anInt2388 + Rasterizer.centerX, MiniMenu.anInt3259 + Rasterizer.centerY, screenY1, screenY2, screenY4, screenX1, screenX2, screenX4)) {
+        if (MiniMenu.walkTargetActive && pointInTriangle(MiniMenu.targetX + Rasterizer.centerX, MiniMenu.targetZ + Rasterizer.centerY, screenY1, screenY2, screenY4, screenX1, screenX2, screenX4)) {
             MiniMenu.clickTileX = tileX;
-            MiniMenu.anInt2954 = tileZ;
+            MiniMenu.clickTileZ = tileZ;
         }
         if (GlRenderer.enabled || skipRendering) {
             return;
@@ -4358,9 +4358,9 @@ public class SceneGraph {
             @Pc(160) int screenY2 = anIntArray164[relativeY];
             @Pc(164) int screenY3 = anIntArray164[local29];
             if ((local39 - screenX2) * (screenY3 - screenY2) - (screenY1 - screenY2) * (screenX3 - screenX2) > 0) {
-                if (MiniMenu.aBoolean187 && pointInTriangle(MiniMenu.anInt2388 + Rasterizer.centerX, MiniMenu.anInt3259 + Rasterizer.centerY, screenY1, screenY2, screenY3, local39, screenX2, screenX3)) {
+                if (MiniMenu.walkTargetActive && pointInTriangle(MiniMenu.targetX + Rasterizer.centerX, MiniMenu.targetZ + Rasterizer.centerY, screenY1, screenY2, screenY3, local39, screenX2, screenX3)) {
                     MiniMenu.clickTileX = tileX;
-                    MiniMenu.anInt2954 = tileZ;
+                    MiniMenu.clickTileZ = tileZ;
                 }
                 if (!GlRenderer.enabled && !skipRendering) {
                     Rasterizer.testX = false;
@@ -5514,7 +5514,7 @@ public class SceneGraph {
                         }
                         if (anInt1142 == 0) {
                             if (!isUnderwater) {
-                                MiniMenu.aBoolean187 = false;
+                                MiniMenu.walkTargetActive = false;
                             }
                             return;
                         }
@@ -5561,7 +5561,7 @@ public class SceneGraph {
                         }
                         if (anInt1142 == 0) {
                             if (!isUnderwater) {
-                                MiniMenu.aBoolean187 = false;
+                                MiniMenu.walkTargetActive = false;
                             }
                             return;
                         }
@@ -5569,7 +5569,7 @@ public class SceneGraph {
                 }
             }
         }
-        MiniMenu.aBoolean187 = false;
+        MiniMenu.walkTargetActive = false;
     }
 
     @OriginalMember(owner = "runetek4.client!ui", name = "a", descriptor = "(IIZIII)V")
@@ -5655,10 +5655,10 @@ public class SceneGraph {
         }
         if (ClientScriptRunner.menuVisible || ClientScriptRunner.scriptMouseX < x || ClientScriptRunner.scriptMouseX >= width + x || y > ClientScriptRunner.scriptMouseY || height + y <= ClientScriptRunner.scriptMouseY) {
             RawModel.allowInput = false;
-            MiniMenu.anInt7 = 0;
+            MiniMenu.pickedEntityCount = 0;
         } else {
             RawModel.allowInput = true;
-            MiniMenu.anInt7 = 0;
+            MiniMenu.pickedEntityCount = 0;
             jitter = Rasterizer.screenUpperX;
             @Pc(344) int screenBottom = Rasterizer.screenLowerY;
             modifierType = Rasterizer.screenLowerX;
@@ -5716,7 +5716,7 @@ public class SceneGraph {
             Fonts.drawTextOnScreen(false, LocalizedText.LOADING);
         }
         if (!skipEntityUpdates && !ClientScriptRunner.aBoolean43 && !ClientScriptRunner.menuVisible && x <= ClientScriptRunner.scriptMouseX && width + x > ClientScriptRunner.scriptMouseX && y <= ClientScriptRunner.scriptMouseY && height + y > ClientScriptRunner.scriptMouseY) {
-            MiniMenu.addEntries(y, width, height, x, ClientScriptRunner.scriptMouseY, ClientScriptRunner.scriptMouseX);
+            MiniMenu.populateMenuEntries(y, width, height, x, ClientScriptRunner.scriptMouseY, ClientScriptRunner.scriptMouseX);
         }
     }
 }

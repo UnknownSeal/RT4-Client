@@ -443,7 +443,7 @@ public final class ClientScriptRunner {
 						Protocol.outboundBuffer.p4(WidgetList.targetWidget.id);
 						Protocol.outboundBuffer.p2_alt1(dragWidget.createdComponentId);
 					}
-				} else if ((VarpDomain.oneMouseButton == 1 || MiniMenu.menuHasAddFriend(MiniMenu.menuActionRow - 1)) && MiniMenu.menuActionRow > 2) {
+				} else if ((VarpDomain.oneMouseButton == 1 || MiniMenu.isWidgetAction(MiniMenu.menuActionRow - 1)) && MiniMenu.menuActionRow > 2) {
 					determineMenuSize();
 				} else if (MiniMenu.menuActionRow > 0) {
 					MiniMenu.processMenuActions();

@@ -93,7 +93,7 @@ public class MiniMenu {
     @OriginalMember(owner = "runetek4.client!a", name = "j", descriptor = "Lclient!na;")
     public static final JString aClass100_2 = JString.parse("<col=ffffff> )4 ");
     @OriginalMember(owner = "client!cb", name = "fb", descriptor = "Lclient!na;")
-    public static final JString aClass100_168 = JString.parse(": ");
+    public static final JString COLON_SEPARATOR = JString.parse(": ");
     @OriginalMember(owner = "runetek4.client!qf", name = "Q", descriptor = "Lclient!na;")
 	public static final JString aClass100_407 = JString.parse(" )2> <col=ffff00>");
     @OriginalMember(owner = "runetek4.client!qf", name = "R", descriptor = "Lclient!na;")
@@ -117,25 +117,25 @@ public class MiniMenu {
     @OriginalMember(owner = "runetek4.client!uf", name = "q", descriptor = "Lclient!na;")
     public static final JString aClass100_1042 = JString.parse("Null");
     @OriginalMember(owner = "client!e", name = "pc", descriptor = "[I")
-    public static final int[] anIntArray132 = new int[4];
+    public static final int[] textBounds = new int[4];
     @OriginalMember(owner = "runetek4.client!af", name = "l", descriptor = "[S")
-    public static final short[] aShortArray2 = new short[] { 30, 6, 31, 29, 10, 44, 37, 57 };
+    public static final short[] PLAYER_ACTION_IDS = new short[] { 30, 6, 31, 29, 10, 44, 37, 57 };
     @OriginalMember(owner = "runetek4.client!sk", name = "kb", descriptor = "I")
     public static int menuActionRow = 0;
     @OriginalMember(owner = "runetek4.client!vd", name = "C", descriptor = "I")
     public static int anInt5014 = 0;
     @OriginalMember(owner = "runetek4.client!th", name = "n", descriptor = "Z")
-    public static boolean aBoolean302 = false;
+    public static boolean useWithActive = false;
     @OriginalMember(owner = "runetek4.client!pk", name = "bb", descriptor = "Lclient!na;")
     public static JString walkText;
     @OriginalMember(owner = "runetek4.client!em", name = "D", descriptor = "I")
     public static int gregorianDateSeed;
     @OriginalMember(owner = "runetek4.client!hj", name = "e", descriptor = "I")
-    public static int anInt2512;
+    public static int useWithWidgetId;
     @OriginalMember(owner = "runetek4.client!u", name = "i", descriptor = "I")
-    public static int anInt5393;
+    public static int useWithCursor;
     @OriginalMember(owner = "client!be", name = "Ec", descriptor = "I")
-    public static int anInt506 = -1;
+    public static int useWithSlot = -1;
     @OriginalMember(owner = "runetek4.client!hn", name = "W", descriptor = "Lclient!na;")
     public static JString aClass100_545 = null;
     @OriginalMember(owner = "runetek4.client!p", name = "e", descriptor = "I")
@@ -145,7 +145,7 @@ public class MiniMenu {
     @OriginalMember(owner = "runetek4.client!v", name = "b", descriptor = "Lclient!be;")
     public static Widget pressedInventoryWidget;
     @OriginalMember(owner = "runetek4.client!aa", name = "a", descriptor = "I")
-    public static int anInt7 = 0;
+    public static int pickedEntityCount = 0;
     @OriginalMember(owner = "runetek4.client!id", name = "k", descriptor = "I")
     public static int anInt2878;
     @OriginalMember(owner = "runetek4.client!cl", name = "Y", descriptor = "I")
@@ -157,7 +157,7 @@ public class MiniMenu {
     @OriginalMember(owner = "client!gd", name = "i", descriptor = "Lclient!na;")
     public static JString aClass100_466 = null;
     @OriginalMember(owner = "runetek4.client!wf", name = "f", descriptor = "I")
-    public static int anInt4999;
+    public static int useWithMask;
     @OriginalMember(owner = "runetek4.client!wf", name = "d", descriptor = "I")
     public static int anInt4997;
     @OriginalMember(owner = "client!fl", name = "P", descriptor = "I")
@@ -241,21 +241,21 @@ public class MiniMenu {
     @OriginalMember(owner = "client!ef", name = "g", descriptor = "I")
     public static int clickTileX = -1;
     @OriginalMember(owner = "runetek4.client!ha", name = "q", descriptor = "I")
-    public static int anInt2388 = 0;
+    public static int targetX = 0;
     @OriginalMember(owner = "runetek4.client!jb", name = "p", descriptor = "I")
-    public static int anInt2954 = -1;
+    public static int clickTileZ = -1;
     @OriginalMember(owner = "runetek4.client!jg", name = "b", descriptor = "I")
-    public static int anInt3039;
+    public static int useWithParam;
     @OriginalMember(owner = "runetek4.client!kd", name = "zb", descriptor = "I")
-    public static int anInt3259 = 0;
+    public static int targetZ = 0;
     @OriginalMember(owner = "runetek4.client!mh", name = "Y", descriptor = "Z")
-    public static boolean aBoolean187 = false;
+    public static boolean walkTargetActive = false;
     @OriginalMember(owner = "runetek4.client!mj", name = "i", descriptor = "I")
-    public static int anInt3902 = 0;
+    public static int targetPlane = 0;
 
     @OriginalMember(owner = "runetek4.client!ud", name = "a", descriptor = "(ILclient!be;)Z")
-    public static boolean method4265(@OriginalArg(1) Widget arg0) {
-        if (arg0.contentType == 205) {
+    public static boolean shouldTriggerIdleTimeout(@OriginalArg(1) Widget widget) {
+        if (widget.contentType == 205) {
             Protocol.idleTimeout = 250;
             return true;
         } else {
@@ -264,44 +264,44 @@ public class MiniMenu {
     }
 
     @OriginalMember(owner = "runetek4.client!ec", name = "a", descriptor = "(B)V")
-    public static void method1294() {
-        if (!aBoolean302) {
+    public static void handleUseWith() {
+        if (!useWithActive) {
             return;
         }
-        @Pc(19) Widget local19 = WidgetList.getCreatedComponent(anInt2512, anInt506);
-        if (local19 != null && local19.onUseWith != null) {
+        @Pc(19) Widget widget = WidgetList.getCreatedComponent(useWithWidgetId, useWithSlot);
+        if (widget != null && widget.onUseWith != null) {
             @Pc(29) WidgetEvent local29 = new WidgetEvent();
-            local29.arguments = local19.onUseWith;
-            local29.source = local19;
+            local29.arguments = widget.onUseWith;
+            local29.source = widget;
             ClientScriptRunner.run(local29);
         }
-        aBoolean302 = false;
+        useWithActive = false;
         defaultCursor = -1;
-        WidgetList.redraw(local19);
+        WidgetList.redraw(widget);
     }
 
     @OriginalMember(owner = "runetek4.client!hj", name = "a", descriptor = "(IJBLclient!na;ISLclient!na;I)V")
-    public static void addActionRow(@OriginalArg(0) int arg0, @OriginalArg(1) long arg1, @OriginalArg(3) JString arg2, @OriginalArg(4) int arg3, @OriginalArg(5) short arg4, @OriginalArg(6) JString arg5, @OriginalArg(7) int arg6) {
+    public static void addActionRow(@OriginalArg(0) int cursor, @OriginalArg(1) long key, @OriginalArg(3) JString opBase, @OriginalArg(4) int param1, @OriginalArg(5) short action, @OriginalArg(6) JString op, @OriginalArg(7) int param2) {
         if (ClientScriptRunner.menuVisible || menuActionRow >= 500) {
             return;
         }
-        ops[menuActionRow] = arg5;
-        opBases[menuActionRow] = arg2;
-        cursors[menuActionRow] = arg0 == -1 ? defaultCursor : arg0;
-        actions[menuActionRow] = arg4;
-        keys[menuActionRow] = arg1;
-        intArgs1[menuActionRow] = arg3;
-        intArgs2[menuActionRow] = arg6;
+        ops[menuActionRow] = op;
+        opBases[menuActionRow] = opBase;
+        cursors[menuActionRow] = cursor == -1 ? defaultCursor : cursor;
+        actions[menuActionRow] = action;
+        keys[menuActionRow] = key;
+        intArgs1[menuActionRow] = param1;
+        intArgs2[menuActionRow] = param2;
         menuActionRow++;
     }
 
     @OriginalMember(owner = "runetek4.client!va", name = "a", descriptor = "(IZILclient!be;)V")
-    public static void addComponentEntries(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) Widget widget) {
+    public static void addComponentEntries(@OriginalArg(0) int mouseY, @OriginalArg(2) int mouseX, @OriginalArg(3) Widget widget) {
         if (widget.buttonType == 1) {
             addActionRow(-1, 0L, JString.EMPTY, 0, (short) 8, widget.option, widget.id);
         }
         @Pc(47) JString ops;
-        if (widget.buttonType == 2 && !aBoolean302) {
+        if (widget.buttonType == 2 && !useWithActive) {
             ops = MiniMap.getTargetVerb(widget);
             if (ops != null) {
                 addActionRow(-1, 0L, JString.concatenate(new JString[] { GREEN, widget.optionSuffix}), -1, (short) 32, ops, widget.id);
@@ -319,190 +319,190 @@ public class MiniMenu {
         if (widget.buttonType == 6 && ClientScriptRunner.aClass13_10 == null) {
             addActionRow(-1, 0L, JString.EMPTY, -1, (short) 41, widget.option, widget.id);
         }
-        @Pc(173) int local173;
-        @Pc(171) int local171;
+        @Pc(173) int row;
+        @Pc(171) int slotIndex;
         if (widget.type == 2) {
-            local171 = 0;
-            for (local173 = 0; local173 < widget.baseHeight; local173++) {
-                for (@Pc(183) int local183 = 0; local183 < widget.baseWidth; local183++) {
-                    @Pc(195) int local195 = (widget.invMarginX + 32) * local183;
-                    @Pc(202) int local202 = (widget.invMarginY + 32) * local173;
-                    if (local171 < 20) {
-                        local202 += widget.invOffsetY[local171];
-                        local195 += widget.invOffsetX[local171];
+            slotIndex = 0;
+            for (row = 0; row < widget.baseHeight; row++) {
+                for (@Pc(183) int col = 0; col < widget.baseWidth; col++) {
+                    @Pc(195) int slotX = (widget.invMarginX + 32) * col;
+                    @Pc(202) int slotY = (widget.invMarginY + 32) * row;
+                    if (slotIndex < 20) {
+                        slotY += widget.invOffsetY[slotIndex];
+                        slotX += widget.invOffsetX[slotIndex];
                     }
-                    if (arg1 >= local195 && local202 <= arg0 && local195 + 32 > arg1 && local202 + 32 > arg0) {
+                    if (mouseX >= slotX && slotY <= mouseY && slotX + 32 > mouseX && slotY + 32 > mouseY) {
                         WidgetList.mouseOverInventoryInterface = widget;
-                        mouseInvInterfaceIndex = local171;
-                        if (widget.invSlotObjId[local171] > 0) {
-                            @Pc(267) ServerActiveProperties local267 = WidgetList.getServerActiveProperties(widget);
-                            @Pc(276) ObjType local276 = ObjTypeList.get(widget.invSlotObjId[local171] - 1);
-                            if (anInt5014 == 1 && local267.isObjOpsEnabled()) {
-                                if (MiniMap.anInt5062 != widget.id || anInt4370 != local171) {
-                                    addActionRow(-1, (long) local276.id, JString.concatenate(new JString[] { aClass100_203, aClass100_947, local276.name}), local171, (short) 40, LocalizedText.USE, widget.id);
+                        mouseInvInterfaceIndex = slotIndex;
+                        if (widget.invSlotObjId[slotIndex] > 0) {
+                            @Pc(267) ServerActiveProperties serverProps = WidgetList.getServerActiveProperties(widget);
+                            @Pc(276) ObjType objType = ObjTypeList.get(widget.invSlotObjId[slotIndex] - 1);
+                            if (anInt5014 == 1 && serverProps.isObjOpsEnabled()) {
+                                if (MiniMap.anInt5062 != widget.id || anInt4370 != slotIndex) {
+                                    addActionRow(-1, (long) objType.id, JString.concatenate(new JString[] { aClass100_203, aClass100_947, objType.name}), slotIndex, (short) 40, LocalizedText.USE, widget.id);
                                 }
-                            } else if (aBoolean302 && local267.isObjOpsEnabled()) {
-                                @Pc(596) ParamType local596 = anInt3039 == -1 ? null : ParamTypeList.get(anInt3039);
-                                if ((anInt4999 & 0x10) != 0 && (local596 == null || local276.getParam(local596.defaultInt, anInt3039) != local596.defaultInt)) {
-                                    addActionRow(anInt5393, (long) local276.id, JString.concatenate(new JString[] { aClass100_466, aClass100_947, local276.name}), local171, (short) 3, aClass100_545, widget.id);
+                            } else if (useWithActive && serverProps.isObjOpsEnabled()) {
+                                @Pc(596) ParamType local596 = useWithParam == -1 ? null : ParamTypeList.get(useWithParam);
+                                if ((useWithMask & 0x10) != 0 && (local596 == null || objType.getParam(local596.defaultInt, useWithParam) != local596.defaultInt)) {
+                                    addActionRow(useWithCursor, (long) objType.id, JString.concatenate(new JString[] { aClass100_466, aClass100_947, objType.name}), slotIndex, (short) 3, aClass100_545, widget.id);
                                 }
                             } else {
-                                @Pc(296) JString[] local296 = local276.iop;
+                                @Pc(296) JString[] objOps = objType.iop;
                                 if (aBoolean237) {
-                                    local296 = annotateOps(local296);
+                                    objOps = annotateOps(objOps);
                                 }
-                                @Pc(309) int local309;
-                                @Pc(334) byte local334;
-                                if (local267.isObjOpsEnabled()) {
-                                    for (local309 = 4; local309 >= 3; local309--) {
-                                        if (local296 != null && local296[local309] != null) {
-                                            if (local309 == 3) {
-                                                local334 = 35;
+                                @Pc(309) int opIndex;
+                                @Pc(334) byte actionId;
+                                if (serverProps.isObjOpsEnabled()) {
+                                    for (opIndex = 4; opIndex >= 3; opIndex--) {
+                                        if (objOps != null && objOps[opIndex] != null) {
+                                            if (opIndex == 3) {
+                                                actionId = 35;
                                             } else {
-                                                local334 = 58;
+                                                actionId = 58;
                                             }
-                                            addActionRow(-1, (long) local276.id, JString.concatenate(new JString[] { aClass100_32, local276.name}), local171, local334, local296[local309], widget.id);
+                                            addActionRow(-1, (long) objType.id, JString.concatenate(new JString[] { aClass100_32, objType.name}), slotIndex, actionId, objOps[opIndex], widget.id);
                                         }
                                     }
                                 }
-                                if (local267.isObjUseEnabled()) {
-                                    addActionRow(MiniMap.anInt4075, (long) local276.id, JString.concatenate(new JString[] { aClass100_32, local276.name}), local171, (short) 22, LocalizedText.USE, widget.id);
+                                if (serverProps.isObjUseEnabled()) {
+                                    addActionRow(MiniMap.anInt4075, (long) objType.id, JString.concatenate(new JString[] { aClass100_32, objType.name}), slotIndex, (short) 22, LocalizedText.USE, widget.id);
                                 }
-                                if (local267.isObjOpsEnabled() && local296 != null) {
-                                    for (local309 = 2; local309 >= 0; local309--) {
-                                        if (local296[local309] != null) {
-                                            local334 = 0;
-                                            if (local309 == 0) {
-                                                local334 = 47;
+                                if (serverProps.isObjOpsEnabled() && objOps != null) {
+                                    for (opIndex = 2; opIndex >= 0; opIndex--) {
+                                        if (objOps[opIndex] != null) {
+                                            actionId = 0;
+                                            if (opIndex == 0) {
+                                                actionId = 47;
                                             }
-                                            if (local309 == 1) {
-                                                local334 = 5;
+                                            if (opIndex == 1) {
+                                                actionId = 5;
                                             }
-                                            if (local309 == 2) {
-                                                local334 = 43;
+                                            if (opIndex == 2) {
+                                                actionId = 43;
                                             }
-                                            addActionRow(-1, (long) local276.id, JString.concatenate(new JString[] { aClass100_32, local276.name}), local171, local334, local296[local309], widget.id);
+                                            addActionRow(-1, (long) objType.id, JString.concatenate(new JString[] { aClass100_32, objType.name}), slotIndex, actionId, objOps[opIndex], widget.id);
                                         }
                                     }
                                 }
-                                local296 = widget.invOptions;
+                                objOps = widget.invOptions;
                                 if (aBoolean237) {
-                                    local296 = annotateOps(local296);
+                                    objOps = annotateOps(objOps);
                                 }
-                                if (local296 != null) {
-                                    for (local309 = 4; local309 >= 0; local309--) {
-                                        if (local296[local309] != null) {
-                                            local334 = 0;
-                                            if (local309 == 0) {
-                                                local334 = 25;
+                                if (objOps != null) {
+                                    for (opIndex = 4; opIndex >= 0; opIndex--) {
+                                        if (objOps[opIndex] != null) {
+                                            actionId = 0;
+                                            if (opIndex == 0) {
+                                                actionId = 25;
                                             }
-                                            if (local309 == 1) {
-                                                local334 = 23;
+                                            if (opIndex == 1) {
+                                                actionId = 23;
                                             }
-                                            if (local309 == 2) {
-                                                local334 = 48;
+                                            if (opIndex == 2) {
+                                                actionId = 48;
                                             }
-                                            if (local309 == 3) {
-                                                local334 = 7;
+                                            if (opIndex == 3) {
+                                                actionId = 7;
                                             }
-                                            if (local309 == 4) {
-                                                local334 = 13;
+                                            if (opIndex == 4) {
+                                                actionId = 13;
                                             }
-                                            addActionRow(-1, (long) local276.id, JString.concatenate(new JString[] { aClass100_32, local276.name}), local171, local334, local296[local309], widget.id);
+                                            addActionRow(-1, (long) objType.id, JString.concatenate(new JString[] { aClass100_32, objType.name}), slotIndex, actionId, objOps[opIndex], widget.id);
                                         }
                                     }
                                 }
-                                addActionRow(MiniMap.anInt5073, (long) local276.id, JString.concatenate(new JString[] { aClass100_32, local276.name}), local171, (short) 1006, LocalizedText.EXAMINE, widget.id);
+                                addActionRow(MiniMap.anInt5073, (long) objType.id, JString.concatenate(new JString[] { aClass100_32, objType.name}), slotIndex, (short) 1006, LocalizedText.EXAMINE, widget.id);
                             }
                         }
                     }
-                    local171++;
+                    slotIndex++;
                 }
             }
         }
         if (!widget.if3) {
             return;
         }
-        if (!aBoolean302) {
-            for (local171 = 9; local171 >= 5; local171--) {
-                @Pc(765) JString local765 = WidgetList.getOp(widget, local171);
+        if (!useWithActive) {
+            for (slotIndex = 9; slotIndex >= 5; slotIndex--) {
+                @Pc(765) JString local765 = WidgetList.getOp(widget, slotIndex);
                 if (local765 != null) {
-                    addActionRow(getOpCursor(local171, widget), (long) (local171 + 1), widget.optionBase, widget.createdComponentId, (short) 1003, local765, widget.id);
+                    addActionRow(getOpCursor(slotIndex, widget), (long) (slotIndex + 1), widget.optionBase, widget.createdComponentId, (short) 1003, local765, widget.id);
                 }
             }
             ops = MiniMap.getTargetVerb(widget);
             if (ops != null) {
                 addActionRow(-1, 0L, widget.optionBase, widget.createdComponentId, (short) 32, ops, widget.id);
             }
-            for (local173 = 4; local173 >= 0; local173--) {
-                @Pc(828) JString local828 = WidgetList.getOp(widget, local173);
+            for (row = 4; row >= 0; row--) {
+                @Pc(828) JString local828 = WidgetList.getOp(widget, row);
                 if (local828 != null) {
-                    addActionRow(getOpCursor(local173, widget), (long) (local173 + 1), widget.optionBase, widget.createdComponentId, (short) 9, local828, widget.id);
+                    addActionRow(getOpCursor(row, widget), (long) (row + 1), widget.optionBase, widget.createdComponentId, (short) 9, local828, widget.id);
                 }
             }
             if (WidgetList.getServerActiveProperties(widget).isResumePauseButtonEnabled()) {
                 addActionRow(-1, 0L, JString.EMPTY, widget.createdComponentId, (short) 41, LocalizedText.CONTINUE, widget.id);
             }
-        } else if (WidgetList.getServerActiveProperties(widget).isUseTarget() && (anInt4999 & 0x20) != 0) {
-            addActionRow(anInt5393, 0L, JString.concatenate(new JString[] { aClass100_466, aClass100_408, widget.optionBase}), widget.createdComponentId, (short) 12, aClass100_545, widget.id);
+        } else if (WidgetList.getServerActiveProperties(widget).isUseTarget() && (useWithMask & 0x20) != 0) {
+            addActionRow(useWithCursor, 0L, JString.concatenate(new JString[] { aClass100_466, aClass100_408, widget.optionBase}), widget.createdComponentId, (short) 12, aClass100_545, widget.id);
         }
     }
 
     @OriginalMember(owner = "runetek4.client!qe", name = "b", descriptor = "(II)V")
-    public static void remove(@OriginalArg(1) int i) {
+    public static void removeActionRow(@OriginalArg(1) int index) {
         menuActionRow--;
-        if (menuActionRow == i) {
+        if (menuActionRow == index) {
             return;
         }
-        ArrayUtils.copy(ops, i + 1, ops, i, menuActionRow - i);
-        ArrayUtils.copy(opBases, i + 1, opBases, i, menuActionRow - i);
-        ArrayUtils.copy(cursors, i + 1, cursors, i, menuActionRow - i);
-        ArrayUtils.copy(actions, i + 1, actions, i, menuActionRow - i);
-        ArrayUtils.copy(keys, i + 1, keys, i, menuActionRow - i);
-        ArrayUtils.copy(intArgs1, i + 1, intArgs1, i, menuActionRow - i);
-        ArrayUtils.copy(intArgs2, i + 1, intArgs2, i, menuActionRow - i);
+        ArrayUtils.copy(ops, index + 1, ops, index, menuActionRow - index);
+        ArrayUtils.copy(opBases, index + 1, opBases, index, menuActionRow - index);
+        ArrayUtils.copy(cursors, index + 1, cursors, index, menuActionRow - index);
+        ArrayUtils.copy(actions, index + 1, actions, index, menuActionRow - index);
+        ArrayUtils.copy(keys, index + 1, keys, index, menuActionRow - index);
+        ArrayUtils.copy(intArgs1, index + 1, intArgs1, index, menuActionRow - index);
+        ArrayUtils.copy(intArgs2, index + 1, intArgs2, index, menuActionRow - index);
     }
 
     @OriginalMember(owner = "runetek4.client!wl", name = "b", descriptor = "(I)V")
-    public static void sort() {
-        @Pc(3) boolean local3 = false;
-        while (!local3) {
-            local3 = true;
-            for (@Pc(13) int local13 = 0; local13 < menuActionRow - 1; local13++) {
-                if (actions[local13] < 1000 && actions[local13 + 1] > 1000) {
-                    @Pc(41) JString local41 = opBases[local13];
-                    local3 = false;
-                    opBases[local13] = opBases[local13 + 1];
-                    opBases[local13 + 1] = local41;
-                    @Pc(61) JString local61 = ops[local13];
-                    ops[local13] = ops[local13 + 1];
-                    ops[local13 + 1] = local61;
-                    @Pc(79) int local79 = intArgs1[local13];
-                    intArgs1[local13] = intArgs1[local13 + 1];
-                    intArgs1[local13 + 1] = local79;
-                    @Pc(97) int local97 = intArgs2[local13];
-                    intArgs2[local13] = intArgs2[local13 + 1];
-                    intArgs2[local13 + 1] = local97;
-                    @Pc(115) int local115 = cursors[local13];
-                    cursors[local13] = cursors[local13 + 1];
-                    cursors[local13 + 1] = local115;
-                    @Pc(133) short local133 = actions[local13];
-                    actions[local13] = actions[local13 + 1];
-                    actions[local13 + 1] = local133;
-                    @Pc(151) long local151 = keys[local13];
-                    keys[local13] = keys[local13 + 1];
-                    keys[local13 + 1] = local151;
+    public static void sortMenuActions() {
+        @Pc(3) boolean hasSwapped = false;
+        while (!hasSwapped) {
+            hasSwapped = true;
+            for (@Pc(13) int index = 0; index < menuActionRow - 1; index++) {
+                if (actions[index] < 1000 && actions[index + 1] > 1000) {
+                    @Pc(41) JString tempOpBase = opBases[index];
+                    hasSwapped = false;
+                    opBases[index] = opBases[index + 1];
+                    opBases[index + 1] = tempOpBase;
+                    @Pc(61) JString tempOp = ops[index];
+                    ops[index] = ops[index + 1];
+                    ops[index + 1] = tempOp;
+                    @Pc(79) int tempArg1 = intArgs1[index];
+                    intArgs1[index] = intArgs1[index + 1];
+                    intArgs1[index + 1] = tempArg1;
+                    @Pc(97) int tempArg2 = intArgs2[index];
+                    intArgs2[index] = intArgs2[index + 1];
+                    intArgs2[index + 1] = tempArg2;
+                    @Pc(115) int tempCursor = cursors[index];
+                    cursors[index] = cursors[index + 1];
+                    cursors[index + 1] = tempCursor;
+                    @Pc(133) short tempAction = actions[index];
+                    actions[index] = actions[index + 1];
+                    actions[index + 1] = tempAction;
+                    @Pc(151) long tempKey = keys[index];
+                    keys[index] = keys[index + 1];
+                    keys[index + 1] = tempKey;
                 }
             }
         }
     }
 
     @OriginalMember(owner = "runetek4.client!ij", name = "a", descriptor = "(B)V")
-    public static void drawB() {
-        @Pc(3) int local3 = WidgetList.menuX;
-        @Pc(9) int local9 = WidgetList.menuY;
-        @Pc(11) int local11 = WidgetList.menuHeight;
-        @Pc(13) int local13 = WidgetList.menuWidth;
+    public static void drawContextMenu() {
+        @Pc(3) int menuX = WidgetList.menuX;
+        @Pc(9) int menuY = WidgetList.menuY;
+        @Pc(11) int menuHeight = WidgetList.menuHeight;
+        @Pc(13) int menuWidth = WidgetList.menuWidth;
         if (LoginManager.loginSprite2 == null || LoginManager.loginSprite5 == null) {
             if (Client.js5Archive8.isFileReady(LoginManager.anInt1736) && Client.js5Archive8.isFileReady(LoginManager.anInt4073)) {
                 LoginManager.loginSprite2 = SoftwareSprite.loadSoftwareAlphaSprite(Client.js5Archive8, LoginManager.anInt1736);
@@ -520,38 +520,38 @@ public class MiniMenu {
                     }
                 }
             } else if (GlRenderer.enabled) {
-                GlRaster.fillRectAlpha(local3, local9, local13, 20, LoginManager.anInt1275, 256 - LoginManager.anInt2910);
+                GlRaster.fillRectAlpha(menuX, menuY, menuWidth, 20, LoginManager.anInt1275, 256 - LoginManager.anInt2910);
             } else {
-                SoftwareRaster.fillRectAlpha(local3, local9, local13, 20, LoginManager.anInt1275, 256 - LoginManager.anInt2910);
+                SoftwareRaster.fillRectAlpha(menuX, menuY, menuWidth, 20, LoginManager.anInt1275, 256 - LoginManager.anInt2910);
             }
         }
-        @Pc(112) int local112;
-        @Pc(114) int local114;
+        @Pc(112) int mouseX;
+        @Pc(114) int mouseY;
         if (LoginManager.loginSprite2 != null && LoginManager.loginSprite5 != null) {
-            local112 = local13 / LoginManager.loginSprite2.width;
-            for (local114 = 0; local114 < local112; local114++) {
-                LoginManager.loginSprite2.render(local114 * LoginManager.loginSprite2.width + local3, local9);
+            mouseX = menuWidth / LoginManager.loginSprite2.width;
+            for (mouseY = 0; mouseY < mouseX; mouseY++) {
+                LoginManager.loginSprite2.render(mouseY * LoginManager.loginSprite2.width + menuX, menuY);
             }
-            LoginManager.loginSprite5.render(local3, local9);
-            LoginManager.loginSprite5.renderHorizontalFlip(local3 + local13 - LoginManager.loginSprite5.width, local9);
+            LoginManager.loginSprite5.render(menuX, menuY);
+            LoginManager.loginSprite5.renderHorizontalFlip(menuX + menuWidth - LoginManager.loginSprite5.width, menuY);
         }
-        Fonts.b12Full.renderLeft(LocalizedText.CHOOSE_OPTION, local3 + 3, local9 + 14, LoginManager.anInt4581, -1);
+        Fonts.b12Full.renderLeft(LocalizedText.CHOOSE_OPTION, menuX + 3, menuY + 14, LoginManager.anInt4581, -1);
         if (GlRenderer.enabled) {
-            GlRaster.fillRectAlpha(local3, local9 + 20, local13, local11 - 20, LoginManager.anInt1275, 256 - LoginManager.anInt2910);
+            GlRaster.fillRectAlpha(menuX, menuY + 20, menuWidth, menuHeight - 20, LoginManager.anInt1275, 256 - LoginManager.anInt2910);
         } else {
-            SoftwareRaster.fillRectAlpha(local3, local9 + 20, local13, local11 - 20, LoginManager.anInt1275, 256 - LoginManager.anInt2910);
+            SoftwareRaster.fillRectAlpha(menuX, menuY + 20, menuWidth, menuHeight - 20, LoginManager.anInt1275, 256 - LoginManager.anInt2910);
         }
-        local114 = Mouse.lastMouseY;
-        local112 = Mouse.lastMouseX;
-        @Pc(203) int local203;
-        @Pc(219) int local219;
-        for (local203 = 0; local203 < menuActionRow; local203++) {
-            local219 = (menuActionRow - local203 - 1) * 15 + local9 + 35;
-            if (local3 < local112 && local112 < local3 + local13 && local114 > local219 - 13 && local114 < local219 + 3) {
+        mouseY = Mouse.lastMouseY;
+        mouseX = Mouse.lastMouseX;
+        @Pc(203) int rowIndex;
+        @Pc(219) int rowY;
+        for (rowIndex = 0; rowIndex < menuActionRow; rowIndex++) {
+            rowY = (menuActionRow - rowIndex - 1) * 15 + menuY + 35;
+            if (menuX < mouseX && mouseX < menuX + menuWidth && mouseY > rowY - 13 && mouseY < rowY + 3) {
                 if (GlRenderer.enabled) {
-                    GlRaster.fillRectAlpha(local3, local219 - 13, local13, 16, LoginManager.anInt5457, 256 - LoginManager.anInt5208);
+                    GlRaster.fillRectAlpha(menuX, rowY - 13, menuWidth, 16, LoginManager.anInt5457, 256 - LoginManager.anInt5208);
                 } else {
-                    SoftwareRaster.fillRectAlpha(local3, local219 - 13, local13, 16, LoginManager.anInt5457, 256 - LoginManager.anInt5208);
+                    SoftwareRaster.fillRectAlpha(menuX, rowY - 13, menuWidth, 16, LoginManager.anInt5457, 256 - LoginManager.anInt5208);
                 }
             }
         }
@@ -577,84 +577,84 @@ public class MiniMenu {
                 }
             }
         }
-        @Pc(418) int local418;
+        @Pc(418) int textColor;
         if (LoginManager.loginSprite4 != null && LoginManager.loginSprite3 != null && LoginManager.loginSprite1 != null) {
-            local203 = local13 / LoginManager.loginSprite4.width;
-            for (local219 = 0; local219 < local203; local219++) {
-                LoginManager.loginSprite4.render(local3 + LoginManager.loginSprite4.width * local219, local11 + local9 + -LoginManager.loginSprite4.height);
+            rowIndex = menuWidth / LoginManager.loginSprite4.width;
+            for (rowY = 0; rowY < rowIndex; rowY++) {
+                LoginManager.loginSprite4.render(menuX + LoginManager.loginSprite4.width * rowY, menuHeight + menuY + -LoginManager.loginSprite4.height);
             }
-            local219 = (local11 - 20) / LoginManager.loginSprite3.height;
-            for (local418 = 0; local418 < local219; local418++) {
-                LoginManager.loginSprite3.render(local3, local9 + local418 * LoginManager.loginSprite3.height + 20);
-                LoginManager.loginSprite3.renderHorizontalFlip(local3 + local13 - LoginManager.loginSprite3.width, local9 + 20 + local418 * LoginManager.loginSprite3.height);
+            rowY = (menuHeight - 20) / LoginManager.loginSprite3.height;
+            for (textColor = 0; textColor < rowY; textColor++) {
+                LoginManager.loginSprite3.render(menuX, menuY + textColor * LoginManager.loginSprite3.height + 20);
+                LoginManager.loginSprite3.renderHorizontalFlip(menuX + menuWidth - LoginManager.loginSprite3.width, menuY + 20 + textColor * LoginManager.loginSprite3.height);
             }
-            LoginManager.loginSprite1.render(local3, local11 + local9 - LoginManager.loginSprite1.height);
-            LoginManager.loginSprite1.renderHorizontalFlip(local3 + local13 - LoginManager.loginSprite1.width, local9 - -local11 + -LoginManager.loginSprite1.height);
+            LoginManager.loginSprite1.render(menuX, menuHeight + menuY - LoginManager.loginSprite1.height);
+            LoginManager.loginSprite1.renderHorizontalFlip(menuX + menuWidth - LoginManager.loginSprite1.width, menuY - -menuHeight + -LoginManager.loginSprite1.height);
         }
-        for (local203 = 0; local203 < menuActionRow; local203++) {
-            local219 = (menuActionRow - local203 - 1) * 15 + local9 + 35;
-            local418 = LoginManager.anInt4581;
-            if (local3 < local112 && local13 + local3 > local112 && local219 - 13 < local114 && local114 < local219 + 3) {
-                local418 = LoginManager.anInt5752;
+        for (rowIndex = 0; rowIndex < menuActionRow; rowIndex++) {
+            rowY = (menuActionRow - rowIndex - 1) * 15 + menuY + 35;
+            textColor = LoginManager.anInt4581;
+            if (menuX < mouseX && menuWidth + menuX > mouseX && rowY - 13 < mouseY && mouseY < rowY + 3) {
+                textColor = LoginManager.anInt5752;
             }
-            Fonts.b12Full.renderLeft(getOp(local203), local3 + 3, local219, local418, 0);
+            Fonts.b12Full.renderLeft(getOp(rowIndex), menuX + 3, rowY, textColor, 0);
         }
         WidgetList.forceRedrawScreen(WidgetList.menuX, WidgetList.menuY, WidgetList.menuHeight, WidgetList.menuWidth);
     }
 
     @OriginalMember(owner = "runetek4.client!lf", name = "b", descriptor = "(I)V")
-    public static void drawA() {
-        @Pc(3) int local3 = WidgetList.menuY;
-        @Pc(9) int local9 = WidgetList.menuWidth;
-        @Pc(11) int local11 = WidgetList.menuX;
-        @Pc(15) int local15 = WidgetList.menuHeight;
+    public static void drawSimpleMenu() {
+        @Pc(3) int menuY = WidgetList.menuY;
+        @Pc(9) int menuWidth = WidgetList.menuWidth;
+        @Pc(11) int menuX = WidgetList.menuX;
+        @Pc(15) int menuHeight = WidgetList.menuHeight;
         if (GlRenderer.enabled) {
-            GlRaster.fillRect(local11, local3, local9, local15, 6116423);
-            GlRaster.fillRect(local11 + 1, local3 + 1, local9 - 2, 16, 0);
-            GlRaster.drawRect(local11 + 1, local3 + 18, local9 - 2, local15 + -19, 0);
+            GlRaster.fillRect(menuX, menuY, menuWidth, menuHeight, 6116423);
+            GlRaster.fillRect(menuX + 1, menuY + 1, menuWidth - 2, 16, 0);
+            GlRaster.drawRect(menuX + 1, menuY + 18, menuWidth - 2, menuHeight + -19, 0);
         } else {
-            SoftwareRaster.fillRect(local11, local3, local9, local15, 6116423);
-            SoftwareRaster.fillRect(local11 + 1, local3 + 1, local9 - 2, 16, 0);
-            SoftwareRaster.drawRect(local11 + 1, local3 + 18, local9 - 2, local15 + -19, 0);
+            SoftwareRaster.fillRect(menuX, menuY, menuWidth, menuHeight, 6116423);
+            SoftwareRaster.fillRect(menuX + 1, menuY + 1, menuWidth - 2, 16, 0);
+            SoftwareRaster.drawRect(menuX + 1, menuY + 18, menuWidth - 2, menuHeight + -19, 0);
         }
-        Fonts.b12Full.renderLeft(LocalizedText.CHOOSE_OPTION, local11 + 3, local3 + 14, 6116423, -1);
-        @Pc(96) int local96 = Mouse.lastMouseY;
-        @Pc(98) int local98 = Mouse.lastMouseX;
-        for (@Pc(107) int local107 = 0; local107 < menuActionRow; local107++) {
-            @Pc(127) int local127 = (menuActionRow - local107 - 1) * 15 + local3 + 31;
-            @Pc(129) int local129 = 16777215; //WHITE
-            if (local11 < local98 && local98 < local11 + local9 && local127 - 13 < local96 && local96 < local127 + 3) {
-                local129 = 16776960; //YELLOW
+        Fonts.b12Full.renderLeft(LocalizedText.CHOOSE_OPTION, menuX + 3, menuY + 14, 6116423, -1);
+        @Pc(96) int mouseY = Mouse.lastMouseY;
+        @Pc(98) int mouseX = Mouse.lastMouseX;
+        for (@Pc(107) int rowIndex = 0; rowIndex < menuActionRow; rowIndex++) {
+            @Pc(127) int rowY = (menuActionRow - rowIndex - 1) * 15 + menuY + 31;
+            @Pc(129) int textColor = 16777215; //WHITE
+            if (menuX < mouseX && mouseX < menuX + menuWidth && rowY - 13 < mouseY && mouseY < rowY + 3) {
+                textColor = 16776960; //YELLOW
             }
-            Fonts.b12Full.renderLeft(getOp(local107), local11 + 3, local127, local129, 0);
+            Fonts.b12Full.renderLeft(getOp(rowIndex), menuX + 3, rowY, textColor, 0);
         }
         WidgetList.forceRedrawScreen(WidgetList.menuX, WidgetList.menuY, WidgetList.menuHeight, WidgetList.menuWidth);
     }
 
     @OriginalMember(owner = "client!dm", name = "a", descriptor = "(Lclient!be;III)V")
-    public static void method1207(@OriginalArg(0) Widget arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2) {
-        if (menuActionRow < 2 && anInt5014 == 0 && !aBoolean302) {
+    public static void drawMenuText(@OriginalArg(0) Widget widget, @OriginalArg(2) int y, @OriginalArg(3) int x) {
+        if (menuActionRow < 2 && anInt5014 == 0 && !useWithActive) {
             return;
         }
-        @Pc(24) JString local24 = method471();
-        if (arg0 == null) {
-            @Pc(40) int local40 = Fonts.b12Full.method2859(local24, arg2 + 4, arg1 - -15, Client.aRandom1, gregorianDateSeed);
-            WidgetList.redrawScreen(arg2 + 4, Fonts.b12Full.getStringWidth(local24) + local40, arg1, 15);
+        @Pc(24) JString actionText = getActionText();
+        if (widget == null) {
+            @Pc(40) int textX = Fonts.b12Full.method2859(actionText, x + 4, y - -15, Client.aRandom1, gregorianDateSeed);
+            WidgetList.redrawScreen(x + 4, Fonts.b12Full.getStringWidth(actionText) + textX, y, 15);
             return;
         }
-        @Pc(59) Font local59 = arg0.getFont(Sprites.nameIcons);
-        if (local59 == null) {
-            local59 = Fonts.b12Full;
+        @Pc(59) Font font = widget.getFont(Sprites.nameIcons);
+        if (font == null) {
+            font = Fonts.b12Full;
         }
-        local59.method2878(local24, arg2, arg1, arg0.width, arg0.height, arg0.color, arg0.shadowColor, arg0.halign, arg0.valign, Client.aRandom1, gregorianDateSeed, anIntArray132);
-        WidgetList.redrawScreen(anIntArray132[0], anIntArray132[2], anIntArray132[1], anIntArray132[3]);
+        font.method2878(actionText, x, y, widget.width, widget.height, widget.color, widget.shadowColor, widget.halign, widget.valign, Client.aRandom1, gregorianDateSeed, textBounds);
+        WidgetList.redrawScreen(textBounds[0], textBounds[2], textBounds[1], textBounds[3]);
     }
 
     @OriginalMember(owner = "runetek4.client!wk", name = "a", descriptor = "(I[Lclient!na;)[Lclient!na;")
     public static JString[] annotateOps(@OriginalArg(1) JString[] ops) {
         @Pc(8) JString[] annotatedOps = new JString[5];
         for (@Pc(15) int i = 0; i < 5; i++) {
-            annotatedOps[i] = JString.concatenate(new JString[] { JString.parseInt(i), aClass100_168});
+            annotatedOps[i] = JString.concatenate(new JString[] { JString.parseInt(i), COLON_SEPARATOR});
             if (ops != null && ops[i] != null) {
                 annotatedOps[i] = JString.concatenate(new JString[] { annotatedOps[i], ops[i] });
             }
@@ -663,37 +663,37 @@ public class MiniMenu {
     }
 
     @OriginalMember(owner = "client!aj", name = "a", descriptor = "(BILclient!be;)I")
-    public static int getOpCursor(@OriginalArg(1) int arg0, @OriginalArg(2) Widget arg1) {
-        if (!WidgetList.getServerActiveProperties(arg1).isButtonEnabled(arg0) && arg1.onOptionClick == null) {
+    public static int getOpCursor(@OriginalArg(1) int opIndex, @OriginalArg(2) Widget widget) {
+        if (!WidgetList.getServerActiveProperties(widget).isButtonEnabled(opIndex) && widget.onOptionClick == null) {
             return -1;
-        } else if (arg1.anIntArray39 == null || arg0 >= arg1.anIntArray39.length) {
+        } else if (widget.opCursors == null || opIndex >= widget.opCursors.length) {
             return -1;
         } else {
-            return arg1.anIntArray39[arg0];
+            return widget.opCursors[opIndex];
         }
     }
 
     @OriginalMember(owner = "runetek4.client!wa", name = "a", descriptor = "(IZ)Lclient!na;")
-    public static JString getOp(@OriginalArg(0) int arg0) {
-        return opBases[arg0].length() > 0 ? JString.concatenate(new JString[] { ops[arg0], LocalizedText.MINISEPARATOR, opBases[arg0] }) : ops[arg0];
+    public static JString getOp(@OriginalArg(0) int index) {
+        return opBases[index].length() > 0 ? JString.concatenate(new JString[] { ops[index], LocalizedText.MINISEPARATOR, opBases[index] }) : ops[index];
     }
 
     @OriginalMember(owner = "runetek4.client!i", name = "p", descriptor = "(II)V")
-    public static void doAction(@OriginalArg(1) int arg0) {
-        if (arg0 < 0) {
+    public static void doAction(@OriginalArg(1) int menuIndex) {
+        if (menuIndex < 0) {
             return;
         }
-        @Pc(15) int local15 = intArgs1[arg0];
-        @Pc(19) int local19 = intArgs2[arg0];
-        @Pc(23) int actionCode = actions[arg0];
+        @Pc(15) int param1 = intArgs1[menuIndex];
+        @Pc(19) int param2 = intArgs2[menuIndex];
+        @Pc(23) int actionCode = actions[menuIndex];
         if (actionCode >= 2000) {
             actionCode -= 2000;
         }
-        @Pc(31) long local31 = keys[arg0];
-        @Pc(36) int a = (int) keys[arg0];
+        @Pc(31) long key = keys[menuIndex];
+        @Pc(36) int keyInt = (int) keys[menuIndex];
         @Pc(43) Player player;
         if (actionCode == PLAYER_FOLLOW_ACTION) {
-            player = PlayerList.players[a];
+            player = PlayerList.players[keyInt];
             if (player != null) {
                 PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, player.movementQueueX[0], 1, 0, 2, player.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
                 Crosshair.CrosshairMode = 2;
@@ -701,31 +701,31 @@ public class MiniMenu {
                 Crosshair.x = Mouse.mouseClickX;
                 Crosshair.y = Mouse.mouseClickY;
                 Protocol.outboundBuffer.pIsaac1(71);
-                Protocol.outboundBuffer.p2_alt3(a);
+                Protocol.outboundBuffer.p2_alt3(keyInt);
             }
         }
         if (actionCode == LOC_ACTION_4) {
-            PathFinder.findPathToLoc(local31, local19, local15);
+            PathFinder.findPathToLoc(key, param2, param1);
             Protocol.outboundBuffer.pIsaac1(247);
-            Protocol.outboundBuffer.p2_alt1(Camera.originZ + local19);
-            Protocol.outboundBuffer.p2_alt3(local15 + Camera.originX);
-            Protocol.outboundBuffer.p2(Integer.MAX_VALUE & (int) (local31 >>> 32));
+            Protocol.outboundBuffer.p2_alt1(Camera.originZ + param2);
+            Protocol.outboundBuffer.p2_alt3(param1 + Camera.originX);
+            Protocol.outboundBuffer.p2(Integer.MAX_VALUE & (int) (key >>> 32));
         }
         if (actionCode == OBJ_OBJ_ACTION) {
             Protocol.outboundBuffer.pIsaac1(27);
             Protocol.outboundBuffer.p2(anInt4370);
-            Protocol.outboundBuffer.p4_alt1(local19);
-            Protocol.outboundBuffer.p2_alt1(local15);
+            Protocol.outboundBuffer.p4_alt1(param2);
+            Protocol.outboundBuffer.p2_alt1(param1);
             Protocol.outboundBuffer.p4_alt1(MiniMap.anInt5062);
             Protocol.outboundBuffer.p2_alt3(anInt4997);
-            Protocol.outboundBuffer.p2_alt3(a);
+            Protocol.outboundBuffer.p2_alt3(keyInt);
             anInt2043 = 0;
-            pressedInventoryWidget = WidgetList.getComponent(local19);
-            anInt5444 = local15;
+            pressedInventoryWidget = WidgetList.getComponent(param2);
+            anInt5444 = param1;
         }
         @Pc(192) Npc npc;
         if (actionCode == NPC_ACTION_4) {
-            npc = NpcList.npcs[a];
+            npc = NpcList.npcs[keyInt];
             if (npc != null) {
                 PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, npc.movementQueueX[0], 1, 0, 2, npc.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
                 Crosshair.x = Mouse.mouseClickX;
@@ -733,11 +733,11 @@ public class MiniMenu {
                 Crosshair.CrosshairCycle = 0;
                 Crosshair.y = Mouse.mouseClickY;
                 Protocol.outboundBuffer.pIsaac1(30);
-                Protocol.outboundBuffer.p2(a);
+                Protocol.outboundBuffer.p2(keyInt);
             }
         }
         if (actionCode == NPC_ACTION_1) {
-            npc = NpcList.npcs[a];
+            npc = NpcList.npcs[keyInt];
             if (npc != null) {
                 PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, npc.movementQueueX[0], 1, 0, 2, npc.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
                 Crosshair.x = Mouse.mouseClickX;
@@ -745,11 +745,11 @@ public class MiniMenu {
                 Crosshair.CrosshairMode = 2;
                 Crosshair.y = Mouse.mouseClickY;
                 Protocol.outboundBuffer.pIsaac1(78);
-                Protocol.outboundBuffer.p2_alt1(a);
+                Protocol.outboundBuffer.p2_alt1(keyInt);
             }
         }
         if (actionCode == UNKNOWN_44) {
-            player = PlayerList.players[a];
+            player = PlayerList.players[keyInt];
             if (player != null) {
                 PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, player.movementQueueX[0], 1, 0, 2, player.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
                 Crosshair.x = Mouse.mouseClickX;
@@ -757,30 +757,30 @@ public class MiniMenu {
                 Crosshair.y = Mouse.mouseClickY;
                 Crosshair.CrosshairCycle = 0;
                 Protocol.outboundBuffer.pIsaac1(133);
-                Protocol.outboundBuffer.p2_alt1(a);
+                Protocol.outboundBuffer.p2_alt1(keyInt);
             }
         }
         if (actionCode == OBJ_ACTION_5) {
             Protocol.outboundBuffer.pIsaac1(135);
-            Protocol.outboundBuffer.p2_alt2(a);
-            Protocol.outboundBuffer.p2_alt2(local15);
-            Protocol.outboundBuffer.p4_alt3(local19);
+            Protocol.outboundBuffer.p2_alt2(keyInt);
+            Protocol.outboundBuffer.p2_alt2(param1);
+            Protocol.outboundBuffer.p4_alt3(param2);
             anInt2043 = 0;
-            pressedInventoryWidget = WidgetList.getComponent(local19);
-            anInt5444 = local15;
+            pressedInventoryWidget = WidgetList.getComponent(param2);
+            anInt5444 = param1;
         }
         if (actionCode == LOC_ACTION_1) {
-            PathFinder.findPathToLoc(local31, local19, local15);
+            PathFinder.findPathToLoc(key, param2, param1);
             Protocol.outboundBuffer.pIsaac1(254);
-            Protocol.outboundBuffer.p2_alt1(local15 + Camera.originX);
-            Protocol.outboundBuffer.p2_alt2((int) (local31 >>> 32) & Integer.MAX_VALUE);
-            Protocol.outboundBuffer.p2(local19 + Camera.originZ);
+            Protocol.outboundBuffer.p2_alt1(param1 + Camera.originX);
+            Protocol.outboundBuffer.p2_alt2((int) (key >>> 32) & Integer.MAX_VALUE);
+            Protocol.outboundBuffer.p2(param2 + Camera.originZ);
         }
         if (actionCode == COMPONENT_ACTION_CLOSE) {
             WidgetList.closeModal();
         }
         if (actionCode == COMPONENT_NPC_ACTION) {
-            npc = NpcList.npcs[a];
+            npc = NpcList.npcs[keyInt];
             if (npc != null) {
                 PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, npc.movementQueueX[0], 1, 0, 2, npc.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
                 Crosshair.x = Mouse.mouseClickX;
@@ -788,19 +788,19 @@ public class MiniMenu {
                 Crosshair.CrosshairCycle = 0;
                 Crosshair.y = Mouse.mouseClickY;
                 Protocol.outboundBuffer.pIsaac1(239);
-                Protocol.outboundBuffer.p4_alt1(anInt2512);
-                Protocol.outboundBuffer.p2_alt2(anInt506);
-                Protocol.outboundBuffer.p2_alt3(a);
+                Protocol.outboundBuffer.p4_alt1(useWithWidgetId);
+                Protocol.outboundBuffer.p2_alt2(useWithSlot);
+                Protocol.outboundBuffer.p2_alt3(keyInt);
             }
         }
-        @Pc(560) boolean local560;
+        @Pc(560) boolean pathFound;
         if (actionCode == OBJSTACK_ACTION_1) {
             if (Client.game == 1) {
-                PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.movementQueueX[0]);
+                PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, param1, 1, 0, 2, param2, PlayerList.self.movementQueueX[0]);
             } else {
-                local560 = PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 0, false, 0, local15, 0, 0, 2, local19, PlayerList.self.movementQueueX[0]);
-                if (!local560) {
-                    PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.movementQueueX[0]);
+                pathFound = PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 0, false, 0, param1, 0, 0, 2, param2, PlayerList.self.movementQueueX[0]);
+                if (!pathFound) {
+                    PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, param1, 1, 0, 2, param2, PlayerList.self.movementQueueX[0]);
                 }
             }
             Crosshair.x = Mouse.mouseClickX;
@@ -808,16 +808,16 @@ public class MiniMenu {
             Crosshair.CrosshairMode = 2;
             Crosshair.y = Mouse.mouseClickY;
             Protocol.outboundBuffer.pIsaac1(66);
-            Protocol.outboundBuffer.p2_alt1(Camera.originX + local15);
-            Protocol.outboundBuffer.p2(a);
-            Protocol.outboundBuffer.p2_alt3(local19 + Camera.originZ);
+            Protocol.outboundBuffer.p2_alt1(Camera.originX + param1);
+            Protocol.outboundBuffer.p2(keyInt);
+            Protocol.outboundBuffer.p2_alt3(param2 + Camera.originZ);
         }
         if (actionCode == LOC_ACTION_5) {
-            PathFinder.findPathToLoc(local31, local19, local15);
+            PathFinder.findPathToLoc(key, param2, param1);
             Protocol.outboundBuffer.pIsaac1(170);
-            Protocol.outboundBuffer.p2_alt3(Integer.MAX_VALUE & (int) (local31 >>> 32));
-            Protocol.outboundBuffer.p2_alt3(local15 + Camera.originX);
-            Protocol.outboundBuffer.p2_alt3(local19 + Camera.originZ);
+            Protocol.outboundBuffer.p2_alt3(Integer.MAX_VALUE & (int) (key >>> 32));
+            Protocol.outboundBuffer.p2_alt3(param1 + Camera.originX);
+            Protocol.outboundBuffer.p2_alt3(param2 + Camera.originZ);
         }
         if (actionCode == OBJ_EXAMINE) {
             Crosshair.CrosshairMode = 2;
@@ -825,28 +825,28 @@ public class MiniMenu {
             Crosshair.y = Mouse.mouseClickY;
             Crosshair.CrosshairCycle = 0;
             Protocol.outboundBuffer.pIsaac1(92);
-            Protocol.outboundBuffer.p2_alt3(a);
+            Protocol.outboundBuffer.p2_alt3(keyInt);
         }
-        @Pc(693) Widget com;
+        @Pc(693) Widget widget;
         if (actionCode == OBJ_EXAMINE_IN_COMPONENT) {
-            com = WidgetList.getComponent(local19);
-            if (com == null || com.invSlotObjCount[local15] < 100000) {
+            widget = WidgetList.getComponent(param2);
+            if (widget == null || widget.invSlotObjCount[param1] < 100000) {
                 Protocol.outboundBuffer.pIsaac1(92);
-                Protocol.outboundBuffer.p2_alt3(a);
+                Protocol.outboundBuffer.p2_alt3(keyInt);
             } else {
-                Chat.addMessage(JString.EMPTY, 0, JString.concatenate(new JString[] { JString.parseInt(com.invSlotObjCount[local15]), aClass100_1039, ObjTypeList.get(a).name}));
+                Chat.addMessage(JString.EMPTY, 0, JString.concatenate(new JString[] { JString.parseInt(widget.invSlotObjCount[param1]), aClass100_1039, ObjTypeList.get(keyInt).name}));
             }
             anInt2043 = 0;
-            pressedInventoryWidget = WidgetList.getComponent(local19);
-            anInt5444 = local15;
+            pressedInventoryWidget = WidgetList.getComponent(param2);
+            anInt5444 = param1;
         }
         if (actionCode == WALK_HERE) {
-            if (a == 0) {
-                method3556(Player.plane, local15, local19);
-            } else if (a == 1) {
+            if (keyInt == 0) {
+                setWalkTarget(Player.plane, param1, param2);
+            } else if (keyInt == 1) {
                 if (LoginManager.staffModLevel > 0 && Keyboard.pressedKeys[82] && Keyboard.pressedKeys[81]) {
-                    Cheat.teleport(Camera.originX + local15, Camera.originZ + local19, Player.plane);
-                } else if (PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 0, true, 0, local15, 0, 0, 1, local19, PlayerList.self.movementQueueX[0])) {
+                    Cheat.teleport(Camera.originX + param1, Camera.originZ + param2, Player.plane);
+                } else if (PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 0, true, 0, param1, 0, 0, 1, param2, PlayerList.self.movementQueueX[0])) {
                     Protocol.outboundBuffer.p1(WidgetList.anInt5);
                     Protocol.outboundBuffer.p1(anInt2878);
                     Protocol.outboundBuffer.p2(Camera.orbitCameraYaw);
@@ -866,7 +866,7 @@ public class MiniMenu {
             Crosshair.CrosshairMode = 2;
             Crosshair.y = Mouse.mouseClickY;
             Crosshair.x = Mouse.mouseClickX;
-            npc = NpcList.npcs[a];
+            npc = NpcList.npcs[keyInt];
             if (npc != null) {
                 @Pc(884) NpcType local884 = npc.type;
                 if (local884.multinpc != null) {
@@ -880,26 +880,26 @@ public class MiniMenu {
         }
         if (actionCode == OBJ_ACTION_1) {
             Protocol.outboundBuffer.pIsaac1(156);
-            Protocol.outboundBuffer.p2_alt3(local15);
-            Protocol.outboundBuffer.p2_alt2(a);
-            Protocol.outboundBuffer.p4_alt1(local19);
+            Protocol.outboundBuffer.p2_alt3(param1);
+            Protocol.outboundBuffer.p2_alt2(keyInt);
+            Protocol.outboundBuffer.p4_alt1(param2);
             anInt2043 = 0;
-            pressedInventoryWidget = WidgetList.getComponent(local19);
-            anInt5444 = local15;
+            pressedInventoryWidget = WidgetList.getComponent(param2);
+            anInt5444 = param1;
         }
         if (actionCode == COMPONENT_OBJ_ACTION) {
             Protocol.outboundBuffer.pIsaac1(253);
-            Protocol.outboundBuffer.p4_alt1(anInt2512);
-            Protocol.outboundBuffer.p2_alt3(local15);
-            Protocol.outboundBuffer.p4_alt1(local19);
-            Protocol.outboundBuffer.p2_alt2(a);
-            Protocol.outboundBuffer.p2_alt1(anInt506);
+            Protocol.outboundBuffer.p4_alt1(useWithWidgetId);
+            Protocol.outboundBuffer.p2_alt3(param1);
+            Protocol.outboundBuffer.p4_alt1(param2);
+            Protocol.outboundBuffer.p2_alt2(keyInt);
+            Protocol.outboundBuffer.p2_alt1(useWithSlot);
             anInt2043 = 0;
-            pressedInventoryWidget = WidgetList.getComponent(local19);
-            anInt5444 = local15;
+            pressedInventoryWidget = WidgetList.getComponent(param2);
+            anInt5444 = param1;
         }
         if (actionCode == UNKNOWN_10) {
-            player = PlayerList.players[a];
+            player = PlayerList.players[keyInt];
             if (player != null) {
                 PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, player.movementQueueX[0], 1, 0, 2, player.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
                 Crosshair.CrosshairMode = 2;
@@ -907,41 +907,41 @@ public class MiniMenu {
                 Crosshair.x = Mouse.mouseClickX;
                 Crosshair.CrosshairCycle = 0;
                 Protocol.outboundBuffer.pIsaac1(4);
-                Protocol.outboundBuffer.p2_alt1(a);
+                Protocol.outboundBuffer.p2_alt1(keyInt);
             }
         }
         if (actionCode == UNKNOWN_41 && ClientScriptRunner.aClass13_10 == null) {
-            method10(local15, local19);
-            ClientScriptRunner.aClass13_10 = WidgetList.getCreatedComponent(local19, local15);
+            sendWidgetContinue(param1, param2);
+            ClientScriptRunner.aClass13_10 = WidgetList.getCreatedComponent(param2, param1);
             WidgetList.redraw(ClientScriptRunner.aClass13_10);
         }
         if (actionCode == LOC_ACTION_3) {
-            PathFinder.findPathToLoc(local31, local19, local15);
+            PathFinder.findPathToLoc(key, param2, param1);
             Protocol.outboundBuffer.pIsaac1(84);
-            Protocol.outboundBuffer.p2_alt3(Integer.MAX_VALUE & (int) (local31 >>> 32));
-            Protocol.outboundBuffer.p2_alt3(Camera.originZ + local19);
-            Protocol.outboundBuffer.p2_alt1(local15 + Camera.originX);
+            Protocol.outboundBuffer.p2_alt3(Integer.MAX_VALUE & (int) (key >>> 32));
+            Protocol.outboundBuffer.p2_alt3(Camera.originZ + param2);
+            Protocol.outboundBuffer.p2_alt1(param1 + Camera.originX);
         }
         if (actionCode == OBJ_OPERATE_ACTION) {
             Protocol.outboundBuffer.pIsaac1(206);
-            Protocol.outboundBuffer.p2_alt2(a);
-            Protocol.outboundBuffer.p2_alt1(local15);
-            Protocol.outboundBuffer.p4_alt1(local19);
+            Protocol.outboundBuffer.p2_alt2(keyInt);
+            Protocol.outboundBuffer.p2_alt1(param1);
+            Protocol.outboundBuffer.p4_alt1(param2);
             anInt2043 = 0;
-            pressedInventoryWidget = WidgetList.getComponent(local19);
-            anInt5444 = local15;
+            pressedInventoryWidget = WidgetList.getComponent(param2);
+            anInt5444 = param1;
         }
-        if (actionCode == OBJ_LOC_ACTION && PathFinder.findPathToLoc(local31, local19, local15)) {
+        if (actionCode == OBJ_LOC_ACTION && PathFinder.findPathToLoc(key, param2, param1)) {
             Protocol.outboundBuffer.pIsaac1(134);
-            Protocol.outboundBuffer.p2_alt2(Camera.originX + local15);
+            Protocol.outboundBuffer.p2_alt2(Camera.originX + param1);
             Protocol.outboundBuffer.p2(anInt4997);
-            Protocol.outboundBuffer.p2_alt1(local19 + Camera.originZ);
+            Protocol.outboundBuffer.p2_alt1(param2 + Camera.originZ);
             Protocol.outboundBuffer.p2(anInt4370);
             Protocol.outboundBuffer.p4_alt3(MiniMap.anInt5062);
-            Protocol.outboundBuffer.p2_alt2((int) (local31 >>> 32) & Integer.MAX_VALUE);
+            Protocol.outboundBuffer.p2_alt2((int) (key >>> 32) & Integer.MAX_VALUE);
         }
         if (actionCode == PLAYER_REQ_ASSIST_ACTION) {
-            player = PlayerList.players[a];
+            player = PlayerList.players[keyInt];
             if (player != null) {
                 PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, player.movementQueueX[0], 1, 0, 2, player.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
                 Crosshair.CrosshairCycle = 0;
@@ -949,28 +949,28 @@ public class MiniMenu {
                 Crosshair.y = Mouse.mouseClickY;
                 Crosshair.x = Mouse.mouseClickX;
                 Protocol.outboundBuffer.pIsaac1(114);
-                Protocol.outboundBuffer.p2_alt3(a);
+                Protocol.outboundBuffer.p2_alt3(keyInt);
             }
         }
         if (actionCode == UNKNOWN_9 || actionCode == UNKNOWN_1003) {
-            ClientProt.method4512(opBases[arg0], local15, a, local19);
+            ClientProt.method4512(opBases[menuIndex], param1, keyInt, param2);
         }
         if (actionCode == OBJ_EQUIP_ACTION) {
             Protocol.outboundBuffer.pIsaac1(55);
-            Protocol.outboundBuffer.p2_alt1(a);
-            Protocol.outboundBuffer.p2_alt2(local15);
-            Protocol.outboundBuffer.p4rme(local19);
+            Protocol.outboundBuffer.p2_alt1(keyInt);
+            Protocol.outboundBuffer.p2_alt2(param1);
+            Protocol.outboundBuffer.p4rme(param2);
             anInt2043 = 0;
-            pressedInventoryWidget = WidgetList.getComponent(local19);
-            anInt5444 = local15;
+            pressedInventoryWidget = WidgetList.getComponent(param2);
+            anInt5444 = param1;
         }
         if (actionCode == UNKNOWN_21) {
             if (Client.game == 1) {
-                PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.movementQueueX[0]);
+                PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, param1, 1, 0, 2, param2, PlayerList.self.movementQueueX[0]);
             } else {
-                local560 = PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 0, false, 0, local15, 0, 0, 2, local19, PlayerList.self.movementQueueX[0]);
-                if (!local560) {
-                    PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.movementQueueX[0]);
+                pathFound = PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 0, false, 0, param1, 0, 0, 2, param2, PlayerList.self.movementQueueX[0]);
+                if (!pathFound) {
+                    PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, param1, 1, 0, 2, param2, PlayerList.self.movementQueueX[0]);
                 }
             }
             Crosshair.CrosshairMode = 2;
@@ -978,12 +978,12 @@ public class MiniMenu {
             Crosshair.CrosshairCycle = 0;
             Crosshair.y = Mouse.mouseClickY;
             Protocol.outboundBuffer.pIsaac1(228);
-            Protocol.outboundBuffer.p2(a);
-            Protocol.outboundBuffer.p2_alt1(Camera.originX + local15);
-            Protocol.outboundBuffer.p2_alt3(Camera.originZ + local19);
+            Protocol.outboundBuffer.p2(keyInt);
+            Protocol.outboundBuffer.p2_alt1(Camera.originX + param1);
+            Protocol.outboundBuffer.p2_alt3(Camera.originZ + param2);
         }
         if (actionCode == NPC_ACTION_3) {
-            npc = NpcList.npcs[a];
+            npc = NpcList.npcs[keyInt];
             if (npc != null) {
                 PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, npc.movementQueueX[0], 1, 0, 2, npc.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
                 Crosshair.CrosshairMode = 2;
@@ -991,30 +991,30 @@ public class MiniMenu {
                 Crosshair.y = Mouse.mouseClickY;
                 Crosshair.x = Mouse.mouseClickX;
                 Protocol.outboundBuffer.pIsaac1(148);
-                Protocol.outboundBuffer.p2_alt2(a);
+                Protocol.outboundBuffer.p2_alt2(keyInt);
             }
         }
         if (actionCode == UNKNOWN_32) {
-            com = WidgetList.getCreatedComponent(local19, local15);
-            if (com != null) {
-                method1294();
-                @Pc(1493) ServerActiveProperties local1493 = WidgetList.getServerActiveProperties(com);
-                method4246(local19, local15, local1493.getTargetMask(), local1493.targetParam, com.anInt499, com.anInt484);
+            widget = WidgetList.getCreatedComponent(param2, param1);
+            if (widget != null) {
+                handleUseWith();
+                @Pc(1493) ServerActiveProperties local1493 = WidgetList.getServerActiveProperties(widget);
+                startUseWith(param2, param1, local1493.getTargetMask(), local1493.targetParam, widget.anInt499, widget.anInt484);
                 anInt5014 = 0;
-                aClass100_545 = MiniMap.getTargetVerb(com);
+                aClass100_545 = MiniMap.getTargetVerb(widget);
                 if (aClass100_545 == null) {
                     aClass100_545 = aClass100_1042;
                 }
-                if (com.if3) {
-                    aClass100_466 = JString.concatenate(new JString[] { com.optionBase, WHITE});
+                if (widget.if3) {
+                    aClass100_466 = JString.concatenate(new JString[] { widget.optionBase, WHITE});
                 } else {
-                    aClass100_466 = JString.concatenate(new JString[] {GREEN, com.optionSuffix, WHITE});
+                    aClass100_466 = JString.concatenate(new JString[] {GREEN, widget.optionSuffix, WHITE});
                 }
             }
             return;
         }
         if (actionCode == PLAYER_ACTION_TRADE) {
-            player = PlayerList.players[a];
+            player = PlayerList.players[keyInt];
             if (player != null) {
                 PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, player.movementQueueX[0], 1, 0, 2, player.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
                 Crosshair.y = Mouse.mouseClickY;
@@ -1022,20 +1022,20 @@ public class MiniMenu {
                 Crosshair.CrosshairMode = 2;
                 Crosshair.x = Mouse.mouseClickX;
                 Protocol.outboundBuffer.pIsaac1(180);
-                Protocol.outboundBuffer.p2_alt3(a);
+                Protocol.outboundBuffer.p2_alt3(keyInt);
             }
         }
         if (actionCode == OBJ_ACTION_4) {
             Protocol.outboundBuffer.pIsaac1(161);
-            Protocol.outboundBuffer.p4_alt1(local19);
-            Protocol.outboundBuffer.p2_alt3(a);
-            Protocol.outboundBuffer.p2_alt3(local15);
+            Protocol.outboundBuffer.p4_alt1(param2);
+            Protocol.outboundBuffer.p2_alt3(keyInt);
+            Protocol.outboundBuffer.p2_alt3(param1);
             anInt2043 = 0;
-            pressedInventoryWidget = WidgetList.getComponent(local19);
-            anInt5444 = local15;
+            pressedInventoryWidget = WidgetList.getComponent(param2);
+            anInt5444 = param1;
         }
         if (actionCode == COMPONENT_PLAYER_ACTION) {
-            player = PlayerList.players[a];
+            player = PlayerList.players[keyInt];
             if (player != null) {
                 PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, player.movementQueueX[0], 1, 0, 2, player.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
                 Crosshair.CrosshairCycle = 0;
@@ -1043,18 +1043,18 @@ public class MiniMenu {
                 Crosshair.x = Mouse.mouseClickX;
                 Crosshair.y = Mouse.mouseClickY;
                 Protocol.outboundBuffer.pIsaac1(195);
-                Protocol.outboundBuffer.p2_alt2(anInt506);
-                Protocol.outboundBuffer.p4_alt1(anInt2512);
-                Protocol.outboundBuffer.p2_alt3(a);
+                Protocol.outboundBuffer.p2_alt2(useWithSlot);
+                Protocol.outboundBuffer.p4_alt1(useWithWidgetId);
+                Protocol.outboundBuffer.p2_alt3(keyInt);
             }
         }
         if (actionCode == PLAYER_ACTION_BLOCK) {
             if (Client.game == 1) {
-                PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.movementQueueX[0]);
+                PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, param1, 1, 0, 2, param2, PlayerList.self.movementQueueX[0]);
             } else {
-                local560 = PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 0, false, 0, local15, 0, 0, 2, local19, PlayerList.self.movementQueueX[0]);
-                if (!local560) {
-                    PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.movementQueueX[0]);
+                pathFound = PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 0, false, 0, param1, 0, 0, 2, param2, PlayerList.self.movementQueueX[0]);
+                if (!pathFound) {
+                    PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, param1, 1, 0, 2, param2, PlayerList.self.movementQueueX[0]);
                 }
             }
             Crosshair.x = Mouse.mouseClickX;
@@ -1062,21 +1062,21 @@ public class MiniMenu {
             Crosshair.y = Mouse.mouseClickY;
             Crosshair.CrosshairCycle = 0;
             Protocol.outboundBuffer.pIsaac1(109);
-            Protocol.outboundBuffer.p2_alt1(local19 + Camera.originZ);
-            Protocol.outboundBuffer.p2(local15 + Camera.originX);
-            Protocol.outboundBuffer.p2_alt3(a);
+            Protocol.outboundBuffer.p2_alt1(param2 + Camera.originZ);
+            Protocol.outboundBuffer.p2(param1 + Camera.originX);
+            Protocol.outboundBuffer.p2_alt3(keyInt);
         }
         if (actionCode == OBJ_IN_COMPONENT_ACTION_1) {
             Protocol.outboundBuffer.pIsaac1(81);
-            Protocol.outboundBuffer.p2_alt2(local15);
-            Protocol.outboundBuffer.p2(a);
-            Protocol.outboundBuffer.p4rme(local19);
+            Protocol.outboundBuffer.p2_alt2(param1);
+            Protocol.outboundBuffer.p2(keyInt);
+            Protocol.outboundBuffer.p4rme(param2);
             anInt2043 = 0;
-            pressedInventoryWidget = WidgetList.getComponent(local19);
-            anInt5444 = local15;
+            pressedInventoryWidget = WidgetList.getComponent(param2);
+            anInt5444 = param1;
         }
         if (actionCode == NPC_ACTION_5) {
-            npc = NpcList.npcs[a];
+            npc = NpcList.npcs[keyInt];
             if (npc != null) {
                 PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, npc.movementQueueX[0], 1, 0, 2, npc.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
                 Crosshair.y = Mouse.mouseClickY;
@@ -1084,24 +1084,24 @@ public class MiniMenu {
                 Crosshair.x = Mouse.mouseClickX;
                 Crosshair.CrosshairCycle = 0;
                 Protocol.outboundBuffer.pIsaac1(218);
-                Protocol.outboundBuffer.p2_alt1(a);
+                Protocol.outboundBuffer.p2_alt1(keyInt);
             }
         }
         @Pc(1955) int varp;
         if (actionCode == LOGOUT_ACTION) {
             Protocol.outboundBuffer.pIsaac1(10);
-            Protocol.outboundBuffer.p4(local19);
-            com = WidgetList.getComponent(local19);
-            if (com.scripts != null && com.scripts[0][0] == 5) {
-                varp = com.scripts[0][1];
-                if (VarpDomain.activeVarps[varp] != com.scriptOperand[0]) {
-                    VarpDomain.activeVarps[varp] = com.scriptOperand[0];
+            Protocol.outboundBuffer.p4(param2);
+            widget = WidgetList.getComponent(param2);
+            if (widget.scripts != null && widget.scripts[0][0] == 5) {
+                varp = widget.scripts[0][1];
+                if (VarpDomain.activeVarps[varp] != widget.scriptOperand[0]) {
+                    VarpDomain.activeVarps[varp] = widget.scriptOperand[0];
                     VarpDomain.refreshMagicVarp(varp);
                 }
             }
         }
         if (actionCode == OBJ_NPC_ACTION) {
-            npc = NpcList.npcs[a];
+            npc = NpcList.npcs[keyInt];
             if (npc != null) {
                 PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, npc.movementQueueX[0], 1, 0, 2, npc.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
                 Crosshair.CrosshairMode = 2;
@@ -1111,35 +1111,35 @@ public class MiniMenu {
                 Protocol.outboundBuffer.pIsaac1(115);
                 Protocol.outboundBuffer.p4_alt3(MiniMap.anInt5062);
                 Protocol.outboundBuffer.p2_alt1(anInt4370);
-                Protocol.outboundBuffer.p2_alt1(a);
+                Protocol.outboundBuffer.p2_alt1(keyInt);
                 Protocol.outboundBuffer.p2_alt3(anInt4997);
             }
         }
         if (actionCode == LOGOUT_ACTION_2) {
             Protocol.outboundBuffer.pIsaac1(10);
-            Protocol.outboundBuffer.p4(local19);
-            com = WidgetList.getComponent(local19);
-            if (com.scripts != null && com.scripts[0][0] == 5) {
-                varp = com.scripts[0][1];
+            Protocol.outboundBuffer.p4(param2);
+            widget = WidgetList.getComponent(param2);
+            if (widget.scripts != null && widget.scripts[0][0] == 5) {
+                varp = widget.scripts[0][1];
                 VarpDomain.activeVarps[varp] = 1 - VarpDomain.activeVarps[varp];
                 VarpDomain.refreshMagicVarp(varp);
             }
         }
         if (actionCode == OBJ_OBJSTACK_ACTION) {
-            local560 = PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 0, false, 0, local15, 0, 0, 2, local19, PlayerList.self.movementQueueX[0]);
-            if (!local560) {
-                PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.movementQueueX[0]);
+            pathFound = PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 0, false, 0, param1, 0, 0, 2, param2, PlayerList.self.movementQueueX[0]);
+            if (!pathFound) {
+                PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, param1, 1, 0, 2, param2, PlayerList.self.movementQueueX[0]);
             }
             Crosshair.x = Mouse.mouseClickX;
             Crosshair.CrosshairCycle = 0;
             Crosshair.y = Mouse.mouseClickY;
             Crosshair.CrosshairMode = 2;
             Protocol.outboundBuffer.pIsaac1(101);
-            Protocol.outboundBuffer.p2_alt3(local15 + Camera.originX);
+            Protocol.outboundBuffer.p2_alt3(param1 + Camera.originX);
             Protocol.outboundBuffer.p2_alt1(anInt4370);
             Protocol.outboundBuffer.p2_alt1(anInt4997);
-            Protocol.outboundBuffer.p2_alt1(a);
-            Protocol.outboundBuffer.p2_alt3(Camera.originZ + local19);
+            Protocol.outboundBuffer.p2_alt1(keyInt);
+            Protocol.outboundBuffer.p2_alt3(Camera.originZ + param2);
             Protocol.outboundBuffer.p4_alt3(MiniMap.anInt5062);
         }
         if (actionCode == LOC_ACTION_EXAMINE) {
@@ -1148,33 +1148,33 @@ public class MiniMenu {
             Crosshair.CrosshairMode = 2;
             Crosshair.y = Mouse.mouseClickY;
             Protocol.outboundBuffer.pIsaac1(94);
-            Protocol.outboundBuffer.p2_alt3(a);
+            Protocol.outboundBuffer.p2_alt3(keyInt);
         }
         if (actionCode == UNKNOWN_11) {
-            if (a == 0) {
+            if (keyInt == 0) {
                 anInt3096 = 1;
-                method3556(Player.plane, local15, local19);
-            } else if (a == 1) {
+                setWalkTarget(Player.plane, param1, param2);
+            } else if (keyInt == 1) {
                 Protocol.outboundBuffer.pIsaac1(131);
-                Protocol.outboundBuffer.p4_alt3(anInt2512);
-                Protocol.outboundBuffer.p2_alt2(Camera.originX + local15);
-                Protocol.outboundBuffer.p2_alt3(anInt506);
-                Protocol.outboundBuffer.p2_alt2(local19 + Camera.originZ);
+                Protocol.outboundBuffer.p4_alt3(useWithWidgetId);
+                Protocol.outboundBuffer.p2_alt2(Camera.originX + param1);
+                Protocol.outboundBuffer.p2_alt3(useWithSlot);
+                Protocol.outboundBuffer.p2_alt2(param2 + Camera.originZ);
             }
         }
         if (actionCode == UNKNOWN_8) {
-            com = WidgetList.getComponent(local19);
-            @Pc(2287) boolean local2287 = true;
-            if (com.contentType > 0) {
-                local2287 = method4265(com);
+            widget = WidgetList.getComponent(param2);
+            @Pc(2287) boolean shouldProcess = true;
+            if (widget.contentType > 0) {
+                shouldProcess = shouldTriggerIdleTimeout(widget);
             }
-            if (local2287) {
+            if (shouldProcess) {
                 Protocol.outboundBuffer.pIsaac1(10);
-                Protocol.outboundBuffer.p4(local19);
+                Protocol.outboundBuffer.p4(param2);
             }
         }
         if (actionCode == OBJ_PLAYER_ACTION) {
-            player = PlayerList.players[a];
+            player = PlayerList.players[keyInt];
             if (player != null) {
                 PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, player.movementQueueX[0], 1, 0, 2, player.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
                 Crosshair.CrosshairCycle = 0;
@@ -1182,7 +1182,7 @@ public class MiniMenu {
                 Crosshair.CrosshairMode = 2;
                 Crosshair.x = Mouse.mouseClickX;
                 Protocol.outboundBuffer.pIsaac1(248);
-                Protocol.outboundBuffer.p2_alt3(a);
+                Protocol.outboundBuffer.p2_alt3(keyInt);
                 Protocol.outboundBuffer.p2(anInt4997);
                 Protocol.outboundBuffer.p2(anInt4370);
                 Protocol.outboundBuffer.p4_alt3(MiniMap.anInt5062);
@@ -1190,20 +1190,20 @@ public class MiniMenu {
         }
         if (actionCode == UNKNOWN_7) {
             Protocol.outboundBuffer.pIsaac1(85);
-            Protocol.outboundBuffer.p4rme(local19);
-            Protocol.outboundBuffer.p2(local15);
-            Protocol.outboundBuffer.p2_alt2(a);
+            Protocol.outboundBuffer.p4rme(param2);
+            Protocol.outboundBuffer.p2(param1);
+            Protocol.outboundBuffer.p2_alt2(keyInt);
             anInt2043 = 0;
-            pressedInventoryWidget = WidgetList.getComponent(local19);
-            anInt5444 = local15;
+            pressedInventoryWidget = WidgetList.getComponent(param2);
+            anInt5444 = param1;
         }
         if (actionCode == UNKNOWN_24) {
             if (Client.game == 1) {
-                PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.movementQueueX[0]);
+                PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, param1, 1, 0, 2, param2, PlayerList.self.movementQueueX[0]);
             } else {
-                local560 = PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 0, false, 0, local15, 0, 0, 2, local19, PlayerList.self.movementQueueX[0]);
-                if (!local560) {
-                    PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.movementQueueX[0]);
+                pathFound = PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 0, false, 0, param1, 0, 0, 2, param2, PlayerList.self.movementQueueX[0]);
+                if (!pathFound) {
+                    PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, param1, 1, 0, 2, param2, PlayerList.self.movementQueueX[0]);
                 }
             }
             Crosshair.CrosshairMode = 2;
@@ -1211,29 +1211,29 @@ public class MiniMenu {
             Crosshair.x = Mouse.mouseClickX;
             Crosshair.CrosshairCycle = 0;
             Protocol.outboundBuffer.pIsaac1(48);
-            Protocol.outboundBuffer.p2_alt2(local15 + Camera.originX);
-            Protocol.outboundBuffer.p2_alt3(a);
-            Protocol.outboundBuffer.p2_alt1(Camera.originZ + local19);
+            Protocol.outboundBuffer.p2_alt2(param1 + Camera.originX);
+            Protocol.outboundBuffer.p2_alt3(keyInt);
+            Protocol.outboundBuffer.p2_alt1(Camera.originZ + param2);
         }
-        if (actionCode == COMPONENT_LOC_ACTION && PathFinder.findPathToLoc(local31, local19, local15)) {
+        if (actionCode == COMPONENT_LOC_ACTION && PathFinder.findPathToLoc(key, param2, param1)) {
             Protocol.outboundBuffer.pIsaac1(233);
-            Protocol.outboundBuffer.p2_alt3(local19 + Camera.originZ);
-            Protocol.outboundBuffer.p2_alt2(Camera.originX + local15);
-            Protocol.outboundBuffer.p2_alt3(anInt506);
-            Protocol.outboundBuffer.p4rme(anInt2512);
-            Protocol.outboundBuffer.p2_alt2((int) (local31 >>> 32) & Integer.MAX_VALUE);
+            Protocol.outboundBuffer.p2_alt3(param2 + Camera.originZ);
+            Protocol.outboundBuffer.p2_alt2(Camera.originX + param1);
+            Protocol.outboundBuffer.p2_alt3(useWithSlot);
+            Protocol.outboundBuffer.p4rme(useWithWidgetId);
+            Protocol.outboundBuffer.p2_alt2((int) (key >>> 32) & Integer.MAX_VALUE);
         }
         if (actionCode == UNKNOWN_13) {
             Protocol.outboundBuffer.pIsaac1(6);
-            Protocol.outboundBuffer.p4(local19);
-            Protocol.outboundBuffer.p2_alt2(local15);
-            Protocol.outboundBuffer.p2_alt1(a);
+            Protocol.outboundBuffer.p4(param2);
+            Protocol.outboundBuffer.p2_alt2(param1);
+            Protocol.outboundBuffer.p2_alt1(keyInt);
             anInt2043 = 0;
-            pressedInventoryWidget = WidgetList.getComponent(local19);
-            anInt5444 = local15;
+            pressedInventoryWidget = WidgetList.getComponent(param2);
+            anInt5444 = param1;
         }
         if (actionCode == PLAYER_ACTION_5) {
-            player = PlayerList.players[a];
+            player = PlayerList.players[keyInt];
             if (player != null) {
                 PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, player.movementQueueX[0], 1, 0, 2, player.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
                 Crosshair.CrosshairMode = 2;
@@ -1241,41 +1241,41 @@ public class MiniMenu {
                 Crosshair.x = Mouse.mouseClickX;
                 Crosshair.CrosshairCycle = 0;
                 Protocol.outboundBuffer.pIsaac1(175);
-                Protocol.outboundBuffer.p2_alt2(a);
+                Protocol.outboundBuffer.p2_alt2(keyInt);
             }
         }
         if (actionCode == UNKNOWN_22) {
-            method1294();
-            com = WidgetList.getComponent(local19);
-            MiniMap.anInt5062 = local19;
-            anInt4370 = local15;
+            handleUseWith();
+            widget = WidgetList.getComponent(param2);
+            MiniMap.anInt5062 = param2;
+            anInt4370 = param1;
             anInt5014 = 1;
-            anInt4997 = a;
-            WidgetList.redraw(com);
-            aClass100_203 = JString.concatenate(new JString[] {aClass100_32, ObjTypeList.get(a).name, WHITE});
+            anInt4997 = keyInt;
+            WidgetList.redraw(widget);
+            aClass100_203 = JString.concatenate(new JString[] {aClass100_32, ObjTypeList.get(keyInt).name, WHITE});
             if (aClass100_203 == null) {
                 aClass100_203 = NULL;
             }
             return;
         }
         if (actionCode == LOC_ACTION_2) {
-            PathFinder.findPathToLoc(local31, local19, local15);
+            PathFinder.findPathToLoc(key, param2, param1);
             Protocol.outboundBuffer.pIsaac1(194);
-            Protocol.outboundBuffer.p2_alt3(local19 + Camera.originZ);
-            Protocol.outboundBuffer.p2_alt1(Camera.originX + local15);
-            Protocol.outboundBuffer.p2((int) (local31 >>> 32) & Integer.MAX_VALUE);
+            Protocol.outboundBuffer.p2_alt3(param2 + Camera.originZ);
+            Protocol.outboundBuffer.p2_alt1(Camera.originX + param1);
+            Protocol.outboundBuffer.p2((int) (key >>> 32) & Integer.MAX_VALUE);
         }
         if (actionCode == UNKNOWN_48) {
             Protocol.outboundBuffer.pIsaac1(154);
-            Protocol.outboundBuffer.p2_alt1(local15);
-            Protocol.outboundBuffer.p4rme(local19);
-            Protocol.outboundBuffer.p2_alt3(a);
+            Protocol.outboundBuffer.p2_alt1(param1);
+            Protocol.outboundBuffer.p4rme(param2);
+            Protocol.outboundBuffer.p2_alt3(keyInt);
             anInt2043 = 0;
-            pressedInventoryWidget = WidgetList.getComponent(local19);
-            anInt5444 = local15;
+            pressedInventoryWidget = WidgetList.getComponent(param2);
+            anInt5444 = param1;
         }
         if (actionCode == PLAYER_ACTION_1) {
-            player = PlayerList.players[a];
+            player = PlayerList.players[keyInt];
             if (player != null) {
                 PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, player.movementQueueX[0], 1, 0, 2, player.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
                 Crosshair.CrosshairCycle = 0;
@@ -1283,55 +1283,55 @@ public class MiniMenu {
                 Crosshair.y = Mouse.mouseClickY;
                 Crosshair.CrosshairMode = 2;
                 Protocol.outboundBuffer.pIsaac1(68);
-                Protocol.outboundBuffer.p2_alt3(a);
+                Protocol.outboundBuffer.p2_alt3(keyInt);
             }
         }
         if (actionCode == OBJ_IN_COMPONENT_ACTION_4) {
             Protocol.outboundBuffer.pIsaac1(153);
-            Protocol.outboundBuffer.p4_alt1(local19);
-            Protocol.outboundBuffer.p2_alt1(local15);
-            Protocol.outboundBuffer.p2_alt1(a);
+            Protocol.outboundBuffer.p4_alt1(param2);
+            Protocol.outboundBuffer.p2_alt1(param1);
+            Protocol.outboundBuffer.p2_alt1(keyInt);
             anInt2043 = 0;
-            pressedInventoryWidget = WidgetList.getComponent(local19);
-            anInt5444 = local15;
+            pressedInventoryWidget = WidgetList.getComponent(param2);
+            anInt5444 = param1;
         }
         if (actionCode == COMPONENT_OBJSTACK_ACTION) {
-            local560 = PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 0, false, 0, local15, 0, 0, 2, local19, PlayerList.self.movementQueueX[0]);
-            if (!local560) {
-                PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.movementQueueX[0]);
+            pathFound = PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 0, false, 0, param1, 0, 0, 2, param2, PlayerList.self.movementQueueX[0]);
+            if (!pathFound) {
+                PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, param1, 1, 0, 2, param2, PlayerList.self.movementQueueX[0]);
             }
             Crosshair.y = Mouse.mouseClickY;
             Crosshair.x = Mouse.mouseClickX;
             Crosshair.CrosshairMode = 2;
             Crosshair.CrosshairCycle = 0;
             Protocol.outboundBuffer.pIsaac1(73);
-            Protocol.outboundBuffer.p4rme(anInt2512);
-            Protocol.outboundBuffer.p2(Camera.originZ + local19);
-            Protocol.outboundBuffer.p2_alt3(a);
-            Protocol.outboundBuffer.p2_alt3(local15 + Camera.originX);
-            Protocol.outboundBuffer.p2_alt1(anInt506);
+            Protocol.outboundBuffer.p4rme(useWithWidgetId);
+            Protocol.outboundBuffer.p2(Camera.originZ + param2);
+            Protocol.outboundBuffer.p2_alt3(keyInt);
+            Protocol.outboundBuffer.p2_alt3(param1 + Camera.originX);
+            Protocol.outboundBuffer.p2_alt1(useWithSlot);
         }
         if (actionCode == UNKNOWN_12) {
             Protocol.outboundBuffer.pIsaac1(82);
-            Protocol.outboundBuffer.p2(anInt506);
-            Protocol.outboundBuffer.p4rme(local19);
-            Protocol.outboundBuffer.p4(anInt2512);
-            Protocol.outboundBuffer.p2_alt3(local15);
+            Protocol.outboundBuffer.p2(useWithSlot);
+            Protocol.outboundBuffer.p4rme(param2);
+            Protocol.outboundBuffer.p4(useWithWidgetId);
+            Protocol.outboundBuffer.p2_alt3(param1);
         }
         if (actionCode == UNKNOWN_36) {
-            if (a == 0) {
+            if (keyInt == 0) {
                 Protocol.anInt4422 = 1;
-                method3556(Player.plane, local15, local19);
+                setWalkTarget(Player.plane, param1, param2);
             } else if (LoginManager.staffModLevel > 0 && Keyboard.pressedKeys[82] && Keyboard.pressedKeys[81]) {
-                Cheat.teleport(local15 + Camera.originX, Camera.originZ - -local19, Player.plane);
+                Cheat.teleport(param1 + Camera.originX, Camera.originZ - -param2, Player.plane);
             } else {
                 Protocol.outboundBuffer.pIsaac1(179);
-                Protocol.outboundBuffer.p2(local19 + Camera.originZ);
-                Protocol.outboundBuffer.p2(local15 + Camera.originX);
+                Protocol.outboundBuffer.p2(param2 + Camera.originZ);
+                Protocol.outboundBuffer.p2(param1 + Camera.originX);
             }
         }
         if (actionCode == UNKNOWN_6) {
-            player = PlayerList.players[a];
+            player = PlayerList.players[keyInt];
             if (player != null) {
                 PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, player.movementQueueX[0], 1, 0, 2, player.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
                 Crosshair.y = Mouse.mouseClickY;
@@ -1339,16 +1339,16 @@ public class MiniMenu {
                 Crosshair.CrosshairMode = 2;
                 Crosshair.x = Mouse.mouseClickX;
                 Protocol.outboundBuffer.pIsaac1(106);
-                Protocol.outboundBuffer.p2(a);
+                Protocol.outboundBuffer.p2(keyInt);
             }
         }
         if (actionCode == OBJSTACK_ACTION_2) {
             if (Client.game == 1) {
-                PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.movementQueueX[0]);
+                PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, param1, 1, 0, 2, param2, PlayerList.self.movementQueueX[0]);
             } else {
-                local560 = PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 0, false, 0, local15, 0, 0, 2, local19, PlayerList.self.movementQueueX[0]);
-                if (!local560) {
-                    PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.movementQueueX[0]);
+                pathFound = PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 0, false, 0, param1, 0, 0, 2, param2, PlayerList.self.movementQueueX[0]);
+                if (!pathFound) {
+                    PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, param1, 1, 0, 2, param2, PlayerList.self.movementQueueX[0]);
                 }
             }
             Crosshair.y = Mouse.mouseClickY;
@@ -1356,12 +1356,12 @@ public class MiniMenu {
             Crosshair.x = Mouse.mouseClickX;
             Crosshair.CrosshairMode = 2;
             Protocol.outboundBuffer.pIsaac1(33);
-            Protocol.outboundBuffer.p2(a);
-            Protocol.outboundBuffer.p2(Camera.originX + local15);
-            Protocol.outboundBuffer.p2_alt1(Camera.originZ + local19);
+            Protocol.outboundBuffer.p2(keyInt);
+            Protocol.outboundBuffer.p2(Camera.originX + param1);
+            Protocol.outboundBuffer.p2_alt1(Camera.originZ + param2);
         }
         if (actionCode == NPC_ACTION_2) {
-            npc = NpcList.npcs[a];
+            npc = NpcList.npcs[keyInt];
             if (npc != null) {
                 PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, npc.movementQueueX[0], 1, 0, 2, npc.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
                 Crosshair.x = Mouse.mouseClickX;
@@ -1369,15 +1369,15 @@ public class MiniMenu {
                 Crosshair.y = Mouse.mouseClickY;
                 Crosshair.CrosshairMode = 2;
                 Protocol.outboundBuffer.pIsaac1(3);
-                Protocol.outboundBuffer.p2_alt3(a);
+                Protocol.outboundBuffer.p2_alt3(keyInt);
             }
         }
         if (anInt5014 != 0) {
             anInt5014 = 0;
             WidgetList.redraw(WidgetList.getComponent(MiniMap.anInt5062));
         }
-        if (aBoolean302) {
-            method1294();
+        if (useWithActive) {
+            handleUseWith();
         }
         if (pressedInventoryWidget != null && anInt2043 == 0) {
             WidgetList.redraw(pressedInventoryWidget);
@@ -1407,194 +1407,194 @@ public class MiniMenu {
     }
 
     @OriginalMember(owner = "runetek4.client!ob", name = "a", descriptor = "(IIIIIIB)V")
-    public static void addEntries(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5) {
-        @Pc(15) int local15;
-        @Pc(47) int local47;
+    public static void populateMenuEntries(@OriginalArg(0) int startY, @OriginalArg(1) int width, @OriginalArg(2) int height, @OriginalArg(3) int startX, @OriginalArg(4) int endY, @OriginalArg(5) int endX) {
+        @Pc(15) int screenMaxY;
+        @Pc(47) int worldY;
         if (anInt5014 == 0) {
-            @Pc(13) int local13 = Rasterizer.screenUpperY;
-            local15 = Rasterizer.screenLowerY;
-            @Pc(17) int local17 = Rasterizer.screenUpperX;
-            @Pc(19) int local19 = Rasterizer.screenLowerX;
-            @Pc(33) int local33 = (arg5 - arg3) * (local17 - local19) / arg1 + local19;
-            local47 = local15 + (local13 - local15) * (arg4 - arg0) / arg2;
-            if (aBoolean302 && (anInt4999 & 0x40) != 0) {
-                @Pc(61) Widget local61 = WidgetList.getCreatedComponent(anInt2512, anInt506);
-                if (local61 == null) {
-                    method1294();
+            @Pc(13) int screenMinY = Rasterizer.screenUpperY;
+            screenMaxY = Rasterizer.screenLowerY;
+            @Pc(17) int screenMinX = Rasterizer.screenUpperX;
+            @Pc(19) int screenMaxX = Rasterizer.screenLowerX;
+            @Pc(33) int worldX = (endX - startX) * (screenMinX - screenMaxX) / width + screenMaxX;
+            worldY = screenMaxY + (screenMinY - screenMaxY) * (endY - startY) / height;
+            if (useWithActive && (useWithMask & 0x40) != 0) {
+                @Pc(61) Widget widget = WidgetList.getCreatedComponent(useWithWidgetId, useWithSlot);
+                if (widget == null) {
+                    handleUseWith();
                 } else {
-                    addActionRow(anInt5393, 0L, aClass100_961, local33, (short) 11, aClass100_545, local47);
+                    addActionRow(useWithCursor, 0L, aClass100_961, worldX, (short) 11, aClass100_545, worldY);
                 }
             } else {
                 if (Client.game == 1) {
-                    addActionRow(-1, 0L, JString.EMPTY, local33, (short) 36, LocalizedText.FACEHERE, local47);
+                    addActionRow(-1, 0L, JString.EMPTY, worldX, (short) 36, LocalizedText.FACEHERE, worldY);
                 }
-                addActionRow(-1, 0L, JString.EMPTY, local33, (short) 60, walkText, local47);
+                addActionRow(-1, 0L, JString.EMPTY, worldX, (short) 60, walkText, worldY);
             }
         }
-        @Pc(112) long local112 = -1L;
-        for (local15 = 0; local15 < anInt7; local15++) {
-            @Pc(121) long local121 = Model.aLongArray11[local15];
-            local47 = (int) local121 & 0x7F;
-            @Pc(133) int local133 = (int) local121 >> 29 & 0x3;
-            @Pc(140) int local140 = (int) (local121 >>> 32) & Integer.MAX_VALUE;
-            @Pc(147) int local147 = (int) local121 >> 7 & 0x7F;
-            if (local121 != local112) {
-                local112 = local121;
-                @Pc(240) int local240;
-                if (local133 == 2 && SceneGraph.isLocValid(Player.plane, local47, local147, local121)) {
-                    @Pc(172) LocType local172 = LocTypeList.get(local140);
-                    if (local172.multiloc != null) {
-                        local172 = local172.getMultiLoc();
+        @Pc(112) long lastKey = -1L;
+        for (screenMaxY = 0; screenMaxY < pickedEntityCount; screenMaxY++) {
+            @Pc(121) long key = Model.aLongArray11[screenMaxY];
+            worldY = (int) key & 0x7F;
+            @Pc(133) int entityType = (int) key >> 29 & 0x3;
+            @Pc(140) int entityId = (int) (key >>> 32) & Integer.MAX_VALUE;
+            @Pc(147) int localZ = (int) key >> 7 & 0x7F;
+            if (key != lastKey) {
+                lastKey = key;
+                @Pc(240) int opIndex;
+                if (entityType == 2 && SceneGraph.isLocValid(Player.plane, worldY, localZ, key)) {
+                    @Pc(172) LocType locType = LocTypeList.get(entityId);
+                    if (locType.multiloc != null) {
+                        locType = locType.getMultiLoc();
                     }
-                    if (local172 == null) {
+                    if (locType == null) {
                         continue;
                     }
                     if (anInt5014 == 1) {
-                        addActionRow(MiniMap.anInt4075, local121, JString.concatenate(new JString[] {aClass100_203, aClass100_164, local172.name}), local47, (short) 14, LocalizedText.USE, local147);
-                    } else if (aBoolean302) {
-                        @Pc(363) ParamType local363 = anInt3039 == -1 ? null : ParamTypeList.get(anInt3039);
-                        if ((anInt4999 & 0x4) != 0 && (local363 == null || local172.getParam(local363.defaultInt, anInt3039) != local363.defaultInt)) {
-                            addActionRow(anInt5393, local121, JString.concatenate(new JString[] {aClass100_466, aClass100_164, local172.name}), local47, (short) 38, aClass100_545, local147);
+                        addActionRow(MiniMap.anInt4075, key, JString.concatenate(new JString[] {aClass100_203, aClass100_164, locType.name}), worldY, (short) 14, LocalizedText.USE, localZ);
+                    } else if (useWithActive) {
+                        @Pc(363) ParamType paramType = useWithParam == -1 ? null : ParamTypeList.get(useWithParam);
+                        if ((useWithMask & 0x4) != 0 && (paramType == null || locType.getParam(paramType.defaultInt, useWithParam) != paramType.defaultInt)) {
+                            addActionRow(useWithCursor, key, JString.concatenate(new JString[] {aClass100_466, aClass100_164, locType.name}), worldY, (short) 38, aClass100_545, localZ);
                         }
                     } else {
-                        @Pc(228) JString[] local228 = local172.op;
+                        @Pc(228) JString[] locOps = locType.op;
                         if (aBoolean237) {
-                            local228 = annotateOps(local228);
+                            locOps = annotateOps(locOps);
                         }
-                        if (local228 != null) {
-                            for (local240 = 4; local240 >= 0; local240--) {
-                                if (local228[local240] != null) {
-                                    @Pc(254) short local254 = 0;
-                                    if (local240 == 0) {
-                                        local254 = 42;
+                        if (locOps != null) {
+                            for (opIndex = 4; opIndex >= 0; opIndex--) {
+                                if (locOps[opIndex] != null) {
+                                    @Pc(254) short actionId = 0;
+                                    if (opIndex == 0) {
+                                        actionId = 42;
                                     }
-                                    if (local240 == 1) {
-                                        local254 = 50;
+                                    if (opIndex == 1) {
+                                        actionId = 50;
                                     }
-                                    @Pc(268) int local268 = -1;
-                                    if (local240 == 2) {
-                                        local254 = 49;
+                                    @Pc(268) int cursor = -1;
+                                    if (opIndex == 2) {
+                                        actionId = 49;
                                     }
-                                    if (local172.cursor1op == local240) {
-                                        local268 = local172.cursor1;
+                                    if (locType.cursor1op == opIndex) {
+                                        cursor = locType.cursor1;
                                     }
-                                    if (local240 == 3) {
-                                        local254 = 46;
+                                    if (opIndex == 3) {
+                                        actionId = 46;
                                     }
-                                    if (local240 == local172.cursor2op) {
-                                        local268 = local172.cursor2;
+                                    if (opIndex == locType.cursor2op) {
+                                        cursor = locType.cursor2;
                                     }
-                                    if (local240 == 4) {
-                                        local254 = 1001;
+                                    if (opIndex == 4) {
+                                        actionId = 1001;
                                     }
-                                    addActionRow(local268, local121, JString.concatenate(new JString[] {aClass100_1008, local172.name}), local47, local254, local228[local240], local147);
+                                    addActionRow(cursor, key, JString.concatenate(new JString[] {aClass100_1008, locType.name}), worldY, actionId, locOps[opIndex], localZ);
                                 }
                             }
                         }
-                        addActionRow(MiniMap.anInt5073, (long) local172.id, JString.concatenate(new JString[] {aClass100_1008, local172.name}), local47, (short) 1004, LocalizedText.EXAMINE, local147);
+                        addActionRow(MiniMap.anInt5073, (long) locType.id, JString.concatenate(new JString[] {aClass100_1008, locType.name}), worldY, (short) 1004, LocalizedText.EXAMINE, localZ);
                     }
                 }
-                @Pc(514) int local514;
-                @Pc(526) int local526;
-                @Pc(479) int local479;
-                @Pc(493) int local493;
-                @Pc(502) Npc local502;
-                @Pc(597) Player local597;
-                if (local133 == 1) {
-                    @Pc(421) Npc local421 = NpcList.npcs[local140];
-                    if ((local421.type.size & 0x1) == 0 && (local421.xFine & 0x7F) == 0 && (local421.zFine & 0x7F) == 0 || (local421.type.size & 0x1) == 1 && (local421.xFine & 0x7F) == 64 && (local421.zFine & 0x7F) == 64) {
-                        local479 = local421.xFine + 64 - local421.type.size * 64;
-                        local240 = local421.zFine - (local421.type.size - 1) * 64;
-                        for (local493 = 0; local493 < NpcList.npcCount; local493++) {
-                            local502 = NpcList.npcs[NpcList.npcIds[local493]];
-                            local514 = local502.xFine + 64 - local502.type.size * 64;
-                            local526 = local502.zFine + 64 - local502.type.size * 64;
-                            if (local502 != null && local421 != local502 && local514 >= local479 && local421.type.size - (local514 - local479 >> 7) >= local502.type.size && local240 <= local526 && local502.type.size <= local421.type.size - (local526 - local240 >> 7)) {
-                                addNpcEntries(local502.type, local47, NpcList.npcIds[local493], local147);
+                @Pc(514) int otherEntityX;
+                @Pc(526) int otherEntityZ;
+                @Pc(479) int entityBoundsX;
+                @Pc(493) int i;
+                @Pc(502) Npc otherNpc;
+                @Pc(597) Player otherPlayer;
+                if (entityType == 1) {
+                    @Pc(421) Npc npc = NpcList.npcs[entityId];
+                    if ((npc.type.size & 0x1) == 0 && (npc.xFine & 0x7F) == 0 && (npc.zFine & 0x7F) == 0 || (npc.type.size & 0x1) == 1 && (npc.xFine & 0x7F) == 64 && (npc.zFine & 0x7F) == 64) {
+                        entityBoundsX = npc.xFine + 64 - npc.type.size * 64;
+                        opIndex = npc.zFine - (npc.type.size - 1) * 64;
+                        for (i = 0; i < NpcList.npcCount; i++) {
+                            otherNpc = NpcList.npcs[NpcList.npcIds[i]];
+                            otherEntityX = otherNpc.xFine + 64 - otherNpc.type.size * 64;
+                            otherEntityZ = otherNpc.zFine + 64 - otherNpc.type.size * 64;
+                            if (otherNpc != null && npc != otherNpc && otherEntityX >= entityBoundsX && npc.type.size - (otherEntityX - entityBoundsX >> 7) >= otherNpc.type.size && opIndex <= otherEntityZ && otherNpc.type.size <= npc.type.size - (otherEntityZ - opIndex >> 7)) {
+                                addNpcEntries(otherNpc.type, worldY, NpcList.npcIds[i], localZ);
                             }
                         }
-                        for (local493 = 0; local493 < PlayerList.playerCount; local493++) {
-                            local597 = PlayerList.players[PlayerList.playerIds[local493]];
-                            local514 = local597.xFine + 64 - local597.getSize() * 64;
-                            local526 = local597.zFine + 64 - local597.getSize() * 64;
-                            if (local597 != null && local514 >= local479 && local597.getSize() <= local421.type.size - (local514 - local479 >> 7) && local526 >= local240 && local597.getSize() <= local421.type.size - (local526 - local240 >> 7)) {
-                                addPlayerEntries(PlayerList.playerIds[local493], local147, local597, local47);
-                            }
-                        }
-                    }
-                    addNpcEntries(local421.type, local47, local140, local147);
-                }
-                if (local133 == 0) {
-                    @Pc(688) Player local688 = PlayerList.players[local140];
-                    if ((local688.xFine & 0x7F) == 64 && (local688.zFine & 0x7F) == 64) {
-                        local479 = local688.xFine - (local688.getSize() - 1) * 64;
-                        local240 = local688.zFine + 64 - local688.getSize() * 64;
-                        for (local493 = 0; local493 < NpcList.npcCount; local493++) {
-                            local502 = NpcList.npcs[NpcList.npcIds[local493]];
-                            local514 = local502.xFine + 64 - local502.type.size * 64;
-                            local526 = local502.zFine + 64 - local502.type.size * 64;
-                            if (local502 != null && local514 >= local479 && local502.type.size <= local688.getSize() - (local514 - local479 >> 7) && local526 >= local240 && local502.type.size <= local688.getSize() - (local526 - local240 >> 7)) {
-                                addNpcEntries(local502.type, local47, NpcList.npcIds[local493], local147);
-                            }
-                        }
-                        for (local493 = 0; local493 < PlayerList.playerCount; local493++) {
-                            local597 = PlayerList.players[PlayerList.playerIds[local493]];
-                            local514 = local597.xFine - (local597.getSize() - 1) * 64;
-                            local526 = local597.zFine + 64 - local597.getSize() * 64;
-                            if (local597 != null && local597 != local688 && local479 <= local514 && local597.getSize() <= local688.getSize() - (local514 - local479 >> 7) && local526 >= local240 && local597.getSize() <= local688.getSize() - (local526 - local240 >> 7)) {
-                                addPlayerEntries(PlayerList.playerIds[local493], local147, local597, local47);
+                        for (i = 0; i < PlayerList.playerCount; i++) {
+                            otherPlayer = PlayerList.players[PlayerList.playerIds[i]];
+                            otherEntityX = otherPlayer.xFine + 64 - otherPlayer.getSize() * 64;
+                            otherEntityZ = otherPlayer.zFine + 64 - otherPlayer.getSize() * 64;
+                            if (otherPlayer != null && otherEntityX >= entityBoundsX && otherPlayer.getSize() <= npc.type.size - (otherEntityX - entityBoundsX >> 7) && otherEntityZ >= opIndex && otherPlayer.getSize() <= npc.type.size - (otherEntityZ - opIndex >> 7)) {
+                                addPlayerEntries(PlayerList.playerIds[i], localZ, otherPlayer, worldY);
                             }
                         }
                     }
-                    addPlayerEntries(local140, local147, local688, local47);
+                    addNpcEntries(npc.type, worldY, entityId, localZ);
                 }
-                if (local133 == 3) {
-                    @Pc(931) LinkedList local931 = SceneGraph.objStacks[Player.plane][local47][local147];
-                    if (local931 != null) {
-                        for (@Pc(940) ObjStackNode local940 = (ObjStackNode) local931.tail(); local940 != null; local940 = (ObjStackNode) local931.prev()) {
-                            local240 = local940.value.type;
-                            @Pc(951) ObjType local951 = ObjTypeList.get(local240);
+                if (entityType == 0) {
+                    @Pc(688) Player player = PlayerList.players[entityId];
+                    if ((player.xFine & 0x7F) == 64 && (player.zFine & 0x7F) == 64) {
+                        entityBoundsX = player.xFine - (player.getSize() - 1) * 64;
+                        opIndex = player.zFine + 64 - player.getSize() * 64;
+                        for (i = 0; i < NpcList.npcCount; i++) {
+                            otherNpc = NpcList.npcs[NpcList.npcIds[i]];
+                            otherEntityX = otherNpc.xFine + 64 - otherNpc.type.size * 64;
+                            otherEntityZ = otherNpc.zFine + 64 - otherNpc.type.size * 64;
+                            if (otherNpc != null && otherEntityX >= entityBoundsX && otherNpc.type.size <= player.getSize() - (otherEntityX - entityBoundsX >> 7) && otherEntityZ >= opIndex && otherNpc.type.size <= player.getSize() - (otherEntityZ - opIndex >> 7)) {
+                                addNpcEntries(otherNpc.type, worldY, NpcList.npcIds[i], localZ);
+                            }
+                        }
+                        for (i = 0; i < PlayerList.playerCount; i++) {
+                            otherPlayer = PlayerList.players[PlayerList.playerIds[i]];
+                            otherEntityX = otherPlayer.xFine - (otherPlayer.getSize() - 1) * 64;
+                            otherEntityZ = otherPlayer.zFine + 64 - otherPlayer.getSize() * 64;
+                            if (otherPlayer != null && otherPlayer != player && entityBoundsX <= otherEntityX && otherPlayer.getSize() <= player.getSize() - (otherEntityX - entityBoundsX >> 7) && otherEntityZ >= opIndex && otherPlayer.getSize() <= player.getSize() - (otherEntityZ - opIndex >> 7)) {
+                                addPlayerEntries(PlayerList.playerIds[i], localZ, otherPlayer, worldY);
+                            }
+                        }
+                    }
+                    addPlayerEntries(entityId, localZ, player, worldY);
+                }
+                if (entityType == 3) {
+                    @Pc(931) LinkedList objStack = SceneGraph.objStacks[Player.plane][worldY][localZ];
+                    if (objStack != null) {
+                        for (@Pc(940) ObjStackNode objNode = (ObjStackNode) objStack.tail(); objNode != null; objNode = (ObjStackNode) objStack.prev()) {
+                            opIndex = objNode.value.type;
+                            @Pc(951) ObjType objType = ObjTypeList.get(opIndex);
                             if (anInt5014 == 1) {
-                                addActionRow(MiniMap.anInt4075, (long) local240, JString.concatenate(new JString[] {aClass100_203, aClass100_947, local951.name}), local47, (short) 33, LocalizedText.USE, local147);
-                            } else if (aBoolean302) {
-                                @Pc(1142) ParamType local1142 = anInt3039 == -1 ? null : ParamTypeList.get(anInt3039);
-                                if ((anInt4999 & 0x1) != 0 && (local1142 == null || local951.getParam(local1142.defaultInt, anInt3039) != local1142.defaultInt)) {
-                                    addActionRow(anInt5393, (long) local240, JString.concatenate(new JString[] {aClass100_466, aClass100_947, local951.name}), local47, (short) 39, aClass100_545, local147);
+                                addActionRow(MiniMap.anInt4075, (long) opIndex, JString.concatenate(new JString[] {aClass100_203, aClass100_947, objType.name}), worldY, (short) 33, LocalizedText.USE, localZ);
+                            } else if (useWithActive) {
+                                @Pc(1142) ParamType paramType = useWithParam == -1 ? null : ParamTypeList.get(useWithParam);
+                                if ((useWithMask & 0x1) != 0 && (paramType == null || objType.getParam(paramType.defaultInt, useWithParam) != paramType.defaultInt)) {
+                                    addActionRow(useWithCursor, (long) opIndex, JString.concatenate(new JString[] {aClass100_466, aClass100_947, objType.name}), worldY, (short) 39, aClass100_545, localZ);
                                 }
                             } else {
-                                @Pc(997) JString[] local997 = local951.op;
+                                @Pc(997) JString[] objOps = objType.op;
                                 if (aBoolean237) {
-                                    local997 = annotateOps(local997);
+                                    objOps = annotateOps(objOps);
                                 }
-                                for (local514 = 4; local514 >= 0; local514--) {
-                                    if (local997 != null && local997[local514] != null) {
-                                        @Pc(1025) byte local1025 = 0;
-                                        if (local514 == 0) {
-                                            local1025 = 21;
+                                for (otherEntityX = 4; otherEntityX >= 0; otherEntityX--) {
+                                    if (objOps != null && objOps[otherEntityX] != null) {
+                                        @Pc(1025) byte actionId = 0;
+                                        if (otherEntityX == 0) {
+                                            actionId = 21;
                                         }
-                                        if (local514 == 1) {
-                                            local1025 = 34;
+                                        if (otherEntityX == 1) {
+                                            actionId = 34;
                                         }
-                                        @Pc(1041) int local1041 = -1;
-                                        if (local514 == local951.cursor1Op) {
-                                            local1041 = local951.cursor1;
+                                        @Pc(1041) int cursor = -1;
+                                        if (otherEntityX == objType.cursor1Op) {
+                                            cursor = objType.cursor1;
                                         }
-                                        if (local514 == 2) {
-                                            local1025 = 18;
+                                        if (otherEntityX == 2) {
+                                            actionId = 18;
                                         }
-                                        if (local951.cursor2Op == local514) {
-                                            local1041 = local951.cursor2;
+                                        if (objType.cursor2Op == otherEntityX) {
+                                            cursor = objType.cursor2;
                                         }
-                                        if (local514 == 3) {
-                                            local1025 = 20;
+                                        if (otherEntityX == 3) {
+                                            actionId = 20;
                                         }
-                                        if (local514 == 4) {
-                                            local1025 = 24;
+                                        if (otherEntityX == 4) {
+                                            actionId = 24;
                                         }
-                                        addActionRow(local1041, (long) local240, JString.concatenate(new JString[] {aClass100_32, local951.name}), local47, local1025, local997[local514], local147);
+                                        addActionRow(cursor, (long) opIndex, JString.concatenate(new JString[] {aClass100_32, objType.name}), worldY, actionId, objOps[otherEntityX], localZ);
                                     }
                                 }
-                                addActionRow(MiniMap.anInt5073, (long) local240, JString.concatenate(new JString[] {aClass100_32, local951.name}), local47, (short) 1002, LocalizedText.EXAMINE, local147);
+                                addActionRow(MiniMap.anInt5073, (long) opIndex, JString.concatenate(new JString[] {aClass100_32, objType.name}), worldY, (short) 1002, LocalizedText.EXAMINE, localZ);
                             }
                         }
                     }
@@ -1604,7 +1604,7 @@ public class MiniMenu {
     }
 
     @OriginalMember(owner = "runetek4.client!u", name = "a", descriptor = "(Lclient!me;IIII)V")
-    public static void addNpcEntries(@OriginalArg(0) NpcType npc, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
+    public static void addNpcEntries(@OriginalArg(0) NpcType npc, @OriginalArg(1) int localX, @OriginalArg(3) int npcId, @OriginalArg(4) int localZ) {
         if (menuActionRow >= 400) {
             return;
         }
@@ -1616,92 +1616,92 @@ public class MiniMenu {
         }
         @Pc(35) JString tooltip = npc.name;
         if (npc.vislevel != 0) {
-            @Pc(47) JString string = Client.game == 1 ? LocalizedText.RATING : LocalizedText.LEVEL;
-            tooltip = JString.concatenate(new JString[] { tooltip, getCombatLevelColorTag(npc.vislevel, PlayerList.self.combatLevel), OPEN_PARENTHESIS, string, JString.parseInt(npc.vislevel), CLOSE_PARENTHESIS});
+            @Pc(47) JString levelText = Client.game == 1 ? LocalizedText.RATING : LocalizedText.LEVEL;
+            tooltip = JString.concatenate(new JString[] { tooltip, getCombatLevelColorTag(npc.vislevel, PlayerList.self.combatLevel), OPEN_PARENTHESIS, levelText, JString.parseInt(npc.vislevel), CLOSE_PARENTHESIS});
         }
         if (anInt5014 == 1) {
-            addActionRow(MiniMap.anInt4075, (long) arg2, JString.concatenate(new JString[] {aClass100_203, aClass100_407, tooltip }), arg1, (short) 26, LocalizedText.USE, arg3);
-        } else if (aBoolean302) {
-            @Pc(378) ParamType local378 = anInt3039 == -1 ? null : ParamTypeList.get(anInt3039);
-            if ((anInt4999 & 0x2) != 0 && (local378 == null || npc.getParam(anInt3039, local378.defaultInt) != local378.defaultInt)) {
-                addActionRow(anInt5393, (long) arg2, JString.concatenate(new JString[] {aClass100_466, aClass100_407, tooltip }), arg1, (short) 45, aClass100_545, arg3);
+            addActionRow(MiniMap.anInt4075, (long) npcId, JString.concatenate(new JString[] {aClass100_203, aClass100_407, tooltip }), localX, (short) 26, LocalizedText.USE, localZ);
+        } else if (useWithActive) {
+            @Pc(378) ParamType paramType = useWithParam == -1 ? null : ParamTypeList.get(useWithParam);
+            if ((useWithMask & 0x2) != 0 && (paramType == null || npc.getParam(useWithParam, paramType.defaultInt) != paramType.defaultInt)) {
+                addActionRow(useWithCursor, (long) npcId, JString.concatenate(new JString[] {aClass100_466, aClass100_407, tooltip }), localX, (short) 45, aClass100_545, localZ);
             }
         } else {
-            @Pc(129) JString[] spellSelected = npc.op;
+            @Pc(129) JString[] npcOps = npc.op;
             if (aBoolean237) {
-                spellSelected = annotateOps(spellSelected);
+                npcOps = annotateOps(npcOps);
             }
-            @Pc(140) int op;
-            if (spellSelected != null) {
-                for (op = 4; op >= 0; op--) {
-                    if (spellSelected[op] != null && (Client.game != 0 || !spellSelected[op].equalsIgnoreCase(LocalizedText.ATTACK))) {
-                        @Pc(161) byte local161 = 0;
-                        if (op == 0) {
-                            local161 = 17;
+            @Pc(140) int opIndex;
+            if (npcOps != null) {
+                for (opIndex = 4; opIndex >= 0; opIndex--) {
+                    if (npcOps[opIndex] != null && (Client.game != 0 || !npcOps[opIndex].equalsIgnoreCase(LocalizedText.ATTACK))) {
+                        @Pc(161) byte actionId = 0;
+                        if (opIndex == 0) {
+                            actionId = 17;
                         }
-                        if (op == 1) {
-                            local161 = 16;
+                        if (opIndex == 1) {
+                            actionId = 16;
                         }
-                        @Pc(176) int local176 = -1;
-                        if (op == 2) {
-                            local161 = 4;
+                        @Pc(176) int cursor = -1;
+                        if (opIndex == 2) {
+                            actionId = 4;
                         }
-                        if (op == 3) {
-                            local161 = 19;
+                        if (opIndex == 3) {
+                            actionId = 19;
                         }
-                        if (npc.cursor1Op == op) {
-                            local176 = npc.cursor1;
+                        if (npc.cursor1Op == opIndex) {
+                            cursor = npc.cursor1;
                         }
-                        if (op == npc.cursor2Op) {
-                            local176 = npc.cursor2;
+                        if (opIndex == npc.cursor2Op) {
+                            cursor = npc.cursor2;
                         }
-                        if (op == 4) {
-                            local161 = 2;
+                        if (opIndex == 4) {
+                            actionId = 2;
                         }
-                        addActionRow(local176, (long) arg2, JString.concatenate(new JString[] {YELLOW2, tooltip }), arg1, local161, spellSelected[op], arg3);
+                        addActionRow(cursor, (long) npcId, JString.concatenate(new JString[] {YELLOW2, tooltip }), localX, actionId, npcOps[opIndex], localZ);
                     }
                 }
             }
-            if (Client.game == 0 && spellSelected != null) {
-                for (op = 4; op >= 0; op--) {
-                    if (spellSelected[op] != null && spellSelected[op].equalsIgnoreCase(LocalizedText.ATTACK)) {
-                        @Pc(271) short action = 0;
+            if (Client.game == 0 && npcOps != null) {
+                for (opIndex = 4; opIndex >= 0; opIndex--) {
+                    if (npcOps[opIndex] != null && npcOps[opIndex].equalsIgnoreCase(LocalizedText.ATTACK)) {
+                        @Pc(271) short priorityModifier = 0;
                         if (npc.vislevel > PlayerList.self.combatLevel) {
-                            action = 2000; //THIS iS FOR LEFT CLICK ATTACK
+                            priorityModifier = 2000; //THIS iS FOR LEFT CLICK ATTACK
                         }
-                        @Pc(281) short menuOption = 0;
-                        if (op == 0) {
-                            menuOption = 17;
+                        @Pc(281) short baseActionId = 0;
+                        if (opIndex == 0) {
+                            baseActionId = 17;
                         }
-                        if (op == 1) {
-                            menuOption = 16;
+                        if (opIndex == 1) {
+                            baseActionId = 16;
                         }
-                        if (op == 2) {
-                            menuOption = 4;
+                        if (opIndex == 2) {
+                            baseActionId = 4;
                         }
-                        if (op == 3) {
-                            menuOption = 19;
+                        if (opIndex == 3) {
+                            baseActionId = 19;
                         }
-                        if (op == 4) {
-                            menuOption = 2;
+                        if (opIndex == 4) {
+                            baseActionId = 2;
                         }
-                        if (menuOption != 0) {
-                            menuOption += action;
+                        if (baseActionId != 0) {
+                            baseActionId += priorityModifier;
                         }
-                        addActionRow(npc.cursorattack, (long) arg2, JString.concatenate(new JString[] {YELLOW2, tooltip }), arg1, menuOption, spellSelected[op], arg3);
+                        addActionRow(npc.cursorattack, (long) npcId, JString.concatenate(new JString[] {YELLOW2, tooltip }), localX, baseActionId, npcOps[opIndex], localZ);
                     }
                 }
             }
-            addActionRow(MiniMap.anInt5073, (long) arg2, JString.concatenate(new JString[] {YELLOW2, tooltip }), arg1, (short) 1007, LocalizedText.EXAMINE, arg3);
+            addActionRow(MiniMap.anInt5073, (long) npcId, JString.concatenate(new JString[] {YELLOW2, tooltip }), localX, (short) 1007, LocalizedText.EXAMINE, localZ);
         }
     }
 
     @OriginalMember(owner = "runetek4.client!rj", name = "a", descriptor = "(IIILclient!e;I)V")
-    public static void addPlayerEntries(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) Player other, @OriginalArg(4) int arg3) {
+    public static void addPlayerEntries(@OriginalArg(0) int playerId, @OriginalArg(2) int localZ, @OriginalArg(3) Player other, @OriginalArg(4) int localX) {
         if (PlayerList.self == other || menuActionRow >= 400) {
             return;
         }
-        @Pc(158) JString string;
+        @Pc(158) JString tooltip;
         if (other.skill == 0) {
             @Pc(22) boolean markCombatDifference = true;
             if (PlayerList.self.combatRange != -1 && other.combatRange != -1) {
@@ -1716,109 +1716,109 @@ public class MiniMenu {
                     markCombatDifference = false;
                 }
             }
-            @Pc(95) JString local95 = Client.game == 1 ? LocalizedText.RATING : LocalizedText.LEVEL;
+            @Pc(95) JString levelText = Client.game == 1 ? LocalizedText.RATING : LocalizedText.LEVEL;
             if (other.combatLevel < other.combatLevelWithSummoning) {
-                string = JString.concatenate(new JString[] { other.getUsername(), markCombatDifference ? getCombatLevelColorTag(other.combatLevel, PlayerList.self.combatLevel) : WHITE, OPEN_PARENTHESIS, local95, JString.parseInt(other.combatLevel), PLUS, JString.parseInt(other.combatLevelWithSummoning - other.combatLevel), CLOSE_PARENTHESIS});
+                tooltip = JString.concatenate(new JString[] { other.getUsername(), markCombatDifference ? getCombatLevelColorTag(other.combatLevel, PlayerList.self.combatLevel) : WHITE, OPEN_PARENTHESIS, levelText, JString.parseInt(other.combatLevel), PLUS, JString.parseInt(other.combatLevelWithSummoning - other.combatLevel), CLOSE_PARENTHESIS});
             } else {
-                string = JString.concatenate(new JString[] { other.getUsername(), markCombatDifference ? getCombatLevelColorTag(other.combatLevel, PlayerList.self.combatLevel) : WHITE, OPEN_PARENTHESIS, local95, JString.parseInt(other.combatLevel), CLOSE_PARENTHESIS});
+                tooltip = JString.concatenate(new JString[] { other.getUsername(), markCombatDifference ? getCombatLevelColorTag(other.combatLevel, PlayerList.self.combatLevel) : WHITE, OPEN_PARENTHESIS, levelText, JString.parseInt(other.combatLevel), CLOSE_PARENTHESIS});
             }
         } else {
-            string = JString.concatenate(new JString[] { other.getUsername(), OPEN_PARENTHESIS, LocalizedText.SKILL, JString.parseInt(other.skill), CLOSE_PARENTHESIS});
+            tooltip = JString.concatenate(new JString[] { other.getUsername(), OPEN_PARENTHESIS, LocalizedText.SKILL, JString.parseInt(other.skill), CLOSE_PARENTHESIS});
         }
         @Pc(275) int local275;
         if (anInt5014 == 1) {
-            addActionRow(MiniMap.anInt4075, (long) arg0, JString.concatenate(new JString[] {aClass100_203, aClass100_561, string }), arg3, (short) 1, LocalizedText.USE, arg1);
-        } else if (!aBoolean302) {
+            addActionRow(MiniMap.anInt4075, (long) playerId, JString.concatenate(new JString[] {aClass100_203, aClass100_561, tooltip }), localX, (short) 1, LocalizedText.USE, localZ);
+        } else if (!useWithActive) {
             for (local275 = 7; local275 >= 0; local275--) {
                 if (Player.options[local275] != null) {
-                    @Pc(291) short local291 = 0;
+                    @Pc(291) short priorityModifier = 0;
                     if (Client.game == 0 && Player.options[local275].equalsIgnoreCase(LocalizedText.ATTACK)) {
                         if (other.combatLevel > PlayerList.self.combatLevel) {
-                            local291 = 2000;
+                            priorityModifier = 2000;
                         }
                         if (PlayerList.self.teamId != 0 && other.teamId != 0) {
                             if (PlayerList.self.teamId == other.teamId) {
-                                local291 = 2000;
+                                priorityModifier = 2000;
                             } else {
-                                local291 = 0;
+                                priorityModifier = 0;
                             }
                         }
                     } else if (Player.secondaryOptions[local275]) {
-                        local291 = 2000;
+                        priorityModifier = 2000;
                     }
-                    @Pc(353) short local353 = aShortArray2[local275];
-                    @Pc(358) short local358 = (short) (local353 + local291);
-                    addActionRow(Player.cursors[local275], (long) arg0, JString.concatenate(new JString[] {WHITE, string }), arg3, local358, Player.options[local275], arg1);
+                    @Pc(353) short baseActionId = PLAYER_ACTION_IDS[local275];
+                    @Pc(358) short finalActionId = (short) (baseActionId + priorityModifier);
+                    addActionRow(Player.cursors[local275], (long) playerId, JString.concatenate(new JString[] {WHITE, tooltip }), localX, finalActionId, Player.options[local275], localZ);
                 }
             }
-        } else if ((anInt4999 & 0x8) != 0) {
-            addActionRow(anInt5393, (long) arg0, JString.concatenate(new JString[] {aClass100_466, aClass100_561, string }), arg3, (short) 15, aClass100_545, arg1);
+        } else if ((useWithMask & 0x8) != 0) {
+            addActionRow(useWithCursor, (long) playerId, JString.concatenate(new JString[] {aClass100_466, aClass100_561, tooltip }), localX, (short) 15, aClass100_545, localZ);
         }
         for (local275 = 0; local275 < menuActionRow; local275++) {
             if (actions[local275] == 60) {
-                opBases[local275] = JString.concatenate(new JString[] {WHITE, string });
+                opBases[local275] = JString.concatenate(new JString[] {WHITE, tooltip });
                 break;
             }
         }
     }
 
     @OriginalMember(owner = "client!bc", name = "f", descriptor = "(B)Lclient!na;")
-    public static JString method471() {
-        @Pc(32) JString local32;
+    public static JString getActionText() {
+        @Pc(32) JString actionText;
         if (anInt5014 == 1 && menuActionRow < 2) {
-            local32 = JString.concatenate(new JString[] { LocalizedText.USE, LocalizedText.MINISEPARATOR, aClass100_203, aClass100_961});
-        } else if (aBoolean302 && menuActionRow < 2) {
-            local32 = JString.concatenate(new JString[] {aClass100_545, LocalizedText.MINISEPARATOR, aClass100_466, aClass100_961});
+            actionText = JString.concatenate(new JString[] { LocalizedText.USE, LocalizedText.MINISEPARATOR, aClass100_203, aClass100_961});
+        } else if (useWithActive && menuActionRow < 2) {
+            actionText = JString.concatenate(new JString[] {aClass100_545, LocalizedText.MINISEPARATOR, aClass100_466, aClass100_961});
         } else if (Cheat.shiftClick && Keyboard.pressedKeys[81] && menuActionRow > 2) {
-            local32 = getOp(menuActionRow - 2);
+            actionText = getOp(menuActionRow - 2);
         } else {
-            local32 = getOp(menuActionRow - 1);
+            actionText = getOp(menuActionRow - 1);
         }
         if (menuActionRow > 2) {
-            local32 = JString.concatenate(new JString[] { local32, aClass100_2, JString.parseInt(menuActionRow - 2), LocalizedText.MOREOPTIONS});
+            actionText = JString.concatenate(new JString[] { actionText, aClass100_2, JString.parseInt(menuActionRow - 2), LocalizedText.MOREOPTIONS});
         }
-        return local32;
+        return actionText;
     }
 
     @OriginalMember(owner = "runetek4.client!il", name = "a", descriptor = "(III)V")
-    public static void method3556(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
-        aBoolean187 = true;
-        anInt3902 = arg0;
-        anInt2388 = arg1;
-        anInt3259 = arg2;
+    public static void setWalkTarget(@OriginalArg(0) int plane, @OriginalArg(1) int x, @OriginalArg(2) int z) {
+        walkTargetActive = true;
+        targetPlane = plane;
+        targetX = x;
+        targetZ = z;
         clickTileX = -1;
-        anInt2954 = -1;
+        clickTileZ = -1;
     }
 
     @OriginalMember(owner = "runetek4.client!wi", name = "c", descriptor = "(II)Z")
-    public static boolean menuHasAddFriend(@OriginalArg(0) int arg0) {
-        if (arg0 < 0) {
+    public static boolean isWidgetAction(@OriginalArg(0) int menuIndex) {
+        if (menuIndex < 0) {
             return false;
         }
-        @Pc(12) int local12 = actions[arg0];
-        if (local12 >= 2000) {
-            local12 -= 2000;
+        @Pc(12) int actionCode = actions[menuIndex];
+        if (actionCode >= 2000) {
+            actionCode -= 2000;
         }
-        return local12 == 1003;
+        return actionCode == 1003;
     }
 
     @OriginalMember(owner = "runetek4.client!ub", name = "b", descriptor = "(IIIIIII)V")
-    public static void method4246(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(6) int arg5) {
-        @Pc(8) Widget local8 = WidgetList.getCreatedComponent(arg0, arg1);
-        if (local8 != null && local8.onUse != null) {
-            @Pc(19) WidgetEvent local19 = new WidgetEvent();
-            local19.source = local8;
-            local19.arguments = local8.onUse;
-            ClientScriptRunner.run(local19);
+    public static void startUseWith(@OriginalArg(0) int widgetId, @OriginalArg(1) int slot, @OriginalArg(2) int targetMask, @OriginalArg(3) int param, @OriginalArg(4) int cursor, @OriginalArg(6) int defaultCursordefaultCursor) {
+        @Pc(8) Widget widget = WidgetList.getCreatedComponent(widgetId, slot);
+        if (widget != null && widget.onUse != null) {
+            @Pc(19) WidgetEvent event = new WidgetEvent();
+            event.source = widget;
+            event.arguments = widget.onUse;
+            ClientScriptRunner.run(event);
         }
-        anInt506 = arg1;
-        anInt3039 = arg3;
-        anInt2512 = arg0;
-        anInt4999 = arg2;
-        aBoolean302 = true;
-        anInt5393 = arg4;
-        defaultCursor = arg5;
-        WidgetList.redraw(local8);
+        useWithSlot = slot;
+        useWithParam = param;
+        useWithWidgetId = widgetId;
+        useWithMask = targetMask;
+        useWithActive = true;
+        useWithCursor = cursor;
+        defaultCursor = defaultCursordefaultCursor;
+        WidgetList.redraw(widget);
     }
 
     @OriginalMember(owner = "client!ej", name = "h", descriptor = "(I)V")
@@ -1847,10 +1847,10 @@ public class MiniMenu {
     }
 
     @OriginalMember(owner = "runetek4.client!aa", name = "a", descriptor = "(IZI)V")
-    public static void method10(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1) {
+    public static void sendWidgetContinue(@OriginalArg(0) int componentId, @OriginalArg(2) int widgetId) {
         Protocol.outboundBuffer.pIsaac1(132);
-        Protocol.outboundBuffer.p4rme(arg1);
-        Protocol.outboundBuffer.p2_alt1(arg0);
+        Protocol.outboundBuffer.p4rme(widgetId);
+        Protocol.outboundBuffer.p2_alt1(componentId);
     }
 
     @OriginalMember(owner = "runetek4.client!tb", name = "h", descriptor = "(I)I")

@@ -133,7 +133,7 @@ public final class Widget {
 	public Object[] onMouseOver;
 
 	@OriginalMember(owner = "client!be", name = "Yb", descriptor = "[I")
-	public int[] anIntArray39;
+	public int[] opCursors;
 
 	@OriginalMember(owner = "client!be", name = "dc", descriptor = "[I")
 	public int[] invSlotObjId;
@@ -539,20 +539,20 @@ public final class Widget {
 
 	@OriginalMember(owner = "client!be", name = "a", descriptor = "(IIB)V")
 	public void method477(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
-		if (this.anIntArray39 == null || this.anIntArray39.length <= arg0) {
+		if (this.opCursors == null || this.opCursors.length <= arg0) {
 			@Pc(18) int[] local18 = new int[arg0 + 1];
-			if (this.anIntArray39 != null) {
+			if (this.opCursors != null) {
 				@Pc(24) int local24;
-				for (local24 = 0; local24 < this.anIntArray39.length; local24++) {
-					local18[local24] = this.anIntArray39[local24];
+				for (local24 = 0; local24 < this.opCursors.length; local24++) {
+					local18[local24] = this.opCursors[local24];
 				}
-				for (local24 = this.anIntArray39.length; local24 < arg0; local24++) {
+				for (local24 = this.opCursors.length; local24 < arg0; local24++) {
 					local18[local24] = -1;
 				}
 			}
-			this.anIntArray39 = local18;
+			this.opCursors = local18;
 		}
-		this.anIntArray39[arg0] = arg1;
+		this.opCursors[arg0] = arg1;
 	}
 
 	@OriginalMember(owner = "client!be", name = "a", descriptor = "(I)Z")
@@ -1157,15 +1157,15 @@ public final class Widget {
 		@Pc(584) int local584 = local497 >> 4;
 		if (local584 > 0) {
 			local567 = packet.g1();
-			this.anIntArray39 = new int[local567 + 1];
-			for (@Pc(599) int local599 = 0; local599 < this.anIntArray39.length; local599++) {
-				this.anIntArray39[local599] = -1;
+			this.opCursors = new int[local567 + 1];
+			for (@Pc(599) int local599 = 0; local599 < this.opCursors.length; local599++) {
+				this.opCursors[local599] = -1;
 			}
-			this.anIntArray39[local567] = packet.g2();
+			this.opCursors[local567] = packet.g2();
 		}
 		if (local584 > 1) {
 			local567 = packet.g1();
-			this.anIntArray39[local567] = packet.g2();
+			this.opCursors[local567] = packet.g2();
 		}
 		this.dragDeadzone = packet.g1();
 		this.dragDeadtime = packet.g1();
