@@ -44,10 +44,10 @@ import org.openrs2.deob.annotation.Pc;
 public class MiniMap {
 
     @OriginalMember(owner = "runetek4.client!wc", name = "h", descriptor = "[[I")
-    public static final int[][] anIntArrayArray46 = new int[][] { { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 }, { 12, 8, 4, 0, 13, 9, 5, 1, 14, 10, 6, 2, 15, 11, 7, 3 }, { 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 }, { 3, 7, 11, 15, 2, 6, 10, 14, 1, 5, 9, 13, 0, 4, 8, 12 } };
+    public static final int[][] TILE_ROTATION_PATTERNS = new int[][] { { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 }, { 12, 8, 4, 0, 13, 9, 5, 1, 14, 10, 6, 2, 15, 11, 7, 3 }, { 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 }, { 3, 7, 11, 15, 2, 6, 10, 14, 1, 5, 9, 13, 0, 4, 8, 12 } };
 
     @OriginalMember(owner = "runetek4.client!ke", name = "T", descriptor = "[[I")
-    public static final int[][] anIntArrayArray24 = new int[][] { { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 0, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1 }, { 1, 1, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 }, { 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1 }, { 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0 }, { 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1 }, { 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1 } };
+    public static final int[][] TILE_SHAPE_PATTERNS = new int[][] { { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 0, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1 }, { 1, 1, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 }, { 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1 }, { 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0 }, { 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1 }, { 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1 } };
 
     @OriginalMember(owner = "runetek4.client!ld", name = "b", descriptor = "[Lclient!nc;")
     public static final MapMarker[] hintMapMarkers = new MapMarker[4];
@@ -101,50 +101,50 @@ public class MiniMap {
     public static int anInt5073 = -1;
 
     @OriginalMember(owner = "runetek4.client!em", name = "a", descriptor = "(Lclient!be;Lclient!qf;IIIBI)V")
-    public static void drawOnMinimap(@OriginalArg(0) Widget arg0, @OriginalArg(1) Sprite sprite, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(6) int arg5) {
+    public static void drawOnMinimap(@OriginalArg(0) Widget widget, @OriginalArg(1) Sprite sprite, @OriginalArg(2) int worldX, @OriginalArg(3) int worldZ, @OriginalArg(4) int offsetY, @OriginalArg(6) int offsetX) {
         if (sprite == null) {
             return;
         }
-        @Pc(21) int local21 = arg3 * arg3 + arg2 * arg2;
-        @Pc(27) int local27 = minimapAnticheatAngle + Camera.orbitCameraYaw & 0x7FF;
-        @Pc(39) int local39 = Math.max(arg0.width / 2, arg0.height / 2) + 10;
-        if (local39 * local39 < local21) {
+        @Pc(21) int distanceSquared = worldZ * worldZ + worldX * worldX;
+        @Pc(27) int rotatedAngle = minimapAnticheatAngle + Camera.orbitCameraYaw & 0x7FF;
+        @Pc(39) int maxRadius = Math.max(widget.width / 2, widget.height / 2) + 10;
+        if (maxRadius * maxRadius < distanceSquared) {
             return;
         }
-        @Pc(50) int local50 = MathUtils.sin[local27];
-        @Pc(58) int local58 = local50 * 256 / (minimapZoom + 256);
-        @Pc(62) int local62 = MathUtils.cos[local27];
-        @Pc(70) int local70 = local62 * 256 / (minimapZoom + 256);
-        @Pc(81) int local81 = local58 * arg2 + arg3 * local70 >> 16;
-        @Pc(92) int local92 = local70 * arg2 - arg3 * local58 >> 16;
+        @Pc(50) int sinValue = MathUtils.sin[rotatedAngle];
+        @Pc(58) int scaledSin = sinValue * 256 / (minimapZoom + 256);
+        @Pc(62) int cosValue = MathUtils.cos[rotatedAngle];
+        @Pc(70) int scaledCos = cosValue * 256 / (minimapZoom + 256);
+        @Pc(81) int rotatedX = scaledSin * worldX + worldZ * scaledCos >> 16;
+        @Pc(92) int rotatedZ = scaledCos * worldX - worldZ * scaledSin >> 16;
         if (GlRenderer.enabled) {
-            ((GlSprite) sprite).method1425(arg0.width / 2 + arg5 + local81 - sprite.innerWidth / 2, arg0.height / 2 + arg4 - (local92 + sprite.innerHeight / 2), (GlSprite) arg0.method489(false));
+            ((GlSprite) sprite).method1425(widget.width / 2 + offsetX + rotatedX - sprite.innerWidth / 2, widget.height / 2 + offsetY - (rotatedZ + sprite.innerHeight / 2), (GlSprite) widget.method489(false));
         } else {
-            ((SoftwareSprite) sprite).drawImage(arg0.width / 2 + arg5 + local81 - sprite.innerWidth / 2, -(sprite.innerHeight / 2) + arg0.height / 2 + arg4 + -local92, arg0.compassPixelOffsets, arg0.compassPixelWidths);
+            ((SoftwareSprite) sprite).drawImage(widget.width / 2 + offsetX + rotatedX - sprite.innerWidth / 2, -(sprite.innerHeight / 2) + widget.height / 2 + offsetY + -rotatedZ, widget.compassPixelOffsets, widget.compassPixelWidths);
         }
     }
 
     @OriginalMember(owner = "runetek4.client!ed", name = "a", descriptor = "(IBIILclient!be;)V")
-    public static void render(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) Widget arg3) {
+    public static void render(@OriginalArg(0) int rectangle, @OriginalArg(2) int y, @OriginalArg(3) int x, @OriginalArg(4) Widget widget) {
         Client.audioLoop();
         if (GlRenderer.enabled) {
-            GlRaster.setClip(arg2, arg1, arg2 + arg3.width, arg1 + arg3.height);
+            GlRaster.setClip(x, y, x + widget.width, y + widget.height);
         } else {
-            SoftwareRaster.setClip(arg2, arg1, arg2 + arg3.width, arg1 + arg3.height);
+            SoftwareRaster.setClip(x, y, x + widget.width, y + widget.height);
         }
         if (state != 2 && state != 5 && sprite != null) {
             @Pc(48) int angle = minimapAnticheatAngle + Camera.orbitCameraYaw & 0x7FF;
             @Pc(57) int anchorX = PlayerList.self.xFine / 32 + 48;
             @Pc(67) int anchorY = 464 - PlayerList.self.zFine / 32;
             if (GlRenderer.enabled) {
-                ((GlSprite) sprite).renderRotatedTransparent(arg2, arg1, arg3.width, arg3.height, anchorX, anchorY, angle, minimapZoom + 256, (GlSprite) arg3.method489(false));
+                ((GlSprite) sprite).renderRotatedTransparent(x, y, widget.width, widget.height, anchorX, anchorY, angle, minimapZoom + 256, (GlSprite) widget.method489(false));
             } else {
-                ((SoftwareSprite) sprite).renderRotated(arg2, arg1, arg3.width, arg3.height, anchorX, anchorY, angle, minimapZoom + 256, arg3.compassPixelOffsets, arg3.compassPixelWidths);
+                ((SoftwareSprite) sprite).renderRotated(x, y, widget.width, widget.height, anchorX, anchorY, angle, minimapZoom + 256, widget.compassPixelOffsets, widget.compassPixelWidths);
             }
             @Pc(146) int flagX;
             @Pc(181) int flagZ;
-            @Pc(150) int local150;
-            @Pc(154) int local154;
+            @Pc(150) int relativeX;
+            @Pc(154) int relativeZ;
             @Pc(231) int npcX;
             @Pc(200) int npcZ;
             @Pc(239) int local239;
@@ -153,33 +153,33 @@ public class MiniMap {
                 for (@Pc(117) int local117 = 0; local117 < WorldLoader.mapElementList.anInt5074; local117++) {
                     if (WorldLoader.mapElementList.hasFlag4Set(local117)) {
                         flagX = (WorldLoader.mapElementList.aShortArray73[local117] - Camera.originX) * 4 + 2 - PlayerList.self.xFine / 32;
-                        local150 = MathUtils.sin[angle];
-                        local154 = MathUtils.cos[angle];
-                        @Pc(156) Font local156 = Fonts.p11Full;
-                        @Pc(164) int local164 = local150 * 256 / (minimapZoom + 256);
+                        relativeX = MathUtils.sin[angle];
+                        relativeZ = MathUtils.cos[angle];
+                        @Pc(156) Font font = Fonts.p11Full;
+                        @Pc(164) int scaledSin = relativeX * 256 / (minimapZoom + 256);
                         flagZ = (WorldLoader.mapElementList.aShortArray72[local117] - Camera.originZ) * 4 + 2 - PlayerList.self.zFine / 32;
-                        @Pc(189) int local189 = local154 * 256 / (minimapZoom + 256);
-                        npcZ = flagZ * local189 - flagX * local164 >> 16;
+                        @Pc(189) int scaledCos = relativeZ * 256 / (minimapZoom + 256);
+                        npcZ = flagZ * scaledCos - flagX * scaledSin >> 16;
                         if (WorldLoader.mapElementList.getLowerTwoBits(local117) == 1) {
-                            local156 = Fonts.p12Full;
+                            font = Fonts.p12Full;
                         }
                         if (WorldLoader.mapElementList.getLowerTwoBits(local117) == 2) {
-                            local156 = Fonts.b12Full;
+                            font = Fonts.b12Full;
                         }
-                        npcX = local164 * flagZ + local189 * flagX >> 16;
-                        local239 = local156.getMaxLineWidth(WorldLoader.mapElementList.text[local117], 100);
-                        @Pc(245) int local245 = npcX - local239 / 2;
-                        if (local245 >= -arg3.width && local245 <= arg3.width && npcZ >= -arg3.height && npcZ <= arg3.height) {
+                        npcX = scaledSin * flagZ + scaledCos * flagX >> 16;
+                        local239 = font.getMaxLineWidth(WorldLoader.mapElementList.text[local117], 100);
+                        @Pc(245) int textX = npcX - local239 / 2;
+                        if (textX >= -widget.width && textX <= widget.width && npcZ >= -widget.height && npcZ <= widget.height) {
                             local271 = 16777215;
                             if (WorldLoader.mapElementList.anIntArray444[local117] != -1) {
                                 local271 = WorldLoader.mapElementList.anIntArray444[local117];
                             }
                             if (GlRenderer.enabled) {
-                                GlFont.method1188((GlSprite) arg3.method489(false));
+                                GlFont.method1188((GlSprite) widget.method489(false));
                             } else {
-                                SoftwareRaster.method2486(arg3.compassPixelOffsets, arg3.compassPixelWidths);
+                                SoftwareRaster.method2486(widget.compassPixelOffsets, widget.compassPixelWidths);
                             }
-                            local156.renderParagraphAlpha(WorldLoader.mapElementList.text[local117], arg2 + local245 + arg3.width / 2, arg1 + arg3.height / 2 + -npcZ, local239, 50, local271, 0, 1, 0, 0);
+                            font.renderParagraphAlpha(WorldLoader.mapElementList.text[local117], x + textX + widget.width / 2, y + widget.height / 2 + -npcZ, local239, 50, local271, 0, 1, 0, 0);
                             if (GlRenderer.enabled) {
                                 GlFont.method1173();
                             } else {
@@ -191,50 +191,50 @@ public class MiniMap {
             }
             for (flagX = 0; flagX < locs; flagX++) {
                 flagZ = locX[flagX] * 4 + 2 - PlayerList.self.xFine / 32;
-                local150 = locZ[flagX] * 4 + 2 - PlayerList.self.zFine / 32;
-                @Pc(382) LocType local382 = LocTypeList.get(locId[flagX]);
-                if (local382.multiloc != null) {
-                    local382 = local382.getMultiLoc();
-                    if (local382 == null || local382.mapfunction == -1) {
+                relativeX = locZ[flagX] * 4 + 2 - PlayerList.self.zFine / 32;
+                @Pc(382) LocType locType = LocTypeList.get(locId[flagX]);
+                if (locType.multiloc != null) {
+                    locType = locType.getMultiLoc();
+                    if (locType == null || locType.mapfunction == -1) {
                         continue;
                     }
                 }
-                drawOnMinimap(arg3, Sprites.mapfuncs[local382.mapfunction], local150, flagZ, arg1, arg2);
+                drawOnMinimap(widget, Sprites.mapfuncs[locType.mapfunction], relativeX, flagZ, y, x);
             }
             for (flagX = 0; flagX < 104; flagX++) {
                 for (flagZ = 0; flagZ < 104; flagZ++) {
-                    @Pc(439) LinkedList local439 = SceneGraph.objStacks[Player.plane][flagX][flagZ];
-                    if (local439 != null) {
-                        local154 = flagX * 4 + 2 - PlayerList.self.xFine / 32;
+                    @Pc(439) LinkedList objStack = SceneGraph.objStacks[Player.plane][flagX][flagZ];
+                    if (objStack != null) {
+                        relativeZ = flagX * 4 + 2 - PlayerList.self.xFine / 32;
                         npcX = flagZ * 4 + 2 - PlayerList.self.zFine / 32;
-                        drawOnMinimap(arg3, Sprites.mapdots[0], npcX, local154, arg1, arg2);
+                        drawOnMinimap(widget, Sprites.mapdots[0], npcX, relativeZ, y, x);
                     }
                 }
             }
             for (flagX = 0; flagX < NpcList.npcCount; flagX++) {
-                @Pc(498) Npc local498 = NpcList.npcs[NpcList.npcIds[flagX]];
-                if (local498 != null && local498.isVisible()) {
-                    @Pc(507) NpcType local507 = local498.type;
-                    if (local507 != null && local507.multinpc != null) {
-                        local507 = local507.getMultiNPC();
+                @Pc(498) Npc npc = NpcList.npcs[NpcList.npcIds[flagX]];
+                if (npc != null && npc.isVisible()) {
+                    @Pc(507) NpcType npcType = npc.type;
+                    if (npcType != null && npcType.multinpc != null) {
+                        npcType = npcType.getMultiNPC();
                     }
-                    if (local507 != null && local507.minimap && local507.active) {
-                        local154 = local498.xFine / 32 - PlayerList.self.xFine / 32;
-                        npcX = local498.zFine / 32 - PlayerList.self.zFine / 32;
-                        if (local507.miniMapMarkerObjectEntry == -1) {
-                            drawOnMinimap(arg3, Sprites.mapdots[1], npcX, local154, arg1, arg2);
+                    if (npcType != null && npcType.minimap && npcType.active) {
+                        relativeZ = npc.xFine / 32 - PlayerList.self.xFine / 32;
+                        npcX = npc.zFine / 32 - PlayerList.self.zFine / 32;
+                        if (npcType.miniMapMarkerObjectEntry == -1) {
+                            drawOnMinimap(widget, Sprites.mapdots[1], npcX, relativeZ, y, x);
                         } else {
-                            drawOnMinimap(arg3, Sprites.mapfuncs[local507.miniMapMarkerObjectEntry], npcX, local154, arg1, arg2);
+                            drawOnMinimap(widget, Sprites.mapfuncs[npcType.miniMapMarkerObjectEntry], npcX, relativeZ, y, x);
                         }
                     }
                 }
             }
             for (flagX = 0; flagX < PlayerList.playerCount; flagX++) {
-                @Pc(591) Player local591 = PlayerList.players[PlayerList.playerIds[flagX]];
-                if (local591 != null && local591.isVisible()) {
-                    local154 = local591.zFine / 32 - PlayerList.self.zFine / 32;
-                    local150 = local591.xFine / 32 - PlayerList.self.xFine / 32;
-                    @Pc(624) long name = local591.username.encode37();
+                @Pc(591) Player player = PlayerList.players[PlayerList.playerIds[flagX]];
+                if (player != null && player.isVisible()) {
+                    relativeZ = player.zFine / 32 - PlayerList.self.zFine / 32;
+                    relativeX = player.xFine / 32 - PlayerList.self.xFine / 32;
+                    @Pc(624) long name = player.username.encode37();
                     @Pc(626) boolean isFriend = false;
                     for (local239 = 0; local239 < FriendList.friendCount; local239++) {
                         if (name == FriendList.encodedUsernames[local239] && FriendList.friendWorlds[local239] != 0) {
@@ -242,51 +242,51 @@ public class MiniMap {
                             break;
                         }
                     }
-                    @Pc(660) boolean local660 = false;
+                    @Pc(660) boolean isClanMember = false;
                     for (local271 = 0; local271 < ClanChat.size; local271++) {
                         if (name == ClanChat.members[local271].nodeId) {
-                            local660 = true;
+                            isClanMember = true;
                             break;
                         }
                     }
                     @Pc(682) boolean isTeammate = false;
-                    if (PlayerList.self.teamId != 0 && local591.teamId != 0 && local591.teamId == PlayerList.self.teamId) {
+                    if (PlayerList.self.teamId != 0 && player.teamId != 0 && player.teamId == PlayerList.self.teamId) {
                         isTeammate = true;
                     }
                     if (isFriend) {
-                        drawOnMinimap(arg3, Sprites.mapdots[3], local154, local150, arg1, arg2);
-                    } else if (local660) {
-                        drawOnMinimap(arg3, Sprites.mapdots[5], local154, local150, arg1, arg2);
+                        drawOnMinimap(widget, Sprites.mapdots[3], relativeZ, relativeX, y, x);
+                    } else if (isClanMember) {
+                        drawOnMinimap(widget, Sprites.mapdots[5], relativeZ, relativeX, y, x);
                     } else if (isTeammate) {
-                        drawOnMinimap(arg3, Sprites.mapdots[4], local154, local150, arg1, arg2);
+                        drawOnMinimap(widget, Sprites.mapdots[4], relativeZ, relativeX, y, x);
                     } else {
-                        drawOnMinimap(arg3, Sprites.mapdots[2], local154, local150, arg1, arg2);
+                        drawOnMinimap(widget, Sprites.mapdots[2], relativeZ, relativeX, y, x);
                     }
                 }
             }
-            @Pc(756) MapMarker[] local756 = hintMapMarkers;
-            for (flagZ = 0; flagZ < local756.length; flagZ++) {
-                @Pc(770) MapMarker local770 = local756[flagZ];
-                if (local770 != null && local770.type != 0 && Client.loop % 20 < 10) {
-                    if (local770.type == 1 && local770.actorTargetId >= 0 && local770.actorTargetId < NpcList.npcs.length) {
-                        @Pc(804) Npc npc = NpcList.npcs[local770.actorTargetId];
+            @Pc(756) MapMarker[] markers = hintMapMarkers;
+            for (flagZ = 0; flagZ < markers.length; flagZ++) {
+                @Pc(770) MapMarker marker = markers[flagZ];
+                if (marker != null && marker.type != 0 && Client.loop % 20 < 10) {
+                    if (marker.type == 1 && marker.actorTargetId >= 0 && marker.actorTargetId < NpcList.npcs.length) {
+                        @Pc(804) Npc npc = NpcList.npcs[marker.actorTargetId];
                         if (npc != null) {
                             npcX = npc.xFine / 32 - PlayerList.self.xFine / 32;
                             npcZ = npc.zFine / 32 - PlayerList.self.zFine / 32;
-                            drawMinimapMark(local770.anInt4048, arg1, arg2, npcX, npcZ, arg3);
+                            drawMinimapMark(marker.anInt4048, y, x, npcX, npcZ, widget);
                         }
                     }
-                    if (local770.type == 2) {
-                        local154 = (local770.targetX - Camera.originX) * 4 + 2 - PlayerList.self.xFine / 32;
-                        npcX = (-Camera.originZ + local770.anInt4046) * 4 + 2 - PlayerList.self.zFine / 32;
-                        drawMinimapMark(local770.anInt4048, arg1, arg2, local154, npcX, arg3);
+                    if (marker.type == 2) {
+                        relativeZ = (marker.targetX - Camera.originX) * 4 + 2 - PlayerList.self.xFine / 32;
+                        npcX = (-Camera.originZ + marker.anInt4046) * 4 + 2 - PlayerList.self.zFine / 32;
+                        drawMinimapMark(marker.anInt4048, y, x, relativeZ, npcX, widget);
                     }
-                    if (local770.type == 10 && local770.actorTargetId >= 0 && PlayerList.players.length > local770.actorTargetId) {
-                        @Pc(905) Player player = PlayerList.players[local770.actorTargetId];
+                    if (marker.type == 10 && marker.actorTargetId >= 0 && PlayerList.players.length > marker.actorTargetId) {
+                        @Pc(905) Player player = PlayerList.players[marker.actorTargetId];
                         if (player != null) {
                             npcZ = player.zFine / 32 - PlayerList.self.zFine / 32;
                             npcX = player.xFine / 32 - PlayerList.self.xFine / 32;
-                            drawMinimapMark(local770.anInt4048, arg1, arg2, npcX, npcZ, arg3);
+                            drawMinimapMark(marker.anInt4048, y, x, npcX, npcZ, widget);
                         }
                     }
                 }
@@ -294,36 +294,36 @@ public class MiniMap {
             if (LoginManager.mapFlagX != 0) {
                 flagX = LoginManager.mapFlagX * 4 + 2 - PlayerList.self.xFine / 32;
                 flagZ = LoginManager.mapFlagZ * 4 + 2 - PlayerList.self.zFine / 32;
-                drawOnMinimap(arg3, Sprites.mapflags, flagZ, flagX, arg1, arg2);
+                drawOnMinimap(widget, Sprites.mapflags, flagZ, flagX, y, x);
             }
             if (GlRenderer.enabled) {
-                GlRaster.fillRect(arg2 + arg3.width / 2 - 1, arg1 + -1 - -(arg3.height / 2), 3, 3, 16777215);
+                GlRaster.fillRect(x + widget.width / 2 - 1, y + -1 - -(widget.height / 2), 3, 3, 16777215);
             } else {
-                SoftwareRaster.fillRect(arg3.width / 2 + arg2 - 1, arg3.height / 2 + -1 + arg1, 3, 3, 16777215);
+                SoftwareRaster.fillRect(widget.width / 2 + x - 1, widget.height / 2 + -1 + y, 3, 3, 16777215);
             }
         } else if (GlRenderer.enabled) {
-            @Pc(1041) Sprite local1041 = arg3.method489(false);
-            if (local1041 != null) {
-                local1041.render(arg2, arg1);
+            @Pc(1041) Sprite fallbackSprite = widget.method489(false);
+            if (fallbackSprite != null) {
+                fallbackSprite.render(x, y);
             }
         } else {
-            SoftwareRaster.method2504(arg2, arg1, arg3.compassPixelOffsets, arg3.compassPixelWidths);
+            SoftwareRaster.method2504(x, y, widget.compassPixelOffsets, widget.compassPixelWidths);
         }
-        WidgetList.rectangleRedraw[arg0] = true;
+        WidgetList.rectangleRedraw[rectangle] = true;
     }
 
     @OriginalMember(owner = "runetek4.client!ma", name = "a", descriptor = "([IIIIII)V")
-    public static void drawMiniMapTile(@OriginalArg(0) int[] destPixels, @OriginalArg(1) int offset, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4) {
-        @Pc(7) Tile tile = SceneGraph.tiles[arg2][arg3][arg4];
+    public static void drawMiniMapTile(@OriginalArg(0) int[] destPixels, @OriginalArg(1) int offset, @OriginalArg(3) int plane, @OriginalArg(4) int x, @OriginalArg(5) int z) {
+        @Pc(7) Tile tile = SceneGraph.tiles[plane][x][z];
         if (tile == null) {
             return;
         }
         @Pc(13) PlainTile plainTile = tile.plainTile;
-        @Pc(23) int local23;
+        @Pc(23) int row;
         if (plainTile != null) {
             @Pc(18) int color = plainTile.rgbColor;
             if (color != 0) {
-                for (local23 = 0; local23 < 4; local23++) {
+                for (row = 0; row < 4; row++) {
                     destPixels[offset] = color;
                     destPixels[offset + 1] = color;
                     destPixels[offset + 2] = color;
@@ -333,39 +333,39 @@ public class MiniMap {
             }
             return;
         }
-        @Pc(58) ShapedTile local58 = tile.shapedTile;
-        if (local58 == null) {
+        @Pc(58) ShapedTile shapedTile = tile.shapedTile;
+        if (shapedTile == null) {
             return;
         }
-        local23 = local58.anInt1966;
-        @Pc(67) int rotation = local58.anInt1967;
-        @Pc(70) int underlayColor = local58.underlayRGB;
-        @Pc(73) int overlayColor = local58.overlayRGB;
-        @Pc(77) int[] local77 = anIntArrayArray24[local23];
-        @Pc(81) int[] local81 = anIntArrayArray46[rotation];
+        row = shapedTile.anInt1966;
+        @Pc(67) int rotation = shapedTile.anInt1967;
+        @Pc(70) int underlayColor = shapedTile.underlayRGB;
+        @Pc(73) int overlayColor = shapedTile.overlayRGB;
+        @Pc(77) int[] shapePattern = TILE_SHAPE_PATTERNS[row];
+        @Pc(81) int[] rotationPattern = TILE_ROTATION_PATTERNS[rotation];
         @Pc(83) int pointer = 0;
         @Pc(87) int i;
         if (underlayColor != 0) {
             for (i = 0; i < 4; i++) {
-                destPixels[offset] = local77[local81[pointer++]] == 0 ? underlayColor : overlayColor;
-                destPixels[offset + 1] = local77[local81[pointer++]] == 0 ? underlayColor : overlayColor;
-                destPixels[offset + 2] = local77[local81[pointer++]] == 0 ? underlayColor : overlayColor;
-                destPixels[offset + 3] = local77[local81[pointer++]] == 0 ? underlayColor : overlayColor;
+                destPixels[offset] = shapePattern[rotationPattern[pointer++]] == 0 ? underlayColor : overlayColor;
+                destPixels[offset + 1] = shapePattern[rotationPattern[pointer++]] == 0 ? underlayColor : overlayColor;
+                destPixels[offset + 2] = shapePattern[rotationPattern[pointer++]] == 0 ? underlayColor : overlayColor;
+                destPixels[offset + 3] = shapePattern[rotationPattern[pointer++]] == 0 ? underlayColor : overlayColor;
                 offset += 512;
             }
             return;
         }
         for (i = 0; i < 4; i++) {
-            if (local77[local81[pointer++]] != 0) {
+            if (shapePattern[rotationPattern[pointer++]] != 0) {
                 destPixels[offset] = overlayColor;
             }
-            if (local77[local81[pointer++]] != 0) {
+            if (shapePattern[rotationPattern[pointer++]] != 0) {
                 destPixels[offset + 1] = overlayColor;
             }
-            if (local77[local81[pointer++]] != 0) {
+            if (shapePattern[rotationPattern[pointer++]] != 0) {
                 destPixels[offset + 2] = overlayColor;
             }
-            if (local77[local81[pointer++]] != 0) {
+            if (shapePattern[rotationPattern[pointer++]] != 0) {
                 destPixels[offset + 3] = overlayColor;
             }
             offset += 512;
@@ -373,8 +373,8 @@ public class MiniMap {
     }
 
     @OriginalMember(owner = "runetek4.client!kl", name = "b", descriptor = "(II)Z")
-    public static boolean drawMap(@OriginalArg(1) int arg0) {
-        @Pc(35) int local35;
+    public static boolean drawMap(@OriginalArg(1) int plane) {
+        @Pc(35) int pixelCount;
         @Pc(37) int local37;
         @Pc(76) int local76;
         @Pc(80) int local80;
@@ -385,18 +385,18 @@ public class MiniMap {
                 softwareSprite = (SoftwareSprite) sprite;
             }
             @Pc(32) int[] local32 = softwareSprite.pixels;
-            local35 = local32.length;
-            for (local37 = 0; local37 < local35; local37++) {
+            pixelCount = local32.length;
+            for (local37 = 0; local37 < pixelCount; local37++) {
                 local32[local37] = 1;
             }
             for (local37 = 1; local37 < 103; local37++) {
                 local76 = 4 * 512 * (103 - local37) + 24628;
                 for (local80 = 1; local80 < 103; local80++) {
-                    if ((SceneGraph.renderFlags[arg0][local80][local37] & 0x18) == 0) {
-                        drawMiniMapTile(local32, local76, arg0, local80, local37);
+                    if ((SceneGraph.renderFlags[plane][local80][local37] & 0x18) == 0) {
+                        drawMiniMapTile(local32, local76, plane, local80, local37);
                     }
-                    if (arg0 < 3 && (SceneGraph.renderFlags[arg0 + 1][local80][local37] & 0x8) != 0) {
-                        drawMiniMapTile(local32, local76, arg0 + 1, local80, local37);
+                    if (plane < 3 && (SceneGraph.renderFlags[plane + 1][local80][local37] & 0x8) != 0) {
+                        drawMiniMapTile(local32, local76, plane + 1, local80, local37);
                     }
                     local76 += 4;
                 }
@@ -404,46 +404,46 @@ public class MiniMap {
             locs = 0;
             for (local37 = 0; local37 < 104; local37++) {
                 for (local76 = 0; local76 < 104; local76++) {
-                    @Pc(169) long local169 = SceneGraph.getGroundDecorKey(Player.plane, local37 + 0, local76);
-                    if (local169 != 0L) {
-                        @Pc(184) LocType local184 = LocTypeList.get((int) (local169 >>> 32) & Integer.MAX_VALUE);
-                        @Pc(187) int local187 = local184.mapfunction;
-                        @Pc(194) int local194;
-                        if (local184.multiloc != null) {
-                            for (local194 = 0; local194 < local184.multiloc.length; local194++) {
-                                if (local184.multiloc[local194] != -1) {
-                                    @Pc(216) LocType local216 = LocTypeList.get(local184.multiloc[local194]);
+                    @Pc(169) long locationKey = SceneGraph.getGroundDecorKey(Player.plane, local37 + 0, local76);
+                    if (locationKey != 0L) {
+                        @Pc(184) LocType locType = LocTypeList.get((int) (locationKey >>> 32) & Integer.MAX_VALUE);
+                        @Pc(187) int mapFunction = locType.mapfunction;
+                        @Pc(194) int adjustedX;
+                        if (locType.multiloc != null) {
+                            for (adjustedX = 0; adjustedX < locType.multiloc.length; adjustedX++) {
+                                if (locType.multiloc[adjustedX] != -1) {
+                                    @Pc(216) LocType local216 = LocTypeList.get(locType.multiloc[adjustedX]);
                                     if (local216.mapfunction >= 0) {
-                                        local187 = local216.mapfunction;
+                                        mapFunction = local216.mapfunction;
                                         break;
                                     }
                                 }
                             }
                         }
-                        if (local187 >= 0) {
-                            @Pc(237) int local237 = local76;
-                            local194 = local37;
-                            if (local187 != 22 && local187 != 29 && local187 != 34 && local187 != 36 && local187 != 46 && local187 != 47 && local187 != 48) {
-                                @Pc(269) int[][] local269 = PathFinder.collisionMaps[Player.plane].flags;
-                                for (@Pc(271) int local271 = 0; local271 < 10; local271++) {
-                                    @Pc(281) int local281 = (int) (Math.random() * 4.0D);
-                                    if (local281 == 0 && local194 > 0 && local37 - 3 < local194 && (local269[local194 - 1][local237] & 0x12C0108) == 0) {
-                                        local194--;
+                        if (mapFunction >= 0) {
+                            @Pc(237) int adjustedZ = local76;
+                            adjustedX = local37;
+                            if (mapFunction != 22 && mapFunction != 29 && mapFunction != 34 && mapFunction != 36 && mapFunction != 46 && mapFunction != 47 && mapFunction != 48) {
+                                @Pc(269) int[][] collisionFlags = PathFinder.collisionMaps[Player.plane].flags;
+                                for (@Pc(271) int attempt = 0; attempt < 10; attempt++) {
+                                    @Pc(281) int direction = (int) (Math.random() * 4.0D);
+                                    if (direction == 0 && adjustedX > 0 && local37 - 3 < adjustedX && (collisionFlags[adjustedX - 1][adjustedZ] & 0x12C0108) == 0) {
+                                        adjustedX--;
                                     }
-                                    if (local281 == 1 && local194 < 103 && local37 + 3 > local194 && (local269[local194 + 1][local237] & 0x12C0180) == 0) {
-                                        local194++;
+                                    if (direction == 1 && adjustedX < 103 && local37 + 3 > adjustedX && (collisionFlags[adjustedX + 1][adjustedZ] & 0x12C0180) == 0) {
+                                        adjustedX++;
                                     }
-                                    if (local281 == 2 && local237 > 0 && local76 - 3 < local237 && (local269[local194][local237 - 1] & 0x12C0102) == 0) {
-                                        local237--;
+                                    if (direction == 2 && adjustedZ > 0 && local76 - 3 < adjustedZ && (collisionFlags[adjustedX][adjustedZ - 1] & 0x12C0102) == 0) {
+                                        adjustedZ--;
                                     }
-                                    if (local281 == 3 && local237 < 103 && local237 < local76 + 3 && (local269[local194][local237 + 1] & 0x12C0120) == 0) {
-                                        local237++;
+                                    if (direction == 3 && adjustedZ < 103 && adjustedZ < local76 + 3 && (collisionFlags[adjustedX][adjustedZ + 1] & 0x12C0120) == 0) {
+                                        adjustedZ++;
                                     }
                                 }
                             }
-                            locId[locs] = local184.id;
-                            locX[locs] = local194;
-                            locZ[locs] = local237;
+                            locId[locs] = locType.id;
+                            locX[locs] = adjustedX;
+                            locZ[locs] = adjustedZ;
                             locs++;
                         }
                     }
@@ -451,11 +451,11 @@ public class MiniMap {
             }
         }
         softwareSprite.makeTarget();
-        @Pc(455) int local455 = ((int) (Math.random() * 20.0D) + 238 - 10 << 8) + ((int) (Math.random() * 20.0D) + 238 - 10 << 16) + (int) (Math.random() * 20.0D) + 228;
-        local35 = (int) (Math.random() * 20.0D) + 238 - 10 << 16;
+        @Pc(455) int wallColor = ((int) (Math.random() * 20.0D) + 238 - 10 << 8) + ((int) (Math.random() * 20.0D) + 238 - 10 << 16) + (int) (Math.random() * 20.0D) + 228;
+        pixelCount = (int) (Math.random() * 20.0D) + 238 - 10 << 16;
         for (local37 = 1; local37 < 103; local37++) {
             for (local76 = 1; local76 < 103; local76++) {
-                if ((SceneGraph.renderFlags[arg0][local76][local37] & 0x18) == 0 && !method3109(local76, local455, local37, local35, arg0)) {
+                if ((SceneGraph.renderFlags[plane][local76][local37] & 0x18) == 0 && !drawMinimapWalls(local76, wallColor, local37, pixelCount, plane)) {
                     if (GlRenderer.enabled) {
                         SoftwareRaster.pixels = null;
                     } else {
@@ -463,7 +463,7 @@ public class MiniMap {
                     }
                     return false;
                 }
-                if (arg0 < 3 && (SceneGraph.renderFlags[arg0 + 1][local76][local37] & 0x8) != 0 && !method3109(local76, local455, local37, local35, arg0 + 1)) {
+                if (plane < 3 && (SceneGraph.renderFlags[plane + 1][local76][local37] & 0x8) != 0 && !drawMinimapWalls(local76, wallColor, local37, pixelCount, plane + 1)) {
                     if (GlRenderer.enabled) {
                         SoftwareRaster.pixels = null;
                     } else {
@@ -474,11 +474,11 @@ public class MiniMap {
             }
         }
         if (GlRenderer.enabled) {
-            @Pc(576) int[] local576 = softwareSprite.pixels;
-            local76 = local576.length;
+            @Pc(576) int[] glPixels = softwareSprite.pixels;
+            local76 = glPixels.length;
             for (local80 = 0; local80 < local76; local80++) {
-                if (local576[local80] == 0) {
-                    local576[local80] = 1;
+                if (glPixels[local80] == 0) {
+                    glPixels[local80] = 1;
                 }
             }
             sprite = new GlSprite(softwareSprite);
@@ -495,59 +495,59 @@ public class MiniMap {
     }
 
     @OriginalMember(owner = "runetek4.client!hi", name = "a", descriptor = "(IIIIILclient!be;Z)V")
-    public static void drawMinimapMark(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int mapX, @OriginalArg(4) int mapY, @OriginalArg(5) Widget arg5) {
-        @Pc(13) int len = mapX * mapX + mapY * mapY;
-        if (len > 360000) {
+    public static void drawMinimapMark(@OriginalArg(0) int markType, @OriginalArg(1) int y, @OriginalArg(2) int z, @OriginalArg(3) int mapX, @OriginalArg(4) int mapY, @OriginalArg(5) Widget widget) {
+        @Pc(13) int distanceSquared = mapX * mapX + mapY * mapY;
+        if (distanceSquared > 360000) {
             return;
         }
-        @Pc(30) int local30 = Math.min(arg5.width / 2, arg5.height / 2);
-        if (local30 * local30 >= len) {
-            drawOnMinimap(arg5, Sprites.mapmarkhints[arg0], mapY, mapX, arg1, arg2);
+        @Pc(30) int radius = Math.min(widget.width / 2, widget.height / 2);
+        if (radius * radius >= distanceSquared) {
+            drawOnMinimap(widget, Sprites.mapmarkhints[markType], mapY, mapX, y, z);
             return;
         }
-        local30 -= 10;
-        @Pc(58) int local58 = minimapAnticheatAngle + Camera.orbitCameraYaw & 0x7FF;
-        @Pc(62) int local62 = MathUtils.cos[local58];
-        @Pc(66) int local66 = MathUtils.sin[local58];
-        @Pc(74) int local74 = local66 * 256 / (minimapZoom + 256);
-        @Pc(82) int local82 = local62 * 256 / (minimapZoom + 256);
-        @Pc(93) int local93 = mapY * local74 + local82 * mapX >> 16;
-        @Pc(104) int local104 = mapY * local82 - local74 * mapX >> 16;
-        @Pc(110) double angle = Math.atan2((double) local93, (double) local104);
-        @Pc(117) int sine = (int) (Math.sin(angle) * (double) local30);
-        @Pc(124) int cosine = (int) (Math.cos(angle) * (double) local30);
+        radius -= 10;
+        @Pc(58) int totalAngle = minimapAnticheatAngle + Camera.orbitCameraYaw & 0x7FF;
+        @Pc(62) int cosTotal = MathUtils.cos[totalAngle];
+        @Pc(66) int sinTotal = MathUtils.sin[totalAngle];
+        @Pc(74) int sinScaled = sinTotal * 256 / (minimapZoom + 256);
+        @Pc(82) int cosScaled = cosTotal * 256 / (minimapZoom + 256);
+        @Pc(93) int rotatedX = mapY * sinScaled + cosScaled * mapX >> 16;
+        @Pc(104) int rotatedY = mapY * cosScaled - sinScaled * mapX >> 16;
+        @Pc(110) double edgeAngle = Math.atan2((double) rotatedX, (double) rotatedY);
+        @Pc(117) int edgeOffsetX = (int) (Math.sin(edgeAngle) * (double) radius);
+        @Pc(124) int edgeOffsetY = (int) (Math.cos(edgeAngle) * (double) radius);
         if (GlRenderer.enabled) {
-            ((GlSprite) Sprites.hintMapEdge[arg0]).method1428((arg5.width / 2 + arg2 + sine) * 16, (arg5.height / 2 + arg1 - cosine) * 16, (int) (angle * 10430.378D));
+            ((GlSprite) Sprites.hintMapEdge[markType]).method1428((widget.width / 2 + z + edgeOffsetX) * 16, (widget.height / 2 + y - edgeOffsetY) * 16, (int) (edgeAngle * 10430.378D));
         } else {
-            ((SoftwareSprite) Sprites.hintMapEdge[arg0]).method306(sine + arg5.width / 2 + arg2 - 10, arg5.height / 2 + -10 + arg1 + -cosine, angle);
+            ((SoftwareSprite) Sprites.hintMapEdge[markType]).method306(edgeOffsetX + widget.width / 2 + z - 10, widget.height / 2 + -10 + y + -edgeOffsetY, edgeAngle);
         }
     }
 
     @OriginalMember(owner = "runetek4.client!hi", name = "a", descriptor = "(Lclient!be;B)Lclient!na;")
-    public static JString getTargetVerb(@OriginalArg(0) Widget arg0) {
-        if (WidgetList.getServerActiveProperties(arg0).getTargetMask() == 0) {
+    public static JString getTargetVerb(@OriginalArg(0) Widget widget) {
+        if (WidgetList.getServerActiveProperties(widget).getTargetMask() == 0) {
             return null;
-        } else if (arg0.optionCircumfix == null || arg0.optionCircumfix.trim().length() == 0) {
+        } else if (widget.optionCircumfix == null || widget.optionCircumfix.trim().length() == 0) {
             return Cheat.qaOpTest ? HIDDEN_USE : null;
         } else {
-            return arg0.optionCircumfix;
+            return widget.optionCircumfix;
         }
     }
 
     @OriginalMember(owner = "client!cj", name = "a", descriptor = "(ILclient!pb;ZIIII)Z")
-	public static boolean drawMapSceneIcon(@OriginalArg(0) int arg0, @OriginalArg(1) LocType loc, @OriginalArg(5) int arg2, @OriginalArg(6) int rotation) {
+	public static boolean drawMapSceneIcon(@OriginalArg(0) int x, @OriginalArg(1) LocType loc, @OriginalArg(5) int z, @OriginalArg(6) int rotation) {
 		@Pc(10) MSIType msiType = MSITypeList.get(loc.mapsceneicon);
 		if (msiType.spriteId == -1) {
 			return true;
 		}
 		if (loc.mapsceneiconrorate) {
-			@Pc(24) int mapscenerotation = rotation + loc.mapsceneiconrotationoffset;
-			rotation = mapscenerotation & 0x3;
+			@Pc(24) int adjustedRotation = rotation + loc.mapsceneiconrotationoffset;
+			rotation = adjustedRotation & 0x3;
 		} else {
 			rotation = 0;
 		}
-		@Pc(42) SoftwareIndexedSprite softwareIndexedSprite = msiType.getSprite(rotation);
-		if (softwareIndexedSprite == null) {
+		@Pc(42) SoftwareIndexedSprite iconSprite = msiType.getSprite(rotation);
+		if (iconSprite == null) {
 			return false;
 		}
 		@Pc(49) int width = loc.width;
@@ -556,155 +556,155 @@ public class MiniMap {
 			width = loc.length;
 			length = loc.width;
 		}
-		@Pc(66) int spriteWidth = softwareIndexedSprite.innerWidth;
-		@Pc(69) int spriteHeight = softwareIndexedSprite.innerHeight;
+		@Pc(66) int spriteWidth = iconSprite.innerWidth;
+		@Pc(69) int spriteHeight = iconSprite.innerHeight;
 		if (msiType.aBoolean2) {
 			spriteHeight = length * 4;
 			spriteWidth = width * 4;
 		}
 		if (msiType.anInt11 == 0) {
-			softwareIndexedSprite.method1398(arg0 * 4 + 48, (-length + -arg2 + 104) * 4 + 48, spriteWidth, spriteHeight);
+			iconSprite.method1398(x * 4 + 48, (-length + -z + 104) * 4 + 48, spriteWidth, spriteHeight);
 		} else {
-			softwareIndexedSprite.method1390(arg0 * 4 + 48, (-length + -arg2 + 104) * 4 + 48, spriteWidth, spriteHeight, msiType.anInt11);
+			iconSprite.method1390(x * 4 + 48, (-length + -z + 104) * 4 + 48, spriteWidth, spriteHeight, msiType.anInt11);
 		}
 		return true;
 	}
 
     @OriginalMember(owner = "runetek4.client!t", name = "a", descriptor = "(IIIZIII)V")
-    public static void method4000(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5) {
-        @Pc(3) int local3 = 0;
-        @Pc(5) MapMarker[] local5 = hintMapMarkers;
-        while (local5.length > local3) {
-            @Pc(17) MapMarker local17 = local5[local3];
-            if (local17 != null && local17.type == 2) {
-                ClientScriptRunner.calculateScreenCoordinates(arg0 >> 1, arg4, (local17.anInt4046 - Camera.originZ << 7) + local17.anInt4047, local17.anInt4050 * 2, arg2 >> 1, local17.anInt4045 + (local17.targetX - Camera.originX << 7), arg3);
+    public static void renderOverheadHints(@OriginalArg(0) int cameraX, @OriginalArg(1) int screenX, @OriginalArg(2) int cameraY, @OriginalArg(4) int cameraZ, @OriginalArg(5) int cameraPlane, @OriginalArg(6) int screenY) {
+        @Pc(3) int index = 0;
+        @Pc(5) MapMarker[] markers = hintMapMarkers;
+        while (markers.length > index) {
+            @Pc(17) MapMarker marker = markers[index];
+            if (marker != null && marker.type == 2) {
+                ClientScriptRunner.calculateScreenCoordinates(cameraX >> 1, cameraPlane, (marker.anInt4046 - Camera.originZ << 7) + marker.anInt4047, marker.anInt4050 * 2, cameraY >> 1, marker.anInt4045 + (marker.targetX - Camera.originX << 7), cameraZ);
                 if (ClientScriptRunner.overheadScreenX > -1 && Client.loop % 20 < 10) {
-                    Sprites.headhints[local17.anInt4048].render(arg1 + ClientScriptRunner.overheadScreenX - 12, arg5 + -28 - -ClientScriptRunner.overheadScreenY);
+                    Sprites.headhints[marker.anInt4048].render(screenX + ClientScriptRunner.overheadScreenX - 12, screenY + -28 - -ClientScriptRunner.overheadScreenY);
                 }
             }
-            local3++;
+            index++;
         }
     }
 
     @OriginalMember(owner = "runetek4.client!na", name = "a", descriptor = "(IIIIIIIZ)Z")
-    public static boolean method3109(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(6) int arg4) {
-        @Pc(14) long wallKey = SceneGraph.getWallKey(arg4, arg0 + 0, arg2);
+    public static boolean drawMinimapWalls(@OriginalArg(1) int x, @OriginalArg(2) int wallColor1, @OriginalArg(3) int z, @OriginalArg(4) int wallColor2, @OriginalArg(6) int plane) {
+        @Pc(14) long sceneKey = SceneGraph.getWallKey(plane, x + 0, z);
         @Pc(28) int rotation;
         @Pc(35) int shape;
-        @Pc(42) int local42;
+        @Pc(42) int locId;
         @Pc(46) LocType loc;
-        @Pc(65) int local65;
-        @Pc(75) int[] local75;
-        @Pc(90) int local90;
-        if (wallKey != 0L) {
-            rotation = (int) wallKey >> 20 & 0x3;
-            shape = (int) wallKey >> 14 & 0x1F;
-            local42 = Integer.MAX_VALUE & (int) (wallKey >>> 32);
-            loc = LocTypeList.get(local42);
+        @Pc(65) int wallColor;
+        @Pc(75) int[] pixels;
+        @Pc(90) int pixelOffset;
+        if (sceneKey != 0L) {
+            rotation = (int) sceneKey >> 20 & 0x3;
+            shape = (int) sceneKey >> 14 & 0x1F;
+            locId = Integer.MAX_VALUE & (int) (sceneKey >>> 32);
+            loc = LocTypeList.get(locId);
             if (loc.mapsceneicon == -1) {
-                local65 = arg1;
-                if (wallKey > 0L) {
-                    local65 = arg3;
+                wallColor = wallColor1;
+                if (sceneKey > 0L) {
+                    wallColor = wallColor2;
                 }
-                local75 = SoftwareRaster.pixels;
-                local90 = (52736 - arg2 * 512) * 4 + arg0 * 4 + 24624;
+                pixels = SoftwareRaster.pixels;
+                pixelOffset = (52736 - z * 512) * 4 + x * 4 + 24624;
                 if (shape == LocType.WALL_STRAIGHT || shape == LocType.WALL_L) {
                     if (rotation == 0) {
-                        local75[local90] = local65;
-                        local75[local90 + 512] = local65;
-                        local75[local90 + 1024] = local65;
-                        local75[local90 + 1536] = local65;
+                        pixels[pixelOffset] = wallColor;
+                        pixels[pixelOffset + 512] = wallColor;
+                        pixels[pixelOffset + 1024] = wallColor;
+                        pixels[pixelOffset + 1536] = wallColor;
                     } else if (rotation == 1) {
-                        local75[local90] = local65;
-                        local75[local90 + 1] = local65;
-                        local75[local90 + 2] = local65;
-                        local75[local90 + 3] = local65;
+                        pixels[pixelOffset] = wallColor;
+                        pixels[pixelOffset + 1] = wallColor;
+                        pixels[pixelOffset + 2] = wallColor;
+                        pixels[pixelOffset + 3] = wallColor;
                     } else if (rotation == 2) {
-                        local75[local90 + 3] = local65;
-                        local75[local90 + 3 + 512] = local65;
-                        local75[local90 + 3 + 1024] = local65;
-                        local75[local90 + 3 + 1536] = local65;
+                        pixels[pixelOffset + 3] = wallColor;
+                        pixels[pixelOffset + 3 + 512] = wallColor;
+                        pixels[pixelOffset + 3 + 1024] = wallColor;
+                        pixels[pixelOffset + 3 + 1536] = wallColor;
                     } else if (rotation == 3) {
-                        local75[local90 + 1536] = local65;
-                        local75[local90 + 1536 + 1] = local65;
-                        local75[local90 + 1538] = local65;
-                        local75[local90 + 3 + 1536] = local65;
+                        pixels[pixelOffset + 1536] = wallColor;
+                        pixels[pixelOffset + 1536 + 1] = wallColor;
+                        pixels[pixelOffset + 1538] = wallColor;
+                        pixels[pixelOffset + 3 + 1536] = wallColor;
                     }
                 }
                 if (shape == LocType.WALL_SQUARE_CORNER) {
                     if (rotation == 0) {
-                        local75[local90] = local65;
+                        pixels[pixelOffset] = wallColor;
                     } else if (rotation == 1) {
-                        local75[local90 + 3] = local65;
+                        pixels[pixelOffset + 3] = wallColor;
                     } else if (rotation == 2) {
-                        local75[local90 + 3 + 1536] = local65;
+                        pixels[pixelOffset + 3 + 1536] = wallColor;
                     } else if (rotation == 3) {
-                        local75[local90 + 1536] = local65;
+                        pixels[pixelOffset + 1536] = wallColor;
                     }
                 }
                 if (shape == LocType.WALL_L) {
                     if (rotation == 3) {
-                        local75[local90] = local65;
-                        local75[local90 + 512] = local65;
-                        local75[local90 + 1024] = local65;
-                        local75[local90 + 1536] = local65;
+                        pixels[pixelOffset] = wallColor;
+                        pixels[pixelOffset + 512] = wallColor;
+                        pixels[pixelOffset + 1024] = wallColor;
+                        pixels[pixelOffset + 1536] = wallColor;
                     } else if (rotation == 0) {
-                        local75[local90] = local65;
-                        local75[local90 + 1] = local65;
-                        local75[local90 + 2] = local65;
-                        local75[local90 + 3] = local65;
+                        pixels[pixelOffset] = wallColor;
+                        pixels[pixelOffset + 1] = wallColor;
+                        pixels[pixelOffset + 2] = wallColor;
+                        pixels[pixelOffset + 3] = wallColor;
                     } else if (rotation == 1) {
-                        local75[local90 + 3] = local65;
-                        local75[local90 + 512 + 3] = local65;
-                        local75[local90 + 1024 + 3] = local65;
-                        local75[local90 + 1536 + 3] = local65;
+                        pixels[pixelOffset + 3] = wallColor;
+                        pixels[pixelOffset + 512 + 3] = wallColor;
+                        pixels[pixelOffset + 1024 + 3] = wallColor;
+                        pixels[pixelOffset + 1536 + 3] = wallColor;
                     } else if (rotation == 2) {
-                        local75[local90 + 1536] = local65;
-                        local75[local90 + 1536 + 1] = local65;
-                        local75[local90 + 1536 + 2] = local65;
-                        local75[local90 + 1539] = local65;
+                        pixels[pixelOffset + 1536] = wallColor;
+                        pixels[pixelOffset + 1536 + 1] = wallColor;
+                        pixels[pixelOffset + 1536 + 2] = wallColor;
+                        pixels[pixelOffset + 1539] = wallColor;
                     }
                 }
-            } else if (!drawMapSceneIcon(arg0, loc, arg2, rotation)) {
+            } else if (!drawMapSceneIcon(x, loc, z, rotation)) {
                 return false;
             }
         }
-        wallKey = SceneGraph.getSceneryKey(arg4, arg0 + 0, arg2);
-        if (wallKey != 0L) {
-            rotation = (int) wallKey >> 20 & 0x3;
-            shape = (int) wallKey >> 14 & 0x1F;
-            local42 = (int) (wallKey >>> 32) & Integer.MAX_VALUE;
-            loc = LocTypeList.get(local42);
+        sceneKey = SceneGraph.getSceneryKey(plane, x + 0, z);
+        if (sceneKey != 0L) {
+            rotation = (int) sceneKey >> 20 & 0x3;
+            shape = (int) sceneKey >> 14 & 0x1F;
+            locId = (int) (sceneKey >>> 32) & Integer.MAX_VALUE;
+            loc = LocTypeList.get(locId);
             if (loc.mapsceneicon == -1) {
                 if (shape == LocType.WALL_DIAGONAL) {
-                    local65 = 15658734;
-                    if (wallKey > 0L) {
-                        local65 = 15597568;
+                    wallColor = 15658734;
+                    if (sceneKey > 0L) {
+                        wallColor = 15597568;
                     }
-                    local90 = arg0 * 4 + (103 - arg2) * 2048 + 24624;
-                    local75 = SoftwareRaster.pixels;
+                    pixelOffset = x * 4 + (103 - z) * 2048 + 24624;
+                    pixels = SoftwareRaster.pixels;
                     if (rotation == 0 || rotation == 2) {
-                        local75[local90 + 1536] = local65;
-                        local75[local90 + 1025] = local65;
-                        local75[local90 + 512 + 2] = local65;
-                        local75[local90 + 3] = local65;
+                        pixels[pixelOffset + 1536] = wallColor;
+                        pixels[pixelOffset + 1025] = wallColor;
+                        pixels[pixelOffset + 512 + 2] = wallColor;
+                        pixels[pixelOffset + 3] = wallColor;
                     } else {
-                        local75[local90] = local65;
-                        local75[local90 + 512 + 1] = local65;
-                        local75[local90 + 1024 + 2] = local65;
-                        local75[local90 + 1536 + 3] = local65;
+                        pixels[pixelOffset] = wallColor;
+                        pixels[pixelOffset + 512 + 1] = wallColor;
+                        pixels[pixelOffset + 1024 + 2] = wallColor;
+                        pixels[pixelOffset + 1536 + 3] = wallColor;
                     }
                 }
-            } else if (!drawMapSceneIcon(arg0, loc, arg2, rotation)) {
+            } else if (!drawMapSceneIcon(x, loc, z, rotation)) {
                 return false;
             }
         }
-        wallKey = SceneGraph.getGroundDecorKey(arg4, arg0 + 0, arg2);
-        if (wallKey != 0L) {
-            rotation = (int) wallKey >> 20 & 0x3;
-            shape = (int) (wallKey >>> 32) & Integer.MAX_VALUE;
-            @Pc(586) LocType local586 = LocTypeList.get(shape);
-            if (local586.mapsceneicon != -1 && !drawMapSceneIcon(arg0, local586, arg2, rotation)) {
+        sceneKey = SceneGraph.getGroundDecorKey(plane, x + 0, z);
+        if (sceneKey != 0L) {
+            rotation = (int) sceneKey >> 20 & 0x3;
+            shape = (int) (sceneKey >>> 32) & Integer.MAX_VALUE;
+            @Pc(586) LocType groundDecorLoc = LocTypeList.get(shape);
+            if (groundDecorLoc.mapsceneicon != -1 && !drawMapSceneIcon(x, groundDecorLoc, z, rotation)) {
                 return false;
             }
         }

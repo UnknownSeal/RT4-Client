@@ -5688,14 +5688,14 @@ public class SceneGraph {
             Client.audioLoop();
             ClientScriptRunner.clearAllScenery();
             ClientScriptRunner.drawOverheads(y, width, x, ClientScriptRunner.anInt5029, height, ClientScriptRunner.anInt5029);
-            MiniMap.method4000(width, x, height, ClientScriptRunner.anInt5029, ClientScriptRunner.anInt5029, y);
+            MiniMap.renderOverheadHints(width, x, height, ClientScriptRunner.anInt5029, ClientScriptRunner.anInt5029, y);
         } else {
             SoftwareRaster.fillRect(x, y, width, height, 0);
             setupSceneRender(Camera.renderX, Camera.cameraY, Camera.renderZ, Camera.cameraPitch, Camera.cameraYaw, ClientScriptRunner.tileMarkings, ClientScriptRunner.maxHeights, ClientScriptRunner.anIntArray338, ClientScriptRunner.anIntArray518, ClientScriptRunner.anIntArray134, ClientScriptRunner.anIntArray476, Player.plane + 1, roofVisibilityFlag, PlayerList.self.xFine >> 7, PlayerList.self.zFine >> 7);
             Client.audioLoop();
             ClientScriptRunner.clearAllScenery();
             ClientScriptRunner.drawOverheads(y, width, x, 256, height, 256);
-            MiniMap.method4000(width, x, height, 256, 256, y);
+            MiniMap.renderOverheadHints(width, x, height, 256, 256, y);
         }
         ((Js5TextureProvider) Rasterizer.textureProvider).method3239(Protocol.sceneDelta);
         Player.method2310(width, y, height, x);
