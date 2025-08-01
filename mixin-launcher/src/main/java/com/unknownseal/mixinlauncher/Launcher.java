@@ -32,7 +32,7 @@ public class Launcher
 
         LauncherLogger.info("Launching client main()…");
         try {
-            Class<?> clientClass = Class.forName("com.jagex.runetek4.client.client");
+            Class<?> clientClass = Class.forName("com.jagex.runetek4.client.Client");
             Method mainMethod = clientClass.getMethod("main", String[].class);
             mainMethod.invoke(null, (Object) args);
         } catch (Exception e) {

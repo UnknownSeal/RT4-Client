@@ -1,7 +1,7 @@
 package com.unknownseal.mixinlauncher.events;
 
-public class GameTick {
+public class DrawScene {
 
-    public GameTick() {
+    public DrawScene() {
     }
 }

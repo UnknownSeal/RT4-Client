@@ -1,6 +1,7 @@
 package com.unknownseal.mixinlauncher.utils;
 
-import com.jagex.runetek4.JString;
+
+import com.jagex.runetek4.util.string.JString;
 
 public class StringUtils {
 

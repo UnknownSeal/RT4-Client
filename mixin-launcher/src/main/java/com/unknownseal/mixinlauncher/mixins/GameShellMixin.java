@@ -1,12 +1,10 @@
-package com.unknownseal.mixinlauncher.hooks;
+package com.unknownseal.mixinlauncher.mixins;
 
 import com.unknownseal.mixinlauncher.annotations.At;
 import com.unknownseal.mixinlauncher.annotations.Inject;
 import com.unknownseal.mixinlauncher.annotations.Mixin;
 import com.unknownseal.mixinlauncher.plugin.PluginManagerHolder;
 import com.unknownseal.mixinlauncher.events.GameShellStarted;
-
-import java.awt.*;
 
 @Mixin(value = com.jagex.runetek4.client.GameShell.class)
 public class GameShellMixin

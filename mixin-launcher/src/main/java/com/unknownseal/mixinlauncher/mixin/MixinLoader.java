@@ -11,7 +11,7 @@ import java.util.logging.Level;
 
 public class MixinLoader
 {
-    private static final String HOOKS_PACKAGE = "com.unknownseal.mixinlauncher.hooks";
+    private static final String HOOKS_PACKAGE = "com.unknownseal.mixinlauncher.mixins";
 
     public static void applyAllHooks() throws Exception
     {

@@ -1,7 +1,8 @@
-package com.unknownseal.mixinlauncher.hooks;
+package com.unknownseal.mixinlauncher.mixins;
 
 import com.jagex.runetek4.Camera;
-import com.jagex.runetek4.ClientScriptRunner;
+
+import com.jagex.runetek4.clientscript.ClientScriptRunner;
 import com.unknownseal.mixinlauncher.annotations.At;
 import com.unknownseal.mixinlauncher.annotations.Mixin;
 import com.unknownseal.mixinlauncher.annotations.Redirect;

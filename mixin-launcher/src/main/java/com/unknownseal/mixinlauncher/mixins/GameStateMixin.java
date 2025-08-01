@@ -1,19 +1,20 @@
-package com.unknownseal.mixinlauncher.hooks;
+package com.unknownseal.mixinlauncher.mixins;
 
+import com.jagex.runetek4.client.Client;
 import com.unknownseal.mixinlauncher.annotations.At;
 import com.unknownseal.mixinlauncher.annotations.Inject;
 import com.unknownseal.mixinlauncher.annotations.Mixin;
 import com.unknownseal.mixinlauncher.plugin.PluginManagerHolder;
 import com.unknownseal.mixinlauncher.events.GameStateChanged;
 
-@Mixin(com.jagex.runetek4.client.client.class)
+@Mixin(Client.class)
 public class GameStateMixin
 {
     private static int lastGameState = -1;
 
     @Inject(method = "mainloop", at = @At("TAIL"))
     public static void onUpdateGame() {
-        int currentState = com.jagex.runetek4.client.client.gameState;
+        int currentState = Client.gameState;
 
         if (currentState != lastGameState) {
             PluginManagerHolder.get()

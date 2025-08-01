@@ -1,6 +1,7 @@
 package com.unknownseal.mixinlauncher.api;
 
-import com.unknownseal.mixinlauncher.hooks.CameraMixin;
+import com.jagex.runetek4.entity.entity.Player;
+import com.unknownseal.mixinlauncher.mixins.CameraMixin;
 import com.unknownseal.mixinlauncher.utils.StringUtils;
 
 import java.awt.*;
@@ -8,9 +9,10 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseWheelListener;
 
+import static com.jagex.runetek4.client.Client.gameState;
 import static com.jagex.runetek4.client.GameShell.canvas;
 import static com.jagex.runetek4.client.GameShell.frame;
-import static com.jagex.runetek4.client.client.gameState;
+
 
 public class ClientContextImpl implements ClientContext{
 
@@ -30,7 +32,7 @@ public class ClientContextImpl implements ClientContext{
     }
     @Override
     public String getLocalPlayerName() {
-        com.jagex.runetek4.Player player = com.jagex.runetek4.PlayerList.self;
+        Player player = com.jagex.runetek4.PlayerList.self;
         if (player != null && player.username != null) {
             return StringUtils.fromJstring(player.username);
         }

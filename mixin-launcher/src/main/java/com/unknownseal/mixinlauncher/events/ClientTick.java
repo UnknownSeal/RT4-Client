@@ -1,7 +1,7 @@
 package com.unknownseal.mixinlauncher.events;
 
-public class GameTick {
+public class ClientTick {
 
-    public GameTick() {
+    public ClientTick() {
     }
 }
