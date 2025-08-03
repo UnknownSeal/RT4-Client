@@ -1,4 +1,4 @@
-package com.jagex.runetek4;
+package com.jagex.runetek4.ui.component;
 
 import com.jagex.runetek4.core.node.Node;
 import org.openrs2.deob.annotation.OriginalClass;

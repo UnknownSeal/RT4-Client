@@ -1,6 +1,5 @@
 package com.jagex.runetek4.entity.entity;
 
-import com.jagex.runetek4.*;
 import com.jagex.runetek4.config.types.seq.SeqTypeList;
 import com.jagex.runetek4.config.types.bas.BasType;
 import com.jagex.runetek4.config.types.bas.BasTypeList;
@@ -173,7 +172,7 @@ public abstract class PathingEntity extends Entity {
 	public int anInt3377 = 0;
 
 	@OriginalMember(owner = "client!fe", name = "Eb", descriptor = "[Lclient!ub;")
-	public final PathingEntity_Class147[] layeredAnimations = new PathingEntity_Class147[12];
+	public final PathingEntityAnimation[] layeredAnimations = new PathingEntityAnimation[12];
 
 	@OriginalMember(owner = "client!fe", name = "Lb", descriptor = "I")
 	public int chatLoops = 100;

@@ -10,7 +10,7 @@ import com.jagex.runetek4.data.js5.Js5;
 import com.jagex.runetek4.util.string.JString;
 import com.jagex.runetek4.graphics.lighting.FogManager;
 import com.jagex.runetek4.core.node.SecondaryNode;
-import com.jagex.runetek4.graphics.raster.SoftwareRaster;
+import com.jagex.runetek4.graphics.raster.SoftwareRenderer;
 import com.jagex.runetek4.ui.sprite.IndexedSprite;
 import com.jagex.runetek4.ui.sprite.SpriteLoader;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -321,14 +321,14 @@ public abstract class Font extends SecondaryNode {
 						if (GlRenderer.enabled) {
 							GlRaster.method1174(x, y + (int) ((double) this.characterDefaultHeight * 0.7D), local323, strikethroughColor);
 						} else {
-							SoftwareRaster.drawHorizontalLine(x, y + (int) ((double) this.characterDefaultHeight * 0.7D), local323, strikethroughColor);
+							SoftwareRenderer.drawHorizontalLine(x, y + (int) ((double) this.characterDefaultHeight * 0.7D), local323, strikethroughColor);
 						}
 					}
 					if (underlineColor != -1) {
 						if (GlRenderer.enabled) {
 							GlRaster.method1174(x, y + this.characterDefaultHeight + 1, local323, underlineColor);
 						} else {
-							SoftwareRaster.drawHorizontalLine(x, y + this.characterDefaultHeight + 1, local323, underlineColor);
+							SoftwareRenderer.drawHorizontalLine(x, y + this.characterDefaultHeight + 1, local323, underlineColor);
 						}
 					}
 					x += local323;
@@ -1013,14 +1013,14 @@ public abstract class Font extends SecondaryNode {
 						if (GlRenderer.enabled) {
 							GlRaster.method1174(arg1, local4 + (int) ((double) this.characterDefaultHeight * 0.7D), local387, strikethroughColor);
 						} else {
-							SoftwareRaster.drawHorizontalLine(arg1, local4 + (int) ((double) this.characterDefaultHeight * 0.7D), local387, strikethroughColor);
+							SoftwareRenderer.drawHorizontalLine(arg1, local4 + (int) ((double) this.characterDefaultHeight * 0.7D), local387, strikethroughColor);
 						}
 					}
 					if (underlineColor != -1) {
 						if (GlRenderer.enabled) {
 							GlRaster.method1174(arg1, local4 + this.characterDefaultHeight, local387, underlineColor);
 						} else {
-							SoftwareRaster.drawHorizontalLine(arg1, local4 + this.characterDefaultHeight, local387, underlineColor);
+							SoftwareRenderer.drawHorizontalLine(arg1, local4 + this.characterDefaultHeight, local387, underlineColor);
 						}
 					}
 					arg1 += local387;

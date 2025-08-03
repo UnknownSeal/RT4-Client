@@ -11,7 +11,7 @@ import com.jagex.runetek4.util.string.JString;
 import com.jagex.runetek4.util.string.LocalizedText;
 import com.jagex.runetek4.graphics.model.SoftwareModel;
 import com.jagex.runetek4.graphics.raster.Rasterizer;
-import com.jagex.runetek4.graphics.raster.SoftwareRaster;
+import com.jagex.runetek4.graphics.raster.SoftwareRenderer;
 import com.jagex.runetek4.ui.sprite.Sprite;
 import com.jagex.runetek4.util.math.MathUtils;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -188,13 +188,13 @@ public final class Inv extends Node {
 				return null;
 			}
 		}
-		@Pc(118) int[] pixels = SoftwareRaster.pixels;
-		@Pc(120) int width = SoftwareRaster.width;
-		@Pc(122) int height = SoftwareRaster.height;
+		@Pc(118) int[] pixels = SoftwareRenderer.pixels;
+		@Pc(120) int width = SoftwareRenderer.width;
+		@Pc(122) int height = SoftwareRenderer.height;
 		@Pc(125) int[] clip = new int[4];
-		SoftwareRaster.saveClip(clip);
+		SoftwareRenderer.saveClip(clip);
 		@Pc(133) SoftwareSprite canvas = new SoftwareSprite(36, 32);
-		SoftwareRaster.setSize(canvas.pixels, 36, 32);
+		SoftwareRenderer.setSize(canvas.pixels, 36, 32);
 		Rasterizer.prepare();
 		Rasterizer.setBounds(16, 16);
 		@Pc(145) int zoom = objType.zoom2d;
@@ -212,7 +212,7 @@ public final class Inv extends Node {
 			if (outlineType >= 2) {
 				canvas.drawOutline(16777215);
 			}
-			SoftwareRaster.setSize(canvas.pixels, 36, 32);
+			SoftwareRenderer.setSize(canvas.pixels, 36, 32);
 		}
 		if (shadowColor != 0) {
 			canvas.drawShadow(shadowColor);
@@ -220,15 +220,15 @@ public final class Inv extends Node {
 		if (objType.certTemplate != -1) {
 			linkedSprite.render(0, 0);
 		} else if (objType.lentTemplate != -1) {
-			SoftwareRaster.setSize(linkedSprite.pixels, 36, 32);
+			SoftwareRenderer.setSize(linkedSprite.pixels, 36, 32);
 			canvas.render(0, 0);
 			canvas = linkedSprite;
 		}
 		if (drawText && (objType.stackable == 1 || stack != 1) && stack != -1) {
 			ObjTypeList.font.renderLeft(getShortenedAmountText(stack), 0, 9, 16776960, 1);
 		}
-		SoftwareRaster.setSize(pixels, width, height);
-		SoftwareRaster.restoreClip(clip);
+		SoftwareRenderer.setSize(pixels, width, height);
+		SoftwareRenderer.restoreClip(clip);
 		Rasterizer.prepare();
 		Rasterizer.jagged = true;
 		return GlRenderer.enabled && !linked ? new GlSprite(canvas) : canvas;

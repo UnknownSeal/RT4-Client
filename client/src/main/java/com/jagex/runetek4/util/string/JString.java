@@ -4,7 +4,7 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.io.UnsupportedEncodingException;
 
-import com.jagex.runetek4.ComponentString;
+import com.jagex.runetek4.ui.component.ComponentString;
 import com.jagex.runetek4.clientscript.ClientScriptRunner;
 import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.core.datastruct.JagStringWrapper;

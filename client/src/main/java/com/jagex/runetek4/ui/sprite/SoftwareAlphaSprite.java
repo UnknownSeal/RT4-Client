@@ -1,7 +1,7 @@
 package com.jagex.runetek4.ui.sprite;
 
 import com.jagex.runetek4.data.cache.media.SoftwareSprite;
-import com.jagex.runetek4.graphics.raster.SoftwareRaster;
+import com.jagex.runetek4.graphics.raster.SoftwareRenderer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -122,23 +122,23 @@ public final class SoftwareAlphaSprite extends SoftwareSprite {
 			@Pc(33) int local33 = local21 * 256 >> 8;
 			@Pc(45) int local45 = local27 * -10 + local33 * -10 + 983040;
 			@Pc(57) int local57 = local33 * -10 + 983040 - local27 * -10;
-			@Pc(63) int local63 = arg0 + arg1 * SoftwareRaster.width;
+			@Pc(63) int local63 = arg0 + arg1 * SoftwareRenderer.width;
 			for (@Pc(65) int local65 = 0; local65 < 20; local65++) {
 				@Pc(70) int local70 = local63;
 				@Pc(72) int local72 = local45;
 				@Pc(74) int local74 = local57;
 				for (@Pc(77) int local77 = -20; local77 < 0; local77++) {
 					@Pc(93) int local93 = this.pixels[(local72 >> 16) + (local74 >> 16) * this.width];
-					@Pc(97) int local97 = SoftwareRaster.pixels[local70];
+					@Pc(97) int local97 = SoftwareRenderer.pixels[local70];
 					@Pc(101) int local101 = local93 >>> 24;
 					@Pc(105) int local105 = 256 - local101;
-					SoftwareRaster.pixels[local70++] = ((local93 & 0xFF00FF) * local101 + (local97 & 0xFF00FF) * local105 & 0xFF00FF00) + ((local93 & 0xFF00) * local101 + (local97 & 0xFF00) * local105 & 0xFF0000) >>> 8;
+					SoftwareRenderer.pixels[local70++] = ((local93 & 0xFF00FF) * local101 + (local97 & 0xFF00FF) * local105 & 0xFF00FF00) + ((local93 & 0xFF00) * local101 + (local97 & 0xFF00) * local105 & 0xFF0000) >>> 8;
 					local72 += local33;
 					local74 -= local27;
 				}
 				local45 += local27;
 				local57 += local33;
-				local63 += SoftwareRaster.width;
+				local63 += SoftwareRenderer.width;
 			}
 		} catch (@Pc(164) Exception ignored) {
 		}
@@ -149,40 +149,40 @@ public final class SoftwareAlphaSprite extends SoftwareSprite {
 	public final void render(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
 		arg0 += this.xOffset;
 		arg1 += this.yOffset;
-		@Pc(15) int local15 = arg0 + arg1 * SoftwareRaster.width;
+		@Pc(15) int local15 = arg0 + arg1 * SoftwareRenderer.width;
 		@Pc(17) int local17 = 0;
 		@Pc(20) int local20 = this.height;
 		@Pc(23) int local23 = this.width;
-		@Pc(27) int local27 = SoftwareRaster.width - local23;
+		@Pc(27) int local27 = SoftwareRenderer.width - local23;
 		@Pc(29) int local29 = 0;
 		@Pc(36) int local36;
-		if (arg1 < SoftwareRaster.clipTop) {
-			local36 = SoftwareRaster.clipTop - arg1;
+		if (arg1 < SoftwareRenderer.clipTop) {
+			local36 = SoftwareRenderer.clipTop - arg1;
 			local20 -= local36;
-			arg1 = SoftwareRaster.clipTop;
+			arg1 = SoftwareRenderer.clipTop;
 			local17 = local36 * local23;
-			local15 += local36 * SoftwareRaster.width;
+			local15 += local36 * SoftwareRenderer.width;
 		}
-		if (arg1 + local20 > SoftwareRaster.clipBottom) {
-			local20 -= arg1 + local20 - SoftwareRaster.clipBottom;
+		if (arg1 + local20 > SoftwareRenderer.clipBottom) {
+			local20 -= arg1 + local20 - SoftwareRenderer.clipBottom;
 		}
-		if (arg0 < SoftwareRaster.clipLeft) {
-			local36 = SoftwareRaster.clipLeft - arg0;
+		if (arg0 < SoftwareRenderer.clipLeft) {
+			local36 = SoftwareRenderer.clipLeft - arg0;
 			local23 -= local36;
-			arg0 = SoftwareRaster.clipLeft;
+			arg0 = SoftwareRenderer.clipLeft;
 			local17 += local36;
 			local15 += local36;
 			local29 = local36;
 			local27 += local36;
 		}
-		if (arg0 + local23 > SoftwareRaster.clipRight) {
-			local36 = arg0 + local23 - SoftwareRaster.clipRight;
+		if (arg0 + local23 > SoftwareRenderer.clipRight) {
+			local36 = arg0 + local23 - SoftwareRenderer.clipRight;
 			local23 -= local36;
 			local29 += local36;
 			local27 += local36;
 		}
 		if (local23 > 0 && local20 > 0) {
-			method319(SoftwareRaster.pixels, this.pixels, local17, local15, local23, local20, local27, local29);
+			method319(SoftwareRenderer.pixels, this.pixels, local17, local15, local23, local20, local27, local29);
 		}
 	}
 
@@ -191,40 +191,40 @@ public final class SoftwareAlphaSprite extends SoftwareSprite {
 	public final void drawPixels(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
 		arg0 += this.xOffset;
 		arg1 += this.yOffset;
-		@Pc(15) int local15 = arg0 + arg1 * SoftwareRaster.width;
+		@Pc(15) int local15 = arg0 + arg1 * SoftwareRenderer.width;
 		@Pc(17) int local17 = 0;
 		@Pc(20) int local20 = this.height;
 		@Pc(23) int local23 = this.width;
-		@Pc(27) int local27 = SoftwareRaster.width - local23;
+		@Pc(27) int local27 = SoftwareRenderer.width - local23;
 		@Pc(29) int local29 = 0;
 		@Pc(36) int local36;
-		if (arg1 < SoftwareRaster.clipTop) {
-			local36 = SoftwareRaster.clipTop - arg1;
+		if (arg1 < SoftwareRenderer.clipTop) {
+			local36 = SoftwareRenderer.clipTop - arg1;
 			local20 -= local36;
-			arg1 = SoftwareRaster.clipTop;
+			arg1 = SoftwareRenderer.clipTop;
 			local17 = local36 * local23;
-			local15 += local36 * SoftwareRaster.width;
+			local15 += local36 * SoftwareRenderer.width;
 		}
-		if (arg1 + local20 > SoftwareRaster.clipBottom) {
-			local20 -= arg1 + local20 - SoftwareRaster.clipBottom;
+		if (arg1 + local20 > SoftwareRenderer.clipBottom) {
+			local20 -= arg1 + local20 - SoftwareRenderer.clipBottom;
 		}
-		if (arg0 < SoftwareRaster.clipLeft) {
-			local36 = SoftwareRaster.clipLeft - arg0;
+		if (arg0 < SoftwareRenderer.clipLeft) {
+			local36 = SoftwareRenderer.clipLeft - arg0;
 			local23 -= local36;
-			arg0 = SoftwareRaster.clipLeft;
+			arg0 = SoftwareRenderer.clipLeft;
 			local17 += local36;
 			local15 += local36;
 			local29 = local36;
 			local27 += local36;
 		}
-		if (arg0 + local23 > SoftwareRaster.clipRight) {
-			local36 = arg0 + local23 - SoftwareRaster.clipRight;
+		if (arg0 + local23 > SoftwareRenderer.clipRight) {
+			local36 = arg0 + local23 - SoftwareRenderer.clipRight;
 			local23 -= local36;
 			local29 += local36;
 			local27 += local36;
 		}
 		if (local23 > 0 && local20 > 0) {
-			method319(SoftwareRaster.pixels, this.pixels, local17, local15, local23, local20, local27, local29);
+			method319(SoftwareRenderer.pixels, this.pixels, local17, local15, local23, local20, local27, local29);
 		}
 	}
 
@@ -301,17 +301,17 @@ public final class SoftwareAlphaSprite extends SoftwareSprite {
 		local166 = local166 + 15 >> 4;
 		local196 >>= 0x4;
 		local198 = local198 + 15 >> 4;
-		if (local164 < SoftwareRaster.clipLeft) {
-			local164 = SoftwareRaster.clipLeft;
+		if (local164 < SoftwareRenderer.clipLeft) {
+			local164 = SoftwareRenderer.clipLeft;
 		}
-		if (local166 > SoftwareRaster.clipRight) {
-			local166 = SoftwareRaster.clipRight;
+		if (local166 > SoftwareRenderer.clipRight) {
+			local166 = SoftwareRenderer.clipRight;
 		}
-		if (local196 < SoftwareRaster.clipTop) {
-			local196 = SoftwareRaster.clipTop;
+		if (local196 < SoftwareRenderer.clipTop) {
+			local196 = SoftwareRenderer.clipTop;
 		}
-		if (local198 > SoftwareRaster.clipBottom) {
-			local198 = SoftwareRaster.clipBottom;
+		if (local198 > SoftwareRenderer.clipBottom) {
+			local198 = SoftwareRenderer.clipBottom;
 		}
 		local166 = local164 - local166;
 		if (local166 >= 0) {
@@ -321,7 +321,7 @@ public final class SoftwareAlphaSprite extends SoftwareSprite {
 		if (local198 >= 0) {
 			return;
 		}
-		@Pc(319) int local319 = local196 * SoftwareRaster.width + local164;
+		@Pc(319) int local319 = local196 * SoftwareRenderer.width + local164;
 		@Pc(324) double local324 = 1.6777216E7D / (double) arg5;
 		@Pc(333) int local333 = (int) Math.floor(Math.sin(local23) * local324 + 0.5D);
 		@Pc(342) int local342 = (int) Math.floor(Math.cos(local23) * local324 + 0.5D);
@@ -361,17 +361,17 @@ public final class SoftwareAlphaSprite extends SoftwareSprite {
 							}
 							while (local394 < 0) {
 								local432 = this.pixels[(local378 >> 12) * this.width + (local802 >> 12)];
-								local436 = SoftwareRaster.pixels[local388];
+								local436 = SoftwareRenderer.pixels[local388];
 								local440 = local432 >>> 24;
 								local444 = 256 - local440;
-								SoftwareRaster.pixels[local388++] = ((local432 & 0xFF00FF) * local440 + (local436 & 0xFF00FF) * local444 & 0xFF00FF00) + ((local432 & 0xFF00) * local440 + (local436 & 0xFF00) * local444 & 0xFF0000) >>> 8;
+								SoftwareRenderer.pixels[local388++] = ((local432 & 0xFF00FF) * local440 + (local436 & 0xFF00FF) * local444 & 0xFF00FF00) + ((local432 & 0xFF00) * local440 + (local436 & 0xFF00) * local444 & 0xFF0000) >>> 8;
 								local802 += local342;
 								local394++;
 							}
 						}
 						local384++;
 						local378 += local342;
-						local319 += SoftwareRaster.width;
+						local319 += SoftwareRenderer.width;
 					}
 				} else if (local333 < 0) {
 					local384 = local198;
@@ -406,10 +406,10 @@ public final class SoftwareAlphaSprite extends SoftwareSprite {
 						}
 						while (local394 < 0) {
 							local432 = this.pixels[(local504 >> 12) * this.width + (local802 >> 12)];
-							local436 = SoftwareRaster.pixels[local388];
+							local436 = SoftwareRenderer.pixels[local388];
 							local440 = local432 >>> 24;
 							local444 = 256 - local440;
-							SoftwareRaster.pixels[local388++] = ((local432 & 0xFF00FF) * local440 + (local436 & 0xFF00FF) * local444 & 0xFF00FF00) + ((local432 & 0xFF00) * local440 + (local436 & 0xFF00) * local444 & 0xFF0000) >>> 8;
+							SoftwareRenderer.pixels[local388++] = ((local432 & 0xFF00FF) * local440 + (local436 & 0xFF00FF) * local444 & 0xFF00FF00) + ((local432 & 0xFF00) * local440 + (local436 & 0xFF00) * local444 & 0xFF0000) >>> 8;
 							local802 += local342;
 							local504 += local333;
 							local394++;
@@ -417,7 +417,7 @@ public final class SoftwareAlphaSprite extends SoftwareSprite {
 						local384++;
 						local368 -= local333;
 						local378 += local342;
-						local319 += SoftwareRaster.width;
+						local319 += SoftwareRenderer.width;
 					}
 				} else {
 					local384 = local198;
@@ -451,10 +451,10 @@ public final class SoftwareAlphaSprite extends SoftwareSprite {
 						}
 						while (local394 < 0) {
 							local432 = this.pixels[(local504 >> 12) * this.width + (local802 >> 12)];
-							local436 = SoftwareRaster.pixels[local388];
+							local436 = SoftwareRenderer.pixels[local388];
 							local440 = local432 >>> 24;
 							local444 = 256 - local440;
-							SoftwareRaster.pixels[local388++] = ((local432 & 0xFF00FF) * local440 + (local436 & 0xFF00FF) * local444 & 0xFF00FF00) + ((local432 & 0xFF00) * local440 + (local436 & 0xFF00) * local444 & 0xFF0000) >>> 8;
+							SoftwareRenderer.pixels[local388++] = ((local432 & 0xFF00FF) * local440 + (local436 & 0xFF00FF) * local444 & 0xFF00FF00) + ((local432 & 0xFF00) * local440 + (local436 & 0xFF00) * local444 & 0xFF0000) >>> 8;
 							local802 += local342;
 							local504 += local333;
 							local394++;
@@ -462,7 +462,7 @@ public final class SoftwareAlphaSprite extends SoftwareSprite {
 						local384++;
 						local368 -= local333;
 						local378 += local342;
-						local319 += SoftwareRaster.width;
+						local319 += SoftwareRenderer.width;
 					}
 				}
 			} else if (local333 == 0) {
@@ -484,17 +484,17 @@ public final class SoftwareAlphaSprite extends SoftwareSprite {
 						}
 						while (local394 < 0) {
 							local432 = this.pixels[(local378 >> 12) * this.width + (local802 >> 12)];
-							local436 = SoftwareRaster.pixels[local388];
+							local436 = SoftwareRenderer.pixels[local388];
 							local440 = local432 >>> 24;
 							local444 = 256 - local440;
-							SoftwareRaster.pixels[local388++] = ((local432 & 0xFF00FF) * local440 + (local436 & 0xFF00FF) * local444 & 0xFF00FF00) + ((local432 & 0xFF00) * local440 + (local436 & 0xFF00) * local444 & 0xFF0000) >>> 8;
+							SoftwareRenderer.pixels[local388++] = ((local432 & 0xFF00FF) * local440 + (local436 & 0xFF00FF) * local444 & 0xFF00FF00) + ((local432 & 0xFF00) * local440 + (local436 & 0xFF00) * local444 & 0xFF0000) >>> 8;
 							local802 += local342;
 							local394++;
 						}
 					}
 					local384++;
 					local378 += local342;
-					local319 += SoftwareRaster.width;
+					local319 += SoftwareRenderer.width;
 				}
 			} else if (local333 < 0) {
 				local384 = local198;
@@ -528,10 +528,10 @@ public final class SoftwareAlphaSprite extends SoftwareSprite {
 					}
 					while (local394 < 0) {
 						local432 = this.pixels[(local504 >> 12) * this.width + (local802 >> 12)];
-						local436 = SoftwareRaster.pixels[local388];
+						local436 = SoftwareRenderer.pixels[local388];
 						local440 = local432 >>> 24;
 						local444 = 256 - local440;
-						SoftwareRaster.pixels[local388++] = ((local432 & 0xFF00FF) * local440 + (local436 & 0xFF00FF) * local444 & 0xFF00FF00) + ((local432 & 0xFF00) * local440 + (local436 & 0xFF00) * local444 & 0xFF0000) >>> 8;
+						SoftwareRenderer.pixels[local388++] = ((local432 & 0xFF00FF) * local440 + (local436 & 0xFF00FF) * local444 & 0xFF00FF00) + ((local432 & 0xFF00) * local440 + (local436 & 0xFF00) * local444 & 0xFF0000) >>> 8;
 						local802 += local342;
 						local504 += local333;
 						local394++;
@@ -539,7 +539,7 @@ public final class SoftwareAlphaSprite extends SoftwareSprite {
 					local384++;
 					local368 -= local333;
 					local378 += local342;
-					local319 += SoftwareRaster.width;
+					local319 += SoftwareRenderer.width;
 				}
 			} else {
 				local384 = local198;
@@ -572,10 +572,10 @@ public final class SoftwareAlphaSprite extends SoftwareSprite {
 					}
 					while (local394 < 0) {
 						local432 = this.pixels[(local504 >> 12) * this.width + (local802 >> 12)];
-						local436 = SoftwareRaster.pixels[local388];
+						local436 = SoftwareRenderer.pixels[local388];
 						local440 = local432 >>> 24;
 						local444 = 256 - local440;
-						SoftwareRaster.pixels[local388++] = ((local432 & 0xFF00FF) * local440 + (local436 & 0xFF00FF) * local444 & 0xFF00FF00) + ((local432 & 0xFF00) * local440 + (local436 & 0xFF00) * local444 & 0xFF0000) >>> 8;
+						SoftwareRenderer.pixels[local388++] = ((local432 & 0xFF00FF) * local440 + (local436 & 0xFF00FF) * local444 & 0xFF00FF00) + ((local432 & 0xFF00) * local440 + (local436 & 0xFF00) * local444 & 0xFF0000) >>> 8;
 						local802 += local342;
 						local504 += local333;
 						local394++;
@@ -583,7 +583,7 @@ public final class SoftwareAlphaSprite extends SoftwareSprite {
 					local384++;
 					local368 -= local333;
 					local378 += local342;
-					local319 += SoftwareRaster.width;
+					local319 += SoftwareRenderer.width;
 				}
 			}
 		} else if (local333 == 0) {
@@ -594,15 +594,15 @@ public final class SoftwareAlphaSprite extends SoftwareSprite {
 				if (local368 >= 0 && local378 >= 0 && local368 - (this.width << 12) < 0 && local378 - (this.height << 12) < 0) {
 					while (local394 < 0) {
 						local432 = this.pixels[(local378 >> 12) * this.width + (local368 >> 12)];
-						local436 = SoftwareRaster.pixels[local388];
+						local436 = SoftwareRenderer.pixels[local388];
 						local440 = local432 >>> 24;
 						local444 = 256 - local440;
-						SoftwareRaster.pixels[local388++] = ((local432 & 0xFF00FF) * local440 + (local436 & 0xFF00FF) * local444 & 0xFF00FF00) + ((local432 & 0xFF00) * local440 + (local436 & 0xFF00) * local444 & 0xFF0000) >>> 8;
+						SoftwareRenderer.pixels[local388++] = ((local432 & 0xFF00FF) * local440 + (local436 & 0xFF00FF) * local444 & 0xFF00FF00) + ((local432 & 0xFF00) * local440 + (local436 & 0xFF00) * local444 & 0xFF0000) >>> 8;
 						local394++;
 					}
 				}
 				local384++;
-				local319 += SoftwareRaster.width;
+				local319 += SoftwareRenderer.width;
 			}
 		} else if (local333 < 0) {
 			local384 = local198;
@@ -624,17 +624,17 @@ public final class SoftwareAlphaSprite extends SoftwareSprite {
 					}
 					while (local394 < 0) {
 						local432 = this.pixels[(local504 >> 12) * this.width + (local368 >> 12)];
-						local436 = SoftwareRaster.pixels[local388];
+						local436 = SoftwareRenderer.pixels[local388];
 						local440 = local432 >>> 24;
 						local444 = 256 - local440;
-						SoftwareRaster.pixels[local388++] = ((local432 & 0xFF00FF) * local440 + (local436 & 0xFF00FF) * local444 & 0xFF00FF00) + ((local432 & 0xFF00) * local440 + (local436 & 0xFF00) * local444 & 0xFF0000) >>> 8;
+						SoftwareRenderer.pixels[local388++] = ((local432 & 0xFF00FF) * local440 + (local436 & 0xFF00FF) * local444 & 0xFF00FF00) + ((local432 & 0xFF00) * local440 + (local436 & 0xFF00) * local444 & 0xFF0000) >>> 8;
 						local504 += local333;
 						local394++;
 					}
 				}
 				local384++;
 				local368 -= local333;
-				local319 += SoftwareRaster.width;
+				local319 += SoftwareRenderer.width;
 			}
 		} else {
 			local384 = local198;
@@ -655,17 +655,17 @@ public final class SoftwareAlphaSprite extends SoftwareSprite {
 					}
 					while (local394 < 0) {
 						local432 = this.pixels[(local504 >> 12) * this.width + (local368 >> 12)];
-						local436 = SoftwareRaster.pixels[local388];
+						local436 = SoftwareRenderer.pixels[local388];
 						local440 = local432 >>> 24;
 						local444 = 256 - local440;
-						SoftwareRaster.pixels[local388++] = ((local432 & 0xFF00FF) * local440 + (local436 & 0xFF00FF) * local444 & 0xFF00FF00) + ((local432 & 0xFF00) * local440 + (local436 & 0xFF00) * local444 & 0xFF0000) >>> 8;
+						SoftwareRenderer.pixels[local388++] = ((local432 & 0xFF00FF) * local440 + (local436 & 0xFF00FF) * local444 & 0xFF00FF00) + ((local432 & 0xFF00) * local440 + (local436 & 0xFF00) * local444 & 0xFF0000) >>> 8;
 						local504 += local333;
 						local394++;
 					}
 				}
 				local384++;
 				local368 -= local333;
-				local319 += SoftwareRaster.width;
+				local319 += SoftwareRenderer.width;
 			}
 		}
 	}
@@ -682,7 +682,7 @@ public final class SoftwareAlphaSprite extends SoftwareSprite {
 			@Pc(39) int local39 = local27 * arg7 >> 8;
 			@Pc(51) int local51 = (arg4 << 16) + local9 * local33 + local4 * local39;
 			@Pc(63) int local63 = (arg5 << 16) + (local9 * local39 - local4 * local33);
-			@Pc(69) int local69 = arg0 + arg1 * SoftwareRaster.width;
+			@Pc(69) int local69 = arg0 + arg1 * SoftwareRenderer.width;
 			for (@Pc(71) int local71 = 0; local71 < arg3; local71++) {
 				@Pc(78) int local78 = arg8[local71];
 				@Pc(82) int local82 = local69 + local78;
@@ -690,16 +690,16 @@ public final class SoftwareAlphaSprite extends SoftwareSprite {
 				@Pc(94) int local94 = local63 - local33 * local78;
 				for (@Pc(99) int local99 = -arg9[local71]; local99 < 0; local99++) {
 					@Pc(115) int local115 = this.pixels[(local88 >> 16) + (local94 >> 16) * this.width];
-					@Pc(119) int local119 = SoftwareRaster.pixels[local82];
+					@Pc(119) int local119 = SoftwareRenderer.pixels[local82];
 					@Pc(123) int local123 = local115 >>> 24;
 					@Pc(127) int local127 = 256 - local123;
-					SoftwareRaster.pixels[local82++] = ((local115 & 0xFF00FF) * local123 + (local119 & 0xFF00FF) * local127 & 0xFF00FF00) + ((local115 & 0xFF00) * local123 + (local119 & 0xFF00) * local127 & 0xFF0000) >>> 8;
+					SoftwareRenderer.pixels[local82++] = ((local115 & 0xFF00FF) * local123 + (local119 & 0xFF00FF) * local127 & 0xFF00FF00) + ((local115 & 0xFF00) * local123 + (local119 & 0xFF00) * local127 & 0xFF0000) >>> 8;
 					local88 += local39;
 					local94 -= local33;
 				}
 				local51 += local33;
 				local63 += local39;
-				local69 += SoftwareRaster.width;
+				local69 += SoftwareRenderer.width;
 			}
 		} catch (@Pc(186) Exception ignored) {
 		}
@@ -717,7 +717,7 @@ public final class SoftwareAlphaSprite extends SoftwareSprite {
 			@Pc(39) int local39 = local27 * 256 >> 8;
 			@Pc(51) int local51 = (arg4 << 16) + local9 * local33 + local4 * local39;
 			@Pc(63) int local63 = (arg5 << 16) + (local9 * local39 - local4 * local33);
-			@Pc(69) int local69 = arg0 + arg1 * SoftwareRaster.width;
+			@Pc(69) int local69 = arg0 + arg1 * SoftwareRenderer.width;
 			for (@Pc(71) int local71 = 0; local71 < arg3; local71++) {
 				@Pc(78) int local78 = arg7[local71];
 				@Pc(82) int local82 = local69 + local78;
@@ -725,16 +725,16 @@ public final class SoftwareAlphaSprite extends SoftwareSprite {
 				@Pc(94) int local94 = local63 - local33 * local78;
 				for (@Pc(99) int local99 = -arg8[local71]; local99 < 0; local99++) {
 					@Pc(115) int local115 = this.pixels[(local88 >> 16) + (local94 >> 16) * this.width];
-					@Pc(119) int local119 = SoftwareRaster.pixels[local82];
+					@Pc(119) int local119 = SoftwareRenderer.pixels[local82];
 					@Pc(123) int local123 = local115 >>> 24;
 					@Pc(127) int local127 = 256 - local123;
-					SoftwareRaster.pixels[local82++] = ((local115 & 0xFF00FF) * local123 + (local119 & 0xFF00FF) * local127 & 0xFF00FF00) + ((local115 & 0xFF00) * local123 + (local119 & 0xFF00) * local127 & 0xFF0000) >>> 8;
+					SoftwareRenderer.pixels[local82++] = ((local115 & 0xFF00FF) * local123 + (local119 & 0xFF00FF) * local127 & 0xFF00FF00) + ((local115 & 0xFF00) * local123 + (local119 & 0xFF00) * local127 & 0xFF0000) >>> 8;
 					local88 += local39;
 					local94 -= local33;
 				}
 				local51 += local33;
 				local63 += local39;
-				local69 += SoftwareRaster.width;
+				local69 += SoftwareRenderer.width;
 			}
 		} catch (@Pc(186) Exception ignored) {
 		}
@@ -771,31 +771,31 @@ public final class SoftwareAlphaSprite extends SoftwareSprite {
 		if (local10 < local20) {
 			arg3 = ((local10 << 16) + local32 - local14 - 1) / local32;
 		}
-		local46 = arg0 + arg1 * SoftwareRaster.width;
-		@Pc(130) int local130 = SoftwareRaster.width - arg2;
-		if (arg1 + arg3 > SoftwareRaster.clipBottom) {
-			arg3 -= arg1 + arg3 - SoftwareRaster.clipBottom;
+		local46 = arg0 + arg1 * SoftwareRenderer.width;
+		@Pc(130) int local130 = SoftwareRenderer.width - arg2;
+		if (arg1 + arg3 > SoftwareRenderer.clipBottom) {
+			arg3 -= arg1 + arg3 - SoftwareRenderer.clipBottom;
 		}
 		@Pc(150) int local150;
-		if (arg1 < SoftwareRaster.clipTop) {
-			local150 = SoftwareRaster.clipTop - arg1;
+		if (arg1 < SoftwareRenderer.clipTop) {
+			local150 = SoftwareRenderer.clipTop - arg1;
 			arg3 -= local150;
-			local46 += local150 * SoftwareRaster.width;
+			local46 += local150 * SoftwareRenderer.width;
 			local14 += local32 * local150;
 		}
-		if (arg0 + arg2 > SoftwareRaster.clipRight) {
-			local150 = arg0 + arg2 - SoftwareRaster.clipRight;
+		if (arg0 + arg2 > SoftwareRenderer.clipRight) {
+			local150 = arg0 + arg2 - SoftwareRenderer.clipRight;
 			arg2 -= local150;
 			local130 += local150;
 		}
-		if (arg0 < SoftwareRaster.clipLeft) {
-			local150 = SoftwareRaster.clipLeft - arg0;
+		if (arg0 < SoftwareRenderer.clipLeft) {
+			local150 = SoftwareRenderer.clipLeft - arg0;
 			arg2 -= local150;
 			local46 += local150;
 			local12 += local26 * local150;
 			local130 += local150;
 		}
-		method317(SoftwareRaster.pixels, this.pixels, local12, local14, local46, local130, arg2, arg3, local26, local32, local7, arg4);
+		method317(SoftwareRenderer.pixels, this.pixels, local12, local14, local46, local130, arg2, arg3, local26, local32, local7, arg4);
 	}
 
 	@OriginalMember(owner = "runetek4.client!am", name = "a", descriptor = "(IIII)V")
@@ -829,31 +829,31 @@ public final class SoftwareAlphaSprite extends SoftwareSprite {
 		if (local10 < local20) {
 			arg3 = ((local10 << 16) + local32 - local14 - 1) / local32;
 		}
-		local46 = arg0 + arg1 * SoftwareRaster.width;
-		@Pc(130) int local130 = SoftwareRaster.width - arg2;
-		if (arg1 + arg3 > SoftwareRaster.clipBottom) {
-			arg3 -= arg1 + arg3 - SoftwareRaster.clipBottom;
+		local46 = arg0 + arg1 * SoftwareRenderer.width;
+		@Pc(130) int local130 = SoftwareRenderer.width - arg2;
+		if (arg1 + arg3 > SoftwareRenderer.clipBottom) {
+			arg3 -= arg1 + arg3 - SoftwareRenderer.clipBottom;
 		}
 		@Pc(150) int local150;
-		if (arg1 < SoftwareRaster.clipTop) {
-			local150 = SoftwareRaster.clipTop - arg1;
+		if (arg1 < SoftwareRenderer.clipTop) {
+			local150 = SoftwareRenderer.clipTop - arg1;
 			arg3 -= local150;
-			local46 += local150 * SoftwareRaster.width;
+			local46 += local150 * SoftwareRenderer.width;
 			local14 += local32 * local150;
 		}
-		if (arg0 + arg2 > SoftwareRaster.clipRight) {
-			local150 = arg0 + arg2 - SoftwareRaster.clipRight;
+		if (arg0 + arg2 > SoftwareRenderer.clipRight) {
+			local150 = arg0 + arg2 - SoftwareRenderer.clipRight;
 			arg2 -= local150;
 			local130 += local150;
 		}
-		if (arg0 < SoftwareRaster.clipLeft) {
-			local150 = SoftwareRaster.clipLeft - arg0;
+		if (arg0 < SoftwareRenderer.clipLeft) {
+			local150 = SoftwareRenderer.clipLeft - arg0;
 			arg2 -= local150;
 			local46 += local150;
 			local12 += local26 * local150;
 			local130 += local150;
 		}
-		method321(SoftwareRaster.pixels, this.pixels, local12, local14, local46, local130, arg2, arg3, local26, local32, local7);
+		method321(SoftwareRenderer.pixels, this.pixels, local12, local14, local46, local130, arg2, arg3, local26, local32, local7);
 	}
 
 	@OriginalMember(owner = "runetek4.client!am", name = "d", descriptor = "(II)V")
@@ -861,40 +861,40 @@ public final class SoftwareAlphaSprite extends SoftwareSprite {
 	public final void renderHorizontalFlip(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
 		arg0 += this.innerWidth - this.width - this.xOffset;
 		arg1 += this.yOffset;
-		@Pc(21) int local21 = arg0 + arg1 * SoftwareRaster.width;
+		@Pc(21) int local21 = arg0 + arg1 * SoftwareRenderer.width;
 		@Pc(26) int local26 = this.width - 1;
 		@Pc(29) int local29 = this.height;
 		@Pc(32) int local32 = this.width;
-		@Pc(36) int local36 = SoftwareRaster.width - local32;
+		@Pc(36) int local36 = SoftwareRenderer.width - local32;
 		@Pc(40) int local40 = local32 + local32;
 		@Pc(47) int local47;
-		if (arg1 < SoftwareRaster.clipTop) {
-			local47 = SoftwareRaster.clipTop - arg1;
+		if (arg1 < SoftwareRenderer.clipTop) {
+			local47 = SoftwareRenderer.clipTop - arg1;
 			local29 -= local47;
-			arg1 = SoftwareRaster.clipTop;
+			arg1 = SoftwareRenderer.clipTop;
 			local26 += local47 * local32;
-			local21 += local47 * SoftwareRaster.width;
+			local21 += local47 * SoftwareRenderer.width;
 		}
-		if (arg1 + local29 > SoftwareRaster.clipBottom) {
-			local29 -= arg1 + local29 - SoftwareRaster.clipBottom;
+		if (arg1 + local29 > SoftwareRenderer.clipBottom) {
+			local29 -= arg1 + local29 - SoftwareRenderer.clipBottom;
 		}
-		if (arg0 < SoftwareRaster.clipLeft) {
-			local47 = SoftwareRaster.clipLeft - arg0;
+		if (arg0 < SoftwareRenderer.clipLeft) {
+			local47 = SoftwareRenderer.clipLeft - arg0;
 			local32 -= local47;
-			arg0 = SoftwareRaster.clipLeft;
+			arg0 = SoftwareRenderer.clipLeft;
 			local26 -= local47;
 			local21 += local47;
 			local40 -= local47;
 			local36 += local47;
 		}
-		if (arg0 + local32 > SoftwareRaster.clipRight) {
-			local47 = arg0 + local32 - SoftwareRaster.clipRight;
+		if (arg0 + local32 > SoftwareRenderer.clipRight) {
+			local47 = arg0 + local32 - SoftwareRenderer.clipRight;
 			local32 -= local47;
 			local40 -= local47;
 			local36 += local47;
 		}
 		if (local32 > 0 && local29 > 0) {
-			method318(SoftwareRaster.pixels, this.pixels, local26, local21, local32, local29, local36, local40);
+			method318(SoftwareRenderer.pixels, this.pixels, local26, local21, local32, local29, local36, local40);
 		}
 	}
 
@@ -903,40 +903,40 @@ public final class SoftwareAlphaSprite extends SoftwareSprite {
 	public final void renderAlpha(@OriginalArg(0) int x, @OriginalArg(1) int y, @OriginalArg(2) int alpha) {
 		x += this.xOffset;
 		y += this.yOffset;
-		@Pc(15) int local15 = x + y * SoftwareRaster.width;
+		@Pc(15) int local15 = x + y * SoftwareRenderer.width;
 		@Pc(17) int local17 = 0;
 		@Pc(20) int local20 = this.height;
 		@Pc(23) int local23 = this.width;
-		@Pc(27) int local27 = SoftwareRaster.width - local23;
+		@Pc(27) int local27 = SoftwareRenderer.width - local23;
 		@Pc(29) int local29 = 0;
 		@Pc(36) int local36;
-		if (y < SoftwareRaster.clipTop) {
-			local36 = SoftwareRaster.clipTop - y;
+		if (y < SoftwareRenderer.clipTop) {
+			local36 = SoftwareRenderer.clipTop - y;
 			local20 -= local36;
-			y = SoftwareRaster.clipTop;
+			y = SoftwareRenderer.clipTop;
 			local17 = local36 * local23;
-			local15 += local36 * SoftwareRaster.width;
+			local15 += local36 * SoftwareRenderer.width;
 		}
-		if (y + local20 > SoftwareRaster.clipBottom) {
-			local20 -= y + local20 - SoftwareRaster.clipBottom;
+		if (y + local20 > SoftwareRenderer.clipBottom) {
+			local20 -= y + local20 - SoftwareRenderer.clipBottom;
 		}
-		if (x < SoftwareRaster.clipLeft) {
-			local36 = SoftwareRaster.clipLeft - x;
+		if (x < SoftwareRenderer.clipLeft) {
+			local36 = SoftwareRenderer.clipLeft - x;
 			local23 -= local36;
-			x = SoftwareRaster.clipLeft;
+			x = SoftwareRenderer.clipLeft;
 			local17 += local36;
 			local15 += local36;
 			local29 = local36;
 			local27 += local36;
 		}
-		if (x + local23 > SoftwareRaster.clipRight) {
-			local36 = x + local23 - SoftwareRaster.clipRight;
+		if (x + local23 > SoftwareRenderer.clipRight) {
+			local36 = x + local23 - SoftwareRenderer.clipRight;
 			local23 -= local36;
 			local29 += local36;
 			local27 += local36;
 		}
 		if (local23 > 0 && local20 > 0) {
-			method320(SoftwareRaster.pixels, this.pixels, local17, local15, local23, local20, local27, local29, alpha);
+			method320(SoftwareRenderer.pixels, this.pixels, local17, local15, local23, local20, local27, local29, alpha);
 		}
 	}
 }

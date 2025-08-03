@@ -2,7 +2,7 @@ package com.jagex.runetek4.graphics.textureops;
 
 import java.util.Random;
 
-import com.jagex.runetek4.ByteArrayNodeSecondary;
+import com.jagex.runetek4.core.buffer.ByteArrayNodeSecondary;
 import com.jagex.runetek4.core.datastruct.LruHashTable;
 import com.jagex.runetek4.graphics.texture.Texture;
 import com.jagex.runetek4.core.io.Packet;

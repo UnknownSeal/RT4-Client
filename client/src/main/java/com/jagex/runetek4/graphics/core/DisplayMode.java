@@ -14,7 +14,7 @@ import com.jagex.runetek4.graphics.model.SoftwareModel;
 import com.jagex.runetek4.network.ClientProt;
 import com.jagex.runetek4.network.Protocol;
 import com.jagex.runetek4.graphics.raster.Rasterizer;
-import com.jagex.runetek4.graphics.raster.SoftwareRaster;
+import com.jagex.runetek4.graphics.raster.SoftwareRenderer;
 import com.jagex.runetek4.scene.SceneGraph;
 import com.jagex.runetek4.ui.component.ComponentList;
 import com.jagex.runetek4.util.ArrayUtils;
@@ -238,9 +238,9 @@ public final class DisplayMode {
 			GameShell.canvas.setIgnoreRepaint(true);
 			if (!aBoolean73) {
 				SceneGraph.clear();
-				SoftwareRaster.frameBuffer = null;
-				SoftwareRaster.frameBuffer = FrameBuffer.create(GameShell.canvasHeigth, GameShell.canvasWidth, GameShell.canvas);
-				SoftwareRaster.clear();
+				SoftwareRenderer.frameBuffer = null;
+				SoftwareRenderer.frameBuffer = FrameBuffer.create(GameShell.canvasHeigth, GameShell.canvasWidth, GameShell.canvas);
+				SoftwareRenderer.clearPixelBuffer();
 				if (Client.gameState == 5) {
 					LoadingBar.render(true, Fonts.b12Full);
 				} else {
@@ -248,14 +248,14 @@ public final class DisplayMode {
 				}
 				try {
 					@Pc(269) Graphics graphics = GameShell.canvas.getGraphics();
-					SoftwareRaster.frameBuffer.draw(graphics);
+					SoftwareRenderer.frameBuffer.draw(graphics);
 				} catch (@Pc(277) Exception ignored) {
 				}
 				GameShell.method2704();
 				if (windowMode == 0) {
-					SoftwareRaster.frameBuffer = FrameBuffer.create(503, 765, GameShell.canvas);
+					SoftwareRenderer.frameBuffer = FrameBuffer.create(503, 765, GameShell.canvas);
 				} else {
-					SoftwareRaster.frameBuffer = null;
+					SoftwareRenderer.frameBuffer = null;
 				}
 				@Pc(300) PrivilegedRequest request = GameShell.signLink.loadGlNatives(Client.instance.getClass());
 				while (request.status == 0) {
@@ -275,7 +275,7 @@ public final class DisplayMode {
 		}
 		if (mode > 0 && windowMode == 0) {
 			GameShell.thread.setPriority(5);
-			SoftwareRaster.frameBuffer = null;
+			SoftwareRenderer.frameBuffer = null;
 			SoftwareModel.method4580();
 			((Js5TextureProvider) Rasterizer.textureProvider).method3248(200);
 			if (Preferences.highDetailLighting) {
@@ -284,7 +284,7 @@ public final class DisplayMode {
 			LoginManager.method4637();
 		} else if (mode == 0 && windowMode > 0) {
 			GameShell.thread.setPriority(1);
-			SoftwareRaster.frameBuffer = FrameBuffer.create(503, 765, GameShell.canvas);
+			SoftwareRenderer.frameBuffer = FrameBuffer.create(503, 765, GameShell.canvas);
 			SoftwareModel.method4583();
 			ParticleSystem.quit();
 			((Js5TextureProvider) Rasterizer.textureProvider).method3248(20);
@@ -305,7 +305,7 @@ public final class DisplayMode {
 			GlTile.method1939();
 			LoginManager.method4637();
 		}
-		SceneGraph.aBoolean130 = !SceneGraph.allLevelsAreVisible();
+		SceneGraph.hdLighting = !SceneGraph.allLevelsAreVisible();
 		if (arg2) {
 			Client.method2721();
 		}

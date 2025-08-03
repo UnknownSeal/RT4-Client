@@ -1,7 +1,7 @@
 package com.jagex.runetek4.game.logic;
 
 import com.jagex.runetek4.ui.component.Crosshair;
-import com.jagex.runetek4.PlayerList;
+import com.jagex.runetek4.entity.entity.PlayerList;
 import com.jagex.runetek4.config.types.loc.LocTypeList;
 import com.jagex.runetek4.config.types.loc.LocType;
 import com.jagex.runetek4.entity.entity.Player;

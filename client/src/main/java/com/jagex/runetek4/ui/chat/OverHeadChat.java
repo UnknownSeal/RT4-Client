@@ -1,6 +1,6 @@
 package com.jagex.runetek4.ui.chat;
 
-import com.jagex.runetek4.PlayerList;
+import com.jagex.runetek4.entity.entity.PlayerList;
 import com.jagex.runetek4.entity.entity.Npc;
 import com.jagex.runetek4.entity.entity.NpcList;
 import com.jagex.runetek4.entity.entity.Player;

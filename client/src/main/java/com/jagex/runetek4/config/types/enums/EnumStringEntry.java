@@ -1,4 +1,4 @@
-package com.jagex.runetek4;
+package com.jagex.runetek4.config.types.enums;
 
 import com.jagex.runetek4.util.string.JString;
 import com.jagex.runetek4.core.node.Node;

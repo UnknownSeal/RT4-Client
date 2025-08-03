@@ -1,7 +1,7 @@
 package com.jagex.runetek4.game.world;
 
-import com.jagex.runetek4.Camera;
-import com.jagex.runetek4.PlayerList;
+import com.jagex.runetek4.scene.Camera;
+import com.jagex.runetek4.entity.entity.PlayerList;
 import com.jagex.runetek4.audio.core.SoundPlayer;
 import com.jagex.runetek4.audio.spatial.AreaSoundManager;
 import com.jagex.runetek4.client.Client;
@@ -105,7 +105,7 @@ public class WorldLoader {
             Client.audioLoop();
             for (@Pc(36) int regionX = 0; regionX < 13; regionX++) {
                 for (@Pc(43) int regionZ = 0; regionZ < 13; regionZ++) {
-                    @Pc(56) int packedLocationData = Protocol.anIntArrayArrayArray18[currentPlane][regionX][regionZ];
+                    @Pc(56) int packedLocationData = Protocol.dynamicRegionData[currentPlane][regionX][regionZ];
                     if (packedLocationData != -1) {
                         @Pc(67) int extractedPlane = packedLocationData >> 24 & 0x3;
                         if (!underWater || extractedPlane == 0) {
@@ -224,7 +224,7 @@ public class WorldLoader {
             Client.audioLoop();
             for (@Pc(32) int regionX = 0; regionX < 13; regionX++) {
                 for (@Pc(39) int regionZ = 0; regionZ < 13; regionZ++) {
-                    @Pc(52) int packedTerrainData = Protocol.anIntArrayArrayArray18[plane][regionX][regionZ];
+                    @Pc(52) int packedTerrainData = Protocol.dynamicRegionData[plane][regionX][regionZ];
                     @Pc(54) boolean terrainLoaded = false;
                     if (packedTerrainData != -1) {
                         @Pc(65) int extractedPlane = packedTerrainData >> 24 & 0x3;

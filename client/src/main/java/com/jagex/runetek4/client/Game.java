@@ -1,11 +1,12 @@
 package com.jagex.runetek4.client;
 
-import com.jagex.runetek4.*;
 import com.jagex.runetek4.audio.core.SoundPlayer;
 import com.jagex.runetek4.audio.midi.MidiPlayer;
 import com.jagex.runetek4.audio.spatial.AreaSoundManager;
 import com.jagex.runetek4.audio.streaming.MusicPlayer;
 import com.jagex.runetek4.data.cache.media.component.Component;
+import com.jagex.runetek4.entity.entity.PlayerList;
+import com.jagex.runetek4.scene.Camera;
 import com.jagex.runetek4.ui.chat.OverHeadChat;
 import com.jagex.runetek4.game.logic.PathFinder;
 import com.jagex.runetek4.game.locs.AttachLocRequest;

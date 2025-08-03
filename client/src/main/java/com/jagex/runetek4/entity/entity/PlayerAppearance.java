@@ -248,7 +248,7 @@ public final class PlayerAppearance {
 	}
 
 	@OriginalMember(owner = "client!hh", name = "a", descriptor = "([Lclient!ub;ILclient!tk;Lclient!tk;IIIIZII)Lclient!ak;")
-	public final Model createAnimatedBodyModel(@OriginalArg(0) PathingEntity_Class147[] animationStates, @OriginalArg(1) int tweenFrame, @OriginalArg(2) SeqType primarySequence, @OriginalArg(3) SeqType weaponSequence, @OriginalArg(4) int primaryFrame2, @OriginalArg(5) int primaryFrame1, @OriginalArg(7) int weaponFrame2, @OriginalArg(9) int weaponFrame1, @OriginalArg(10) int primaryTweenFrame) {
+	public final Model createAnimatedBodyModel(@OriginalArg(0) PathingEntityAnimation[] animationStates, @OriginalArg(1) int tweenFrame, @OriginalArg(2) SeqType primarySequence, @OriginalArg(3) SeqType weaponSequence, @OriginalArg(4) int primaryFrame2, @OriginalArg(5) int primaryFrame1, @OriginalArg(7) int weaponFrame2, @OriginalArg(9) int weaponFrame1, @OriginalArg(10) int primaryTweenFrame) {
 		if (this.npcId != -1) {
 			return NpcTypeList.get(this.npcId).getBodyModel(animationStates, primaryFrame1, primaryTweenFrame, tweenFrame, weaponFrame2, weaponFrame1, primarySequence, primaryFrame2, weaponSequence);
 		}
@@ -518,17 +518,17 @@ public final class PlayerAppearance {
 		local598 = 1;
 		while (local481 < translateX) {
 			if (primaryFramesets[local481] != null) {
-				animatedModel.method4565(primaryFramesets[local481], primaryFrameIds[local481], tweenFramesets[local481], tweenFrameIds[local481], frameTimes[local481] - 1, frameDelays[local481], local598, layerSequences[local481].aBoolean278, this.transformationMatrices[local481]);
+				animatedModel.blendAnimationWeighted(primaryFramesets[local481], primaryFrameIds[local481], tweenFramesets[local481], tweenFrameIds[local481], frameTimes[local481] - 1, frameDelays[local481], local598, layerSequences[local481].aBoolean278, this.transformationMatrices[local481]);
 			}
 			local481++;
 			local598 <<= 0x1;
 		}
 		if (weaponFrameset2 != null && primaryFrameset1 != null) {
-			animatedModel.method4570(weaponFrameset2, translateY, weaponFrameset1, translateZ, weaponFrame2 - 1, rotateX, primaryFrameset1, local979, primaryFrameset2, local451, primaryFrame2 - 1, local457, weaponSequence.framegroup, weaponSequence.aBoolean278 | primarySequence.aBoolean278);
+			animatedModel.blendLayeredAnimation(weaponFrameset2, translateY, weaponFrameset1, translateZ, weaponFrame2 - 1, rotateX, primaryFrameset1, local979, primaryFrameset2, local451, primaryFrame2 - 1, local457, weaponSequence.framegroup, weaponSequence.aBoolean278 | primarySequence.aBoolean278);
 		} else if (weaponFrameset2 != null) {
-			animatedModel.method4558(weaponFrameset2, translateY, weaponFrameset1, translateZ, weaponFrame2 - 1, rotateX, weaponSequence.aBoolean278);
+			animatedModel.blendAnimation(weaponFrameset2, translateY, weaponFrameset1, translateZ, weaponFrame2 - 1, rotateX, weaponSequence.aBoolean278);
 		} else if (primaryFrameset1 != null) {
-			animatedModel.method4558(primaryFrameset1, local979, primaryFrameset2, local451, primaryFrame2 - 1, local457, primarySequence.aBoolean278);
+			animatedModel.blendAnimation(primaryFrameset1, local979, primaryFrameset2, local451, primaryFrame2 - 1, local457, primarySequence.aBoolean278);
 		}
 		for (local481 = 0; local481 < translateX; local481++) {
 			primaryFramesets[local481] = null;

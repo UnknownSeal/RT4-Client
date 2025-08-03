@@ -179,7 +179,7 @@ public final class SeqType {
 		@Pc(23) AnimFrameset local23 = SeqTypeList.getAnimFrameset(local15 >> 16);
 		@Pc(27) int local27 = local15 & 0xFFFF;
 		if (local23 == null) {
-			return arg2.method4568(true, true, true);
+			return arg2.createVariant(true, true, true);
 		}
 		@Pc(39) int local39 = arg3 & 0x3;
 		@Pc(41) AnimFrameset local41 = null;
@@ -190,9 +190,9 @@ public final class SeqType {
 		}
 		@Pc(124) Model local124;
 		if (local41 == null) {
-			local124 = arg2.method4568(!local23.isAlphaTransformed(local27), !local23.isColorTransformed(local27), !this.aBoolean278);
+			local124 = arg2.createVariant(!local23.isAlphaTransformed(local27), !local23.isColorTransformed(local27), !this.aBoolean278);
 		} else {
-			local124 = arg2.method4568(!local23.isAlphaTransformed(local27) & !local41.isAlphaTransformed(arg1), !local23.isColorTransformed(local27) & !local41.isColorTransformed(arg1), !this.aBoolean278);
+			local124 = arg2.createVariant(!local23.isAlphaTransformed(local27) & !local41.isAlphaTransformed(arg1), !local23.isColorTransformed(local27) & !local41.isColorTransformed(arg1), !this.aBoolean278);
 		}
 		if (GlRenderer.enabled && this.aBoolean278) {
 			if (local39 == 1) {
@@ -205,11 +205,11 @@ public final class SeqType {
 		} else if (local39 == 1) {
 			local124.method4578();
 		} else if (local39 == 2) {
-			local124.method4552();
+			local124.updateBounds();
 		} else if (local39 == 3) {
 			local124.rotateCounterClockwise();
 		}
-		local124.method4558(local23, local27, local41, arg1, arg4 - 1, local10, this.aBoolean278);
+		local124.blendAnimation(local23, local27, local41, arg1, arg4 - 1, local10, this.aBoolean278);
 		if (GlRenderer.enabled && this.aBoolean278) {
 			if (local39 == 1) {
 				((GlModel) local124).method4116();
@@ -221,7 +221,7 @@ public final class SeqType {
 		} else if (local39 == 1) {
 			local124.rotateCounterClockwise();
 		} else if (local39 == 2) {
-			local124.method4552();
+			local124.updateBounds();
 		} else if (local39 == 3) {
 			local124.method4578();
 		}
@@ -278,9 +278,9 @@ public final class SeqType {
 			local172 &= !local81.isColorTransformed(local85);
 		}
 		@Pc(258) Model local258 = arg0.method4572(local163, local172, !this.aBoolean278);
-		local258.method4558(local19, local23, local34, arg1, arg2 - 1, local13, this.aBoolean278);
+		local258.blendAnimation(local19, local23, local34, arg1, arg2 - 1, local13, this.aBoolean278);
 		if (local71 != null) {
-			local258.method4558(local71, local83, local81, local85, arg2 - 1, local13, this.aBoolean278);
+			local258.blendAnimation(local71, local83, local81, local85, arg2 - 1, local13, this.aBoolean278);
 		}
 		return local258;
 	}
@@ -318,11 +318,11 @@ public final class SeqType {
 		} else if (local40 == 1) {
 			local106.method4578();
 		} else if (local40 == 2) {
-			local106.method4552();
+			local106.updateBounds();
 		} else if (local40 == 3) {
 			local106.rotateCounterClockwise();
 		}
-		local106.method4558(local19, local27, local42, arg0, arg2 - 1, local6, this.aBoolean278);
+		local106.blendAnimation(local19, local27, local42, arg0, arg2 - 1, local6, this.aBoolean278);
 		if (this.aBoolean278 && GlRenderer.enabled) {
 			if (local40 == 1) {
 				((GlModel) local106).method4116();
@@ -334,7 +334,7 @@ public final class SeqType {
 		} else if (local40 == 1) {
 			local106.rotateCounterClockwise();
 		} else if (local40 == 2) {
-			local106.method4552();
+			local106.updateBounds();
 		} else if (local40 == 3) {
 			local106.method4578();
 		}
@@ -348,7 +348,7 @@ public final class SeqType {
 		@Pc(27) AnimFrameset local27 = SeqTypeList.getAnimFrameset(local21 >> 16);
 		@Pc(31) int local31 = local21 & 0xFFFF;
 		if (local27 == null) {
-			return arg3.method4560(true, true, true);
+			return arg3.copy(true, true, true);
 		}
 		@Pc(42) AnimFrameset local42 = null;
 		if ((this.tween || applyTweening) && arg0 != -1 && this.frames.length > arg0) {
@@ -358,11 +358,11 @@ public final class SeqType {
 		}
 		@Pc(103) Model local103;
 		if (local42 == null) {
-			local103 = arg3.method4560(!local27.isAlphaTransformed(local31), !local27.isColorTransformed(local31), !this.aBoolean278);
+			local103 = arg3.copy(!local27.isAlphaTransformed(local31), !local27.isColorTransformed(local31), !this.aBoolean278);
 		} else {
-			local103 = arg3.method4560(!local27.isAlphaTransformed(local31) & !local42.isAlphaTransformed(arg0), !local27.isColorTransformed(local31) & !local42.isColorTransformed(arg0), !this.aBoolean278);
+			local103 = arg3.copy(!local27.isAlphaTransformed(local31) & !local42.isAlphaTransformed(arg0), !local27.isColorTransformed(local31) & !local42.isColorTransformed(arg0), !this.aBoolean278);
 		}
-		local103.method4558(local27, local31, local42, arg0, arg1 - 1, local16, this.aBoolean278);
+		local103.blendAnimation(local27, local31, local42, arg0, arg1 - 1, local16, this.aBoolean278);
 		return local103;
 	}
 }

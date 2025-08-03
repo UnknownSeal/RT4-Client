@@ -14,36 +14,52 @@ public final class Rasterizer {
 
 	@OriginalMember(owner = "runetek4.client!hf", name = "e", descriptor = "Lclient!m;")
 	public static TextureProvider textureProvider;
+
 	@OriginalMember(owner = "runetek4.client!hf", name = "k", descriptor = "I")
 	public static int height;
+
 	@OriginalMember(owner = "runetek4.client!hf", name = "c", descriptor = "[I")
 	public static int[] offsets = new int[1024];
+
 	@OriginalMember(owner = "runetek4.client!hf", name = "d", descriptor = "Z")
 	public static boolean textureHasTransparency = false;
+
 	@OriginalMember(owner = "runetek4.client!tg", name = "c", descriptor = "I")
 	public static int screenLowerX;
+
 	@OriginalMember(owner = "runetek4.client!ub", name = "m", descriptor = "I")
 	public static int screenUpperX;
+
 	@OriginalMember(owner = "runetek4.client!a", name = "g", descriptor = "I")
 	public static int screenLowerY;
+
 	@OriginalMember(owner = "runetek4.client!li", name = "x", descriptor = "I")
 	public static int screenUpperY;
+
 	@OriginalMember(owner = "runetek4.client!hf", name = "j", descriptor = "Z")
 	public static boolean jagged = true;
+
 	@OriginalMember(owner = "runetek4.client!hf", name = "b", descriptor = "I")
 	public static int centerY;
+
 	@OriginalMember(owner = "runetek4.client!hf", name = "m", descriptor = "I")
 	public static int centerX;
+
 	@OriginalMember(owner = "runetek4.client!hf", name = "n", descriptor = "I")
 	public static int width;
+
 	@OriginalMember(owner = "runetek4.client!hf", name = "i", descriptor = "Z")
 	public static boolean opaque = false;
+
 	@OriginalMember(owner = "runetek4.client!hf", name = "l", descriptor = "Z")
 	public static boolean lowDetail = false;
+
 	@OriginalMember(owner = "runetek4.client!hf", name = "o", descriptor = "F")
 	public static float brightness = 1.0F;
+
 	@OriginalMember(owner = "runetek4.client!hf", name = "p", descriptor = "Z")
 	public static boolean testX = false;
+
 	@OriginalMember(owner = "runetek4.client!hf", name = "q", descriptor = "I")
 	public static int alpha = 0;
 
@@ -54,31 +70,31 @@ public final class Rasterizer {
 
 	@OriginalMember(owner = "runetek4.client!hf", name = "a", descriptor = "()V")
 	public static void prepare() {
-		prepareOffsets(SoftwareRaster.clipLeft, SoftwareRaster.clipTop, SoftwareRaster.clipRight, SoftwareRaster.clipBottom);
+		prepareOffsets(SoftwareRenderer.clipLeft, SoftwareRenderer.clipTop, SoftwareRenderer.clipRight, SoftwareRenderer.clipBottom);
 	}
 
 	@OriginalMember(owner = "runetek4.client!hf", name = "a", descriptor = "(IIII)V")
-	private static void prepareOffsets(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
-		width = arg2 - arg0;
-		height = arg3 - arg1;
+	private static void prepareOffsets(@OriginalArg(0) int left, @OriginalArg(1) int top, @OriginalArg(2) int right, @OriginalArg(3) int bottom) {
+		width = right - left;
+		height = bottom - top;
 		prepareOffsets();
 		if (offsets.length < height) {
 			offsets = new int[IntUtils.bitceil(height)];
 		}
-		@Pc(23) int local23 = arg1 * SoftwareRaster.width + arg0;
-		for (@Pc(25) int local25 = 0; local25 < height; local25++) {
-			offsets[local25] = local23;
-			local23 += SoftwareRaster.width;
+		@Pc(23) int pixelOffset = top * SoftwareRenderer.width + left;
+		for (@Pc(25) int row = 0; row < height; row++) {
+			offsets[row] = pixelOffset;
+			pixelOffset += SoftwareRenderer.width;
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!hf", name = "b", descriptor = "(II)V")
-	public static void setBounds(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
-		@Pc(3) int local3 = offsets[0];
-		@Pc(7) int local7 = local3 / SoftwareRaster.width;
-		@Pc(13) int local13 = local3 - local7 * SoftwareRaster.width;
-		centerX = arg0 - local13;
-		centerY = arg1 - local7;
+	public static void setBounds(@OriginalArg(0) int newCenterX, @OriginalArg(1) int newCenterY) {
+		@Pc(3) int firstPixelOffset = offsets[0];
+		@Pc(7) int regionTopY = firstPixelOffset / SoftwareRenderer.width;
+		@Pc(13) int regionLeftX = firstPixelOffset - regionTopY * SoftwareRenderer.width;
+		centerX = newCenterX - regionLeftX;
+		centerY = newCenterY - regionTopY;
 		screenLowerX = -centerX;
 		screenUpperX = width - centerX;
 		screenLowerY = -centerY;
@@ -96,412 +112,412 @@ public final class Rasterizer {
 	}
 
 	@OriginalMember(owner = "runetek4.client!hf", name = "a", descriptor = "([BIIIIIII)V")
-	public static void fillSpriteTriangle(@OriginalArg(0) byte[] arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7) {
-		@Pc(1) int local1 = 0;
-		if (arg2 != arg1) {
-			local1 = (arg5 - arg4 << 16) / (arg2 - arg1);
+	public static void fillSpriteTriangle(@OriginalArg(0) byte[] spriteData, @OriginalArg(1) int y1, @OriginalArg(2) int y2, @OriginalArg(3) int y3, @OriginalArg(4) int x1, @OriginalArg(5) int x2, @OriginalArg(6) int x3, @OriginalArg(7) int scanlineStride) {
+		@Pc(1) int slope12 = 0;
+		if (y2 != y1) {
+			slope12 = (x2 - x1 << 16) / (y2 - y1);
 		}
-		@Pc(16) int local16 = 0;
-		if (arg3 != arg2) {
-			local16 = (arg6 - arg5 << 16) / (arg3 - arg2);
+		@Pc(16) int slope23 = 0;
+		if (y3 != y2) {
+			slope23 = (x3 - x2 << 16) / (y3 - y2);
 		}
-		@Pc(31) int local31 = 0;
-		if (arg3 != arg1) {
-			local31 = (arg4 - arg6 << 16) / (arg1 - arg3);
+		@Pc(31) int slope31 = 0;
+		if (y3 != y1) {
+			slope31 = (x1 - x3 << 16) / (y1 - y3);
 		}
-		if (arg1 <= arg2 && arg1 <= arg3) {
-			if (arg2 < arg3) {
-				arg6 = arg4 <<= 0x10;
-				if (arg1 < 0) {
-					arg6 -= local31 * arg1;
-					arg4 -= local1 * arg1;
-					arg1 = 0;
+		if (y1 <= y2 && y1 <= y3) {
+			if (y2 < y3) {
+				x3 = x1 <<= 0x10;
+				if (y1 < 0) {
+					x3 -= slope31 * y1;
+					x1 -= slope12 * y1;
+					y1 = 0;
 				}
-				arg5 <<= 0x10;
-				if (arg2 < 0) {
-					arg5 -= local16 * arg2;
-					arg2 = 0;
+				x2 <<= 0x10;
+				if (y2 < 0) {
+					x2 -= slope23 * y2;
+					y2 = 0;
 				}
-				if ((arg1 == arg2 || local31 >= local1) && (arg1 != arg2 || local31 <= local16)) {
-					arg3 -= arg2;
-					arg2 -= arg1;
-					arg1 *= arg7;
+				if ((y1 == y2 || slope31 >= slope12) && (y1 != y2 || slope31 <= slope23)) {
+					y3 -= y2;
+					y2 -= y1;
+					y1 *= scanlineStride;
 					while (true) {
-						arg2--;
-						if (arg2 < 0) {
+						y2--;
+						if (y2 < 0) {
 							while (true) {
-								arg3--;
-								if (arg3 < 0) {
+								y3--;
+								if (y3 < 0) {
 									return;
 								}
-								drawSpriteScanline(arg0, arg1, arg5 >> 16, arg6 >> 16);
-								arg6 += local31;
-								arg5 += local16;
-								arg1 += arg7;
+								drawSpriteScanline(spriteData, y1, x2 >> 16, x3 >> 16);
+								x3 += slope31;
+								x2 += slope23;
+								y1 += scanlineStride;
 							}
 						}
-						drawSpriteScanline(arg0, arg1, arg4 >> 16, arg6 >> 16);
-						arg6 += local31;
-						arg4 += local1;
-						arg1 += arg7;
+						drawSpriteScanline(spriteData, y1, x1 >> 16, x3 >> 16);
+						x3 += slope31;
+						x1 += slope12;
+						y1 += scanlineStride;
 					}
 				} else {
-					arg3 -= arg2;
-					arg2 -= arg1;
-					arg1 *= arg7;
+					y3 -= y2;
+					y2 -= y1;
+					y1 *= scanlineStride;
 					while (true) {
-						arg2--;
-						if (arg2 < 0) {
+						y2--;
+						if (y2 < 0) {
 							while (true) {
-								arg3--;
-								if (arg3 < 0) {
+								y3--;
+								if (y3 < 0) {
 									return;
 								}
-								drawSpriteScanline(arg0, arg1, arg6 >> 16, arg5 >> 16);
-								arg6 += local31;
-								arg5 += local16;
-								arg1 += arg7;
+								drawSpriteScanline(spriteData, y1, x3 >> 16, x2 >> 16);
+								x3 += slope31;
+								x2 += slope23;
+								y1 += scanlineStride;
 							}
 						}
-						drawSpriteScanline(arg0, arg1, arg6 >> 16, arg4 >> 16);
-						arg6 += local31;
-						arg4 += local1;
-						arg1 += arg7;
+						drawSpriteScanline(spriteData, y1, x3 >> 16, x1 >> 16);
+						x3 += slope31;
+						x1 += slope12;
+						y1 += scanlineStride;
 					}
 				}
 			} else {
-				arg5 = arg4 <<= 0x10;
-				if (arg1 < 0) {
-					arg5 -= local31 * arg1;
-					arg4 -= local1 * arg1;
-					arg1 = 0;
+				x2 = x1 <<= 0x10;
+				if (y1 < 0) {
+					x2 -= slope31 * y1;
+					x1 -= slope12 * y1;
+					y1 = 0;
 				}
-				arg6 <<= 0x10;
-				if (arg3 < 0) {
-					arg6 -= local16 * arg3;
-					arg3 = 0;
+				x3 <<= 0x10;
+				if (y3 < 0) {
+					x3 -= slope23 * y3;
+					y3 = 0;
 				}
-				if ((arg1 == arg3 || local31 >= local1) && (arg1 != arg3 || local16 <= local1)) {
-					arg2 -= arg3;
-					arg3 -= arg1;
-					arg1 *= arg7;
+				if ((y1 == y3 || slope31 >= slope12) && (y1 != y3 || slope23 <= slope12)) {
+					y2 -= y3;
+					y3 -= y1;
+					y1 *= scanlineStride;
 					while (true) {
-						arg3--;
-						if (arg3 < 0) {
+						y3--;
+						if (y3 < 0) {
 							while (true) {
-								arg2--;
-								if (arg2 < 0) {
+								y2--;
+								if (y2 < 0) {
 									return;
 								}
-								drawSpriteScanline(arg0, arg1, arg4 >> 16, arg6 >> 16);
-								arg6 += local16;
-								arg4 += local1;
-								arg1 += arg7;
+								drawSpriteScanline(spriteData, y1, x1 >> 16, x3 >> 16);
+								x3 += slope23;
+								x1 += slope12;
+								y1 += scanlineStride;
 							}
 						}
-						drawSpriteScanline(arg0, arg1, arg4 >> 16, arg5 >> 16);
-						arg5 += local31;
-						arg4 += local1;
-						arg1 += arg7;
+						drawSpriteScanline(spriteData, y1, x1 >> 16, x2 >> 16);
+						x2 += slope31;
+						x1 += slope12;
+						y1 += scanlineStride;
 					}
 				} else {
-					arg2 -= arg3;
-					arg3 -= arg1;
-					arg1 *= arg7;
+					y2 -= y3;
+					y3 -= y1;
+					y1 *= scanlineStride;
 					while (true) {
-						arg3--;
-						if (arg3 < 0) {
+						y3--;
+						if (y3 < 0) {
 							while (true) {
-								arg2--;
-								if (arg2 < 0) {
+								y2--;
+								if (y2 < 0) {
 									return;
 								}
-								drawSpriteScanline(arg0, arg1, arg6 >> 16, arg4 >> 16);
-								arg6 += local16;
-								arg4 += local1;
-								arg1 += arg7;
+								drawSpriteScanline(spriteData, y1, x3 >> 16, x1 >> 16);
+								x3 += slope23;
+								x1 += slope12;
+								y1 += scanlineStride;
 							}
 						}
-						drawSpriteScanline(arg0, arg1, arg5 >> 16, arg4 >> 16);
-						arg5 += local31;
-						arg4 += local1;
-						arg1 += arg7;
+						drawSpriteScanline(spriteData, y1, x2 >> 16, x1 >> 16);
+						x2 += slope31;
+						x1 += slope12;
+						y1 += scanlineStride;
 					}
 				}
 			}
-		} else if (arg2 <= arg3) {
-			if (arg3 < arg1) {
-				arg4 = arg5 <<= 0x10;
-				if (arg2 < 0) {
-					arg4 -= local1 * arg2;
-					arg5 -= local16 * arg2;
-					arg2 = 0;
+		} else if (y2 <= y3) {
+			if (y3 < y1) {
+				x1 = x2 <<= 0x10;
+				if (y2 < 0) {
+					x1 -= slope12 * y2;
+					x2 -= slope23 * y2;
+					y2 = 0;
 				}
-				arg6 <<= 0x10;
-				if (arg3 < 0) {
-					arg6 -= local31 * arg3;
-					arg3 = 0;
+				x3 <<= 0x10;
+				if (y3 < 0) {
+					x3 -= slope31 * y3;
+					y3 = 0;
 				}
-				if (arg2 != arg3 && local1 < local16 || arg2 == arg3 && local1 > local31) {
-					arg1 -= arg3;
-					arg3 -= arg2;
-					arg2 *= arg7;
+				if (y2 != y3 && slope12 < slope23 || y2 == y3 && slope12 > slope31) {
+					y1 -= y3;
+					y3 -= y2;
+					y2 *= scanlineStride;
 					while (true) {
-						arg3--;
-						if (arg3 < 0) {
+						y3--;
+						if (y3 < 0) {
 							while (true) {
-								arg1--;
-								if (arg1 < 0) {
+								y1--;
+								if (y1 < 0) {
 									return;
 								}
-								drawSpriteScanline(arg0, arg2, arg4 >> 16, arg6 >> 16);
-								arg4 += local1;
-								arg6 += local31;
-								arg2 += arg7;
+								drawSpriteScanline(spriteData, y2, x1 >> 16, x3 >> 16);
+								x1 += slope12;
+								x3 += slope31;
+								y2 += scanlineStride;
 							}
 						}
-						drawSpriteScanline(arg0, arg2, arg4 >> 16, arg5 >> 16);
-						arg4 += local1;
-						arg5 += local16;
-						arg2 += arg7;
+						drawSpriteScanline(spriteData, y2, x1 >> 16, x2 >> 16);
+						x1 += slope12;
+						x2 += slope23;
+						y2 += scanlineStride;
 					}
 				} else {
-					arg1 -= arg3;
-					arg3 -= arg2;
-					arg2 *= arg7;
+					y1 -= y3;
+					y3 -= y2;
+					y2 *= scanlineStride;
 					while (true) {
-						arg3--;
-						if (arg3 < 0) {
+						y3--;
+						if (y3 < 0) {
 							while (true) {
-								arg1--;
-								if (arg1 < 0) {
+								y1--;
+								if (y1 < 0) {
 									return;
 								}
-								drawSpriteScanline(arg0, arg2, arg6 >> 16, arg4 >> 16);
-								arg4 += local1;
-								arg6 += local31;
-								arg2 += arg7;
+								drawSpriteScanline(spriteData, y2, x3 >> 16, x1 >> 16);
+								x1 += slope12;
+								x3 += slope31;
+								y2 += scanlineStride;
 							}
 						}
-						drawSpriteScanline(arg0, arg2, arg5 >> 16, arg4 >> 16);
-						arg4 += local1;
-						arg5 += local16;
-						arg2 += arg7;
+						drawSpriteScanline(spriteData, y2, x2 >> 16, x1 >> 16);
+						x1 += slope12;
+						x2 += slope23;
+						y2 += scanlineStride;
 					}
 				}
 			} else {
-				arg6 = arg5 <<= 0x10;
-				if (arg2 < 0) {
-					arg6 -= local1 * arg2;
-					arg5 -= local16 * arg2;
-					arg2 = 0;
+				x3 = x2 <<= 0x10;
+				if (y2 < 0) {
+					x3 -= slope12 * y2;
+					x2 -= slope23 * y2;
+					y2 = 0;
 				}
-				arg4 <<= 0x10;
-				if (arg1 < 0) {
-					arg4 -= local31 * arg1;
-					arg1 = 0;
+				x1 <<= 0x10;
+				if (y1 < 0) {
+					x1 -= slope31 * y1;
+					y1 = 0;
 				}
-				if (local1 < local16) {
-					arg3 -= arg1;
-					arg1 -= arg2;
-					arg2 *= arg7;
+				if (slope12 < slope23) {
+					y3 -= y1;
+					y1 -= y2;
+					y2 *= scanlineStride;
 					while (true) {
-						arg1--;
-						if (arg1 < 0) {
+						y1--;
+						if (y1 < 0) {
 							while (true) {
-								arg3--;
-								if (arg3 < 0) {
+								y3--;
+								if (y3 < 0) {
 									return;
 								}
-								drawSpriteScanline(arg0, arg2, arg4 >> 16, arg5 >> 16);
-								arg4 += local31;
-								arg5 += local16;
-								arg2 += arg7;
+								drawSpriteScanline(spriteData, y2, x1 >> 16, x2 >> 16);
+								x1 += slope31;
+								x2 += slope23;
+								y2 += scanlineStride;
 							}
 						}
-						drawSpriteScanline(arg0, arg2, arg6 >> 16, arg5 >> 16);
-						arg6 += local1;
-						arg5 += local16;
-						arg2 += arg7;
+						drawSpriteScanline(spriteData, y2, x3 >> 16, x2 >> 16);
+						x3 += slope12;
+						x2 += slope23;
+						y2 += scanlineStride;
 					}
 				} else {
-					arg3 -= arg1;
-					arg1 -= arg2;
-					arg2 *= arg7;
+					y3 -= y1;
+					y1 -= y2;
+					y2 *= scanlineStride;
 					while (true) {
-						arg1--;
-						if (arg1 < 0) {
+						y1--;
+						if (y1 < 0) {
 							while (true) {
-								arg3--;
-								if (arg3 < 0) {
+								y3--;
+								if (y3 < 0) {
 									return;
 								}
-								drawSpriteScanline(arg0, arg2, arg5 >> 16, arg4 >> 16);
-								arg4 += local31;
-								arg5 += local16;
-								arg2 += arg7;
+								drawSpriteScanline(spriteData, y2, x2 >> 16, x1 >> 16);
+								x1 += slope31;
+								x2 += slope23;
+								y2 += scanlineStride;
 							}
 						}
-						drawSpriteScanline(arg0, arg2, arg5 >> 16, arg6 >> 16);
-						arg6 += local1;
-						arg5 += local16;
-						arg2 += arg7;
+						drawSpriteScanline(spriteData, y2, x2 >> 16, x3 >> 16);
+						x3 += slope12;
+						x2 += slope23;
+						y2 += scanlineStride;
 					}
 				}
 			}
-		} else if (arg1 < arg2) {
-			arg5 = arg6 <<= 0x10;
-			if (arg3 < 0) {
-				arg5 -= local16 * arg3;
-				arg6 -= local31 * arg3;
-				arg3 = 0;
+		} else if (y1 < y2) {
+			x2 = x3 <<= 0x10;
+			if (y3 < 0) {
+				x2 -= slope23 * y3;
+				x3 -= slope31 * y3;
+				y3 = 0;
 			}
-			arg4 <<= 0x10;
-			if (arg1 < 0) {
-				arg4 -= local1 * arg1;
-				arg1 = 0;
+			x1 <<= 0x10;
+			if (y1 < 0) {
+				x1 -= slope12 * y1;
+				y1 = 0;
 			}
-			if (local16 < local31) {
-				arg2 -= arg1;
-				arg1 -= arg3;
-				arg3 *= arg7;
+			if (slope23 < slope31) {
+				y2 -= y1;
+				y1 -= y3;
+				y3 *= scanlineStride;
 				while (true) {
-					arg1--;
-					if (arg1 < 0) {
+					y1--;
+					if (y1 < 0) {
 						while (true) {
-							arg2--;
-							if (arg2 < 0) {
+							y2--;
+							if (y2 < 0) {
 								return;
 							}
-							drawSpriteScanline(arg0, arg3, arg5 >> 16, arg4 >> 16);
-							arg5 += local16;
-							arg4 += local1;
-							arg3 += arg7;
+							drawSpriteScanline(spriteData, y3, x2 >> 16, x1 >> 16);
+							x2 += slope23;
+							x1 += slope12;
+							y3 += scanlineStride;
 						}
 					}
-					drawSpriteScanline(arg0, arg3, arg5 >> 16, arg6 >> 16);
-					arg5 += local16;
-					arg6 += local31;
-					arg3 += arg7;
+					drawSpriteScanline(spriteData, y3, x2 >> 16, x3 >> 16);
+					x2 += slope23;
+					x3 += slope31;
+					y3 += scanlineStride;
 				}
 			} else {
-				arg2 -= arg1;
-				arg1 -= arg3;
-				arg3 *= arg7;
+				y2 -= y1;
+				y1 -= y3;
+				y3 *= scanlineStride;
 				while (true) {
-					arg1--;
-					if (arg1 < 0) {
+					y1--;
+					if (y1 < 0) {
 						while (true) {
-							arg2--;
-							if (arg2 < 0) {
+							y2--;
+							if (y2 < 0) {
 								return;
 							}
-							drawSpriteScanline(arg0, arg3, arg4 >> 16, arg5 >> 16);
-							arg5 += local16;
-							arg4 += local1;
-							arg3 += arg7;
+							drawSpriteScanline(spriteData, y3, x1 >> 16, x2 >> 16);
+							x2 += slope23;
+							x1 += slope12;
+							y3 += scanlineStride;
 						}
 					}
-					drawSpriteScanline(arg0, arg3, arg6 >> 16, arg5 >> 16);
-					arg5 += local16;
-					arg6 += local31;
-					arg3 += arg7;
+					drawSpriteScanline(spriteData, y3, x3 >> 16, x2 >> 16);
+					x2 += slope23;
+					x3 += slope31;
+					y3 += scanlineStride;
 				}
 			}
 		} else {
-			arg4 = arg6 <<= 0x10;
-			if (arg3 < 0) {
-				arg4 -= local16 * arg3;
-				arg6 -= local31 * arg3;
-				arg3 = 0;
+			x1 = x3 <<= 0x10;
+			if (y3 < 0) {
+				x1 -= slope23 * y3;
+				x3 -= slope31 * y3;
+				y3 = 0;
 			}
-			arg5 <<= 0x10;
-			if (arg2 < 0) {
-				arg5 -= local1 * arg2;
-				arg2 = 0;
+			x2 <<= 0x10;
+			if (y2 < 0) {
+				x2 -= slope12 * y2;
+				y2 = 0;
 			}
-			if (local16 < local31) {
-				arg1 -= arg2;
-				arg2 -= arg3;
-				arg3 *= arg7;
+			if (slope23 < slope31) {
+				y1 -= y2;
+				y2 -= y3;
+				y3 *= scanlineStride;
 				while (true) {
-					arg2--;
-					if (arg2 < 0) {
+					y2--;
+					if (y2 < 0) {
 						while (true) {
-							arg1--;
-							if (arg1 < 0) {
+							y1--;
+							if (y1 < 0) {
 								return;
 							}
-							drawSpriteScanline(arg0, arg3, arg5 >> 16, arg6 >> 16);
-							arg5 += local1;
-							arg6 += local31;
-							arg3 += arg7;
+							drawSpriteScanline(spriteData, y3, x2 >> 16, x3 >> 16);
+							x2 += slope12;
+							x3 += slope31;
+							y3 += scanlineStride;
 						}
 					}
-					drawSpriteScanline(arg0, arg3, arg4 >> 16, arg6 >> 16);
-					arg4 += local16;
-					arg6 += local31;
-					arg3 += arg7;
+					drawSpriteScanline(spriteData, y3, x1 >> 16, x3 >> 16);
+					x1 += slope23;
+					x3 += slope31;
+					y3 += scanlineStride;
 				}
 			} else {
-				arg1 -= arg2;
-				arg2 -= arg3;
-				arg3 *= arg7;
+				y1 -= y2;
+				y2 -= y3;
+				y3 *= scanlineStride;
 				while (true) {
-					arg2--;
-					if (arg2 < 0) {
+					y2--;
+					if (y2 < 0) {
 						while (true) {
-							arg1--;
-							if (arg1 < 0) {
+							y1--;
+							if (y1 < 0) {
 								return;
 							}
-							drawSpriteScanline(arg0, arg3, arg6 >> 16, arg5 >> 16);
-							arg5 += local1;
-							arg6 += local31;
-							arg3 += arg7;
+							drawSpriteScanline(spriteData, y3, x3 >> 16, x2 >> 16);
+							x2 += slope12;
+							x3 += slope31;
+							y3 += scanlineStride;
 						}
 					}
-					drawSpriteScanline(arg0, arg3, arg6 >> 16, arg4 >> 16);
-					arg4 += local16;
-					arg6 += local31;
-					arg3 += arg7;
+					drawSpriteScanline(spriteData, y3, x3 >> 16, x1 >> 16);
+					x1 += slope23;
+					x3 += slope31;
+					y3 += scanlineStride;
 				}
 			}
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!hf", name = "a", descriptor = "([BIIII)V")
-	private static void drawSpriteScanline(@OriginalArg(0) byte[] arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
-		if (arg2 >= arg3) {
+	private static void drawSpriteScanline(@OriginalArg(0) byte[] spriteData, @OriginalArg(1) int scanlineOffset, @OriginalArg(3) int leftX, @OriginalArg(4) int rightX) {
+		if (leftX >= rightX) {
 			return;
 		}
-		arg1 += arg2;
-		@Pc(13) int local13 = arg3 - arg2 >> 2;
+		scanlineOffset += leftX;
+		@Pc(13) int unrolledCount = rightX - leftX >> 2;
 		while (true) {
-			local13--;
-			if (local13 < 0) {
-				local13 = arg3 - arg2 & 0x3;
+			unrolledCount--;
+			if (unrolledCount < 0) {
+				unrolledCount = rightX - leftX & 0x3;
 				while (true) {
-					local13--;
-					if (local13 < 0) {
+					unrolledCount--;
+					if (unrolledCount < 0) {
 						return;
 					}
-					arg0[arg1++] = 1;
+					spriteData[scanlineOffset++] = 1;
 				}
 			}
-			@Pc(19) int local19 = arg1 + 1;
-			arg0[arg1] = 1;
-			@Pc(24) int local24 = local19 + 1;
-			arg0[local19] = 1;
-			@Pc(29) int local29 = local24 + 1;
-			arg0[local24] = 1;
-			arg1 = local29 + 1;
-			arg0[local29] = 1;
+			@Pc(19) int offset1 = scanlineOffset + 1;
+			spriteData[scanlineOffset] = 1;
+			@Pc(24) int offset2 = offset1 + 1;
+			spriteData[offset1] = 1;
+			@Pc(29) int offset3 = offset2 + 1;
+			spriteData[offset2] = 1;
+			scanlineOffset = offset3 + 1;
+			spriteData[offset3] = 1;
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!hf", name = "a", descriptor = "(IIIIIIIIIIIIIIIIIII)V")
-	public static void fillTexturedTriangle(@OriginalArg(0) int yA, @OriginalArg(1) int yB, @OriginalArg(2) int yC, @OriginalArg(3) int xA, @OriginalArg(4) int arg4, @OriginalArg(5) int xC, @OriginalArg(6) int colorA, @OriginalArg(7) int colorB, @OriginalArg(8) int colorC, @OriginalArg(9) int arg9, @OriginalArg(10) int arg10, @OriginalArg(11) int arg11, @OriginalArg(12) int arg12, @OriginalArg(13) int arg13, @OriginalArg(14) int arg14, @OriginalArg(15) int arg15, @OriginalArg(16) int arg16, @OriginalArg(17) int arg17, @OriginalArg(18) int textureId) {
+	public static void fillTexturedTriangle(@OriginalArg(0) int yA, @OriginalArg(1) int yB, @OriginalArg(2) int yC, @OriginalArg(3) int xA, @OriginalArg(4) int arg4, @OriginalArg(5) int xC, @OriginalArg(6) int colorA, @OriginalArg(7) int colorB, @OriginalArg(8) int colorC, @OriginalArg(9) int uA, @OriginalArg(10) int vA, @OriginalArg(11) int wA, @OriginalArg(12) int uB, @OriginalArg(13) int vB, @OriginalArg(14) int wB, @OriginalArg(15) int uC, @OriginalArg(16) int vC, @OriginalArg(17) int wC, @OriginalArg(18) int textureId) {
 		@Pc(5) int[] texels = textureProvider.method3232(textureId, brightness);
 		@Pc(12) int averageColor;
 		if (texels == null) {
@@ -533,24 +549,24 @@ public final class Rasterizer {
 		if (length == 0) {
 			return;
 		}
-		@Pc(131) int colorStepA = (colorStepAB * dyAC - colorStepAC * dyAB << 9) / length;
-		@Pc(143) int colorStepB = (colorStepAC * averageColor - colorStepAB * dxAC << 9) / length;
-		@Pc(147) int local147 = arg9 - arg10;
-		@Pc(151) int local151 = arg12 - arg13;
-		@Pc(155) int local155 = arg15 - arg16;
-		@Pc(159) int local159 = arg11 - arg9;
-		@Pc(163) int local163 = arg14 - arg12;
-		@Pc(167) int local167 = arg17 - arg15;
-		@Pc(177) int local177 = local159 * arg12 - local163 * arg9 << 14;
-		@Pc(187) int local187 = local163 * arg15 - local167 * arg12 << 5;
-		@Pc(197) int local197 = local167 * arg9 - local159 * arg15 << 5;
-		@Pc(207) int local207 = local147 * arg12 - local151 * arg9 << 14;
-		@Pc(217) int local217 = local151 * arg15 - local155 * arg12 << 5;
-		@Pc(227) int local227 = local155 * arg9 - local147 * arg15 << 5;
-		@Pc(237) int local237 = local151 * local159 - local147 * local163 << 14;
-		@Pc(247) int local247 = local155 * local163 - local151 * local167 << 5;
-		@Pc(257) int local257 = local147 * local167 - local155 * local159 << 5;
-		@Pc(336) int local336;
+		@Pc(131) int colorGradientX = (colorStepAB * dyAC - colorStepAC * dyAB << 9) / length;
+		@Pc(143) int colorGradientY = (colorStepAC * averageColor - colorStepAB * dxAC << 9) / length;
+		@Pc(147) int duAB = uA - vA;
+		@Pc(151) int duAC = uB - vB;
+		@Pc(155) int duBC = uC - vC;
+		@Pc(159) int dvAB = wA - uA;
+		@Pc(163) int dvAC = wB - uB;
+		@Pc(167) int dvBC = wC - uC;
+		@Pc(177) int uInterpolator = dvAB * uB - dvAC * uA << 14;
+		@Pc(187) int uStep = dvAC * uC - dvBC * uB << 5;
+		@Pc(197) int local197 = dvBC * uA - dvAB * uC << 5;
+		@Pc(207) int vInterpolator = duAB * uB - duAC * uA << 14;
+		@Pc(217) int vStep = duAC * uC - duBC * uB << 5;
+		@Pc(227) int local227 = duBC * uA - duAB * uC << 5;
+		@Pc(237) int wInterpolator = duAC * dvAB - duAB * dvAC << 14;
+		@Pc(247) int wStep = duBC * dvAC - duAC * dvBC << 5;
+		@Pc(257) int local257 = duAB * dvBC - duBC * dvAB << 5;
+		@Pc(336) int yOffset;
 		if (yA <= yB && yA <= yC) {
 			if (yA < height) {
 				if (yB > height) {
@@ -559,13 +575,13 @@ public final class Rasterizer {
 				if (yC > height) {
 					yC = height;
 				}
-				colorA = (colorA << 9) + colorStepA - colorStepA * xA;
+				colorA = (colorA << 9) + colorGradientX - colorGradientX * xA;
 				if (yB < yC) {
 					xC = xA <<= 0x10;
 					if (yA < 0) {
 						xC -= xStepAC * yA;
 						xA -= xStepAB * yA;
-						colorA -= colorStepB * yA;
+						colorA -= colorGradientY * yA;
 						yA = 0;
 					}
 					arg4 <<= 0x10;
@@ -573,10 +589,10 @@ public final class Rasterizer {
 						arg4 -= xStepBC * yB;
 						yB = 0;
 					}
-					local336 = yA - centerY;
-					local177 += local197 * local336;
-					local207 += local227 * local336;
-					local237 += local257 * local336;
+					yOffset = yA - centerY;
+					uInterpolator += local197 * yOffset;
+					vInterpolator += local227 * yOffset;
+					wInterpolator += local257 * yOffset;
 					if (yA != yB && xStepAC < xStepAB || yA == yB && xStepAC > xStepBC) {
 						yC -= yB;
 						yB -= yA;
@@ -589,24 +605,24 @@ public final class Rasterizer {
 									if (yC < 0) {
 										return;
 									}
-									drawTexturedScanline(SoftwareRaster.pixels, texels, yA, xC >> 16, arg4 >> 16, colorA, colorStepA, local177, local207, local237, local187, local217, local247);
+									drawTexturedScanline(SoftwareRenderer.pixels, texels, yA, xC >> 16, arg4 >> 16, colorA, colorGradientX, uInterpolator, vInterpolator, wInterpolator, uStep, vStep, wStep);
 									xC += xStepAC;
 									arg4 += xStepBC;
-									colorA += colorStepB;
-									yA += SoftwareRaster.width;
-									local177 += local197;
-									local207 += local227;
-									local237 += local257;
+									colorA += colorGradientY;
+									yA += SoftwareRenderer.width;
+									uInterpolator += local197;
+									vInterpolator += local227;
+									wInterpolator += local257;
 								}
 							}
-							drawTexturedScanline(SoftwareRaster.pixels, texels, yA, xC >> 16, xA >> 16, colorA, colorStepA, local177, local207, local237, local187, local217, local247);
+							drawTexturedScanline(SoftwareRenderer.pixels, texels, yA, xC >> 16, xA >> 16, colorA, colorGradientX, uInterpolator, vInterpolator, wInterpolator, uStep, vStep, wStep);
 							xC += xStepAC;
 							xA += xStepAB;
-							colorA += colorStepB;
-							yA += SoftwareRaster.width;
-							local177 += local197;
-							local207 += local227;
-							local237 += local257;
+							colorA += colorGradientY;
+							yA += SoftwareRenderer.width;
+							uInterpolator += local197;
+							vInterpolator += local227;
+							wInterpolator += local257;
 						}
 					} else {
 						yC -= yB;
@@ -620,24 +636,24 @@ public final class Rasterizer {
 									if (yC < 0) {
 										return;
 									}
-									drawTexturedScanline(SoftwareRaster.pixels, texels, yA, arg4 >> 16, xC >> 16, colorA, colorStepA, local177, local207, local237, local187, local217, local247);
+									drawTexturedScanline(SoftwareRenderer.pixels, texels, yA, arg4 >> 16, xC >> 16, colorA, colorGradientX, uInterpolator, vInterpolator, wInterpolator, uStep, vStep, wStep);
 									xC += xStepAC;
 									arg4 += xStepBC;
-									colorA += colorStepB;
-									yA += SoftwareRaster.width;
-									local177 += local197;
-									local207 += local227;
-									local237 += local257;
+									colorA += colorGradientY;
+									yA += SoftwareRenderer.width;
+									uInterpolator += local197;
+									vInterpolator += local227;
+									wInterpolator += local257;
 								}
 							}
-							drawTexturedScanline(SoftwareRaster.pixels, texels, yA, xA >> 16, xC >> 16, colorA, colorStepA, local177, local207, local237, local187, local217, local247);
+							drawTexturedScanline(SoftwareRenderer.pixels, texels, yA, xA >> 16, xC >> 16, colorA, colorGradientX, uInterpolator, vInterpolator, wInterpolator, uStep, vStep, wStep);
 							xC += xStepAC;
 							xA += xStepAB;
-							colorA += colorStepB;
-							yA += SoftwareRaster.width;
-							local177 += local197;
-							local207 += local227;
-							local237 += local257;
+							colorA += colorGradientY;
+							yA += SoftwareRenderer.width;
+							uInterpolator += local197;
+							vInterpolator += local227;
+							wInterpolator += local257;
 						}
 					}
 				} else {
@@ -645,7 +661,7 @@ public final class Rasterizer {
 					if (yA < 0) {
 						arg4 -= xStepAC * yA;
 						xA -= xStepAB * yA;
-						colorA -= colorStepB * yA;
+						colorA -= colorGradientY * yA;
 						yA = 0;
 					}
 					xC <<= 0x10;
@@ -653,10 +669,10 @@ public final class Rasterizer {
 						xC -= xStepBC * yC;
 						yC = 0;
 					}
-					local336 = yA - centerY;
-					local177 += local197 * local336;
-					local207 += local227 * local336;
-					local237 += local257 * local336;
+					yOffset = yA - centerY;
+					uInterpolator += local197 * yOffset;
+					vInterpolator += local227 * yOffset;
+					wInterpolator += local257 * yOffset;
 					if ((yA == yC || xStepAC >= xStepAB) && (yA != yC || xStepBC <= xStepAB)) {
 						yB -= yC;
 						yC -= yA;
@@ -669,24 +685,24 @@ public final class Rasterizer {
 									if (yB < 0) {
 										return;
 									}
-									drawTexturedScanline(SoftwareRaster.pixels, texels, yA, xA >> 16, xC >> 16, colorA, colorStepA, local177, local207, local237, local187, local217, local247);
+									drawTexturedScanline(SoftwareRenderer.pixels, texels, yA, xA >> 16, xC >> 16, colorA, colorGradientX, uInterpolator, vInterpolator, wInterpolator, uStep, vStep, wStep);
 									xC += xStepBC;
 									xA += xStepAB;
-									colorA += colorStepB;
-									yA += SoftwareRaster.width;
-									local177 += local197;
-									local207 += local227;
-									local237 += local257;
+									colorA += colorGradientY;
+									yA += SoftwareRenderer.width;
+									uInterpolator += local197;
+									vInterpolator += local227;
+									wInterpolator += local257;
 								}
 							}
-							drawTexturedScanline(SoftwareRaster.pixels, texels, yA, xA >> 16, arg4 >> 16, colorA, colorStepA, local177, local207, local237, local187, local217, local247);
+							drawTexturedScanline(SoftwareRenderer.pixels, texels, yA, xA >> 16, arg4 >> 16, colorA, colorGradientX, uInterpolator, vInterpolator, wInterpolator, uStep, vStep, wStep);
 							arg4 += xStepAC;
 							xA += xStepAB;
-							colorA += colorStepB;
-							yA += SoftwareRaster.width;
-							local177 += local197;
-							local207 += local227;
-							local237 += local257;
+							colorA += colorGradientY;
+							yA += SoftwareRenderer.width;
+							uInterpolator += local197;
+							vInterpolator += local227;
+							wInterpolator += local257;
 						}
 					} else {
 						yB -= yC;
@@ -700,24 +716,24 @@ public final class Rasterizer {
 									if (yB < 0) {
 										return;
 									}
-									drawTexturedScanline(SoftwareRaster.pixels, texels, yA, xC >> 16, xA >> 16, colorA, colorStepA, local177, local207, local237, local187, local217, local247);
+									drawTexturedScanline(SoftwareRenderer.pixels, texels, yA, xC >> 16, xA >> 16, colorA, colorGradientX, uInterpolator, vInterpolator, wInterpolator, uStep, vStep, wStep);
 									xC += xStepBC;
 									xA += xStepAB;
-									colorA += colorStepB;
-									yA += SoftwareRaster.width;
-									local177 += local197;
-									local207 += local227;
-									local237 += local257;
+									colorA += colorGradientY;
+									yA += SoftwareRenderer.width;
+									uInterpolator += local197;
+									vInterpolator += local227;
+									wInterpolator += local257;
 								}
 							}
-							drawTexturedScanline(SoftwareRaster.pixels, texels, yA, arg4 >> 16, xA >> 16, colorA, colorStepA, local177, local207, local237, local187, local217, local247);
+							drawTexturedScanline(SoftwareRenderer.pixels, texels, yA, arg4 >> 16, xA >> 16, colorA, colorGradientX, uInterpolator, vInterpolator, wInterpolator, uStep, vStep, wStep);
 							arg4 += xStepAC;
 							xA += xStepAB;
-							colorA += colorStepB;
-							yA += SoftwareRaster.width;
-							local177 += local197;
-							local207 += local227;
-							local237 += local257;
+							colorA += colorGradientY;
+							yA += SoftwareRenderer.width;
+							uInterpolator += local197;
+							vInterpolator += local227;
+							wInterpolator += local257;
 						}
 					}
 				}
@@ -730,13 +746,13 @@ public final class Rasterizer {
 				if (yA > height) {
 					yA = height;
 				}
-				colorB = (colorB << 9) + colorStepA - colorStepA * arg4;
+				colorB = (colorB << 9) + colorGradientX - colorGradientX * arg4;
 				if (yC < yA) {
 					xA = arg4 <<= 0x10;
 					if (yB < 0) {
 						xA -= xStepAB * yB;
 						arg4 -= xStepBC * yB;
-						colorB -= colorStepB * yB;
+						colorB -= colorGradientY * yB;
 						yB = 0;
 					}
 					xC <<= 0x10;
@@ -744,10 +760,10 @@ public final class Rasterizer {
 						xC -= xStepAC * yC;
 						yC = 0;
 					}
-					local336 = yB - centerY;
-					local177 += local197 * local336;
-					local207 += local227 * local336;
-					local237 += local257 * local336;
+					yOffset = yB - centerY;
+					uInterpolator += local197 * yOffset;
+					vInterpolator += local227 * yOffset;
+					wInterpolator += local257 * yOffset;
 					if (yB != yC && xStepAB < xStepBC || yB == yC && xStepAB > xStepAC) {
 						yA -= yC;
 						yC -= yB;
@@ -760,24 +776,24 @@ public final class Rasterizer {
 									if (yA < 0) {
 										return;
 									}
-									drawTexturedScanline(SoftwareRaster.pixels, texels, yB, xA >> 16, xC >> 16, colorB, colorStepA, local177, local207, local237, local187, local217, local247);
+									drawTexturedScanline(SoftwareRenderer.pixels, texels, yB, xA >> 16, xC >> 16, colorB, colorGradientX, uInterpolator, vInterpolator, wInterpolator, uStep, vStep, wStep);
 									xA += xStepAB;
 									xC += xStepAC;
-									colorB += colorStepB;
-									yB += SoftwareRaster.width;
-									local177 += local197;
-									local207 += local227;
-									local237 += local257;
+									colorB += colorGradientY;
+									yB += SoftwareRenderer.width;
+									uInterpolator += local197;
+									vInterpolator += local227;
+									wInterpolator += local257;
 								}
 							}
-							drawTexturedScanline(SoftwareRaster.pixels, texels, yB, xA >> 16, arg4 >> 16, colorB, colorStepA, local177, local207, local237, local187, local217, local247);
+							drawTexturedScanline(SoftwareRenderer.pixels, texels, yB, xA >> 16, arg4 >> 16, colorB, colorGradientX, uInterpolator, vInterpolator, wInterpolator, uStep, vStep, wStep);
 							xA += xStepAB;
 							arg4 += xStepBC;
-							colorB += colorStepB;
-							yB += SoftwareRaster.width;
-							local177 += local197;
-							local207 += local227;
-							local237 += local257;
+							colorB += colorGradientY;
+							yB += SoftwareRenderer.width;
+							uInterpolator += local197;
+							vInterpolator += local227;
+							wInterpolator += local257;
 						}
 					} else {
 						yA -= yC;
@@ -791,24 +807,24 @@ public final class Rasterizer {
 									if (yA < 0) {
 										return;
 									}
-									drawTexturedScanline(SoftwareRaster.pixels, texels, yB, xC >> 16, xA >> 16, colorB, colorStepA, local177, local207, local237, local187, local217, local247);
+									drawTexturedScanline(SoftwareRenderer.pixels, texels, yB, xC >> 16, xA >> 16, colorB, colorGradientX, uInterpolator, vInterpolator, wInterpolator, uStep, vStep, wStep);
 									xA += xStepAB;
 									xC += xStepAC;
-									colorB += colorStepB;
-									yB += SoftwareRaster.width;
-									local177 += local197;
-									local207 += local227;
-									local237 += local257;
+									colorB += colorGradientY;
+									yB += SoftwareRenderer.width;
+									uInterpolator += local197;
+									vInterpolator += local227;
+									wInterpolator += local257;
 								}
 							}
-							drawTexturedScanline(SoftwareRaster.pixels, texels, yB, arg4 >> 16, xA >> 16, colorB, colorStepA, local177, local207, local237, local187, local217, local247);
+							drawTexturedScanline(SoftwareRenderer.pixels, texels, yB, arg4 >> 16, xA >> 16, colorB, colorGradientX, uInterpolator, vInterpolator, wInterpolator, uStep, vStep, wStep);
 							xA += xStepAB;
 							arg4 += xStepBC;
-							colorB += colorStepB;
-							yB += SoftwareRaster.width;
-							local177 += local197;
-							local207 += local227;
-							local237 += local257;
+							colorB += colorGradientY;
+							yB += SoftwareRenderer.width;
+							uInterpolator += local197;
+							vInterpolator += local227;
+							wInterpolator += local257;
 						}
 					}
 				} else {
@@ -816,7 +832,7 @@ public final class Rasterizer {
 					if (yB < 0) {
 						xC -= xStepAB * yB;
 						arg4 -= xStepBC * yB;
-						colorB -= colorStepB * yB;
+						colorB -= colorGradientY * yB;
 						yB = 0;
 					}
 					xA <<= 0x10;
@@ -824,10 +840,10 @@ public final class Rasterizer {
 						xA -= xStepAC * yA;
 						yA = 0;
 					}
-					local336 = yB - centerY;
-					local177 += local197 * local336;
-					local207 += local227 * local336;
-					local237 += local257 * local336;
+					yOffset = yB - centerY;
+					uInterpolator += local197 * yOffset;
+					vInterpolator += local227 * yOffset;
+					wInterpolator += local257 * yOffset;
 					if (xStepAB < xStepBC) {
 						yC -= yA;
 						yA -= yB;
@@ -840,24 +856,24 @@ public final class Rasterizer {
 									if (yC < 0) {
 										return;
 									}
-									drawTexturedScanline(SoftwareRaster.pixels, texels, yB, xA >> 16, arg4 >> 16, colorB, colorStepA, local177, local207, local237, local187, local217, local247);
+									drawTexturedScanline(SoftwareRenderer.pixels, texels, yB, xA >> 16, arg4 >> 16, colorB, colorGradientX, uInterpolator, vInterpolator, wInterpolator, uStep, vStep, wStep);
 									xA += xStepAC;
 									arg4 += xStepBC;
-									colorB += colorStepB;
-									yB += SoftwareRaster.width;
-									local177 += local197;
-									local207 += local227;
-									local237 += local257;
+									colorB += colorGradientY;
+									yB += SoftwareRenderer.width;
+									uInterpolator += local197;
+									vInterpolator += local227;
+									wInterpolator += local257;
 								}
 							}
-							drawTexturedScanline(SoftwareRaster.pixels, texels, yB, xC >> 16, arg4 >> 16, colorB, colorStepA, local177, local207, local237, local187, local217, local247);
+							drawTexturedScanline(SoftwareRenderer.pixels, texels, yB, xC >> 16, arg4 >> 16, colorB, colorGradientX, uInterpolator, vInterpolator, wInterpolator, uStep, vStep, wStep);
 							xC += xStepAB;
 							arg4 += xStepBC;
-							colorB += colorStepB;
-							yB += SoftwareRaster.width;
-							local177 += local197;
-							local207 += local227;
-							local237 += local257;
+							colorB += colorGradientY;
+							yB += SoftwareRenderer.width;
+							uInterpolator += local197;
+							vInterpolator += local227;
+							wInterpolator += local257;
 						}
 					} else {
 						yC -= yA;
@@ -871,24 +887,24 @@ public final class Rasterizer {
 									if (yC < 0) {
 										return;
 									}
-									drawTexturedScanline(SoftwareRaster.pixels, texels, yB, arg4 >> 16, xA >> 16, colorB, colorStepA, local177, local207, local237, local187, local217, local247);
+									drawTexturedScanline(SoftwareRenderer.pixels, texels, yB, arg4 >> 16, xA >> 16, colorB, colorGradientX, uInterpolator, vInterpolator, wInterpolator, uStep, vStep, wStep);
 									xA += xStepAC;
 									arg4 += xStepBC;
-									colorB += colorStepB;
-									yB += SoftwareRaster.width;
-									local177 += local197;
-									local207 += local227;
-									local237 += local257;
+									colorB += colorGradientY;
+									yB += SoftwareRenderer.width;
+									uInterpolator += local197;
+									vInterpolator += local227;
+									wInterpolator += local257;
 								}
 							}
-							drawTexturedScanline(SoftwareRaster.pixels, texels, yB, arg4 >> 16, xC >> 16, colorB, colorStepA, local177, local207, local237, local187, local217, local247);
+							drawTexturedScanline(SoftwareRenderer.pixels, texels, yB, arg4 >> 16, xC >> 16, colorB, colorGradientX, uInterpolator, vInterpolator, wInterpolator, uStep, vStep, wStep);
 							xC += xStepAB;
 							arg4 += xStepBC;
-							colorB += colorStepB;
-							yB += SoftwareRaster.width;
-							local177 += local197;
-							local207 += local227;
-							local237 += local257;
+							colorB += colorGradientY;
+							yB += SoftwareRenderer.width;
+							uInterpolator += local197;
+							vInterpolator += local227;
+							wInterpolator += local257;
 						}
 					}
 				}
@@ -900,13 +916,13 @@ public final class Rasterizer {
 			if (yB > height) {
 				yB = height;
 			}
-			colorC = (colorC << 9) + colorStepA - colorStepA * xC;
+			colorC = (colorC << 9) + colorGradientX - colorGradientX * xC;
 			if (yA < yB) {
 				arg4 = xC <<= 0x10;
 				if (yC < 0) {
 					arg4 -= xStepBC * yC;
 					xC -= xStepAC * yC;
-					colorC -= colorStepB * yC;
+					colorC -= colorGradientY * yC;
 					yC = 0;
 				}
 				xA <<= 0x10;
@@ -914,10 +930,10 @@ public final class Rasterizer {
 					xA -= xStepAB * yA;
 					yA = 0;
 				}
-				local336 = yC - centerY;
-				local177 += local197 * local336;
-				local207 += local227 * local336;
-				local237 += local257 * local336;
+				yOffset = yC - centerY;
+				uInterpolator += local197 * yOffset;
+				vInterpolator += local227 * yOffset;
+				wInterpolator += local257 * yOffset;
 				if (xStepBC < xStepAC) {
 					yB -= yA;
 					yA -= yC;
@@ -930,24 +946,24 @@ public final class Rasterizer {
 								if (yB < 0) {
 									return;
 								}
-								drawTexturedScanline(SoftwareRaster.pixels, texels, yC, arg4 >> 16, xA >> 16, colorC, colorStepA, local177, local207, local237, local187, local217, local247);
+								drawTexturedScanline(SoftwareRenderer.pixels, texels, yC, arg4 >> 16, xA >> 16, colorC, colorGradientX, uInterpolator, vInterpolator, wInterpolator, uStep, vStep, wStep);
 								arg4 += xStepBC;
 								xA += xStepAB;
-								colorC += colorStepB;
-								yC += SoftwareRaster.width;
-								local177 += local197;
-								local207 += local227;
-								local237 += local257;
+								colorC += colorGradientY;
+								yC += SoftwareRenderer.width;
+								uInterpolator += local197;
+								vInterpolator += local227;
+								wInterpolator += local257;
 							}
 						}
-						drawTexturedScanline(SoftwareRaster.pixels, texels, yC, arg4 >> 16, xC >> 16, colorC, colorStepA, local177, local207, local237, local187, local217, local247);
+						drawTexturedScanline(SoftwareRenderer.pixels, texels, yC, arg4 >> 16, xC >> 16, colorC, colorGradientX, uInterpolator, vInterpolator, wInterpolator, uStep, vStep, wStep);
 						arg4 += xStepBC;
 						xC += xStepAC;
-						colorC += colorStepB;
-						yC += SoftwareRaster.width;
-						local177 += local197;
-						local207 += local227;
-						local237 += local257;
+						colorC += colorGradientY;
+						yC += SoftwareRenderer.width;
+						uInterpolator += local197;
+						vInterpolator += local227;
+						wInterpolator += local257;
 					}
 				} else {
 					yB -= yA;
@@ -961,24 +977,24 @@ public final class Rasterizer {
 								if (yB < 0) {
 									return;
 								}
-								drawTexturedScanline(SoftwareRaster.pixels, texels, yC, xA >> 16, arg4 >> 16, colorC, colorStepA, local177, local207, local237, local187, local217, local247);
+								drawTexturedScanline(SoftwareRenderer.pixels, texels, yC, xA >> 16, arg4 >> 16, colorC, colorGradientX, uInterpolator, vInterpolator, wInterpolator, uStep, vStep, wStep);
 								arg4 += xStepBC;
 								xA += xStepAB;
-								colorC += colorStepB;
-								yC += SoftwareRaster.width;
-								local177 += local197;
-								local207 += local227;
-								local237 += local257;
+								colorC += colorGradientY;
+								yC += SoftwareRenderer.width;
+								uInterpolator += local197;
+								vInterpolator += local227;
+								wInterpolator += local257;
 							}
 						}
-						drawTexturedScanline(SoftwareRaster.pixels, texels, yC, xC >> 16, arg4 >> 16, colorC, colorStepA, local177, local207, local237, local187, local217, local247);
+						drawTexturedScanline(SoftwareRenderer.pixels, texels, yC, xC >> 16, arg4 >> 16, colorC, colorGradientX, uInterpolator, vInterpolator, wInterpolator, uStep, vStep, wStep);
 						arg4 += xStepBC;
 						xC += xStepAC;
-						colorC += colorStepB;
-						yC += SoftwareRaster.width;
-						local177 += local197;
-						local207 += local227;
-						local237 += local257;
+						colorC += colorGradientY;
+						yC += SoftwareRenderer.width;
+						uInterpolator += local197;
+						vInterpolator += local227;
+						wInterpolator += local257;
 					}
 				}
 			} else {
@@ -986,7 +1002,7 @@ public final class Rasterizer {
 				if (yC < 0) {
 					xA -= xStepBC * yC;
 					xC -= xStepAC * yC;
-					colorC -= colorStepB * yC;
+					colorC -= colorGradientY * yC;
 					yC = 0;
 				}
 				arg4 <<= 0x10;
@@ -994,10 +1010,10 @@ public final class Rasterizer {
 					arg4 -= xStepAB * yB;
 					yB = 0;
 				}
-				local336 = yC - centerY;
-				local177 += local197 * local336;
-				local207 += local227 * local336;
-				local237 += local257 * local336;
+				yOffset = yC - centerY;
+				uInterpolator += local197 * yOffset;
+				vInterpolator += local227 * yOffset;
+				wInterpolator += local257 * yOffset;
 				if (xStepBC < xStepAC) {
 					yA -= yB;
 					yB -= yC;
@@ -1010,24 +1026,24 @@ public final class Rasterizer {
 								if (yA < 0) {
 									return;
 								}
-								drawTexturedScanline(SoftwareRaster.pixels, texels, yC, arg4 >> 16, xC >> 16, colorC, colorStepA, local177, local207, local237, local187, local217, local247);
+								drawTexturedScanline(SoftwareRenderer.pixels, texels, yC, arg4 >> 16, xC >> 16, colorC, colorGradientX, uInterpolator, vInterpolator, wInterpolator, uStep, vStep, wStep);
 								arg4 += xStepAB;
 								xC += xStepAC;
-								colorC += colorStepB;
-								yC += SoftwareRaster.width;
-								local177 += local197;
-								local207 += local227;
-								local237 += local257;
+								colorC += colorGradientY;
+								yC += SoftwareRenderer.width;
+								uInterpolator += local197;
+								vInterpolator += local227;
+								wInterpolator += local257;
 							}
 						}
-						drawTexturedScanline(SoftwareRaster.pixels, texels, yC, xA >> 16, xC >> 16, colorC, colorStepA, local177, local207, local237, local187, local217, local247);
+						drawTexturedScanline(SoftwareRenderer.pixels, texels, yC, xA >> 16, xC >> 16, colorC, colorGradientX, uInterpolator, vInterpolator, wInterpolator, uStep, vStep, wStep);
 						xA += xStepBC;
 						xC += xStepAC;
-						colorC += colorStepB;
-						yC += SoftwareRaster.width;
-						local177 += local197;
-						local207 += local227;
-						local237 += local257;
+						colorC += colorGradientY;
+						yC += SoftwareRenderer.width;
+						uInterpolator += local197;
+						vInterpolator += local227;
+						wInterpolator += local257;
 					}
 				} else {
 					yA -= yB;
@@ -1041,24 +1057,24 @@ public final class Rasterizer {
 								if (yA < 0) {
 									return;
 								}
-								drawTexturedScanline(SoftwareRaster.pixels, texels, yC, xC >> 16, arg4 >> 16, colorC, colorStepA, local177, local207, local237, local187, local217, local247);
+								drawTexturedScanline(SoftwareRenderer.pixels, texels, yC, xC >> 16, arg4 >> 16, colorC, colorGradientX, uInterpolator, vInterpolator, wInterpolator, uStep, vStep, wStep);
 								arg4 += xStepAB;
 								xC += xStepAC;
-								colorC += colorStepB;
-								yC += SoftwareRaster.width;
-								local177 += local197;
-								local207 += local227;
-								local237 += local257;
+								colorC += colorGradientY;
+								yC += SoftwareRenderer.width;
+								uInterpolator += local197;
+								vInterpolator += local227;
+								wInterpolator += local257;
 							}
 						}
-						drawTexturedScanline(SoftwareRaster.pixels, texels, yC, xC >> 16, xA >> 16, colorC, colorStepA, local177, local207, local237, local187, local217, local247);
+						drawTexturedScanline(SoftwareRenderer.pixels, texels, yC, xC >> 16, xA >> 16, colorC, colorGradientX, uInterpolator, vInterpolator, wInterpolator, uStep, vStep, wStep);
 						xA += xStepBC;
 						xC += xStepAC;
-						colorC += colorStepB;
-						yC += SoftwareRaster.width;
-						local177 += local197;
-						local207 += local227;
-						local237 += local257;
+						colorC += colorGradientY;
+						yC += SoftwareRenderer.width;
+						uInterpolator += local197;
+						vInterpolator += local227;
+						wInterpolator += local257;
 					}
 				}
 			}
@@ -1066,876 +1082,876 @@ public final class Rasterizer {
 	}
 
 	@OriginalMember(owner = "runetek4.client!hf", name = "b", descriptor = "([I[IIIIIIIIIIIIII)V")
-	private static void drawTexturedScanline(@OriginalArg(0) int[] arg0, @OriginalArg(1) int[] arg1, @OriginalArg(4) int arg2, @OriginalArg(5) int arg3, @OriginalArg(6) int arg4, @OriginalArg(7) int arg5, @OriginalArg(8) int arg6, @OriginalArg(9) int arg7, @OriginalArg(10) int arg8, @OriginalArg(11) int arg9, @OriginalArg(12) int arg10, @OriginalArg(13) int arg11, @OriginalArg(14) int arg12) {
+	private static void drawTexturedScanline(@OriginalArg(0) int[] pixelBuffer, @OriginalArg(1) int[] textureData, @OriginalArg(4) int pixelOffset, @OriginalArg(5) int leftX, @OriginalArg(6) int rightX, @OriginalArg(7) int color, @OriginalArg(8) int colorStep, @OriginalArg(9) int uInterpolator, @OriginalArg(10) int vInterpolator, @OriginalArg(11) int wInterpolator, @OriginalArg(12) int uStep, @OriginalArg(13) int vStep, @OriginalArg(14) int wStep) {
 		if (testX) {
-			if (arg4 > width) {
-				arg4 = width;
+			if (rightX > width) {
+				rightX = width;
 			}
-			if (arg3 < 0) {
-				arg3 = 0;
+			if (leftX < 0) {
+				leftX = 0;
 			}
 		}
-		if (arg3 >= arg4) {
+		if (leftX >= rightX) {
 			return;
 		}
-		arg2 += arg3;
-		arg5 += arg6 * arg3;
-		@Pc(28) int local28 = arg4 - arg3;
-		@Pc(140) int local140;
-		@Pc(128) int local128;
-		@Pc(62) int local62;
-		@Pc(66) int local66;
-		@Pc(99) int local99;
-		@Pc(103) int local103;
-		@Pc(56) int local56;
-		@Pc(34) int local34;
-		@Pc(154) int local154;
-		@Pc(114) int local114;
-		@Pc(157) int local157;
-		@Pc(136) int local136;
-		@Pc(40) int local40;
-		@Pc(46) int local46;
-		@Pc(52) int local52;
+		pixelOffset += leftX;
+		color += colorStep * leftX;
+		@Pc(28) int spanWidth = rightX - leftX;
+		@Pc(140) int lightness;
+		@Pc(128) int textureStep;
+		@Pc(62) int uStart;
+		@Pc(66) int vStart;
+		@Pc(99) int uEnd;
+		@Pc(103) int vEnd;
+		@Pc(56) int wDivisor;
+		@Pc(34) int xOffset;
+		@Pc(154) int texelColor;
+		@Pc(114) int textureCoord;
+		@Pc(157) int nextPixelOffset;
+		@Pc(136) int colorStepBatch;
+		@Pc(40) int uPerspective;
+		@Pc(46) int vPerspective;
+		@Pc(52) int wPerspective;
 		if (!lowDetail) {
-			local34 = arg3 - centerX;
-			local40 = arg7 + arg10 * local34;
-			local46 = arg8 + arg11 * local34;
-			local52 = arg9 + arg12 * local34;
-			local56 = local52 >> 14;
-			if (local56 == 0) {
-				local62 = 0;
-				local66 = 0;
+			xOffset = leftX - centerX;
+			uPerspective = uInterpolator + uStep * xOffset;
+			vPerspective = vInterpolator + vStep * xOffset;
+			wPerspective = wInterpolator + wStep * xOffset;
+			wDivisor = wPerspective >> 14;
+			if (wDivisor == 0) {
+				uStart = 0;
+				vStart = 0;
 			} else {
-				local62 = local40 / local56;
-				local66 = local46 / local56;
+				uStart = uPerspective / wDivisor;
+				vStart = vPerspective / wDivisor;
 			}
-			local40 += arg10 * local28;
-			local46 += arg11 * local28;
-			local52 += arg12 * local28;
-			local56 = local52 >> 14;
-			if (local56 == 0) {
-				local99 = 0;
-				local103 = 0;
+			uPerspective += uStep * spanWidth;
+			vPerspective += vStep * spanWidth;
+			wPerspective += wStep * spanWidth;
+			wDivisor = wPerspective >> 14;
+			if (wDivisor == 0) {
+				uEnd = 0;
+				vEnd = 0;
 			} else {
-				local99 = local40 / local56;
-				local103 = local46 / local56;
+				uEnd = uPerspective / wDivisor;
+				vEnd = vPerspective / wDivisor;
 			}
-			local114 = (local62 << 18) + local66;
-			local128 = ((local99 - local62) / local28 << 18) + (local103 - local66) / local28;
-			local28 >>= 0x3;
-			local136 = arg6 << 3;
-			local140 = arg5 >> 8;
+			textureCoord = (uStart << 18) + vStart;
+			textureStep = ((uEnd - uStart) / spanWidth << 18) + (vEnd - vStart) / spanWidth;
+			spanWidth >>= 0x3;
+			colorStepBatch = colorStep << 3;
+			lightness = color >> 8;
 			if (opaque) {
-				if (local28 > 0) {
+				if (spanWidth > 0) {
 					do {
-						local154 = arg1[(local114 & 0x3F80) + (local114 >>> 25)];
-						local157 = arg2 + 1;
-						arg0[arg2] = ((local154 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local154 & 0xFF00) * local140 & 0xFF0000) >> 8;
-						local114 += local128;
-						local154 = arg1[(local114 & 0x3F80) + (local114 >>> 25)];
-						arg0[local157++] = ((local154 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local154 & 0xFF00) * local140 & 0xFF0000) >> 8;
-						local114 += local128;
-						local154 = arg1[(local114 & 0x3F80) + (local114 >>> 25)];
-						arg0[local157++] = ((local154 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local154 & 0xFF00) * local140 & 0xFF0000) >> 8;
-						local114 += local128;
-						local154 = arg1[(local114 & 0x3F80) + (local114 >>> 25)];
-						arg0[local157++] = ((local154 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local154 & 0xFF00) * local140 & 0xFF0000) >> 8;
-						local114 += local128;
-						local154 = arg1[(local114 & 0x3F80) + (local114 >>> 25)];
-						arg0[local157++] = ((local154 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local154 & 0xFF00) * local140 & 0xFF0000) >> 8;
-						local114 += local128;
-						local154 = arg1[(local114 & 0x3F80) + (local114 >>> 25)];
-						arg0[local157++] = ((local154 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local154 & 0xFF00) * local140 & 0xFF0000) >> 8;
-						local114 += local128;
-						local154 = arg1[(local114 & 0x3F80) + (local114 >>> 25)];
-						arg0[local157++] = ((local154 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local154 & 0xFF00) * local140 & 0xFF0000) >> 8;
-						local114 += local128;
-						local154 = arg1[(local114 & 0x3F80) + (local114 >>> 25)];
-						arg2 = local157 + 1;
-						arg0[local157] = ((local154 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local154 & 0xFF00) * local140 & 0xFF0000) >> 8;
-						local114 += local128;
-						arg5 += local136;
-						local140 = arg5 >> 8;
-						local28--;
-					} while (local28 > 0);
+						texelColor = textureData[(textureCoord & 0x3F80) + (textureCoord >>> 25)];
+						nextPixelOffset = pixelOffset + 1;
+						pixelBuffer[pixelOffset] = ((texelColor & 0xFF00FF) * lightness & 0xFF00FF00) + ((texelColor & 0xFF00) * lightness & 0xFF0000) >> 8;
+						textureCoord += textureStep;
+						texelColor = textureData[(textureCoord & 0x3F80) + (textureCoord >>> 25)];
+						pixelBuffer[nextPixelOffset++] = ((texelColor & 0xFF00FF) * lightness & 0xFF00FF00) + ((texelColor & 0xFF00) * lightness & 0xFF0000) >> 8;
+						textureCoord += textureStep;
+						texelColor = textureData[(textureCoord & 0x3F80) + (textureCoord >>> 25)];
+						pixelBuffer[nextPixelOffset++] = ((texelColor & 0xFF00FF) * lightness & 0xFF00FF00) + ((texelColor & 0xFF00) * lightness & 0xFF0000) >> 8;
+						textureCoord += textureStep;
+						texelColor = textureData[(textureCoord & 0x3F80) + (textureCoord >>> 25)];
+						pixelBuffer[nextPixelOffset++] = ((texelColor & 0xFF00FF) * lightness & 0xFF00FF00) + ((texelColor & 0xFF00) * lightness & 0xFF0000) >> 8;
+						textureCoord += textureStep;
+						texelColor = textureData[(textureCoord & 0x3F80) + (textureCoord >>> 25)];
+						pixelBuffer[nextPixelOffset++] = ((texelColor & 0xFF00FF) * lightness & 0xFF00FF00) + ((texelColor & 0xFF00) * lightness & 0xFF0000) >> 8;
+						textureCoord += textureStep;
+						texelColor = textureData[(textureCoord & 0x3F80) + (textureCoord >>> 25)];
+						pixelBuffer[nextPixelOffset++] = ((texelColor & 0xFF00FF) * lightness & 0xFF00FF00) + ((texelColor & 0xFF00) * lightness & 0xFF0000) >> 8;
+						textureCoord += textureStep;
+						texelColor = textureData[(textureCoord & 0x3F80) + (textureCoord >>> 25)];
+						pixelBuffer[nextPixelOffset++] = ((texelColor & 0xFF00FF) * lightness & 0xFF00FF00) + ((texelColor & 0xFF00) * lightness & 0xFF0000) >> 8;
+						textureCoord += textureStep;
+						texelColor = textureData[(textureCoord & 0x3F80) + (textureCoord >>> 25)];
+						pixelOffset = nextPixelOffset + 1;
+						pixelBuffer[nextPixelOffset] = ((texelColor & 0xFF00FF) * lightness & 0xFF00FF00) + ((texelColor & 0xFF00) * lightness & 0xFF0000) >> 8;
+						textureCoord += textureStep;
+						color += colorStepBatch;
+						lightness = color >> 8;
+						spanWidth--;
+					} while (spanWidth > 0);
 				}
-				local28 = arg4 - arg3 & 0x7;
-				if (local28 > 0) {
+				spanWidth = rightX - leftX & 0x7;
+				if (spanWidth > 0) {
 					do {
-						local154 = arg1[(local114 & 0x3F80) + (local114 >>> 25)];
-						arg0[arg2++] = ((local154 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local154 & 0xFF00) * local140 & 0xFF0000) >> 8;
-						local114 += local128;
-						local28--;
-					} while (local28 > 0);
+						texelColor = textureData[(textureCoord & 0x3F80) + (textureCoord >>> 25)];
+						pixelBuffer[pixelOffset++] = ((texelColor & 0xFF00FF) * lightness & 0xFF00FF00) + ((texelColor & 0xFF00) * lightness & 0xFF0000) >> 8;
+						textureCoord += textureStep;
+						spanWidth--;
+					} while (spanWidth > 0);
 				}
 			} else {
-				if (local28 > 0) {
+				if (spanWidth > 0) {
 					do {
 						@Pc(1305) int local1305;
-						if ((local1305 = arg1[(local114 & 0x3F80) + (local114 >>> 25)]) != 0) {
-							arg0[arg2] = ((local1305 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local1305 & 0xFF00) * local140 & 0xFF0000) >> 8;
+						if ((local1305 = textureData[(textureCoord & 0x3F80) + (textureCoord >>> 25)]) != 0) {
+							pixelBuffer[pixelOffset] = ((local1305 & 0xFF00FF) * lightness & 0xFF00FF00) + ((local1305 & 0xFF00) * lightness & 0xFF0000) >> 8;
 						}
-						local157 = arg2 + 1;
-						local114 += local128;
+						nextPixelOffset = pixelOffset + 1;
+						textureCoord += textureStep;
 						@Pc(1342) int local1342;
-						if ((local1342 = arg1[(local114 & 0x3F80) + (local114 >>> 25)]) != 0) {
-							arg0[local157] = ((local1342 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local1342 & 0xFF00) * local140 & 0xFF0000) >> 8;
+						if ((local1342 = textureData[(textureCoord & 0x3F80) + (textureCoord >>> 25)]) != 0) {
+							pixelBuffer[nextPixelOffset] = ((local1342 & 0xFF00FF) * lightness & 0xFF00FF00) + ((local1342 & 0xFF00) * lightness & 0xFF0000) >> 8;
 						}
-						local157++;
-						local114 += local128;
+						nextPixelOffset++;
+						textureCoord += textureStep;
 						@Pc(1379) int local1379;
-						if ((local1379 = arg1[(local114 & 0x3F80) + (local114 >>> 25)]) != 0) {
-							arg0[local157] = ((local1379 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local1379 & 0xFF00) * local140 & 0xFF0000) >> 8;
+						if ((local1379 = textureData[(textureCoord & 0x3F80) + (textureCoord >>> 25)]) != 0) {
+							pixelBuffer[nextPixelOffset] = ((local1379 & 0xFF00FF) * lightness & 0xFF00FF00) + ((local1379 & 0xFF00) * lightness & 0xFF0000) >> 8;
 						}
-						local157++;
-						local114 += local128;
+						nextPixelOffset++;
+						textureCoord += textureStep;
 						@Pc(1416) int local1416;
-						if ((local1416 = arg1[(local114 & 0x3F80) + (local114 >>> 25)]) != 0) {
-							arg0[local157] = ((local1416 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local1416 & 0xFF00) * local140 & 0xFF0000) >> 8;
+						if ((local1416 = textureData[(textureCoord & 0x3F80) + (textureCoord >>> 25)]) != 0) {
+							pixelBuffer[nextPixelOffset] = ((local1416 & 0xFF00FF) * lightness & 0xFF00FF00) + ((local1416 & 0xFF00) * lightness & 0xFF0000) >> 8;
 						}
-						local157++;
-						local114 += local128;
+						nextPixelOffset++;
+						textureCoord += textureStep;
 						@Pc(1453) int local1453;
-						if ((local1453 = arg1[(local114 & 0x3F80) + (local114 >>> 25)]) != 0) {
-							arg0[local157] = ((local1453 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local1453 & 0xFF00) * local140 & 0xFF0000) >> 8;
+						if ((local1453 = textureData[(textureCoord & 0x3F80) + (textureCoord >>> 25)]) != 0) {
+							pixelBuffer[nextPixelOffset] = ((local1453 & 0xFF00FF) * lightness & 0xFF00FF00) + ((local1453 & 0xFF00) * lightness & 0xFF0000) >> 8;
 						}
-						local157++;
-						local114 += local128;
+						nextPixelOffset++;
+						textureCoord += textureStep;
 						@Pc(1490) int local1490;
-						if ((local1490 = arg1[(local114 & 0x3F80) + (local114 >>> 25)]) != 0) {
-							arg0[local157] = ((local1490 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local1490 & 0xFF00) * local140 & 0xFF0000) >> 8;
+						if ((local1490 = textureData[(textureCoord & 0x3F80) + (textureCoord >>> 25)]) != 0) {
+							pixelBuffer[nextPixelOffset] = ((local1490 & 0xFF00FF) * lightness & 0xFF00FF00) + ((local1490 & 0xFF00) * lightness & 0xFF0000) >> 8;
 						}
-						local157++;
-						local114 += local128;
+						nextPixelOffset++;
+						textureCoord += textureStep;
 						@Pc(1527) int local1527;
-						if ((local1527 = arg1[(local114 & 0x3F80) + (local114 >>> 25)]) != 0) {
-							arg0[local157] = ((local1527 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local1527 & 0xFF00) * local140 & 0xFF0000) >> 8;
+						if ((local1527 = textureData[(textureCoord & 0x3F80) + (textureCoord >>> 25)]) != 0) {
+							pixelBuffer[nextPixelOffset] = ((local1527 & 0xFF00FF) * lightness & 0xFF00FF00) + ((local1527 & 0xFF00) * lightness & 0xFF0000) >> 8;
 						}
-						local157++;
-						local114 += local128;
+						nextPixelOffset++;
+						textureCoord += textureStep;
 						@Pc(1564) int local1564;
-						if ((local1564 = arg1[(local114 & 0x3F80) + (local114 >>> 25)]) != 0) {
-							arg0[local157] = ((local1564 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local1564 & 0xFF00) * local140 & 0xFF0000) >> 8;
+						if ((local1564 = textureData[(textureCoord & 0x3F80) + (textureCoord >>> 25)]) != 0) {
+							pixelBuffer[nextPixelOffset] = ((local1564 & 0xFF00FF) * lightness & 0xFF00FF00) + ((local1564 & 0xFF00) * lightness & 0xFF0000) >> 8;
 						}
-						arg2 = local157 + 1;
-						local114 += local128;
-						arg5 += local136;
-						local140 = arg5 >> 8;
-						local28--;
-					} while (local28 > 0);
+						pixelOffset = nextPixelOffset + 1;
+						textureCoord += textureStep;
+						color += colorStepBatch;
+						lightness = color >> 8;
+						spanWidth--;
+					} while (spanWidth > 0);
 				}
-				local28 = arg4 - arg3 & 0x7;
-				if (local28 > 0) {
+				spanWidth = rightX - leftX & 0x7;
+				if (spanWidth > 0) {
 					do {
 						@Pc(1620) int local1620;
-						if ((local1620 = arg1[(local114 & 0x3F80) + (local114 >>> 25)]) != 0) {
-							arg0[arg2] = ((local1620 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local1620 & 0xFF00) * local140 & 0xFF0000) >> 8;
+						if ((local1620 = textureData[(textureCoord & 0x3F80) + (textureCoord >>> 25)]) != 0) {
+							pixelBuffer[pixelOffset] = ((local1620 & 0xFF00FF) * lightness & 0xFF00FF00) + ((local1620 & 0xFF00) * lightness & 0xFF0000) >> 8;
 						}
-						arg2++;
-						local114 += local128;
-						local28--;
-					} while (local28 > 0);
+						pixelOffset++;
+						textureCoord += textureStep;
+						spanWidth--;
+					} while (spanWidth > 0);
 				}
 			}
 			return;
 		}
-		local34 = arg3 - centerX;
-		local40 = arg7 + arg10 * local34;
-		local46 = arg8 + arg11 * local34;
-		local52 = arg9 + arg12 * local34;
-		local56 = local52 >> 12;
-		if (local56 == 0) {
-			local62 = 0;
-			local66 = 0;
+		xOffset = leftX - centerX;
+		uPerspective = uInterpolator + uStep * xOffset;
+		vPerspective = vInterpolator + vStep * xOffset;
+		wPerspective = wInterpolator + wStep * xOffset;
+		wDivisor = wPerspective >> 12;
+		if (wDivisor == 0) {
+			uStart = 0;
+			vStart = 0;
 		} else {
-			local62 = local40 / local56;
-			local66 = local46 / local56;
+			uStart = uPerspective / wDivisor;
+			vStart = vPerspective / wDivisor;
 		}
-		local40 += arg10 * local28;
-		local46 += arg11 * local28;
-		local52 += arg12 * local28;
-		local56 = local52 >> 12;
-		if (local56 == 0) {
-			local99 = 0;
-			local103 = 0;
+		uPerspective += uStep * spanWidth;
+		vPerspective += vStep * spanWidth;
+		wPerspective += wStep * spanWidth;
+		wDivisor = wPerspective >> 12;
+		if (wDivisor == 0) {
+			uEnd = 0;
+			vEnd = 0;
 		} else {
-			local99 = local40 / local56;
-			local103 = local46 / local56;
+			uEnd = uPerspective / wDivisor;
+			vEnd = vPerspective / wDivisor;
 		}
-		local114 = (local62 << 20) + local66;
-		local128 = ((local99 - local62) / local28 << 20) + (local103 - local66) / local28;
-		local28 >>= 0x3;
-		local136 = arg6 << 3;
-		local140 = arg5 >> 8;
+		textureCoord = (uStart << 20) + vStart;
+		textureStep = ((uEnd - uStart) / spanWidth << 20) + (vEnd - vStart) / spanWidth;
+		spanWidth >>= 0x3;
+		colorStepBatch = colorStep << 3;
+		lightness = color >> 8;
 		if (opaque) {
-			if (local28 > 0) {
+			if (spanWidth > 0) {
 				do {
-					local154 = arg1[(local114 & 0xFC0) + (local114 >>> 26)];
-					local157 = arg2 + 1;
-					arg0[arg2] = ((local154 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local154 & 0xFF00) * local140 & 0xFF0000) >> 8;
-					local114 += local128;
-					@Pc(189) int local189 = arg1[(local114 & 0xFC0) + (local114 >>> 26)];
-					@Pc(192) int local192 = local157 + 1;
-					arg0[local157] = ((local189 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local189 & 0xFF00) * local140 & 0xFF0000) >> 8;
-					local114 += local128;
-					@Pc(224) int local224 = arg1[(local114 & 0xFC0) + (local114 >>> 26)];
+					texelColor = textureData[(textureCoord & 0xFC0) + (textureCoord >>> 26)];
+					nextPixelOffset = pixelOffset + 1;
+					pixelBuffer[pixelOffset] = ((texelColor & 0xFF00FF) * lightness & 0xFF00FF00) + ((texelColor & 0xFF00) * lightness & 0xFF0000) >> 8;
+					textureCoord += textureStep;
+					@Pc(189) int local189 = textureData[(textureCoord & 0xFC0) + (textureCoord >>> 26)];
+					@Pc(192) int local192 = nextPixelOffset + 1;
+					pixelBuffer[nextPixelOffset] = ((local189 & 0xFF00FF) * lightness & 0xFF00FF00) + ((local189 & 0xFF00) * lightness & 0xFF0000) >> 8;
+					textureCoord += textureStep;
+					@Pc(224) int local224 = textureData[(textureCoord & 0xFC0) + (textureCoord >>> 26)];
 					@Pc(227) int local227 = local192 + 1;
-					arg0[local192] = ((local224 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local224 & 0xFF00) * local140 & 0xFF0000) >> 8;
-					local114 += local128;
-					@Pc(259) int local259 = arg1[(local114 & 0xFC0) + (local114 >>> 26)];
+					pixelBuffer[local192] = ((local224 & 0xFF00FF) * lightness & 0xFF00FF00) + ((local224 & 0xFF00) * lightness & 0xFF0000) >> 8;
+					textureCoord += textureStep;
+					@Pc(259) int local259 = textureData[(textureCoord & 0xFC0) + (textureCoord >>> 26)];
 					@Pc(262) int local262 = local227 + 1;
-					arg0[local227] = ((local259 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local259 & 0xFF00) * local140 & 0xFF0000) >> 8;
-					local114 += local128;
-					@Pc(294) int local294 = arg1[(local114 & 0xFC0) + (local114 >>> 26)];
+					pixelBuffer[local227] = ((local259 & 0xFF00FF) * lightness & 0xFF00FF00) + ((local259 & 0xFF00) * lightness & 0xFF0000) >> 8;
+					textureCoord += textureStep;
+					@Pc(294) int local294 = textureData[(textureCoord & 0xFC0) + (textureCoord >>> 26)];
 					@Pc(297) int local297 = local262 + 1;
-					arg0[local262] = ((local294 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local294 & 0xFF00) * local140 & 0xFF0000) >> 8;
-					local114 += local128;
-					@Pc(329) int local329 = arg1[(local114 & 0xFC0) + (local114 >>> 26)];
+					pixelBuffer[local262] = ((local294 & 0xFF00FF) * lightness & 0xFF00FF00) + ((local294 & 0xFF00) * lightness & 0xFF0000) >> 8;
+					textureCoord += textureStep;
+					@Pc(329) int local329 = textureData[(textureCoord & 0xFC0) + (textureCoord >>> 26)];
 					@Pc(332) int local332 = local297 + 1;
-					arg0[local297] = ((local329 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local329 & 0xFF00) * local140 & 0xFF0000) >> 8;
-					local114 += local128;
-					@Pc(364) int local364 = arg1[(local114 & 0xFC0) + (local114 >>> 26)];
+					pixelBuffer[local297] = ((local329 & 0xFF00FF) * lightness & 0xFF00FF00) + ((local329 & 0xFF00) * lightness & 0xFF0000) >> 8;
+					textureCoord += textureStep;
+					@Pc(364) int local364 = textureData[(textureCoord & 0xFC0) + (textureCoord >>> 26)];
 					@Pc(367) int local367 = local332 + 1;
-					arg0[local332] = ((local364 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local364 & 0xFF00) * local140 & 0xFF0000) >> 8;
-					local114 += local128;
-					@Pc(399) int local399 = arg1[(local114 & 0xFC0) + (local114 >>> 26)];
-					arg2 = local367 + 1;
-					arg0[local367] = ((local399 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local399 & 0xFF00) * local140 & 0xFF0000) >> 8;
-					local114 += local128;
-					arg5 += local136;
-					local140 = arg5 >> 8;
-					local28--;
-				} while (local28 > 0);
+					pixelBuffer[local332] = ((local364 & 0xFF00FF) * lightness & 0xFF00FF00) + ((local364 & 0xFF00) * lightness & 0xFF0000) >> 8;
+					textureCoord += textureStep;
+					@Pc(399) int local399 = textureData[(textureCoord & 0xFC0) + (textureCoord >>> 26)];
+					pixelOffset = local367 + 1;
+					pixelBuffer[local367] = ((local399 & 0xFF00FF) * lightness & 0xFF00FF00) + ((local399 & 0xFF00) * lightness & 0xFF0000) >> 8;
+					textureCoord += textureStep;
+					color += colorStepBatch;
+					lightness = color >> 8;
+					spanWidth--;
+				} while (spanWidth > 0);
 			}
-			local28 = arg4 - arg3 & 0x7;
-			if (local28 > 0) {
+			spanWidth = rightX - leftX & 0x7;
+			if (spanWidth > 0) {
 				do {
-					local154 = arg1[(local114 & 0xFC0) + (local114 >>> 26)];
-					arg0[arg2++] = ((local154 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local154 & 0xFF00) * local140 & 0xFF0000) >> 8;
-					local114 += local128;
-					local28--;
-				} while (local28 > 0);
+					texelColor = textureData[(textureCoord & 0xFC0) + (textureCoord >>> 26)];
+					pixelBuffer[pixelOffset++] = ((texelColor & 0xFF00FF) * lightness & 0xFF00FF00) + ((texelColor & 0xFF00) * lightness & 0xFF0000) >> 8;
+					textureCoord += textureStep;
+					spanWidth--;
+				} while (spanWidth > 0);
 			}
 			return;
 		}
-		if (local28 > 0) {
+		if (spanWidth > 0) {
 			do {
 				@Pc(495) int local495;
-				if ((local495 = arg1[(local114 & 0xFC0) + (local114 >>> 26)]) != 0) {
-					arg0[arg2] = ((local495 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local495 & 0xFF00) * local140 & 0xFF0000) >> 8;
+				if ((local495 = textureData[(textureCoord & 0xFC0) + (textureCoord >>> 26)]) != 0) {
+					pixelBuffer[pixelOffset] = ((local495 & 0xFF00FF) * lightness & 0xFF00FF00) + ((local495 & 0xFF00) * lightness & 0xFF0000) >> 8;
 				}
-				local157 = arg2 + 1;
-				local114 += local128;
+				nextPixelOffset = pixelOffset + 1;
+				textureCoord += textureStep;
 				@Pc(532) int local532;
-				if ((local532 = arg1[(local114 & 0xFC0) + (local114 >>> 26)]) != 0) {
-					arg0[local157] = ((local532 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local532 & 0xFF00) * local140 & 0xFF0000) >> 8;
+				if ((local532 = textureData[(textureCoord & 0xFC0) + (textureCoord >>> 26)]) != 0) {
+					pixelBuffer[nextPixelOffset] = ((local532 & 0xFF00FF) * lightness & 0xFF00FF00) + ((local532 & 0xFF00) * lightness & 0xFF0000) >> 8;
 				}
-				local157++;
-				local114 += local128;
+				nextPixelOffset++;
+				textureCoord += textureStep;
 				@Pc(569) int local569;
-				if ((local569 = arg1[(local114 & 0xFC0) + (local114 >>> 26)]) != 0) {
-					arg0[local157] = ((local569 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local569 & 0xFF00) * local140 & 0xFF0000) >> 8;
+				if ((local569 = textureData[(textureCoord & 0xFC0) + (textureCoord >>> 26)]) != 0) {
+					pixelBuffer[nextPixelOffset] = ((local569 & 0xFF00FF) * lightness & 0xFF00FF00) + ((local569 & 0xFF00) * lightness & 0xFF0000) >> 8;
 				}
-				local157++;
-				local114 += local128;
+				nextPixelOffset++;
+				textureCoord += textureStep;
 				@Pc(606) int local606;
-				if ((local606 = arg1[(local114 & 0xFC0) + (local114 >>> 26)]) != 0) {
-					arg0[local157] = ((local606 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local606 & 0xFF00) * local140 & 0xFF0000) >> 8;
+				if ((local606 = textureData[(textureCoord & 0xFC0) + (textureCoord >>> 26)]) != 0) {
+					pixelBuffer[nextPixelOffset] = ((local606 & 0xFF00FF) * lightness & 0xFF00FF00) + ((local606 & 0xFF00) * lightness & 0xFF0000) >> 8;
 				}
-				local157++;
-				local114 += local128;
+				nextPixelOffset++;
+				textureCoord += textureStep;
 				@Pc(643) int local643;
-				if ((local643 = arg1[(local114 & 0xFC0) + (local114 >>> 26)]) != 0) {
-					arg0[local157] = ((local643 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local643 & 0xFF00) * local140 & 0xFF0000) >> 8;
+				if ((local643 = textureData[(textureCoord & 0xFC0) + (textureCoord >>> 26)]) != 0) {
+					pixelBuffer[nextPixelOffset] = ((local643 & 0xFF00FF) * lightness & 0xFF00FF00) + ((local643 & 0xFF00) * lightness & 0xFF0000) >> 8;
 				}
-				local157++;
-				local114 += local128;
+				nextPixelOffset++;
+				textureCoord += textureStep;
 				@Pc(680) int local680;
-				if ((local680 = arg1[(local114 & 0xFC0) + (local114 >>> 26)]) != 0) {
-					arg0[local157] = ((local680 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local680 & 0xFF00) * local140 & 0xFF0000) >> 8;
+				if ((local680 = textureData[(textureCoord & 0xFC0) + (textureCoord >>> 26)]) != 0) {
+					pixelBuffer[nextPixelOffset] = ((local680 & 0xFF00FF) * lightness & 0xFF00FF00) + ((local680 & 0xFF00) * lightness & 0xFF0000) >> 8;
 				}
-				local157++;
-				local114 += local128;
+				nextPixelOffset++;
+				textureCoord += textureStep;
 				@Pc(717) int local717;
-				if ((local717 = arg1[(local114 & 0xFC0) + (local114 >>> 26)]) != 0) {
-					arg0[local157] = ((local717 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local717 & 0xFF00) * local140 & 0xFF0000) >> 8;
+				if ((local717 = textureData[(textureCoord & 0xFC0) + (textureCoord >>> 26)]) != 0) {
+					pixelBuffer[nextPixelOffset] = ((local717 & 0xFF00FF) * lightness & 0xFF00FF00) + ((local717 & 0xFF00) * lightness & 0xFF0000) >> 8;
 				}
-				local157++;
-				local114 += local128;
+				nextPixelOffset++;
+				textureCoord += textureStep;
 				@Pc(754) int local754;
-				if ((local754 = arg1[(local114 & 0xFC0) + (local114 >>> 26)]) != 0) {
-					arg0[local157] = ((local754 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local754 & 0xFF00) * local140 & 0xFF0000) >> 8;
+				if ((local754 = textureData[(textureCoord & 0xFC0) + (textureCoord >>> 26)]) != 0) {
+					pixelBuffer[nextPixelOffset] = ((local754 & 0xFF00FF) * lightness & 0xFF00FF00) + ((local754 & 0xFF00) * lightness & 0xFF0000) >> 8;
 				}
-				arg2 = local157 + 1;
-				local114 += local128;
-				arg5 += local136;
-				local140 = arg5 >> 8;
-				local28--;
-			} while (local28 > 0);
+				pixelOffset = nextPixelOffset + 1;
+				textureCoord += textureStep;
+				color += colorStepBatch;
+				lightness = color >> 8;
+				spanWidth--;
+			} while (spanWidth > 0);
 		}
-		local28 = arg4 - arg3 & 0x7;
-		if (local28 <= 0) {
+		spanWidth = rightX - leftX & 0x7;
+		if (spanWidth <= 0) {
 			return;
 		}
 		do {
 			@Pc(810) int local810;
-			if ((local810 = arg1[(local114 & 0xFC0) + (local114 >>> 26)]) != 0) {
-				arg0[arg2] = ((local810 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local810 & 0xFF00) * local140 & 0xFF0000) >> 8;
+			if ((local810 = textureData[(textureCoord & 0xFC0) + (textureCoord >>> 26)]) != 0) {
+				pixelBuffer[pixelOffset] = ((local810 & 0xFF00FF) * lightness & 0xFF00FF00) + ((local810 & 0xFF00) * lightness & 0xFF0000) >> 8;
 			}
-			arg2++;
-			local114 += local128;
-			local28--;
-		} while (local28 > 0);
+			pixelOffset++;
+			textureCoord += textureStep;
+			spanWidth--;
+		} while (spanWidth > 0);
 	}
 
 	@OriginalMember(owner = "runetek4.client!hf", name = "a", descriptor = "([IIIIIIII)V")
-	private static void drawGouraudScanline(@OriginalArg(0) int[] arg0, @OriginalArg(1) int arg1, @OriginalArg(4) int arg2, @OriginalArg(5) int arg3, @OriginalArg(6) int arg4, @OriginalArg(7) int arg5) {
+	private static void drawGouraudScanline(@OriginalArg(0) int[] pixelBuffer, @OriginalArg(1) int pixelOffset, @OriginalArg(4) int leftX, @OriginalArg(5) int rightX, @OriginalArg(6) int color, @OriginalArg(7) int colorStep) {
 		if (testX) {
-			if (arg3 > width) {
-				arg3 = width;
+			if (rightX > width) {
+				rightX = width;
 			}
-			if (arg2 < 0) {
-				arg2 = 0;
+			if (leftX < 0) {
+				leftX = 0;
 			}
 		}
-		if (arg2 >= arg3) {
+		if (leftX >= rightX) {
 			return;
 		}
-		arg1 += arg2;
-		arg4 += arg5 * arg2;
-		@Pc(98) int local98;
-		@Pc(102) int local102;
-		@Pc(138) int local138;
-		@Pc(32) int local32;
-		@Pc(46) int local46;
+		pixelOffset += leftX;
+		color += colorStep * leftX;
+		@Pc(98) int sourceAlpha;
+		@Pc(102) int destAlpha;
+		@Pc(138) int destPixel;
+		@Pc(32) int spanWidth;
+		@Pc(46) int sourceColor;
 		if (!jagged) {
-			local32 = arg3 - arg2;
+			spanWidth = rightX - leftX;
 			if (alpha == 0) {
 				do {
-					arg0[arg1++] = palette[arg4 >> 8];
-					arg4 += arg5;
-					local32--;
-				} while (local32 > 0);
+					pixelBuffer[pixelOffset++] = palette[color >> 8];
+					color += colorStep;
+					spanWidth--;
+				} while (spanWidth > 0);
 			} else {
-				local98 = alpha;
-				local102 = 256 - alpha;
+				sourceAlpha = alpha;
+				destAlpha = 256 - alpha;
 				do {
-					local46 = palette[arg4 >> 8];
-					arg4 += arg5;
-					@Pc(379) int local379 = ((local46 & 0xFF00FF) * local102 >> 8 & 0xFF00FF) + ((local46 & 0xFF00) * local102 >> 8 & 0xFF00);
-					local138 = arg0[arg1];
-					arg0[arg1++] = local379 + ((local138 & 0xFF00FF) * local98 >> 8 & 0xFF00FF) + ((local138 & 0xFF00) * local98 >> 8 & 0xFF00);
-					local32--;
-				} while (local32 > 0);
+					sourceColor = palette[color >> 8];
+					color += colorStep;
+					@Pc(379) int blendedSource = ((sourceColor & 0xFF00FF) * destAlpha >> 8 & 0xFF00FF) + ((sourceColor & 0xFF00) * destAlpha >> 8 & 0xFF00);
+					destPixel = pixelBuffer[pixelOffset];
+					pixelBuffer[pixelOffset++] = blendedSource + ((destPixel & 0xFF00FF) * sourceAlpha >> 8 & 0xFF00FF) + ((destPixel & 0xFF00) * sourceAlpha >> 8 & 0xFF00);
+					spanWidth--;
+				} while (spanWidth > 0);
 			}
 			return;
 		}
-		local32 = arg3 - arg2 >> 2;
-		@Pc(36) int local36 = arg5 << 2;
-		@Pc(53) int local53;
+		spanWidth = rightX - leftX >> 2;
+		@Pc(36) int colorStepBatch = colorStep << 2;
+		@Pc(53) int nextOffset1;
 		if (alpha == 0) {
-			if (local32 > 0) {
+			if (spanWidth > 0) {
 				do {
-					local46 = palette[arg4 >> 8];
-					arg4 += local36;
-					local53 = arg1 + 1;
-					arg0[arg1] = local46;
-					@Pc(58) int local58 = local53 + 1;
-					arg0[local53] = local46;
-					@Pc(63) int local63 = local58 + 1;
-					arg0[local58] = local46;
-					arg1 = local63 + 1;
-					arg0[local63] = local46;
-					local32--;
-				} while (local32 > 0);
+					sourceColor = palette[color >> 8];
+					color += colorStepBatch;
+					nextOffset1 = pixelOffset + 1;
+					pixelBuffer[pixelOffset] = sourceColor;
+					@Pc(58) int nextOffset2 = nextOffset1 + 1;
+					pixelBuffer[nextOffset1] = sourceColor;
+					@Pc(63) int nextOffset3 = nextOffset2 + 1;
+					pixelBuffer[nextOffset2] = sourceColor;
+					pixelOffset = nextOffset3 + 1;
+					pixelBuffer[nextOffset3] = sourceColor;
+					spanWidth--;
+				} while (spanWidth > 0);
 			}
-			local32 = arg3 - arg2 & 0x3;
-			if (local32 > 0) {
-				local46 = palette[arg4 >> 8];
+			spanWidth = rightX - leftX & 0x3;
+			if (spanWidth > 0) {
+				sourceColor = palette[color >> 8];
 				do {
-					arg0[arg1++] = local46;
-					local32--;
-				} while (local32 > 0);
+					pixelBuffer[pixelOffset++] = sourceColor;
+					spanWidth--;
+				} while (spanWidth > 0);
 			}
 			return;
 		}
-		local98 = alpha;
-		local102 = 256 - alpha;
-		if (local32 > 0) {
+		sourceAlpha = alpha;
+		destAlpha = 256 - alpha;
+		if (spanWidth > 0) {
 			do {
-				local46 = palette[arg4 >> 8];
-				arg4 += local36;
-				local46 = ((local46 & 0xFF00FF) * local102 >> 8 & 0xFF00FF) + ((local46 & 0xFF00) * local102 >> 8 & 0xFF00);
-				local138 = arg0[arg1];
-				local53 = arg1 + 1;
-				arg0[arg1] = local46 + ((local138 & 0xFF00FF) * local98 >> 8 & 0xFF00FF) + ((local138 & 0xFF00) * local98 >> 8 & 0xFF00);
-				local138 = arg0[local53];
-				arg0[local53++] = local46 + ((local138 & 0xFF00FF) * local98 >> 8 & 0xFF00FF) + ((local138 & 0xFF00) * local98 >> 8 & 0xFF00);
-				local138 = arg0[local53];
-				arg0[local53++] = local46 + ((local138 & 0xFF00FF) * local98 >> 8 & 0xFF00FF) + ((local138 & 0xFF00) * local98 >> 8 & 0xFF00);
-				local138 = arg0[local53];
-				arg1 = local53 + 1;
-				arg0[local53] = local46 + ((local138 & 0xFF00FF) * local98 >> 8 & 0xFF00FF) + ((local138 & 0xFF00) * local98 >> 8 & 0xFF00);
-				local32--;
-			} while (local32 > 0);
+				sourceColor = palette[color >> 8];
+				color += colorStepBatch;
+				sourceColor = ((sourceColor & 0xFF00FF) * destAlpha >> 8 & 0xFF00FF) + ((sourceColor & 0xFF00) * destAlpha >> 8 & 0xFF00);
+				destPixel = pixelBuffer[pixelOffset];
+				nextOffset1 = pixelOffset + 1;
+				pixelBuffer[pixelOffset] = sourceColor + ((destPixel & 0xFF00FF) * sourceAlpha >> 8 & 0xFF00FF) + ((destPixel & 0xFF00) * sourceAlpha >> 8 & 0xFF00);
+				destPixel = pixelBuffer[nextOffset1];
+				pixelBuffer[nextOffset1++] = sourceColor + ((destPixel & 0xFF00FF) * sourceAlpha >> 8 & 0xFF00FF) + ((destPixel & 0xFF00) * sourceAlpha >> 8 & 0xFF00);
+				destPixel = pixelBuffer[nextOffset1];
+				pixelBuffer[nextOffset1++] = sourceColor + ((destPixel & 0xFF00FF) * sourceAlpha >> 8 & 0xFF00FF) + ((destPixel & 0xFF00) * sourceAlpha >> 8 & 0xFF00);
+				destPixel = pixelBuffer[nextOffset1];
+				pixelOffset = nextOffset1 + 1;
+				pixelBuffer[nextOffset1] = sourceColor + ((destPixel & 0xFF00FF) * sourceAlpha >> 8 & 0xFF00FF) + ((destPixel & 0xFF00) * sourceAlpha >> 8 & 0xFF00);
+				spanWidth--;
+			} while (spanWidth > 0);
 		}
-		local32 = arg3 - arg2 & 0x3;
-		if (local32 <= 0) {
+		spanWidth = rightX - leftX & 0x3;
+		if (spanWidth <= 0) {
 			return;
 		}
-		local46 = palette[arg4 >> 8];
-		local46 = ((local46 & 0xFF00FF) * local102 >> 8 & 0xFF00FF) + ((local46 & 0xFF00) * local102 >> 8 & 0xFF00);
+		sourceColor = palette[color >> 8];
+		sourceColor = ((sourceColor & 0xFF00FF) * destAlpha >> 8 & 0xFF00FF) + ((sourceColor & 0xFF00) * destAlpha >> 8 & 0xFF00);
 		do {
-			local138 = arg0[arg1];
-			arg0[arg1++] = local46 + ((local138 & 0xFF00FF) * local98 >> 8 & 0xFF00FF) + ((local138 & 0xFF00) * local98 >> 8 & 0xFF00);
-			local32--;
-		} while (local32 > 0);
+			destPixel = pixelBuffer[pixelOffset];
+			pixelBuffer[pixelOffset++] = sourceColor + ((destPixel & 0xFF00FF) * sourceAlpha >> 8 & 0xFF00FF) + ((destPixel & 0xFF00) * sourceAlpha >> 8 & 0xFF00);
+			spanWidth--;
+		} while (spanWidth > 0);
 	}
 
 	@OriginalMember(owner = "runetek4.client!hf", name = "a", descriptor = "(IIIIIIIII)V")
-	public static void fillGouraudTriangle(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) int arg8) {
-		@Pc(3) int local3 = arg4 - arg3;
-		@Pc(7) int local7 = arg1 - arg0;
-		@Pc(11) int local11 = arg5 - arg3;
-		@Pc(15) int local15 = arg2 - arg0;
-		@Pc(19) int local19 = arg7 - arg6;
-		@Pc(23) int local23 = arg8 - arg6;
-		@Pc(36) int local36;
-		if (arg2 == arg1) {
-			local36 = 0;
+	public static void fillGouraudTriangle(@OriginalArg(0) int yA, @OriginalArg(1) int yB, @OriginalArg(2) int yC, @OriginalArg(3) int xA, @OriginalArg(4) int xB, @OriginalArg(5) int xC, @OriginalArg(6) int colorA, @OriginalArg(7) int colorB, @OriginalArg(8) int colorC) {
+		@Pc(3) int dxBA = xB - xA;
+		@Pc(7) int dyBA = yB - yA;
+		@Pc(11) int dxCA = xC - xA;
+		@Pc(15) int dyCA = yC - yA;
+		@Pc(19) int colorDiffBA = colorB - colorA;
+		@Pc(23) int colorDiffCA = colorC - colorA;
+		@Pc(36) int xStepBC;
+		if (yC == yB) {
+			xStepBC = 0;
 		} else {
-			local36 = (arg5 - arg4 << 16) / (arg2 - arg1);
+			xStepBC = (xC - xB << 16) / (yC - yB);
 		}
-		@Pc(48) int local48;
-		if (arg1 == arg0) {
-			local48 = 0;
+		@Pc(48) int xStepAB;
+		if (yB == yA) {
+			xStepAB = 0;
 		} else {
-			local48 = (local3 << 16) / local7;
+			xStepAB = (dxBA << 16) / dyBA;
 		}
-		@Pc(60) int local60;
-		if (arg2 == arg0) {
-			local60 = 0;
+		@Pc(60) int xStepAC;
+		if (yC == yA) {
+			xStepAC = 0;
 		} else {
-			local60 = (local11 << 16) / local15;
+			xStepAC = (dxCA << 16) / dyCA;
 		}
-		@Pc(71) int local71 = local3 * local15 - local11 * local7;
-		if (local71 == 0) {
+		@Pc(71) int triangleArea = dxBA * dyCA - dxCA * dyBA;
+		if (triangleArea == 0) {
 			return;
 		}
-		@Pc(86) int local86 = (local19 * local15 - local23 * local7 << 8) / local71;
-		@Pc(98) int local98 = (local23 * local3 - local19 * local11 << 8) / local71;
-		if (arg0 <= arg1 && arg0 <= arg2) {
-			if (arg0 < height) {
-				if (arg1 > height) {
-					arg1 = height;
+		@Pc(86) int colorGradientX = (colorDiffBA * dyCA - colorDiffCA * dyBA << 8) / triangleArea;
+		@Pc(98) int colorGradientY = (colorDiffCA * dxBA - colorDiffBA * dxCA << 8) / triangleArea;
+		if (yA <= yB && yA <= yC) {
+			if (yA < height) {
+				if (yB > height) {
+					yB = height;
 				}
-				if (arg2 > height) {
-					arg2 = height;
+				if (yC > height) {
+					yC = height;
 				}
-				arg6 = (arg6 << 8) + local86 - local86 * arg3;
-				if (arg1 < arg2) {
-					arg5 = arg3 <<= 0x10;
-					if (arg0 < 0) {
-						arg5 -= local60 * arg0;
-						arg3 -= local48 * arg0;
-						arg6 -= local98 * arg0;
-						arg0 = 0;
+				colorA = (colorA << 8) + colorGradientX - colorGradientX * xA;
+				if (yB < yC) {
+					xC = xA <<= 0x10;
+					if (yA < 0) {
+						xC -= xStepAC * yA;
+						xA -= xStepAB * yA;
+						colorA -= colorGradientY * yA;
+						yA = 0;
 					}
-					arg4 <<= 0x10;
-					if (arg1 < 0) {
-						arg4 -= local36 * arg1;
-						arg1 = 0;
+					xB <<= 0x10;
+					if (yB < 0) {
+						xB -= xStepBC * yB;
+						yB = 0;
 					}
-					if ((arg0 == arg1 || local60 >= local48) && (arg0 != arg1 || local60 <= local36)) {
-						arg2 -= arg1;
-						arg1 -= arg0;
-						arg0 = offsets[arg0];
+					if ((yA == yB || xStepAC >= xStepAB) && (yA != yB || xStepAC <= xStepBC)) {
+						yC -= yB;
+						yB -= yA;
+						yA = offsets[yA];
 						while (true) {
-							arg1--;
-							if (arg1 < 0) {
+							yB--;
+							if (yB < 0) {
 								while (true) {
-									arg2--;
-									if (arg2 < 0) {
+									yC--;
+									if (yC < 0) {
 										return;
 									}
-									drawGouraudScanline(SoftwareRaster.pixels, arg0, arg4 >> 16, arg5 >> 16, arg6, local86);
-									arg5 += local60;
-									arg4 += local36;
-									arg6 += local98;
-									arg0 += SoftwareRaster.width;
+									drawGouraudScanline(SoftwareRenderer.pixels, yA, xB >> 16, xC >> 16, colorA, colorGradientX);
+									xC += xStepAC;
+									xB += xStepBC;
+									colorA += colorGradientY;
+									yA += SoftwareRenderer.width;
 								}
 							}
-							drawGouraudScanline(SoftwareRaster.pixels, arg0, arg3 >> 16, arg5 >> 16, arg6, local86);
-							arg5 += local60;
-							arg3 += local48;
-							arg6 += local98;
-							arg0 += SoftwareRaster.width;
+							drawGouraudScanline(SoftwareRenderer.pixels, yA, xA >> 16, xC >> 16, colorA, colorGradientX);
+							xC += xStepAC;
+							xA += xStepAB;
+							colorA += colorGradientY;
+							yA += SoftwareRenderer.width;
 						}
 					} else {
-						arg2 -= arg1;
-						arg1 -= arg0;
-						arg0 = offsets[arg0];
+						yC -= yB;
+						yB -= yA;
+						yA = offsets[yA];
 						while (true) {
-							arg1--;
-							if (arg1 < 0) {
+							yB--;
+							if (yB < 0) {
 								while (true) {
-									arg2--;
-									if (arg2 < 0) {
+									yC--;
+									if (yC < 0) {
 										return;
 									}
-									drawGouraudScanline(SoftwareRaster.pixels, arg0, arg5 >> 16, arg4 >> 16, arg6, local86);
-									arg5 += local60;
-									arg4 += local36;
-									arg6 += local98;
-									arg0 += SoftwareRaster.width;
+									drawGouraudScanline(SoftwareRenderer.pixels, yA, xC >> 16, xB >> 16, colorA, colorGradientX);
+									xC += xStepAC;
+									xB += xStepBC;
+									colorA += colorGradientY;
+									yA += SoftwareRenderer.width;
 								}
 							}
-							drawGouraudScanline(SoftwareRaster.pixels, arg0, arg5 >> 16, arg3 >> 16, arg6, local86);
-							arg5 += local60;
-							arg3 += local48;
-							arg6 += local98;
-							arg0 += SoftwareRaster.width;
+							drawGouraudScanline(SoftwareRenderer.pixels, yA, xC >> 16, xA >> 16, colorA, colorGradientX);
+							xC += xStepAC;
+							xA += xStepAB;
+							colorA += colorGradientY;
+							yA += SoftwareRenderer.width;
 						}
 					}
 				} else {
-					arg4 = arg3 <<= 0x10;
-					if (arg0 < 0) {
-						arg4 -= local60 * arg0;
-						arg3 -= local48 * arg0;
-						arg6 -= local98 * arg0;
-						arg0 = 0;
+					xB = xA <<= 0x10;
+					if (yA < 0) {
+						xB -= xStepAC * yA;
+						xA -= xStepAB * yA;
+						colorA -= colorGradientY * yA;
+						yA = 0;
 					}
-					arg5 <<= 0x10;
-					if (arg2 < 0) {
-						arg5 -= local36 * arg2;
-						arg2 = 0;
+					xC <<= 0x10;
+					if (yC < 0) {
+						xC -= xStepBC * yC;
+						yC = 0;
 					}
-					if (arg0 != arg2 && local60 < local48 || arg0 == arg2 && local36 > local48) {
-						arg1 -= arg2;
-						arg2 -= arg0;
-						arg0 = offsets[arg0];
+					if (yA != yC && xStepAC < xStepAB || yA == yC && xStepBC > xStepAB) {
+						yB -= yC;
+						yC -= yA;
+						yA = offsets[yA];
 						while (true) {
-							arg2--;
-							if (arg2 < 0) {
+							yC--;
+							if (yC < 0) {
 								while (true) {
-									arg1--;
-									if (arg1 < 0) {
+									yB--;
+									if (yB < 0) {
 										return;
 									}
-									drawGouraudScanline(SoftwareRaster.pixels, arg0, arg5 >> 16, arg3 >> 16, arg6, local86);
-									arg5 += local36;
-									arg3 += local48;
-									arg6 += local98;
-									arg0 += SoftwareRaster.width;
+									drawGouraudScanline(SoftwareRenderer.pixels, yA, xC >> 16, xA >> 16, colorA, colorGradientX);
+									xC += xStepBC;
+									xA += xStepAB;
+									colorA += colorGradientY;
+									yA += SoftwareRenderer.width;
 								}
 							}
-							drawGouraudScanline(SoftwareRaster.pixels, arg0, arg4 >> 16, arg3 >> 16, arg6, local86);
-							arg4 += local60;
-							arg3 += local48;
-							arg6 += local98;
-							arg0 += SoftwareRaster.width;
+							drawGouraudScanline(SoftwareRenderer.pixels, yA, xB >> 16, xA >> 16, colorA, colorGradientX);
+							xB += xStepAC;
+							xA += xStepAB;
+							colorA += colorGradientY;
+							yA += SoftwareRenderer.width;
 						}
 					} else {
-						arg1 -= arg2;
-						arg2 -= arg0;
-						arg0 = offsets[arg0];
+						yB -= yC;
+						yC -= yA;
+						yA = offsets[yA];
 						while (true) {
-							arg2--;
-							if (arg2 < 0) {
+							yC--;
+							if (yC < 0) {
 								while (true) {
-									arg1--;
-									if (arg1 < 0) {
+									yB--;
+									if (yB < 0) {
 										return;
 									}
-									drawGouraudScanline(SoftwareRaster.pixels, arg0, arg3 >> 16, arg5 >> 16, arg6, local86);
-									arg5 += local36;
-									arg3 += local48;
-									arg6 += local98;
-									arg0 += SoftwareRaster.width;
+									drawGouraudScanline(SoftwareRenderer.pixels, yA, xA >> 16, xC >> 16, colorA, colorGradientX);
+									xC += xStepBC;
+									xA += xStepAB;
+									colorA += colorGradientY;
+									yA += SoftwareRenderer.width;
 								}
 							}
-							drawGouraudScanline(SoftwareRaster.pixels, arg0, arg3 >> 16, arg4 >> 16, arg6, local86);
-							arg4 += local60;
-							arg3 += local48;
-							arg6 += local98;
-							arg0 += SoftwareRaster.width;
+							drawGouraudScanline(SoftwareRenderer.pixels, yA, xA >> 16, xB >> 16, colorA, colorGradientX);
+							xB += xStepAC;
+							xA += xStepAB;
+							colorA += colorGradientY;
+							yA += SoftwareRenderer.width;
 						}
 					}
 				}
 			}
-		} else if (arg1 <= arg2) {
-			if (arg1 < height) {
-				if (arg2 > height) {
-					arg2 = height;
+		} else if (yB <= yC) {
+			if (yB < height) {
+				if (yC > height) {
+					yC = height;
 				}
-				if (arg0 > height) {
-					arg0 = height;
+				if (yA > height) {
+					yA = height;
 				}
-				arg7 = (arg7 << 8) + local86 - local86 * arg4;
-				if (arg2 < arg0) {
-					arg3 = arg4 <<= 0x10;
-					if (arg1 < 0) {
-						arg3 -= local48 * arg1;
-						arg4 -= local36 * arg1;
-						arg7 -= local98 * arg1;
-						arg1 = 0;
+				colorB = (colorB << 8) + colorGradientX - colorGradientX * xB;
+				if (yC < yA) {
+					xA = xB <<= 0x10;
+					if (yB < 0) {
+						xA -= xStepAB * yB;
+						xB -= xStepBC * yB;
+						colorB -= colorGradientY * yB;
+						yB = 0;
 					}
-					arg5 <<= 0x10;
-					if (arg2 < 0) {
-						arg5 -= local60 * arg2;
-						arg2 = 0;
+					xC <<= 0x10;
+					if (yC < 0) {
+						xC -= xStepAC * yC;
+						yC = 0;
 					}
-					if ((arg1 == arg2 || local48 >= local36) && (arg1 != arg2 || local48 <= local60)) {
-						arg0 -= arg2;
-						arg2 -= arg1;
-						arg1 = offsets[arg1];
+					if ((yB == yC || xStepAB >= xStepBC) && (yB != yC || xStepAB <= xStepAC)) {
+						yA -= yC;
+						yC -= yB;
+						yB = offsets[yB];
 						while (true) {
-							arg2--;
-							if (arg2 < 0) {
+							yC--;
+							if (yC < 0) {
 								while (true) {
-									arg0--;
-									if (arg0 < 0) {
+									yA--;
+									if (yA < 0) {
 										return;
 									}
-									drawGouraudScanline(SoftwareRaster.pixels, arg1, arg5 >> 16, arg3 >> 16, arg7, local86);
-									arg3 += local48;
-									arg5 += local60;
-									arg7 += local98;
-									arg1 += SoftwareRaster.width;
+									drawGouraudScanline(SoftwareRenderer.pixels, yB, xC >> 16, xA >> 16, colorB, colorGradientX);
+									xA += xStepAB;
+									xC += xStepAC;
+									colorB += colorGradientY;
+									yB += SoftwareRenderer.width;
 								}
 							}
-							drawGouraudScanline(SoftwareRaster.pixels, arg1, arg4 >> 16, arg3 >> 16, arg7, local86);
-							arg3 += local48;
-							arg4 += local36;
-							arg7 += local98;
-							arg1 += SoftwareRaster.width;
+							drawGouraudScanline(SoftwareRenderer.pixels, yB, xB >> 16, xA >> 16, colorB, colorGradientX);
+							xA += xStepAB;
+							xB += xStepBC;
+							colorB += colorGradientY;
+							yB += SoftwareRenderer.width;
 						}
 					} else {
-						arg0 -= arg2;
-						arg2 -= arg1;
-						arg1 = offsets[arg1];
+						yA -= yC;
+						yC -= yB;
+						yB = offsets[yB];
 						while (true) {
-							arg2--;
-							if (arg2 < 0) {
+							yC--;
+							if (yC < 0) {
 								while (true) {
-									arg0--;
-									if (arg0 < 0) {
+									yA--;
+									if (yA < 0) {
 										return;
 									}
-									drawGouraudScanline(SoftwareRaster.pixels, arg1, arg3 >> 16, arg5 >> 16, arg7, local86);
-									arg3 += local48;
-									arg5 += local60;
-									arg7 += local98;
-									arg1 += SoftwareRaster.width;
+									drawGouraudScanline(SoftwareRenderer.pixels, yB, xA >> 16, xC >> 16, colorB, colorGradientX);
+									xA += xStepAB;
+									xC += xStepAC;
+									colorB += colorGradientY;
+									yB += SoftwareRenderer.width;
 								}
 							}
-							drawGouraudScanline(SoftwareRaster.pixels, arg1, arg3 >> 16, arg4 >> 16, arg7, local86);
-							arg3 += local48;
-							arg4 += local36;
-							arg7 += local98;
-							arg1 += SoftwareRaster.width;
+							drawGouraudScanline(SoftwareRenderer.pixels, yB, xA >> 16, xB >> 16, colorB, colorGradientX);
+							xA += xStepAB;
+							xB += xStepBC;
+							colorB += colorGradientY;
+							yB += SoftwareRenderer.width;
 						}
 					}
 				} else {
-					arg5 = arg4 <<= 0x10;
-					if (arg1 < 0) {
-						arg5 -= local48 * arg1;
-						arg4 -= local36 * arg1;
-						arg7 -= local98 * arg1;
-						arg1 = 0;
+					xC = xB <<= 0x10;
+					if (yB < 0) {
+						xC -= xStepAB * yB;
+						xB -= xStepBC * yB;
+						colorB -= colorGradientY * yB;
+						yB = 0;
 					}
-					arg3 <<= 0x10;
-					if (arg0 < 0) {
-						arg3 -= local60 * arg0;
-						arg0 = 0;
+					xA <<= 0x10;
+					if (yA < 0) {
+						xA -= xStepAC * yA;
+						yA = 0;
 					}
-					if (local48 < local36) {
-						arg2 -= arg0;
-						arg0 -= arg1;
-						arg1 = offsets[arg1];
+					if (xStepAB < xStepBC) {
+						yC -= yA;
+						yA -= yB;
+						yB = offsets[yB];
 						while (true) {
-							arg0--;
-							if (arg0 < 0) {
+							yA--;
+							if (yA < 0) {
 								while (true) {
-									arg2--;
-									if (arg2 < 0) {
+									yC--;
+									if (yC < 0) {
 										return;
 									}
-									drawGouraudScanline(SoftwareRaster.pixels, arg1, arg3 >> 16, arg4 >> 16, arg7, local86);
-									arg3 += local60;
-									arg4 += local36;
-									arg7 += local98;
-									arg1 += SoftwareRaster.width;
+									drawGouraudScanline(SoftwareRenderer.pixels, yB, xA >> 16, xB >> 16, colorB, colorGradientX);
+									xA += xStepAC;
+									xB += xStepBC;
+									colorB += colorGradientY;
+									yB += SoftwareRenderer.width;
 								}
 							}
-							drawGouraudScanline(SoftwareRaster.pixels, arg1, arg5 >> 16, arg4 >> 16, arg7, local86);
-							arg5 += local48;
-							arg4 += local36;
-							arg7 += local98;
-							arg1 += SoftwareRaster.width;
+							drawGouraudScanline(SoftwareRenderer.pixels, yB, xC >> 16, xB >> 16, colorB, colorGradientX);
+							xC += xStepAB;
+							xB += xStepBC;
+							colorB += colorGradientY;
+							yB += SoftwareRenderer.width;
 						}
 					} else {
-						arg2 -= arg0;
-						arg0 -= arg1;
-						arg1 = offsets[arg1];
+						yC -= yA;
+						yA -= yB;
+						yB = offsets[yB];
 						while (true) {
-							arg0--;
-							if (arg0 < 0) {
+							yA--;
+							if (yA < 0) {
 								while (true) {
-									arg2--;
-									if (arg2 < 0) {
+									yC--;
+									if (yC < 0) {
 										return;
 									}
-									drawGouraudScanline(SoftwareRaster.pixels, arg1, arg4 >> 16, arg3 >> 16, arg7, local86);
-									arg3 += local60;
-									arg4 += local36;
-									arg7 += local98;
-									arg1 += SoftwareRaster.width;
+									drawGouraudScanline(SoftwareRenderer.pixels, yB, xB >> 16, xA >> 16, colorB, colorGradientX);
+									xA += xStepAC;
+									xB += xStepBC;
+									colorB += colorGradientY;
+									yB += SoftwareRenderer.width;
 								}
 							}
-							drawGouraudScanline(SoftwareRaster.pixels, arg1, arg4 >> 16, arg5 >> 16, arg7, local86);
-							arg5 += local48;
-							arg4 += local36;
-							arg7 += local98;
-							arg1 += SoftwareRaster.width;
+							drawGouraudScanline(SoftwareRenderer.pixels, yB, xB >> 16, xC >> 16, colorB, colorGradientX);
+							xC += xStepAB;
+							xB += xStepBC;
+							colorB += colorGradientY;
+							yB += SoftwareRenderer.width;
 						}
 					}
 				}
 			}
-		} else if (arg2 < height) {
-			if (arg0 > height) {
-				arg0 = height;
+		} else if (yC < height) {
+			if (yA > height) {
+				yA = height;
 			}
-			if (arg1 > height) {
-				arg1 = height;
+			if (yB > height) {
+				yB = height;
 			}
-			arg8 = (arg8 << 8) + local86 - local86 * arg5;
-			if (arg0 < arg1) {
-				arg4 = arg5 <<= 0x10;
-				if (arg2 < 0) {
-					arg4 -= local36 * arg2;
-					arg5 -= local60 * arg2;
-					arg8 -= local98 * arg2;
-					arg2 = 0;
+			colorC = (colorC << 8) + colorGradientX - colorGradientX * xC;
+			if (yA < yB) {
+				xB = xC <<= 0x10;
+				if (yC < 0) {
+					xB -= xStepBC * yC;
+					xC -= xStepAC * yC;
+					colorC -= colorGradientY * yC;
+					yC = 0;
 				}
-				arg3 <<= 0x10;
-				if (arg0 < 0) {
-					arg3 -= local48 * arg0;
-					arg0 = 0;
+				xA <<= 0x10;
+				if (yA < 0) {
+					xA -= xStepAB * yA;
+					yA = 0;
 				}
-				if (local36 < local60) {
-					arg1 -= arg0;
-					arg0 -= arg2;
-					arg2 = offsets[arg2];
+				if (xStepBC < xStepAC) {
+					yB -= yA;
+					yA -= yC;
+					yC = offsets[yC];
 					while (true) {
-						arg0--;
-						if (arg0 < 0) {
+						yA--;
+						if (yA < 0) {
 							while (true) {
-								arg1--;
-								if (arg1 < 0) {
+								yB--;
+								if (yB < 0) {
 									return;
 								}
-								drawGouraudScanline(SoftwareRaster.pixels, arg2, arg4 >> 16, arg3 >> 16, arg8, local86);
-								arg4 += local36;
-								arg3 += local48;
-								arg8 += local98;
-								arg2 += SoftwareRaster.width;
+								drawGouraudScanline(SoftwareRenderer.pixels, yC, xB >> 16, xA >> 16, colorC, colorGradientX);
+								xB += xStepBC;
+								xA += xStepAB;
+								colorC += colorGradientY;
+								yC += SoftwareRenderer.width;
 							}
 						}
-						drawGouraudScanline(SoftwareRaster.pixels, arg2, arg4 >> 16, arg5 >> 16, arg8, local86);
-						arg4 += local36;
-						arg5 += local60;
-						arg8 += local98;
-						arg2 += SoftwareRaster.width;
+						drawGouraudScanline(SoftwareRenderer.pixels, yC, xB >> 16, xC >> 16, colorC, colorGradientX);
+						xB += xStepBC;
+						xC += xStepAC;
+						colorC += colorGradientY;
+						yC += SoftwareRenderer.width;
 					}
 				} else {
-					arg1 -= arg0;
-					arg0 -= arg2;
-					arg2 = offsets[arg2];
+					yB -= yA;
+					yA -= yC;
+					yC = offsets[yC];
 					while (true) {
-						arg0--;
-						if (arg0 < 0) {
+						yA--;
+						if (yA < 0) {
 							while (true) {
-								arg1--;
-								if (arg1 < 0) {
+								yB--;
+								if (yB < 0) {
 									return;
 								}
-								drawGouraudScanline(SoftwareRaster.pixels, arg2, arg3 >> 16, arg4 >> 16, arg8, local86);
-								arg4 += local36;
-								arg3 += local48;
-								arg8 += local98;
-								arg2 += SoftwareRaster.width;
+								drawGouraudScanline(SoftwareRenderer.pixels, yC, xA >> 16, xB >> 16, colorC, colorGradientX);
+								xB += xStepBC;
+								xA += xStepAB;
+								colorC += colorGradientY;
+								yC += SoftwareRenderer.width;
 							}
 						}
-						drawGouraudScanline(SoftwareRaster.pixels, arg2, arg5 >> 16, arg4 >> 16, arg8, local86);
-						arg4 += local36;
-						arg5 += local60;
-						arg8 += local98;
-						arg2 += SoftwareRaster.width;
+						drawGouraudScanline(SoftwareRenderer.pixels, yC, xC >> 16, xB >> 16, colorC, colorGradientX);
+						xB += xStepBC;
+						xC += xStepAC;
+						colorC += colorGradientY;
+						yC += SoftwareRenderer.width;
 					}
 				}
 			} else {
-				arg3 = arg5 <<= 0x10;
-				if (arg2 < 0) {
-					arg3 -= local36 * arg2;
-					arg5 -= local60 * arg2;
-					arg8 -= local98 * arg2;
-					arg2 = 0;
+				xA = xC <<= 0x10;
+				if (yC < 0) {
+					xA -= xStepBC * yC;
+					xC -= xStepAC * yC;
+					colorC -= colorGradientY * yC;
+					yC = 0;
 				}
-				arg4 <<= 0x10;
-				if (arg1 < 0) {
-					arg4 -= local48 * arg1;
-					arg1 = 0;
+				xB <<= 0x10;
+				if (yB < 0) {
+					xB -= xStepAB * yB;
+					yB = 0;
 				}
-				if (local36 < local60) {
-					arg0 -= arg1;
-					arg1 -= arg2;
-					arg2 = offsets[arg2];
+				if (xStepBC < xStepAC) {
+					yA -= yB;
+					yB -= yC;
+					yC = offsets[yC];
 					while (true) {
-						arg1--;
-						if (arg1 < 0) {
+						yB--;
+						if (yB < 0) {
 							while (true) {
-								arg0--;
-								if (arg0 < 0) {
+								yA--;
+								if (yA < 0) {
 									return;
 								}
-								drawGouraudScanline(SoftwareRaster.pixels, arg2, arg4 >> 16, arg5 >> 16, arg8, local86);
-								arg4 += local48;
-								arg5 += local60;
-								arg8 += local98;
-								arg2 += SoftwareRaster.width;
+								drawGouraudScanline(SoftwareRenderer.pixels, yC, xB >> 16, xC >> 16, colorC, colorGradientX);
+								xB += xStepAB;
+								xC += xStepAC;
+								colorC += colorGradientY;
+								yC += SoftwareRenderer.width;
 							}
 						}
-						drawGouraudScanline(SoftwareRaster.pixels, arg2, arg3 >> 16, arg5 >> 16, arg8, local86);
-						arg3 += local36;
-						arg5 += local60;
-						arg8 += local98;
-						arg2 += SoftwareRaster.width;
+						drawGouraudScanline(SoftwareRenderer.pixels, yC, xA >> 16, xC >> 16, colorC, colorGradientX);
+						xA += xStepBC;
+						xC += xStepAC;
+						colorC += colorGradientY;
+						yC += SoftwareRenderer.width;
 					}
 				} else {
-					arg0 -= arg1;
-					arg1 -= arg2;
-					arg2 = offsets[arg2];
+					yA -= yB;
+					yB -= yC;
+					yC = offsets[yC];
 					while (true) {
-						arg1--;
-						if (arg1 < 0) {
+						yB--;
+						if (yB < 0) {
 							while (true) {
-								arg0--;
-								if (arg0 < 0) {
+								yA--;
+								if (yA < 0) {
 									return;
 								}
-								drawGouraudScanline(SoftwareRaster.pixels, arg2, arg5 >> 16, arg4 >> 16, arg8, local86);
-								arg4 += local48;
-								arg5 += local60;
-								arg8 += local98;
-								arg2 += SoftwareRaster.width;
+								drawGouraudScanline(SoftwareRenderer.pixels, yC, xC >> 16, xB >> 16, colorC, colorGradientX);
+								xB += xStepAB;
+								xC += xStepAC;
+								colorC += colorGradientY;
+								yC += SoftwareRenderer.width;
 							}
 						}
-						drawGouraudScanline(SoftwareRaster.pixels, arg2, arg5 >> 16, arg3 >> 16, arg8, local86);
-						arg3 += local36;
-						arg5 += local60;
-						arg8 += local98;
-						arg2 += SoftwareRaster.width;
+						drawGouraudScanline(SoftwareRenderer.pixels, yC, xC >> 16, xA >> 16, colorC, colorGradientX);
+						xA += xStepBC;
+						xC += xStepAC;
+						colorC += colorGradientY;
+						yC += SoftwareRenderer.width;
 					}
 				}
 			}
@@ -1943,647 +1959,647 @@ public final class Rasterizer {
 	}
 
 	@OriginalMember(owner = "runetek4.client!hf", name = "a", descriptor = "(F)V")
-	public static void setBrightness(@OriginalArg(0) float arg0) {
-		randBrightness(arg0);
+	public static void setBrightness(@OriginalArg(0) float brightness) {
+		randBrightness(brightness);
 		calculateBrightness();
 	}
 
 	@OriginalMember(owner = "runetek4.client!hf", name = "c", descriptor = "(II)V")
 	private static void calculateBrightness() {
-		@Pc(3) int local3 = 0;
-		for (@Pc(5) int local5 = 0; local5 < 512; local5++) {
-			@Pc(17) double local17 = (double) (local5 >> 3) / 64.0D + 0.0078125D;
-			@Pc(26) double local26 = (double) (local5 & 0x7) / 8.0D + 0.0625D;
-			for (@Pc(28) int local28 = 0; local28 < 128; local28++) {
-				@Pc(36) double local36 = (double) local28 / 128.0D;
-				@Pc(38) double local38 = local36;
-				@Pc(40) double local40 = local36;
-				@Pc(42) double local42 = local36;
-				if (local26 != 0.0D) {
-					@Pc(56) double local56;
-					if (local36 < 0.5D) {
-						local56 = local36 * (local26 + 1.0D);
+		@Pc(3) int paletteIndex = 0;
+		for (@Pc(5) int hslIndex = 0; hslIndex < 512; hslIndex++) {
+			@Pc(17) double hue = (double) (hslIndex >> 3) / 64.0D + 0.0078125D;
+			@Pc(26) double saturation = (double) (hslIndex & 0x7) / 8.0D + 0.0625D;
+			for (@Pc(28) int lightness = 0; lightness < 128; lightness++) {
+				@Pc(36) double lightnessNormalized = (double) lightness / 128.0D;
+				@Pc(38) double red = lightnessNormalized;
+				@Pc(40) double green = lightnessNormalized;
+				@Pc(42) double blue = lightnessNormalized;
+				if (saturation != 0.0D) {
+					@Pc(56) double q;
+					if (lightnessNormalized < 0.5D) {
+						q = lightnessNormalized * (saturation + 1.0D);
 					} else {
-						local56 = local36 + local26 - local36 * local26;
+						q = lightnessNormalized + saturation - lightnessNormalized * saturation;
 					}
-					@Pc(71) double local71 = local36 * 2.0D - local56;
-					@Pc(75) double local75 = local17 + 0.3333333333333333D;
-					if (local75 > 1.0D) {
-						local75--;
+					@Pc(71) double p = lightnessNormalized * 2.0D - q;
+					@Pc(75) double hueRed = hue + 0.3333333333333333D;
+					if (hueRed > 1.0D) {
+						hueRed--;
 					}
-					@Pc(89) double local89 = local17 - 0.3333333333333333D;
-					if (local89 < 0.0D) {
-						local89++;
+					@Pc(89) double hueBlue = hue - 0.3333333333333333D;
+					if (hueBlue < 0.0D) {
+						hueBlue++;
 					}
-					if (local75 * 6.0D < 1.0D) {
-						local38 = local71 + (local56 - local71) * 6.0D * local75;
-					} else if (local75 * 2.0D < 1.0D) {
-						local38 = local56;
-					} else if (local75 * 3.0D < 2.0D) {
-						local38 = local71 + (local56 - local71) * (0.6666666666666666D - local75) * 6.0D;
+					if (hueRed * 6.0D < 1.0D) {
+						red = p + (q - p) * 6.0D * hueRed;
+					} else if (hueRed * 2.0D < 1.0D) {
+						red = q;
+					} else if (hueRed * 3.0D < 2.0D) {
+						red = p + (q - p) * (0.6666666666666666D - hueRed) * 6.0D;
 					} else {
-						local38 = local71;
+						red = p;
 					}
-					if (local17 * 6.0D < 1.0D) {
-						local40 = local71 + (local56 - local71) * 6.0D * local17;
-					} else if (local17 * 2.0D < 1.0D) {
-						local40 = local56;
-					} else if (local17 * 3.0D < 2.0D) {
-						local40 = local71 + (local56 - local71) * (0.6666666666666666D - local17) * 6.0D;
+					if (hue * 6.0D < 1.0D) {
+						green = p + (q - p) * 6.0D * hue;
+					} else if (hue * 2.0D < 1.0D) {
+						green = q;
+					} else if (hue * 3.0D < 2.0D) {
+						green = p + (q - p) * (0.6666666666666666D - hue) * 6.0D;
 					} else {
-						local40 = local71;
+						green = p;
 					}
-					if (local89 * 6.0D < 1.0D) {
-						local42 = local71 + (local56 - local71) * 6.0D * local89;
-					} else if (local89 * 2.0D < 1.0D) {
-						local42 = local56;
-					} else if (local89 * 3.0D < 2.0D) {
-						local42 = local71 + (local56 - local71) * (0.6666666666666666D - local89) * 6.0D;
+					if (hueBlue * 6.0D < 1.0D) {
+						blue = p + (q - p) * 6.0D * hueBlue;
+					} else if (hueBlue * 2.0D < 1.0D) {
+						blue = q;
+					} else if (hueBlue * 3.0D < 2.0D) {
+						blue = p + (q - p) * (0.6666666666666666D - hueBlue) * 6.0D;
 					} else {
-						local42 = local71;
+						blue = p;
 					}
 				}
-				local38 = Math.pow(local38, (double) brightness);
-				local40 = Math.pow(local40, (double) brightness);
-				local42 = Math.pow(local42, (double) brightness);
-				@Pc(258) int local258 = (int) (local38 * 256.0D);
-				@Pc(263) int local263 = (int) (local40 * 256.0D);
-				@Pc(268) int local268 = (int) (local42 * 256.0D);
-				@Pc(278) int local278 = (local258 << 16) + (local263 << 8) + local268;
-				if (local278 == 0) {
-					local278 = 1;
+				red = Math.pow(red, (double) brightness);
+				green = Math.pow(green, (double) brightness);
+				blue = Math.pow(blue, (double) brightness);
+				@Pc(258) int redInt = (int) (red * 256.0D);
+				@Pc(263) int greenInt = (int) (green * 256.0D);
+				@Pc(268) int blueInt = (int) (blue * 256.0D);
+				@Pc(278) int rgbColor = (redInt << 16) + (greenInt << 8) + blueInt;
+				if (rgbColor == 0) {
+					rgbColor = 1;
 				}
-				palette[local3++] = local278;
+				palette[paletteIndex++] = rgbColor;
 			}
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!hf", name = "b", descriptor = "(F)V")
-	private static void randBrightness(@OriginalArg(0) float arg0) {
-		brightness = arg0;
+	private static void randBrightness(@OriginalArg(0) float baseBrightness) {
+		brightness = baseBrightness;
 		brightness = (float) ((double) brightness + Math.random() * 0.03D - 0.015D);
 	}
 
 	@OriginalMember(owner = "runetek4.client!hf", name = "b", descriptor = "(IIIIIIIIIIIIIIIIIII)V")
-	public static void fillTexturedAlphaTriangle(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) int arg8, @OriginalArg(9) int arg9, @OriginalArg(10) int arg10, @OriginalArg(11) int arg11, @OriginalArg(12) int arg12, @OriginalArg(13) int arg13, @OriginalArg(14) int arg14, @OriginalArg(15) int arg15, @OriginalArg(16) int arg16, @OriginalArg(17) int arg17, @OriginalArg(18) int arg18) {
-		@Pc(5) int[] texels = textureProvider.method3232(arg18, brightness);
-		@Pc(15) int local15;
+	public static void fillTexturedAlphaTriangle(@OriginalArg(0) int yA, @OriginalArg(1) int yB, @OriginalArg(2) int yC, @OriginalArg(3) int xA, @OriginalArg(4) int xB, @OriginalArg(5) int xC, @OriginalArg(6) int colorA, @OriginalArg(7) int colorB, @OriginalArg(8) int colorC, @OriginalArg(9) int uA, @OriginalArg(10) int vA, @OriginalArg(11) int wA, @OriginalArg(12) int uB, @OriginalArg(13) int vB, @OriginalArg(14) int wB, @OriginalArg(15) int uC, @OriginalArg(16) int vC, @OriginalArg(17) int wC, @OriginalArg(18) int textureId) {
+		@Pc(5) int[] texels = textureProvider.method3232(textureId, brightness);
+		@Pc(15) int dxBA;
 		if (texels == null || alpha > 10) {
-			local15 = textureProvider.getAverageColor(arg18);
+			dxBA = textureProvider.getAverageColor(textureId);
 			textureHasTransparency = true;
-			fillGouraudTriangle(arg0, arg1, arg2, arg3, arg4, arg5, ColorUtils.multiplyLightness(local15, arg6), ColorUtils.multiplyLightness(local15, arg7), ColorUtils.multiplyLightness(local15, arg8));
+			fillGouraudTriangle(yA, yB, yC, xA, xB, xC, ColorUtils.multiplyLightness(dxBA, colorA), ColorUtils.multiplyLightness(dxBA, colorB), ColorUtils.multiplyLightness(dxBA, colorC));
 			return;
 		}
-		lowDetail = textureProvider.isLowDetail(arg18);
-		opaque = textureProvider.isOpaque(arg18);
-		local15 = arg4 - arg3;
-		@Pc(52) int local52 = arg1 - arg0;
-		@Pc(56) int local56 = arg5 - arg3;
-		@Pc(60) int local60 = arg2 - arg0;
-		@Pc(64) int local64 = arg7 - arg6;
-		@Pc(68) int local68 = arg8 - arg6;
-		@Pc(70) int local70 = 0;
-		if (arg1 != arg0) {
-			local70 = (arg4 - arg3 << 16) / (arg1 - arg0);
+		lowDetail = textureProvider.isLowDetail(textureId);
+		opaque = textureProvider.isOpaque(textureId);
+		dxBA = xB - xA;
+		@Pc(52) int dyBA = yB - yA;
+		@Pc(56) int dxCA = xC - xA;
+		@Pc(60) int dyCA = yC - yA;
+		@Pc(64) int colorDiffBA = colorB - colorA;
+		@Pc(68) int colorDiffCA = colorC - colorA;
+		@Pc(70) int xStepAB = 0;
+		if (yB != yA) {
+			xStepAB = (xB - xA << 16) / (yB - yA);
 		}
-		@Pc(85) int local85 = 0;
-		if (arg2 != arg1) {
-			local85 = (arg5 - arg4 << 16) / (arg2 - arg1);
+		@Pc(85) int xStepBC = 0;
+		if (yC != yB) {
+			xStepBC = (xC - xB << 16) / (yC - yB);
 		}
-		@Pc(100) int local100 = 0;
-		if (arg2 != arg0) {
-			local100 = (arg3 - arg5 << 16) / (arg0 - arg2);
+		@Pc(100) int xStepAC = 0;
+		if (yC != yA) {
+			xStepAC = (xA - xC << 16) / (yA - yC);
 		}
-		@Pc(121) int local121 = local15 * local60 - local56 * local52;
-		if (local121 == 0) {
+		@Pc(121) int triangleArea = dxBA * dyCA - dxCA * dyBA;
+		if (triangleArea == 0) {
 			return;
 		}
-		@Pc(136) int local136 = (local64 * local60 - local68 * local52 << 9) / local121;
-		@Pc(148) int local148 = (local68 * local15 - local64 * local56 << 9) / local121;
-		@Pc(152) int local152 = arg9 - arg10;
-		@Pc(156) int local156 = arg12 - arg13;
-		@Pc(160) int local160 = arg15 - arg16;
-		@Pc(164) int local164 = arg11 - arg9;
-		@Pc(168) int local168 = arg14 - arg12;
-		@Pc(172) int local172 = arg17 - arg15;
-		@Pc(182) int local182 = local164 * arg12 - local168 * arg9 << 14;
-		@Pc(192) int local192 = local168 * arg15 - local172 * arg12 << 8;
-		@Pc(202) int local202 = local172 * arg9 - local164 * arg15 << 5;
-		@Pc(212) int local212 = local152 * arg12 - local156 * arg9 << 14;
-		@Pc(222) int local222 = local156 * arg15 - local160 * arg12 << 8;
-		@Pc(232) int local232 = local160 * arg9 - local152 * arg15 << 5;
-		@Pc(242) int local242 = local156 * local164 - local152 * local168 << 14;
-		@Pc(252) int local252 = local160 * local168 - local156 * local172 << 8;
-		@Pc(262) int local262 = local152 * local172 - local160 * local164 << 5;
-		@Pc(341) int local341;
-		if (arg0 <= arg1 && arg0 <= arg2) {
-			if (arg0 < height) {
-				if (arg1 > height) {
-					arg1 = height;
+		@Pc(136) int colorGradientX = (colorDiffBA * dyCA - colorDiffCA * dyBA << 9) / triangleArea;
+		@Pc(148) int colorGradientY = (colorDiffCA * dxBA - colorDiffBA * dxCA << 9) / triangleArea;
+		@Pc(152) int duAB = uA - vA;
+		@Pc(156) int duAC = uB - vB;
+		@Pc(160) int duBC = uC - vC;
+		@Pc(164) int dvAB = wA - uA;
+		@Pc(168) int dvAC = wB - uB;
+		@Pc(172) int dvBC = wC - uC;
+		@Pc(182) int uInterpolator = dvAB * uB - dvAC * uA << 14;
+		@Pc(192) int uStep = dvAC * uC - dvBC * uB << 8;
+		@Pc(202) int local202 = dvBC * uA - dvAB * uC << 5;
+		@Pc(212) int vInterpolator = duAB * uB - duAC * uA << 14;
+		@Pc(222) int vStep = duAC * uC - duBC * uB << 8;
+		@Pc(232) int local232 = duBC * uA - duAB * uC << 5;
+		@Pc(242) int wInterpolator = duAC * dvAB - duAB * dvAC << 14;
+		@Pc(252) int wStep = duBC * dvAC - duAC * dvBC << 8;
+		@Pc(262) int local262 = duAB * dvBC - duBC * dvAB << 5;
+		@Pc(341) int yOffset;
+		if (yA <= yB && yA <= yC) {
+			if (yA < height) {
+				if (yB > height) {
+					yB = height;
 				}
-				if (arg2 > height) {
-					arg2 = height;
+				if (yC > height) {
+					yC = height;
 				}
-				arg6 = (arg6 << 9) + local136 - local136 * arg3;
-				if (arg1 < arg2) {
-					arg5 = arg3 <<= 0x10;
-					if (arg0 < 0) {
-						arg5 -= local100 * arg0;
-						arg3 -= local70 * arg0;
-						arg6 -= local148 * arg0;
-						arg0 = 0;
+				colorA = (colorA << 9) + colorGradientX - colorGradientX * xA;
+				if (yB < yC) {
+					xC = xA <<= 0x10;
+					if (yA < 0) {
+						xC -= xStepAC * yA;
+						xA -= xStepAB * yA;
+						colorA -= colorGradientY * yA;
+						yA = 0;
 					}
-					arg4 <<= 0x10;
-					if (arg1 < 0) {
-						arg4 -= local85 * arg1;
-						arg1 = 0;
+					xB <<= 0x10;
+					if (yB < 0) {
+						xB -= xStepBC * yB;
+						yB = 0;
 					}
-					local341 = arg0 - centerY;
-					local182 += local202 * local341;
-					local212 += local232 * local341;
-					local242 += local262 * local341;
-					if (arg0 != arg1 && local100 < local70 || arg0 == arg1 && local100 > local85) {
-						arg2 -= arg1;
-						arg1 -= arg0;
-						arg0 = offsets[arg0];
+					yOffset = yA - centerY;
+					uInterpolator += local202 * yOffset;
+					vInterpolator += local232 * yOffset;
+					wInterpolator += local262 * yOffset;
+					if (yA != yB && xStepAC < xStepAB || yA == yB && xStepAC > xStepBC) {
+						yC -= yB;
+						yB -= yA;
+						yA = offsets[yA];
 						while (true) {
-							arg1--;
-							if (arg1 < 0) {
+							yB--;
+							if (yB < 0) {
 								while (true) {
-									arg2--;
-									if (arg2 < 0) {
+									yC--;
+									if (yC < 0) {
 										return;
 									}
-									drawTexturedAlphaScanline(SoftwareRaster.pixels, texels, arg0, arg5 >> 16, arg4 >> 16, arg6, local136, local182, local212, local242, local192, local222, local252);
-									arg5 += local100;
-									arg4 += local85;
-									arg6 += local148;
-									arg0 += SoftwareRaster.width;
-									local182 += local202;
-									local212 += local232;
-									local242 += local262;
+									drawTexturedAlphaScanline(SoftwareRenderer.pixels, texels, yA, xC >> 16, xB >> 16, colorA, colorGradientX, uInterpolator, vInterpolator, wInterpolator, uStep, vStep, wStep);
+									xC += xStepAC;
+									xB += xStepBC;
+									colorA += colorGradientY;
+									yA += SoftwareRenderer.width;
+									uInterpolator += local202;
+									vInterpolator += local232;
+									wInterpolator += local262;
 								}
 							}
-							drawTexturedAlphaScanline(SoftwareRaster.pixels, texels, arg0, arg5 >> 16, arg3 >> 16, arg6, local136, local182, local212, local242, local192, local222, local252);
-							arg5 += local100;
-							arg3 += local70;
-							arg6 += local148;
-							arg0 += SoftwareRaster.width;
-							local182 += local202;
-							local212 += local232;
-							local242 += local262;
+							drawTexturedAlphaScanline(SoftwareRenderer.pixels, texels, yA, xC >> 16, xA >> 16, colorA, colorGradientX, uInterpolator, vInterpolator, wInterpolator, uStep, vStep, wStep);
+							xC += xStepAC;
+							xA += xStepAB;
+							colorA += colorGradientY;
+							yA += SoftwareRenderer.width;
+							uInterpolator += local202;
+							vInterpolator += local232;
+							wInterpolator += local262;
 						}
 					} else {
-						arg2 -= arg1;
-						arg1 -= arg0;
-						arg0 = offsets[arg0];
+						yC -= yB;
+						yB -= yA;
+						yA = offsets[yA];
 						while (true) {
-							arg1--;
-							if (arg1 < 0) {
+							yB--;
+							if (yB < 0) {
 								while (true) {
-									arg2--;
-									if (arg2 < 0) {
+									yC--;
+									if (yC < 0) {
 										return;
 									}
-									drawTexturedAlphaScanline(SoftwareRaster.pixels, texels, arg0, arg4 >> 16, arg5 >> 16, arg6, local136, local182, local212, local242, local192, local222, local252);
-									arg5 += local100;
-									arg4 += local85;
-									arg6 += local148;
-									arg0 += SoftwareRaster.width;
-									local182 += local202;
-									local212 += local232;
-									local242 += local262;
+									drawTexturedAlphaScanline(SoftwareRenderer.pixels, texels, yA, xB >> 16, xC >> 16, colorA, colorGradientX, uInterpolator, vInterpolator, wInterpolator, uStep, vStep, wStep);
+									xC += xStepAC;
+									xB += xStepBC;
+									colorA += colorGradientY;
+									yA += SoftwareRenderer.width;
+									uInterpolator += local202;
+									vInterpolator += local232;
+									wInterpolator += local262;
 								}
 							}
-							drawTexturedAlphaScanline(SoftwareRaster.pixels, texels, arg0, arg3 >> 16, arg5 >> 16, arg6, local136, local182, local212, local242, local192, local222, local252);
-							arg5 += local100;
-							arg3 += local70;
-							arg6 += local148;
-							arg0 += SoftwareRaster.width;
-							local182 += local202;
-							local212 += local232;
-							local242 += local262;
+							drawTexturedAlphaScanline(SoftwareRenderer.pixels, texels, yA, xA >> 16, xC >> 16, colorA, colorGradientX, uInterpolator, vInterpolator, wInterpolator, uStep, vStep, wStep);
+							xC += xStepAC;
+							xA += xStepAB;
+							colorA += colorGradientY;
+							yA += SoftwareRenderer.width;
+							uInterpolator += local202;
+							vInterpolator += local232;
+							wInterpolator += local262;
 						}
 					}
 				} else {
-					arg4 = arg3 <<= 0x10;
-					if (arg0 < 0) {
-						arg4 -= local100 * arg0;
-						arg3 -= local70 * arg0;
-						arg6 -= local148 * arg0;
-						arg0 = 0;
+					xB = xA <<= 0x10;
+					if (yA < 0) {
+						xB -= xStepAC * yA;
+						xA -= xStepAB * yA;
+						colorA -= colorGradientY * yA;
+						yA = 0;
 					}
-					arg5 <<= 0x10;
-					if (arg2 < 0) {
-						arg5 -= local85 * arg2;
-						arg2 = 0;
+					xC <<= 0x10;
+					if (yC < 0) {
+						xC -= xStepBC * yC;
+						yC = 0;
 					}
-					local341 = arg0 - centerY;
-					local182 += local202 * local341;
-					local212 += local232 * local341;
-					local242 += local262 * local341;
-					if ((arg0 == arg2 || local100 >= local70) && (arg0 != arg2 || local85 <= local70)) {
-						arg1 -= arg2;
-						arg2 -= arg0;
-						arg0 = offsets[arg0];
+					yOffset = yA - centerY;
+					uInterpolator += local202 * yOffset;
+					vInterpolator += local232 * yOffset;
+					wInterpolator += local262 * yOffset;
+					if ((yA == yC || xStepAC >= xStepAB) && (yA != yC || xStepBC <= xStepAB)) {
+						yB -= yC;
+						yC -= yA;
+						yA = offsets[yA];
 						while (true) {
-							arg2--;
-							if (arg2 < 0) {
+							yC--;
+							if (yC < 0) {
 								while (true) {
-									arg1--;
-									if (arg1 < 0) {
+									yB--;
+									if (yB < 0) {
 										return;
 									}
-									drawTexturedAlphaScanline(SoftwareRaster.pixels, texels, arg0, arg3 >> 16, arg5 >> 16, arg6, local136, local182, local212, local242, local192, local222, local252);
-									arg5 += local85;
-									arg3 += local70;
-									arg6 += local148;
-									arg0 += SoftwareRaster.width;
-									local182 += local202;
-									local212 += local232;
-									local242 += local262;
+									drawTexturedAlphaScanline(SoftwareRenderer.pixels, texels, yA, xA >> 16, xC >> 16, colorA, colorGradientX, uInterpolator, vInterpolator, wInterpolator, uStep, vStep, wStep);
+									xC += xStepBC;
+									xA += xStepAB;
+									colorA += colorGradientY;
+									yA += SoftwareRenderer.width;
+									uInterpolator += local202;
+									vInterpolator += local232;
+									wInterpolator += local262;
 								}
 							}
-							drawTexturedAlphaScanline(SoftwareRaster.pixels, texels, arg0, arg3 >> 16, arg4 >> 16, arg6, local136, local182, local212, local242, local192, local222, local252);
-							arg4 += local100;
-							arg3 += local70;
-							arg6 += local148;
-							arg0 += SoftwareRaster.width;
-							local182 += local202;
-							local212 += local232;
-							local242 += local262;
+							drawTexturedAlphaScanline(SoftwareRenderer.pixels, texels, yA, xA >> 16, xB >> 16, colorA, colorGradientX, uInterpolator, vInterpolator, wInterpolator, uStep, vStep, wStep);
+							xB += xStepAC;
+							xA += xStepAB;
+							colorA += colorGradientY;
+							yA += SoftwareRenderer.width;
+							uInterpolator += local202;
+							vInterpolator += local232;
+							wInterpolator += local262;
 						}
 					} else {
-						arg1 -= arg2;
-						arg2 -= arg0;
-						arg0 = offsets[arg0];
+						yB -= yC;
+						yC -= yA;
+						yA = offsets[yA];
 						while (true) {
-							arg2--;
-							if (arg2 < 0) {
+							yC--;
+							if (yC < 0) {
 								while (true) {
-									arg1--;
-									if (arg1 < 0) {
+									yB--;
+									if (yB < 0) {
 										return;
 									}
-									drawTexturedAlphaScanline(SoftwareRaster.pixels, texels, arg0, arg5 >> 16, arg3 >> 16, arg6, local136, local182, local212, local242, local192, local222, local252);
-									arg5 += local85;
-									arg3 += local70;
-									arg6 += local148;
-									arg0 += SoftwareRaster.width;
-									local182 += local202;
-									local212 += local232;
-									local242 += local262;
+									drawTexturedAlphaScanline(SoftwareRenderer.pixels, texels, yA, xC >> 16, xA >> 16, colorA, colorGradientX, uInterpolator, vInterpolator, wInterpolator, uStep, vStep, wStep);
+									xC += xStepBC;
+									xA += xStepAB;
+									colorA += colorGradientY;
+									yA += SoftwareRenderer.width;
+									uInterpolator += local202;
+									vInterpolator += local232;
+									wInterpolator += local262;
 								}
 							}
-							drawTexturedAlphaScanline(SoftwareRaster.pixels, texels, arg0, arg4 >> 16, arg3 >> 16, arg6, local136, local182, local212, local242, local192, local222, local252);
-							arg4 += local100;
-							arg3 += local70;
-							arg6 += local148;
-							arg0 += SoftwareRaster.width;
-							local182 += local202;
-							local212 += local232;
-							local242 += local262;
+							drawTexturedAlphaScanline(SoftwareRenderer.pixels, texels, yA, xB >> 16, xA >> 16, colorA, colorGradientX, uInterpolator, vInterpolator, wInterpolator, uStep, vStep, wStep);
+							xB += xStepAC;
+							xA += xStepAB;
+							colorA += colorGradientY;
+							yA += SoftwareRenderer.width;
+							uInterpolator += local202;
+							vInterpolator += local232;
+							wInterpolator += local262;
 						}
 					}
 				}
 			}
-		} else if (arg1 <= arg2) {
-			if (arg1 < height) {
-				if (arg2 > height) {
-					arg2 = height;
+		} else if (yB <= yC) {
+			if (yB < height) {
+				if (yC > height) {
+					yC = height;
 				}
-				if (arg0 > height) {
-					arg0 = height;
+				if (yA > height) {
+					yA = height;
 				}
-				arg7 = (arg7 << 9) + local136 - local136 * arg4;
-				if (arg2 < arg0) {
-					arg3 = arg4 <<= 0x10;
-					if (arg1 < 0) {
-						arg3 -= local70 * arg1;
-						arg4 -= local85 * arg1;
-						arg7 -= local148 * arg1;
-						arg1 = 0;
+				colorB = (colorB << 9) + colorGradientX - colorGradientX * xB;
+				if (yC < yA) {
+					xA = xB <<= 0x10;
+					if (yB < 0) {
+						xA -= xStepAB * yB;
+						xB -= xStepBC * yB;
+						colorB -= colorGradientY * yB;
+						yB = 0;
 					}
-					arg5 <<= 0x10;
-					if (arg2 < 0) {
-						arg5 -= local100 * arg2;
-						arg2 = 0;
+					xC <<= 0x10;
+					if (yC < 0) {
+						xC -= xStepAC * yC;
+						yC = 0;
 					}
-					local341 = arg1 - centerY;
-					local182 += local202 * local341;
-					local212 += local232 * local341;
-					local242 += local262 * local341;
-					if (arg1 != arg2 && local70 < local85 || arg1 == arg2 && local70 > local100) {
-						arg0 -= arg2;
-						arg2 -= arg1;
-						arg1 = offsets[arg1];
+					yOffset = yB - centerY;
+					uInterpolator += local202 * yOffset;
+					vInterpolator += local232 * yOffset;
+					wInterpolator += local262 * yOffset;
+					if (yB != yC && xStepAB < xStepBC || yB == yC && xStepAB > xStepAC) {
+						yA -= yC;
+						yC -= yB;
+						yB = offsets[yB];
 						while (true) {
-							arg2--;
-							if (arg2 < 0) {
+							yC--;
+							if (yC < 0) {
 								while (true) {
-									arg0--;
-									if (arg0 < 0) {
+									yA--;
+									if (yA < 0) {
 										return;
 									}
-									drawTexturedAlphaScanline(SoftwareRaster.pixels, texels, arg1, arg3 >> 16, arg5 >> 16, arg7, local136, local182, local212, local242, local192, local222, local252);
-									arg3 += local70;
-									arg5 += local100;
-									arg7 += local148;
-									arg1 += SoftwareRaster.width;
-									local182 += local202;
-									local212 += local232;
-									local242 += local262;
+									drawTexturedAlphaScanline(SoftwareRenderer.pixels, texels, yB, xA >> 16, xC >> 16, colorB, colorGradientX, uInterpolator, vInterpolator, wInterpolator, uStep, vStep, wStep);
+									xA += xStepAB;
+									xC += xStepAC;
+									colorB += colorGradientY;
+									yB += SoftwareRenderer.width;
+									uInterpolator += local202;
+									vInterpolator += local232;
+									wInterpolator += local262;
 								}
 							}
-							drawTexturedAlphaScanline(SoftwareRaster.pixels, texels, arg1, arg3 >> 16, arg4 >> 16, arg7, local136, local182, local212, local242, local192, local222, local252);
-							arg3 += local70;
-							arg4 += local85;
-							arg7 += local148;
-							arg1 += SoftwareRaster.width;
-							local182 += local202;
-							local212 += local232;
-							local242 += local262;
+							drawTexturedAlphaScanline(SoftwareRenderer.pixels, texels, yB, xA >> 16, xB >> 16, colorB, colorGradientX, uInterpolator, vInterpolator, wInterpolator, uStep, vStep, wStep);
+							xA += xStepAB;
+							xB += xStepBC;
+							colorB += colorGradientY;
+							yB += SoftwareRenderer.width;
+							uInterpolator += local202;
+							vInterpolator += local232;
+							wInterpolator += local262;
 						}
 					} else {
-						arg0 -= arg2;
-						arg2 -= arg1;
-						arg1 = offsets[arg1];
+						yA -= yC;
+						yC -= yB;
+						yB = offsets[yB];
 						while (true) {
-							arg2--;
-							if (arg2 < 0) {
+							yC--;
+							if (yC < 0) {
 								while (true) {
-									arg0--;
-									if (arg0 < 0) {
+									yA--;
+									if (yA < 0) {
 										return;
 									}
-									drawTexturedAlphaScanline(SoftwareRaster.pixels, texels, arg1, arg5 >> 16, arg3 >> 16, arg7, local136, local182, local212, local242, local192, local222, local252);
-									arg3 += local70;
-									arg5 += local100;
-									arg7 += local148;
-									arg1 += SoftwareRaster.width;
-									local182 += local202;
-									local212 += local232;
-									local242 += local262;
+									drawTexturedAlphaScanline(SoftwareRenderer.pixels, texels, yB, xC >> 16, xA >> 16, colorB, colorGradientX, uInterpolator, vInterpolator, wInterpolator, uStep, vStep, wStep);
+									xA += xStepAB;
+									xC += xStepAC;
+									colorB += colorGradientY;
+									yB += SoftwareRenderer.width;
+									uInterpolator += local202;
+									vInterpolator += local232;
+									wInterpolator += local262;
 								}
 							}
-							drawTexturedAlphaScanline(SoftwareRaster.pixels, texels, arg1, arg4 >> 16, arg3 >> 16, arg7, local136, local182, local212, local242, local192, local222, local252);
-							arg3 += local70;
-							arg4 += local85;
-							arg7 += local148;
-							arg1 += SoftwareRaster.width;
-							local182 += local202;
-							local212 += local232;
-							local242 += local262;
+							drawTexturedAlphaScanline(SoftwareRenderer.pixels, texels, yB, xB >> 16, xA >> 16, colorB, colorGradientX, uInterpolator, vInterpolator, wInterpolator, uStep, vStep, wStep);
+							xA += xStepAB;
+							xB += xStepBC;
+							colorB += colorGradientY;
+							yB += SoftwareRenderer.width;
+							uInterpolator += local202;
+							vInterpolator += local232;
+							wInterpolator += local262;
 						}
 					}
 				} else {
-					arg5 = arg4 <<= 0x10;
-					if (arg1 < 0) {
-						arg5 -= local70 * arg1;
-						arg4 -= local85 * arg1;
-						arg7 -= local148 * arg1;
-						arg1 = 0;
+					xC = xB <<= 0x10;
+					if (yB < 0) {
+						xC -= xStepAB * yB;
+						xB -= xStepBC * yB;
+						colorB -= colorGradientY * yB;
+						yB = 0;
 					}
-					arg3 <<= 0x10;
-					if (arg0 < 0) {
-						arg3 -= local100 * arg0;
-						arg0 = 0;
+					xA <<= 0x10;
+					if (yA < 0) {
+						xA -= xStepAC * yA;
+						yA = 0;
 					}
-					local341 = arg1 - centerY;
-					local182 += local202 * local341;
-					local212 += local232 * local341;
-					local242 += local262 * local341;
-					if (local70 < local85) {
-						arg2 -= arg0;
-						arg0 -= arg1;
-						arg1 = offsets[arg1];
+					yOffset = yB - centerY;
+					uInterpolator += local202 * yOffset;
+					vInterpolator += local232 * yOffset;
+					wInterpolator += local262 * yOffset;
+					if (xStepAB < xStepBC) {
+						yC -= yA;
+						yA -= yB;
+						yB = offsets[yB];
 						while (true) {
-							arg0--;
-							if (arg0 < 0) {
+							yA--;
+							if (yA < 0) {
 								while (true) {
-									arg2--;
-									if (arg2 < 0) {
+									yC--;
+									if (yC < 0) {
 										return;
 									}
-									drawTexturedAlphaScanline(SoftwareRaster.pixels, texels, arg1, arg3 >> 16, arg4 >> 16, arg7, local136, local182, local212, local242, local192, local222, local252);
-									arg3 += local100;
-									arg4 += local85;
-									arg7 += local148;
-									arg1 += SoftwareRaster.width;
-									local182 += local202;
-									local212 += local232;
-									local242 += local262;
+									drawTexturedAlphaScanline(SoftwareRenderer.pixels, texels, yB, xA >> 16, xB >> 16, colorB, colorGradientX, uInterpolator, vInterpolator, wInterpolator, uStep, vStep, wStep);
+									xA += xStepAC;
+									xB += xStepBC;
+									colorB += colorGradientY;
+									yB += SoftwareRenderer.width;
+									uInterpolator += local202;
+									vInterpolator += local232;
+									wInterpolator += local262;
 								}
 							}
-							drawTexturedAlphaScanline(SoftwareRaster.pixels, texels, arg1, arg5 >> 16, arg4 >> 16, arg7, local136, local182, local212, local242, local192, local222, local252);
-							arg5 += local70;
-							arg4 += local85;
-							arg7 += local148;
-							arg1 += SoftwareRaster.width;
-							local182 += local202;
-							local212 += local232;
-							local242 += local262;
+							drawTexturedAlphaScanline(SoftwareRenderer.pixels, texels, yB, xC >> 16, xB >> 16, colorB, colorGradientX, uInterpolator, vInterpolator, wInterpolator, uStep, vStep, wStep);
+							xC += xStepAB;
+							xB += xStepBC;
+							colorB += colorGradientY;
+							yB += SoftwareRenderer.width;
+							uInterpolator += local202;
+							vInterpolator += local232;
+							wInterpolator += local262;
 						}
 					} else {
-						arg2 -= arg0;
-						arg0 -= arg1;
-						arg1 = offsets[arg1];
+						yC -= yA;
+						yA -= yB;
+						yB = offsets[yB];
 						while (true) {
-							arg0--;
-							if (arg0 < 0) {
+							yA--;
+							if (yA < 0) {
 								while (true) {
-									arg2--;
-									if (arg2 < 0) {
+									yC--;
+									if (yC < 0) {
 										return;
 									}
-									drawTexturedAlphaScanline(SoftwareRaster.pixels, texels, arg1, arg4 >> 16, arg3 >> 16, arg7, local136, local182, local212, local242, local192, local222, local252);
-									arg3 += local100;
-									arg4 += local85;
-									arg7 += local148;
-									arg1 += SoftwareRaster.width;
-									local182 += local202;
-									local212 += local232;
-									local242 += local262;
+									drawTexturedAlphaScanline(SoftwareRenderer.pixels, texels, yB, xB >> 16, xA >> 16, colorB, colorGradientX, uInterpolator, vInterpolator, wInterpolator, uStep, vStep, wStep);
+									xA += xStepAC;
+									xB += xStepBC;
+									colorB += colorGradientY;
+									yB += SoftwareRenderer.width;
+									uInterpolator += local202;
+									vInterpolator += local232;
+									wInterpolator += local262;
 								}
 							}
-							drawTexturedAlphaScanline(SoftwareRaster.pixels, texels, arg1, arg4 >> 16, arg5 >> 16, arg7, local136, local182, local212, local242, local192, local222, local252);
-							arg5 += local70;
-							arg4 += local85;
-							arg7 += local148;
-							arg1 += SoftwareRaster.width;
-							local182 += local202;
-							local212 += local232;
-							local242 += local262;
+							drawTexturedAlphaScanline(SoftwareRenderer.pixels, texels, yB, xB >> 16, xC >> 16, colorB, colorGradientX, uInterpolator, vInterpolator, wInterpolator, uStep, vStep, wStep);
+							xC += xStepAB;
+							xB += xStepBC;
+							colorB += colorGradientY;
+							yB += SoftwareRenderer.width;
+							uInterpolator += local202;
+							vInterpolator += local232;
+							wInterpolator += local262;
 						}
 					}
 				}
 			}
-		} else if (arg2 < height) {
-			if (arg0 > height) {
-				arg0 = height;
+		} else if (yC < height) {
+			if (yA > height) {
+				yA = height;
 			}
-			if (arg1 > height) {
-				arg1 = height;
+			if (yB > height) {
+				yB = height;
 			}
-			arg8 = (arg8 << 9) + local136 - local136 * arg5;
-			if (arg0 < arg1) {
-				arg4 = arg5 <<= 0x10;
-				if (arg2 < 0) {
-					arg4 -= local85 * arg2;
-					arg5 -= local100 * arg2;
-					arg8 -= local148 * arg2;
-					arg2 = 0;
+			colorC = (colorC << 9) + colorGradientX - colorGradientX * xC;
+			if (yA < yB) {
+				xB = xC <<= 0x10;
+				if (yC < 0) {
+					xB -= xStepBC * yC;
+					xC -= xStepAC * yC;
+					colorC -= colorGradientY * yC;
+					yC = 0;
 				}
-				arg3 <<= 0x10;
-				if (arg0 < 0) {
-					arg3 -= local70 * arg0;
-					arg0 = 0;
+				xA <<= 0x10;
+				if (yA < 0) {
+					xA -= xStepAB * yA;
+					yA = 0;
 				}
-				local341 = arg2 - centerY;
-				local182 += local202 * local341;
-				local212 += local232 * local341;
-				local242 += local262 * local341;
-				if (local85 < local100) {
-					arg1 -= arg0;
-					arg0 -= arg2;
-					arg2 = offsets[arg2];
+				yOffset = yC - centerY;
+				uInterpolator += local202 * yOffset;
+				vInterpolator += local232 * yOffset;
+				wInterpolator += local262 * yOffset;
+				if (xStepBC < xStepAC) {
+					yB -= yA;
+					yA -= yC;
+					yC = offsets[yC];
 					while (true) {
-						arg0--;
-						if (arg0 < 0) {
+						yA--;
+						if (yA < 0) {
 							while (true) {
-								arg1--;
-								if (arg1 < 0) {
+								yB--;
+								if (yB < 0) {
 									return;
 								}
-								drawTexturedAlphaScanline(SoftwareRaster.pixels, texels, arg2, arg4 >> 16, arg3 >> 16, arg8, local136, local182, local212, local242, local192, local222, local252);
-								arg4 += local85;
-								arg3 += local70;
-								arg8 += local148;
-								arg2 += SoftwareRaster.width;
-								local182 += local202;
-								local212 += local232;
-								local242 += local262;
+								drawTexturedAlphaScanline(SoftwareRenderer.pixels, texels, yC, xB >> 16, xA >> 16, colorC, colorGradientX, uInterpolator, vInterpolator, wInterpolator, uStep, vStep, wStep);
+								xB += xStepBC;
+								xA += xStepAB;
+								colorC += colorGradientY;
+								yC += SoftwareRenderer.width;
+								uInterpolator += local202;
+								vInterpolator += local232;
+								wInterpolator += local262;
 							}
 						}
-						drawTexturedAlphaScanline(SoftwareRaster.pixels, texels, arg2, arg4 >> 16, arg5 >> 16, arg8, local136, local182, local212, local242, local192, local222, local252);
-						arg4 += local85;
-						arg5 += local100;
-						arg8 += local148;
-						arg2 += SoftwareRaster.width;
-						local182 += local202;
-						local212 += local232;
-						local242 += local262;
+						drawTexturedAlphaScanline(SoftwareRenderer.pixels, texels, yC, xB >> 16, xC >> 16, colorC, colorGradientX, uInterpolator, vInterpolator, wInterpolator, uStep, vStep, wStep);
+						xB += xStepBC;
+						xC += xStepAC;
+						colorC += colorGradientY;
+						yC += SoftwareRenderer.width;
+						uInterpolator += local202;
+						vInterpolator += local232;
+						wInterpolator += local262;
 					}
 				} else {
-					arg1 -= arg0;
-					arg0 -= arg2;
-					arg2 = offsets[arg2];
+					yB -= yA;
+					yA -= yC;
+					yC = offsets[yC];
 					while (true) {
-						arg0--;
-						if (arg0 < 0) {
+						yA--;
+						if (yA < 0) {
 							while (true) {
-								arg1--;
-								if (arg1 < 0) {
+								yB--;
+								if (yB < 0) {
 									return;
 								}
-								drawTexturedAlphaScanline(SoftwareRaster.pixels, texels, arg2, arg3 >> 16, arg4 >> 16, arg8, local136, local182, local212, local242, local192, local222, local252);
-								arg4 += local85;
-								arg3 += local70;
-								arg8 += local148;
-								arg2 += SoftwareRaster.width;
-								local182 += local202;
-								local212 += local232;
-								local242 += local262;
+								drawTexturedAlphaScanline(SoftwareRenderer.pixels, texels, yC, xA >> 16, xB >> 16, colorC, colorGradientX, uInterpolator, vInterpolator, wInterpolator, uStep, vStep, wStep);
+								xB += xStepBC;
+								xA += xStepAB;
+								colorC += colorGradientY;
+								yC += SoftwareRenderer.width;
+								uInterpolator += local202;
+								vInterpolator += local232;
+								wInterpolator += local262;
 							}
 						}
-						drawTexturedAlphaScanline(SoftwareRaster.pixels, texels, arg2, arg5 >> 16, arg4 >> 16, arg8, local136, local182, local212, local242, local192, local222, local252);
-						arg4 += local85;
-						arg5 += local100;
-						arg8 += local148;
-						arg2 += SoftwareRaster.width;
-						local182 += local202;
-						local212 += local232;
-						local242 += local262;
+						drawTexturedAlphaScanline(SoftwareRenderer.pixels, texels, yC, xC >> 16, xB >> 16, colorC, colorGradientX, uInterpolator, vInterpolator, wInterpolator, uStep, vStep, wStep);
+						xB += xStepBC;
+						xC += xStepAC;
+						colorC += colorGradientY;
+						yC += SoftwareRenderer.width;
+						uInterpolator += local202;
+						vInterpolator += local232;
+						wInterpolator += local262;
 					}
 				}
 			} else {
-				arg3 = arg5 <<= 0x10;
-				if (arg2 < 0) {
-					arg3 -= local85 * arg2;
-					arg5 -= local100 * arg2;
-					arg8 -= local148 * arg2;
-					arg2 = 0;
+				xA = xC <<= 0x10;
+				if (yC < 0) {
+					xA -= xStepBC * yC;
+					xC -= xStepAC * yC;
+					colorC -= colorGradientY * yC;
+					yC = 0;
 				}
-				arg4 <<= 0x10;
-				if (arg1 < 0) {
-					arg4 -= local70 * arg1;
-					arg1 = 0;
+				xB <<= 0x10;
+				if (yB < 0) {
+					xB -= xStepAB * yB;
+					yB = 0;
 				}
-				local341 = arg2 - centerY;
-				local182 += local202 * local341;
-				local212 += local232 * local341;
-				local242 += local262 * local341;
-				if (local85 < local100) {
-					arg0 -= arg1;
-					arg1 -= arg2;
-					arg2 = offsets[arg2];
+				yOffset = yC - centerY;
+				uInterpolator += local202 * yOffset;
+				vInterpolator += local232 * yOffset;
+				wInterpolator += local262 * yOffset;
+				if (xStepBC < xStepAC) {
+					yA -= yB;
+					yB -= yC;
+					yC = offsets[yC];
 					while (true) {
-						arg1--;
-						if (arg1 < 0) {
+						yB--;
+						if (yB < 0) {
 							while (true) {
-								arg0--;
-								if (arg0 < 0) {
+								yA--;
+								if (yA < 0) {
 									return;
 								}
-								drawTexturedAlphaScanline(SoftwareRaster.pixels, texels, arg2, arg4 >> 16, arg5 >> 16, arg8, local136, local182, local212, local242, local192, local222, local252);
-								arg4 += local70;
-								arg5 += local100;
-								arg8 += local148;
-								arg2 += SoftwareRaster.width;
-								local182 += local202;
-								local212 += local232;
-								local242 += local262;
+								drawTexturedAlphaScanline(SoftwareRenderer.pixels, texels, yC, xB >> 16, xC >> 16, colorC, colorGradientX, uInterpolator, vInterpolator, wInterpolator, uStep, vStep, wStep);
+								xB += xStepAB;
+								xC += xStepAC;
+								colorC += colorGradientY;
+								yC += SoftwareRenderer.width;
+								uInterpolator += local202;
+								vInterpolator += local232;
+								wInterpolator += local262;
 							}
 						}
-						drawTexturedAlphaScanline(SoftwareRaster.pixels, texels, arg2, arg3 >> 16, arg5 >> 16, arg8, local136, local182, local212, local242, local192, local222, local252);
-						arg3 += local85;
-						arg5 += local100;
-						arg8 += local148;
-						arg2 += SoftwareRaster.width;
-						local182 += local202;
-						local212 += local232;
-						local242 += local262;
+						drawTexturedAlphaScanline(SoftwareRenderer.pixels, texels, yC, xA >> 16, xC >> 16, colorC, colorGradientX, uInterpolator, vInterpolator, wInterpolator, uStep, vStep, wStep);
+						xA += xStepBC;
+						xC += xStepAC;
+						colorC += colorGradientY;
+						yC += SoftwareRenderer.width;
+						uInterpolator += local202;
+						vInterpolator += local232;
+						wInterpolator += local262;
 					}
 				} else {
-					arg0 -= arg1;
-					arg1 -= arg2;
-					arg2 = offsets[arg2];
+					yA -= yB;
+					yB -= yC;
+					yC = offsets[yC];
 					while (true) {
-						arg1--;
-						if (arg1 < 0) {
+						yB--;
+						if (yB < 0) {
 							while (true) {
-								arg0--;
-								if (arg0 < 0) {
+								yA--;
+								if (yA < 0) {
 									return;
 								}
-								drawTexturedAlphaScanline(SoftwareRaster.pixels, texels, arg2, arg5 >> 16, arg4 >> 16, arg8, local136, local182, local212, local242, local192, local222, local252);
-								arg4 += local70;
-								arg5 += local100;
-								arg8 += local148;
-								arg2 += SoftwareRaster.width;
-								local182 += local202;
-								local212 += local232;
-								local242 += local262;
+								drawTexturedAlphaScanline(SoftwareRenderer.pixels, texels, yC, xC >> 16, xB >> 16, colorC, colorGradientX, uInterpolator, vInterpolator, wInterpolator, uStep, vStep, wStep);
+								xB += xStepAB;
+								xC += xStepAC;
+								colorC += colorGradientY;
+								yC += SoftwareRenderer.width;
+								uInterpolator += local202;
+								vInterpolator += local232;
+								wInterpolator += local262;
 							}
 						}
-						drawTexturedAlphaScanline(SoftwareRaster.pixels, texels, arg2, arg5 >> 16, arg3 >> 16, arg8, local136, local182, local212, local242, local192, local222, local252);
-						arg3 += local85;
-						arg5 += local100;
-						arg8 += local148;
-						arg2 += SoftwareRaster.width;
-						local182 += local202;
-						local212 += local232;
-						local242 += local262;
+						drawTexturedAlphaScanline(SoftwareRenderer.pixels, texels, yC, xC >> 16, xA >> 16, colorC, colorGradientX, uInterpolator, vInterpolator, wInterpolator, uStep, vStep, wStep);
+						xA += xStepBC;
+						xC += xStepAC;
+						colorC += colorGradientY;
+						yC += SoftwareRenderer.width;
+						uInterpolator += local202;
+						vInterpolator += local232;
+						wInterpolator += local262;
 					}
 				}
 			}
@@ -2591,782 +2607,782 @@ public final class Rasterizer {
 	}
 
 	@OriginalMember(owner = "runetek4.client!hf", name = "a", descriptor = "([I[IIIIIIIIIIIIII)V")
-	private static void drawTexturedAlphaScanline(@OriginalArg(0) int[] arg0, @OriginalArg(1) int[] arg1, @OriginalArg(4) int arg2, @OriginalArg(5) int arg3, @OriginalArg(6) int arg4, @OriginalArg(7) int arg5, @OriginalArg(8) int arg6, @OriginalArg(9) int arg7, @OriginalArg(10) int arg8, @OriginalArg(11) int arg9, @OriginalArg(12) int arg10, @OriginalArg(13) int arg11, @OriginalArg(14) int arg12) {
+	private static void drawTexturedAlphaScanline(@OriginalArg(0) int[] pixelBuffer, @OriginalArg(1) int[] textureData, @OriginalArg(4) int pixelOffset, @OriginalArg(5) int leftX, @OriginalArg(6) int rightX, @OriginalArg(7) int color, @OriginalArg(8) int colorStep, @OriginalArg(9) int uInterpolator, @OriginalArg(10) int vInterpolator, @OriginalArg(11) int wInterpolator, @OriginalArg(12) int uStep, @OriginalArg(13) int vStep, @OriginalArg(14) int wStep) {
 		if (testX) {
-			if (arg4 > width) {
-				arg4 = width;
+			if (rightX > width) {
+				rightX = width;
 			}
-			if (arg3 < 0) {
-				arg3 = 0;
+			if (leftX < 0) {
+				leftX = 0;
 			}
 		}
-		if (arg3 >= arg4) {
+		if (leftX >= rightX) {
 			return;
 		}
-		arg2 += arg3;
-		arg5 += arg6 * arg3;
-		@Pc(28) int local28 = arg4 - arg3;
-		@Pc(140) int local140;
-		@Pc(128) int local128;
-		@Pc(68) int local68;
-		@Pc(72) int local72;
-		@Pc(99) int local99;
-		@Pc(103) int local103;
-		@Pc(62) int local62;
-		@Pc(34) int local34;
-		@Pc(154) int local154;
-		@Pc(114) int local114;
-		@Pc(157) int local157;
-		@Pc(136) int local136;
-		@Pc(42) int local42;
-		@Pc(50) int local50;
-		@Pc(58) int local58;
+		pixelOffset += leftX;
+		color += colorStep * leftX;
+		@Pc(28) int spanWidth = rightX - leftX;
+		@Pc(140) int lightness;
+		@Pc(128) int textureStep;
+		@Pc(68) int uStart;
+		@Pc(72) int vStart;
+		@Pc(99) int uEnd;
+		@Pc(103) int vEnd;
+		@Pc(62) int wDivisor;
+		@Pc(34) int xOffset;
+		@Pc(154) int texelColor;
+		@Pc(114) int textureCoord;
+		@Pc(157) int nextPixelOffset;
+		@Pc(136) int colorStepBatch;
+		@Pc(42) int uPerspective;
+		@Pc(50) int vPerspective;
+		@Pc(58) int wPerspective;
 		if (!lowDetail) {
-			local34 = arg3 - centerX;
-			local42 = arg7 + (arg10 >> 3) * local34;
-			local50 = arg8 + (arg11 >> 3) * local34;
-			local58 = arg9 + (arg12 >> 3) * local34;
-			local62 = local58 >> 14;
-			if (local62 == 0) {
-				local68 = 0;
-				local72 = 0;
+			xOffset = leftX - centerX;
+			uPerspective = uInterpolator + (uStep >> 3) * xOffset;
+			vPerspective = vInterpolator + (vStep >> 3) * xOffset;
+			wPerspective = wInterpolator + (wStep >> 3) * xOffset;
+			wDivisor = wPerspective >> 14;
+			if (wDivisor == 0) {
+				uStart = 0;
+				vStart = 0;
 			} else {
-				local68 = local42 / local62;
-				local72 = local50 / local62;
+				uStart = uPerspective / wDivisor;
+				vStart = vPerspective / wDivisor;
 			}
-			arg7 = local42 + arg10;
-			arg8 = local50 + arg11;
-			arg9 = local58 + arg12;
-			local62 = arg9 >> 14;
-			if (local62 == 0) {
-				local99 = 0;
-				local103 = 0;
+			uInterpolator = uPerspective + uStep;
+			vInterpolator = vPerspective + vStep;
+			wInterpolator = wPerspective + wStep;
+			wDivisor = wInterpolator >> 14;
+			if (wDivisor == 0) {
+				uEnd = 0;
+				vEnd = 0;
 			} else {
-				local99 = arg7 / local62;
-				local103 = arg8 / local62;
+				uEnd = uInterpolator / wDivisor;
+				vEnd = vInterpolator / wDivisor;
 			}
-			local114 = (local68 << 18) + local72;
-			local128 = (local99 - local68 >> 3 << 18) + (local103 - local72 >> 3);
-			local28 >>= 0x3;
-			local136 = arg6 << 3;
-			local140 = arg5 >> 8;
+			textureCoord = (uStart << 18) + vStart;
+			textureStep = (uEnd - uStart >> 3 << 18) + (vEnd - vStart >> 3);
+			spanWidth >>= 0x3;
+			colorStepBatch = colorStep << 3;
+			lightness = color >> 8;
 			if (opaque) {
-				if (local28 > 0) {
+				if (spanWidth > 0) {
 					do {
-						local154 = arg1[(local114 & 0x3F80) + (local114 >>> 25)];
-						local157 = arg2 + 1;
-						arg0[arg2] = ((local154 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local154 & 0xFF00) * local140 & 0xFF0000) >> 8;
-						local114 += local128;
-						local154 = arg1[(local114 & 0x3F80) + (local114 >>> 25)];
-						arg0[local157++] = ((local154 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local154 & 0xFF00) * local140 & 0xFF0000) >> 8;
-						local114 += local128;
-						local154 = arg1[(local114 & 0x3F80) + (local114 >>> 25)];
-						arg0[local157++] = ((local154 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local154 & 0xFF00) * local140 & 0xFF0000) >> 8;
-						local114 += local128;
-						local154 = arg1[(local114 & 0x3F80) + (local114 >>> 25)];
-						arg0[local157++] = ((local154 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local154 & 0xFF00) * local140 & 0xFF0000) >> 8;
-						local114 += local128;
-						local154 = arg1[(local114 & 0x3F80) + (local114 >>> 25)];
-						arg0[local157++] = ((local154 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local154 & 0xFF00) * local140 & 0xFF0000) >> 8;
-						local114 += local128;
-						local154 = arg1[(local114 & 0x3F80) + (local114 >>> 25)];
-						arg0[local157++] = ((local154 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local154 & 0xFF00) * local140 & 0xFF0000) >> 8;
-						local114 += local128;
-						local154 = arg1[(local114 & 0x3F80) + (local114 >>> 25)];
-						arg0[local157++] = ((local154 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local154 & 0xFF00) * local140 & 0xFF0000) >> 8;
-						local114 += local128;
-						local154 = arg1[(local114 & 0x3F80) + (local114 >>> 25)];
-						arg2 = local157 + 1;
-						arg0[local157] = ((local154 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local154 & 0xFF00) * local140 & 0xFF0000) >> 8;
-						local68 = local99;
-						local72 = local103;
-						arg7 += arg10;
-						arg8 += arg11;
-						arg9 += arg12;
-						local62 = arg9 >> 14;
-						if (local62 == 0) {
-							local99 = 0;
-							local103 = 0;
+						texelColor = textureData[(textureCoord & 0x3F80) + (textureCoord >>> 25)];
+						nextPixelOffset = pixelOffset + 1;
+						pixelBuffer[pixelOffset] = ((texelColor & 0xFF00FF) * lightness & 0xFF00FF00) + ((texelColor & 0xFF00) * lightness & 0xFF0000) >> 8;
+						textureCoord += textureStep;
+						texelColor = textureData[(textureCoord & 0x3F80) + (textureCoord >>> 25)];
+						pixelBuffer[nextPixelOffset++] = ((texelColor & 0xFF00FF) * lightness & 0xFF00FF00) + ((texelColor & 0xFF00) * lightness & 0xFF0000) >> 8;
+						textureCoord += textureStep;
+						texelColor = textureData[(textureCoord & 0x3F80) + (textureCoord >>> 25)];
+						pixelBuffer[nextPixelOffset++] = ((texelColor & 0xFF00FF) * lightness & 0xFF00FF00) + ((texelColor & 0xFF00) * lightness & 0xFF0000) >> 8;
+						textureCoord += textureStep;
+						texelColor = textureData[(textureCoord & 0x3F80) + (textureCoord >>> 25)];
+						pixelBuffer[nextPixelOffset++] = ((texelColor & 0xFF00FF) * lightness & 0xFF00FF00) + ((texelColor & 0xFF00) * lightness & 0xFF0000) >> 8;
+						textureCoord += textureStep;
+						texelColor = textureData[(textureCoord & 0x3F80) + (textureCoord >>> 25)];
+						pixelBuffer[nextPixelOffset++] = ((texelColor & 0xFF00FF) * lightness & 0xFF00FF00) + ((texelColor & 0xFF00) * lightness & 0xFF0000) >> 8;
+						textureCoord += textureStep;
+						texelColor = textureData[(textureCoord & 0x3F80) + (textureCoord >>> 25)];
+						pixelBuffer[nextPixelOffset++] = ((texelColor & 0xFF00FF) * lightness & 0xFF00FF00) + ((texelColor & 0xFF00) * lightness & 0xFF0000) >> 8;
+						textureCoord += textureStep;
+						texelColor = textureData[(textureCoord & 0x3F80) + (textureCoord >>> 25)];
+						pixelBuffer[nextPixelOffset++] = ((texelColor & 0xFF00FF) * lightness & 0xFF00FF00) + ((texelColor & 0xFF00) * lightness & 0xFF0000) >> 8;
+						textureCoord += textureStep;
+						texelColor = textureData[(textureCoord & 0x3F80) + (textureCoord >>> 25)];
+						pixelOffset = nextPixelOffset + 1;
+						pixelBuffer[nextPixelOffset] = ((texelColor & 0xFF00FF) * lightness & 0xFF00FF00) + ((texelColor & 0xFF00) * lightness & 0xFF0000) >> 8;
+						uStart = uEnd;
+						vStart = vEnd;
+						uInterpolator += uStep;
+						vInterpolator += vStep;
+						wInterpolator += wStep;
+						wDivisor = wInterpolator >> 14;
+						if (wDivisor == 0) {
+							uEnd = 0;
+							vEnd = 0;
 						} else {
-							local99 = arg7 / local62;
-							local103 = arg8 / local62;
+							uEnd = uInterpolator / wDivisor;
+							vEnd = vInterpolator / wDivisor;
 						}
-						local114 = (local68 << 18) + local72;
-						local128 = (local99 - local68 >> 3 << 18) + (local103 - local72 >> 3);
-						arg5 += local136;
-						local140 = arg5 >> 8;
-						local28--;
-					} while (local28 > 0);
+						textureCoord = (uStart << 18) + vStart;
+						textureStep = (uEnd - uStart >> 3 << 18) + (vEnd - vStart >> 3);
+						color += colorStepBatch;
+						lightness = color >> 8;
+						spanWidth--;
+					} while (spanWidth > 0);
 				}
-				local28 = arg4 - arg3 & 0x7;
-				if (local28 > 0) {
+				spanWidth = rightX - leftX & 0x7;
+				if (spanWidth > 0) {
 					do {
-						local154 = arg1[(local114 & 0x3F80) + (local114 >>> 25)];
-						arg0[arg2++] = ((local154 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local154 & 0xFF00) * local140 & 0xFF0000) >> 8;
-						local114 += local128;
-						local28--;
-					} while (local28 > 0);
+						texelColor = textureData[(textureCoord & 0x3F80) + (textureCoord >>> 25)];
+						pixelBuffer[pixelOffset++] = ((texelColor & 0xFF00FF) * lightness & 0xFF00FF00) + ((texelColor & 0xFF00) * lightness & 0xFF0000) >> 8;
+						textureCoord += textureStep;
+						spanWidth--;
+					} while (spanWidth > 0);
 				}
 			} else {
-				if (local28 > 0) {
+				if (spanWidth > 0) {
 					do {
-						@Pc(1470) int local1470;
-						if ((local1470 = arg1[(local114 & 0x3F80) + (local114 >>> 25)]) != 0) {
-							arg0[arg2] = ((local1470 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local1470 & 0xFF00) * local140 & 0xFF0000) >> 8;
+						@Pc(1470) int texelColor1;
+						if ((texelColor1 = textureData[(textureCoord & 0x3F80) + (textureCoord >>> 25)]) != 0) {
+							pixelBuffer[pixelOffset] = ((texelColor1 & 0xFF00FF) * lightness & 0xFF00FF00) + ((texelColor1 & 0xFF00) * lightness & 0xFF0000) >> 8;
 						}
-						local157 = arg2 + 1;
-						local114 += local128;
-						@Pc(1507) int local1507;
-						if ((local1507 = arg1[(local114 & 0x3F80) + (local114 >>> 25)]) != 0) {
-							arg0[local157] = ((local1507 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local1507 & 0xFF00) * local140 & 0xFF0000) >> 8;
+						nextPixelOffset = pixelOffset + 1;
+						textureCoord += textureStep;
+						@Pc(1507) int texelColor2;
+						if ((texelColor2 = textureData[(textureCoord & 0x3F80) + (textureCoord >>> 25)]) != 0) {
+							pixelBuffer[nextPixelOffset] = ((texelColor2 & 0xFF00FF) * lightness & 0xFF00FF00) + ((texelColor2 & 0xFF00) * lightness & 0xFF0000) >> 8;
 						}
-						local157++;
-						local114 += local128;
-						@Pc(1544) int local1544;
-						if ((local1544 = arg1[(local114 & 0x3F80) + (local114 >>> 25)]) != 0) {
-							arg0[local157] = ((local1544 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local1544 & 0xFF00) * local140 & 0xFF0000) >> 8;
+						nextPixelOffset++;
+						textureCoord += textureStep;
+						@Pc(1544) int texelColor3;
+						if ((texelColor3 = textureData[(textureCoord & 0x3F80) + (textureCoord >>> 25)]) != 0) {
+							pixelBuffer[nextPixelOffset] = ((texelColor3 & 0xFF00FF) * lightness & 0xFF00FF00) + ((texelColor3 & 0xFF00) * lightness & 0xFF0000) >> 8;
 						}
-						local157++;
-						local114 += local128;
-						@Pc(1581) int local1581;
-						if ((local1581 = arg1[(local114 & 0x3F80) + (local114 >>> 25)]) != 0) {
-							arg0[local157] = ((local1581 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local1581 & 0xFF00) * local140 & 0xFF0000) >> 8;
+						nextPixelOffset++;
+						textureCoord += textureStep;
+						@Pc(1581) int texelColor4;
+						if ((texelColor4 = textureData[(textureCoord & 0x3F80) + (textureCoord >>> 25)]) != 0) {
+							pixelBuffer[nextPixelOffset] = ((texelColor4 & 0xFF00FF) * lightness & 0xFF00FF00) + ((texelColor4 & 0xFF00) * lightness & 0xFF0000) >> 8;
 						}
-						local157++;
-						local114 += local128;
-						@Pc(1618) int local1618;
-						if ((local1618 = arg1[(local114 & 0x3F80) + (local114 >>> 25)]) != 0) {
-							arg0[local157] = ((local1618 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local1618 & 0xFF00) * local140 & 0xFF0000) >> 8;
+						nextPixelOffset++;
+						textureCoord += textureStep;
+						@Pc(1618) int texelColor5;
+						if ((texelColor5 = textureData[(textureCoord & 0x3F80) + (textureCoord >>> 25)]) != 0) {
+							pixelBuffer[nextPixelOffset] = ((texelColor5 & 0xFF00FF) * lightness & 0xFF00FF00) + ((texelColor5 & 0xFF00) * lightness & 0xFF0000) >> 8;
 						}
-						local157++;
-						local114 += local128;
-						@Pc(1655) int local1655;
-						if ((local1655 = arg1[(local114 & 0x3F80) + (local114 >>> 25)]) != 0) {
-							arg0[local157] = ((local1655 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local1655 & 0xFF00) * local140 & 0xFF0000) >> 8;
+						nextPixelOffset++;
+						textureCoord += textureStep;
+						@Pc(1655) int texelColor6;
+						if ((texelColor6 = textureData[(textureCoord & 0x3F80) + (textureCoord >>> 25)]) != 0) {
+							pixelBuffer[nextPixelOffset] = ((texelColor6 & 0xFF00FF) * lightness & 0xFF00FF00) + ((texelColor6 & 0xFF00) * lightness & 0xFF0000) >> 8;
 						}
-						local157++;
-						local114 += local128;
-						@Pc(1692) int local1692;
-						if ((local1692 = arg1[(local114 & 0x3F80) + (local114 >>> 25)]) != 0) {
-							arg0[local157] = ((local1692 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local1692 & 0xFF00) * local140 & 0xFF0000) >> 8;
+						nextPixelOffset++;
+						textureCoord += textureStep;
+						@Pc(1692) int texelColor7;
+						if ((texelColor7 = textureData[(textureCoord & 0x3F80) + (textureCoord >>> 25)]) != 0) {
+							pixelBuffer[nextPixelOffset] = ((texelColor7 & 0xFF00FF) * lightness & 0xFF00FF00) + ((texelColor7 & 0xFF00) * lightness & 0xFF0000) >> 8;
 						}
-						local157++;
-						local114 += local128;
-						@Pc(1729) int local1729;
-						if ((local1729 = arg1[(local114 & 0x3F80) + (local114 >>> 25)]) != 0) {
-							arg0[local157] = ((local1729 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local1729 & 0xFF00) * local140 & 0xFF0000) >> 8;
+						nextPixelOffset++;
+						textureCoord += textureStep;
+						@Pc(1729) int texelColor8;
+						if ((texelColor8 = textureData[(textureCoord & 0x3F80) + (textureCoord >>> 25)]) != 0) {
+							pixelBuffer[nextPixelOffset] = ((texelColor8 & 0xFF00FF) * lightness & 0xFF00FF00) + ((texelColor8 & 0xFF00) * lightness & 0xFF0000) >> 8;
 						}
-						arg2 = local157 + 1;
-						local68 = local99;
-						local72 = local103;
-						arg7 += arg10;
-						arg8 += arg11;
-						arg9 += arg12;
-						local62 = arg9 >> 14;
-						if (local62 == 0) {
-							local99 = 0;
-							local103 = 0;
+						pixelOffset = nextPixelOffset + 1;
+						uStart = uEnd;
+						vStart = vEnd;
+						uInterpolator += uStep;
+						vInterpolator += vStep;
+						wInterpolator += wStep;
+						wDivisor = wInterpolator >> 14;
+						if (wDivisor == 0) {
+							uEnd = 0;
+							vEnd = 0;
 						} else {
-							local99 = arg7 / local62;
-							local103 = arg8 / local62;
+							uEnd = uInterpolator / wDivisor;
+							vEnd = vInterpolator / wDivisor;
 						}
-						local114 = (local68 << 18) + local72;
-						local128 = (local99 - local68 >> 3 << 18) + (local103 - local72 >> 3);
-						arg5 += local136;
-						local140 = arg5 >> 8;
-						local28--;
-					} while (local28 > 0);
+						textureCoord = (uStart << 18) + vStart;
+						textureStep = (uEnd - uStart >> 3 << 18) + (vEnd - vStart >> 3);
+						color += colorStepBatch;
+						lightness = color >> 8;
+						spanWidth--;
+					} while (spanWidth > 0);
 				}
-				local28 = arg4 - arg3 & 0x7;
-				if (local28 > 0) {
+				spanWidth = rightX - leftX & 0x7;
+				if (spanWidth > 0) {
 					do {
 						@Pc(1840) int local1840;
-						if ((local1840 = arg1[(local114 & 0x3F80) + (local114 >>> 25)]) != 0) {
-							arg0[arg2] = ((local1840 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local1840 & 0xFF00) * local140 & 0xFF0000) >> 8;
+						if ((local1840 = textureData[(textureCoord & 0x3F80) + (textureCoord >>> 25)]) != 0) {
+							pixelBuffer[pixelOffset] = ((local1840 & 0xFF00FF) * lightness & 0xFF00FF00) + ((local1840 & 0xFF00) * lightness & 0xFF0000) >> 8;
 						}
-						arg2++;
-						local114 += local128;
-						local28--;
-					} while (local28 > 0);
+						pixelOffset++;
+						textureCoord += textureStep;
+						spanWidth--;
+					} while (spanWidth > 0);
 				}
 			}
 			return;
 		}
-		local34 = arg3 - centerX;
-		local42 = arg7 + (arg10 >> 3) * local34;
-		local50 = arg8 + (arg11 >> 3) * local34;
-		local58 = arg9 + (arg12 >> 3) * local34;
-		local62 = local58 >> 12;
-		if (local62 == 0) {
-			local68 = 0;
-			local72 = 0;
+		xOffset = leftX - centerX;
+		uPerspective = uInterpolator + (uStep >> 3) * xOffset;
+		vPerspective = vInterpolator + (vStep >> 3) * xOffset;
+		wPerspective = wInterpolator + (wStep >> 3) * xOffset;
+		wDivisor = wPerspective >> 12;
+		if (wDivisor == 0) {
+			uStart = 0;
+			vStart = 0;
 		} else {
-			local68 = local42 / local62;
-			local72 = local50 / local62;
+			uStart = uPerspective / wDivisor;
+			vStart = vPerspective / wDivisor;
 		}
-		arg7 = local42 + arg10;
-		arg8 = local50 + arg11;
-		arg9 = local58 + arg12;
-		local62 = arg9 >> 12;
-		if (local62 == 0) {
-			local99 = 0;
-			local103 = 0;
+		uInterpolator = uPerspective + uStep;
+		vInterpolator = vPerspective + vStep;
+		wInterpolator = wPerspective + wStep;
+		wDivisor = wInterpolator >> 12;
+		if (wDivisor == 0) {
+			uEnd = 0;
+			vEnd = 0;
 		} else {
-			local99 = arg7 / local62;
-			local103 = arg8 / local62;
+			uEnd = uInterpolator / wDivisor;
+			vEnd = vInterpolator / wDivisor;
 		}
-		local114 = (local68 << 20) + local72;
-		local128 = (local99 - local68 >> 3 << 20) + (local103 - local72 >> 3);
-		local28 >>= 0x3;
-		local136 = arg6 << 3;
-		local140 = arg5 >> 8;
+		textureCoord = (uStart << 20) + vStart;
+		textureStep = (uEnd - uStart >> 3 << 20) + (vEnd - vStart >> 3);
+		spanWidth >>= 0x3;
+		colorStepBatch = colorStep << 3;
+		lightness = color >> 8;
 		if (opaque) {
-			if (local28 > 0) {
+			if (spanWidth > 0) {
 				do {
-					local154 = arg1[(local114 & 0xFC0) + (local114 >>> 26)];
-					local157 = arg2 + 1;
-					arg0[arg2] = ((local154 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local154 & 0xFF00) * local140 & 0xFF0000) >> 8;
-					local114 += local128;
-					@Pc(189) int local189 = arg1[(local114 & 0xFC0) + (local114 >>> 26)];
-					@Pc(192) int local192 = local157 + 1;
-					arg0[local157] = ((local189 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local189 & 0xFF00) * local140 & 0xFF0000) >> 8;
-					local114 += local128;
-					@Pc(224) int local224 = arg1[(local114 & 0xFC0) + (local114 >>> 26)];
+					texelColor = textureData[(textureCoord & 0xFC0) + (textureCoord >>> 26)];
+					nextPixelOffset = pixelOffset + 1;
+					pixelBuffer[pixelOffset] = ((texelColor & 0xFF00FF) * lightness & 0xFF00FF00) + ((texelColor & 0xFF00) * lightness & 0xFF0000) >> 8;
+					textureCoord += textureStep;
+					@Pc(189) int local189 = textureData[(textureCoord & 0xFC0) + (textureCoord >>> 26)];
+					@Pc(192) int local192 = nextPixelOffset + 1;
+					pixelBuffer[nextPixelOffset] = ((local189 & 0xFF00FF) * lightness & 0xFF00FF00) + ((local189 & 0xFF00) * lightness & 0xFF0000) >> 8;
+					textureCoord += textureStep;
+					@Pc(224) int local224 = textureData[(textureCoord & 0xFC0) + (textureCoord >>> 26)];
 					@Pc(227) int local227 = local192 + 1;
-					arg0[local192] = ((local224 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local224 & 0xFF00) * local140 & 0xFF0000) >> 8;
-					local114 += local128;
-					@Pc(259) int local259 = arg1[(local114 & 0xFC0) + (local114 >>> 26)];
+					pixelBuffer[local192] = ((local224 & 0xFF00FF) * lightness & 0xFF00FF00) + ((local224 & 0xFF00) * lightness & 0xFF0000) >> 8;
+					textureCoord += textureStep;
+					@Pc(259) int local259 = textureData[(textureCoord & 0xFC0) + (textureCoord >>> 26)];
 					@Pc(262) int local262 = local227 + 1;
-					arg0[local227] = ((local259 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local259 & 0xFF00) * local140 & 0xFF0000) >> 8;
-					local114 += local128;
-					@Pc(294) int local294 = arg1[(local114 & 0xFC0) + (local114 >>> 26)];
+					pixelBuffer[local227] = ((local259 & 0xFF00FF) * lightness & 0xFF00FF00) + ((local259 & 0xFF00) * lightness & 0xFF0000) >> 8;
+					textureCoord += textureStep;
+					@Pc(294) int local294 = textureData[(textureCoord & 0xFC0) + (textureCoord >>> 26)];
 					@Pc(297) int local297 = local262 + 1;
-					arg0[local262] = ((local294 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local294 & 0xFF00) * local140 & 0xFF0000) >> 8;
-					local114 += local128;
-					@Pc(329) int local329 = arg1[(local114 & 0xFC0) + (local114 >>> 26)];
+					pixelBuffer[local262] = ((local294 & 0xFF00FF) * lightness & 0xFF00FF00) + ((local294 & 0xFF00) * lightness & 0xFF0000) >> 8;
+					textureCoord += textureStep;
+					@Pc(329) int local329 = textureData[(textureCoord & 0xFC0) + (textureCoord >>> 26)];
 					@Pc(332) int local332 = local297 + 1;
-					arg0[local297] = ((local329 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local329 & 0xFF00) * local140 & 0xFF0000) >> 8;
-					local114 += local128;
-					@Pc(364) int local364 = arg1[(local114 & 0xFC0) + (local114 >>> 26)];
+					pixelBuffer[local297] = ((local329 & 0xFF00FF) * lightness & 0xFF00FF00) + ((local329 & 0xFF00) * lightness & 0xFF0000) >> 8;
+					textureCoord += textureStep;
+					@Pc(364) int local364 = textureData[(textureCoord & 0xFC0) + (textureCoord >>> 26)];
 					@Pc(367) int local367 = local332 + 1;
-					arg0[local332] = ((local364 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local364 & 0xFF00) * local140 & 0xFF0000) >> 8;
-					local114 += local128;
-					@Pc(399) int local399 = arg1[(local114 & 0xFC0) + (local114 >>> 26)];
-					arg2 = local367 + 1;
-					arg0[local367] = ((local399 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local399 & 0xFF00) * local140 & 0xFF0000) >> 8;
-					local68 = local99;
-					local72 = local103;
-					arg7 += arg10;
-					arg8 += arg11;
-					arg9 += arg12;
-					local62 = arg9 >> 12;
-					if (local62 == 0) {
-						local99 = 0;
-						local103 = 0;
+					pixelBuffer[local332] = ((local364 & 0xFF00FF) * lightness & 0xFF00FF00) + ((local364 & 0xFF00) * lightness & 0xFF0000) >> 8;
+					textureCoord += textureStep;
+					@Pc(399) int local399 = textureData[(textureCoord & 0xFC0) + (textureCoord >>> 26)];
+					pixelOffset = local367 + 1;
+					pixelBuffer[local367] = ((local399 & 0xFF00FF) * lightness & 0xFF00FF00) + ((local399 & 0xFF00) * lightness & 0xFF0000) >> 8;
+					uStart = uEnd;
+					vStart = vEnd;
+					uInterpolator += uStep;
+					vInterpolator += vStep;
+					wInterpolator += wStep;
+					wDivisor = wInterpolator >> 12;
+					if (wDivisor == 0) {
+						uEnd = 0;
+						vEnd = 0;
 					} else {
-						local99 = arg7 / local62;
-						local103 = arg8 / local62;
+						uEnd = uInterpolator / wDivisor;
+						vEnd = vInterpolator / wDivisor;
 					}
-					local114 = (local68 << 20) + local72;
-					local128 = (local99 - local68 >> 3 << 20) + (local103 - local72 >> 3);
-					arg5 += local136;
-					local140 = arg5 >> 8;
-					local28--;
-				} while (local28 > 0);
+					textureCoord = (uStart << 20) + vStart;
+					textureStep = (uEnd - uStart >> 3 << 20) + (vEnd - vStart >> 3);
+					color += colorStepBatch;
+					lightness = color >> 8;
+					spanWidth--;
+				} while (spanWidth > 0);
 			}
-			local28 = arg4 - arg3 & 0x7;
-			if (local28 > 0) {
+			spanWidth = rightX - leftX & 0x7;
+			if (spanWidth > 0) {
 				do {
-					local154 = arg1[(local114 & 0xFC0) + (local114 >>> 26)];
-					arg0[arg2++] = ((local154 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local154 & 0xFF00) * local140 & 0xFF0000) >> 8;
-					local114 += local128;
-					local28--;
-				} while (local28 > 0);
+					texelColor = textureData[(textureCoord & 0xFC0) + (textureCoord >>> 26)];
+					pixelBuffer[pixelOffset++] = ((texelColor & 0xFF00FF) * lightness & 0xFF00FF00) + ((texelColor & 0xFF00) * lightness & 0xFF0000) >> 8;
+					textureCoord += textureStep;
+					spanWidth--;
+				} while (spanWidth > 0);
 			}
 			return;
 		}
-		if (local28 > 0) {
+		if (spanWidth > 0) {
 			do {
 				@Pc(550) int local550;
-				if ((local550 = arg1[(local114 & 0xFC0) + (local114 >>> 26)]) != 0) {
-					arg0[arg2] = ((local550 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local550 & 0xFF00) * local140 & 0xFF0000) >> 8;
+				if ((local550 = textureData[(textureCoord & 0xFC0) + (textureCoord >>> 26)]) != 0) {
+					pixelBuffer[pixelOffset] = ((local550 & 0xFF00FF) * lightness & 0xFF00FF00) + ((local550 & 0xFF00) * lightness & 0xFF0000) >> 8;
 				}
-				local157 = arg2 + 1;
-				local114 += local128;
+				nextPixelOffset = pixelOffset + 1;
+				textureCoord += textureStep;
 				@Pc(587) int local587;
-				if ((local587 = arg1[(local114 & 0xFC0) + (local114 >>> 26)]) != 0) {
-					arg0[local157] = ((local587 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local587 & 0xFF00) * local140 & 0xFF0000) >> 8;
+				if ((local587 = textureData[(textureCoord & 0xFC0) + (textureCoord >>> 26)]) != 0) {
+					pixelBuffer[nextPixelOffset] = ((local587 & 0xFF00FF) * lightness & 0xFF00FF00) + ((local587 & 0xFF00) * lightness & 0xFF0000) >> 8;
 				}
-				local157++;
-				local114 += local128;
+				nextPixelOffset++;
+				textureCoord += textureStep;
 				@Pc(624) int local624;
-				if ((local624 = arg1[(local114 & 0xFC0) + (local114 >>> 26)]) != 0) {
-					arg0[local157] = ((local624 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local624 & 0xFF00) * local140 & 0xFF0000) >> 8;
+				if ((local624 = textureData[(textureCoord & 0xFC0) + (textureCoord >>> 26)]) != 0) {
+					pixelBuffer[nextPixelOffset] = ((local624 & 0xFF00FF) * lightness & 0xFF00FF00) + ((local624 & 0xFF00) * lightness & 0xFF0000) >> 8;
 				}
-				local157++;
-				local114 += local128;
+				nextPixelOffset++;
+				textureCoord += textureStep;
 				@Pc(661) int local661;
-				if ((local661 = arg1[(local114 & 0xFC0) + (local114 >>> 26)]) != 0) {
-					arg0[local157] = ((local661 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local661 & 0xFF00) * local140 & 0xFF0000) >> 8;
+				if ((local661 = textureData[(textureCoord & 0xFC0) + (textureCoord >>> 26)]) != 0) {
+					pixelBuffer[nextPixelOffset] = ((local661 & 0xFF00FF) * lightness & 0xFF00FF00) + ((local661 & 0xFF00) * lightness & 0xFF0000) >> 8;
 				}
-				local157++;
-				local114 += local128;
+				nextPixelOffset++;
+				textureCoord += textureStep;
 				@Pc(698) int local698;
-				if ((local698 = arg1[(local114 & 0xFC0) + (local114 >>> 26)]) != 0) {
-					arg0[local157] = ((local698 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local698 & 0xFF00) * local140 & 0xFF0000) >> 8;
+				if ((local698 = textureData[(textureCoord & 0xFC0) + (textureCoord >>> 26)]) != 0) {
+					pixelBuffer[nextPixelOffset] = ((local698 & 0xFF00FF) * lightness & 0xFF00FF00) + ((local698 & 0xFF00) * lightness & 0xFF0000) >> 8;
 				}
-				local157++;
-				local114 += local128;
+				nextPixelOffset++;
+				textureCoord += textureStep;
 				@Pc(735) int local735;
-				if ((local735 = arg1[(local114 & 0xFC0) + (local114 >>> 26)]) != 0) {
-					arg0[local157] = ((local735 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local735 & 0xFF00) * local140 & 0xFF0000) >> 8;
+				if ((local735 = textureData[(textureCoord & 0xFC0) + (textureCoord >>> 26)]) != 0) {
+					pixelBuffer[nextPixelOffset] = ((local735 & 0xFF00FF) * lightness & 0xFF00FF00) + ((local735 & 0xFF00) * lightness & 0xFF0000) >> 8;
 				}
-				local157++;
-				local114 += local128;
+				nextPixelOffset++;
+				textureCoord += textureStep;
 				@Pc(772) int local772;
-				if ((local772 = arg1[(local114 & 0xFC0) + (local114 >>> 26)]) != 0) {
-					arg0[local157] = ((local772 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local772 & 0xFF00) * local140 & 0xFF0000) >> 8;
+				if ((local772 = textureData[(textureCoord & 0xFC0) + (textureCoord >>> 26)]) != 0) {
+					pixelBuffer[nextPixelOffset] = ((local772 & 0xFF00FF) * lightness & 0xFF00FF00) + ((local772 & 0xFF00) * lightness & 0xFF0000) >> 8;
 				}
-				local157++;
-				local114 += local128;
+				nextPixelOffset++;
+				textureCoord += textureStep;
 				@Pc(809) int local809;
-				if ((local809 = arg1[(local114 & 0xFC0) + (local114 >>> 26)]) != 0) {
-					arg0[local157] = ((local809 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local809 & 0xFF00) * local140 & 0xFF0000) >> 8;
+				if ((local809 = textureData[(textureCoord & 0xFC0) + (textureCoord >>> 26)]) != 0) {
+					pixelBuffer[nextPixelOffset] = ((local809 & 0xFF00FF) * lightness & 0xFF00FF00) + ((local809 & 0xFF00) * lightness & 0xFF0000) >> 8;
 				}
-				arg2 = local157 + 1;
-				local68 = local99;
-				local72 = local103;
-				arg7 += arg10;
-				arg8 += arg11;
-				arg9 += arg12;
-				local62 = arg9 >> 12;
-				if (local62 == 0) {
-					local99 = 0;
-					local103 = 0;
+				pixelOffset = nextPixelOffset + 1;
+				uStart = uEnd;
+				vStart = vEnd;
+				uInterpolator += uStep;
+				vInterpolator += vStep;
+				wInterpolator += wStep;
+				wDivisor = wInterpolator >> 12;
+				if (wDivisor == 0) {
+					uEnd = 0;
+					vEnd = 0;
 				} else {
-					local99 = arg7 / local62;
-					local103 = arg8 / local62;
+					uEnd = uInterpolator / wDivisor;
+					vEnd = vInterpolator / wDivisor;
 				}
-				local114 = (local68 << 20) + local72;
-				local128 = (local99 - local68 >> 3 << 20) + (local103 - local72 >> 3);
-				arg5 += local136;
-				local140 = arg5 >> 8;
-				local28--;
-			} while (local28 > 0);
+				textureCoord = (uStart << 20) + vStart;
+				textureStep = (uEnd - uStart >> 3 << 20) + (vEnd - vStart >> 3);
+				color += colorStepBatch;
+				lightness = color >> 8;
+				spanWidth--;
+			} while (spanWidth > 0);
 		}
-		local28 = arg4 - arg3 & 0x7;
-		if (local28 <= 0) {
+		spanWidth = rightX - leftX & 0x7;
+		if (spanWidth <= 0) {
 			return;
 		}
 		do {
 			@Pc(920) int local920;
-			if ((local920 = arg1[(local114 & 0xFC0) + (local114 >>> 26)]) != 0) {
-				arg0[arg2] = ((local920 & 0xFF00FF) * local140 & 0xFF00FF00) + ((local920 & 0xFF00) * local140 & 0xFF0000) >> 8;
+			if ((local920 = textureData[(textureCoord & 0xFC0) + (textureCoord >>> 26)]) != 0) {
+				pixelBuffer[pixelOffset] = ((local920 & 0xFF00FF) * lightness & 0xFF00FF00) + ((local920 & 0xFF00) * lightness & 0xFF0000) >> 8;
 			}
-			arg2++;
-			local114 += local128;
-			local28--;
-		} while (local28 > 0);
+			pixelOffset++;
+			textureCoord += textureStep;
+			spanWidth--;
+		} while (spanWidth > 0);
 	}
 
 	@OriginalMember(owner = "runetek4.client!hf", name = "b", descriptor = "()I")
 	public static int getOffsetRemainder() {
-		return offsets[0] % SoftwareRaster.width;
+		return offsets[0] % SoftwareRenderer.width;
 	}
 
 	@OriginalMember(owner = "runetek4.client!hf", name = "a", descriptor = "(IIIIIII)V")
-	public static void fillTriangle(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6) {
-		@Pc(1) int local1 = 0;
-		if (arg1 != arg0) {
-			local1 = (arg4 - arg3 << 16) / (arg1 - arg0);
+	public static void fillTriangle(@OriginalArg(0) int y1, @OriginalArg(1) int y2, @OriginalArg(2) int y3, @OriginalArg(3) int x1, @OriginalArg(4) int x2, @OriginalArg(5) int x3, @OriginalArg(6) int color) {
+		@Pc(1) int slopeEdge12 = 0;
+		if (y2 != y1) {
+			slopeEdge12 = (x2 - x1 << 16) / (y2 - y1);
 		}
-		@Pc(16) int local16 = 0;
-		if (arg2 != arg1) {
-			local16 = (arg5 - arg4 << 16) / (arg2 - arg1);
+		@Pc(16) int slopeEdge23 = 0;
+		if (y3 != y2) {
+			slopeEdge23 = (x3 - x2 << 16) / (y3 - y2);
 		}
-		@Pc(31) int local31 = 0;
-		if (arg2 != arg0) {
-			local31 = (arg3 - arg5 << 16) / (arg0 - arg2);
+		@Pc(31) int slopeEdge31 = 0;
+		if (y3 != y1) {
+			slopeEdge31 = (x1 - x3 << 16) / (y1 - y3);
 		}
-		if (arg0 <= arg1 && arg0 <= arg2) {
-			if (arg0 < height) {
-				if (arg1 > height) {
-					arg1 = height;
+		if (y1 <= y2 && y1 <= y3) {
+			if (y1 < height) {
+				if (y2 > height) {
+					y2 = height;
 				}
-				if (arg2 > height) {
-					arg2 = height;
+				if (y3 > height) {
+					y3 = height;
 				}
-				if (arg1 < arg2) {
-					arg5 = arg3 <<= 0x10;
-					if (arg0 < 0) {
-						arg5 -= local31 * arg0;
-						arg3 -= local1 * arg0;
-						arg0 = 0;
+				if (y2 < y3) {
+					x3 = x1 <<= 0x10;
+					if (y1 < 0) {
+						x3 -= slopeEdge31 * y1;
+						x1 -= slopeEdge12 * y1;
+						y1 = 0;
 					}
-					arg4 <<= 0x10;
-					if (arg1 < 0) {
-						arg4 -= local16 * arg1;
-						arg1 = 0;
+					x2 <<= 0x10;
+					if (y2 < 0) {
+						x2 -= slopeEdge23 * y2;
+						y2 = 0;
 					}
-					if (arg0 != arg1 && local31 < local1 || arg0 == arg1 && local31 > local16) {
-						arg2 -= arg1;
-						arg1 -= arg0;
-						arg0 = offsets[arg0];
+					if (y1 != y2 && slopeEdge31 < slopeEdge12 || y1 == y2 && slopeEdge31 > slopeEdge23) {
+						y3 -= y2;
+						y2 -= y1;
+						y1 = offsets[y1];
 						while (true) {
-							arg1--;
-							if (arg1 < 0) {
+							y2--;
+							if (y2 < 0) {
 								while (true) {
-									arg2--;
-									if (arg2 < 0) {
+									y3--;
+									if (y3 < 0) {
 										return;
 									}
-									drawScanline(SoftwareRaster.pixels, arg0, arg6, arg5 >> 16, arg4 >> 16);
-									arg5 += local31;
-									arg4 += local16;
-									arg0 += SoftwareRaster.width;
+									drawScanline(SoftwareRenderer.pixels, y1, color, x3 >> 16, x2 >> 16);
+									x3 += slopeEdge31;
+									x2 += slopeEdge23;
+									y1 += SoftwareRenderer.width;
 								}
 							}
-							drawScanline(SoftwareRaster.pixels, arg0, arg6, arg5 >> 16, arg3 >> 16);
-							arg5 += local31;
-							arg3 += local1;
-							arg0 += SoftwareRaster.width;
+							drawScanline(SoftwareRenderer.pixels, y1, color, x3 >> 16, x1 >> 16);
+							x3 += slopeEdge31;
+							x1 += slopeEdge12;
+							y1 += SoftwareRenderer.width;
 						}
 					} else {
-						arg2 -= arg1;
-						arg1 -= arg0;
-						arg0 = offsets[arg0];
+						y3 -= y2;
+						y2 -= y1;
+						y1 = offsets[y1];
 						while (true) {
-							arg1--;
-							if (arg1 < 0) {
+							y2--;
+							if (y2 < 0) {
 								while (true) {
-									arg2--;
-									if (arg2 < 0) {
+									y3--;
+									if (y3 < 0) {
 										return;
 									}
-									drawScanline(SoftwareRaster.pixels, arg0, arg6, arg4 >> 16, arg5 >> 16);
-									arg5 += local31;
-									arg4 += local16;
-									arg0 += SoftwareRaster.width;
+									drawScanline(SoftwareRenderer.pixels, y1, color, x2 >> 16, x3 >> 16);
+									x3 += slopeEdge31;
+									x2 += slopeEdge23;
+									y1 += SoftwareRenderer.width;
 								}
 							}
-							drawScanline(SoftwareRaster.pixels, arg0, arg6, arg3 >> 16, arg5 >> 16);
-							arg5 += local31;
-							arg3 += local1;
-							arg0 += SoftwareRaster.width;
+							drawScanline(SoftwareRenderer.pixels, y1, color, x1 >> 16, x3 >> 16);
+							x3 += slopeEdge31;
+							x1 += slopeEdge12;
+							y1 += SoftwareRenderer.width;
 						}
 					}
 				} else {
-					arg4 = arg3 <<= 0x10;
-					if (arg0 < 0) {
-						arg4 -= local31 * arg0;
-						arg3 -= local1 * arg0;
-						arg0 = 0;
+					x2 = x1 <<= 0x10;
+					if (y1 < 0) {
+						x2 -= slopeEdge31 * y1;
+						x1 -= slopeEdge12 * y1;
+						y1 = 0;
 					}
-					arg5 <<= 0x10;
-					if (arg2 < 0) {
-						arg5 -= local16 * arg2;
-						arg2 = 0;
+					x3 <<= 0x10;
+					if (y3 < 0) {
+						x3 -= slopeEdge23 * y3;
+						y3 = 0;
 					}
-					if (arg0 != arg2 && local31 < local1 || arg0 == arg2 && local16 > local1) {
-						arg1 -= arg2;
-						arg2 -= arg0;
-						arg0 = offsets[arg0];
+					if (y1 != y3 && slopeEdge31 < slopeEdge12 || y1 == y3 && slopeEdge23 > slopeEdge12) {
+						y2 -= y3;
+						y3 -= y1;
+						y1 = offsets[y1];
 						while (true) {
-							arg2--;
-							if (arg2 < 0) {
+							y3--;
+							if (y3 < 0) {
 								while (true) {
-									arg1--;
-									if (arg1 < 0) {
+									y2--;
+									if (y2 < 0) {
 										return;
 									}
-									drawScanline(SoftwareRaster.pixels, arg0, arg6, arg5 >> 16, arg3 >> 16);
-									arg5 += local16;
-									arg3 += local1;
-									arg0 += SoftwareRaster.width;
+									drawScanline(SoftwareRenderer.pixels, y1, color, x3 >> 16, x1 >> 16);
+									x3 += slopeEdge23;
+									x1 += slopeEdge12;
+									y1 += SoftwareRenderer.width;
 								}
 							}
-							drawScanline(SoftwareRaster.pixels, arg0, arg6, arg4 >> 16, arg3 >> 16);
-							arg4 += local31;
-							arg3 += local1;
-							arg0 += SoftwareRaster.width;
+							drawScanline(SoftwareRenderer.pixels, y1, color, x2 >> 16, x1 >> 16);
+							x2 += slopeEdge31;
+							x1 += slopeEdge12;
+							y1 += SoftwareRenderer.width;
 						}
 					} else {
-						arg1 -= arg2;
-						arg2 -= arg0;
-						arg0 = offsets[arg0];
+						y2 -= y3;
+						y3 -= y1;
+						y1 = offsets[y1];
 						while (true) {
-							arg2--;
-							if (arg2 < 0) {
+							y3--;
+							if (y3 < 0) {
 								while (true) {
-									arg1--;
-									if (arg1 < 0) {
+									y2--;
+									if (y2 < 0) {
 										return;
 									}
-									drawScanline(SoftwareRaster.pixels, arg0, arg6, arg3 >> 16, arg5 >> 16);
-									arg5 += local16;
-									arg3 += local1;
-									arg0 += SoftwareRaster.width;
+									drawScanline(SoftwareRenderer.pixels, y1, color, x1 >> 16, x3 >> 16);
+									x3 += slopeEdge23;
+									x1 += slopeEdge12;
+									y1 += SoftwareRenderer.width;
 								}
 							}
-							drawScanline(SoftwareRaster.pixels, arg0, arg6, arg3 >> 16, arg4 >> 16);
-							arg4 += local31;
-							arg3 += local1;
-							arg0 += SoftwareRaster.width;
+							drawScanline(SoftwareRenderer.pixels, y1, color, x1 >> 16, x2 >> 16);
+							x2 += slopeEdge31;
+							x1 += slopeEdge12;
+							y1 += SoftwareRenderer.width;
 						}
 					}
 				}
 			}
-		} else if (arg1 <= arg2) {
-			if (arg1 < height) {
-				if (arg2 > height) {
-					arg2 = height;
+		} else if (y2 <= y3) {
+			if (y2 < height) {
+				if (y3 > height) {
+					y3 = height;
 				}
-				if (arg0 > height) {
-					arg0 = height;
+				if (y1 > height) {
+					y1 = height;
 				}
-				if (arg2 < arg0) {
-					arg3 = arg4 <<= 0x10;
-					if (arg1 < 0) {
-						arg3 -= local1 * arg1;
-						arg4 -= local16 * arg1;
-						arg1 = 0;
+				if (y3 < y1) {
+					x1 = x2 <<= 0x10;
+					if (y2 < 0) {
+						x1 -= slopeEdge12 * y2;
+						x2 -= slopeEdge23 * y2;
+						y2 = 0;
 					}
-					arg5 <<= 0x10;
-					if (arg2 < 0) {
-						arg5 -= local31 * arg2;
-						arg2 = 0;
+					x3 <<= 0x10;
+					if (y3 < 0) {
+						x3 -= slopeEdge31 * y3;
+						y3 = 0;
 					}
-					if (arg1 != arg2 && local1 < local16 || arg1 == arg2 && local1 > local31) {
-						arg0 -= arg2;
-						arg2 -= arg1;
-						arg1 = offsets[arg1];
+					if (y2 != y3 && slopeEdge12 < slopeEdge23 || y2 == y3 && slopeEdge12 > slopeEdge31) {
+						y1 -= y3;
+						y3 -= y2;
+						y2 = offsets[y2];
 						while (true) {
-							arg2--;
-							if (arg2 < 0) {
+							y3--;
+							if (y3 < 0) {
 								while (true) {
-									arg0--;
-									if (arg0 < 0) {
+									y1--;
+									if (y1 < 0) {
 										return;
 									}
-									drawScanline(SoftwareRaster.pixels, arg1, arg6, arg3 >> 16, arg5 >> 16);
-									arg3 += local1;
-									arg5 += local31;
-									arg1 += SoftwareRaster.width;
+									drawScanline(SoftwareRenderer.pixels, y2, color, x1 >> 16, x3 >> 16);
+									x1 += slopeEdge12;
+									x3 += slopeEdge31;
+									y2 += SoftwareRenderer.width;
 								}
 							}
-							drawScanline(SoftwareRaster.pixels, arg1, arg6, arg3 >> 16, arg4 >> 16);
-							arg3 += local1;
-							arg4 += local16;
-							arg1 += SoftwareRaster.width;
+							drawScanline(SoftwareRenderer.pixels, y2, color, x1 >> 16, x2 >> 16);
+							x1 += slopeEdge12;
+							x2 += slopeEdge23;
+							y2 += SoftwareRenderer.width;
 						}
 					} else {
-						arg0 -= arg2;
-						arg2 -= arg1;
-						arg1 = offsets[arg1];
+						y1 -= y3;
+						y3 -= y2;
+						y2 = offsets[y2];
 						while (true) {
-							arg2--;
-							if (arg2 < 0) {
+							y3--;
+							if (y3 < 0) {
 								while (true) {
-									arg0--;
-									if (arg0 < 0) {
+									y1--;
+									if (y1 < 0) {
 										return;
 									}
-									drawScanline(SoftwareRaster.pixels, arg1, arg6, arg5 >> 16, arg3 >> 16);
-									arg3 += local1;
-									arg5 += local31;
-									arg1 += SoftwareRaster.width;
+									drawScanline(SoftwareRenderer.pixels, y2, color, x3 >> 16, x1 >> 16);
+									x1 += slopeEdge12;
+									x3 += slopeEdge31;
+									y2 += SoftwareRenderer.width;
 								}
 							}
-							drawScanline(SoftwareRaster.pixels, arg1, arg6, arg4 >> 16, arg3 >> 16);
-							arg3 += local1;
-							arg4 += local16;
-							arg1 += SoftwareRaster.width;
+							drawScanline(SoftwareRenderer.pixels, y2, color, x2 >> 16, x1 >> 16);
+							x1 += slopeEdge12;
+							x2 += slopeEdge23;
+							y2 += SoftwareRenderer.width;
 						}
 					}
 				} else {
-					arg5 = arg4 <<= 0x10;
-					if (arg1 < 0) {
-						arg5 -= local1 * arg1;
-						arg4 -= local16 * arg1;
-						arg1 = 0;
+					x3 = x2 <<= 0x10;
+					if (y2 < 0) {
+						x3 -= slopeEdge12 * y2;
+						x2 -= slopeEdge23 * y2;
+						y2 = 0;
 					}
-					arg3 <<= 0x10;
-					if (arg0 < 0) {
-						arg3 -= local31 * arg0;
-						arg0 = 0;
+					x1 <<= 0x10;
+					if (y1 < 0) {
+						x1 -= slopeEdge31 * y1;
+						y1 = 0;
 					}
-					if (local1 < local16) {
-						arg2 -= arg0;
-						arg0 -= arg1;
-						arg1 = offsets[arg1];
+					if (slopeEdge12 < slopeEdge23) {
+						y3 -= y1;
+						y1 -= y2;
+						y2 = offsets[y2];
 						while (true) {
-							arg0--;
-							if (arg0 < 0) {
+							y1--;
+							if (y1 < 0) {
 								while (true) {
-									arg2--;
-									if (arg2 < 0) {
+									y3--;
+									if (y3 < 0) {
 										return;
 									}
-									drawScanline(SoftwareRaster.pixels, arg1, arg6, arg3 >> 16, arg4 >> 16);
-									arg3 += local31;
-									arg4 += local16;
-									arg1 += SoftwareRaster.width;
+									drawScanline(SoftwareRenderer.pixels, y2, color, x1 >> 16, x2 >> 16);
+									x1 += slopeEdge31;
+									x2 += slopeEdge23;
+									y2 += SoftwareRenderer.width;
 								}
 							}
-							drawScanline(SoftwareRaster.pixels, arg1, arg6, arg5 >> 16, arg4 >> 16);
-							arg5 += local1;
-							arg4 += local16;
-							arg1 += SoftwareRaster.width;
+							drawScanline(SoftwareRenderer.pixels, y2, color, x3 >> 16, x2 >> 16);
+							x3 += slopeEdge12;
+							x2 += slopeEdge23;
+							y2 += SoftwareRenderer.width;
 						}
 					} else {
-						arg2 -= arg0;
-						arg0 -= arg1;
-						arg1 = offsets[arg1];
+						y3 -= y1;
+						y1 -= y2;
+						y2 = offsets[y2];
 						while (true) {
-							arg0--;
-							if (arg0 < 0) {
+							y1--;
+							if (y1 < 0) {
 								while (true) {
-									arg2--;
-									if (arg2 < 0) {
+									y3--;
+									if (y3 < 0) {
 										return;
 									}
-									drawScanline(SoftwareRaster.pixels, arg1, arg6, arg4 >> 16, arg3 >> 16);
-									arg3 += local31;
-									arg4 += local16;
-									arg1 += SoftwareRaster.width;
+									drawScanline(SoftwareRenderer.pixels, y2, color, x2 >> 16, x1 >> 16);
+									x1 += slopeEdge31;
+									x2 += slopeEdge23;
+									y2 += SoftwareRenderer.width;
 								}
 							}
-							drawScanline(SoftwareRaster.pixels, arg1, arg6, arg4 >> 16, arg5 >> 16);
-							arg5 += local1;
-							arg4 += local16;
-							arg1 += SoftwareRaster.width;
+							drawScanline(SoftwareRenderer.pixels, y2, color, x2 >> 16, x3 >> 16);
+							x3 += slopeEdge12;
+							x2 += slopeEdge23;
+							y2 += SoftwareRenderer.width;
 						}
 					}
 				}
 			}
-		} else if (arg2 < height) {
-			if (arg0 > height) {
-				arg0 = height;
+		} else if (y3 < height) {
+			if (y1 > height) {
+				y1 = height;
 			}
-			if (arg1 > height) {
-				arg1 = height;
+			if (y2 > height) {
+				y2 = height;
 			}
-			if (arg0 < arg1) {
-				arg4 = arg5 <<= 0x10;
-				if (arg2 < 0) {
-					arg4 -= local16 * arg2;
-					arg5 -= local31 * arg2;
-					arg2 = 0;
+			if (y1 < y2) {
+				x2 = x3 <<= 0x10;
+				if (y3 < 0) {
+					x2 -= slopeEdge23 * y3;
+					x3 -= slopeEdge31 * y3;
+					y3 = 0;
 				}
-				arg3 <<= 0x10;
-				if (arg0 < 0) {
-					arg3 -= local1 * arg0;
-					arg0 = 0;
+				x1 <<= 0x10;
+				if (y1 < 0) {
+					x1 -= slopeEdge12 * y1;
+					y1 = 0;
 				}
-				if (local16 < local31) {
-					arg1 -= arg0;
-					arg0 -= arg2;
-					arg2 = offsets[arg2];
+				if (slopeEdge23 < slopeEdge31) {
+					y2 -= y1;
+					y1 -= y3;
+					y3 = offsets[y3];
 					while (true) {
-						arg0--;
-						if (arg0 < 0) {
+						y1--;
+						if (y1 < 0) {
 							while (true) {
-								arg1--;
-								if (arg1 < 0) {
+								y2--;
+								if (y2 < 0) {
 									return;
 								}
-								drawScanline(SoftwareRaster.pixels, arg2, arg6, arg4 >> 16, arg3 >> 16);
-								arg4 += local16;
-								arg3 += local1;
-								arg2 += SoftwareRaster.width;
+								drawScanline(SoftwareRenderer.pixels, y3, color, x2 >> 16, x1 >> 16);
+								x2 += slopeEdge23;
+								x1 += slopeEdge12;
+								y3 += SoftwareRenderer.width;
 							}
 						}
-						drawScanline(SoftwareRaster.pixels, arg2, arg6, arg4 >> 16, arg5 >> 16);
-						arg4 += local16;
-						arg5 += local31;
-						arg2 += SoftwareRaster.width;
+						drawScanline(SoftwareRenderer.pixels, y3, color, x2 >> 16, x3 >> 16);
+						x2 += slopeEdge23;
+						x3 += slopeEdge31;
+						y3 += SoftwareRenderer.width;
 					}
 				} else {
-					arg1 -= arg0;
-					arg0 -= arg2;
-					arg2 = offsets[arg2];
+					y2 -= y1;
+					y1 -= y3;
+					y3 = offsets[y3];
 					while (true) {
-						arg0--;
-						if (arg0 < 0) {
+						y1--;
+						if (y1 < 0) {
 							while (true) {
-								arg1--;
-								if (arg1 < 0) {
+								y2--;
+								if (y2 < 0) {
 									return;
 								}
-								drawScanline(SoftwareRaster.pixels, arg2, arg6, arg3 >> 16, arg4 >> 16);
-								arg4 += local16;
-								arg3 += local1;
-								arg2 += SoftwareRaster.width;
+								drawScanline(SoftwareRenderer.pixels, y3, color, x1 >> 16, x2 >> 16);
+								x2 += slopeEdge23;
+								x1 += slopeEdge12;
+								y3 += SoftwareRenderer.width;
 							}
 						}
-						drawScanline(SoftwareRaster.pixels, arg2, arg6, arg5 >> 16, arg4 >> 16);
-						arg4 += local16;
-						arg5 += local31;
-						arg2 += SoftwareRaster.width;
+						drawScanline(SoftwareRenderer.pixels, y3, color, x3 >> 16, x2 >> 16);
+						x2 += slopeEdge23;
+						x3 += slopeEdge31;
+						y3 += SoftwareRenderer.width;
 					}
 				}
 			} else {
-				arg3 = arg5 <<= 0x10;
-				if (arg2 < 0) {
-					arg3 -= local16 * arg2;
-					arg5 -= local31 * arg2;
-					arg2 = 0;
+				x1 = x3 <<= 0x10;
+				if (y3 < 0) {
+					x1 -= slopeEdge23 * y3;
+					x3 -= slopeEdge31 * y3;
+					y3 = 0;
 				}
-				arg4 <<= 0x10;
-				if (arg1 < 0) {
-					arg4 -= local1 * arg1;
-					arg1 = 0;
+				x2 <<= 0x10;
+				if (y2 < 0) {
+					x2 -= slopeEdge12 * y2;
+					y2 = 0;
 				}
-				if (local16 < local31) {
-					arg0 -= arg1;
-					arg1 -= arg2;
-					arg2 = offsets[arg2];
+				if (slopeEdge23 < slopeEdge31) {
+					y1 -= y2;
+					y2 -= y3;
+					y3 = offsets[y3];
 					while (true) {
-						arg1--;
-						if (arg1 < 0) {
+						y2--;
+						if (y2 < 0) {
 							while (true) {
-								arg0--;
-								if (arg0 < 0) {
+								y1--;
+								if (y1 < 0) {
 									return;
 								}
-								drawScanline(SoftwareRaster.pixels, arg2, arg6, arg4 >> 16, arg5 >> 16);
-								arg4 += local1;
-								arg5 += local31;
-								arg2 += SoftwareRaster.width;
+								drawScanline(SoftwareRenderer.pixels, y3, color, x2 >> 16, x3 >> 16);
+								x2 += slopeEdge12;
+								x3 += slopeEdge31;
+								y3 += SoftwareRenderer.width;
 							}
 						}
-						drawScanline(SoftwareRaster.pixels, arg2, arg6, arg3 >> 16, arg5 >> 16);
-						arg3 += local16;
-						arg5 += local31;
-						arg2 += SoftwareRaster.width;
+						drawScanline(SoftwareRenderer.pixels, y3, color, x1 >> 16, x3 >> 16);
+						x1 += slopeEdge23;
+						x3 += slopeEdge31;
+						y3 += SoftwareRenderer.width;
 					}
 				} else {
-					arg0 -= arg1;
-					arg1 -= arg2;
-					arg2 = offsets[arg2];
+					y1 -= y2;
+					y2 -= y3;
+					y3 = offsets[y3];
 					while (true) {
-						arg1--;
-						if (arg1 < 0) {
+						y2--;
+						if (y2 < 0) {
 							while (true) {
-								arg0--;
-								if (arg0 < 0) {
+								y1--;
+								if (y1 < 0) {
 									return;
 								}
-								drawScanline(SoftwareRaster.pixels, arg2, arg6, arg5 >> 16, arg4 >> 16);
-								arg4 += local1;
-								arg5 += local31;
-								arg2 += SoftwareRaster.width;
+								drawScanline(SoftwareRenderer.pixels, y3, color, x3 >> 16, x2 >> 16);
+								x2 += slopeEdge12;
+								x3 += slopeEdge31;
+								y3 += SoftwareRenderer.width;
 							}
 						}
-						drawScanline(SoftwareRaster.pixels, arg2, arg6, arg5 >> 16, arg3 >> 16);
-						arg3 += local16;
-						arg5 += local31;
-						arg2 += SoftwareRaster.width;
+						drawScanline(SoftwareRenderer.pixels, y3, color, x3 >> 16, x1 >> 16);
+						x1 += slopeEdge23;
+						x3 += slopeEdge31;
+						y3 += SoftwareRenderer.width;
 					}
 				}
 			}
@@ -3374,102 +3390,102 @@ public final class Rasterizer {
 	}
 
 	@OriginalMember(owner = "runetek4.client!hf", name = "a", descriptor = "([IIIIII)V")
-	private static void drawScanline(@OriginalArg(0) int[] arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4) {
+	private static void drawScanline(@OriginalArg(0) int[] pixels, @OriginalArg(1) int pixelOffset, @OriginalArg(2) int color, @OriginalArg(4) int startX, @OriginalArg(5) int endX) {
 		if (testX) {
-			if (arg4 > width) {
-				arg4 = width;
+			if (endX > width) {
+				endX = width;
 			}
-			if (arg3 < 0) {
-				arg3 = 0;
+			if (startX < 0) {
+				startX = 0;
 			}
 		}
-		if (arg3 >= arg4) {
+		if (startX >= endX) {
 			return;
 		}
-		arg1 += arg3;
-		@Pc(24) int local24 = arg4 - arg3 >> 2;
-		@Pc(32) int local32;
+		pixelOffset += startX;
+		@Pc(24) int unrolledCount = endX - startX >> 2;
+		@Pc(32) int nextPixelOffset;
 		if (alpha == 0) {
 			while (true) {
-				local24--;
-				if (local24 < 0) {
-					local24 = arg4 - arg3 & 0x3;
+				unrolledCount--;
+				if (unrolledCount < 0) {
+					unrolledCount = endX - startX & 0x3;
 					while (true) {
-						local24--;
-						if (local24 < 0) {
+						unrolledCount--;
+						if (unrolledCount < 0) {
 							return;
 						}
-						arg0[arg1++] = arg2;
+						pixels[pixelOffset++] = color;
 					}
 				}
-				local32 = arg1 + 1;
-				arg0[arg1] = arg2;
-				@Pc(37) int local37 = local32 + 1;
-				arg0[local32] = arg2;
-				@Pc(42) int local42 = local37 + 1;
-				arg0[local37] = arg2;
-				arg1 = local42 + 1;
-				arg0[local42] = arg2;
+				nextPixelOffset = pixelOffset + 1;
+				pixels[pixelOffset] = color;
+				@Pc(37) int pixel2Offset = nextPixelOffset + 1;
+				pixels[nextPixelOffset] = color;
+				@Pc(42) int pixel3Offset = pixel2Offset + 1;
+				pixels[pixel2Offset] = color;
+				pixelOffset = pixel3Offset + 1;
+				pixels[pixel3Offset] = color;
 			}
 		} else if (alpha == 254) {
 			while (true) {
-				local24--;
-				if (local24 < 0) {
-					local24 = arg4 - arg3 & 0x3;
+				unrolledCount--;
+				if (unrolledCount < 0) {
+					unrolledCount = endX - startX & 0x3;
 					while (true) {
-						local24--;
-						if (local24 < 0) {
+						unrolledCount--;
+						if (unrolledCount < 0) {
 							return;
 						}
-						arg0[arg1++] = arg0[arg1];
+						pixels[pixelOffset++] = pixels[pixelOffset];
 					}
 				}
-				local32 = arg1 + 1;
-				arg0[arg1] = arg0[local32];
-				arg0[local32++] = arg0[local32];
-				arg0[local32++] = arg0[local32];
-				arg1 = local32 + 1;
-				arg0[local32] = arg0[arg1];
+				nextPixelOffset = pixelOffset + 1;
+				pixels[pixelOffset] = pixels[nextPixelOffset];
+				pixels[nextPixelOffset++] = pixels[nextPixelOffset];
+				pixels[nextPixelOffset++] = pixels[nextPixelOffset];
+				pixelOffset = nextPixelOffset + 1;
+				pixels[nextPixelOffset] = pixels[pixelOffset];
 			}
 		} else {
-			@Pc(119) int local119 = alpha;
-			@Pc(123) int local123 = 256 - alpha;
-			@Pc(143) int local143 = ((arg2 & 0xFF00FF) * local123 >> 8 & 0xFF00FF) + ((arg2 & 0xFF00) * local123 >> 8 & 0xFF00);
+			@Pc(119) int srcAlpha = alpha;
+			@Pc(123) int destAlpha = 256 - alpha;
+			@Pc(143) int blendedColor = ((color & 0xFF00FF) * destAlpha >> 8 & 0xFF00FF) + ((color & 0xFF00) * destAlpha >> 8 & 0xFF00);
 			while (true) {
-				local24--;
-				@Pc(150) int local150;
-				if (local24 < 0) {
-					local24 = arg4 - arg3 & 0x3;
+				unrolledCount--;
+				@Pc(150) int existingPixel;
+				if (unrolledCount < 0) {
+					unrolledCount = endX - startX & 0x3;
 					while (true) {
-						local24--;
-						if (local24 < 0) {
+						unrolledCount--;
+						if (unrolledCount < 0) {
 							return;
 						}
-						local150 = arg0[arg1];
-						arg0[arg1++] = local143 + ((local150 & 0xFF00FF) * local119 >> 8 & 0xFF00FF) + ((local150 & 0xFF00) * local119 >> 8 & 0xFF00);
+						existingPixel = pixels[pixelOffset];
+						pixels[pixelOffset++] = blendedColor + ((existingPixel & 0xFF00FF) * srcAlpha >> 8 & 0xFF00FF) + ((existingPixel & 0xFF00) * srcAlpha >> 8 & 0xFF00);
 					}
 				}
-				local150 = arg0[arg1];
-				local32 = arg1 + 1;
-				arg0[arg1] = local143 + ((local150 & 0xFF00FF) * local119 >> 8 & 0xFF00FF) + ((local150 & 0xFF00) * local119 >> 8 & 0xFF00);
-				@Pc(179) int local179 = arg0[local32];
-				arg0[local32++] = local143 + ((local179 & 0xFF00FF) * local119 >> 8 & 0xFF00FF) + ((local179 & 0xFF00) * local119 >> 8 & 0xFF00);
-				@Pc(208) int local208 = arg0[local32];
-				arg0[local32++] = local143 + ((local208 & 0xFF00FF) * local119 >> 8 & 0xFF00FF) + ((local208 & 0xFF00) * local119 >> 8 & 0xFF00);
-				@Pc(237) int local237 = arg0[local32];
-				arg1 = local32 + 1;
-				arg0[local32] = local143 + ((local237 & 0xFF00FF) * local119 >> 8 & 0xFF00FF) + ((local237 & 0xFF00) * local119 >> 8 & 0xFF00);
+				existingPixel = pixels[pixelOffset];
+				nextPixelOffset = pixelOffset + 1;
+				pixels[pixelOffset] = blendedColor + ((existingPixel & 0xFF00FF) * srcAlpha >> 8 & 0xFF00FF) + ((existingPixel & 0xFF00) * srcAlpha >> 8 & 0xFF00);
+				@Pc(179) int existingPixel2 = pixels[nextPixelOffset];
+				pixels[nextPixelOffset++] = blendedColor + ((existingPixel2 & 0xFF00FF) * srcAlpha >> 8 & 0xFF00FF) + ((existingPixel2 & 0xFF00) * srcAlpha >> 8 & 0xFF00);
+				@Pc(208) int existingPixel3 = pixels[nextPixelOffset];
+				pixels[nextPixelOffset++] = blendedColor + ((existingPixel3 & 0xFF00FF) * srcAlpha >> 8 & 0xFF00FF) + ((existingPixel3 & 0xFF00) * srcAlpha >> 8 & 0xFF00);
+				@Pc(237) int existingPixel4 = pixels[nextPixelOffset];
+				pixelOffset = nextPixelOffset + 1;
+				pixels[nextPixelOffset] = blendedColor + ((existingPixel4 & 0xFF00FF) * srcAlpha >> 8 & 0xFF00FF) + ((existingPixel4 & 0xFF00) * srcAlpha >> 8 & 0xFF00);
 			}
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!hf", name = "a", descriptor = "(III)V")
-	public static void testPoints(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
-		testX = arg0 < 0 || arg0 > width || arg1 < 0 || arg1 > width || arg2 < 0 || arg2 > width;
+	public static void testPoints(@OriginalArg(0) int x1, @OriginalArg(1) int x2, @OriginalArg(2) int x3) {
+		testX = x1 < 0 || x1 > width || x2 < 0 || x2 > width || x3 < 0 || x3 > width;
 	}
 
 	@OriginalMember(owner = "runetek4.client!hf", name = "d", descriptor = "()I")
 	public static int getOffset() {
-		return offsets[0] / SoftwareRaster.width;
+		return offsets[0] / SoftwareRenderer.width;
 	}
 }

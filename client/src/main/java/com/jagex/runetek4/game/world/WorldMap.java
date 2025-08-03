@@ -1,6 +1,5 @@
 package com.jagex.runetek4.game.world;
 
-import com.jagex.runetek4.*;
 import com.jagex.runetek4.config.types.flo.FloType;
 import com.jagex.runetek4.config.types.flo.FloTypeList;
 import com.jagex.runetek4.data.cache.media.SoftwareSprite;
@@ -15,9 +14,11 @@ import com.jagex.runetek4.core.datastruct.LinkedList;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.config.types.loc.LocType;
 import com.jagex.runetek4.config.types.msi.MSIType;
+import com.jagex.runetek4.entity.entity.PlayerList;
 import com.jagex.runetek4.graphics.gl.GlRaster;
 import com.jagex.runetek4.graphics.gl.GlRenderer;
 import com.jagex.runetek4.graphics.font.Fonts;
+import com.jagex.runetek4.scene.Camera;
 import com.jagex.runetek4.ui.sprite.GlSprite;
 import com.jagex.runetek4.util.string.JString;
 import com.jagex.runetek4.util.string.LocalizedText;
@@ -27,7 +28,7 @@ import com.jagex.runetek4.game.map.MapFunction;
 import com.jagex.runetek4.game.map.MapList;
 import com.jagex.runetek4.network.ClientProt;
 import com.jagex.runetek4.graphics.raster.Rasterizer;
-import com.jagex.runetek4.graphics.raster.SoftwareRaster;
+import com.jagex.runetek4.graphics.raster.SoftwareRenderer;
 import com.jagex.runetek4.scene.SceneGraph;
 import com.jagex.runetek4.clientscript.ClientScriptRunner;
 import com.jagex.runetek4.ui.sprite.SoftwareIndexedSprite;
@@ -239,7 +240,7 @@ public class WorldMap {
         if (GlRenderer.enabled) {
             GlRaster.setClip(x, y, x + width, height + y);
         } else {
-            SoftwareRaster.setClip(x, y, x + width, height + y);
+            SoftwareRenderer.setClip(x, y, x + width, height + y);
         }
         @Pc(50) int centerX;
         @Pc(61) int centerY;
@@ -253,11 +254,11 @@ public class WorldMap {
                 GlRaster.fillRect(centerX - 150, centerY + 2, loadPercentage * 3, 30, 9179409);
                 GlRaster.fillRect(centerX + loadPercentage * 3 - 150, centerY - -2, 300 - loadPercentage * 3, 30, 0);
             } else {
-                SoftwareRaster.fillRect(x, y, width, height, 0);
-                SoftwareRaster.drawRect(centerX - 152, centerY, 304, 34, 9179409);
-                SoftwareRaster.drawRect(centerX - 151, centerY + 1, 302, 32, 0);
-                SoftwareRaster.fillRect(centerX - 150, centerY + 2, loadPercentage * 3, 30, 9179409);
-                SoftwareRaster.fillRect(loadPercentage * 3 + centerX - 150, centerY - -2, 300 - loadPercentage * 3, 30, 0);
+                SoftwareRenderer.fillRect(x, y, width, height, 0);
+                SoftwareRenderer.drawRect(centerX - 152, centerY, 304, 34, 9179409);
+                SoftwareRenderer.drawRect(centerX - 151, centerY + 1, 302, 32, 0);
+                SoftwareRenderer.fillRect(centerX - 150, centerY + 2, loadPercentage * 3, 30, 9179409);
+                SoftwareRenderer.fillRect(loadPercentage * 3 + centerX - 150, centerY - -2, 300 - loadPercentage * 3, 30, 0);
             }
             Fonts.b12Full.renderCenter(LocalizedText.LOADINGDOTDOTDOT, centerX, centerY + 20, 16777215, -1);
             return;
@@ -275,12 +276,12 @@ public class WorldMap {
                 aClass3_Sub2_Sub1_Sub1_2 = null;
                 aClass3_Sub2_Sub1_Sub1_2 = new SoftwareSprite(width, height);
             }
-            SoftwareRaster.setSize(aClass3_Sub2_Sub1_Sub1_2.pixels, width, height);
+            SoftwareRenderer.setSize(aClass3_Sub2_Sub1_Sub1_2.pixels, width, height);
             renderMapToBuffer(width, 0, centerY, centerX, 0, bottomBound, height, leftBound);
             method1195(width, 0, centerY, bottomBound, height, 0, leftBound, centerX);
             method959(0, 0, leftBound, width, bottomBound, centerX, centerY, height);
             GlRaster.render(aClass3_Sub2_Sub1_Sub1_2.pixels, x, y, width, height);
-            SoftwareRaster.pixels = null;
+            SoftwareRenderer.pixels = null;
         } else {
             renderMapToBuffer(width + x, y, centerY, centerX, x, bottomBound, y + height, leftBound);
             method1195(x + width, x, centerY, bottomBound, height + y, y, leftBound, centerX);
@@ -457,13 +458,13 @@ public class WorldMap {
             @Pc(235) int local235 = length >> 6;
             @Pc(239) int local239 = width >> 6;
             aByteArrayArrayArray8 = new byte[local239][local235][];
-            @Pc(249) int local249 = SceneGraph.anInt2293 >> 2 << 10;
+            @Pc(249) int local249 = SceneGraph.randomLightOffsetX >> 2 << 10;
             aByteArrayArrayArray7 = new byte[local239][local235][];
             underlayColors = new int[local239][local235][];
             aByteArrayArrayArray3 = new byte[local239][local235][];
             anIntArrayArrayArray17 = new int[local239][local235][];
             aByteArrayArrayArray12 = new byte[local239][local235][];
-            @Pc(273) int local273 = SceneGraph.anInt4272 >> 1;
+            @Pc(273) int local273 = SceneGraph.randomLightOffsetZ >> 1;
             aByteArrayArrayArray10 = new byte[local239][local235][];
             scenery = new int[local239][local235][];
             loadOverlayColors(local273, local249);
@@ -1131,7 +1132,7 @@ public class WorldMap {
                                     if (local312 == 0) {
                                         local312 = 1;
                                     }
-                                    SoftwareRaster.fillRect(local47, local222, local62, local238, local312);
+                                    SoftwareRenderer.fillRect(local47, local222, local62, local238, local312);
                                     continue;
                                 }
                             } else {
@@ -1144,7 +1145,7 @@ public class WorldMap {
                             @Pc(395) int local395 = local209[local254] == null ? 0 : overlayColors[local209[local254][local276] & 0xFF];
                             @Pc(437) int local437;
                             if (local372 == 0 && local395 == 0) {
-                                SoftwareRaster.fillRect(local47, local222, local62, local238, local312);
+                                SoftwareRenderer.fillRect(local47, local222, local62, local238, local312);
                             } else {
                                 @Pc(433) byte local433;
                                 if (local372 != 0) {
@@ -1154,9 +1155,9 @@ public class WorldMap {
                                     local433 = local193[local254] == null ? 0 : local193[local254][local276];
                                     local437 = local433 & 0xFC;
                                     if (local437 == 0 || local62 <= 1 || local238 <= 1) {
-                                        SoftwareRaster.fillRect(local47, local222, local62, local238, local372);
+                                        SoftwareRenderer.fillRect(local47, local222, local62, local238, local372);
                                     } else {
-                                        method4667(SoftwareRaster.pixels, local372, local47, local433 & 0x3, local312, local437 >> 2, local238, local62, local222, true);
+                                        method4667(SoftwareRenderer.pixels, local372, local47, local433 & 0x3, local312, local437 >> 2, local238, local62, local222, true);
                                     }
                                 }
                                 if (local395 != 0) {
@@ -1166,9 +1167,9 @@ public class WorldMap {
                                     local433 = local201[local254][local276];
                                     local437 = local433 & 0xFC;
                                     if (local437 == 0 || local62 <= 1 || local238 <= 1) {
-                                        SoftwareRaster.fillRect(local47, local222, local62, local238, local395);
+                                        SoftwareRenderer.fillRect(local47, local222, local62, local238, local395);
                                     }
-                                    method4667(SoftwareRaster.pixels, local395, local47, local433 & 0x3, 0, local437 >> 2, local238, local62, local222, local372 == 0);
+                                    method4667(SoftwareRenderer.pixels, local395, local47, local433 & 0x3, 0, local437 >> 2, local238, local62, local222, local372 == 0);
                                 }
                             }
                             if (local197[local254] != null) {
@@ -1191,42 +1192,42 @@ public class WorldMap {
                                         local546 -= 4;
                                     }
                                     if (local546 == 1) {
-                                        SoftwareRaster.drawVerticalLine(local47, local222, local238, local575);
+                                        SoftwareRenderer.drawVerticalLine(local47, local222, local238, local575);
                                     } else if (local546 == 2) {
-                                        SoftwareRaster.drawHorizontalLine(local47, local222, local62, local575);
+                                        SoftwareRenderer.drawHorizontalLine(local47, local222, local62, local575);
                                     } else if (local546 == 3) {
-                                        SoftwareRaster.drawVerticalLine(local437, local222, local238, local575);
+                                        SoftwareRenderer.drawVerticalLine(local437, local222, local238, local575);
                                     } else if (local546 == 4) {
-                                        SoftwareRaster.drawHorizontalLine(local47, local569, local62, local575);
+                                        SoftwareRenderer.drawHorizontalLine(local47, local569, local62, local575);
                                     } else if (local546 == 9) {
-                                        SoftwareRaster.drawVerticalLine(local47, local222, local238, 16777215);
-                                        SoftwareRaster.drawHorizontalLine(local47, local222, local62, local575);
+                                        SoftwareRenderer.drawVerticalLine(local47, local222, local238, 16777215);
+                                        SoftwareRenderer.drawHorizontalLine(local47, local222, local62, local575);
                                     } else if (local546 == 10) {
-                                        SoftwareRaster.drawVerticalLine(local437, local222, local238, 16777215);
-                                        SoftwareRaster.drawHorizontalLine(local47, local222, local62, local575);
+                                        SoftwareRenderer.drawVerticalLine(local437, local222, local238, 16777215);
+                                        SoftwareRenderer.drawHorizontalLine(local47, local222, local62, local575);
                                     } else if (local546 == 11) {
-                                        SoftwareRaster.drawVerticalLine(local437, local222, local238, 16777215);
-                                        SoftwareRaster.drawHorizontalLine(local47, local569, local62, local575);
+                                        SoftwareRenderer.drawVerticalLine(local437, local222, local238, 16777215);
+                                        SoftwareRenderer.drawHorizontalLine(local47, local569, local62, local575);
                                     } else if (local546 == 12) {
-                                        SoftwareRaster.drawVerticalLine(local47, local222, local238, 16777215);
-                                        SoftwareRaster.drawHorizontalLine(local47, local569, local62, local575);
+                                        SoftwareRenderer.drawVerticalLine(local47, local222, local238, 16777215);
+                                        SoftwareRenderer.drawHorizontalLine(local47, local569, local62, local575);
                                     } else if (local546 == 17) {
-                                        SoftwareRaster.drawHorizontalLine(local47, local222, 1, local575);
+                                        SoftwareRenderer.drawHorizontalLine(local47, local222, 1, local575);
                                     } else if (local546 == 18) {
-                                        SoftwareRaster.drawHorizontalLine(local437, local222, 1, local575);
+                                        SoftwareRenderer.drawHorizontalLine(local437, local222, 1, local575);
                                     } else if (local546 == 19) {
-                                        SoftwareRaster.drawHorizontalLine(local437, local569, 1, local575);
+                                        SoftwareRenderer.drawHorizontalLine(local437, local569, 1, local575);
                                     } else if (local546 == 20) {
-                                        SoftwareRaster.drawHorizontalLine(local47, local569, 1, local575);
+                                        SoftwareRenderer.drawHorizontalLine(local47, local569, 1, local575);
                                     } else {
                                         @Pc(705) int local705;
                                         if (local546 == 25) {
                                             for (local705 = 0; local705 < local238; local705++) {
-                                                SoftwareRaster.drawHorizontalLine(local705 + local47, -local705 + local569, 1, local575);
+                                                SoftwareRenderer.drawHorizontalLine(local705 + local47, -local705 + local569, 1, local575);
                                             }
                                         } else if (local546 == 26) {
                                             for (local705 = 0; local705 < local238; local705++) {
-                                                SoftwareRaster.drawHorizontalLine(local705 + local47, local222 + local705, 1, local575);
+                                                SoftwareRenderer.drawHorizontalLine(local705 + local47, local222 + local705, 1, local575);
                                             }
                                         }
                                     }
@@ -1250,7 +1251,7 @@ public class WorldMap {
                         local145 = (arg6 * local90 >> 16) + arg0;
                         local157 = arg0 + ((local90 + 1) * arg6 >> 16);
                         local162 = local157 - local145;
-                        SoftwareRaster.fillRect(local47, local145, local62, local162, local104);
+                        SoftwareRenderer.fillRect(local47, local145, local62, local162, local104);
                     }
                 }
             }
@@ -1403,10 +1404,10 @@ public class WorldMap {
             }
         }
         for (@Pc(285) MapFunction local285 = (MapFunction) aClass69_97.head(); local285 != null; local285 = (MapFunction) aClass69_97.next()) {
-            SoftwareRaster.drawCircleAlpha(local285.x, local285.z, 15, local11);
-            SoftwareRaster.drawCircleAlpha(local285.x, local285.z, 13, local11);
-            SoftwareRaster.drawCircleAlpha(local285.x, local285.z, 11, local11);
-            SoftwareRaster.drawCircleAlpha(local285.x, local285.z, 9, local11);
+            SoftwareRenderer.drawCircleAlpha(local285.x, local285.z, 15, local11);
+            SoftwareRenderer.drawCircleAlpha(local285.x, local285.z, 13, local11);
+            SoftwareRenderer.drawCircleAlpha(local285.x, local285.z, 11, local11);
+            SoftwareRenderer.drawCircleAlpha(local285.x, local285.z, 9, local11);
             MapList.sprites[local285.id].render(local285.x - 7, local285.z + -7);
         }
         aClass69_97.clear();
@@ -1422,40 +1423,40 @@ public class WorldMap {
     @OriginalMember(owner = "runetek4.client!wl", name = "a", descriptor = "([IIIIIIIIIZB)V")
     public static void method4667(@OriginalArg(0) int[] arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) int arg8, @OriginalArg(9) boolean arg9) {
         @Pc(7) int local7 = arg2;
-        if (SoftwareRaster.clipRight <= arg2) {
+        if (SoftwareRenderer.clipRight <= arg2) {
             return;
         }
-        if (arg2 < SoftwareRaster.clipLeft) {
-            local7 = SoftwareRaster.clipLeft;
+        if (arg2 < SoftwareRenderer.clipLeft) {
+            local7 = SoftwareRenderer.clipLeft;
         }
         @Pc(30) int local30 = arg7 + arg2;
-        if (SoftwareRaster.clipLeft >= local30) {
+        if (SoftwareRenderer.clipLeft >= local30) {
             return;
         }
-        if (SoftwareRaster.clipRight < local30) {
-            local30 = SoftwareRaster.clipRight;
+        if (SoftwareRenderer.clipRight < local30) {
+            local30 = SoftwareRenderer.clipRight;
         }
         @Pc(43) int local43 = arg8;
-        if (SoftwareRaster.clipBottom <= arg8) {
+        if (SoftwareRenderer.clipBottom <= arg8) {
             return;
         }
         @Pc(56) int local56 = arg8 + arg6;
-        if (arg8 < SoftwareRaster.clipTop) {
-            local43 = SoftwareRaster.clipTop;
+        if (arg8 < SoftwareRenderer.clipTop) {
+            local43 = SoftwareRenderer.clipTop;
         }
-        if (local56 <= SoftwareRaster.clipTop) {
+        if (local56 <= SoftwareRenderer.clipTop) {
             return;
         }
-        @Pc(79) int local79 = local7 + SoftwareRaster.width * local43;
+        @Pc(79) int local79 = local7 + SoftwareRenderer.width * local43;
         if (arg5 == 9) {
             arg3 = arg3 + 1 & 0x3;
             arg5 = 1;
         }
-        @Pc(99) int local99 = local7 + SoftwareRaster.width - local30;
+        @Pc(99) int local99 = local7 + SoftwareRenderer.width - local30;
         local43 -= arg8;
         @Pc(108) int local108 = arg6 - local43;
-        if (SoftwareRaster.clipBottom < local56) {
-            local56 = SoftwareRaster.clipBottom;
+        if (SoftwareRenderer.clipBottom < local56) {
+            local56 = SoftwareRenderer.clipBottom;
         }
         if (arg5 == 10) {
             arg3 = arg3 + 3 & 0x3;
@@ -1909,8 +1910,8 @@ public class WorldMap {
             GlRaster.setClip(x, y, width + x, height + y);
             GlRaster.fillRect(x, y, width, height, 0);
         } else {
-            SoftwareRaster.setClip(x, y, width + x, y + height);
-            SoftwareRaster.fillRect(x, y, width, height, 0);
+            SoftwareRenderer.setClip(x, y, width + x, y + height);
+            SoftwareRenderer.fillRect(x, y, width, height, 0);
         }
 
         if (loadPercentage < 100) {
@@ -1919,7 +1920,7 @@ public class WorldMap {
 
         if (cachedMapSprite == null || width != cachedMapSprite.width || cachedMapSprite.height != height) {
             @Pc(63) SoftwareSprite mapSprite = new SoftwareSprite(width, height);
-            SoftwareRaster.setSize(mapSprite.pixels, width, height);
+            SoftwareRenderer.setSize(mapSprite.pixels, width, height);
             renderMapToBuffer(width, 0, WorldMap.width, 0, 0, length, height, 0);
             if (GlRenderer.enabled) {
                 cachedMapSprite = new GlSprite(mapSprite);
@@ -1927,9 +1928,9 @@ public class WorldMap {
                 cachedMapSprite = mapSprite;
             }
             if (GlRenderer.enabled) {
-                SoftwareRaster.pixels = null;
+                SoftwareRenderer.pixels = null;
             } else {
-                SoftwareRaster.frameBuffer.makeTarget();
+                SoftwareRenderer.frameBuffer.makeTarget();
             }
         }
         cachedMapSprite.drawPixels(x, y);
@@ -1945,8 +1946,8 @@ public class WorldMap {
             GlRaster.fillRectAlpha(viewportX, viewportY, viewportWidth, viewportHeight, viewportColor, 128);
             GlRaster.drawRect(viewportX, viewportY, viewportWidth, viewportHeight, viewportColor);
         } else {
-            SoftwareRaster.fillRectAlpha(viewportX, viewportY, viewportWidth, viewportHeight, viewportColor, 128);
-            SoftwareRaster.drawRect(viewportX, viewportY, viewportWidth, viewportHeight, viewportColor);
+            SoftwareRenderer.fillRectAlpha(viewportX, viewportY, viewportWidth, viewportHeight, viewportColor, 128);
+            SoftwareRenderer.drawRect(viewportX, viewportY, viewportWidth, viewportHeight, viewportColor);
         }
         if (mapFunctionCount <= 0) {
             return;
@@ -1964,7 +1965,7 @@ public class WorldMap {
                 if (GlRenderer.enabled) {
                     GlRaster.fillRectAlpha(local267 - 2, local258 - 2, 4, 4, 16776960, alpha);
                 } else {
-                    SoftwareRaster.fillRectAlpha(local267 - 2, local258 - 2, 4, 4, 16776960, alpha);
+                    SoftwareRenderer.fillRectAlpha(local267 - 2, local258 - 2, 4, 4, 16776960, alpha);
                 }
             }
         }

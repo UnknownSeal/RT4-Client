@@ -1,6 +1,5 @@
 package com.jagex.runetek4.config.types.enums;
 
-import com.jagex.runetek4.*;
 import com.jagex.runetek4.core.datastruct.*;
 import com.jagex.runetek4.util.string.JString;
 import com.jagex.runetek4.core.node.SecondaryNode;

@@ -4,7 +4,7 @@ import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Image;
 
-import com.jagex.runetek4.graphics.raster.SoftwareRaster;
+import com.jagex.runetek4.graphics.raster.SoftwareRenderer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -43,7 +43,7 @@ public abstract class FrameBuffer {
 
 	@OriginalMember(owner = "client!vk", name = "a", descriptor = "(I)V")
 	public final void makeTarget() {
-		SoftwareRaster.setSize(this.pixels, this.width, this.height);
+		SoftwareRenderer.setSize(this.pixels, this.width, this.height);
 	}
 
 	@OriginalMember(owner = "client!vk", name = "a", descriptor = "(IIIILjava/awt/Graphics;I)V")

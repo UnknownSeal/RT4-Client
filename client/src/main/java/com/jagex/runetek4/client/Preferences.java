@@ -203,7 +203,7 @@ public class Preferences {
     @OriginalMember(owner = "runetek4.client!ec", name = "a", descriptor = "(IZ)V")
     public static void setLowmem(@OriginalArg(1) boolean arg0) {
         lowmem = arg0;
-        SceneGraph.aBoolean130 = !SceneGraph.allLevelsAreVisible();
+        SceneGraph.hdLighting = !SceneGraph.allLevelsAreVisible();
     }
 
     @OriginalMember(owner = "client!dl", name = "a", descriptor = "(B)Lclient!wa;")

@@ -1,6 +1,7 @@
 package com.jagex.runetek4.ui.component;
 
-import com.jagex.runetek4.*;
+import com.jagex.runetek4.entity.entity.PlayerList;
+import com.jagex.runetek4.scene.Camera;
 import com.jagex.runetek4.ui.chat.Chat;
 import com.jagex.runetek4.client.LoginManager;
 import com.jagex.runetek4.config.types.npc.NpcType;
@@ -34,7 +35,7 @@ import com.jagex.runetek4.network.ClientProt;
 import com.jagex.runetek4.network.Protocol;
 import com.jagex.runetek4.entity.loc.ObjStackNode;
 import com.jagex.runetek4.graphics.raster.Rasterizer;
-import com.jagex.runetek4.graphics.raster.SoftwareRaster;
+import com.jagex.runetek4.graphics.raster.SoftwareRenderer;
 import com.jagex.runetek4.scene.SceneGraph;
 import com.jagex.runetek4.clientscript.ClientScriptRunner;
 import com.jagex.runetek4.ui.sprite.SoftwareAlphaSprite;
@@ -521,7 +522,7 @@ public class MiniMenu {
             } else if (GlRenderer.enabled) {
                 GlRaster.fillRectAlpha(menuX, menuY, menuWidth, 20, LoginManager.anInt1275, 256 - LoginManager.anInt2910);
             } else {
-                SoftwareRaster.fillRectAlpha(menuX, menuY, menuWidth, 20, LoginManager.anInt1275, 256 - LoginManager.anInt2910);
+                SoftwareRenderer.fillRectAlpha(menuX, menuY, menuWidth, 20, LoginManager.anInt1275, 256 - LoginManager.anInt2910);
             }
         }
         @Pc(112) int mouseX;
@@ -538,7 +539,7 @@ public class MiniMenu {
         if (GlRenderer.enabled) {
             GlRaster.fillRectAlpha(menuX, menuY + 20, menuWidth, menuHeight - 20, LoginManager.anInt1275, 256 - LoginManager.anInt2910);
         } else {
-            SoftwareRaster.fillRectAlpha(menuX, menuY + 20, menuWidth, menuHeight - 20, LoginManager.anInt1275, 256 - LoginManager.anInt2910);
+            SoftwareRenderer.fillRectAlpha(menuX, menuY + 20, menuWidth, menuHeight - 20, LoginManager.anInt1275, 256 - LoginManager.anInt2910);
         }
         mouseY = Mouse.lastMouseY;
         mouseX = Mouse.lastMouseX;
@@ -550,7 +551,7 @@ public class MiniMenu {
                 if (GlRenderer.enabled) {
                     GlRaster.fillRectAlpha(menuX, rowY - 13, menuWidth, 16, LoginManager.anInt5457, 256 - LoginManager.anInt5208);
                 } else {
-                    SoftwareRaster.fillRectAlpha(menuX, rowY - 13, menuWidth, 16, LoginManager.anInt5457, 256 - LoginManager.anInt5208);
+                    SoftwareRenderer.fillRectAlpha(menuX, rowY - 13, menuWidth, 16, LoginManager.anInt5457, 256 - LoginManager.anInt5208);
                 }
             }
         }
@@ -612,9 +613,9 @@ public class MiniMenu {
             GlRaster.fillRect(menuX + 1, menuY + 1, menuWidth - 2, 16, 0);
             GlRaster.drawRect(menuX + 1, menuY + 18, menuWidth - 2, menuHeight + -19, 0);
         } else {
-            SoftwareRaster.fillRect(menuX, menuY, menuWidth, menuHeight, 6116423);
-            SoftwareRaster.fillRect(menuX + 1, menuY + 1, menuWidth - 2, 16, 0);
-            SoftwareRaster.drawRect(menuX + 1, menuY + 18, menuWidth - 2, menuHeight + -19, 0);
+            SoftwareRenderer.fillRect(menuX, menuY, menuWidth, menuHeight, 6116423);
+            SoftwareRenderer.fillRect(menuX + 1, menuY + 1, menuWidth - 2, 16, 0);
+            SoftwareRenderer.drawRect(menuX + 1, menuY + 18, menuWidth - 2, menuHeight + -19, 0);
         }
         Fonts.b12Full.renderLeft(LocalizedText.CHOOSE_OPTION, menuX + 3, menuY + 14, 6116423, -1);
         @Pc(96) int mouseY = Mouse.lastMouseY;

@@ -6,7 +6,7 @@ import com.jagex.runetek4.graphics.gl.GlRaster;
 import com.jagex.runetek4.graphics.gl.GlRenderer;
 import com.jagex.runetek4.data.js5.Js5;
 import com.jagex.runetek4.util.string.JString;
-import com.jagex.runetek4.graphics.raster.SoftwareRaster;
+import com.jagex.runetek4.graphics.raster.SoftwareRenderer;
 import com.jagex.runetek4.ui.sprite.Sprites;
 import com.jagex.runetek4.ui.component.ComponentList;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -48,8 +48,8 @@ public class Fonts {
             GlRaster.fillRect(6, 6, local24 + 4 + 4, local31 + 8, 0);
             GlRaster.drawRect(6, 6, local24 + 4 + 4, local31 + 4 + 4, 16777215);
         } else {
-            SoftwareRaster.fillRect(6, 6, local24 + 4 + 4, local31 + 8, 0);
-            SoftwareRaster.drawRect(6, 6, local24 + 8, 4 + 4 + local31, 16777215);
+            SoftwareRenderer.fillRect(6, 6, local24 + 4 + 4, local31 + 8, 0);
+            SoftwareRenderer.drawRect(6, 6, local24 + 8, 4 + 4 + local31, 16777215);
         }
         p12Full.drawInterfaceText(arg1, 10, 10, local24, local31, 16777215, -1, 1, 1, 0);
         ComponentList.redrawScreen(6, local24 + 8, 6, local31 + 4 + 4);
@@ -60,7 +60,7 @@ public class Fonts {
         } else {
             try {
                 @Pc(159) Graphics local159 = GameShell.canvas.getGraphics();
-                SoftwareRaster.frameBuffer.draw(local159);
+                SoftwareRenderer.frameBuffer.draw(local159);
             } catch (@Pc(167) Exception local167) {
                 GameShell.canvas.repaint();
             }

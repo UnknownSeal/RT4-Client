@@ -4,7 +4,7 @@ import com.jagex.runetek4.graphics.gl.GlRaster;
 import com.jagex.runetek4.graphics.gl.GlRenderer;
 import com.jagex.runetek4.data.js5.Js5;
 import com.jagex.runetek4.util.string.JString;
-import com.jagex.runetek4.graphics.raster.SoftwareRaster;
+import com.jagex.runetek4.graphics.raster.SoftwareRenderer;
 import com.jagex.runetek4.ui.sprite.IndexedSprite;
 import com.jagex.runetek4.ui.sprite.Sprite;
 import com.jagex.runetek4.ui.sprite.SpriteLoader;
@@ -52,7 +52,7 @@ public class TitleScreen {
         if (GlRenderer.enabled) {
             GlRaster.clear();
         } else {
-            SoftwareRaster.clear();
+            SoftwareRenderer.clearPixelBuffer();
         }
         titleBg = SpriteLoader.loadSpriteAutoDetect(archive, bgId);
         @Pc(20) int height = GameShell.canvasHeigth;

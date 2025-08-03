@@ -1,6 +1,6 @@
 package com.jagex.runetek4.game.locs;
 
-import com.jagex.runetek4.PlayerList;
+import com.jagex.runetek4.entity.entity.PlayerList;
 import com.jagex.runetek4.client.Client;
 import com.jagex.runetek4.config.types.loc.LocTypeList;
 import com.jagex.runetek4.config.types.loc.LocType;

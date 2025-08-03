@@ -9,7 +9,7 @@ import com.jagex.runetek4.graphics.core.DisplayMode;
 import com.jagex.runetek4.util.system.Timer;
 import com.jagex.runetek4.graphics.gl.GlRenderer;
 import com.jagex.runetek4.graphics.core.FrameBuffer;
-import com.jagex.runetek4.graphics.raster.SoftwareRaster;
+import com.jagex.runetek4.graphics.raster.SoftwareRenderer;
 import com.jagex.runetek4.ui.component.ComponentList;
 import com.jagex.runetek4.util.system.SignLink;
 import com.jagex.runetek4.util.system.ThreadUtils;
@@ -467,7 +467,7 @@ public abstract class GameShell extends Canvas implements Runnable, FocusListene
 			}
 			getMaxMemory();
 			this.addCanvas();
-			SoftwareRaster.frameBuffer = FrameBuffer.create(canvasHeigth, canvasWidth, canvas);
+			SoftwareRenderer.frameBuffer = FrameBuffer.create(canvasHeigth, canvasWidth, canvas);
 			this.mainInit();
 			timer = Timer.create();
 			while (killtime == 0L || killtime > MonotonicTime.currentTimeMillis()) {

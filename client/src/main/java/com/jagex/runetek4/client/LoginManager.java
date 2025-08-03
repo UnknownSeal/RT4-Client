@@ -1,6 +1,5 @@
 package com.jagex.runetek4.client;
 
-import com.jagex.runetek4.*;
 import com.jagex.runetek4.audio.spatial.AreaSoundManager;
 import com.jagex.runetek4.data.cache.CacheArchive;
 import com.jagex.runetek4.data.cache.media.component.Component;
@@ -10,6 +9,7 @@ import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.core.io.PacketBit;
 import com.jagex.runetek4.entity.entity.NpcList;
 import com.jagex.runetek4.entity.entity.Player;
+import com.jagex.runetek4.entity.entity.PlayerList;
 import com.jagex.runetek4.game.inventory.Inv;
 import com.jagex.runetek4.game.world.WorldLoader;
 import com.jagex.runetek4.graphics.gl.GlRaster;
@@ -17,12 +17,13 @@ import com.jagex.runetek4.graphics.gl.GlRenderer;
 import com.jagex.runetek4.graphics.core.DisplayMode;
 import com.jagex.runetek4.input.Mouse;
 import com.jagex.runetek4.input.MouseCapturer;
+import com.jagex.runetek4.scene.Camera;
 import com.jagex.runetek4.util.string.JString;
 import com.jagex.runetek4.util.string.LocalizedText;
 import com.jagex.runetek4.network.BufferedSocket;
 import com.jagex.runetek4.network.ClientProt;
 import com.jagex.runetek4.network.Protocol;
-import com.jagex.runetek4.graphics.raster.SoftwareRaster;
+import com.jagex.runetek4.graphics.raster.SoftwareRenderer;
 import com.jagex.runetek4.scene.SceneGraph;
 import com.jagex.runetek4.clientscript.ClientScriptRunner;
 import com.jagex.runetek4.ui.sprite.Sprite;
@@ -234,7 +235,7 @@ public class LoginManager {
         if (GlRenderer.enabled) {
             GlRaster.method1177();
         } else {
-            SoftwareRaster.resetBounds();
+            SoftwareRenderer.resetBounds();
         }
         MiniMenu.sortMenuActions();
         if (ClientScriptRunner.menuVisible) {
@@ -265,13 +266,13 @@ public class LoginManager {
                     if (GlRenderer.enabled) {
                         GlRaster.fillRectAlpha(ComponentList.rectangleX[rectIndex], ComponentList.rectangleY[rectIndex], ComponentList.rectangleWidth[rectIndex], ComponentList.rectangleHeight[rectIndex], 16711935, 128);
                     } else {
-                        SoftwareRaster.fillRectAlpha(ComponentList.rectangleX[rectIndex], ComponentList.rectangleY[rectIndex], ComponentList.rectangleWidth[rectIndex], ComponentList.rectangleHeight[rectIndex], 16711935, 128);
+                        SoftwareRenderer.fillRectAlpha(ComponentList.rectangleX[rectIndex], ComponentList.rectangleY[rectIndex], ComponentList.rectangleWidth[rectIndex], ComponentList.rectangleHeight[rectIndex], 16711935, 128);
                     }
                 } else if (ComponentList.rectangleRedraw[rectIndex]) {
                     if (GlRenderer.enabled) {
                         GlRaster.fillRectAlpha(ComponentList.rectangleX[rectIndex], ComponentList.rectangleY[rectIndex], ComponentList.rectangleWidth[rectIndex], ComponentList.rectangleHeight[rectIndex], 16711680, 128);
                     } else {
-                        SoftwareRaster.fillRectAlpha(ComponentList.rectangleX[rectIndex], ComponentList.rectangleY[rectIndex], ComponentList.rectangleWidth[rectIndex], ComponentList.rectangleHeight[rectIndex], 16711680, 128);
+                        SoftwareRenderer.fillRectAlpha(ComponentList.rectangleX[rectIndex], ComponentList.rectangleY[rectIndex], ComponentList.rectangleWidth[rectIndex], ComponentList.rectangleHeight[rectIndex], 16711680, 128);
                     }
                 }
             }

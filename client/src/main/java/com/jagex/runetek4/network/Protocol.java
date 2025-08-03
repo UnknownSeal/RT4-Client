@@ -9,6 +9,7 @@ import com.jagex.runetek4.graphics.animation.SpotAnimEntity;
 import com.jagex.runetek4.audio.core.SoundPlayer;
 import com.jagex.runetek4.audio.spatial.AreaSoundManager;
 import com.jagex.runetek4.audio.streaming.MusicPlayer;
+import com.jagex.runetek4.scene.Camera;
 import com.jagex.runetek4.ui.chat.Chat;
 import com.jagex.runetek4.ui.chat.ClanChat;
 import com.jagex.runetek4.ui.chat.QuickChatPhrase;
@@ -38,6 +39,8 @@ import com.jagex.runetek4.graphics.gl.GlRenderer;
 import com.jagex.runetek4.graphics.core.DisplayMode;
 import com.jagex.runetek4.graphics.font.Fonts;
 import com.jagex.runetek4.input.Mouse;
+import com.jagex.runetek4.ui.component.*;
+import com.jagex.runetek4.ui.social.ClanMember;
 import com.jagex.runetek4.util.string.JString;
 import com.jagex.runetek4.util.string.LocalizedText;
 import com.jagex.runetek4.util.string.WordPack;
@@ -54,9 +57,6 @@ import com.jagex.runetek4.ui.social.IgnoreList;
 import com.jagex.runetek4.ui.sprite.Sprites;
 import com.jagex.runetek4.game.stockmarket.StockMarketManager;
 import com.jagex.runetek4.game.stockmarket.StockMarketOffer;
-import com.jagex.runetek4.ui.component.ComponentList;
-import com.jagex.runetek4.ui.component.MiniMap;
-import com.jagex.runetek4.ui.component.MiniMenu;
 import com.jagex.runetek4.ui.events.ComponentEvent;
 import com.jagex.runetek4.util.data.Base37;
 import com.jagex.runetek4.util.math.MathUtils;
@@ -110,7 +110,7 @@ public class Protocol {
     public static final JString TRADE = JString.parse(":trade:");
 
     @OriginalMember(owner = "runetek4.client!pb", name = "x", descriptor = "[[[I")
-    public static final int[][][] anIntArrayArrayArray18 = new int[4][13][13];
+    public static final int[][][] dynamicRegionData = new int[4][13][13];
 
     @OriginalMember(owner = "client!fc", name = "f", descriptor = "Lclient!na;")
     public static final JString IMG0 = JString.parse("<img=0>");
@@ -213,62 +213,62 @@ public class Protocol {
 
     @OriginalMember(owner = "runetek4.client!dc", name = "b", descriptor = "(Z)V")
     public static void readPlayerInfo() {
-        @Pc(6) int local6 = inboundBuffer.gBit(8);
+        @Pc(6) int newPlayerCount = inboundBuffer.gBit(8);
 
-        if (PlayerList.playerCount > local6) {
-            for (int inxed = local6; inxed < PlayerList.playerCount; inxed++) {
-                removedIds[removedCount++] = PlayerList.playerIds[inxed];
+        if (PlayerList.playerCount > newPlayerCount) {
+            for (int index = newPlayerCount; index < PlayerList.playerCount; index++) {
+                removedIds[removedCount++] = PlayerList.playerIds[index];
             }
         }
-        if (local6 > PlayerList.playerCount) {
+        if (newPlayerCount > PlayerList.playerCount) {
             throw new RuntimeException("gppov1");
         }
 
         PlayerList.playerCount = 0;
 
-        for (int index = 0; index < local6; index++) {
-            @Pc(75) int local75 = PlayerList.playerIds[index];
-            @Pc(79) Player local79 = PlayerList.players[local75];
-            @Pc(84) int local84 = inboundBuffer.gBit(1);
-            if (local84 == 0) {
-                PlayerList.playerIds[PlayerList.playerCount++] = local75;
-                local79.lastSeenLoop = Client.loop;
+        for (int index = 0; index < newPlayerCount; index++) {
+            @Pc(75) int playerId = PlayerList.playerIds[index];
+            @Pc(79) Player player = PlayerList.players[playerId];
+            @Pc(84) int hasUpdate = inboundBuffer.gBit(1);
+            if (hasUpdate == 0) {
+                PlayerList.playerIds[PlayerList.playerCount++] = playerId;
+                player.lastSeenLoop = Client.loop;
             } else {
-                @Pc(107) int local107 = inboundBuffer.gBit(2);
-                if (local107 == 0) {
-                    PlayerList.playerIds[PlayerList.playerCount++] = local75;
-                    local79.lastSeenLoop = Client.loop;
-                    extendedIds[extendedCount++] = local75;
+                @Pc(107) int updateType = inboundBuffer.gBit(2);
+                if (updateType == 0) {
+                    PlayerList.playerIds[PlayerList.playerCount++] = playerId;
+                    player.lastSeenLoop = Client.loop;
+                    extendedIds[extendedCount++] = playerId;
                 } else {
                     @Pc(153) int local153;
                     @Pc(163) int local163;
-                    if (local107 == 1) {
-                        PlayerList.playerIds[PlayerList.playerCount++] = local75;
-                        local79.lastSeenLoop = Client.loop;
+                    if (updateType == 1) {
+                        PlayerList.playerIds[PlayerList.playerCount++] = playerId;
+                        player.lastSeenLoop = Client.loop;
                         local153 = inboundBuffer.gBit(3);
-                        local79.move(1, local153);
+                        player.move(1, local153);
                         local163 = inboundBuffer.gBit(1);
                         if (local163 == 1) {
-                            extendedIds[extendedCount++] = local75;
+                            extendedIds[extendedCount++] = playerId;
                         }
-                    } else if (local107 == 2) {
-                        PlayerList.playerIds[PlayerList.playerCount++] = local75;
-                        local79.lastSeenLoop = Client.loop;
+                    } else if (updateType == 2) {
+                        PlayerList.playerIds[PlayerList.playerCount++] = playerId;
+                        player.lastSeenLoop = Client.loop;
                         if (inboundBuffer.gBit(1) == 1) {
                             local153 = inboundBuffer.gBit(3);
-                            local79.move(2, local153);
+                            player.move(2, local153);
                             local163 = inboundBuffer.gBit(3);
-                            local79.move(2, local163);
+                            player.move(2, local163);
                         } else {
                             local153 = inboundBuffer.gBit(3);
-                            local79.move(0, local153);
+                            player.move(0, local153);
                         }
                         local153 = inboundBuffer.gBit(1);
                         if (local153 == 1) {
-                            extendedIds[extendedCount++] = local75;
+                            extendedIds[extendedCount++] = playerId;
                         }
-                    } else if (local107 == 3) {
-                        removedIds[removedCount++] = local75;
+                    } else if (updateType == 3) {
+                        removedIds[removedCount++] = playerId;
                     }
                 }
             }
@@ -284,8 +284,8 @@ public class Protocol {
             return true;
         } catch (@Pc(19) Exception exception) {
             @Pc(61) String message = "T2 - " + opcode + "," + opcode3 + "," + opcode4 + " - " + packetSize + "," + (Camera.originX + PlayerList.self.movementQueueX[0]) + "," + (PlayerList.self.movementQueueZ[0] + Camera.originZ) + " - ";
-            for (@Pc(63) int local63 = 0; local63 < packetSize && local63 < 50; local63++) {
-                message = message + inboundBuffer.data[local63] + ",";
+            for (@Pc(63) int byteIndex = 0; byteIndex < packetSize && byteIndex < 50; byteIndex++) {
+                message = message + inboundBuffer.data[byteIndex] + ",";
             }
             TracingException.report(message, exception);
             Game.processLogout();
@@ -368,7 +368,7 @@ public class Protocol {
         @Pc(275) long username;
         @Pc(262) boolean ignored;
         @Pc(277) int i;
-        @Pc(506) JString local506;
+        @Pc(506) JString worldName;
         if (opcode == 70) {
             @Pc(245) JString message = inboundBuffer.gjstr();
             if (message.endsWith(TRADEREQ)) {
@@ -395,8 +395,8 @@ public class Protocol {
                     }
                 }
                 if (!ignored && Player.inTutorialIsland == 0) {
-                    local506 = message.substring(message.length() - 9, message.indexOf(JString.COLON_SIGN) + 1);
-                    Chat.addMessage(argTypes, 8, local506);
+                    worldName = message.substring(message.length() - 9, message.indexOf(JString.COLON_SIGN) + 1);
+                    Chat.addMessage(argTypes, 8, worldName);
                 }
             } else if (message.endsWith(ASSISTREQ)) {
                 ignored = false;
@@ -474,8 +474,8 @@ public class Protocol {
                     }
                 }
                 if (!ignored && Player.inTutorialIsland == 0) {
-                    local506 = message.substring(message.length() - 9, message.indexOf(JString.COLON_SIGN) + 1);
-                    Chat.addMessage(argTypes, 21, local506);
+                    worldName = message.substring(message.length() - 9, message.indexOf(JString.COLON_SIGN) + 1);
+                    Chat.addMessage(argTypes, 21, worldName);
                 }
             } else {
                 Chat.addMessage(JString.EMPTY, 0, message);
@@ -483,14 +483,14 @@ public class Protocol {
             opcode = -1;
             return true;
         }
-        @Pc(786) int xp;
-        @Pc(790) JString local790;
+        @Pc(786) int param1;
+        @Pc(790) JString messageText;
         if (opcode == 123) {
             ii = inboundBuffer.g2le();
             int verifyID = inboundBuffer.g2sub();
-            local790 = inboundBuffer.gjstr();
+            messageText = inboundBuffer.gjstr();
             if (setVerifyID(verifyID)) {
-                DelayedStateChange.method3498(local790, ii);
+                DelayedStateChange.method3498(messageText, ii);
             }
             opcode = -1;
             return true;
@@ -511,29 +511,29 @@ public class Protocol {
             @Pc(864) int world;
             if (opcode == 220) {
                 ii = inboundBuffer.p4rme();
-                xp = inboundBuffer.g2le();
+                param1 = inboundBuffer.g2le();
                 int verifyID = inboundBuffer.g2();
                 if (setVerifyID(verifyID)) {
-                    DelayedStateChange.method3938(xp, ii);
+                    DelayedStateChange.method3938(param1, ii);
                 }
                 opcode = -1;
                 return true;
             }
-            @Pc(884) long username2;
-            @Pc(908) int local908;
+            @Pc(884) long senderName;
+            @Pc(908) int chatType;
             @Pc(916) int local916;
-            @Pc(899) long local899;
-            @Pc(904) long local904;
+            @Pc(899) long messageId1;
+            @Pc(904) long messageId2;
             if (opcode == 81) {
-                username2 = inboundBuffer.g8();
+                senderName = inboundBuffer.g8();
                 inboundBuffer.g1s();
                 username = inboundBuffer.g8();
-                local899 = inboundBuffer.g2();
-                local904 = inboundBuffer.g3();
-                local908 = inboundBuffer.g1();
+                messageId1 = inboundBuffer.g2();
+                messageId2 = inboundBuffer.g3();
+                chatType = inboundBuffer.g1();
                 @Pc(910) boolean local910 = false;
                 local916 = inboundBuffer.g2();
-                @Pc(922) long local922 = (local899 << 32) + local904;
+                @Pc(922) long local922 = (messageId1 << 32) + messageId2;
                 @Pc(924) int local924 = 0;
                 label1320: while (true) {
                     if (local924 < 100) {
@@ -544,9 +544,9 @@ public class Protocol {
                         local910 = true;
                         break;
                     }
-                    if (local908 <= 1) {
+                    if (chatType <= 1) {
                         for (local924 = 0; local924 < IgnoreList.ignoreCount; local924++) {
-                            if (IgnoreList.encodedIgnores[local924] == username2) {
+                            if (IgnoreList.encodedIgnores[local924] == senderName) {
                                 local910 = true;
                                 break label1320;
                             }
@@ -558,24 +558,24 @@ public class Protocol {
                     Chat.recentMessages[Chat.messageCounter] = local922;
                     Chat.messageCounter = (Chat.messageCounter + 1) % 100;
                     @Pc(999) JString local999 = QuickChatPhraseTypeList.get(local916).decodeMessage(inboundBuffer);
-                    if (local908 == 2 || local908 == 3) {
-                        Chat.add(local916, 20, local999, Base37.decode37(username).toTitleCase(), JString.concatenate(new JString[] { IMG1, Base37.decode37(username2).toTitleCase() }));
-                    } else if (local908 == 1) {
-                        Chat.add(local916, 20, local999, Base37.decode37(username).toTitleCase(), JString.concatenate(new JString[] { IMG0, Base37.decode37(username2).toTitleCase() }));
+                    if (chatType == 2 || chatType == 3) {
+                        Chat.add(local916, 20, local999, Base37.decode37(username).toTitleCase(), JString.concatenate(new JString[] { IMG1, Base37.decode37(senderName).toTitleCase() }));
+                    } else if (chatType == 1) {
+                        Chat.add(local916, 20, local999, Base37.decode37(username).toTitleCase(), JString.concatenate(new JString[] { IMG0, Base37.decode37(senderName).toTitleCase() }));
                     } else {
-                        Chat.add(local916, 20, local999, Base37.decode37(username).toTitleCase(), Base37.decode37(username2).toTitleCase());
+                        Chat.add(local916, 20, local999, Base37.decode37(username).toTitleCase(), Base37.decode37(senderName).toTitleCase());
                     }
                 }
                 opcode = -1;
                 return true;
             }
             @Pc(1146) int count;
-            @Pc(1160) int local1160;
+            @Pc(1160) int chatFlags;
             @Pc(1245) boolean local1245;
             if (opcode == 55) {
                 ClanChat.transmitAt = ComponentList.transmitTimer;
-                username2 = inboundBuffer.g8();
-                if (username2 == 0L) {
+                senderName = inboundBuffer.g8();
+                if (senderName == 0L) {
                     ClanChat.owner = null;
                     opcode = -1;
                     ClanChat.name = null;
@@ -585,7 +585,7 @@ public class Protocol {
                 }
                 username = inboundBuffer.g8();
                 ClanChat.name = Base37.decode37(username);
-                ClanChat.owner = Base37.decode37(username2);
+                ClanChat.owner = Base37.decode37(senderName);
                 ClanChat.minKick = inboundBuffer.g1s();
                 count = inboundBuffer.g1();
                 if (count == 255) {
@@ -594,22 +594,22 @@ public class Protocol {
                 }
                 ClanChat.size = count;
                 @Pc(1158) ClanMember[] local1158 = new ClanMember[100];
-                for (local1160 = 0; local1160 < ClanChat.size; local1160++) {
-                    local1158[local1160] = new ClanMember();
-                    local1158[local1160].nodeId = inboundBuffer.g8();
-                    local1158[local1160].username = Base37.decode37(local1158[local1160].nodeId);
-                    local1158[local1160].world = inboundBuffer.g2();
-                    local1158[local1160].rank = inboundBuffer.g1s();
-                    local1158[local1160].worldName = inboundBuffer.gjstr();
-                    if (Player.name37 == local1158[local1160].nodeId) {
-                        ClanChat.rank = local1158[local1160].rank;
+                for (chatFlags = 0; chatFlags < ClanChat.size; chatFlags++) {
+                    local1158[chatFlags] = new ClanMember();
+                    local1158[chatFlags].nodeId = inboundBuffer.g8();
+                    local1158[chatFlags].username = Base37.decode37(local1158[chatFlags].nodeId);
+                    local1158[chatFlags].world = inboundBuffer.g2();
+                    local1158[chatFlags].rank = inboundBuffer.g1s();
+                    local1158[chatFlags].worldName = inboundBuffer.gjstr();
+                    if (Player.name37 == local1158[chatFlags].nodeId) {
+                        ClanChat.rank = local1158[chatFlags].rank;
                     }
                 }
-                local908 = ClanChat.size;
-                while (local908 > 0) {
+                chatType = ClanChat.size;
+                while (chatType > 0) {
                     local1245 = true;
-                    local908--;
-                    for (local916 = 0; local916 < local908; local916++) {
+                    chatType--;
+                    for (local916 = 0; local916 < chatType; local916++) {
                         if (local1158[local916].username.method3139(local1158[local916 + 1].username) > 0) {
                             local1245 = false;
                             @Pc(1279) ClanMember local1279 = local1158[local916];
@@ -657,7 +657,7 @@ public class Protocol {
                     if (ii == 65535) {
                         ii = -1;
                     }
-                    xp = inboundBuffer.g1();
+                    param1 = inboundBuffer.g1();
                     world = inboundBuffer.g1();
                     local1409 = inboundBuffer.gjstr();
                     if (world >= 1 && world <= 8) {
@@ -666,14 +666,14 @@ public class Protocol {
                         }
                         Player.options[world - 1] = local1409;
                         Player.cursors[world - 1] = ii;
-                        Player.secondaryOptions[world - 1] = xp == 0;
+                        Player.secondaryOptions[world - 1] = param1 == 0;
                     }
                     opcode = -1;
                     return true;
                 } else if (opcode == 226) {
                     ii = inboundBuffer.g4();
-                    xp = inboundBuffer.g2sub();
-                    VarpDomain.setVarpServer(ii, xp);
+                    param1 = inboundBuffer.g2sub();
+                    VarpDomain.setVarpServer(ii, param1);
                     opcode = -1;
                     return true;
                 } else if (opcode == 21) {
@@ -706,18 +706,18 @@ public class Protocol {
                     return true;
                 } else if (opcode == 69) {
                     int verifyID = inboundBuffer.g2leadd();
-                    xp = inboundBuffer.g4();
+                    param1 = inboundBuffer.g4();
                     world = inboundBuffer.g2sub();
                     if (setVerifyID(verifyID)) {
-                        DelayedStateChange.updateVarC(world, xp);
+                        DelayedStateChange.updateVarC(world, param1);
                     }
                     opcode = -1;
                     return true;
                 } else if (opcode == 141) {
-                    username2 = inboundBuffer.g8();
+                    senderName = inboundBuffer.g8();
                     world = inboundBuffer.g2();
                     local1409 = QuickChatPhraseTypeList.get(world).decodeMessage(inboundBuffer);
-                    Chat.add(world, 19, local1409, null, Base37.decode37(username2).toTitleCase());
+                    Chat.add(world, 19, local1409, null, Base37.decode37(senderName).toTitleCase());
                     opcode = -1;
                     return true;
                 } else if (opcode == 169) {
@@ -732,22 +732,22 @@ public class Protocol {
                     return true;
                 } else if (opcode == 125) {
                     int verifyID = inboundBuffer.g2();
-                    xp = inboundBuffer.g1();
+                    param1 = inboundBuffer.g1();
                     world = inboundBuffer.g1();
                     slot = inboundBuffer.g2();
                     count = inboundBuffer.g1();
                     i = inboundBuffer.g1();
                     if (setVerifyID(verifyID)) {
-                        Camera.setCameraLookAtTarget(slot, world, count, xp, i);
+                        Camera.setCameraLookAtTarget(slot, world, count, param1, i);
                     }
                     opcode = -1;
                     return true;
                 } else if (opcode == 36) {
                     ii = inboundBuffer.p4rme();
-                    xp = inboundBuffer.g2les();
+                    param1 = inboundBuffer.g2les();
                     int verifyID = inboundBuffer.g2sub();
                     if (setVerifyID(verifyID)) {
-                        DelayedStateChange.method3893(ii, xp);
+                        DelayedStateChange.method3893(ii, param1);
                     }
                     opcode = -1;
                     return true;
@@ -756,7 +756,7 @@ public class Protocol {
                     @Pc(1804) ServerActiveProperties local1804;
                     if (opcode == 9) {
                         ii = inboundBuffer.g2leadd();
-                        xp = inboundBuffer.g4me();
+                        param1 = inboundBuffer.g4me();
                         int verifyID = inboundBuffer.g2sub();
                         slot = inboundBuffer.g2le();
                         if (slot == 65535) {
@@ -768,17 +768,17 @@ public class Protocol {
                         }
                         if (setVerifyID(verifyID)) {
                             for (i = count; i <= slot; i++) {
-                                local904 = (long) i + ((long) xp << 32);
-                                local1804 = (ServerActiveProperties) ComponentList.properties.get(local904);
+                                messageId2 = (long) i + ((long) param1 << 32);
+                                local1804 = (ServerActiveProperties) ComponentList.properties.get(messageId2);
                                 if (local1804 != null) {
                                     local1814 = new ServerActiveProperties(local1804.events, ii);
                                     local1804.unlink();
                                 } else if (i == -1) {
-                                    local1814 = new ServerActiveProperties(ComponentList.getComponent(xp).properties.events, ii);
+                                    local1814 = new ServerActiveProperties(ComponentList.getComponent(param1).properties.events, ii);
                                 } else {
                                     local1814 = new ServerActiveProperties(0, ii);
                                 }
-                                ComponentList.properties.put(local1814, local904);
+                                ComponentList.properties.put(local1814, messageId2);
                             }
                         }
                         opcode = -1;
@@ -787,7 +787,7 @@ public class Protocol {
                     @Pc(1986) int j;
                     if (opcode == 56) {
                         ii = inboundBuffer.g2();
-                        xp = inboundBuffer.g2le();
+                        param1 = inboundBuffer.g2le();
                         world = inboundBuffer.g4rme();
                         slot = inboundBuffer.g2leadd();
                         if (world >> 30 == 0) {
@@ -811,7 +811,7 @@ public class Protocol {
                                         if (local1894.spotAnimStart > Client.loop) {
                                             local1894.spotanimId = -1;
                                         }
-                                        local1894.spotAnimY = xp;
+                                        local1894.spotAnimY = param1;
                                         local1894.anInt3418 = 1;
                                         if (local1894.spotAnimId != -1 && Client.loop == local1894.spotAnimStart) {
                                             j = SpotAnimTypeList.get(local1894.spotAnimId).seqId;
@@ -842,7 +842,7 @@ public class Protocol {
                                     }
                                     if (local1245) {
                                         local2033.spotAnimStart = ii + Client.loop;
-                                        local2033.spotAnimY = xp;
+                                        local2033.spotAnimY = param1;
                                         local2033.spotAnimId = slot;
                                         if (local2033.spotAnimId == 65535) {
                                             local2033.spotAnimId = -1;
@@ -868,11 +868,11 @@ public class Protocol {
                         } else {
                             count = world >> 28 & 0x3;
                             i = (world >> 14 & 0x3FFF) - Camera.originX;
-                            local1160 = (world & 0x3FFF) - Camera.originZ;
-                            if (i >= 0 && local1160 >= 0 && i < 104 && local1160 < 104) {
-                                local1160 = local1160 * 128 + 64;
+                            chatFlags = (world & 0x3FFF) - Camera.originZ;
+                            if (i >= 0 && chatFlags >= 0 && i < 104 && chatFlags < 104) {
+                                chatFlags = chatFlags * 128 + 64;
                                 i = i * 128 + 64;
-                                @Pc(2241) SpotAnim local2241 = new SpotAnim(slot, count, i, local1160, SceneGraph.getTileHeight(count, i, local1160) - xp, ii, Client.loop);
+                                @Pc(2241) SpotAnim local2241 = new SpotAnim(slot, count, i, chatFlags, SceneGraph.getTileHeight(count, i, chatFlags) - param1, ii, Client.loop);
                                 SceneGraph.spotanims.addTail(new SpotAnimEntity(local2241));
                             }
                         }
@@ -892,13 +892,13 @@ public class Protocol {
                         // UPDATE_STAT
                         ComponentList.redrawActiveInterfaces();
                         ii = inboundBuffer.g1add();
-                        xp = inboundBuffer.g4rme();
+                        param1 = inboundBuffer.g4rme();
                         world = inboundBuffer.g1();
-                        PlayerSkillXpTable.experience[world] = xp;
+                        PlayerSkillXpTable.experience[world] = param1;
                         PlayerSkillXpTable.boostedLevels[world] = ii;
                         PlayerSkillXpTable.baseLevels[world] = 1;
                         for (slot = 0; slot < 98; slot++) {
-                            if (PlayerSkillXpTable.xpLevelLookup[slot] <= xp) {
+                            if (PlayerSkillXpTable.xpLevelLookup[slot] <= param1) {
                                 PlayerSkillXpTable.baseLevels[world] = slot + 2;
                             }
                         }
@@ -911,9 +911,9 @@ public class Protocol {
                         return true;
                     } else if (opcode == 149) {
                         int verifyID = inboundBuffer.g2();
-                        xp = inboundBuffer.g4();
+                        param1 = inboundBuffer.g4();
                         if (setVerifyID(verifyID)) {
-                            @Pc(2441) SubInterface local2441 = (SubInterface) ComponentList.openInterfaces.get((long) xp);
+                            @Pc(2441) SubInterface local2441 = (SubInterface) ComponentList.openInterfaces.get((long) param1);
                             if (local2441 != null) {
                                 ComponentList.closeInterface(true, local2441);
                             }
@@ -954,10 +954,10 @@ public class Protocol {
                         SceneGraph.currentChunkX = inboundBuffer.g1();
                         SceneGraph.currentChunkZ = inboundBuffer.p1neg();
                         for (ii = SceneGraph.currentChunkX; ii < SceneGraph.currentChunkX + 8; ii++) {
-                            for (xp = SceneGraph.currentChunkZ; xp < SceneGraph.currentChunkZ + 8; xp++) {
-                                if (SceneGraph.objStacks[Player.plane][ii][xp] != null) {
-                                    SceneGraph.objStacks[Player.plane][ii][xp] = null;
-                                    spawnGroundObject(xp, ii);
+                            for (param1 = SceneGraph.currentChunkZ; param1 < SceneGraph.currentChunkZ + 8; param1++) {
+                                if (SceneGraph.objStacks[Player.plane][ii][param1] != null) {
+                                    SceneGraph.objStacks[Player.plane][ii][param1] = null;
+                                    spawnGroundObject(param1, ii);
                                 }
                             }
                         }
@@ -996,10 +996,10 @@ public class Protocol {
                         return true;
                     } else if (opcode == 13) {
                         ii = inboundBuffer.g1_alt3();
-                        xp = inboundBuffer.g1add();
+                        param1 = inboundBuffer.g1add();
                         world = inboundBuffer.g1();
-                        Player.plane = xp >> 1;
-                        PlayerList.self.teleport(ii, (xp & 0x1) == 1, world);
+                        Player.plane = param1 >> 1;
+                        PlayerList.self.teleport(ii, (param1 & 0x1) == 1, world);
                         opcode = -1;
                         return true;
                     } else {
@@ -1007,21 +1007,21 @@ public class Protocol {
                         @Pc(3038) JString local3038;
                         @Pc(3020) JString local3020;
                         if (opcode == 62) {
-                            username2 = inboundBuffer.g8();
+                            senderName = inboundBuffer.g8();
                             world = inboundBuffer.g2();
                             slot = inboundBuffer.g1();
                             ignored = true;
-                            if (username2 < 0L) {
-                                username2 &= Long.MAX_VALUE;
+                            if (senderName < 0L) {
+                                senderName &= Long.MAX_VALUE;
                                 ignored = false;
                             }
-                            local506 = JString.EMPTY;
+                            worldName = JString.EMPTY;
                             if (world > 0) {
-                                local506 = inboundBuffer.gjstr();
+                                worldName = inboundBuffer.gjstr();
                             }
-                            @Pc(2834) JString displayName = Base37.decode37(username2).toTitleCase();
+                            @Pc(2834) JString displayName = Base37.decode37(senderName).toTitleCase();
                             for (j = 0; j < FriendList.friendCount; j++) {
-                                if (username2 == FriendList.encodedUsernames[j]) {
+                                if (senderName == FriendList.encodedUsernames[j]) {
                                     if (world != FriendList.friendWorlds[j]) {
                                         FriendList.friendWorlds[j] = world;
                                         if (world > 0) {
@@ -1031,7 +1031,7 @@ public class Protocol {
                                             Chat.addMessage(JString.EMPTY, 5, JString.concatenate(new JString[] { displayName, LocalizedText.FRIENDLOGOUT}));
                                         }
                                     }
-                                    FriendList.worldNames[j] = local506;
+                                    FriendList.worldNames[j] = worldName;
                                     FriendList.ranks[j] = slot;
                                     displayName = null;
                                     FriendList.friendGame[j] = ignored;
@@ -1039,20 +1039,20 @@ public class Protocol {
                                 }
                             }
                             if (displayName != null && FriendList.friendCount < 200) {
-                                FriendList.encodedUsernames[FriendList.friendCount] = username2;
+                                FriendList.encodedUsernames[FriendList.friendCount] = senderName;
                                 FriendList.friendUsernames[FriendList.friendCount] = displayName;
                                 FriendList.friendWorlds[FriendList.friendCount] = world;
-                                FriendList.worldNames[FriendList.friendCount] = local506;
+                                FriendList.worldNames[FriendList.friendCount] = worldName;
                                 FriendList.ranks[FriendList.friendCount] = slot;
                                 FriendList.friendGame[FriendList.friendCount] = ignored;
                                 FriendList.friendCount++;
                             }
                             FriendList.transmitAt = ComponentList.transmitTimer;
-                            local908 = FriendList.friendCount;
-                            while (local908 > 0) {
-                                local908--;
+                            chatType = FriendList.friendCount;
+                            while (chatType > 0) {
+                                chatType--;
                                 @Pc(2961) boolean local2961 = true;
-                                for (local916 = 0; local916 < local908; local916++) {
+                                for (local916 = 0; local916 < chatType; local916++) {
                                     if (FriendList.friendWorlds[local916] != Player.worldId && Player.worldId == FriendList.friendWorlds[local916 + 1] || FriendList.friendWorlds[local916] == 0 && FriendList.friendWorlds[local916 + 1] != 0) {
                                         local2961 = false;
                                         local3002 = FriendList.friendWorlds[local916];
@@ -1101,24 +1101,24 @@ public class Protocol {
                             return true;
                         } else if (opcode == 154) {
                             int verifyID = inboundBuffer.g2();
-                            xp = inboundBuffer.g1();
+                            param1 = inboundBuffer.g1();
                             world = inboundBuffer.g1();
                             slot = inboundBuffer.g2();
                             count = inboundBuffer.g1();
                             i = inboundBuffer.g1();
                             if (setVerifyID(verifyID)) {
-                                Camera.setCameraTargetPosition(true, count, slot, i, world, xp);
+                                Camera.setCameraTargetPosition(true, count, slot, i, world, param1);
                             }
                             opcode = -1;
                             return true;
                         } else if (opcode == 247) {
-                            username2 = inboundBuffer.g8();
+                            senderName = inboundBuffer.g8();
                             username = inboundBuffer.g2();
-                            local899 = inboundBuffer.g3();
-                            local1160 = inboundBuffer.g1();
+                            messageId1 = inboundBuffer.g3();
+                            chatFlags = inboundBuffer.g1();
                             j = inboundBuffer.g2();
                             @Pc(3263) boolean local3263 = false;
-                            @Pc(3270) long local3270 = (username << 32) + local899;
+                            @Pc(3270) long local3270 = (username << 32) + messageId1;
                             @Pc(3272) int local3272 = 0;
                             label1402: while (true) {
                                 if (local3272 < 100) {
@@ -1129,9 +1129,9 @@ public class Protocol {
                                     local3263 = true;
                                     break;
                                 }
-                                if (local1160 <= 1) {
+                                if (chatFlags <= 1) {
                                     for (local3272 = 0; local3272 < IgnoreList.ignoreCount; local3272++) {
-                                        if (username2 == IgnoreList.encodedIgnores[local3272]) {
+                                        if (senderName == IgnoreList.encodedIgnores[local3272]) {
                                             local3263 = true;
                                             break label1402;
                                         }
@@ -1143,31 +1143,31 @@ public class Protocol {
                                 Chat.recentMessages[Chat.messageCounter] = local3270;
                                 Chat.messageCounter = (Chat.messageCounter + 1) % 100;
                                 local3020 = QuickChatPhraseTypeList.get(j).decodeMessage(inboundBuffer);
-                                if (local1160 == 2) {
-                                    Chat.add(j, 18, local3020, null, JString.concatenate(new JString[] { IMG1, Base37.decode37(username2).toTitleCase() }));
-                                } else if (local1160 == 1) {
-                                    Chat.add(j, 18, local3020, null, JString.concatenate(new JString[] { IMG0, Base37.decode37(username2).toTitleCase() }));
+                                if (chatFlags == 2) {
+                                    Chat.add(j, 18, local3020, null, JString.concatenate(new JString[] { IMG1, Base37.decode37(senderName).toTitleCase() }));
+                                } else if (chatFlags == 1) {
+                                    Chat.add(j, 18, local3020, null, JString.concatenate(new JString[] { IMG0, Base37.decode37(senderName).toTitleCase() }));
                                 } else {
-                                    Chat.add(j, 18, local3020, null, Base37.decode37(username2).toTitleCase());
+                                    Chat.add(j, 18, local3020, null, Base37.decode37(senderName).toTitleCase());
                                 }
                             }
                             opcode = -1;
                             return true;
                         } else {
-                            @Pc(3456) SubInterface local3456;
+                            @Pc(3456) SubInterface oldSubInterface;
                             if (opcode == 176) {
                                 ii = inboundBuffer.g4rme();
                                 int verifyID = inboundBuffer.g2sub();
                                 world = inboundBuffer.g4rme();
                                 if (setVerifyID(verifyID)) {
-                                    @Pc(3449) SubInterface local3449 = (SubInterface) ComponentList.openInterfaces.get((long) ii);
-                                    local3456 = (SubInterface) ComponentList.openInterfaces.get((long) world);
-                                    if (local3456 != null) {
-                                        ComponentList.closeInterface(local3449 == null || local3456.interfaceId != local3449.interfaceId, local3456);
+                                    @Pc(3449) SubInterface newSubInterface = (SubInterface) ComponentList.openInterfaces.get((long) ii);
+                                    oldSubInterface = (SubInterface) ComponentList.openInterfaces.get((long) world);
+                                    if (oldSubInterface != null) {
+                                        ComponentList.closeInterface(newSubInterface == null || oldSubInterface.interfaceId != newSubInterface.interfaceId, oldSubInterface);
                                     }
-                                    if (local3449 != null) {
-                                        local3449.unlink();
-                                        ComponentList.openInterfaces.put(local3449, (long) world);
+                                    if (newSubInterface != null) {
+                                        newSubInterface.unlink();
+                                        ComponentList.openInterfaces.put(newSubInterface, (long) world);
                                     }
                                     @Pc(3490) Component local3490 = ComponentList.getComponent(ii);
                                     if (local3490 != null) {
@@ -1186,17 +1186,17 @@ public class Protocol {
                                 return true;
                             } else if (opcode == 27) {
                                 int verifyID = inboundBuffer.g2();
-                                xp = inboundBuffer.g1();
+                                param1 = inboundBuffer.g1();
                                 world = inboundBuffer.g1();
                                 slot = inboundBuffer.g1();
                                 count = inboundBuffer.g1();
                                 i = inboundBuffer.g2();
                                 if (setVerifyID(verifyID)) {
-                                    Camera.cameraModifierEnabled[xp] = true;
-                                    Camera.cameraModifierJitter[xp] = world;
-                                    Camera.cameraAmplitude[xp] = slot;
-                                    Camera.cameraFrequency[xp] = count;
-                                    cameraModifierCycle[xp] = i;
+                                    Camera.cameraModifierEnabled[param1] = true;
+                                    Camera.cameraModifierJitter[param1] = world;
+                                    Camera.cameraAmplitude[param1] = slot;
+                                    Camera.cameraFrequency[param1] = count;
+                                    cameraModifierCycle[param1] = i;
                                 }
                                 opcode = -1;
                                 return true;
@@ -1220,10 +1220,10 @@ public class Protocol {
                                 return true;
                             } else if (opcode == 65) {
                                 int verifyID = inboundBuffer.g2le();
-                                xp = inboundBuffer.p1neg();
+                                param1 = inboundBuffer.p1neg();
                                 world = inboundBuffer.g2leadd();
                                 if (setVerifyID(verifyID)) {
-                                    DelayedStateChange.updateVarC(world, xp);
+                                    DelayedStateChange.updateVarC(world, param1);
                                 }
                                 opcode = -1;
                                 return true;
@@ -1248,11 +1248,11 @@ public class Protocol {
                                 return true;
                             } else if (opcode == 102) {
                                 ii = inboundBuffer.g2le();
-                                xp = inboundBuffer.g1_alt3();
+                                param1 = inboundBuffer.g1_alt3();
                                 world = inboundBuffer.g2();
                                 @Pc(3766) Npc local3766 = NpcList.npcs[ii];
                                 if (local3766 != null) {
-                                    animateNpc(xp, world, local3766);
+                                    animateNpc(param1, world, local3766);
                                 }
                                 opcode = -1;
                                 return true;
@@ -1264,9 +1264,9 @@ public class Protocol {
                                 opcode = -1;
                                 return true;
                             } else if (opcode == 71) {
-                                username2 = inboundBuffer.g8();
-                                local790 = Font.escape(formatChatMessage(inboundBuffer).encodeMessage());
-                                Chat.addMessage(Base37.decode37(username2).toTitleCase(), 6, local790);
+                                senderName = inboundBuffer.g8();
+                                messageText = Font.escape(formatChatMessage(inboundBuffer).encodeMessage());
+                                Chat.addMessage(Base37.decode37(senderName).toTitleCase(), 6, messageText);
                                 opcode = -1;
                                 return true;
                             } else if (opcode == 42) {
@@ -1287,19 +1287,19 @@ public class Protocol {
                                 return true;
                             } else if (opcode == 111) {
                                 int verifyID = inboundBuffer.g2sub();
-                                xp = inboundBuffer.p4rme();
+                                param1 = inboundBuffer.p4rme();
                                 world = inboundBuffer.g2leadd();
                                 slot = inboundBuffer.g2le();
                                 count = inboundBuffer.g2leadd();
                                 if (setVerifyID(verifyID)) {
-                                    DelayedStateChange.updateComponentModel(world, 7, xp, slot << 16 | count);
+                                    DelayedStateChange.updateComponentModel(world, 7, param1, slot << 16 | count);
                                 }
                                 opcode = -1;
                                 return true;
                             } else if (opcode == 37) {
                                 ii = inboundBuffer.g1add();
-                                xp = inboundBuffer.g2le();
-                                VarpDomain.setVarbitServer(ii, xp);
+                                param1 = inboundBuffer.g2le();
+                                VarpDomain.setVarbitServer(ii, param1);
                                 opcode = -1;
                                 return true;
                             } else if (opcode == 155) {
@@ -1334,7 +1334,7 @@ public class Protocol {
                             } else if (opcode == 217) {
                                 ii = inboundBuffer.g1();
                                 @Pc(4084) MapMarker local4084 = new MapMarker();
-                                xp = ii >> 6;
+                                param1 = ii >> 6;
                                 local4084.type = ii & 0x3F;
                                 local4084.anInt4048 = inboundBuffer.g1();
                                 if (local4084.anInt4048 >= 0 && local4084.anInt4048 < Sprites.headhints.length) {
@@ -1371,7 +1371,7 @@ public class Protocol {
                                     if (local4084.playerModelId == 65535) {
                                         local4084.playerModelId = -1;
                                     }
-                                    MiniMap.hintMapMarkers[xp] = local4084;
+                                    MiniMap.hintMapMarkers[param1] = local4084;
                                 }
                                 opcode = -1;
                                 return true;
@@ -1391,48 +1391,48 @@ public class Protocol {
                                 return true;
                             } else if (opcode == 119) {
                                 int verifyID = inboundBuffer.g2sub();
-                                xp = inboundBuffer.g4me();
+                                param1 = inboundBuffer.g4me();
                                 world = inboundBuffer.g2s();
                                 slot = inboundBuffer.g2sadd();
                                 if (setVerifyID(verifyID)) {
-                                    DelayedStateChange.method4666(world, xp, slot);
+                                    DelayedStateChange.method4666(world, param1, slot);
                                 }
                                 opcode = -1;
                                 return true;
                             } else if (opcode == 235) {
                                 ii = inboundBuffer.g1_alt3();
-                                xp = ii >> 2;
+                                param1 = ii >> 2;
                                 world = ii & 0x3;
-                                slot = Loc.LAYERS[xp];
+                                slot = Loc.LAYERS[param1];
                                 count = inboundBuffer.g2();
                                 i = inboundBuffer.g4();
                                 if (count == 65535) {
                                     count = -1;
                                 }
-                                local908 = i & 0x3FFF;
+                                chatType = i & 0x3FFF;
                                 j = i >> 14 & 0x3FFF;
                                 j -= Camera.originX;
-                                local908 -= Camera.originZ;
-                                local1160 = i >> 28 & 0x3;
-                                SceneGraph.attachLocToTile(local1160, world, xp, local908, slot, j, count);
+                                chatType -= Camera.originZ;
+                                chatFlags = i >> 28 & 0x3;
+                                SceneGraph.attachLocToTile(chatFlags, world, param1, chatType, slot, j, count);
                                 opcode = -1;
                                 return true;
                             } else if (opcode == 0) {
-                                username2 = inboundBuffer.g8();
+                                senderName = inboundBuffer.g8();
                                 username = inboundBuffer.g2();
-                                local899 = inboundBuffer.g3();
-                                local1160 = inboundBuffer.g1();
+                                messageId1 = inboundBuffer.g3();
+                                chatFlags = inboundBuffer.g1();
                                 @Pc(4425) boolean local4425 = false;
-                                @Pc(4431) long local4431 = local899 + (username << 32);
+                                @Pc(4431) long local4431 = messageId1 + (username << 32);
                                 local3002 = 0;
                                 label1450: while (true) {
                                     if (local3002 >= 100) {
-                                        if (local1160 <= 1) {
+                                        if (chatFlags <= 1) {
                                             if (LoginManager.playerUnderage && !LoginManager.parentalChatConsent || LoginManager.worldQuickChat) {
                                                 local4425 = true;
                                             } else {
                                                 for (local3002 = 0; local3002 < IgnoreList.ignoreCount; local3002++) {
-                                                    if (username2 == IgnoreList.encodedIgnores[local3002]) {
+                                                    if (senderName == IgnoreList.encodedIgnores[local3002]) {
                                                         local4425 = true;
                                                         break label1450;
                                                     }
@@ -1451,34 +1451,34 @@ public class Protocol {
                                     Chat.recentMessages[Chat.messageCounter] = local4431;
                                     Chat.messageCounter = (Chat.messageCounter + 1) % 100;
                                     @Pc(4518) JString local4518 = Font.escape(formatChatMessage(inboundBuffer).encodeMessage());
-                                    if (local1160 == 2 || local1160 == 3) {
-                                        Chat.addMessage(JString.concatenate(new JString[] { IMG1, Base37.decode37(username2).toTitleCase() }), 7, local4518);
-                                    } else if (local1160 == 1) {
-                                        Chat.addMessage(JString.concatenate(new JString[] { IMG0, Base37.decode37(username2).toTitleCase() }), 7, local4518);
+                                    if (chatFlags == 2 || chatFlags == 3) {
+                                        Chat.addMessage(JString.concatenate(new JString[] { IMG1, Base37.decode37(senderName).toTitleCase() }), 7, local4518);
+                                    } else if (chatFlags == 1) {
+                                        Chat.addMessage(JString.concatenate(new JString[] { IMG0, Base37.decode37(senderName).toTitleCase() }), 7, local4518);
                                     } else {
-                                        Chat.addMessage(Base37.decode37(username2).toTitleCase(), 3, local4518);
+                                        Chat.addMessage(Base37.decode37(senderName).toTitleCase(), 3, local4518);
                                     }
                                 }
                                 opcode = -1;
                                 return true;
                             } else if (opcode == 54) {
-                                username2 = inboundBuffer.g8();
+                                senderName = inboundBuffer.g8();
                                 inboundBuffer.g1s();
                                 username = inboundBuffer.g8();
-                                local899 = inboundBuffer.g2();
-                                local904 = inboundBuffer.g3();
-                                @Pc(4626) long local4626 = (local899 << 32) + local904;
-                                local908 = inboundBuffer.g1();
+                                messageId1 = inboundBuffer.g2();
+                                messageId2 = inboundBuffer.g3();
+                                @Pc(4626) long local4626 = (messageId1 << 32) + messageId2;
+                                chatType = inboundBuffer.g1();
                                 @Pc(4632) boolean local4632 = false;
                                 @Pc(4634) int local4634 = 0;
                                 label1575: while (true) {
                                     if (local4634 >= 100) {
-                                        if (local908 <= 1) {
+                                        if (chatType <= 1) {
                                             if (LoginManager.playerUnderage && !LoginManager.parentalChatConsent || LoginManager.worldQuickChat) {
                                                 local4632 = true;
                                             } else {
                                                 for (local4634 = 0; local4634 < IgnoreList.ignoreCount; local4634++) {
-                                                    if (IgnoreList.encodedIgnores[local4634] == username2) {
+                                                    if (IgnoreList.encodedIgnores[local4634] == senderName) {
                                                         local4632 = true;
                                                         break label1575;
                                                     }
@@ -1497,12 +1497,12 @@ public class Protocol {
                                     Chat.recentMessages[Chat.messageCounter] = local4626;
                                     Chat.messageCounter = (Chat.messageCounter + 1) % 100;
                                     local3038 = Font.escape(formatChatMessage(inboundBuffer).encodeMessage());
-                                    if (local908 == 2 || local908 == 3) {
-                                        Chat.method1598(local3038, JString.concatenate(new JString[] { IMG1, Base37.decode37(username2).toTitleCase() }), Base37.decode37(username).toTitleCase());
-                                    } else if (local908 == 1) {
-                                        Chat.method1598(local3038, JString.concatenate(new JString[] { IMG0, Base37.decode37(username2).toTitleCase() }), Base37.decode37(username).toTitleCase());
+                                    if (chatType == 2 || chatType == 3) {
+                                        Chat.method1598(local3038, JString.concatenate(new JString[] { IMG1, Base37.decode37(senderName).toTitleCase() }), Base37.decode37(username).toTitleCase());
+                                    } else if (chatType == 1) {
+                                        Chat.method1598(local3038, JString.concatenate(new JString[] { IMG0, Base37.decode37(senderName).toTitleCase() }), Base37.decode37(username).toTitleCase());
                                     } else {
-                                        Chat.method1598(local3038, Base37.decode37(username2).toTitleCase(), Base37.decode37(username).toTitleCase());
+                                        Chat.method1598(local3038, Base37.decode37(senderName).toTitleCase(), Base37.decode37(username).toTitleCase());
                                     }
                                 }
                                 opcode = -1;
@@ -1513,23 +1513,23 @@ public class Protocol {
                                 return true;
                             } else if (opcode == 172) {
                                 ii = inboundBuffer.g2();
-                                xp = inboundBuffer.g1();
+                                param1 = inboundBuffer.g1();
                                 if (ii == 65535) {
                                     ii = -1;
                                 }
                                 world = inboundBuffer.g2();
-                                SoundPlayer.play(xp, ii, world);
+                                SoundPlayer.play(param1, ii, world);
                                 opcode = -1;
                                 return true;
                             } else if (opcode == 66) {
                                 int verifyID = inboundBuffer.g2leadd();
-                                xp = inboundBuffer.g4rme();
+                                param1 = inboundBuffer.g4rme();
                                 if (setVerifyID(verifyID)) {
                                     world = 0;
                                     if (PlayerList.self.appearance != null) {
                                         world = PlayerList.self.appearance.getHeadModelId();
                                     }
-                                    DelayedStateChange.updateComponentModel(-1, 3, xp, world);
+                                    DelayedStateChange.updateComponentModel(-1, 3, param1, world);
                                 }
                                 opcode = -1;
                                 return true;
@@ -1544,22 +1544,22 @@ public class Protocol {
                                 return true;
                             } else if (opcode == 84) {
                                 ii = inboundBuffer.g4me();
-                                xp = inboundBuffer.g2leadd();
-                                VarpDomain.setVarbitServer(ii, xp);
+                                param1 = inboundBuffer.g2leadd();
+                                VarpDomain.setVarbitServer(ii, param1);
                                 opcode = -1;
                                 return true;
                             } else {
-                                @Pc(4956) Component local4956;
+                                @Pc(4956) Component component;
                                 if (opcode == 22) {
                                     ii = inboundBuffer.g4();
-                                    xp = inboundBuffer.g2();
+                                    param1 = inboundBuffer.g2();
                                     if (ii < -70000) {
-                                        xp += 32768;
+                                        param1 += 32768;
                                     }
                                     if (ii < 0) {
-                                        local4956 = null;
+                                        component = null;
                                     } else {
-                                        local4956 = ComponentList.getComponent(ii);
+                                        component = ComponentList.getComponent(ii);
                                     }
                                     while (inboundBuffer.offset < packetSize) {
                                         slot = inboundBuffer.gSmart1or2();
@@ -1571,17 +1571,17 @@ public class Protocol {
                                                 i = inboundBuffer.g4();
                                             }
                                         }
-                                        if (local4956 != null && slot >= 0 && local4956.invSlotObjId.length > slot) {
-                                            local4956.invSlotObjId[slot] = count;
-                                            local4956.invSlotObjCount[slot] = i;
+                                        if (component != null && slot >= 0 && component.invSlotObjId.length > slot) {
+                                            component.invSlotObjId[slot] = count;
+                                            component.invSlotObjCount[slot] = i;
                                         }
-                                        Inv.update(count - 1, slot, i, xp);
+                                        Inv.update(count - 1, slot, i, param1);
                                     }
-                                    if (local4956 != null) {
-                                        ComponentList.redraw(local4956);
+                                    if (component != null) {
+                                        ComponentList.redraw(component);
                                     }
                                     ComponentList.redrawActiveInterfaces();
-                                    Inv.updatedInventories[Inv.updatedInventoriesWriterIndex++ & 0x1F] = xp & 0x7FFF;
+                                    Inv.updatedInventories[Inv.updatedInventoriesWriterIndex++ & 0x1F] = param1 & 0x7FFF;
                                     opcode = -1;
                                     return true;
                                 } else if (opcode == 24) {
@@ -1608,13 +1608,13 @@ public class Protocol {
                                     return true;
                                 } else if (opcode == 73) {
                                     ii = inboundBuffer.g2sub();
-                                    xp = inboundBuffer.g4me();
+                                    param1 = inboundBuffer.g4me();
                                     if (ii == 65535) {
                                         ii = -1;
                                     }
                                     int verifyID = inboundBuffer.g2le();
                                     if (setVerifyID(verifyID)) {
-                                        DelayedStateChange.updateComponentModel(-1, 2, xp, ii);
+                                        DelayedStateChange.updateComponentModel(-1, 2, param1, ii);
                                     }
                                     opcode = -1;
                                     return true;
@@ -1624,9 +1624,9 @@ public class Protocol {
                                     return true;
                                 } else if (opcode == 165) {
                                     int verifyID = inboundBuffer.g2le();
-                                    xp = inboundBuffer.g2le();
-                                    if (xp == 65535) {
-                                        xp = -1;
+                                    param1 = inboundBuffer.g2le();
+                                    if (param1 == 65535) {
+                                        param1 = -1;
                                     }
                                     world = inboundBuffer.g4();
                                     slot = inboundBuffer.g2sub();
@@ -1635,9 +1635,9 @@ public class Protocol {
                                         slot = -1;
                                     }
                                     if (setVerifyID(verifyID)) {
-                                        for (i = slot; i <= xp; i++) {
-                                            local904 = ((long) world << 32) + ((long) i);
-                                            local1804 = (ServerActiveProperties) ComponentList.properties.get(local904);
+                                        for (i = slot; i <= param1; i++) {
+                                            messageId2 = ((long) world << 32) + ((long) i);
+                                            local1804 = (ServerActiveProperties) ComponentList.properties.get(messageId2);
                                             if (local1804 != null) {
                                                 local1814 = new ServerActiveProperties(count, local1804.targetParam);
                                                 local1804.unlink();
@@ -1646,7 +1646,7 @@ public class Protocol {
                                             } else {
                                                 local1814 = new ServerActiveProperties(count, -1);
                                             }
-                                            ComponentList.properties.put(local1814, local904);
+                                            ComponentList.properties.put(local1814, messageId2);
                                         }
                                     }
                                     opcode = -1;
@@ -1657,11 +1657,11 @@ public class Protocol {
                                     opcode = -1;
                                     return true;
                                 } else if (opcode == 196) {
-                                    username2 = inboundBuffer.g8();
+                                    senderName = inboundBuffer.g8();
                                     world = inboundBuffer.g2();
                                     @Pc(5325) byte local5325 = inboundBuffer.g1s();
                                     ignored = false;
-                                    if ((Long.MIN_VALUE & username2) != 0L) {
+                                    if ((Long.MIN_VALUE & senderName) != 0L) {
                                         ignored = true;
                                     }
                                     if (ignored) {
@@ -1669,8 +1669,8 @@ public class Protocol {
                                             opcode = -1;
                                             return true;
                                         }
-                                        username2 &= Long.MAX_VALUE;
-                                        for (i = 0; ClanChat.size > i && (username2 != ClanChat.members[i].nodeId || world != ClanChat.members[i].world); i++) {
+                                        senderName &= Long.MAX_VALUE;
+                                        for (i = 0; ClanChat.size > i && (senderName != ClanChat.members[i].nodeId || world != ClanChat.members[i].world); i++) {
                                             // TODO why is this here?
                                         }
                                         if (i < ClanChat.size) {
@@ -1682,27 +1682,27 @@ public class Protocol {
                                             ClanChat.members[ClanChat.size] = null;
                                         }
                                     } else {
-                                        local506 = inboundBuffer.gjstr();
+                                        worldName = inboundBuffer.gjstr();
                                         @Pc(5347) ClanMember local5347 = new ClanMember();
-                                        local5347.nodeId = username2;
+                                        local5347.nodeId = senderName;
                                         local5347.username = Base37.decode37(local5347.nodeId);
                                         local5347.rank = local5325;
-                                        local5347.worldName = local506;
+                                        local5347.worldName = worldName;
                                         local5347.world = world;
                                         for (j = ClanChat.size - 1; j >= 0; j--) {
-                                            local908 = ClanChat.members[j].username.method3139(local5347.username);
-                                            if (local908 == 0) {
+                                            chatType = ClanChat.members[j].username.method3139(local5347.username);
+                                            if (chatType == 0) {
                                                 ClanChat.members[j].world = world;
                                                 ClanChat.members[j].rank = local5325;
-                                                ClanChat.members[j].worldName = local506;
-                                                if (username2 == Player.name37) {
+                                                ClanChat.members[j].worldName = worldName;
+                                                if (senderName == Player.name37) {
                                                     ClanChat.rank = local5325;
                                                 }
                                                 ClanChat.transmitAt = ComponentList.transmitTimer;
                                                 opcode = -1;
                                                 return true;
                                             }
-                                            if (local908 < 0) {
+                                            if (chatType < 0) {
                                                 break;
                                             }
                                         }
@@ -1710,14 +1710,14 @@ public class Protocol {
                                             opcode = -1;
                                             return true;
                                         }
-                                        for (local908 = ClanChat.size - 1; local908 > j; local908--) {
-                                            ClanChat.members[local908 + 1] = ClanChat.members[local908];
+                                        for (chatType = ClanChat.size - 1; chatType > j; chatType--) {
+                                            ClanChat.members[chatType + 1] = ClanChat.members[chatType];
                                         }
                                         if (ClanChat.size == 0) {
                                             ClanChat.members = new ClanMember[100];
                                         }
                                         ClanChat.members[j + 1] = local5347;
-                                        if (Player.name37 == username2) {
+                                        if (Player.name37 == senderName) {
                                             ClanChat.rank = local5325;
                                         }
                                         ClanChat.size++;
@@ -1727,20 +1727,20 @@ public class Protocol {
                                     return true;
                                 } else if (opcode == 50) {
                                     ii = inboundBuffer.g4();
-                                    xp = inboundBuffer.p4rme();
+                                    param1 = inboundBuffer.p4rme();
                                     world = inboundBuffer.g2leadd();
                                     if (world == 65535) {
                                         world = -1;
                                     }
                                     int verifyID = inboundBuffer.g2le();
                                     if (setVerifyID(verifyID)) {
-                                        @Pc(5603) Component com = ComponentList.getComponent(xp);
+                                        @Pc(5603) Component com = ComponentList.getComponent(param1);
                                         @Pc(5615) ObjType obj;
                                         if (com.if3) {
-                                            DelayedStateChange.method3707(xp, ii, world);
+                                            DelayedStateChange.method3707(param1, ii, world);
                                             obj = ObjTypeList.get(world);
-                                            DelayedStateChange.updateView(obj.zoom2d, xp, obj.yan2d, obj.xan2d);
-                                            DelayedStateChange.method2745(xp, obj.zAngle2D, obj.yof2d, obj.xof2d);
+                                            DelayedStateChange.updateView(obj.zoom2d, param1, obj.yan2d, obj.xan2d);
+                                            DelayedStateChange.method2745(param1, obj.zAngle2D, obj.yof2d, obj.xof2d);
                                         } else if (world == -1) {
                                             com.modelType = 0;
                                             opcode = -1;
@@ -1759,40 +1759,40 @@ public class Protocol {
                                     return true;
                                 } else if (opcode == 105) {
                                     ii = inboundBuffer.g4();
-                                    xp = inboundBuffer.g2();
+                                    param1 = inboundBuffer.g2();
                                     if (ii < -70000) {
-                                        xp += 32768;
+                                        param1 += 32768;
                                     }
                                     if (ii >= 0) {
-                                        local4956 = ComponentList.getComponent(ii);
+                                        component = ComponentList.getComponent(ii);
                                     } else {
-                                        local4956 = null;
+                                        component = null;
                                     }
-                                    if (local4956 != null) {
-                                        for (slot = 0; slot < local4956.invSlotObjId.length; slot++) {
-                                            local4956.invSlotObjId[slot] = 0;
-                                            local4956.invSlotObjCount[slot] = 0;
+                                    if (component != null) {
+                                        for (slot = 0; slot < component.invSlotObjId.length; slot++) {
+                                            component.invSlotObjId[slot] = 0;
+                                            component.invSlotObjCount[slot] = 0;
                                         }
                                     }
-                                    Inv.clearInventory(xp);
+                                    Inv.clearInventory(param1);
                                     slot = inboundBuffer.g2();
                                     for (count = 0; count < slot; count++) {
                                         i = inboundBuffer.g1_alt3();
                                         if (i == 255) {
                                             i = inboundBuffer.g4();
                                         }
-                                        local1160 = inboundBuffer.g2();
-                                        if (local4956 != null && count < local4956.invSlotObjId.length) {
-                                            local4956.invSlotObjId[count] = local1160;
-                                            local4956.invSlotObjCount[count] = i;
+                                        chatFlags = inboundBuffer.g2();
+                                        if (component != null && count < component.invSlotObjId.length) {
+                                            component.invSlotObjId[count] = chatFlags;
+                                            component.invSlotObjCount[count] = i;
                                         }
-                                        Inv.update(local1160 - 1, count, i, xp);
+                                        Inv.update(chatFlags - 1, count, i, param1);
                                     }
-                                    if (local4956 != null) {
-                                        ComponentList.redraw(local4956);
+                                    if (component != null) {
+                                        ComponentList.redraw(component);
                                     }
                                     ComponentList.redrawActiveInterfaces();
-                                    Inv.updatedInventories[Inv.updatedInventoriesWriterIndex++ & 0x1F] = xp & 0x7FFF;
+                                    Inv.updatedInventories[Inv.updatedInventoriesWriterIndex++ & 0x1F] = param1 & 0x7FFF;
                                     opcode = -1;
                                     return true;
                                 } else if (opcode == 142) {
@@ -1815,11 +1815,11 @@ public class Protocol {
                                     return true;
                                 } else if (opcode == 208) {
                                     ii = inboundBuffer.g3le();
-                                    xp = inboundBuffer.g2le();
-                                    if (xp == 65535) {
-                                        xp = -1;
+                                    param1 = inboundBuffer.g2le();
+                                    if (param1 == 65535) {
+                                        param1 = -1;
                                     }
-                                    MusicPlayer.playJingle(ii, xp);
+                                    MusicPlayer.playJingle(ii, param1);
                                     opcode = -1;
                                     return true;
                                 } else {
@@ -2279,140 +2279,140 @@ public class Protocol {
     }
 
     @OriginalMember(owner = "client!g", name = "a", descriptor = "(IZ)V")
-    public static void readRebuildPacket(@OriginalArg(1) boolean arg0) {
-        SceneGraph.dynamicMapRegion = arg0;
-        @Pc(13) int local13;
-        @Pc(20) int local20;
+    public static void readRebuildPacket(@OriginalArg(1) boolean isDynamic) {
+        SceneGraph.dynamicMapRegion = isDynamic;
+        @Pc(13) int playerPlane;
+        @Pc(20) int regionCount;
         @Pc(26) int local26;
         @Pc(31) int local31;
-        @Pc(60) int local60;
+        @Pc(60) int playerZ;
         @Pc(64) int local64;
-        @Pc(138) int local138;
-        @Pc(151) int local151;
-        @Pc(169) int local169;
+        @Pc(138) int chunkX;
+        @Pc(151) int chunkZ;
+        @Pc(169) int regionId;
         if (!SceneGraph.dynamicMapRegion) {
-            local13 = inboundBuffer.g2sub();
-            local20 = (packetSize - inboundBuffer.offset) / 16;
-            WorldLoader.regionsXteaKeys = new int[local20][4];
-            for (local26 = 0; local26 < local20; local26++) {
+            playerPlane = inboundBuffer.g2sub();
+            regionCount = (packetSize - inboundBuffer.offset) / 16;
+            WorldLoader.regionsXteaKeys = new int[regionCount][4];
+            for (local26 = 0; local26 < regionCount; local26++) {
                 for (local31 = 0; local31 < 4; local31++) {
                     WorldLoader.regionsXteaKeys[local26][local31] = inboundBuffer.p4rme();
                 }
             }
             local26 = inboundBuffer.g1_alt3();
             local31 = inboundBuffer.g2();
-            local60 = inboundBuffer.g2sub();
+            playerZ = inboundBuffer.g2sub();
             local64 = inboundBuffer.g2sub();
-            WorldLoader.regionBitPacked = new int[local20];
-            WorldLoader.mapFilesBuffer = new byte[local20][];
+            WorldLoader.regionBitPacked = new int[regionCount];
+            WorldLoader.mapFilesBuffer = new byte[regionCount][];
             WorldLoader.npcSpawnsFilesBuffer = null;
-            WorldLoader.underWaterMapFileIds = new int[local20];
-            WorldLoader.locationMapFilesBuffer = new byte[local20][];
-            WorldLoader.underWaterLocationsMapFilesBuffer = new byte[local20][];
+            WorldLoader.underWaterMapFileIds = new int[regionCount];
+            WorldLoader.locationMapFilesBuffer = new byte[regionCount][];
+            WorldLoader.underWaterLocationsMapFilesBuffer = new byte[regionCount][];
             WorldLoader.npcSpawnsFileIds = null;
-            WorldLoader.mapFileIds = new int[local20];
-            WorldLoader.underWaterMapFilesBuffer = new byte[local20][];
-            WorldLoader.locationsMapFileIds = new int[local20];
-            WorldLoader.underWaterLocationsMapFileIds = new int[local20];
-            local20 = 0;
-            @Pc(100) boolean local100 = false;
-            if ((local31 / 8 == 48 || local31 / 8 == 49) && local60 / 8 == 48) {
-                local100 = true;
+            WorldLoader.mapFileIds = new int[regionCount];
+            WorldLoader.underWaterMapFilesBuffer = new byte[regionCount][];
+            WorldLoader.locationsMapFileIds = new int[regionCount];
+            WorldLoader.underWaterLocationsMapFileIds = new int[regionCount];
+            regionCount = 0;
+            @Pc(100) boolean isTutorialIsland = false;
+            if ((local31 / 8 == 48 || local31 / 8 == 49) && playerZ / 8 == 48) {
+                isTutorialIsland = true;
             }
-            if (local31 / 8 == 48 && local60 / 8 == 148) {
-                local100 = true;
+            if (local31 / 8 == 48 && playerZ / 8 == 148) {
+                isTutorialIsland = true;
             }
-            for (local138 = (local31 - 6) / 8; local138 <= (local31 + 6) / 8; local138++) {
-                for (local151 = (local60 - 6) / 8; local151 <= (local60 + 6) / 8; local151++) {
-                    local169 = (local138 << 8) + local151;
-                    if (local100 && (local151 == 49 || local151 == 149 || local151 == 147 || local138 == 50 || local138 == 49 && local151 == 47)) {
-                        WorldLoader.regionBitPacked[local20] = local169;
-                        WorldLoader.mapFileIds[local20] = -1;
-                        WorldLoader.locationsMapFileIds[local20] = -1;
-                        WorldLoader.underWaterMapFileIds[local20] = -1;
-                        WorldLoader.underWaterLocationsMapFileIds[local20] = -1;
+            for (chunkX = (local31 - 6) / 8; chunkX <= (local31 + 6) / 8; chunkX++) {
+                for (chunkZ = (playerZ - 6) / 8; chunkZ <= (playerZ + 6) / 8; chunkZ++) {
+                    regionId = (chunkX << 8) + chunkZ;
+                    if (isTutorialIsland && (chunkZ == 49 || chunkZ == 149 || chunkZ == 147 || chunkX == 50 || chunkX == 49 && chunkZ == 47)) {
+                        WorldLoader.regionBitPacked[regionCount] = regionId;
+                        WorldLoader.mapFileIds[regionCount] = -1;
+                        WorldLoader.locationsMapFileIds[regionCount] = -1;
+                        WorldLoader.underWaterMapFileIds[regionCount] = -1;
+                        WorldLoader.underWaterLocationsMapFileIds[regionCount] = -1;
                     } else {
-                        WorldLoader.regionBitPacked[local20] = local169;
-                        WorldLoader.mapFileIds[local20] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { WorldLoader.m, JString.parseInt(local138), WorldLoader.UNDERSCORE, JString.parseInt(local151) }));
-                        WorldLoader.locationsMapFileIds[local20] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { WorldLoader.l, JString.parseInt(local138), WorldLoader.UNDERSCORE, JString.parseInt(local151) }));
-                        WorldLoader.underWaterMapFileIds[local20] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { LoginManager.um, JString.parseInt(local138), WorldLoader.UNDERSCORE, JString.parseInt(local151) }));
-                        WorldLoader.underWaterLocationsMapFileIds[local20] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { LoginManager.ul, JString.parseInt(local138), WorldLoader.UNDERSCORE, JString.parseInt(local151) }));
+                        WorldLoader.regionBitPacked[regionCount] = regionId;
+                        WorldLoader.mapFileIds[regionCount] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { WorldLoader.m, JString.parseInt(chunkX), WorldLoader.UNDERSCORE, JString.parseInt(chunkZ) }));
+                        WorldLoader.locationsMapFileIds[regionCount] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { WorldLoader.l, JString.parseInt(chunkX), WorldLoader.UNDERSCORE, JString.parseInt(chunkZ) }));
+                        WorldLoader.underWaterMapFileIds[regionCount] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { LoginManager.um, JString.parseInt(chunkX), WorldLoader.UNDERSCORE, JString.parseInt(chunkZ) }));
+                        WorldLoader.underWaterLocationsMapFileIds[regionCount] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { LoginManager.ul, JString.parseInt(chunkX), WorldLoader.UNDERSCORE, JString.parseInt(chunkZ) }));
                     }
-                    local20++;
+                    regionCount++;
                 }
             }
-            WorldLoader.initializeMapRegion(local26, local60, local31, local64, false, local13);
+            WorldLoader.initializeMapRegion(local26, playerZ, local31, local64, false, playerPlane);
             return;
         }
-        local13 = inboundBuffer.g2leadd();
-        local20 = inboundBuffer.g2leadd();
+        playerPlane = inboundBuffer.g2leadd();
+        regionCount = inboundBuffer.g2leadd();
         local26 = inboundBuffer.g1_alt3();
         local31 = inboundBuffer.g2leadd();
         inboundBuffer.accessBits();
         @Pc(391) int local391;
-        for (local60 = 0; local60 < 4; local60++) {
+        for (playerZ = 0; playerZ < 4; playerZ++) {
             for (local64 = 0; local64 < 13; local64++) {
                 for (local391 = 0; local391 < 13; local391++) {
-                    local138 = inboundBuffer.gBit(1);
-                    if (local138 == 1) {
-                        anIntArrayArrayArray18[local60][local64][local391] = inboundBuffer.gBit(26);
+                    chunkX = inboundBuffer.gBit(1);
+                    if (chunkX == 1) {
+                        dynamicRegionData[playerZ][local64][local391] = inboundBuffer.gBit(26);
                     } else {
-                        anIntArrayArrayArray18[local60][local64][local391] = -1;
+                        dynamicRegionData[playerZ][local64][local391] = -1;
                     }
                 }
             }
         }
         inboundBuffer.accessBytes();
-        local60 = (packetSize - inboundBuffer.offset) / 16;
-        WorldLoader.regionsXteaKeys = new int[local60][4];
-        for (local64 = 0; local64 < local60; local64++) {
+        playerZ = (packetSize - inboundBuffer.offset) / 16;
+        WorldLoader.regionsXteaKeys = new int[playerZ][4];
+        for (local64 = 0; local64 < playerZ; local64++) {
             for (local391 = 0; local391 < 4; local391++) {
                 WorldLoader.regionsXteaKeys[local64][local391] = inboundBuffer.p4rme();
             }
         }
         local64 = inboundBuffer.g2();
-        WorldLoader.underWaterLocationsMapFileIds = new int[local60];
-        WorldLoader.locationsMapFileIds = new int[local60];
-        WorldLoader.mapFileIds = new int[local60];
-        WorldLoader.underWaterLocationsMapFilesBuffer = new byte[local60][];
+        WorldLoader.underWaterLocationsMapFileIds = new int[playerZ];
+        WorldLoader.locationsMapFileIds = new int[playerZ];
+        WorldLoader.mapFileIds = new int[playerZ];
+        WorldLoader.underWaterLocationsMapFilesBuffer = new byte[playerZ][];
         WorldLoader.npcSpawnsFileIds = null;
-        WorldLoader.underWaterMapFileIds = new int[local60];
-        WorldLoader.locationMapFilesBuffer = new byte[local60][];
-        WorldLoader.mapFilesBuffer = new byte[local60][];
-        WorldLoader.regionBitPacked = new int[local60];
+        WorldLoader.underWaterMapFileIds = new int[playerZ];
+        WorldLoader.locationMapFilesBuffer = new byte[playerZ][];
+        WorldLoader.mapFilesBuffer = new byte[playerZ][];
+        WorldLoader.regionBitPacked = new int[playerZ];
         WorldLoader.npcSpawnsFilesBuffer = null;
-        WorldLoader.underWaterMapFilesBuffer = new byte[local60][];
-        local60 = 0;
+        WorldLoader.underWaterMapFilesBuffer = new byte[playerZ][];
+        playerZ = 0;
         for (local391 = 0; local391 < 4; local391++) {
-            for (local138 = 0; local138 < 13; local138++) {
-                for (local151 = 0; local151 < 13; local151++) {
-                    local169 = anIntArrayArrayArray18[local391][local138][local151];
-                    if (local169 != -1) {
-                        @Pc(555) int local555 = local169 >> 14 & 0x3FF;
-                        @Pc(561) int local561 = local169 >> 3 & 0x7FF;
+            for (chunkX = 0; chunkX < 13; chunkX++) {
+                for (chunkZ = 0; chunkZ < 13; chunkZ++) {
+                    regionId = dynamicRegionData[local391][chunkX][chunkZ];
+                    if (regionId != -1) {
+                        @Pc(555) int local555 = regionId >> 14 & 0x3FF;
+                        @Pc(561) int local561 = regionId >> 3 & 0x7FF;
                         @Pc(571) int local571 = local561 / 8 + (local555 / 8 << 8);
                         @Pc(573) int local573;
-                        for (local573 = 0; local573 < local60; local573++) {
+                        for (local573 = 0; local573 < playerZ; local573++) {
                             if (local571 == WorldLoader.regionBitPacked[local573]) {
                                 local571 = -1;
                                 break;
                             }
                         }
                         if (local571 != -1) {
-                            WorldLoader.regionBitPacked[local60] = local571;
+                            WorldLoader.regionBitPacked[playerZ] = local571;
                             @Pc(609) int local609 = local571 & 0xFF;
                             local573 = local571 >> 8 & 0xFF;
-                            WorldLoader.mapFileIds[local60] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { WorldLoader.m, JString.parseInt(local573), WorldLoader.UNDERSCORE, JString.parseInt(local609) }));
-                            WorldLoader.locationsMapFileIds[local60] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { WorldLoader.l, JString.parseInt(local573), WorldLoader.UNDERSCORE, JString.parseInt(local609) }));
-                            WorldLoader.underWaterMapFileIds[local60] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { LoginManager.um, JString.parseInt(local573), WorldLoader.UNDERSCORE, JString.parseInt(local609) }));
-                            WorldLoader.underWaterLocationsMapFileIds[local60] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { LoginManager.ul, JString.parseInt(local573), WorldLoader.UNDERSCORE, JString.parseInt(local609) }));
-                            local60++;
+                            WorldLoader.mapFileIds[playerZ] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { WorldLoader.m, JString.parseInt(local573), WorldLoader.UNDERSCORE, JString.parseInt(local609) }));
+                            WorldLoader.locationsMapFileIds[playerZ] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { WorldLoader.l, JString.parseInt(local573), WorldLoader.UNDERSCORE, JString.parseInt(local609) }));
+                            WorldLoader.underWaterMapFileIds[playerZ] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { LoginManager.um, JString.parseInt(local573), WorldLoader.UNDERSCORE, JString.parseInt(local609) }));
+                            WorldLoader.underWaterLocationsMapFileIds[playerZ] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { LoginManager.ul, JString.parseInt(local573), WorldLoader.UNDERSCORE, JString.parseInt(local609) }));
+                            playerZ++;
                         }
                     }
                 }
             }
         }
-        WorldLoader.initializeMapRegion(local26, local64, local20, local31, false, local13);
+        WorldLoader.initializeMapRegion(local26, local64, regionCount, local31, false, playerPlane);
     }
 
     @OriginalMember(owner = "client!gk", name = "a", descriptor = "(IIBLclient!e;)V")
@@ -2911,7 +2911,7 @@ public class Protocol {
                         arg1.layeredAnimations[local25] = null;
                     } else {
                         @Pc(60) SeqType local60 = SeqTypeList.get(local15);
-                        @Pc(65) PathingEntity_Class147 local65 = arg1.layeredAnimations[local25];
+                        @Pc(65) PathingEntityAnimation local65 = arg1.layeredAnimations[local25];
                         @Pc(68) int local68 = local60.exactmove;
                         if (local65 != null) {
                             if (local15 == local65.sequenceId) {
@@ -2932,7 +2932,7 @@ public class Protocol {
                             }
                         }
                         if (local65 == null) {
-                            local65 = arg1.layeredAnimations[local25] = new PathingEntity_Class147();
+                            local65 = arg1.layeredAnimations[local25] = new PathingEntityAnimation();
                             local65.direction = 1;
                             local65.loopCount = 0;
                             local65.delay = local23;

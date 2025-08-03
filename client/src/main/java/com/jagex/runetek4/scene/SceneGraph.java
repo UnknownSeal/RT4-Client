@@ -1,6 +1,5 @@
 package com.jagex.runetek4.scene;
 
-import com.jagex.runetek4.*;
 import com.jagex.runetek4.audio.spatial.AreaSoundManager;
 import com.jagex.runetek4.client.Client;
 import com.jagex.runetek4.client.Preferences;
@@ -18,6 +17,7 @@ import com.jagex.runetek4.config.types.light.LightType;
 import com.jagex.runetek4.data.js5.Js5TextureProvider;
 import com.jagex.runetek4.entity.entity.Entity;
 import com.jagex.runetek4.entity.entity.Player;
+import com.jagex.runetek4.entity.entity.PlayerList;
 import com.jagex.runetek4.game.logic.CollisionMap;
 import com.jagex.runetek4.game.logic.PathFinder;
 import com.jagex.runetek4.game.world.WorldLoader;
@@ -34,7 +34,7 @@ import com.jagex.runetek4.entity.loc.LocEntity;
 import com.jagex.runetek4.entity.loc.ObjStackEntity;
 import com.jagex.runetek4.graphics.model.RawModel;
 import com.jagex.runetek4.graphics.raster.Rasterizer;
-import com.jagex.runetek4.graphics.raster.SoftwareRaster;
+import com.jagex.runetek4.graphics.raster.SoftwareRenderer;
 import com.jagex.runetek4.graphics.render.MaterialManager;
 import com.jagex.runetek4.graphics.render.UnderwaterMaterialRenderer;
 import com.jagex.runetek4.graphics.render.WaterMaterialRenderer;
@@ -70,66 +70,85 @@ public class SceneGraph {
     public static final int[] WALL_DECORATION_ROTATION_FORWARD_Z = new int[] { 0, -1, 0, 1 };
 
     @OriginalMember(owner = "client!fb", name = "q", descriptor = "[I")
-    public static final int[] anIntArray154 = new int[] { -1, -1, 1, 1 };
+    public static final int[] CORNER_OFFSET_X = new int[] { -1, -1, 1, 1 };
 
     @OriginalMember(owner = "runetek4.client!j", name = "O", descriptor = "[I")
-    public static final int[] anIntArray565 = new int[] { 1, -1, -1, 1 };
+    public static final int[] CORNER_OFFSET_Z = new int[] { 1, -1, -1, 1 };
 
     @OriginalMember(owner = "runetek4.client!vl", name = "e", descriptor = "[I")
     public static final int[] ROTATION_WALL_TYPE = new int[] { 1, 2, 4, 8 };
 
     @OriginalMember(owner = "runetek4.client!pg", name = "T", descriptor = "[I")
     public static final int[] BACK_WALL_TYPES = new int[] { 76, 8, 137, 4, 0, 1, 38, 2, 19 };
+
     @OriginalMember(owner = "client!ec", name = "B", descriptor = "[[I")
-    public static final int[][] anIntArrayArray8 = new int[][] { new int[0], { 128, 0, 128, 128, 0, 128 }, { 0, 0, 128, 0, 128, 128, 64, 128 }, { 0, 128, 0, 0, 128, 0, 64, 128 }, { 0, 0, 64, 128, 0, 128 }, { 128, 128, 64, 128, 128, 0 }, { 64, 0, 128, 0, 128, 128, 64, 128 }, { 128, 0, 128, 128, 0, 128, 0, 64, 64, 0 }, { 0, 0, 64, 0, 0, 64 }, { 0, 0, 128, 0, 128, 128, 64, 96, 32, 64 }, { 0, 128, 0, 0, 32, 64, 64, 96, 128, 128 }, { 0, 128, 0, 0, 32, 32, 96, 32, 128, 0, 128, 128 } };
+    public static final int[][] SHAPE_WALL_COORDINATES = new int[][] { new int[0], { 128, 0, 128, 128, 0, 128 }, { 0, 0, 128, 0, 128, 128, 64, 128 }, { 0, 128, 0, 0, 128, 0, 64, 128 }, { 0, 0, 64, 128, 0, 128 }, { 128, 128, 64, 128, 128, 0 }, { 64, 0, 128, 0, 128, 128, 64, 128 }, { 128, 0, 128, 128, 0, 128, 0, 64, 64, 0 }, { 0, 0, 64, 0, 0, 64 }, { 0, 0, 128, 0, 128, 128, 64, 96, 32, 64 }, { 0, 128, 0, 0, 32, 64, 64, 96, 128, 128 }, { 0, 128, 0, 0, 32, 32, 96, 32, 128, 0, 128, 128 } };
+
     @OriginalMember(owner = "client!ck", name = "d", descriptor = "[I")
     public static final int[] WALL_DECORATION_ROTATION_FORWARD_X = new int[] { 1, 0, -1, 0 };
+
     @OriginalMember(owner = "runetek4.client!ka", name = "t", descriptor = "[I")
     public static final int[] WALL_CORNER_TYPE_16_BLOCK_LOC_SPANS = new int[] { 0, 0, 2, 0, 0, 2, 1, 1, 0 };
+
     @OriginalMember(owner = "runetek4.client!uj", name = "A", descriptor = "[I")
     public static final int[] WALL_CORNER_TYPE_32_BLOCK_LOC_SPANS = new int[] { 2, 0, 0, 2, 0, 0, 0, 4, 4 };
+
     @OriginalMember(owner = "client!gm", name = "gb", descriptor = "[I")
     public static final int[] WALL_CORNER_TYPE_64_BLOCK_LOC_SPANS = new int[] { 0, 4, 4, 8, 0, 0, 8, 0, 0 };
+
     @OriginalMember(owner = "runetek4.client!kd", name = "sb", descriptor = "[I")
     public static final int[] WALL_CORNER_TYPE_128_BLOCK_LOC_SPANS = new int[] { 1, 1, 0, 0, 0, 8, 0, 0, 8 };
+
     @OriginalMember(owner = "runetek4.client!hb", name = "t", descriptor = "[I")
     public static final int[] DIRECTION_ALLOW_WALL_CORNER_TYPE = new int[] { 160, 192, 80, 96, 0, 144, 80, 48, 160 };
+
     @OriginalMember(owner = "runetek4.client!km", name = "Rc", descriptor = "[I")
     public static final int[] FRONT_WALL_TYPES = new int[] { 19, 55, 38, 155, 255, 110, 137, 205, 76 };
+
     @OriginalMember(owner = "client!fh", name = "U", descriptor = "[[Z")
-    public static final boolean[][] aBooleanArrayArray2 = new boolean[][] { new boolean[0], { true, false, true }, { true, false, false, true }, { false, false, true, true }, { true, true, false }, { false, true, true }, { true, false, false, true }, { false, false, false, true, true }, { false, true, true }, { true, false, true, true, true }, { false, true, true, true, true }, { false, true, true, true, true, false } };
+    public static final boolean[][] SHAPE_TEXTURE_OVERLAY_FLAGS = new boolean[][] { new boolean[0], { true, false, true }, { true, false, false, true }, { false, false, true, true }, { true, true, false }, { false, true, true }, { true, false, false, true }, { false, false, false, true, true }, { false, true, true }, { true, false, true, true, true }, { false, true, true, true, true }, { false, true, true, true, true, false } };
+
     @OriginalMember(owner = "client!fg", name = "d", descriptor = "[I")
-    public static final int[] anIntArray159 = new int[6];
+    public static final int[] tmpViewspaceX = new int[6];
+
     @OriginalMember(owner = "client!fg", name = "l", descriptor = "[I")
-    public static final int[] anIntArray164 = new int[6];
+    public static final int[] tmpViewspaceY = new int[6];
+
     @OriginalMember(owner = "client!fg", name = "m", descriptor = "[I")
-    public static final int[] anIntArray165 = new int[6];
+    public static final int[] tmpLocalX = new int[6];
+
     @OriginalMember(owner = "client!fg", name = "r", descriptor = "[I")
     public static final int[] tmpViewspaceZ = new int[6];
+
     @OriginalMember(owner = "client!fg", name = "t", descriptor = "[I")
-    public static final int[] anIntArray170 = new int[6];
+    public static final int[] tmpLocalY = new int[6];
+
     @OriginalMember(owner = "client!ah", name = "p", descriptor = "Lclient!ih;")
     public static final LinkedList drawTileQueue = new LinkedList();
+
     @OriginalMember(owner = "client!sh", name = "i", descriptor = "[[I")
-    public static final int[][] anIntArrayArray35 = new int[][] { { 0, 128, 0, 0, 128, 0, 128, 128 }, { 0, 128, 0, 0, 128, 0 }, { 0, 0, 64, 128, 0, 128 }, { 128, 128, 64, 128, 128, 0 }, { 0, 0, 128, 0, 128, 128, 64, 128 }, { 0, 128, 0, 0, 128, 0, 64, 128 }, { 64, 128, 0, 128, 0, 0, 64, 0 }, { 0, 0, 64, 0, 0, 64 }, { 128, 0, 128, 128, 0, 128, 0, 64, 64, 0 }, { 0, 128, 0, 0, 32, 64, 64, 96, 128, 128 }, { 0, 0, 128, 0, 128, 128, 64, 96, 32, 64 }, { 0, 0, 128, 0, 96, 32, 32, 32 } };
+    public static final int[][] SHAPE_OVERLAY_COORDINATES = new int[][] { { 0, 128, 0, 0, 128, 0, 128, 128 }, { 0, 128, 0, 0, 128, 0 }, { 0, 0, 64, 128, 0, 128 }, { 128, 128, 64, 128, 128, 0 }, { 0, 0, 128, 0, 128, 128, 64, 128 }, { 0, 128, 0, 0, 128, 0, 64, 128 }, { 64, 128, 0, 128, 0, 0, 64, 0 }, { 0, 0, 64, 0, 0, 64 }, { 128, 0, 128, 128, 0, 128, 0, 64, 64, 0 }, { 0, 128, 0, 0, 32, 64, 64, 96, 128, 128 }, { 0, 0, 128, 0, 128, 128, 64, 96, 32, 64 }, { 0, 0, 128, 0, 96, 32, 32, 32 } };
+
     @OriginalMember(owner = "client!gf", name = "S", descriptor = "[I")
-    public static final int[] anIntArray419 = new int[] { 0, 2, 2, 2, 1, 1, 2, 2, 1, 3, 1, 1 };
+    public static final int[] SHAPE_WALL_CORNER_COUNT = new int[] { 0, 2, 2, 2, 1, 1, 2, 2, 1, 3, 1, 1 };
+
     @OriginalMember(owner = "runetek4.client!kc", name = "s", descriptor = "[I")
-    public static final int[] anIntArray300 = new int[] { 1, 1, 1, 1, 4, 1, 1, 5, 6, 1, 5, 0, 7, 0, 4, 1, 7, 2, 1, 1, 6, 1, 1, 3, 6, 1, 7, 0, 0, 6, 7, 0, 1, 7, 6, 1, 1, 1, 5, 4, 3, 2, 1, 1, 0, 4, 1, 5 };
+    public static final int[] SHAPE_WALL_VERTEX_DATA = new int[] { 1, 1, 1, 1, 4, 1, 1, 5, 6, 1, 5, 0, 7, 0, 4, 1, 7, 2, 1, 1, 6, 1, 1, 3, 6, 1, 7, 0, 0, 6, 7, 0, 1, 7, 6, 1, 1, 1, 5, 4, 3, 2, 1, 1, 0, 4, 1, 5 };
+
     @OriginalMember(owner = "runetek4.client!wi", name = "hb", descriptor = "[[Z")
-    public static final boolean[][] aBooleanArrayArray4 = new boolean[][] { { true, true, true }, { false, false }, { false, true }, { true, false }, { false, true, true }, { true, false, true }, { false, true, false }, { true, false, false } };
+    public static final boolean[][] SHAPE_VISIBLE_FLAGS = new boolean[][] { { true, true, true }, { false, false }, { false, true }, { true, false }, { false, true, true }, { true, false, true }, { false, true, false }, { true, false, false } };
 
     @OriginalMember(owner = "runetek4.client!gj", name = "m", descriptor = "[[[I")
     public static int[][][] tileHeights;
 
     @OriginalMember(owner = "runetek4.client!sm", name = "e", descriptor = "[[[B")
-    public static byte[][][] aByteArrayArrayArray13;
+    public static byte[][][] tileSettings;
 
     @OriginalMember(owner = "runetek4.client!id", name = "i", descriptor = "[[[I")
     public static int[][][] surfaceTileHeights;
 
     @OriginalMember(owner = "client!gn", name = "d", descriptor = "Z")
-    public static boolean aBoolean130 = false;
+    public static boolean hdLighting = false;
 
     @OriginalMember(owner = "runetek4.client!sj", name = "u", descriptor = "Z")
     public static boolean dynamicMapRegion = false;
@@ -157,151 +176,203 @@ public class SceneGraph {
 
     @OriginalMember(owner = "runetek4.client!og", name = "b", descriptor = "I")
     public static int currentChunkZ;
+
     @OriginalMember(owner = "runetek4.client!tg", name = "g", descriptor = "[[[B")
     public static byte[][][] tileOverlays;
+
     @OriginalMember(owner = "runetek4.client!n", name = "h", descriptor = "[[[B")
     public static byte[][][] tileShapes;
+
     @OriginalMember(owner = "runetek4.client!ac", name = "e", descriptor = "[[[B")
     public static byte[][][] tileAngles;
+
     @OriginalMember(owner = "runetek4.client!ui", name = "eb", descriptor = "[[[B")
     public static byte[][][] tileUnderlays;
+
     @OriginalMember(owner = "client!em", name = "t", descriptor = "[[[I")
     public static int[][][] occludeFlags;
+
     @OriginalMember(owner = "runetek4.client!ka", name = "r", descriptor = "[I")
     public static int[] rowCount;
+
     @OriginalMember(owner = "runetek4.client!ug", name = "d", descriptor = "[I")
     public static int[] rowChroma;
+
     @OriginalMember(owner = "runetek4.client!l", name = "l", descriptor = "[I")
     public static int[] rowSaturation;
+
     @OriginalMember(owner = "runetek4.client!s", name = "i", descriptor = "[I")
     public static int[] rowWeightedHue;
+
     @OriginalMember(owner = "runetek4.client!jd", name = "d", descriptor = "[[[B")
     public static byte[][][] shadowmap;
+
     @OriginalMember(owner = "runetek4.client!wk", name = "v", descriptor = "[I")
     public static int[] rowLightness;
+
     @OriginalMember(owner = "runetek4.client!ub", name = "h", descriptor = "[Lclient!pe;")
-    public static SceneGraph_Class120[] aSceneGraphClass120Array2;
+    public static SceneOccluder[] aSceneGraphClass120Array2;
+
     @OriginalMember(owner = "runetek4.client!rh", name = "k", descriptor = "I")
-    public static int anInt4870 = 0;
+    public static int lightSourceCount = 0;
+
     @OriginalMember(owner = "client!bl", name = "T", descriptor = "I")
     public static int sceneryLen = 0;
+
     @OriginalMember(owner = "runetek4.client!pm", name = "cb", descriptor = "[[[Lclient!bj;")
     public static Tile[][][] surfaceGroundTiles;
+
     @OriginalMember(owner = "runetek4.client!wh", name = "c", descriptor = "[[[Lclient!bj;")
     public static Tile[][][] underWaterGroundTiles;
+
     @OriginalMember(owner = "runetek4.client!pk", name = "R", descriptor = "[[Lclient!hg;")
     public static GlTile[][] underWaterHdTiles;
+
     @OriginalMember(owner = "runetek4.client!hc", name = "O", descriptor = "[Lclient!pe;")
-    public static SceneGraph_Class120[] aSceneGraphClass120Array1;
+    public static SceneOccluder[] renderables;
+
     @OriginalMember(owner = "runetek4.client!ma", name = "i", descriptor = "I")
     public static int width;
+
     @OriginalMember(owner = "runetek4.client!hk", name = "Y", descriptor = "I")
     public static int length;
+
     @OriginalMember(owner = "client!cd", name = "s", descriptor = "I")
-    public static int anInt917;
+    public static int renderableCount;
+
     @OriginalMember(owner = "runetek4.client!tk", name = "D", descriptor = "[Lclient!ec;")
     public static Scenery[] scenery;
+
     @OriginalMember(owner = "client!c", name = "bb", descriptor = "[Lclient!ec;")
-    public static Scenery[] aClass31Array2;
+    public static Scenery[] pickableEntities;
+
     @OriginalMember(owner = "client!gf", name = "O", descriptor = "[[[I")
     public static int[][][] underwaterTileHeights;
+
     @OriginalMember(owner = "runetek4.client!oj", name = "E", descriptor = "[[Lclient!hg;")
     public static GlTile[][] underwaterHdTiles;
+
     @OriginalMember(owner = "runetek4.client!jm", name = "r", descriptor = "I")
     public static int planes;
+
     @OriginalMember(owner = "runetek4.client!wi", name = "db", descriptor = "I")
     public static int visibility;
+
     @OriginalMember(owner = "client!f", name = "ab", descriptor = "[[I")
-    public static int[][] anIntArrayArray11;
+    public static int[][] tileColorBuffers;
+
     @OriginalMember(owner = "runetek4.client!la", name = "i", descriptor = "[[[I")
-    public static int[][][] anIntArrayArrayArray12;
+    public static int[][][] lightmapBuffers;
+
     @OriginalMember(owner = "client!dl", name = "h", descriptor = "[[Z")
-    public static boolean[][] aBooleanArrayArray1;
+    public static boolean[][] tileVisibility;
+
     @OriginalMember(owner = "runetek4.client!ha", name = "k", descriptor = "[[Z")
-    public static boolean[][] aBooleanArrayArray3;
+    public static boolean[][] tileCulling;
+
     @OriginalMember(owner = "client!gm", name = "R", descriptor = "I")
-    public static int anInt2293 = (int) (Math.random() * 17.0D) - 8;
+    public static int randomLightOffsetX = (int) (Math.random() * 17.0D) - 8;
+
     @OriginalMember(owner = "runetek4.client!ok", name = "c", descriptor = "I")
-    public static int anInt4272 = (int) (Math.random() * 33.0D) - 16;
+    public static int randomLightOffsetZ = (int) (Math.random() * 33.0D) - 16;
+
     @OriginalMember(owner = "runetek4.client!rj", name = "R", descriptor = "I")
     public static int eyeZ;
+
     @OriginalMember(owner = "runetek4.client!pi", name = "U", descriptor = "I")
-    public static int anInt4539;
+    public static int eyeTileZ;
+
     @OriginalMember(owner = "runetek4.client!sk", name = "mb", descriptor = "I")
-    public static int anInt5205;
+    public static int sinPitch;
+
     @OriginalMember(owner = "client!bl", name = "X", descriptor = "I")
-    public static int anInt730 = -1;
+    public static int currentAnimationFrame = -1;
+
     @OriginalMember(owner = "client!aj", name = "Z", descriptor = "[I")
-    public static int[] anIntArray8;
+    public static int[] viewDistances;
+
     @OriginalMember(owner = "runetek4.client!jg", name = "a", descriptor = "I")
-    public static int anInt3038;
+    public static int cosYaw;
+
     @OriginalMember(owner = "runetek4.client!ma", name = "z", descriptor = "I")
-    public static int anInt3604 = -1;
+    public static int lastAnimationFrame = -1;
+
     @OriginalMember(owner = "runetek4.client!ig", name = "i", descriptor = "I")
-    public static int anInt2886;
+    public static int sinYaw;
+
     @OriginalMember(owner = "runetek4.client!k", name = "l", descriptor = "[I")
-    public static int[] anIntArray292;
+    public static int[] projectionX;
+
     @OriginalMember(owner = "runetek4.client!ta", name = "o", descriptor = "[I")
-    public static int[] anIntArray454;
+    public static int[] projectionY;
+
     @OriginalMember(owner = "runetek4.client!qk", name = "c", descriptor = "[I")
-    public static int[] anIntArray427;
+    public static int[] projectionZ;
+
     @OriginalMember(owner = "runetek4.client!hh", name = "p", descriptor = "[I")
-    public static int[] anIntArray234;
+    public static int[] screenDepth;
+
     @OriginalMember(owner = "runetek4.client!ml", name = "K", descriptor = "I")
     public static int eyeY;
+
     @OriginalMember(owner = "runetek4.client!nd", name = "s", descriptor = "I")
     public static int eyeTileX;
+
     @OriginalMember(owner = "runetek4.client!lj", name = "B", descriptor = "I")
     public static int eyeX;
+
     @OriginalMember(owner = "runetek4.client!tb", name = "Q", descriptor = "I")
-    public static int anInt5276 = 0;
+    public static int frameCounter = 0;
+
     @OriginalMember(owner = "client!bc", name = "Z", descriptor = "I")
-    public static int anInt437;
+    public static int renderDistance;
+
     @OriginalMember(owner = "runetek4.client!rc", name = "p", descriptor = "I")
-    public static int anInt1142 = 0;
+    public static int fogDistance = 0;
+
     @OriginalMember(owner = "runetek4.client!gg", name = "Z", descriptor = "I")
-    public static int anInt2222;
+    public static int cosPitch;
 
     @OriginalMember(owner = "client!fc", name = "a", descriptor = "()V")
     public static void clear() {
-        @Pc(3) int local3;
+        @Pc(3) int plane;
         @Pc(9) int x;
         @Pc(14) int z;
         if (surfaceGroundTiles != null) {
-            for (local3 = 0; local3 < surfaceGroundTiles.length; local3++) {
+            for (plane = 0; plane < surfaceGroundTiles.length; plane++) {
                 for (x = 0; x < width; x++) {
                     for (z = 0; z < length; z++) {
-                        surfaceGroundTiles[local3][x][z] = null;
+                        surfaceGroundTiles[plane][x][z] = null;
                     }
                 }
             }
         }
         surfaceHdTiles = null;
         if (underWaterGroundTiles != null) {
-            for (local3 = 0; local3 < underWaterGroundTiles.length; local3++) {
+            for (plane = 0; plane < underWaterGroundTiles.length; plane++) {
                 for (x = 0; x < width; x++) {
                     for (z = 0; z < length; z++) {
-                        underWaterGroundTiles[local3][x][z] = null;
+                        underWaterGroundTiles[plane][x][z] = null;
                     }
                 }
             }
         }
         underWaterHdTiles = null;
-        anInt917 = 0;
-        if (aSceneGraphClass120Array1 != null) {
-            for (local3 = 0; local3 < anInt917; local3++) {
-                aSceneGraphClass120Array1[local3] = null;
+        renderableCount = 0;
+        if (renderables != null) {
+            for (plane = 0; plane < renderableCount; plane++) {
+                renderables[plane] = null;
             }
         }
         if (scenery != null) {
-            for (local3 = 0; local3 < sceneryLen; local3++) {
-                scenery[local3] = null;
+            for (plane = 0; plane < sceneryLen; plane++) {
+                scenery[plane] = null;
             }
             sceneryLen = 0;
         }
-        if (aClass31Array2 != null) {
-            for (local3 = 0; local3 < aClass31Array2.length; local3++) {
-                aClass31Array2[local3] = null;
+        if (pickableEntities != null) {
+            for (plane = 0; plane < pickableEntities.length; plane++) {
+                pickableEntities[plane] = null;
             }
         }
     }
@@ -329,8 +400,8 @@ public class SceneGraph {
 
     @OriginalMember(owner = "runetek4.client!wa", name = "a", descriptor = "(III)Lclient!bm;")
     public static GroundDecor getGroundDecor(@OriginalArg(0) int plane, @OriginalArg(1) int x, @OriginalArg(2) int z) {
-        @Pc(7) Tile local7 = tiles[plane][x][z];
-        return local7 == null || local7.groundDecor == null ? null : local7.groundDecor;
+        @Pc(7) Tile tile = tiles[plane][x][z];
+        return tile == null || tile.groundDecor == null ? null : tile.groundDecor;
     }
 
     @OriginalMember(owner = "runetek4.client!ql", name = "a", descriptor = "(IIII)I")
@@ -421,7 +492,7 @@ public class SceneGraph {
         for (@Pc(9) int plane = 0; plane < 3; plane++) {
             @Pc(30) Tile tile = tiles[plane][x][z] = tiles[plane + 1][x][z];
             if (tile != null) {
-                tile.anInt672--;
+                tile.sceneX--;
                 for (@Pc(40) int sceneryIndex = 0; sceneryIndex < tile.sceneryLen; sceneryIndex++) {
                     @Pc(49) Scenery scenery = tile.scenery[sceneryIndex];
                     if ((scenery.key >> 29 & 0x3L) == 2L && scenery.xMin == x && scenery.zMin == z) {
@@ -433,7 +504,7 @@ public class SceneGraph {
         if (tiles[0][x][z] == null) {
             tiles[0][x][z] = new Tile(0, x, z);
         }
-        tiles[0][x][z].aClass3_Sub5_1 = originalGroundTile;
+        tiles[0][x][z].bridgeTile = originalGroundTile;
         tiles[3][x][z] = null;
     }
 
@@ -491,29 +562,29 @@ public class SceneGraph {
         }
         if (hasUnderWaterMap) {
             underWaterGroundTiles = new Tile[1][width][length];
-            anIntArrayArray11 = new int[width][length];
+            tileColorBuffers = new int[width][length];
             underwaterTileHeights = new int[1][width + 1][length + 1];
             if (GlRenderer.enabled) {
                 underWaterHdTiles = new GlTile[1][];
             }
         } else {
             underWaterGroundTiles = null;
-            anIntArrayArray11 = null;
+            tileColorBuffers = null;
             underwaterTileHeights = null;
             underWaterHdTiles = null;
         }
         setUnderwater(false);
-        aSceneGraphClass120Array1 = new SceneGraph_Class120[500];
-        anInt917 = 0;
-        aSceneGraphClass120Array2 = new SceneGraph_Class120[500];
-        anInt4870 = 0;
-        anIntArrayArrayArray12 = new int[4][width + 1][length + 1];
+        renderables = new SceneOccluder[500];
+        renderableCount = 0;
+        aSceneGraphClass120Array2 = new SceneOccluder[500];
+        lightSourceCount = 0;
+        lightmapBuffers = new int[4][width + 1][length + 1];
         scenery = new Scenery[5000];
         sceneryLen = 0;
-        aClass31Array2 = new Scenery[100];
-        aBooleanArrayArray1 = new boolean[visibility + visibility + 1][visibility + visibility + 1];
-        aBooleanArrayArray3 = new boolean[visibility + visibility + 2][visibility + visibility + 2];
-        aByteArrayArrayArray13 = new byte[4][width][length];
+        pickableEntities = new Scenery[100];
+        SceneGraph.tileVisibility = new boolean[visibility + visibility + 1][visibility + visibility + 1];
+        tileCulling = new boolean[visibility + visibility + 2][visibility + visibility + 2];
+        tileSettings = new byte[4][width][length];
     }
 
     @OriginalMember(owner = "runetek4.client!pl", name = "a", descriptor = "(ZI)V")
@@ -558,19 +629,19 @@ public class SceneGraph {
                     }
                 }
             }
-            anInt4272 += (int) (Math.random() * 5.0D) - 2;
-            if (anInt4272 < -16) {
-                anInt4272 = -16;
+            randomLightOffsetZ += (int) (Math.random() * 5.0D) - 2;
+            if (randomLightOffsetZ < -16) {
+                randomLightOffsetZ = -16;
             }
-            if (anInt4272 > 16) {
-                anInt4272 = 16;
+            if (randomLightOffsetZ > 16) {
+                randomLightOffsetZ = 16;
             }
-            anInt2293 += (int) (Math.random() * 5.0D) - 2;
-            if (anInt2293 < -8) {
-                anInt2293 = -8;
+            randomLightOffsetX += (int) (Math.random() * 5.0D) - 2;
+            if (randomLightOffsetX < -8) {
+                randomLightOffsetX = -8;
             }
-            if (anInt2293 > 8) {
-                anInt2293 = 8;
+            if (randomLightOffsetX > 8) {
+                randomLightOffsetX = 8;
             }
         }
         @Pc(128) byte levelCount;
@@ -579,10 +650,10 @@ public class SceneGraph {
         } else {
             levelCount = 4;
         }
-        lightLevel = anInt2293 >> 2 << 10;
+        lightLevel = randomLightOffsetX >> 2 << 10;
         @Pc(142) int[][] underlayColorMap = new int[104][104];
         @Pc(146) int[][] levelLightMap = new int[104][104];
-        tileX = anInt4272 >> 1;
+        tileX = randomLightOffsetZ >> 1;
         @Pc(152) int level;
         @Pc(168) int z;
         @Pc(173) int x;
@@ -756,7 +827,7 @@ public class SceneGraph {
                                 if (GlRenderer.enabled && level > 0 && normalX != -1 && FluTypeList.get(lightZ - 1).blockShadow) {
                                     ShadowManager.method4197(0, 0, true, false, z, x, lightValue - tileHeights[0][z][x], -tileHeights[0][z + 1][x] + heightDx, heightDz - tileHeights[0][z + 1][x + 1], len - tileHeights[0][z][x + 1]);
                                 }
-                                if (GlRenderer.enabled && !underwater && anIntArrayArray11 != null && level == 0) {
+                                if (GlRenderer.enabled && !underwater && tileColorBuffers != null && level == 0) {
                                     for (neighborZ = z - 1; neighborZ <= z + 1; neighborZ++) {
                                         for (@Pc(1794) int neighborX = x - 1; neighborX <= x + 1; neighborX++) {
                                             if ((neighborZ != z || x != neighborX) && neighborZ >= 0 && neighborZ < 104 && neighborX >= 0 && neighborX < 104) {
@@ -764,7 +835,7 @@ public class SceneGraph {
                                                 if (neighborOverlayId != 0) {
                                                     @Pc(1842) FloType neighborFloType = FloTypeList.method4395(neighborOverlayId - 1);
                                                     if (neighborFloType.material != -1 && Rasterizer.textureProvider.getMaterialType(neighborFloType.material) == 4) {
-                                                        anIntArrayArray11[z][x] = neighborFloType.waterColor + (neighborFloType.waterOpaity << 24);
+                                                        tileColorBuffers[z][x] = neighborFloType.waterColor + (neighborFloType.waterOpaity << 24);
                                                         continue waterCheckLoop;
                                                     }
                                                 }
@@ -779,9 +850,9 @@ public class SceneGraph {
                                 @Pc(1301) int baseColor;
                                 @Pc(1353) int overlayColor;
                                 @Pc(1288) int materialId;
-                                if (GlRenderer.enabled && !underwater && anIntArrayArray11 != null && level == 0) {
+                                if (GlRenderer.enabled && !underwater && tileColorBuffers != null && level == 0) {
                                     if (floType.material != -1 && Rasterizer.textureProvider.getMaterialType(floType.material) == 4) {
-                                        anIntArrayArray11[z][x] = (floType.waterOpaity << 24) + floType.waterColor;
+                                        tileColorBuffers[z][x] = (floType.waterOpaity << 24) + floType.waterColor;
                                     } else {
                                         neighborWaterCheck: for (materialId = z - 1; materialId <= z + 1; materialId++) {
                                             for (baseColor = x - 1; baseColor <= x + 1; baseColor++) {
@@ -790,7 +861,7 @@ public class SceneGraph {
                                                     if (overlayColor != 0) {
                                                         @Pc(1366) FloType neighborFloType = FloTypeList.method4395(overlayColor - 1);
                                                         if (neighborFloType.material != -1 && Rasterizer.textureProvider.getMaterialType(neighborFloType.material) == 4) {
-                                                            anIntArrayArray11[z][x] = neighborFloType.waterColor + (neighborFloType.waterOpaity << 24);
+                                                            tileColorBuffers[z][x] = neighborFloType.waterColor + (neighborFloType.waterOpaity << 24);
                                                             break neighborWaterCheck;
                                                         }
                                                     }
@@ -852,7 +923,7 @@ public class SceneGraph {
                     if (lightValue > 103) {
                         @Pc(2025) GlTile[] baseTiles;
                         if (underwater) {
-                            baseTiles = buildGlTiles(renderFlags, tileShapes[level], tileUnderlays[level], levelLightMap, normalYMap, anIntArrayArray11, tileOverlays[level], tileAngles[level], normalXMap, level, normalZMap, underlayColorMap, tileHeights[level], surfaceTileHeights[0]);
+                            baseTiles = buildGlTiles(renderFlags, tileShapes[level], tileUnderlays[level], levelLightMap, normalYMap, tileColorBuffers, tileOverlays[level], tileAngles[level], normalXMap, level, normalZMap, underlayColorMap, tileHeights[level], surfaceTileHeights[0]);
                             setUnderwaterHdTiles(level, baseTiles);
                             break;
                         }
@@ -930,7 +1001,7 @@ public class SceneGraph {
                         if (heightDx >= 8) {
                             len = tileHeights[lightValue][z][x] - 240;
                             normalX = tileHeights[underwaterDepth][z][x];
-                            SceneGraph_Class120.method4647(1, z * 128, z * 128, x * 128, lightZ * 128 + 128, len, normalX);
+                            SceneOccluder.addOccluder(1, z * 128, z * 128, x * 128, lightZ * 128 + 128, len, normalX);
                             for (normalY = underwaterDepth; normalY <= lightValue; normalY++) {
                                 for (normalZ = x; normalZ <= lightZ; normalZ++) {
                                     occludeFlags[normalY][z][normalZ] &= 0xFFFFFFFE;
@@ -967,7 +1038,7 @@ public class SceneGraph {
                         if (heightDx >= 8) {
                             len = tileHeights[lightValue][x][coord] - 240;
                             normalX = tileHeights[underwaterDepth][x][coord];
-                            SceneGraph_Class120.method4647(2, x * 128, lightZ * 128 + 128, coord * 128, coord * 128, len, normalX);
+                            SceneOccluder.addOccluder(2, x * 128, lightZ * 128 + 128, coord * 128, coord * 128, len, normalX);
                             for (normalY = underwaterDepth; normalY <= lightValue; normalY++) {
                                 for (normalZ = x; normalZ <= lightZ; normalZ++) {
                                     occludeFlags[normalY][normalZ][coord] &= 0xFFFFFFFD;
@@ -1002,7 +1073,7 @@ public class SceneGraph {
                         }
                         if ((lightZ + 1 - x) * (lightValue - (underwaterDepth - 1)) >= 4) {
                             heightDx = tileHeights[level][x][underwaterDepth];
-                            SceneGraph_Class120.method4647(4, x * 128, lightZ * 128 + 128, underwaterDepth * 128, lightValue * 128 + 128, heightDx, heightDx);
+                            SceneOccluder.addOccluder(4, x * 128, lightZ * 128 + 128, underwaterDepth * 128, lightValue * 128 + 128, heightDx, heightDx);
                             for (heightDz = x; heightDz <= lightZ; heightDz++) {
                                 for (len = underwaterDepth; len <= lightValue; len++) {
                                     occludeFlags[level][heightDz][len] &= 0xFFFFFFFB;
@@ -1022,7 +1093,7 @@ public class SceneGraph {
 
     @OriginalMember(owner = "runetek4.client!lg", name = "a", descriptor = "(I)V")
     public static void ensureTilesExist(@OriginalArg(0) int plane) {
-        anInt5276 = plane;
+        frameCounter = plane;
         for (@Pc(3) int x = 0; x < width; x++) {
             for (@Pc(8) int z = 0; z < length; z++) {
                 if (tiles[plane][x][z] == null) {
@@ -1265,7 +1336,7 @@ public class SceneGraph {
             } else {
                 entity = new Loc(locId, 1, rotation, currentlevel, x, z, locType.anim, locType.randomanimframe, null);
             }
-            addWall(level, x, z, averageY, entity, null, Wall.ROTATION_WALL_CORNER_TYPE[rotation], 0, bitset);
+            addWall(level, x, z, averageY, entity, null, Wall.CORNER_FLAGS[rotation], 0, bitset);
             if (locType.hashardshadow && lowmem) {
                 if (rotation == 0) {
                     shadowmap[level][x][z + 1] = 50;
@@ -1333,7 +1404,7 @@ public class SceneGraph {
                 } else {
                     entity = new Loc(locId, 3, rotation, currentlevel, x, z, locType.anim, locType.randomanimframe, null);
                 }
-                addWall(level, x, z, averageY, entity, null, Wall.ROTATION_WALL_CORNER_TYPE[rotation], 0, bitset);
+                addWall(level, x, z, averageY, entity, null, Wall.CORNER_FLAGS[rotation], 0, bitset);
                 if (locType.hashardshadow && lowmem) {
                     if (rotation == 0) {
                         shadowmap[level][x][z + 1] = 50;
@@ -1405,13 +1476,13 @@ public class SceneGraph {
                     if (locType.anim == -1 && locType.multiloc == null && !locType.aBoolean214) {
                         wallDecorEntity = locType.method3428(rotation + 4, fineX, currentHeightmap, 4, averageY, heightmap, lowmem, null, hasShadow, fineZ);
                         if (GlRenderer.enabled && hasShadow) {
-                            ShadowManager.method4211(wallDecorEntity.sprite, fineX - anIntArray565[rotation] * 8, diffAverageY, fineZ - anIntArray154[rotation] * 8);
+                            ShadowManager.method4211(wallDecorEntity.sprite, fineX - CORNER_OFFSET_Z[rotation] * 8, diffAverageY, fineZ - CORNER_OFFSET_X[rotation] * 8);
                         }
                         wallDecor = wallDecorEntity.model;
                     } else {
                         wallDecor = new Loc(locId, 4, rotation + 4, currentlevel, x, z, locType.anim, locType.randomanimframe, null);
                     }
-                    addWallDecoration(level, x, z, averageY, wallDecor, null, 256, rotation, wallOffset * anIntArray565[rotation], wallOffset * anIntArray154[rotation], bitset);
+                    addWallDecoration(level, x, z, averageY, wallDecor, null, 256, rotation, wallOffset * CORNER_OFFSET_Z[rotation], wallOffset * CORNER_OFFSET_X[rotation], bitset);
                 } else if (shape == LocType.WALLDECOR_DIAGONAL_NOOFFSET) {
                     @Pc(2137) int oppositeRotation = rotation + 2 & 0x3;
                     if (locType.anim == -1 && locType.multiloc == null && !locType.aBoolean214) {
@@ -1433,8 +1504,8 @@ public class SceneGraph {
                     @Pc(2244) int oppositeRotation2 = rotation + 2 & 0x3;
                     @Pc(2289) Entity secondaryDecor;
                     if (locType.anim == -1 && locType.multiloc == null && !locType.aBoolean214) {
-                        @Pc(2297) int offsetZ8 = anIntArray154[rotation] * 8;
-                        @Pc(2303) int offsetX8 = anIntArray565[rotation] * 8;
+                        @Pc(2297) int offsetZ8 = CORNER_OFFSET_X[rotation] * 8;
+                        @Pc(2303) int offsetX8 = CORNER_OFFSET_Z[rotation] * 8;
                         @Pc(2319) LocEntity decorEntity2 = locType.method3428(rotation + 4, fineX, currentHeightmap, 4, averageY, heightmap, lowmem, null, hasShadow, fineZ);
                         if (GlRenderer.enabled && hasShadow) {
                             ShadowManager.method4211(decorEntity2.sprite, fineX - offsetX8, diffAverageY, fineZ - offsetZ8);
@@ -1449,7 +1520,7 @@ public class SceneGraph {
                         wallDecor = new Loc(locId, 4, rotation + 4, currentlevel, x, z, locType.anim, locType.randomanimframe, null);
                         secondaryDecor = new Loc(locId, 4, oppositeRotation2 + 4, currentlevel, x, z, locType.anim, locType.randomanimframe, null);
                     }
-                    addWallDecoration(level, x, z, averageY, wallDecor, secondaryDecor, 256, rotation, wallOffset * anIntArray565[rotation], anIntArray154[rotation] * wallOffset, bitset);
+                    addWallDecoration(level, x, z, averageY, wallDecor, secondaryDecor, 256, rotation, wallOffset * CORNER_OFFSET_Z[rotation], CORNER_OFFSET_X[rotation] * wallOffset, bitset);
                 }
             }
         }
@@ -1577,7 +1648,7 @@ public class SceneGraph {
                     }
                     while (startX < local188) {
                         while (startZ < endZ) {
-                            aByteArrayArrayArray13[tileZ][startX][startZ] = 0;
+                            tileSettings[tileZ][startX][startZ] = 0;
                             startZ++;
                         }
                         startX++;
@@ -1589,7 +1660,7 @@ public class SceneGraph {
                             for (endZ = startX + baseX; endZ < baseX + startX + 4; endZ++) {
                                 for (@Pc(320) int tileZ2 = baseZ + local188; tileZ2 < baseZ + local188 + 4; tileZ2++) {
                                     if (endZ >= 0 && endZ < 104 && tileZ2 >= 0 && tileZ2 < 104) {
-                                        aByteArrayArrayArray13[tileZ][endZ][tileZ2] = heightValue;
+                                        tileSettings[tileZ][endZ][tileZ2] = heightValue;
                                     }
                                 }
                             }
@@ -1622,7 +1693,7 @@ public class SceneGraph {
                     }
                     while (local188 > startX) {
                         while (startZ < endZ) {
-                            aByteArrayArrayArray13[tileZ][startX][startZ] = aByteArrayArrayArray13[tileZ - 1][startX][startZ];
+                            tileSettings[tileZ][startX][startZ] = tileSettings[tileZ - 1][startX][startZ];
                             startZ++;
                         }
                         startX++;
@@ -1688,7 +1759,7 @@ public class SceneGraph {
                     startX = (baseX >> 2) + tileZ;
                     local188 = lightCount + (baseZ >> 2);
                     if (startX >= 0 && startX < 26 && local188 >= 0 && local188 < 26) {
-                        aByteArrayArrayArray13[z][startX][local188] = 0;
+                        tileSettings[z][startX][local188] = 0;
                     }
                 }
             }
@@ -1748,64 +1819,64 @@ public class SceneGraph {
 
     @OriginalMember(owner = "runetek4.client!um", name = "c", descriptor = "(III)Z")
     public static boolean isInOccluderBounds(@OriginalArg(0) int x, @OriginalArg(1) int y, @OriginalArg(2) int z) {
-        for (@Pc(1) int occluderIndex = 0; occluderIndex < anInt4870; occluderIndex++) {
-            @Pc(8) SceneGraph_Class120 occluder = aSceneGraphClass120Array2[occluderIndex];
+        for (@Pc(1) int occluderIndex = 0; occluderIndex < lightSourceCount; occluderIndex++) {
+            @Pc(8) SceneOccluder occluder = aSceneGraphClass120Array2[occluderIndex];
             @Pc(17) int delta;
             @Pc(29) int minBound1;
             @Pc(39) int maxBound1;
             @Pc(49) int minBound2;
             @Pc(59) int maxBound2;
             if (occluder.anInt4462 == 1) {
-                delta = occluder.anInt4460 - x;
+                delta = occluder.worldX1 - x;
                 if (delta > 0) {
-                    minBound1 = occluder.anInt4458 + (occluder.anInt4454 * delta >> 8);
-                    maxBound1 = occluder.anInt4449 + (occluder.anInt4450 * delta >> 8);
-                    minBound2 = occluder.anInt4444 + (occluder.anInt4459 * delta >> 8);
-                    maxBound2 = occluder.anInt4447 + (occluder.anInt4463 * delta >> 8);
+                    minBound1 = occluder.worldX2 + (occluder.anInt4454 * delta >> 8);
+                    maxBound1 = occluder.worldZ2 + (occluder.anInt4450 * delta >> 8);
+                    minBound2 = occluder.minY + (occluder.anInt4459 * delta >> 8);
+                    maxBound2 = occluder.maxY + (occluder.anInt4463 * delta >> 8);
                     if (z >= minBound1 && z <= maxBound1 && y >= minBound2 && y <= maxBound2) {
                         return true;
                     }
                 }
             } else if (occluder.anInt4462 == 2) {
-                delta = x - occluder.anInt4460;
+                delta = x - occluder.worldX1;
                 if (delta > 0) {
-                    minBound1 = occluder.anInt4458 + (occluder.anInt4454 * delta >> 8);
-                    maxBound1 = occluder.anInt4449 + (occluder.anInt4450 * delta >> 8);
-                    minBound2 = occluder.anInt4444 + (occluder.anInt4459 * delta >> 8);
-                    maxBound2 = occluder.anInt4447 + (occluder.anInt4463 * delta >> 8);
+                    minBound1 = occluder.worldX2 + (occluder.anInt4454 * delta >> 8);
+                    maxBound1 = occluder.worldZ2 + (occluder.anInt4450 * delta >> 8);
+                    minBound2 = occluder.minY + (occluder.anInt4459 * delta >> 8);
+                    maxBound2 = occluder.maxY + (occluder.anInt4463 * delta >> 8);
                     if (z >= minBound1 && z <= maxBound1 && y >= minBound2 && y <= maxBound2) {
                         return true;
                     }
                 }
             } else if (occluder.anInt4462 == 3) {
-                delta = occluder.anInt4458 - z;
+                delta = occluder.worldX2 - z;
                 if (delta > 0) {
-                    minBound1 = occluder.anInt4460 + (occluder.anInt4448 * delta >> 8);
-                    maxBound1 = occluder.anInt4445 + (occluder.anInt4456 * delta >> 8);
-                    minBound2 = occluder.anInt4444 + (occluder.anInt4459 * delta >> 8);
-                    maxBound2 = occluder.anInt4447 + (occluder.anInt4463 * delta >> 8);
+                    minBound1 = occluder.worldX1 + (occluder.anInt4448 * delta >> 8);
+                    maxBound1 = occluder.worldZ1 + (occluder.anInt4456 * delta >> 8);
+                    minBound2 = occluder.minY + (occluder.anInt4459 * delta >> 8);
+                    maxBound2 = occluder.maxY + (occluder.anInt4463 * delta >> 8);
                     if (x >= minBound1 && x <= maxBound1 && y >= minBound2 && y <= maxBound2) {
                         return true;
                     }
                 }
             } else if (occluder.anInt4462 == 4) {
-                delta = z - occluder.anInt4458;
+                delta = z - occluder.worldX2;
                 if (delta > 0) {
-                    minBound1 = occluder.anInt4460 + (occluder.anInt4448 * delta >> 8);
-                    maxBound1 = occluder.anInt4445 + (occluder.anInt4456 * delta >> 8);
-                    minBound2 = occluder.anInt4444 + (occluder.anInt4459 * delta >> 8);
-                    maxBound2 = occluder.anInt4447 + (occluder.anInt4463 * delta >> 8);
+                    minBound1 = occluder.worldX1 + (occluder.anInt4448 * delta >> 8);
+                    maxBound1 = occluder.worldZ1 + (occluder.anInt4456 * delta >> 8);
+                    minBound2 = occluder.minY + (occluder.anInt4459 * delta >> 8);
+                    maxBound2 = occluder.maxY + (occluder.anInt4463 * delta >> 8);
                     if (x >= minBound1 && x <= maxBound1 && y >= minBound2 && y <= maxBound2) {
                         return true;
                     }
                 }
             } else if (occluder.anInt4462 == 5) {
-                delta = y - occluder.anInt4444;
+                delta = y - occluder.minY;
                 if (delta > 0) {
-                    minBound1 = occluder.anInt4460 + (occluder.anInt4448 * delta >> 8);
-                    maxBound1 = occluder.anInt4445 + (occluder.anInt4456 * delta >> 8);
-                    minBound2 = occluder.anInt4458 + (occluder.anInt4454 * delta >> 8);
-                    maxBound2 = occluder.anInt4449 + (occluder.anInt4450 * delta >> 8);
+                    minBound1 = occluder.worldX1 + (occluder.anInt4448 * delta >> 8);
+                    maxBound1 = occluder.worldZ1 + (occluder.anInt4456 * delta >> 8);
+                    minBound2 = occluder.worldX2 + (occluder.anInt4454 * delta >> 8);
+                    maxBound2 = occluder.worldZ2 + (occluder.anInt4450 * delta >> 8);
                     if (x >= minBound1 && x <= maxBound1 && z >= minBound2 && z <= maxBound2) {
                         return true;
                     }
@@ -1937,9 +2008,9 @@ public class SceneGraph {
         groundDecor.entity = entity;
         groundDecor.xFine = x * 128 + 64;
         groundDecor.zFine = z * 128 + 64;
-        groundDecor.anInt733 = height;
+        groundDecor.yFine = height;
         groundDecor.key = key;
-        groundDecor.aBoolean49 = clickable;
+        groundDecor.interactive = clickable;
         if (tiles[level][x][z] == null) {
             tiles[level][x][z] = new Tile(level, x, z);
         }
@@ -1989,7 +2060,7 @@ public class SceneGraph {
         wall.key = key;
         wall.xFine = x * 128 + 64;
         wall.zFine = z * 128 + 64;
-        wall.anInt3051 = height;
+        wall.yFine = height;
         wall.primary = primary;
         wall.secondary = secondary;
         wall.typeA = typeA;
@@ -2054,15 +2125,15 @@ public class SceneGraph {
                             tile.sceneryLen--;
                             for (@Pc(44) int j = i; j < tile.sceneryLen; j++) {
                                 tile.scenery[j] = tile.scenery[j + 1];
-                                tile.interiorFlags[j] = tile.interiorFlags[j + 1];
+                                tile.layerCollisionFlags[j] = tile.layerCollisionFlags[j + 1];
                             }
                             tile.scenery[tile.sceneryLen] = null;
                             break;
                         }
                     }
-                    tile.allInteriorFlags = 0;
+                    tile.combinedFlags = 0;
                     for (i = 0; i < tile.sceneryLen; i++) {
-                        tile.allInteriorFlags |= tile.interiorFlags[i];
+                        tile.combinedFlags |= tile.layerCollisionFlags[i];
                     }
                 }
             }
@@ -2159,11 +2230,11 @@ public class SceneGraph {
         @Pc(58) Scenery scenery = new Scenery();
         scenery.key = key;
         scenery.level = plane;
-        scenery.anInt1699 = height;
-        scenery.anInt1703 = shape;
-        scenery.anInt1706 = rotation;
+        scenery.yMin = height;
+        scenery.yMax = shape;
+        scenery.type = rotation;
         scenery.entity = entity;
-        scenery.anInt1714 = animationId;
+        scenery.animationId = animationId;
         scenery.xMin = x;
         scenery.zMin = z;
         scenery.xMax = x + width - 1;
@@ -2191,19 +2262,19 @@ public class SceneGraph {
                 }
                 @Pc(174) Tile currentTile = tiles[plane][currentX][currentZ];
                 currentTile.scenery[currentTile.sceneryLen] = scenery;
-                currentTile.interiorFlags[currentTile.sceneryLen] = interiorFlag;
-                currentTile.allInteriorFlags |= interiorFlag;
+                currentTile.layerCollisionFlags[currentTile.sceneryLen] = interiorFlag;
+                currentTile.combinedFlags |= interiorFlag;
                 currentTile.sceneryLen++;
-                if (isUnderwater && anIntArrayArray11[currentX][currentZ] != 0) {
-                    underwaterValue = anIntArrayArray11[currentX][currentZ];
+                if (isUnderwater && tileColorBuffers[currentX][currentZ] != 0) {
+                    underwaterValue = tileColorBuffers[currentX][currentZ];
                 }
             }
         }
         if (isUnderwater && underwaterValue != 0) {
             for (currentX = x; currentX < x + width; currentX++) {
                 for (currentZ = z; currentZ < z + length; currentZ++) {
-                    if (anIntArrayArray11[currentX][currentZ] == 0) {
-                        anIntArrayArray11[currentX][currentZ] = underwaterValue;
+                    if (tileColorBuffers[currentX][currentZ] == 0) {
+                        tileColorBuffers[currentX][currentZ] = underwaterValue;
                     }
                 }
             }
@@ -2324,7 +2395,7 @@ public class SceneGraph {
             if (primaryEntity instanceof Loc) {
                 ((Loc) primaryEntity).clearShadow();
             } else {
-                Loc.registerLocShadow(locType, anIntArray154[rotation] * 8, rotation + 4, anIntArray565[rotation] * 8, 4, x, z, height);
+                Loc.registerLocShadow(locType, CORNER_OFFSET_X[rotation] * 8, rotation + 4, CORNER_OFFSET_Z[rotation] * 8, 4, x, z, height);
             }
         } else if (shape == 7) {
             if (primaryEntity instanceof Loc) {
@@ -2336,12 +2407,12 @@ public class SceneGraph {
             if (primaryEntity instanceof Loc) {
                 ((Loc) primaryEntity).clearShadow();
             } else {
-                Loc.registerLocShadow(locType, anIntArray154[rotation] * 8, rotation + 4, anIntArray565[rotation] * 8, 4, x, z, height);
+                Loc.registerLocShadow(locType, CORNER_OFFSET_X[rotation] * 8, rotation + 4, CORNER_OFFSET_Z[rotation] * 8, 4, x, z, height);
             }
             if (secondaryEntity instanceof Loc) {
                 ((Loc) secondaryEntity).clearShadow();
             } else {
-                Loc.registerLocShadow(locType, anIntArray154[rotation] * 8, (rotation + 2 & 0x3) + 4, anIntArray565[rotation] * 8, 4, x, z, height);
+                Loc.registerLocShadow(locType, CORNER_OFFSET_X[rotation] * 8, (rotation + 2 & 0x3) + 4, CORNER_OFFSET_Z[rotation] * 8, 4, x, z, height);
             }
         } else if (shape == 11) {
             if (primaryEntity instanceof Loc) {
@@ -2363,7 +2434,7 @@ public class SceneGraph {
         if (minX != maxX || minZ != maxZ) {
             for (tileX = minX; tileX <= maxX; tileX++) {
                 for (tileZ = minZ; tileZ <= maxZ; tileZ++) {
-                    if (anIntArrayArrayArray12[plane][tileX][tileZ] == -anInt437) {
+                    if (lightmapBuffers[plane][tileX][tileZ] == -renderDistance) {
                         return false;
                     }
                 }
@@ -2404,11 +2475,11 @@ public class SceneGraph {
         wallDecor.key = key;
         wallDecor.xFine = x * 128 + 64;
         wallDecor.zFine = z * 128 + 64;
-        wallDecor.anInt1391 = height;
+        wallDecor.yOffset = height;
         wallDecor.primary = primary;
         wallDecor.secondary = secondary;
         wallDecor.type = type;
-        wallDecor.anInt1388 = rotation;
+        wallDecor.yFine = rotation;
         wallDecor.xOffset = xOffset;
         wallDecor.zOffset = zOffset;
         for (@Pc(46) int currentPlane = level; currentPlane >= 0; currentPlane--) {
@@ -2457,25 +2528,25 @@ public class SceneGraph {
                                                 if (tile == null) {
                                                     return;
                                                 }
-                                            } while (!tile.aBoolean46);
-                                            tileX = tile.anInt669;
-                                            tileZ = tile.anInt666;
-                                            plane = tile.anInt672;
-                                            occlusionLevel = tile.anInt668;
+                                            } while (!tile.bridgeAbove);
+                                            tileX = tile.localZ;
+                                            tileZ = tile.plane;
+                                            plane = tile.sceneX;
+                                            occlusionLevel = tile.localX;
                                             tiles = SceneGraph.tiles[plane];
                                             @Pc(33) float local33 = 0.0F;
                                             if (GlRenderer.enabled) {
                                                 if (underwaterTileHeights == tileHeights) {
-                                                    colorData = anIntArrayArray11[tileX][tileZ];
+                                                    colorData = tileColorBuffers[tileX][tileZ];
                                                     viewDirection = colorData & 0xFFFFFF;
-                                                    if (viewDirection != anInt3604) {
-                                                        anInt3604 = viewDirection;
+                                                    if (viewDirection != lastAnimationFrame) {
+                                                        lastAnimationFrame = viewDirection;
                                                         WaterMaterialRenderer.method619(viewDirection);
                                                         FogManager.setFogColor(WaterMaterialRenderer.method2422());
                                                     }
                                                     frontWallTypes = colorData >>> 24 << 3;
-                                                    if (frontWallTypes != anInt730) {
-                                                        anInt730 = frontWallTypes;
+                                                    if (frontWallTypes != currentAnimationFrame) {
+                                                        currentAnimationFrame = frontWallTypes;
                                                         MaterialManager.method2761(frontWallTypes);
                                                     }
                                                     farthestIndex = surfaceTileHeights[0][tileX][tileZ] + surfaceTileHeights[0][tileX + 1][tileZ] + surfaceTileHeights[0][tileX][tileZ + 1] + surfaceTileHeights[0][tileX + 1][tileZ + 1] >> 2;
@@ -2487,72 +2558,72 @@ public class SceneGraph {
                                                     GlRenderer.method4159(local33);
                                                 }
                                             }
-                                            if (!tile.aBoolean45) {
+                                            if (!tile.hasObjects) {
                                                 break;
                                             }
                                             if (checkOcclusion) {
                                                 if (plane > 0) {
                                                     checkTile = SceneGraph.tiles[plane - 1][tileX][tileZ];
-                                                    if (checkTile != null && checkTile.aBoolean46) {
+                                                    if (checkTile != null && checkTile.bridgeAbove) {
                                                         continue;
                                                     }
                                                 }
                                                 if (tileX <= eyeTileX && tileX > LightingManager.anInt987) {
                                                     checkTile = tiles[tileX - 1][tileZ];
-                                                    if (checkTile != null && checkTile.aBoolean46 && (checkTile.aBoolean45 || (tile.allInteriorFlags & 0x1) == 0)) {
+                                                    if (checkTile != null && checkTile.bridgeAbove && (checkTile.hasObjects || (tile.combinedFlags & 0x1) == 0)) {
                                                         continue;
                                                     }
                                                 }
                                                 if (tileX >= eyeTileX && tileX < LightingManager.anInt15 - 1) {
                                                     checkTile = tiles[tileX + 1][tileZ];
-                                                    if (checkTile != null && checkTile.aBoolean46 && (checkTile.aBoolean45 || (tile.allInteriorFlags & 0x4) == 0)) {
+                                                    if (checkTile != null && checkTile.bridgeAbove && (checkTile.hasObjects || (tile.combinedFlags & 0x4) == 0)) {
                                                         continue;
                                                     }
                                                 }
-                                                if (tileZ <= anInt4539 && tileZ > LightingManager.anInt4698) {
+                                                if (tileZ <= eyeTileZ && tileZ > LightingManager.anInt4698) {
                                                     checkTile = tiles[tileX][tileZ - 1];
-                                                    if (checkTile != null && checkTile.aBoolean46 && (checkTile.aBoolean45 || (tile.allInteriorFlags & 0x8) == 0)) {
+                                                    if (checkTile != null && checkTile.bridgeAbove && (checkTile.hasObjects || (tile.combinedFlags & 0x8) == 0)) {
                                                         continue;
                                                     }
                                                 }
-                                                if (tileZ >= anInt4539 && tileZ < LightingManager.anInt4866 - 1) {
+                                                if (tileZ >= eyeTileZ && tileZ < LightingManager.anInt4866 - 1) {
                                                     checkTile = tiles[tileX][tileZ + 1];
-                                                    if (checkTile != null && checkTile.aBoolean46 && (checkTile.aBoolean45 || (tile.allInteriorFlags & 0x2) == 0)) {
+                                                    if (checkTile != null && checkTile.bridgeAbove && (checkTile.hasObjects || (tile.combinedFlags & 0x2) == 0)) {
                                                         continue;
                                                     }
                                                 }
                                             } else {
                                                 checkOcclusion = true;
                                             }
-                                            tile.aBoolean45 = false;
-                                            if (tile.aClass3_Sub5_1 != null) {
-                                                checkTile = tile.aClass3_Sub5_1;
+                                            tile.hasObjects = false;
+                                            if (tile.bridgeTile != null) {
+                                                checkTile = tile.bridgeTile;
                                                 if (GlRenderer.enabled) {
-                                                    GlRenderer.method4159(201.5F - (float) (checkTile.anInt668 + 1) * 50.0F);
+                                                    GlRenderer.method4159(201.5F - (float) (checkTile.localX + 1) * 50.0F);
                                                 }
                                                 if (checkTile.plainTile == null) {
                                                     if (checkTile.shapedTile != null) {
                                                         if (isTileVisible(0, tileX, tileZ)) {
-                                                            drawTileOverlay(checkTile.shapedTile, anInt2886, anInt3038, anInt5205, anInt2222, tileX, tileZ, true);
+                                                            drawTileOverlay(checkTile.shapedTile, sinYaw, cosYaw, sinPitch, cosPitch, tileX, tileZ, true);
                                                         } else {
-                                                            drawTileOverlay(checkTile.shapedTile, anInt2886, anInt3038, anInt5205, anInt2222, tileX, tileZ, false);
+                                                            drawTileOverlay(checkTile.shapedTile, sinYaw, cosYaw, sinPitch, cosPitch, tileX, tileZ, false);
                                                         }
                                                     }
                                                 } else if (isTileVisible(0, tileX, tileZ)) {
-                                                    renderPlainTile(checkTile.plainTile, 0, anInt2886, anInt3038, anInt5205, anInt2222, tileX, tileZ, true);
+                                                    renderPlainTile(checkTile.plainTile, 0, sinYaw, cosYaw, sinPitch, cosPitch, tileX, tileZ, true);
                                                 } else {
-                                                    renderPlainTile(checkTile.plainTile, 0, anInt2886, anInt3038, anInt5205, anInt2222, tileX, tileZ, false);
+                                                    renderPlainTile(checkTile.plainTile, 0, sinYaw, cosYaw, sinPitch, cosPitch, tileX, tileZ, false);
                                                 }
                                                 var22 = checkTile.wall;
                                                 if (var22 != null) {
                                                     if (GlRenderer.enabled) {
-                                                        if ((var22.typeA & tile.backWallTypes) == 0) {
+                                                        if ((var22.typeA & tile.backWallFlags) == 0) {
                                                             LightingManager.method2393(eyeX, eyeY, eyeZ, plane, tileX, tileZ);
                                                         } else {
                                                             LightingManager.method2388(var22.typeA, eyeX, eyeY, eyeZ, occlusionLevel, tileX, tileZ);
                                                         }
                                                     }
-                                                    var22.primary.render(0, anInt2886, anInt3038, anInt5205, anInt2222, var22.xFine - eyeX, var22.anInt3051 - eyeY, var22.zFine - eyeZ, var22.key, plane, null);
+                                                    var22.primary.render(0, sinYaw, cosYaw, sinPitch, cosPitch, var22.xFine - eyeX, var22.yFine - eyeY, var22.zFine - eyeZ, var22.key, plane, null);
                                                 }
                                                 for (frontWallTypes = 0; frontWallTypes < checkTile.sceneryLen; frontWallTypes++) {
                                                     scenery = checkTile.scenery[frontWallTypes];
@@ -2560,7 +2631,7 @@ public class SceneGraph {
                                                         if (GlRenderer.enabled) {
                                                             LightingManager.method2393(eyeX, eyeY, eyeZ, plane, tileX, tileZ);
                                                         }
-                                                        scenery.entity.render(scenery.anInt1714, anInt2886, anInt3038, anInt5205, anInt2222, scenery.anInt1699 - eyeX, scenery.anInt1706 - eyeY, scenery.anInt1703 - eyeZ, scenery.key, plane, null);
+                                                        scenery.entity.render(scenery.animationId, sinYaw, cosYaw, sinPitch, cosPitch, scenery.yMin - eyeX, scenery.type - eyeY, scenery.yMax - eyeZ, scenery.key, plane, null);
                                                     }
                                                 }
                                                 if (GlRenderer.enabled) {
@@ -2571,31 +2642,31 @@ public class SceneGraph {
                                             if (tile.plainTile == null) {
                                                 if (tile.shapedTile != null) {
                                                     if (isTileVisible(occlusionLevel, tileX, tileZ)) {
-                                                        drawTileOverlay(tile.shapedTile, anInt2886, anInt3038, anInt5205, anInt2222, tileX, tileZ, true);
+                                                        drawTileOverlay(tile.shapedTile, sinYaw, cosYaw, sinPitch, cosPitch, tileX, tileZ, true);
                                                     } else {
                                                         shouldDrawTile = true;
-                                                        drawTileOverlay(tile.shapedTile, anInt2886, anInt3038, anInt5205, anInt2222, tileX, tileZ, false);
+                                                        drawTileOverlay(tile.shapedTile, sinYaw, cosYaw, sinPitch, cosPitch, tileX, tileZ, false);
                                                     }
                                                 }
                                             } else if (isTileVisible(occlusionLevel, tileX, tileZ)) {
-                                                renderPlainTile(tile.plainTile, occlusionLevel, anInt2886, anInt3038, anInt5205, anInt2222, tileX, tileZ, true);
+                                                renderPlainTile(tile.plainTile, occlusionLevel, sinYaw, cosYaw, sinPitch, cosPitch, tileX, tileZ, true);
                                             } else {
                                                 shouldDrawTile = true;
-                                                if (tile.plainTile.anInt4865 != 12345678 || MiniMenu.walkTargetActive && plane <= MiniMenu.targetPlane) {
-                                                    renderPlainTile(tile.plainTile, occlusionLevel, anInt2886, anInt3038, anInt5205, anInt2222, tileX, tileZ, false);
+                                                if (tile.plainTile.seHeight != 12345678 || MiniMenu.walkTargetActive && plane <= MiniMenu.targetPlane) {
+                                                    renderPlainTile(tile.plainTile, occlusionLevel, sinYaw, cosYaw, sinPitch, cosPitch, tileX, tileZ, false);
                                                 }
                                             }
                                             if (shouldDrawTile) {
                                                 @Pc(549) GroundDecor groundDecor = tile.groundDecor;
                                                 if (groundDecor != null && (groundDecor.key & 0x80000000L) != 0L) {
-                                                    if (GlRenderer.enabled && groundDecor.aBoolean49) {
+                                                    if (GlRenderer.enabled && groundDecor.interactive) {
                                                         GlRenderer.method4159(local33 + 50.0F - 1.5F);
                                                     }
                                                     if (GlRenderer.enabled) {
                                                         LightingManager.method2393(eyeX, eyeY, eyeZ, plane, tileX, tileZ);
                                                     }
-                                                    groundDecor.entity.render(0, anInt2886, anInt3038, anInt5205, anInt2222, groundDecor.xFine - eyeX, groundDecor.anInt733 - eyeY, groundDecor.zFine - eyeZ, groundDecor.key, plane, null);
-                                                    if (GlRenderer.enabled && groundDecor.aBoolean49) {
+                                                    groundDecor.entity.render(0, sinYaw, cosYaw, sinPitch, cosPitch, groundDecor.xFine - eyeX, groundDecor.yFine - eyeY, groundDecor.zFine - eyeZ, groundDecor.key, plane, null);
+                                                    if (GlRenderer.enabled && groundDecor.interactive) {
                                                         GlRenderer.method4159(local33);
                                                     }
                                                 }
@@ -2610,45 +2681,45 @@ public class SceneGraph {
                                                 } else if (eyeTileX < tileX) {
                                                     viewDirection += 2;
                                                 }
-                                                if (anInt4539 == tileZ) {
+                                                if (eyeTileZ == tileZ) {
                                                     viewDirection += 3;
-                                                } else if (anInt4539 > tileZ) {
+                                                } else if (eyeTileZ > tileZ) {
                                                     viewDirection += 6;
                                                 }
                                                 frontWallTypes = FRONT_WALL_TYPES[viewDirection];
-                                                tile.backWallTypes = BACK_WALL_TYPES[viewDirection];
+                                                tile.backWallFlags = BACK_WALL_TYPES[viewDirection];
                                             }
                                             if (wall != null) {
                                                 if ((wall.typeA & DIRECTION_ALLOW_WALL_CORNER_TYPE[viewDirection]) == 0) {
-                                                    tile.checkLocSpans = 0;
+                                                    tile.locCheckFlags = 0;
                                                 } else if (wall.typeA == 16) {
-                                                    tile.checkLocSpans = 3;
-                                                    tile.blockLocSpans = WALL_CORNER_TYPE_16_BLOCK_LOC_SPANS[viewDirection];
-                                                    tile.inverseBlockLocSpans = 3 - tile.blockLocSpans;
+                                                    tile.locCheckFlags = 3;
+                                                    tile.locBlockFlags = WALL_CORNER_TYPE_16_BLOCK_LOC_SPANS[viewDirection];
+                                                    tile.inverseLocBlockFlags = 3 - tile.locBlockFlags;
                                                 } else if (wall.typeA == 32) {
-                                                    tile.checkLocSpans = 6;
-                                                    tile.blockLocSpans = WALL_CORNER_TYPE_32_BLOCK_LOC_SPANS[viewDirection];
-                                                    tile.inverseBlockLocSpans = 6 - tile.blockLocSpans;
+                                                    tile.locCheckFlags = 6;
+                                                    tile.locBlockFlags = WALL_CORNER_TYPE_32_BLOCK_LOC_SPANS[viewDirection];
+                                                    tile.inverseLocBlockFlags = 6 - tile.locBlockFlags;
                                                 } else if (wall.typeA == 64) {
-                                                    tile.checkLocSpans = 12;
-                                                    tile.blockLocSpans = WALL_CORNER_TYPE_64_BLOCK_LOC_SPANS[viewDirection];
-                                                    tile.inverseBlockLocSpans = 12 - tile.blockLocSpans;
+                                                    tile.locCheckFlags = 12;
+                                                    tile.locBlockFlags = WALL_CORNER_TYPE_64_BLOCK_LOC_SPANS[viewDirection];
+                                                    tile.inverseLocBlockFlags = 12 - tile.locBlockFlags;
                                                 } else {
-                                                    tile.checkLocSpans = 9;
-                                                    tile.blockLocSpans = WALL_CORNER_TYPE_128_BLOCK_LOC_SPANS[viewDirection];
-                                                    tile.inverseBlockLocSpans = 9 - tile.blockLocSpans;
+                                                    tile.locCheckFlags = 9;
+                                                    tile.locBlockFlags = WALL_CORNER_TYPE_128_BLOCK_LOC_SPANS[viewDirection];
+                                                    tile.inverseLocBlockFlags = 9 - tile.locBlockFlags;
                                                 }
                                                 if ((wall.typeA & frontWallTypes) != 0 && !wallVisible(occlusionLevel, tileX, tileZ, wall.typeA)) {
                                                     if (GlRenderer.enabled) {
                                                         LightingManager.method2393(eyeX, eyeY, eyeZ, plane, tileX, tileZ);
                                                     }
-                                                    wall.primary.render(0, anInt2886, anInt3038, anInt5205, anInt2222, wall.xFine - eyeX, wall.anInt3051 - eyeY, wall.zFine - eyeZ, wall.key, plane, null);
+                                                    wall.primary.render(0, sinYaw, cosYaw, sinPitch, cosPitch, wall.xFine - eyeX, wall.yFine - eyeY, wall.zFine - eyeZ, wall.key, plane, null);
                                                 }
                                                 if ((wall.typeB & frontWallTypes) != 0 && !wallVisible(occlusionLevel, tileX, tileZ, wall.typeB)) {
                                                     if (GlRenderer.enabled) {
                                                         LightingManager.method2393(eyeX, eyeY, eyeZ, plane, tileX, tileZ);
                                                     }
-                                                    wall.secondary.render(0, anInt2886, anInt3038, anInt5205, anInt2222, wall.xFine - eyeX, wall.anInt3051 - eyeY, wall.zFine - eyeZ, wall.key, plane, null);
+                                                    wall.secondary.render(0, sinYaw, cosYaw, sinPitch, cosPitch, wall.xFine - eyeX, wall.yFine - eyeY, wall.zFine - eyeZ, wall.key, plane, null);
                                                 }
                                             }
                                             if (wallDecor != null && !visible(occlusionLevel, tileX, tileZ, wallDecor.primary.getMinY())) {
@@ -2659,12 +2730,12 @@ public class SceneGraph {
                                                     if (GlRenderer.enabled) {
                                                         LightingManager.method2393(eyeX, eyeY, eyeZ, plane, tileX, tileZ);
                                                     }
-                                                    wallDecor.primary.render(0, anInt2886, anInt3038, anInt5205, anInt2222, wallDecor.xFine + wallDecor.xOffset - eyeX, wallDecor.anInt1391 - eyeY, wallDecor.zFine + wallDecor.zOffset - eyeZ, wallDecor.key, plane, null);
+                                                    wallDecor.primary.render(0, sinYaw, cosYaw, sinPitch, cosPitch, wallDecor.xFine + wallDecor.xOffset - eyeX, wallDecor.yOffset - eyeY, wallDecor.zFine + wallDecor.zOffset - eyeZ, wallDecor.key, plane, null);
                                                 } else if (wallDecor.type == 256) {
                                                     x = wallDecor.xFine - eyeX;
-                                                    y = wallDecor.anInt1391 - eyeY;
+                                                    y = wallDecor.yOffset - eyeY;
                                                     z = wallDecor.zFine - eyeZ;
-                                                    wallRotation = wallDecor.anInt1388;
+                                                    wallRotation = wallDecor.yFine;
                                                     if (wallRotation == 1 || wallRotation == 2) {
                                                         adjustedX = -x;
                                                     } else {
@@ -2680,12 +2751,12 @@ public class SceneGraph {
                                                         if (GlRenderer.enabled) {
                                                             LightingManager.method2393(eyeX, eyeY, eyeZ, plane, tileX, tileZ);
                                                         }
-                                                        wallDecor.primary.render(0, anInt2886, anInt3038, anInt5205, anInt2222, x + wallDecor.xOffset, y, z + wallDecor.zOffset, wallDecor.key, plane, null);
+                                                        wallDecor.primary.render(0, sinYaw, cosYaw, sinPitch, cosPitch, x + wallDecor.xOffset, y, z + wallDecor.zOffset, wallDecor.key, plane, null);
                                                     } else if (wallDecor.secondary != null) {
                                                         if (GlRenderer.enabled) {
                                                             LightingManager.method2393(eyeX, eyeY, eyeZ, plane, tileX, tileZ);
                                                         }
-                                                        wallDecor.secondary.render(0, anInt2886, anInt3038, anInt5205, anInt2222, x, y, z, wallDecor.key, plane, null);
+                                                        wallDecor.secondary.render(0, sinYaw, cosYaw, sinPitch, cosPitch, x, y, z, wallDecor.key, plane, null);
                                                     }
                                                 }
                                                 if (GlRenderer.enabled) {
@@ -2695,14 +2766,14 @@ public class SceneGraph {
                                             if (shouldDrawTile) {
                                                 @Pc(1001) GroundDecor groundDecor = tile.groundDecor;
                                                 if (groundDecor != null && (groundDecor.key & 0x80000000L) == 0L) {
-                                                    if (GlRenderer.enabled && groundDecor.aBoolean49) {
+                                                    if (GlRenderer.enabled && groundDecor.interactive) {
                                                         GlRenderer.method4159(local33 + 50.0F - 1.5F);
                                                     }
                                                     if (GlRenderer.enabled) {
                                                         LightingManager.method2393(eyeX, eyeY, eyeZ, plane, tileX, tileZ);
                                                     }
-                                                    groundDecor.entity.render(0, anInt2886, anInt3038, anInt5205, anInt2222, groundDecor.xFine - eyeX, groundDecor.anInt733 - eyeY, groundDecor.zFine - eyeZ, groundDecor.key, plane, null);
-                                                    if (GlRenderer.enabled && groundDecor.aBoolean49) {
+                                                    groundDecor.entity.render(0, sinYaw, cosYaw, sinPitch, cosPitch, groundDecor.xFine - eyeX, groundDecor.yFine - eyeY, groundDecor.zFine - eyeZ, groundDecor.key, plane, null);
+                                                    if (GlRenderer.enabled && groundDecor.interactive) {
                                                         GlRenderer.method4159(local33);
                                                     }
                                                 }
@@ -2712,49 +2783,49 @@ public class SceneGraph {
                                                         LightingManager.method2393(eyeX, eyeY, eyeZ, plane, tileX, tileZ);
                                                     }
                                                     if (objs.secondary != null) {
-                                                        objs.secondary.render(0, anInt2886, anInt3038, anInt5205, anInt2222, objs.xFine - eyeX, objs.anInt3057 - eyeY, objs.zFine - eyeZ, objs.key, plane, null);
+                                                        objs.secondary.render(0, sinYaw, cosYaw, sinPitch, cosPitch, objs.xFine - eyeX, objs.anInt3057 - eyeY, objs.zFine - eyeZ, objs.key, plane, null);
                                                     }
                                                     if (objs.tertiary != null) {
-                                                        objs.tertiary.render(0, anInt2886, anInt3038, anInt5205, anInt2222, objs.xFine - eyeX, objs.anInt3057 - eyeY, objs.zFine - eyeZ, objs.key, plane, null);
+                                                        objs.tertiary.render(0, sinYaw, cosYaw, sinPitch, cosPitch, objs.xFine - eyeX, objs.anInt3057 - eyeY, objs.zFine - eyeZ, objs.key, plane, null);
                                                     }
                                                     if (objs.primary != null) {
-                                                        objs.primary.render(0, anInt2886, anInt3038, anInt5205, anInt2222, objs.xFine - eyeX, objs.anInt3057 - eyeY, objs.zFine - eyeZ, objs.key, plane, null);
+                                                        objs.primary.render(0, sinYaw, cosYaw, sinPitch, cosPitch, objs.xFine - eyeX, objs.anInt3057 - eyeY, objs.zFine - eyeZ, objs.key, plane, null);
                                                     }
                                                 }
                                             }
-                                            x = tile.allInteriorFlags;
+                                            x = tile.combinedFlags;
                                             if (x != 0) {
                                                 if (tileX < eyeTileX && (x & 0x4) != 0) {
                                                     adjacentTile = tiles[tileX + 1][tileZ];
-                                                    if (adjacentTile != null && adjacentTile.aBoolean46) {
+                                                    if (adjacentTile != null && adjacentTile.bridgeAbove) {
                                                         drawTileQueue.addTail(adjacentTile);
                                                     }
                                                 }
-                                                if (tileZ < anInt4539 && (x & 0x2) != 0) {
+                                                if (tileZ < eyeTileZ && (x & 0x2) != 0) {
                                                     adjacentTile = tiles[tileX][tileZ + 1];
-                                                    if (adjacentTile != null && adjacentTile.aBoolean46) {
+                                                    if (adjacentTile != null && adjacentTile.bridgeAbove) {
                                                         drawTileQueue.addTail(adjacentTile);
                                                     }
                                                 }
                                                 if (tileX > eyeTileX && (x & 0x1) != 0) {
                                                     adjacentTile = tiles[tileX - 1][tileZ];
-                                                    if (adjacentTile != null && adjacentTile.aBoolean46) {
+                                                    if (adjacentTile != null && adjacentTile.bridgeAbove) {
                                                         drawTileQueue.addTail(adjacentTile);
                                                     }
                                                 }
-                                                if (tileZ > anInt4539 && (x & 0x8) != 0) {
+                                                if (tileZ > eyeTileZ && (x & 0x8) != 0) {
                                                     adjacentTile = tiles[tileX][tileZ - 1];
-                                                    if (adjacentTile != null && adjacentTile.aBoolean46) {
+                                                    if (adjacentTile != null && adjacentTile.bridgeAbove) {
                                                         drawTileQueue.addTail(adjacentTile);
                                                     }
                                                 }
                                             }
                                             break;
                                         }
-                                        if (tile.checkLocSpans != 0) {
+                                        if (tile.locCheckFlags != 0) {
                                             shouldDrawTile = true;
                                             for (viewDirection = 0; viewDirection < tile.sceneryLen; viewDirection++) {
-                                                if (tile.scenery[viewDirection].anInt1707 != anInt437 && (tile.interiorFlags[viewDirection] & tile.checkLocSpans) == tile.blockLocSpans) {
+                                                if (tile.scenery[viewDirection].config != renderDistance && (tile.layerCollisionFlags[viewDirection] & tile.locCheckFlags) == tile.locBlockFlags) {
                                                     shouldDrawTile = false;
                                                     break;
                                                 }
@@ -2801,9 +2872,9 @@ public class SceneGraph {
                                                             LightingManager.method2393(eyeX, eyeY, eyeZ, plane, tileX, tileZ);
                                                         }
                                                     }
-                                                    var22.primary.render(0, anInt2886, anInt3038, anInt5205, anInt2222, var22.xFine - eyeX, var22.anInt3051 - eyeY, var22.zFine - eyeZ, var22.key, plane, null);
+                                                    var22.primary.render(0, sinYaw, cosYaw, sinPitch, cosPitch, var22.xFine - eyeX, var22.yFine - eyeY, var22.zFine - eyeZ, var22.key, plane, null);
                                                 }
-                                                tile.checkLocSpans = 0;
+                                                tile.locCheckFlags = 0;
                                             }
                                         }
                                         if (!tile.containsLocs) {
@@ -2815,15 +2886,15 @@ public class SceneGraph {
                                             viewDirection = 0;
                                             iterate_locs: for (frontWallTypes = 0; frontWallTypes < colorData; frontWallTypes++) {
                                                 scenery = tile.scenery[frontWallTypes];
-                                                if (scenery.anInt1707 != anInt437) {
+                                                if (scenery.config != renderDistance) {
                                                     for (tempValue = scenery.xMin; tempValue <= scenery.xMax; tempValue++) {
                                                         for (x = scenery.zMin; x <= scenery.zMax; x++) {
                                                             adjacentTile = tiles[tempValue][x];
-                                                            if (adjacentTile.aBoolean45) {
+                                                            if (adjacentTile.hasObjects) {
                                                                 tile.containsLocs = true;
                                                                 continue iterate_locs;
                                                             }
-                                                            if (adjacentTile.checkLocSpans != 0) {
+                                                            if (adjacentTile.locCheckFlags != 0) {
                                                                 z = 0;
                                                                 if (tempValue > scenery.xMin) {
                                                                     z++;
@@ -2837,25 +2908,25 @@ public class SceneGraph {
                                                                 if (x < scenery.zMax) {
                                                                     z += 2;
                                                                 }
-                                                                if ((z & adjacentTile.checkLocSpans) == tile.inverseBlockLocSpans) {
+                                                                if ((z & adjacentTile.locCheckFlags) == tile.inverseLocBlockFlags) {
                                                                     tile.containsLocs = true;
                                                                     continue iterate_locs;
                                                                 }
                                                             }
                                                         }
                                                     }
-                                                    aClass31Array2[viewDirection++] = scenery;
+                                                    pickableEntities[viewDirection++] = scenery;
                                                     tempValue = eyeTileX - scenery.xMin;
                                                     x = scenery.xMax - eyeTileX;
                                                     if (x > tempValue) {
                                                         tempValue = x;
                                                     }
-                                                    y = anInt4539 - scenery.zMin;
-                                                    z = scenery.zMax - anInt4539;
+                                                    y = eyeTileZ - scenery.zMin;
+                                                    z = scenery.zMax - eyeTileZ;
                                                     if (z > y) {
-                                                        scenery.anInt1705 = tempValue + z;
+                                                        scenery.rotation = tempValue + z;
                                                     } else {
-                                                        scenery.anInt1705 = tempValue + y;
+                                                        scenery.rotation = tempValue + y;
                                                     }
                                                 }
                                             }
@@ -2863,16 +2934,16 @@ public class SceneGraph {
                                                 frontWallTypes = -50;
                                                 farthestIndex = -1;
                                                 for (tempValue = 0; tempValue < viewDirection; tempValue++) {
-                                                    @Pc(1628) Scenery currentScenery = aClass31Array2[tempValue];
-                                                    if (currentScenery.anInt1707 != anInt437) {
-                                                        if (currentScenery.anInt1705 > frontWallTypes) {
-                                                            frontWallTypes = currentScenery.anInt1705;
+                                                    @Pc(1628) Scenery currentScenery = pickableEntities[tempValue];
+                                                    if (currentScenery.config != renderDistance) {
+                                                        if (currentScenery.rotation > frontWallTypes) {
+                                                            frontWallTypes = currentScenery.rotation;
                                                             farthestIndex = tempValue;
-                                                        } else if (currentScenery.anInt1705 == frontWallTypes) {
-                                                            y = currentScenery.anInt1699 - eyeX;
-                                                            z = currentScenery.anInt1703 - eyeZ;
-                                                            wallRotation = aClass31Array2[farthestIndex].anInt1699 - eyeX;
-                                                            adjustedX = aClass31Array2[farthestIndex].anInt1703 - eyeZ;
+                                                        } else if (currentScenery.rotation == frontWallTypes) {
+                                                            y = currentScenery.yMin - eyeX;
+                                                            z = currentScenery.yMax - eyeZ;
+                                                            wallRotation = pickableEntities[farthestIndex].yMin - eyeX;
+                                                            adjustedX = pickableEntities[farthestIndex].yMax - eyeZ;
                                                             if (y * y + z * z > wallRotation * wallRotation + adjustedX * adjustedX) {
                                                                 farthestIndex = tempValue;
                                                             }
@@ -2882,14 +2953,14 @@ public class SceneGraph {
                                                 if (farthestIndex == -1) {
                                                     break;
                                                 }
-                                                @Pc(1697) Scenery selectedScenery = aClass31Array2[farthestIndex];
-                                                selectedScenery.anInt1707 = anInt437;
+                                                @Pc(1697) Scenery selectedScenery = pickableEntities[farthestIndex];
+                                                selectedScenery.config = renderDistance;
                                                 if (!isAreaVisible(occlusionLevel, selectedScenery.xMin, selectedScenery.xMax, selectedScenery.zMin, selectedScenery.zMax, selectedScenery.entity.getMinY())) {
                                                     if (GlRenderer.enabled) {
                                                         if ((selectedScenery.key & 0xFC000L) == 147456L) {
                                                             LightingManager.method2393(eyeX, eyeY, eyeZ, plane, tileX, tileZ);
-                                                            x = selectedScenery.anInt1699 - eyeX;
-                                                            y = selectedScenery.anInt1703 - eyeZ;
+                                                            x = selectedScenery.yMin - eyeX;
+                                                            y = selectedScenery.yMax - eyeZ;
                                                             z = (int) (selectedScenery.key >> 20 & 0x3L);
                                                             if (z == 1 || z == 3) {
                                                                 if (y > -x) {
@@ -2906,14 +2977,14 @@ public class SceneGraph {
                                                             LightingManager.method2391(eyeX, eyeY, eyeZ, plane, selectedScenery.xMin, selectedScenery.zMin, selectedScenery.xMax, selectedScenery.zMax);
                                                         }
                                                     }
-                                                    selectedScenery.entity.render(selectedScenery.anInt1714, anInt2886, anInt3038, anInt5205, anInt2222, selectedScenery.anInt1699 - eyeX, selectedScenery.anInt1706 - eyeY, selectedScenery.anInt1703 - eyeZ, selectedScenery.key, plane, null);
+                                                    selectedScenery.entity.render(selectedScenery.animationId, sinYaw, cosYaw, sinPitch, cosPitch, selectedScenery.yMin - eyeX, selectedScenery.type - eyeY, selectedScenery.yMax - eyeZ, selectedScenery.key, plane, null);
                                                 }
                                                 for (x = selectedScenery.xMin; x <= selectedScenery.xMax; x++) {
                                                     for (y = selectedScenery.zMin; y <= selectedScenery.zMax; y++) {
                                                         @Pc(1863) Tile spanTile = tiles[x][y];
-                                                        if (spanTile.checkLocSpans != 0) {
+                                                        if (spanTile.locCheckFlags != 0) {
                                                             drawTileQueue.addTail(spanTile);
-                                                        } else if ((x != tileX || y != tileZ) && spanTile.aBoolean46) {
+                                                        } else if ((x != tileX || y != tileZ) && spanTile.bridgeAbove) {
                                                             drawTileQueue.addTail(spanTile);
                                                         }
                                                     }
@@ -2927,58 +2998,58 @@ public class SceneGraph {
                                             break;
                                         }
                                     }
-                                } while (!tile.aBoolean46);
-                            } while (tile.checkLocSpans != 0);
+                                } while (!tile.bridgeAbove);
+                            } while (tile.locCheckFlags != 0);
                             if (tileX > eyeTileX || tileX <= LightingManager.anInt987) {
                                 break;
                             }
                             checkTile = tiles[tileX - 1][tileZ];
-                        } while (checkTile != null && checkTile.aBoolean46);
+                        } while (checkTile != null && checkTile.bridgeAbove);
                         if (tileX < eyeTileX || tileX >= LightingManager.anInt15 - 1) {
                             break;
                         }
                         checkTile = tiles[tileX + 1][tileZ];
-                    } while (checkTile != null && checkTile.aBoolean46);
-                    if (tileZ > anInt4539 || tileZ <= LightingManager.anInt4698) {
+                    } while (checkTile != null && checkTile.bridgeAbove);
+                    if (tileZ > eyeTileZ || tileZ <= LightingManager.anInt4698) {
                         break;
                     }
                     checkTile = tiles[tileX][tileZ - 1];
-                } while (checkTile != null && checkTile.aBoolean46);
-                if (tileZ < anInt4539 || tileZ >= LightingManager.anInt4866 - 1) {
+                } while (checkTile != null && checkTile.bridgeAbove);
+                if (tileZ < eyeTileZ || tileZ >= LightingManager.anInt4866 - 1) {
                     break;
                 }
                 checkTile = tiles[tileX][tileZ + 1];
-            } while (checkTile != null && checkTile.aBoolean46);
-            tile.aBoolean46 = false;
-            anInt1142--;
+            } while (checkTile != null && checkTile.bridgeAbove);
+            tile.bridgeAbove = false;
+            fogDistance--;
             @Pc(1999) ObjStackEntity objStack = tile.objStack;
             if (objStack != null && objStack.offset != 0) {
                 if (GlRenderer.enabled) {
                     LightingManager.method2393(eyeX, eyeY, eyeZ, plane, tileX, tileZ);
                 }
                 if (objStack.secondary != null) {
-                    objStack.secondary.render(0, anInt2886, anInt3038, anInt5205, anInt2222, objStack.xFine - eyeX, objStack.anInt3057 - eyeY - objStack.offset, objStack.zFine - eyeZ, objStack.key, plane, null);
+                    objStack.secondary.render(0, sinYaw, cosYaw, sinPitch, cosPitch, objStack.xFine - eyeX, objStack.anInt3057 - eyeY - objStack.offset, objStack.zFine - eyeZ, objStack.key, plane, null);
                 }
                 if (objStack.tertiary != null) {
-                    objStack.tertiary.render(0, anInt2886, anInt3038, anInt5205, anInt2222, objStack.xFine - eyeX, objStack.anInt3057 - eyeY - objStack.offset, objStack.zFine - eyeZ, objStack.key, plane, null);
+                    objStack.tertiary.render(0, sinYaw, cosYaw, sinPitch, cosPitch, objStack.xFine - eyeX, objStack.anInt3057 - eyeY - objStack.offset, objStack.zFine - eyeZ, objStack.key, plane, null);
                 }
                 if (objStack.primary != null) {
-                    objStack.primary.render(0, anInt2886, anInt3038, anInt5205, anInt2222, objStack.xFine - eyeX, objStack.anInt3057 - eyeY - objStack.offset, objStack.zFine - eyeZ, objStack.key, plane, null);
+                    objStack.primary.render(0, sinYaw, cosYaw, sinPitch, cosPitch, objStack.xFine - eyeX, objStack.anInt3057 - eyeY - objStack.offset, objStack.zFine - eyeZ, objStack.key, plane, null);
                 }
             }
-            if (tile.backWallTypes != 0) {
+            if (tile.backWallFlags != 0) {
                 @Pc(2109) WallDecor wallDecor = tile.wallDecor;
                 if (wallDecor != null && !visible(occlusionLevel, tileX, tileZ, wallDecor.primary.getMinY())) {
-                    if ((wallDecor.type & tile.backWallTypes) != 0) {
+                    if ((wallDecor.type & tile.backWallFlags) != 0) {
                         if (GlRenderer.enabled) {
                             LightingManager.method2393(eyeX, eyeY, eyeZ, plane, tileX, tileZ);
                         }
-                        wallDecor.primary.render(0, anInt2886, anInt3038, anInt5205, anInt2222, wallDecor.xFine + wallDecor.xOffset - eyeX, wallDecor.anInt1391 - eyeY, wallDecor.zFine + wallDecor.zOffset - eyeZ, wallDecor.key, plane, null);
+                        wallDecor.primary.render(0, sinYaw, cosYaw, sinPitch, cosPitch, wallDecor.xFine + wallDecor.xOffset - eyeX, wallDecor.yOffset - eyeY, wallDecor.zFine + wallDecor.zOffset - eyeZ, wallDecor.key, plane, null);
                     } else if (wallDecor.type == 256) {
                         frontWallTypes = wallDecor.xFine - eyeX;
-                        farthestIndex = wallDecor.anInt1391 - eyeY;
+                        farthestIndex = wallDecor.yOffset - eyeY;
                         tempValue = wallDecor.zFine - eyeZ;
-                        x = wallDecor.anInt1388;
+                        x = wallDecor.yFine;
                         if (x == 1 || x == 2) {
                             y = -frontWallTypes;
                         } else {
@@ -2993,59 +3064,59 @@ public class SceneGraph {
                             if (GlRenderer.enabled) {
                                 LightingManager.method2393(eyeX, eyeY, eyeZ, plane, tileX, tileZ);
                             }
-                            wallDecor.primary.render(0, anInt2886, anInt3038, anInt5205, anInt2222, frontWallTypes + wallDecor.xOffset, farthestIndex, tempValue + wallDecor.zOffset, wallDecor.key, plane, null);
+                            wallDecor.primary.render(0, sinYaw, cosYaw, sinPitch, cosPitch, frontWallTypes + wallDecor.xOffset, farthestIndex, tempValue + wallDecor.zOffset, wallDecor.key, plane, null);
                         } else if (wallDecor.secondary != null) {
                             if (GlRenderer.enabled) {
                                 LightingManager.method2393(eyeX, eyeY, eyeZ, plane, tileX, tileZ);
                             }
-                            wallDecor.secondary.render(0, anInt2886, anInt3038, anInt5205, anInt2222, frontWallTypes, farthestIndex, tempValue, wallDecor.key, plane, null);
+                            wallDecor.secondary.render(0, sinYaw, cosYaw, sinPitch, cosPitch, frontWallTypes, farthestIndex, tempValue, wallDecor.key, plane, null);
                         }
                     }
                 }
                 @Pc(2275) Wall wall = tile.wall;
                 if (wall != null) {
-                    if ((wall.typeB & tile.backWallTypes) != 0 && !wallVisible(occlusionLevel, tileX, tileZ, wall.typeB)) {
+                    if ((wall.typeB & tile.backWallFlags) != 0 && !wallVisible(occlusionLevel, tileX, tileZ, wall.typeB)) {
                         if (GlRenderer.enabled) {
                             LightingManager.method2388(wall.typeB, eyeX, eyeY, eyeZ, occlusionLevel, tileX, tileZ);
                         }
-                        wall.secondary.render(0, anInt2886, anInt3038, anInt5205, anInt2222, wall.xFine - eyeX, wall.anInt3051 - eyeY, wall.zFine - eyeZ, wall.key, plane, null);
+                        wall.secondary.render(0, sinYaw, cosYaw, sinPitch, cosPitch, wall.xFine - eyeX, wall.yFine - eyeY, wall.zFine - eyeZ, wall.key, plane, null);
                     }
-                    if ((wall.typeA & tile.backWallTypes) != 0 && !wallVisible(occlusionLevel, tileX, tileZ, wall.typeA)) {
+                    if ((wall.typeA & tile.backWallFlags) != 0 && !wallVisible(occlusionLevel, tileX, tileZ, wall.typeA)) {
                         if (GlRenderer.enabled) {
                             LightingManager.method2388(wall.typeA, eyeX, eyeY, eyeZ, occlusionLevel, tileX, tileZ);
                         }
-                        wall.primary.render(0, anInt2886, anInt3038, anInt5205, anInt2222, wall.xFine - eyeX, wall.anInt3051 - eyeY, wall.zFine - eyeZ, wall.key, plane, null);
+                        wall.primary.render(0, sinYaw, cosYaw, sinPitch, cosPitch, wall.xFine - eyeX, wall.yFine - eyeY, wall.zFine - eyeZ, wall.key, plane, null);
                     }
                 }
             }
             @Pc(2388) Tile neighborTile;
             if (plane < planes - 1) {
                 neighborTile = SceneGraph.tiles[plane + 1][tileX][tileZ];
-                if (neighborTile != null && neighborTile.aBoolean46) {
+                if (neighborTile != null && neighborTile.bridgeAbove) {
                     drawTileQueue.addTail(neighborTile);
                 }
             }
             if (tileX < eyeTileX) {
                 neighborTile = tiles[tileX + 1][tileZ];
-                if (neighborTile != null && neighborTile.aBoolean46) {
+                if (neighborTile != null && neighborTile.bridgeAbove) {
                     drawTileQueue.addTail(neighborTile);
                 }
             }
-            if (tileZ < anInt4539) {
+            if (tileZ < eyeTileZ) {
                 neighborTile = tiles[tileX][tileZ + 1];
-                if (neighborTile != null && neighborTile.aBoolean46) {
+                if (neighborTile != null && neighborTile.bridgeAbove) {
                     drawTileQueue.addTail(neighborTile);
                 }
             }
             if (tileX > eyeTileX) {
                 neighborTile = tiles[tileX - 1][tileZ];
-                if (neighborTile != null && neighborTile.aBoolean46) {
+                if (neighborTile != null && neighborTile.bridgeAbove) {
                     drawTileQueue.addTail(neighborTile);
                 }
             }
-            if (tileZ > anInt4539) {
+            if (tileZ > eyeTileZ) {
                 neighborTile = tiles[tileX][tileZ - 1];
-                if (neighborTile != null && neighborTile.aBoolean46) {
+                if (neighborTile != null && neighborTile.bridgeAbove) {
                     drawTileQueue.addTail(neighborTile);
                 }
             }
@@ -3231,7 +3302,7 @@ public class SceneGraph {
     }
 
     @OriginalMember(owner = "runetek4.client!mf", name = "a", descriptor = "(IIIII[[[B[I[I[I[I[IIBII)V")
-    public static void setupSceneRender(@OriginalArg(0) int x, @OriginalArg(1) int y, @OriginalArg(2) int z, @OriginalArg(3) int yaw, @OriginalArg(4) int pitch, @OriginalArg(5) byte[][][] flags, @OriginalArg(6) int[] fogColor, @OriginalArg(7) int[] ambientColor, @OriginalArg(8) int[] lightDirection, @OriginalArg(9) int[] lightIntensity, @OriginalArg(10) int[] shadowData, @OriginalArg(11) int renderLevel, @OriginalArg(12) byte renderMode, @OriginalArg(13) int centerX, @OriginalArg(14) int centerZ) {
+    public static void setupSceneRender(@OriginalArg(0) int x, @OriginalArg(1) int y, @OriginalArg(2) int z, @OriginalArg(3) int yaw, @OriginalArg(4) int pitch, @OriginalArg(5) byte[][][] flags, @OriginalArg(6) int[] viewDistanceArray, @OriginalArg(7) int[] projectionXArray, @OriginalArg(8) int[] screenDepthArray, @OriginalArg(9) int[] projectionYArray, @OriginalArg(10) int[] projectionZArray, @OriginalArg(11) int renderLevel, @OriginalArg(12) byte renderMode, @OriginalArg(13) int centerX, @OriginalArg(14) int centerZ) {
         if (x < 0) {
             x = 0;
         } else if (x >= width * 128) {
@@ -3242,20 +3313,20 @@ public class SceneGraph {
         } else if (z >= length * 128) {
             z = length * 128 - 1;
         }
-        anInt2886 = MathUtils.sin[yaw];
-        anInt3038 = MathUtils.cos[yaw];
-        anInt5205 = MathUtils.sin[pitch];
-        anInt2222 = MathUtils.cos[pitch];
+        sinYaw = MathUtils.sin[yaw];
+        cosYaw = MathUtils.cos[yaw];
+        sinPitch = MathUtils.sin[pitch];
+        cosPitch = MathUtils.cos[pitch];
         eyeX = x;
         eyeY = y;
         eyeZ = z;
         eyeTileX = x / 128;
-        anInt4539 = z / 128;
+        eyeTileZ = z / 128;
         LightingManager.anInt987 = eyeTileX - visibility;
         if (LightingManager.anInt987 < 0) {
             LightingManager.anInt987 = 0;
         }
-        LightingManager.anInt4698 = anInt4539 - visibility;
+        LightingManager.anInt4698 = eyeTileZ - visibility;
         if (LightingManager.anInt4698 < 0) {
             LightingManager.anInt4698 = 0;
         }
@@ -3263,7 +3334,7 @@ public class SceneGraph {
         if (LightingManager.anInt15 > width) {
             LightingManager.anInt15 = width;
         }
-        LightingManager.anInt4866 = anInt4539 + visibility;
+        LightingManager.anInt4866 = eyeTileZ + visibility;
         if (LightingManager.anInt4866 > length) {
             LightingManager.anInt4866 = length;
         }
@@ -3280,7 +3351,7 @@ public class SceneGraph {
                 @Pc(130) int relativeX = (tileX - visibility << 7) - (eyeX & 0x7F);
                 @Pc(140) int relativeZ = (tileZ - visibility << 7) - (eyeZ & 0x7F);
                 @Pc(146) int worldX = eyeTileX + tileX - visibility;
-                @Pc(152) int worldZ = anInt4539 + tileZ - visibility;
+                @Pc(152) int worldZ = eyeTileZ + tileZ - visibility;
                 if (worldX >= 0 && worldZ >= 0 && worldX < width && worldZ < length) {
                     @Pc(176) int surfaceHeight;
                     if (underwaterTileHeights == null) {
@@ -3289,22 +3360,22 @@ public class SceneGraph {
                         surfaceHeight = underwaterTileHeights[0][worldX][worldZ] + 128 - eyeY;
                     }
                     @Pc(201) int ceilingHeight = surfaceTileHeights[3][worldX][worldZ] - eyeY - 1000;
-                    aBooleanArrayArray3[tileX][tileZ] = isLineVisible(relativeX, ceilingHeight, surfaceHeight, relativeZ, viewDistance);
+                    tileCulling[tileX][tileZ] = isLineVisible(relativeX, ceilingHeight, surfaceHeight, relativeZ, viewDistance);
                 } else {
-                    aBooleanArrayArray3[tileX][tileZ] = false;
+                    tileCulling[tileX][tileZ] = false;
                 }
             }
         }
         for (tileX = 0; tileX < visibility + visibility + 1; tileX++) {
             for (tileZ = 0; tileZ < visibility + visibility + 1; tileZ++) {
-                aBooleanArrayArray1[tileX][tileZ] = aBooleanArrayArray3[tileX][tileZ] || aBooleanArrayArray3[tileX + 1][tileZ] || aBooleanArrayArray3[tileX][tileZ + 1] || aBooleanArrayArray3[tileX + 1][tileZ + 1];
+                tileVisibility[tileX][tileZ] = tileCulling[tileX][tileZ] || tileCulling[tileX + 1][tileZ] || tileCulling[tileX][tileZ + 1] || tileCulling[tileX + 1][tileZ + 1];
             }
         }
-        anIntArray8 = fogColor;
-        anIntArray292 = ambientColor;
-        anIntArray234 = lightDirection;
-        anIntArray454 = lightIntensity;
-        anIntArray427 = shadowData;
+        viewDistances = viewDistanceArray;
+        projectionX = projectionXArray;
+        screenDepth = screenDepthArray;
+        projectionY = projectionYArray;
+        projectionZ = projectionZArray;
         processOccluders();
         if (underWaterGroundTiles != null) {
             setUnderwater(true);
@@ -3458,7 +3529,7 @@ public class SceneGraph {
                                 continue;
                             }
                             if (overlayShapes[tileX][tileZ] != 0) {
-                                overlayShape = anIntArrayArray35[overlayShapes[tileX][tileZ]];
+                                overlayShape = SHAPE_OVERLAY_COORDINATES[overlayShapes[tileX][tileZ]];
                                 lightBuffer.anInt2016 += ((overlayShape.length >> 1) - 2) * 3;
                                 lightBuffer.anInt2019 += overlayShape.length >> 1;
                                 continue;
@@ -3469,7 +3540,7 @@ public class SceneGraph {
                             if (floType.baseColor == -1) {
                                 local224 = overlayShapes[tileX][tileZ];
                                 if (local224 != 0) {
-                                    underlayShape = anIntArrayArray8[local224];
+                                    underlayShape = SHAPE_WALL_COORDINATES[local224];
                                     lightBuffer.anInt2016 += ((underlayShape.length >> 1) - 2) * 3;
                                     lightBuffer.anInt2019 += underlayShape.length >> 1;
                                 }
@@ -3505,11 +3576,11 @@ public class SceneGraph {
                                         adjacentRight = tileX > adjacentStartX && tileX < adjacentEndX;
                                     }
                                     if (adjacentLeft && adjacentRight) {
-                                        underlayShape = anIntArrayArray35[0];
+                                        underlayShape = SHAPE_OVERLAY_COORDINATES[0];
                                     } else if (adjacentLeft) {
-                                        underlayShape = anIntArrayArray35[1];
+                                        underlayShape = SHAPE_OVERLAY_COORDINATES[1];
                                     } else if (adjacentRight) {
-                                        underlayShape = anIntArrayArray35[1];
+                                        underlayShape = SHAPE_OVERLAY_COORDINATES[1];
                                     }
                                 } else {
                                     adjacentLeft = startX <= tileX - 1;
@@ -3527,11 +3598,11 @@ public class SceneGraph {
                                         adjacentRight = adjacentStartX < tileX && adjacentEndX > tileX;
                                     }
                                     if (adjacentLeft && adjacentRight) {
-                                        underlayShape = anIntArrayArray35[0];
+                                        underlayShape = SHAPE_OVERLAY_COORDINATES[0];
                                     } else if (adjacentLeft) {
-                                        underlayShape = anIntArrayArray35[1];
+                                        underlayShape = SHAPE_OVERLAY_COORDINATES[1];
                                     } else if (adjacentRight) {
-                                        underlayShape = anIntArrayArray35[1];
+                                        underlayShape = SHAPE_OVERLAY_COORDINATES[1];
                                     }
                                 }
                                 if (underlayShape != null) {
@@ -3542,14 +3613,14 @@ public class SceneGraph {
                             }
                         }
                         if (hasOverlay) {
-                            underlayShape = anIntArrayArray8[overlayShapes[tileX][tileZ]];
-                            overlayShape = anIntArrayArray35[overlayShapes[tileX][tileZ]];
+                            underlayShape = SHAPE_WALL_COORDINATES[overlayShapes[tileX][tileZ]];
+                            overlayShape = SHAPE_OVERLAY_COORDINATES[overlayShapes[tileX][tileZ]];
                             lightBuffer.anInt2016 += ((overlayShape.length >> 1) - 2) * 3;
                             lightBuffer.anInt2016 += ((underlayShape.length >> 1) - 2) * 3;
                             lightBuffer.anInt2019 += overlayShape.length >> 1;
                             lightBuffer.anInt2019 += underlayShape.length >> 1;
                         } else {
-                            overlayShape = anIntArrayArray35[0];
+                            overlayShape = SHAPE_OVERLAY_COORDINATES[0];
                             lightBuffer.anInt2016 += ((overlayShape.length >> 1) - 2) * 3;
                             lightBuffer.anInt2019 += overlayShape.length >> 1;
                         }
@@ -3586,13 +3657,13 @@ public class SceneGraph {
                                 continue;
                             }
                             if (overlayShapes[tileX][tileZ] != 0) {
-                                addLightVertices(lightIntensity, heightMap, tileX, shadowMap, tileZ, anIntArrayArray35[overlayShapes[tileX][tileZ]], lightBuffer, light, ambientLight, tileRotations[tileX][tileZ]);
+                                addLightVertices(lightIntensity, heightMap, tileX, shadowMap, tileZ, SHAPE_OVERLAY_COORDINATES[overlayShapes[tileX][tileZ]], lightBuffer, light, ambientLight, tileRotations[tileX][tileZ]);
                                 continue;
                             }
                         } else if (local775 != 0) {
                             local805 = FloTypeList.method4395(local775 - 1);
                             if (local805.baseColor == -1) {
-                                addLightVertices(lightIntensity, heightMap, tileX, shadowMap, tileZ, anIntArrayArray8[overlayShapes[tileX][tileZ]], lightBuffer, light, ambientLight, tileRotations[tileX][tileZ]);
+                                addLightVertices(lightIntensity, heightMap, tileX, shadowMap, tileZ, SHAPE_WALL_COORDINATES[overlayShapes[tileX][tileZ]], lightBuffer, light, ambientLight, tileRotations[tileX][tileZ]);
                                 continue;
                             }
                             @Pc(815) byte local815 = overlayShapes[tileX][tileZ];
@@ -3625,12 +3696,12 @@ public class SceneGraph {
                                         local947 = adjacentEndX < tileX && local973 > tileX;
                                     }
                                     if (adjacentRight && local947) {
-                                        local917 = anIntArrayArray35[0];
+                                        local917 = SHAPE_OVERLAY_COORDINATES[0];
                                     } else if (adjacentRight) {
-                                        local917 = anIntArrayArray35[1];
+                                        local917 = SHAPE_OVERLAY_COORDINATES[1];
                                         local789 = 1;
                                     } else if (local947) {
-                                        local917 = anIntArrayArray35[1];
+                                        local917 = SHAPE_OVERLAY_COORDINATES[1];
                                         local789 = 3;
                                     }
                                 } else {
@@ -3649,12 +3720,12 @@ public class SceneGraph {
                                         local947 = tileX > adjacentEndX && local973 > tileX;
                                     }
                                     if (adjacentRight && local947) {
-                                        local917 = anIntArrayArray35[0];
+                                        local917 = SHAPE_OVERLAY_COORDINATES[0];
                                     } else if (adjacentRight) {
                                         local789 = 0;
-                                        local917 = anIntArrayArray35[1];
+                                        local917 = SHAPE_OVERLAY_COORDINATES[1];
                                     } else if (local947) {
-                                        local917 = anIntArrayArray35[1];
+                                        local917 = SHAPE_OVERLAY_COORDINATES[1];
                                         local789 = 2;
                                     }
                                 }
@@ -3665,10 +3736,10 @@ public class SceneGraph {
                             }
                         }
                         if (local791) {
-                            addLightVertices(lightIntensity, heightMap, tileX, shadowMap, tileZ, anIntArrayArray8[overlayShapes[tileX][tileZ]], lightBuffer, light, ambientLight, tileRotations[tileX][tileZ]);
-                            addLightVertices(lightIntensity, heightMap, tileX, shadowMap, tileZ, anIntArrayArray35[overlayShapes[tileX][tileZ]], lightBuffer, light, ambientLight, tileRotations[tileX][tileZ]);
+                            addLightVertices(lightIntensity, heightMap, tileX, shadowMap, tileZ, SHAPE_WALL_COORDINATES[overlayShapes[tileX][tileZ]], lightBuffer, light, ambientLight, tileRotations[tileX][tileZ]);
+                            addLightVertices(lightIntensity, heightMap, tileX, shadowMap, tileZ, SHAPE_OVERLAY_COORDINATES[overlayShapes[tileX][tileZ]], lightBuffer, light, ambientLight, tileRotations[tileX][tileZ]);
                         } else {
-                            addLightVertices(lightIntensity, heightMap, tileX, shadowMap, tileZ, anIntArrayArray35[0], lightBuffer, light, ambientLight, local789);
+                            addLightVertices(lightIntensity, heightMap, tileX, shadowMap, tileZ, SHAPE_OVERLAY_COORDINATES[0], lightBuffer, light, ambientLight, local789);
                         }
                     }
                     radiusOffset++;
@@ -3713,9 +3784,9 @@ public class SceneGraph {
                 if (underlayIds[z][tileZ] != 0) {
                     @Pc(135) int[] shapeVertices;
                     if (overlayShapes[z][tileZ] == 0) {
-                        shapeVertices = anIntArrayArray35[0];
+                        shapeVertices = SHAPE_OVERLAY_COORDINATES[0];
                     } else {
-                        shapeVertices = anIntArrayArray8[underlayShapes[z][tileZ]];
+                        shapeVertices = SHAPE_WALL_COORDINATES[underlayShapes[z][tileZ]];
                         if (shapeVertices.length == 0) {
                             continue;
                         }
@@ -3800,7 +3871,7 @@ public class SceneGraph {
                     @Pc(754) int neighborComparison4;
                     if (overlayShapes[z][tileZ] == 0) {
                         neighborComparison1 = currentUnderlayId == underlayIds[z - 1][tileZ - 1] ? 1 : -1;
-                        currentShapeVertices = anIntArrayArray35[0];
+                        currentShapeVertices = SHAPE_OVERLAY_COORDINATES[0];
                         neighborComparison2 = currentUnderlayId == underlayIds[z + 1][tileZ - 1] ? 1 : -1;
                         if (underlayIds[z][tileZ - 1] == currentUnderlayId) {
                             neighborComparison2++;
@@ -3843,8 +3914,8 @@ public class SceneGraph {
                         rotation = (byte) (cardinalDiff <= diagonalDiff ? 0 : 1);
                         overlayRotations[z][tileZ] = rotation;
                     } else {
-                        currentShapeVertices = anIntArrayArray8[underlayShapes[z][tileZ]];
-                        shapeVisibility = aBooleanArrayArray2[underlayShapes[z][tileZ]];
+                        currentShapeVertices = SHAPE_WALL_COORDINATES[underlayShapes[z][tileZ]];
+                        shapeVisibility = SHAPE_TEXTURE_OVERLAY_FLAGS[underlayShapes[z][tileZ]];
                         rotation = overlayRotations[z][tileZ];
                         if (currentShapeVertices.length == 0) {
                             continue;
@@ -4010,17 +4081,17 @@ public class SceneGraph {
                 if (screenX3 < 0 || screenX4 < 0 || screenX2 < 0 || screenX3 > Rasterizer.width || screenX4 > Rasterizer.width || screenX2 > Rasterizer.width) {
                     Rasterizer.testX = true;
                 }
-                if (plainTile.anInt4869 == -1) {
-                    if (plainTile.anInt4865 != 12345678) {
-                        Rasterizer.fillGouraudTriangle(screenY3, screenY4, screenY2, screenX3, screenX4, screenX2, plainTile.anInt4865, plainTile.anInt4864, plainTile.anInt4867);
+                if (plainTile.texture == -1) {
+                    if (plainTile.seHeight != 12345678) {
+                        Rasterizer.fillGouraudTriangle(screenY3, screenY4, screenY2, screenX3, screenX4, screenX2, plainTile.seHeight, plainTile.nwHeight, plainTile.swHeight);
                     }
                 } else if (!Preferences.manyGroundTextures) {
-                    textureColor = Rasterizer.textureProvider.getAverageColor(plainTile.anInt4869);
-                    Rasterizer.fillGouraudTriangle(screenY3, screenY4, screenY2, screenX3, screenX4, screenX2, ColorUtils.multiplyLightness3(textureColor, plainTile.anInt4865), ColorUtils.multiplyLightness3(textureColor, plainTile.anInt4864), ColorUtils.multiplyLightness3(textureColor, plainTile.anInt4867));
-                } else if (plainTile.aBoolean241) {
-                    Rasterizer.fillTexturedTriangle(screenY3, screenY4, screenY2, screenX3, screenX4, screenX2, plainTile.anInt4865, plainTile.anInt4864, plainTile.anInt4867, projectedX1, relativeX2, projectedX4, projectedY1, height2, rotatedX, depth1, depth2, depth4, plainTile.anInt4869);
+                    textureColor = Rasterizer.textureProvider.getAverageColor(plainTile.texture);
+                    Rasterizer.fillGouraudTriangle(screenY3, screenY4, screenY2, screenX3, screenX4, screenX2, ColorUtils.multiplyLightness3(textureColor, plainTile.seHeight), ColorUtils.multiplyLightness3(textureColor, plainTile.nwHeight), ColorUtils.multiplyLightness3(textureColor, plainTile.swHeight));
+                } else if (plainTile.isFlat) {
+                    Rasterizer.fillTexturedTriangle(screenY3, screenY4, screenY2, screenX3, screenX4, screenX2, plainTile.seHeight, plainTile.nwHeight, plainTile.swHeight, projectedX1, relativeX2, projectedX4, projectedY1, height2, rotatedX, depth1, depth2, depth4, plainTile.texture);
                 } else {
-                    Rasterizer.fillTexturedTriangle(screenY3, screenY4, screenY2, screenX3, screenX4, screenX2, plainTile.anInt4865, plainTile.anInt4864, plainTile.anInt4867, projectedX3, projectedX4, relativeX2, height3, rotatedX, height2, relativeZ2, depth4, depth2, plainTile.anInt4869);
+                    Rasterizer.fillTexturedTriangle(screenY3, screenY4, screenY2, screenX3, screenX4, screenX2, plainTile.seHeight, plainTile.nwHeight, plainTile.swHeight, projectedX3, projectedX4, relativeX2, height3, rotatedX, height2, relativeZ2, depth4, depth2, plainTile.texture);
                 }
             }
         }
@@ -4038,33 +4109,33 @@ public class SceneGraph {
         if (screenX1 < 0 || screenX2 < 0 || screenX4 < 0 || screenX1 > Rasterizer.width || screenX2 > Rasterizer.width || screenX4 > Rasterizer.width) {
             Rasterizer.testX = true;
         }
-        if (plainTile.anInt4869 == -1) {
-            if (plainTile.anInt4872 != 12345678) {
-                Rasterizer.fillGouraudTriangle(screenY1, screenY2, screenY4, screenX1, screenX2, screenX4, plainTile.anInt4872, plainTile.anInt4867, plainTile.anInt4864);
+        if (plainTile.texture == -1) {
+            if (plainTile.neHeight != 12345678) {
+                Rasterizer.fillGouraudTriangle(screenY1, screenY2, screenY4, screenX1, screenX2, screenX4, plainTile.neHeight, plainTile.swHeight, plainTile.nwHeight);
             }
         } else if (Preferences.manyGroundTextures) {
-            Rasterizer.fillTexturedTriangle(screenY1, screenY2, screenY4, screenX1, screenX2, screenX4, plainTile.anInt4872, plainTile.anInt4867, plainTile.anInt4864, projectedX1, relativeX2, projectedX4, projectedY1, height2, rotatedX, depth1, depth2, depth4, plainTile.anInt4869);
+            Rasterizer.fillTexturedTriangle(screenY1, screenY2, screenY4, screenX1, screenX2, screenX4, plainTile.neHeight, plainTile.swHeight, plainTile.nwHeight, projectedX1, relativeX2, projectedX4, projectedY1, height2, rotatedX, depth1, depth2, depth4, plainTile.texture);
         } else {
-            textureColor = Rasterizer.textureProvider.getAverageColor(plainTile.anInt4869);
-            Rasterizer.fillGouraudTriangle(screenY1, screenY2, screenY4, screenX1, screenX2, screenX4, ColorUtils.multiplyLightness3(textureColor, plainTile.anInt4872), ColorUtils.multiplyLightness3(textureColor, plainTile.anInt4867), ColorUtils.multiplyLightness3(textureColor, plainTile.anInt4864));
+            textureColor = Rasterizer.textureProvider.getAverageColor(plainTile.texture);
+            Rasterizer.fillGouraudTriangle(screenY1, screenY2, screenY4, screenX1, screenX2, screenX4, ColorUtils.multiplyLightness3(textureColor, plainTile.neHeight), ColorUtils.multiplyLightness3(textureColor, plainTile.swHeight), ColorUtils.multiplyLightness3(textureColor, plainTile.nwHeight));
         }
     }
 
     @OriginalMember(owner = "client!al", name = "a", descriptor = "(III)Z")
     public static boolean isTileVisible(@OriginalArg(0) int plane, @OriginalArg(1) int x, @OriginalArg(2) int z) {
-        @Pc(7) int visibilityState = anIntArrayArrayArray12[plane][x][z];
-        if (visibilityState == -anInt437) {
+        @Pc(7) int visibilityState = lightmapBuffers[plane][x][z];
+        if (visibilityState == -renderDistance) {
             return false;
-        } else if (visibilityState == anInt437) {
+        } else if (visibilityState == renderDistance) {
             return true;
         } else {
             @Pc(22) int xFine = x << 7;
             @Pc(26) int zFine = z << 7;
             if (isInOccluderBounds(xFine + 1, tileHeights[plane][x][z], zFine + 1) && isInOccluderBounds(xFine + 128 - 1, tileHeights[plane][x + 1][z], zFine + 1) && isInOccluderBounds(xFine + 128 - 1, tileHeights[plane][x + 1][z + 1], zFine + 128 - 1) && isInOccluderBounds(xFine + 1, tileHeights[plane][x][z + 1], zFine + 128 - 1)) {
-                anIntArrayArrayArray12[plane][x][z] = anInt437;
+                lightmapBuffers[plane][x][z] = renderDistance;
                 return true;
             } else {
-                anIntArrayArrayArray12[plane][x][z] = -anInt437;
+                lightmapBuffers[plane][x][z] = -renderDistance;
                 return false;
             }
         }
@@ -4072,17 +4143,17 @@ public class SceneGraph {
 
     @OriginalMember(owner = "runetek4.client!mj", name = "a", descriptor = "(IIIII)Z")
     public static boolean isLineVisible(@OriginalArg(0) int x, @OriginalArg(1) int y1, @OriginalArg(2) int y2, @OriginalArg(3) int z, @OriginalArg(4) int maxDistance) {
-        @Pc(9) int rotatedX = z * anInt5205 + x * anInt2222 >> 16;
-        @Pc(19) int rotatedZ = z * anInt2222 - x * anInt5205 >> 16;
-        @Pc(29) int depth1 = y1 * anInt2886 + rotatedZ * anInt3038 >> 16;
-        @Pc(39) int transformedY1 = y1 * anInt3038 - rotatedZ * anInt2886 >> 16;
+        @Pc(9) int rotatedX = z * sinPitch + x * cosPitch >> 16;
+        @Pc(19) int rotatedZ = z * cosPitch - x * sinPitch >> 16;
+        @Pc(29) int depth1 = y1 * sinYaw + rotatedZ * cosYaw >> 16;
+        @Pc(39) int transformedY1 = y1 * cosYaw - rotatedZ * sinYaw >> 16;
         if (depth1 < 1) {
             depth1 = 1;
         }
         @Pc(50) int screenX1 = (rotatedX << 9) / depth1;
         @Pc(56) int screenY1 = (transformedY1 << 9) / depth1;
-        @Pc(66) int depth2 = y2 * anInt2886 + rotatedZ * anInt3038 >> 16;
-        @Pc(76) int transformedY2 = y2 * anInt3038 - rotatedZ * anInt2886 >> 16;
+        @Pc(66) int depth2 = y2 * sinYaw + rotatedZ * cosYaw >> 16;
+        @Pc(76) int transformedY2 = y2 * cosYaw - rotatedZ * sinYaw >> 16;
         if (depth2 < 1) {
             depth2 = 1;
         }
@@ -4170,13 +4241,13 @@ public class SceneGraph {
 
     @OriginalMember(owner = "runetek4.client!jj", name = "a", descriptor = "()V")
     public static void processOccluders() {
-        anInt4870 = 0;
-        label194: for (@Pc(3) int occluderIndex = 0; occluderIndex < anInt917; occluderIndex++) {
-            @Pc(10) SceneGraph_Class120 occluder = aSceneGraphClass120Array1[occluderIndex];
+        lightSourceCount = 0;
+        label194: for (@Pc(3) int occluderIndex = 0; occluderIndex < renderableCount; occluderIndex++) {
+            @Pc(10) SceneOccluder occluder = renderables[occluderIndex];
             @Pc(14) int relativeCoord;
-            if (anIntArray8 != null) {
-                for (relativeCoord = 0; relativeCoord < anIntArray8.length; relativeCoord++) {
-                    if (anIntArray8[relativeCoord] != -1000000 && (occluder.anInt4444 <= anIntArray8[relativeCoord] || occluder.anInt4447 <= anIntArray8[relativeCoord]) && (occluder.anInt4460 <= anIntArray234[relativeCoord] || occluder.anInt4445 <= anIntArray234[relativeCoord]) && (occluder.anInt4460 >= anIntArray292[relativeCoord] || occluder.anInt4445 >= anIntArray292[relativeCoord]) && (occluder.anInt4458 <= anIntArray454[relativeCoord] || occluder.anInt4449 <= anIntArray454[relativeCoord]) && (occluder.anInt4458 >= anIntArray427[relativeCoord] || occluder.anInt4449 >= anIntArray427[relativeCoord])) {
+            if (viewDistances != null) {
+                for (relativeCoord = 0; relativeCoord < viewDistances.length; relativeCoord++) {
+                    if (viewDistances[relativeCoord] != -1000000 && (occluder.minY <= viewDistances[relativeCoord] || occluder.maxY <= viewDistances[relativeCoord]) && (occluder.worldX1 <= screenDepth[relativeCoord] || occluder.worldZ1 <= screenDepth[relativeCoord]) && (occluder.worldX1 >= projectionX[relativeCoord] || occluder.worldZ1 >= projectionX[relativeCoord]) && (occluder.worldX2 <= projectionY[relativeCoord] || occluder.worldZ2 <= projectionY[relativeCoord]) && (occluder.worldX2 >= projectionZ[relativeCoord] || occluder.worldZ2 >= projectionZ[relativeCoord])) {
                         continue label194;
                     }
                 }
@@ -4185,26 +4256,26 @@ public class SceneGraph {
             @Pc(126) int endRange;
             @Pc(158) int distance;
             @Pc(137) boolean isVisible;
-            if (occluder.anInt4453 == 1) {
-                relativeCoord = occluder.anInt4452 + visibility - eyeTileX;
+            if (occluder.plane == 1) {
+                relativeCoord = occluder.tileX1 + visibility - eyeTileX;
                 if (relativeCoord >= 0 && relativeCoord <= visibility + visibility) {
-                    startRange = occluder.anInt4461 + visibility - anInt4539;
+                    startRange = occluder.tileX2 + visibility - eyeTileZ;
                     if (startRange < 0) {
                         startRange = 0;
                     }
-                    endRange = occluder.anInt4464 + visibility - anInt4539;
+                    endRange = occluder.tileZ2 + visibility - eyeTileZ;
                     if (endRange > visibility + visibility) {
                         endRange = visibility + visibility;
                     }
                     isVisible = false;
                     while (startRange <= endRange) {
-                        if (aBooleanArrayArray1[relativeCoord][startRange++]) {
+                        if (tileVisibility[relativeCoord][startRange++]) {
                             isVisible = true;
                             break;
                         }
                     }
                     if (isVisible) {
-                        distance = eyeX - occluder.anInt4460;
+                        distance = eyeX - occluder.worldX1;
                         if (distance > 32) {
                             occluder.anInt4462 = 1;
                         } else {
@@ -4214,33 +4285,33 @@ public class SceneGraph {
                             occluder.anInt4462 = 2;
                             distance = -distance;
                         }
-                        occluder.anInt4454 = (occluder.anInt4458 - eyeZ << 8) / distance;
-                        occluder.anInt4450 = (occluder.anInt4449 - eyeZ << 8) / distance;
-                        occluder.anInt4459 = (occluder.anInt4444 - eyeY << 8) / distance;
-                        occluder.anInt4463 = (occluder.anInt4447 - eyeY << 8) / distance;
-                        aSceneGraphClass120Array2[anInt4870++] = occluder;
+                        occluder.anInt4454 = (occluder.worldX2 - eyeZ << 8) / distance;
+                        occluder.anInt4450 = (occluder.worldZ2 - eyeZ << 8) / distance;
+                        occluder.anInt4459 = (occluder.minY - eyeY << 8) / distance;
+                        occluder.anInt4463 = (occluder.maxY - eyeY << 8) / distance;
+                        aSceneGraphClass120Array2[lightSourceCount++] = occluder;
                     }
                 }
-            } else if (occluder.anInt4453 == 2) {
-                relativeCoord = occluder.anInt4461 + visibility - anInt4539;
+            } else if (occluder.plane == 2) {
+                relativeCoord = occluder.tileX2 + visibility - eyeTileZ;
                 if (relativeCoord >= 0 && relativeCoord <= visibility + visibility) {
-                    startRange = occluder.anInt4452 + visibility - eyeTileX;
+                    startRange = occluder.tileX1 + visibility - eyeTileX;
                     if (startRange < 0) {
                         startRange = 0;
                     }
-                    endRange = occluder.anInt4446 + visibility - eyeTileX;
+                    endRange = occluder.tileZ1 + visibility - eyeTileX;
                     if (endRange > visibility + visibility) {
                         endRange = visibility + visibility;
                     }
                     isVisible = false;
                     while (startRange <= endRange) {
-                        if (aBooleanArrayArray1[startRange++][relativeCoord]) {
+                        if (tileVisibility[startRange++][relativeCoord]) {
                             isVisible = true;
                             break;
                         }
                     }
                     if (isVisible) {
-                        distance = eyeZ - occluder.anInt4458;
+                        distance = eyeZ - occluder.worldX2;
                         if (distance > 32) {
                             occluder.anInt4462 = 3;
                         } else {
@@ -4250,37 +4321,37 @@ public class SceneGraph {
                             occluder.anInt4462 = 4;
                             distance = -distance;
                         }
-                        occluder.anInt4448 = (occluder.anInt4460 - eyeX << 8) / distance;
-                        occluder.anInt4456 = (occluder.anInt4445 - eyeX << 8) / distance;
-                        occluder.anInt4459 = (occluder.anInt4444 - eyeY << 8) / distance;
-                        occluder.anInt4463 = (occluder.anInt4447 - eyeY << 8) / distance;
-                        aSceneGraphClass120Array2[anInt4870++] = occluder;
+                        occluder.anInt4448 = (occluder.worldX1 - eyeX << 8) / distance;
+                        occluder.anInt4456 = (occluder.worldZ1 - eyeX << 8) / distance;
+                        occluder.anInt4459 = (occluder.minY - eyeY << 8) / distance;
+                        occluder.anInt4463 = (occluder.maxY - eyeY << 8) / distance;
+                        aSceneGraphClass120Array2[lightSourceCount++] = occluder;
                     }
                 }
-            } else if (occluder.anInt4453 == 4) {
-                relativeCoord = occluder.anInt4444 - eyeY;
+            } else if (occluder.plane == 4) {
+                relativeCoord = occluder.minY - eyeY;
                 if (relativeCoord > 128) {
-                    startRange = occluder.anInt4461 + visibility - anInt4539;
+                    startRange = occluder.tileX2 + visibility - eyeTileZ;
                     if (startRange < 0) {
                         startRange = 0;
                     }
-                    endRange = occluder.anInt4464 + visibility - anInt4539;
+                    endRange = occluder.tileZ2 + visibility - eyeTileZ;
                     if (endRange > visibility + visibility) {
                         endRange = visibility + visibility;
                     }
                     if (startRange <= endRange) {
-                        @Pc(408) int local408 = occluder.anInt4452 + visibility - eyeTileX;
+                        @Pc(408) int local408 = occluder.tileX1 + visibility - eyeTileX;
                         if (local408 < 0) {
                             local408 = 0;
                         }
-                        distance = occluder.anInt4446 + visibility - eyeTileX;
+                        distance = occluder.tileZ1 + visibility - eyeTileX;
                         if (distance > visibility + visibility) {
                             distance = visibility + visibility;
                         }
                         @Pc(430) boolean hasVisibleTile = false;
                         label166: for (@Pc(432) int checkX = local408; checkX <= distance; checkX++) {
                             for (@Pc(437) int checkZ = startRange; checkZ <= endRange; checkZ++) {
-                                if (aBooleanArrayArray1[checkX][checkZ]) {
+                                if (tileVisibility[checkX][checkZ]) {
                                     hasVisibleTile = true;
                                     break label166;
                                 }
@@ -4288,11 +4359,11 @@ public class SceneGraph {
                         }
                         if (hasVisibleTile) {
                             occluder.anInt4462 = 5;
-                            occluder.anInt4448 = (occluder.anInt4460 - eyeX << 8) / relativeCoord;
-                            occluder.anInt4456 = (occluder.anInt4445 - eyeX << 8) / relativeCoord;
-                            occluder.anInt4454 = (occluder.anInt4458 - eyeZ << 8) / relativeCoord;
-                            occluder.anInt4450 = (occluder.anInt4449 - eyeZ << 8) / relativeCoord;
-                            aSceneGraphClass120Array2[anInt4870++] = occluder;
+                            occluder.anInt4448 = (occluder.worldX1 - eyeX << 8) / relativeCoord;
+                            occluder.anInt4456 = (occluder.worldZ1 - eyeX << 8) / relativeCoord;
+                            occluder.anInt4454 = (occluder.worldX2 - eyeZ << 8) / relativeCoord;
+                            occluder.anInt4450 = (occluder.worldZ2 - eyeZ << 8) / relativeCoord;
+                            aSceneGraphClass120Array2[lightSourceCount++] = occluder;
                         }
                     }
                 }
@@ -4320,16 +4391,16 @@ public class SceneGraph {
 
     @OriginalMember(owner = "runetek4.client!lh", name = "a", descriptor = "(Lclient!fg;IIIIIIZ)V")
     public static void drawTileOverlay(@OriginalArg(0) ShapedTile overlay, @OriginalArg(1) int sinYaw, @OriginalArg(2) int cosYaw, @OriginalArg(3) int sinPitch, @OriginalArg(4) int cosPitch, @OriginalArg(5) int tileX, @OriginalArg(6) int tileZ, @OriginalArg(7) boolean skipRendering) {
-        @Pc(3) int numVertices = overlay.anIntArray168.length;
+        @Pc(3) int numVertices = overlay.vertexX.length;
         @Pc(5) int index;
         @Pc(15) int vertexA;
         @Pc(22) int relativeY;
         @Pc(29) int local29;
         @Pc(39) int local39;
         for (index = 0; index < numVertices; index++) {
-            vertexA = overlay.anIntArray168[index] - eyeX;
-            relativeY = overlay.anIntArray160[index] - eyeY;
-            local29 = overlay.anIntArray163[index] - eyeZ;
+            vertexA = overlay.vertexX[index] - eyeX;
+            relativeY = overlay.vertexY[index] - eyeY;
+            local29 = overlay.vertexZ[index] - eyeZ;
             local39 = local29 * sinPitch + vertexA * cosPitch >> 16;
             @Pc(49) int rotatedZ = local29 * cosPitch - vertexA * sinPitch >> 16;
             @Pc(61) int transformedY = relativeY * cosYaw - rotatedZ * sinYaw >> 16;
@@ -4338,12 +4409,12 @@ public class SceneGraph {
                 return;
             }
             if (overlay.triangleTextureIds != null) {
-                anIntArray159[index] = local39;
-                anIntArray170[index] = transformedY;
+                tmpViewspaceX[index] = local39;
+                tmpLocalY[index] = transformedY;
                 tmpViewspaceZ[index] = depth;
             }
-            anIntArray165[index] = Rasterizer.centerX + (local39 << 9) / depth;
-            anIntArray164[index] = Rasterizer.centerY + (transformedY << 9) / depth;
+            tmpLocalX[index] = Rasterizer.centerX + (local39 << 9) / depth;
+            tmpViewspaceY[index] = Rasterizer.centerY + (transformedY << 9) / depth;
         }
         Rasterizer.alpha = 0;
         numVertices = overlay.triangleA.length;
@@ -4351,12 +4422,12 @@ public class SceneGraph {
             vertexA = overlay.triangleA[index];
             relativeY = overlay.triangleB[index];
             local29 = overlay.triangleC[index];
-            local39 = anIntArray165[vertexA];
-            @Pc(148) int screenX2 = anIntArray165[relativeY];
-            @Pc(152) int screenX3 = anIntArray165[local29];
-            @Pc(156) int screenY1 = anIntArray164[vertexA];
-            @Pc(160) int screenY2 = anIntArray164[relativeY];
-            @Pc(164) int screenY3 = anIntArray164[local29];
+            local39 = tmpLocalX[vertexA];
+            @Pc(148) int screenX2 = tmpLocalX[relativeY];
+            @Pc(152) int screenX3 = tmpLocalX[local29];
+            @Pc(156) int screenY1 = tmpViewspaceY[vertexA];
+            @Pc(160) int screenY2 = tmpViewspaceY[relativeY];
+            @Pc(164) int screenY3 = tmpViewspaceY[local29];
             if ((local39 - screenX2) * (screenY3 - screenY2) - (screenY1 - screenY2) * (screenX3 - screenX2) > 0) {
                 if (MiniMenu.walkTargetActive && pointInTriangle(MiniMenu.targetX + Rasterizer.centerX, MiniMenu.targetZ + Rasterizer.centerY, screenY1, screenY2, screenY3, local39, screenX2, screenX3)) {
                     MiniMenu.clickTileX = tileX;
@@ -4374,10 +4445,10 @@ public class SceneGraph {
                     } else if (!Preferences.manyGroundTextures) {
                         @Pc(373) int textureColor = Rasterizer.textureProvider.getAverageColor(overlay.triangleTextureIds[index]);
                         Rasterizer.fillGouraudTriangle(screenY1, screenY2, screenY3, local39, screenX2, screenX3, ColorUtils.multiplyLightness3(textureColor, overlay.triangleHSLA[index]), ColorUtils.multiplyLightness3(textureColor, overlay.triangleHSLB[index]), ColorUtils.multiplyLightness3(textureColor, overlay.triangleHSLC[index]));
-                    } else if (overlay.aBoolean113) {
-                        Rasterizer.fillTexturedTriangle(screenY1, screenY2, screenY3, local39, screenX2, screenX3, overlay.triangleHSLA[index], overlay.triangleHSLB[index], overlay.triangleHSLC[index], anIntArray159[0], anIntArray159[1], anIntArray159[3], anIntArray170[0], anIntArray170[1], anIntArray170[3], tmpViewspaceZ[0], tmpViewspaceZ[1], tmpViewspaceZ[3], overlay.triangleTextureIds[index]);
+                    } else if (overlay.isFlat) {
+                        Rasterizer.fillTexturedTriangle(screenY1, screenY2, screenY3, local39, screenX2, screenX3, overlay.triangleHSLA[index], overlay.triangleHSLB[index], overlay.triangleHSLC[index], tmpViewspaceX[0], tmpViewspaceX[1], tmpViewspaceX[3], tmpLocalY[0], tmpLocalY[1], tmpLocalY[3], tmpViewspaceZ[0], tmpViewspaceZ[1], tmpViewspaceZ[3], overlay.triangleTextureIds[index]);
                     } else {
-                        Rasterizer.fillTexturedTriangle(screenY1, screenY2, screenY3, local39, screenX2, screenX3, overlay.triangleHSLA[index], overlay.triangleHSLB[index], overlay.triangleHSLC[index], anIntArray159[vertexA], anIntArray159[relativeY], anIntArray159[local29], anIntArray170[vertexA], anIntArray170[relativeY], anIntArray170[local29], tmpViewspaceZ[vertexA], tmpViewspaceZ[relativeY], tmpViewspaceZ[local29], overlay.triangleTextureIds[index]);
+                        Rasterizer.fillTexturedTriangle(screenY1, screenY2, screenY3, local39, screenX2, screenX3, overlay.triangleHSLA[index], overlay.triangleHSLB[index], overlay.triangleHSLC[index], tmpViewspaceX[vertexA], tmpViewspaceX[relativeY], tmpViewspaceX[local29], tmpLocalY[vertexA], tmpLocalY[relativeY], tmpLocalY[local29], tmpViewspaceZ[vertexA], tmpViewspaceZ[relativeY], tmpViewspaceZ[local29], overlay.triangleTextureIds[index]);
                     }
                 }
             }
@@ -4422,11 +4493,11 @@ public class SceneGraph {
                     }
                     @Pc(61) GlTile glTile = getOrCreateGlTile(tileMap, floType);
                     @Pc(67) byte overlayShape = overlayShapes[x][z];
-                    @Pc(71) int[] shapeVertices = anIntArrayArray35[overlayShape];
+                    @Pc(71) int[] shapeVertices = SHAPE_OVERLAY_COORDINATES[overlayShape];
                     glTile.anInt2482 += shapeVertices.length / 2;
                     glTile.anInt2484++;
                     if (floType.blend && local30 != 0) {
-                        glTile.anInt2482 += anIntArray419[overlayShape];
+                        glTile.anInt2482 += SHAPE_WALL_CORNER_COUNT[overlayShape];
                     }
                 }
                 if ((underlayIds[x][z] & 0xFF) != 0 || overlayId != 0 && overlayShapes[x][z] == 0) {
@@ -4452,9 +4523,9 @@ public class SceneGraph {
                         if (neighborFloType.blend && neighborFloType.baseColor != -1) {
                             neighborRotation = underlayRotations[x - 1][z + 1];
                             neighborShape = overlayShapes[x - 1][z + 1];
-                            shapeIndex1 = anIntArray300[neighborShape * 4 + (neighborRotation + 2 & 0x3)];
-                            shapeIndex2 = anIntArray300[(neighborRotation + 3 & 0x3) + neighborShape * 4];
-                            if (!aBooleanArrayArray4[shapeIndex2][1] || !aBooleanArrayArray4[shapeIndex1][0]) {
+                            shapeIndex1 = SHAPE_WALL_VERTEX_DATA[neighborShape * 4 + (neighborRotation + 2 & 0x3)];
+                            shapeIndex2 = SHAPE_WALL_VERTEX_DATA[(neighborRotation + 3 & 0x3) + neighborShape * 4];
+                            if (!SHAPE_VISIBLE_FLAGS[shapeIndex2][1] || !SHAPE_VISIBLE_FLAGS[shapeIndex1][0]) {
                                 for (shapeIndex3 = 0; shapeIndex3 < 8; shapeIndex3++) {
                                     if (shapeIndex3 == 0) {
                                         neighborCount++;
@@ -4473,9 +4544,9 @@ public class SceneGraph {
                         if (neighborFloType.blend && neighborFloType.baseColor != -1) {
                             neighborRotation = underlayRotations[x - 1][z - 1];
                             neighborShape = overlayShapes[x - 1][z - 1];
-                            shapeIndex1 = anIntArray300[neighborShape * 4 + (neighborRotation & 0x3)];
-                            shapeIndex2 = anIntArray300[(neighborRotation + 3 & 0x3) + neighborShape * 4];
-                            if (!aBooleanArrayArray4[shapeIndex1][1] || !aBooleanArrayArray4[shapeIndex2][0]) {
+                            shapeIndex1 = SHAPE_WALL_VERTEX_DATA[neighborShape * 4 + (neighborRotation & 0x3)];
+                            shapeIndex2 = SHAPE_WALL_VERTEX_DATA[(neighborRotation + 3 & 0x3) + neighborShape * 4];
+                            if (!SHAPE_VISIBLE_FLAGS[shapeIndex1][1] || !SHAPE_VISIBLE_FLAGS[shapeIndex2][0]) {
                                 for (shapeIndex3 = 0; shapeIndex3 < 8; shapeIndex3++) {
                                     if (neighborCount == shapeIndex3) {
                                         local166[neighborCount++] = northwestOverlayId;
@@ -4493,9 +4564,9 @@ public class SceneGraph {
                         if (neighborFloType.blend && neighborFloType.baseColor != -1) {
                             neighborRotation = underlayRotations[x + 1][z - 1];
                             neighborShape = overlayShapes[x + 1][z - 1];
-                            shapeIndex2 = anIntArray300[neighborShape * 4 + (neighborRotation + 1 & 0x3)];
-                            shapeIndex1 = anIntArray300[neighborShape * 4 + (neighborRotation & 0x3)];
-                            if (!aBooleanArrayArray4[shapeIndex2][1] || !aBooleanArrayArray4[shapeIndex1][0]) {
+                            shapeIndex2 = SHAPE_WALL_VERTEX_DATA[neighborShape * 4 + (neighborRotation + 1 & 0x3)];
+                            shapeIndex1 = SHAPE_WALL_VERTEX_DATA[neighborShape * 4 + (neighborRotation & 0x3)];
+                            if (!SHAPE_VISIBLE_FLAGS[shapeIndex2][1] || !SHAPE_VISIBLE_FLAGS[shapeIndex1][0]) {
                                 for (shapeIndex3 = 0; shapeIndex3 < 8; shapeIndex3++) {
                                     if (neighborCount == shapeIndex3) {
                                         local166[neighborCount++] = southwestOverlayId;
@@ -4513,9 +4584,9 @@ public class SceneGraph {
                         if (neighborFloType.blend && neighborFloType.baseColor != -1) {
                             neighborRotation = underlayRotations[x + 1][z + 1];
                             neighborShape = overlayShapes[x + 1][z + 1];
-                            shapeIndex2 = anIntArray300[neighborShape * 4 + (neighborRotation + 1 & 0x3)];
-                            shapeIndex1 = anIntArray300[neighborShape * 4 + (neighborRotation + 2 & 0x3)];
-                            if (!aBooleanArrayArray4[shapeIndex1][1] || !aBooleanArrayArray4[shapeIndex2][0]) {
+                            shapeIndex2 = SHAPE_WALL_VERTEX_DATA[neighborShape * 4 + (neighborRotation + 1 & 0x3)];
+                            shapeIndex1 = SHAPE_WALL_VERTEX_DATA[neighborShape * 4 + (neighborRotation + 2 & 0x3)];
+                            if (!SHAPE_VISIBLE_FLAGS[shapeIndex1][1] || !SHAPE_VISIBLE_FLAGS[shapeIndex2][0]) {
                                 for (shapeIndex3 = 0; shapeIndex3 < 8; shapeIndex3++) {
                                     if (neighborCount == shapeIndex3) {
                                         local166[neighborCount++] = southeastOverlayId;
@@ -4531,7 +4602,7 @@ public class SceneGraph {
                     if (northNeighborShape != 0 && overlayId != northNeighborShape) {
                         neighborFloType = FloTypeList.method4395(northNeighborShape - 1);
                         if (neighborFloType.blend && neighborFloType.baseColor != -1) {
-                            local129 = anIntArray300[overlayShapes[x][z + 1] * 4 + (underlayRotations[x][z + 1] + 2 & 0x3)];
+                            local129 = SHAPE_WALL_VERTEX_DATA[overlayShapes[x][z + 1] * 4 + (underlayRotations[x][z + 1] + 2 & 0x3)];
                             for (blendIndex = 0; blendIndex < 8; blendIndex++) {
                                 if (neighborCount == blendIndex) {
                                     local166[neighborCount++] = northNeighborShape;
@@ -4546,7 +4617,7 @@ public class SceneGraph {
                     if (northOverlayId != 0 && overlayId != northOverlayId) {
                         neighborFloType = FloTypeList.method4395(northOverlayId - 1);
                         if (neighborFloType.blend && neighborFloType.baseColor != -1) {
-                            westNeighborShape = anIntArray300[(underlayRotations[x - 1][z] + 3 & 0x3) + overlayShapes[x - 1][z] * 4];
+                            westNeighborShape = SHAPE_WALL_VERTEX_DATA[(underlayRotations[x - 1][z] + 3 & 0x3) + overlayShapes[x - 1][z] * 4];
                             for (blendIndex = 0; blendIndex < 8; blendIndex++) {
                                 if (neighborCount == blendIndex) {
                                     local166[neighborCount++] = northOverlayId;
@@ -4561,7 +4632,7 @@ public class SceneGraph {
                     if (westOverlayId != 0 && overlayId != westOverlayId) {
                         neighborFloType = FloTypeList.method4395(westOverlayId - 1);
                         if (neighborFloType.blend && neighborFloType.baseColor != -1) {
-                            southNeighborShape = anIntArray300[(underlayRotations[x][z - 1] & 0x3) + overlayShapes[x][z - 1] * 4];
+                            southNeighborShape = SHAPE_WALL_VERTEX_DATA[(underlayRotations[x][z - 1] & 0x3) + overlayShapes[x][z - 1] * 4];
                             for (blendIndex = 0; blendIndex < 8; blendIndex++) {
                                 if (blendIndex == neighborCount) {
                                     local166[neighborCount++] = westOverlayId;
@@ -4576,7 +4647,7 @@ public class SceneGraph {
                     if (eastOverlayId != 0 && overlayId != eastOverlayId) {
                         neighborFloType = FloTypeList.method4395(eastOverlayId - 1);
                         if (neighborFloType.blend && neighborFloType.baseColor != -1) {
-                            eastNeighborShape = anIntArray300[(underlayRotations[x + 1][z] + 1 & 0x3) + overlayShapes[x + 1][z] * 4];
+                            eastNeighborShape = SHAPE_WALL_VERTEX_DATA[(underlayRotations[x + 1][z] + 1 & 0x3) + overlayShapes[x + 1][z] * 4];
                             for (blendIndex = 0; blendIndex < 8; blendIndex++) {
                                 if (neighborCount == blendIndex) {
                                     local166[neighborCount++] = eastOverlayId;
@@ -4590,10 +4661,10 @@ public class SceneGraph {
                     }
                     for (blendNeighborIndex = 0; blendNeighborIndex < neighborCount; blendNeighborIndex++) {
                         blendIndex = local166[blendNeighborIndex];
-                        westEdgeShape = aBooleanArrayArray4[northOverlayId == blendIndex ? westNeighborShape : 0];
-                        southEdgeShape = aBooleanArrayArray4[blendIndex == westOverlayId ? southNeighborShape : 0];
-                        @Pc(1077) boolean[] local1077 = aBooleanArrayArray4[northNeighborShape == blendIndex ? local129 : 0];
-                        eastEdgeShape = aBooleanArrayArray4[eastOverlayId == blendIndex ? eastNeighborShape : 0];
+                        westEdgeShape = SHAPE_VISIBLE_FLAGS[northOverlayId == blendIndex ? westNeighborShape : 0];
+                        southEdgeShape = SHAPE_VISIBLE_FLAGS[blendIndex == westOverlayId ? southNeighborShape : 0];
+                        @Pc(1077) boolean[] local1077 = SHAPE_VISIBLE_FLAGS[northNeighborShape == blendIndex ? local129 : 0];
+                        eastEdgeShape = SHAPE_VISIBLE_FLAGS[eastOverlayId == blendIndex ? eastNeighborShape : 0];
                         @Pc(1092) FloType local1092 = FloTypeList.method4395(blendIndex - 1);
                         @Pc(1097) GlTile local1097 = getOrCreateGlTile(tileMap, local1092);
                         local1097.anInt2482 += 5;
@@ -4660,9 +4731,9 @@ public class SceneGraph {
                         if (local1496.blend && local1496.baseColor != -1) {
                             neighborShape = underlayRotations[x - 1][z + 1];
                             local1527 = overlayShapes[x - 1][z + 1];
-                            shapeIndex2 = anIntArray300[local1527 * 4 + (neighborShape + 2 & 0x3)];
-                            shapeIndex3 = anIntArray300[local1527 * 4 + (neighborShape + 3 & 0x3)];
-                            if (aBooleanArrayArray4[shapeIndex3][1] && aBooleanArrayArray4[shapeIndex2][0]) {
+                            shapeIndex2 = SHAPE_WALL_VERTEX_DATA[local1527 * 4 + (neighborShape + 2 & 0x3)];
+                            shapeIndex3 = SHAPE_WALL_VERTEX_DATA[local1527 * 4 + (neighborShape + 3 & 0x3)];
+                            if (SHAPE_VISIBLE_FLAGS[shapeIndex3][1] && SHAPE_VISIBLE_FLAGS[shapeIndex2][0]) {
                                 northwestOverlayId = 0;
                             } else {
                                 for (local1571 = 0; local1571 < 8; local1571++) {
@@ -4687,9 +4758,9 @@ public class SceneGraph {
                         if (local1496.blend && local1496.baseColor != -1) {
                             neighborShape = underlayRotations[x - 1][z - 1];
                             local1527 = overlayShapes[x - 1][z - 1];
-                            shapeIndex2 = anIntArray300[(neighborShape & 0x3) + local1527 * 4];
-                            shapeIndex3 = anIntArray300[(neighborShape + 3 & 0x3) + local1527 * 4];
-                            if (aBooleanArrayArray4[shapeIndex2][1] && aBooleanArrayArray4[shapeIndex3][0]) {
+                            shapeIndex2 = SHAPE_WALL_VERTEX_DATA[(neighborShape & 0x3) + local1527 * 4];
+                            shapeIndex3 = SHAPE_WALL_VERTEX_DATA[(neighborShape + 3 & 0x3) + local1527 * 4];
+                            if (SHAPE_VISIBLE_FLAGS[shapeIndex2][1] && SHAPE_VISIBLE_FLAGS[shapeIndex3][0]) {
                                 southwestOverlayId = 0;
                             } else {
                                 for (local1571 = 0; local1571 < 8; local1571++) {
@@ -4713,9 +4784,9 @@ public class SceneGraph {
                         if (local1496.blend && local1496.baseColor != -1) {
                             neighborShape = underlayRotations[x + 1][z - 1];
                             local1527 = overlayShapes[x + 1][z - 1];
-                            shapeIndex3 = anIntArray300[(neighborShape + 1 & 0x3) + local1527 * 4];
-                            shapeIndex2 = anIntArray300[local1527 * 4 + (neighborShape & 0x3)];
-                            if (aBooleanArrayArray4[shapeIndex3][1] && aBooleanArrayArray4[shapeIndex2][0]) {
+                            shapeIndex3 = SHAPE_WALL_VERTEX_DATA[(neighborShape + 1 & 0x3) + local1527 * 4];
+                            shapeIndex2 = SHAPE_WALL_VERTEX_DATA[local1527 * 4 + (neighborShape & 0x3)];
+                            if (SHAPE_VISIBLE_FLAGS[shapeIndex3][1] && SHAPE_VISIBLE_FLAGS[shapeIndex2][0]) {
                                 southeastOverlayId = 0;
                             } else {
                                 for (local1571 = 0; local1571 < 8; local1571++) {
@@ -4739,9 +4810,9 @@ public class SceneGraph {
                         if (local1496.blend && local1496.baseColor != -1) {
                             local1527 = overlayShapes[x + 1][z + 1];
                             neighborShape = underlayRotations[x + 1][z + 1];
-                            shapeIndex2 = anIntArray300[(neighborShape + 2 & 0x3) + local1527 * 4];
-                            shapeIndex3 = anIntArray300[(neighborShape + 1 & 0x3) + local1527 * 4];
-                            if (aBooleanArrayArray4[shapeIndex2][1] && aBooleanArrayArray4[shapeIndex3][0]) {
+                            shapeIndex2 = SHAPE_WALL_VERTEX_DATA[(neighborShape + 2 & 0x3) + local1527 * 4];
+                            shapeIndex3 = SHAPE_WALL_VERTEX_DATA[(neighborShape + 1 & 0x3) + local1527 * 4];
+                            if (SHAPE_VISIBLE_FLAGS[shapeIndex2][1] && SHAPE_VISIBLE_FLAGS[shapeIndex3][0]) {
                                 blendNeighborIndex = 0;
                             } else {
                                 for (local1571 = 0; local1571 < 8; local1571++) {
@@ -4762,7 +4833,7 @@ public class SceneGraph {
                     if (northOverlayId != 0 && northOverlayId != neighborCount) {
                         local1496 = FloTypeList.method4395(northOverlayId - 1);
                         if (local1496.blend && local1496.baseColor != -1) {
-                            westNeighborShape = anIntArray300[overlayShapes[x][z + 1] * 4 + (underlayRotations[x][z + 1] + 2 & 0x3)];
+                            westNeighborShape = SHAPE_WALL_VERTEX_DATA[overlayShapes[x][z + 1] * 4 + (underlayRotations[x][z + 1] + 2 & 0x3)];
                             for (local2003 = 0; local2003 < 8; local2003++) {
                                 if (local2003 == blendNeighborCount) {
                                     blendNeighbors[blendNeighborCount++] = northOverlayId;
@@ -4777,7 +4848,7 @@ public class SceneGraph {
                     if (westOverlayId != 0 && neighborCount != westOverlayId) {
                         local1496 = FloTypeList.method4395(westOverlayId - 1);
                         if (local1496.blend && local1496.baseColor != -1) {
-                            southNeighborShape = anIntArray300[(underlayRotations[x - 1][z] + 3 & 0x3) + overlayShapes[x - 1][z] * 4];
+                            southNeighborShape = SHAPE_WALL_VERTEX_DATA[(underlayRotations[x - 1][z] + 3 & 0x3) + overlayShapes[x - 1][z] * 4];
                             for (local2003 = 0; local2003 < 8; local2003++) {
                                 if (blendNeighborCount == local2003) {
                                     blendNeighbors[blendNeighborCount++] = westOverlayId;
@@ -4792,7 +4863,7 @@ public class SceneGraph {
                     if (eastOverlayId != 0 && eastOverlayId != neighborCount) {
                         local1496 = FloTypeList.method4395(eastOverlayId - 1);
                         if (local1496.blend && local1496.baseColor != -1) {
-                            eastNeighborShape = anIntArray300[(underlayRotations[x][z - 1] & 0x3) + overlayShapes[x][z - 1] * 4];
+                            eastNeighborShape = SHAPE_WALL_VERTEX_DATA[(underlayRotations[x][z - 1] & 0x3) + overlayShapes[x][z - 1] * 4];
                             for (local2003 = 0; local2003 < 8; local2003++) {
                                 if (blendNeighborCount == local2003) {
                                     blendNeighbors[blendNeighborCount++] = eastOverlayId;
@@ -4807,7 +4878,7 @@ public class SceneGraph {
                     if (northeastOverlayId != 0 && northeastOverlayId != neighborCount) {
                         local1496 = FloTypeList.method4395(northeastOverlayId - 1);
                         if (local1496.blend && local1496.baseColor != -1) {
-                            northNeighborShape = anIntArray300[overlayShapes[x + 1][z] * 4 + (underlayRotations[x + 1][z] + 1 & 0x3)];
+                            northNeighborShape = SHAPE_WALL_VERTEX_DATA[overlayShapes[x + 1][z] * 4 + (underlayRotations[x + 1][z] + 1 & 0x3)];
                             for (local2003 = 0; local2003 < 8; local2003++) {
                                 if (local2003 == blendNeighborCount) {
                                     blendNeighbors[blendNeighborCount++] = northeastOverlayId;
@@ -4821,10 +4892,10 @@ public class SceneGraph {
                     }
                     for (blendIndex = 0; blendIndex < blendNeighborCount; blendIndex++) {
                         local2003 = blendNeighbors[blendIndex];
-                        westEdgeShape = aBooleanArrayArray4[local2003 == northOverlayId ? westNeighborShape : 0];
-                        southEdgeShape = aBooleanArrayArray4[westOverlayId == local2003 ? southNeighborShape : 0];
-                        eastEdgeShape = aBooleanArrayArray4[local2003 == eastOverlayId ? eastNeighborShape : 0];
-                        @Pc(2318) boolean[] local2318 = aBooleanArrayArray4[local2003 == northeastOverlayId ? northNeighborShape : 0];
+                        westEdgeShape = SHAPE_VISIBLE_FLAGS[local2003 == northOverlayId ? westNeighborShape : 0];
+                        southEdgeShape = SHAPE_VISIBLE_FLAGS[westOverlayId == local2003 ? southNeighborShape : 0];
+                        eastEdgeShape = SHAPE_VISIBLE_FLAGS[local2003 == eastOverlayId ? eastNeighborShape : 0];
+                        @Pc(2318) boolean[] local2318 = SHAPE_VISIBLE_FLAGS[local2003 == northeastOverlayId ? northNeighborShape : 0];
                         @Pc(2324) FloType local2324 = FloTypeList.method4395(local2003 - 1);
                         @Pc(2329) GlTile local2329 = getOrCreateGlTile(tileMap, local2324);
                         @Pc(2345) int local2345 = calculateTexturedColor(local2324.material, local2324.baseColor, colorMap[x][z]) << 8 | 0xFF;
@@ -4950,7 +5021,7 @@ public class SceneGraph {
         @Pc(17) int packedColor2 = (color2 << 8) + 255;
         @Pc(23) int packedColor3 = (color3 << 8) + 255;
         @Pc(29) int packedColor4 = (color4 << 8) + 255;
-        @Pc(33) int[] shapeVertices = anIntArrayArray35[overlayShape];
+        @Pc(33) int[] shapeVertices = SHAPE_OVERLAY_COORDINATES[overlayShape];
         @Pc(39) int[] baseVertices = new int[shapeVertices.length >> 1];
         @Pc(41) int vertex1;
         for (vertex1 = 0; vertex1 < baseVertices.length; vertex1++) {
@@ -5219,7 +5290,7 @@ public class SceneGraph {
                         }
                         while (local237 > local232) {
                             while (local417 < local255) {
-                                aByteArrayArrayArray13[plane][local232][local417] = 0;
+                                tileSettings[plane][local232][local417] = 0;
                                 local417++;
                             }
                             local232++;
@@ -5236,7 +5307,7 @@ public class SceneGraph {
                                             rotatedZ = baseX + transformX(rotation, rotatedX & 0x7, local255 & 0x7);
                                             @Pc(328) int local328 = transformZ(rotation, local255 & 0x7, rotatedX & 0x7) + baseZ;
                                             if (rotatedZ >= 0 && rotatedZ < 104 && local328 >= 0 && local328 < 104) {
-                                                aByteArrayArrayArray13[plane][rotatedZ][local328] = overlayId;
+                                                tileSettings[plane][rotatedZ][local328] = overlayId;
                                             }
                                         }
                                     }
@@ -5299,7 +5370,7 @@ public class SceneGraph {
         tileZ = baseZ + 7;
         for (local497 = baseX; local497 < tileX; local497++) {
             for (local232 = baseZ; local232 < tileZ; local232++) {
-                aByteArrayArrayArray13[plane][local497][local232] = 0;
+                tileSettings[plane][local497][local232] = 0;
             }
         }
     }
@@ -5362,8 +5433,8 @@ public class SceneGraph {
 
     @OriginalMember(owner = "runetek4.client!uc", name = "a", descriptor = "(III[[[BIBII)V")
     public static void renderVisibleTiles(@OriginalArg(0) int offsetX, @OriginalArg(1) int offsetY, @OriginalArg(2) int offsetZ, @OriginalArg(3) byte[][][] visibilityMask, @OriginalArg(4) int maxVisiblePlane, @OriginalArg(5) byte visibilityFlag, @OriginalArg(6) int centerX, @OriginalArg(7) int centerZ) {
-        anInt437++;
-        anInt1142 = 0;
+        renderDistance++;
+        fogDistance = 0;
         @Pc(9) int minUpdateX = centerX - 16;
         @Pc(13) int maxUpdateX = centerX + 16;
         @Pc(17) int minUpdateZ = centerZ - 16;
@@ -5371,48 +5442,48 @@ public class SceneGraph {
         @Pc(32) int x;
         @Pc(37) int z;
         @Pc(183) int sceneryIndex;
-        for (@Pc(23) int plane = anInt5276; plane < planes; plane++) {
+        for (@Pc(23) int plane = frameCounter; plane < planes; plane++) {
             @Pc(30) Tile[][] planeTiles = tiles[plane];
             for (x = LightingManager.anInt987; x < LightingManager.anInt15; x++) {
                 for (z = LightingManager.anInt4698; z < LightingManager.anInt4866; z++) {
                     @Pc(46) Tile tile = planeTiles[x][z];
                     if (tile != null) {
-                        if (aBooleanArrayArray1[x + visibility - eyeTileX][z + visibility - anInt4539] && (visibilityMask == null || plane < maxVisiblePlane || visibilityMask[plane][x][z] != visibilityFlag)) {
-                            tile.aBoolean45 = true;
-                            tile.aBoolean46 = true;
+                        if (tileVisibility[x + visibility - eyeTileX][z + visibility - eyeTileZ] && (visibilityMask == null || plane < maxVisiblePlane || visibilityMask[plane][x][z] != visibilityFlag)) {
+                            tile.hasObjects = true;
+                            tile.bridgeAbove = true;
                             if (tile.sceneryLen > 0) {
                                 tile.containsLocs = true;
                             } else {
                                 tile.containsLocs = false;
                             }
-                            anInt1142++;
+                            fogDistance++;
                         } else {
-                            tile.aBoolean45 = false;
-                            tile.aBoolean46 = false;
-                            tile.checkLocSpans = 0;
+                            tile.hasObjects = false;
+                            tile.bridgeAbove = false;
+                            tile.locCheckFlags = 0;
                             if (x >= minUpdateX && x <= maxUpdateX && z >= minUpdateZ && z <= maxUpdateZ) {
                                 if (tile.wall != null) {
                                     @Pc(103) Wall local103 = tile.wall;
-                                    local103.primary.update(0, plane, local103.anInt3051, local103.xFine, local103.zFine);
+                                    local103.primary.update(0, plane, local103.yFine, local103.xFine, local103.zFine);
                                     if (local103.secondary != null) {
-                                        local103.secondary.update(0, plane, local103.anInt3051, local103.xFine, local103.zFine);
+                                        local103.secondary.update(0, plane, local103.yFine, local103.xFine, local103.zFine);
                                     }
                                 }
                                 if (tile.wallDecor != null) {
                                     @Pc(134) WallDecor local134 = tile.wallDecor;
-                                    local134.primary.update(local134.anInt1388, plane, local134.anInt1391, local134.xFine, local134.zFine);
+                                    local134.primary.update(local134.yFine, plane, local134.yOffset, local134.xFine, local134.zFine);
                                     if (local134.secondary != null) {
-                                        local134.secondary.update(local134.anInt1388, plane, local134.anInt1391, local134.xFine, local134.zFine);
+                                        local134.secondary.update(local134.yFine, plane, local134.yOffset, local134.xFine, local134.zFine);
                                     }
                                 }
                                 if (tile.groundDecor != null) {
                                     @Pc(167) GroundDecor local167 = tile.groundDecor;
-                                    local167.entity.update(0, plane, local167.anInt733, local167.xFine, local167.zFine);
+                                    local167.entity.update(0, plane, local167.yFine, local167.xFine, local167.zFine);
                                 }
                                 if (tile.scenery != null) {
                                     for (sceneryIndex = 0; sceneryIndex < tile.sceneryLen; sceneryIndex++) {
                                         @Pc(192) Scenery local192 = tile.scenery[sceneryIndex];
-                                        local192.entity.update(local192.anInt1714, plane, local192.anInt1706, local192.anInt1699, local192.anInt1703);
+                                        local192.entity.update(local192.animationId, plane, local192.type, local192.yMin, local192.yMax);
                                     }
                                 }
                             }
@@ -5431,13 +5502,13 @@ public class SceneGraph {
                 MaterialManager.setMaterial(-1, 3);
                 MaterialManager.renderingUnderwater = true;
                 UnderwaterMaterialRenderer.method4609();
-                anInt3604 = -1;
-                anInt730 = -1;
+                lastAnimationFrame = -1;
+                currentAnimationFrame = -1;
                 for (x = 0; x < underwaterHdTiles[0].length; x++) {
                     @Pc(285) GlTile local285 = underwaterHdTiles[0][x];
                     @Pc(294) float local294 = 251.5F - (local285.blend ? 1.0F : 0.5F);
-                    if (local285.underwaterColor != anInt3604) {
-                        anInt3604 = local285.underwaterColor;
+                    if (local285.underwaterColor != lastAnimationFrame) {
+                        lastAnimationFrame = local285.underwaterColor;
                         WaterMaterialRenderer.method619(local285.underwaterColor);
                         FogManager.setFogColor(WaterMaterialRenderer.method2422());
                     }
@@ -5445,10 +5516,10 @@ public class SceneGraph {
                 }
                 UnderwaterMaterialRenderer.method4608();
             } else {
-                x = anInt5276;
+                x = frameCounter;
                 while (true) {
                     if (x >= planes) {
-                        LightingManager.method2402(eyeTileX, anInt4539, tiles);
+                        LightingManager.method2402(eyeTileX, eyeTileZ, tiles);
                         break;
                     }
                     for (z = 0; z < underwaterHdTiles[x].length; z++) {
@@ -5461,7 +5532,7 @@ public class SceneGraph {
                     }
                     if (x == 0 && Preferences.sceneryShadowsType > 0) {
                         GlRenderer.method4159(101.5F);
-                        ShadowManager.method4198(eyeTileX, anInt4539, visibility, offsetY, aBooleanArrayArray1, tileHeights[0]);
+                        ShadowManager.method4198(eyeTileX, eyeTileZ, visibility, offsetY, tileVisibility, tileHeights[0]);
                     }
                     x++;
                 }
@@ -5475,25 +5546,25 @@ public class SceneGraph {
         @Pc(406) Tile[][] renderPlaneTiles;
         @Pc(415) int leftX;
         @Pc(428) int zOffset;
-        for (renderPlane = anInt5276; renderPlane < planes; renderPlane++) {
+        for (renderPlane = frameCounter; renderPlane < planes; renderPlane++) {
             renderPlaneTiles = tiles[renderPlane];
             for (z = -visibility; z <= 0; z++) {
                 leftX = eyeTileX + z;
                 sceneryIndex = eyeTileX - z;
                 if (leftX >= LightingManager.anInt987 || sceneryIndex < LightingManager.anInt15) {
                     for (zOffset = -visibility; zOffset <= 0; zOffset++) {
-                        topZ = anInt4539 + zOffset;
-                        bottomZ = anInt4539 - zOffset;
+                        topZ = eyeTileZ + zOffset;
+                        bottomZ = eyeTileZ - zOffset;
                         if (leftX >= LightingManager.anInt987) {
                             if (topZ >= LightingManager.anInt4698) {
                                 renderTile = renderPlaneTiles[leftX][topZ];
-                                if (renderTile != null && renderTile.aBoolean45) {
+                                if (renderTile != null && renderTile.hasObjects) {
                                     renderScene(renderTile, true);
                                 }
                             }
                             if (bottomZ < LightingManager.anInt4866) {
                                 renderTile = renderPlaneTiles[leftX][bottomZ];
-                                if (renderTile != null && renderTile.aBoolean45) {
+                                if (renderTile != null && renderTile.hasObjects) {
                                     renderScene(renderTile, true);
                                 }
                             }
@@ -5501,18 +5572,18 @@ public class SceneGraph {
                         if (sceneryIndex < LightingManager.anInt15) {
                             if (topZ >= LightingManager.anInt4698) {
                                 renderTile = renderPlaneTiles[sceneryIndex][topZ];
-                                if (renderTile != null && renderTile.aBoolean45) {
+                                if (renderTile != null && renderTile.hasObjects) {
                                     renderScene(renderTile, true);
                                 }
                             }
                             if (bottomZ < LightingManager.anInt4866) {
                                 renderTile = renderPlaneTiles[sceneryIndex][bottomZ];
-                                if (renderTile != null && renderTile.aBoolean45) {
+                                if (renderTile != null && renderTile.hasObjects) {
                                     renderScene(renderTile, true);
                                 }
                             }
                         }
-                        if (anInt1142 == 0) {
+                        if (fogDistance == 0) {
                             if (!isUnderwater) {
                                 MiniMenu.walkTargetActive = false;
                             }
@@ -5522,25 +5593,25 @@ public class SceneGraph {
                 }
             }
         }
-        for (renderPlane = anInt5276; renderPlane < planes; renderPlane++) {
+        for (renderPlane = frameCounter; renderPlane < planes; renderPlane++) {
             renderPlaneTiles = tiles[renderPlane];
             for (z = -visibility; z <= 0; z++) {
                 leftX = eyeTileX + z;
                 sceneryIndex = eyeTileX - z;
                 if (leftX >= LightingManager.anInt987 || sceneryIndex < LightingManager.anInt15) {
                     for (zOffset = -visibility; zOffset <= 0; zOffset++) {
-                        topZ = anInt4539 + zOffset;
-                        bottomZ = anInt4539 - zOffset;
+                        topZ = eyeTileZ + zOffset;
+                        bottomZ = eyeTileZ - zOffset;
                         if (leftX >= LightingManager.anInt987) {
                             if (topZ >= LightingManager.anInt4698) {
                                 renderTile = renderPlaneTiles[leftX][topZ];
-                                if (renderTile != null && renderTile.aBoolean45) {
+                                if (renderTile != null && renderTile.hasObjects) {
                                     renderScene(renderTile, false);
                                 }
                             }
                             if (bottomZ < LightingManager.anInt4866) {
                                 renderTile = renderPlaneTiles[leftX][bottomZ];
-                                if (renderTile != null && renderTile.aBoolean45) {
+                                if (renderTile != null && renderTile.hasObjects) {
                                     renderScene(renderTile, false);
                                 }
                             }
@@ -5548,18 +5619,18 @@ public class SceneGraph {
                         if (sceneryIndex < LightingManager.anInt15) {
                             if (topZ >= LightingManager.anInt4698) {
                                 renderTile = renderPlaneTiles[sceneryIndex][topZ];
-                                if (renderTile != null && renderTile.aBoolean45) {
+                                if (renderTile != null && renderTile.hasObjects) {
                                     renderScene(renderTile, false);
                                 }
                             }
                             if (bottomZ < LightingManager.anInt4866) {
                                 renderTile = renderPlaneTiles[sceneryIndex][bottomZ];
-                                if (renderTile != null && renderTile.aBoolean45) {
+                                if (renderTile != null && renderTile.hasObjects) {
                                     renderScene(renderTile, false);
                                 }
                             }
                         }
-                        if (anInt1142 == 0) {
+                        if (fogDistance == 0) {
                             if (!isUnderwater) {
                                 MiniMenu.walkTargetActive = false;
                             }
@@ -5650,7 +5721,7 @@ public class SceneGraph {
             }
             GlRenderer.method4171(x, y, width, height, width / 2 + x, y - -(height / 2), pitchDegrees, yawDegrees, ClientScriptRunner.anInt5029, ClientScriptRunner.anInt5029);
         } else {
-            SoftwareRaster.setClip(x, y, width + x, height + y);
+            SoftwareRenderer.setClip(x, y, width + x, height + y);
             Rasterizer.prepare();
         }
         if (ClientScriptRunner.menuVisible || ClientScriptRunner.scriptMouseX < x || ClientScriptRunner.scriptMouseX >= width + x || y > ClientScriptRunner.scriptMouseY || height + y <= ClientScriptRunner.scriptMouseY) {
@@ -5690,10 +5761,12 @@ public class SceneGraph {
             ClientScriptRunner.drawOverheads(y, width, x, ClientScriptRunner.anInt5029, height, ClientScriptRunner.anInt5029);
             MiniMap.renderOverheadHints(width, x, height, ClientScriptRunner.anInt5029, ClientScriptRunner.anInt5029, y);
         } else {
-            SoftwareRaster.fillRect(x, y, width, height, 0);
+            SoftwareRenderer.fillRect(x, y, width, height, 0);
             setupSceneRender(Camera.renderX, Camera.cameraY, Camera.renderZ, Camera.cameraPitch, Camera.cameraYaw, ClientScriptRunner.tileMarkings, ClientScriptRunner.maxHeights, ClientScriptRunner.anIntArray338, ClientScriptRunner.anIntArray518, ClientScriptRunner.anIntArray134, ClientScriptRunner.anIntArray476, Player.plane + 1, roofVisibilityFlag, PlayerList.self.xFine >> 7, PlayerList.self.zFine >> 7);
             Client.audioLoop();
             ClientScriptRunner.clearAllScenery();
+            ClientScriptRunner.highlightAllTiles();
+            ClientScriptRunner.highlightHoveredTile(x, y);
             ClientScriptRunner.drawOverheads(y, width, x, 256, height, 256);
             MiniMap.renderOverheadHints(width, x, height, 256, 256, y);
         }
@@ -5711,7 +5784,7 @@ public class SceneGraph {
             if (GlRenderer.enabled) {
                 GlRaster.fillRect(x, y, width, height, 0);
             } else {
-                SoftwareRaster.fillRect(x, y, width, height, 0);
+                SoftwareRenderer.fillRect(x, y, width, height, 0);
             }
             Fonts.drawTextOnScreen(false, LocalizedText.LOADING);
         }
