@@ -19,102 +19,106 @@ import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-@OriginalClass("runetek4.client!hg")
+@OriginalClass("client!hg")
 public final class GlTile extends Node {
 
-	@OriginalMember(owner = "runetek4.client!hg", name = "J", descriptor = "Ljava/nio/ByteBuffer;")
+	@OriginalMember(owner = "client!hg", name = "J", descriptor = "Ljava/nio/ByteBuffer;")
 	public static ByteBuffer aByteBuffer4;
-	@OriginalMember(owner = "runetek4.client!hg", name = "U", descriptor = "Lclient!wa;")
+
+	@OriginalMember(owner = "client!hg", name = "U", descriptor = "Lclient!wa;")
 	public static Packet aClass3_Sub15_3;
-	@OriginalMember(owner = "runetek4.client!hg", name = "K", descriptor = "Lclient!wa;")
+
+	@OriginalMember(owner = "client!hg", name = "K", descriptor = "Lclient!wa;")
 	public static Packet aClass3_Sub15_2;
-	@OriginalMember(owner = "runetek4.client!hg", name = "Q", descriptor = "Ljava/nio/ByteBuffer;")
+
+	@OriginalMember(owner = "client!hg", name = "Q", descriptor = "Ljava/nio/ByteBuffer;")
 	public static ByteBuffer aByteBuffer5;
-	@OriginalMember(owner = "runetek4.client!hg", name = "s", descriptor = "Ljava/nio/ByteBuffer;")
+
+	@OriginalMember(owner = "client!hg", name = "s", descriptor = "Ljava/nio/ByteBuffer;")
 	private ByteBuffer aByteBuffer3;
 
-	@OriginalMember(owner = "runetek4.client!hg", name = "t", descriptor = "[F")
+	@OriginalMember(owner = "client!hg", name = "t", descriptor = "[F")
 	private float[] aFloatArray4;
 
-	@OriginalMember(owner = "runetek4.client!hg", name = "v", descriptor = "[I")
+	@OriginalMember(owner = "client!hg", name = "v", descriptor = "[I")
 	private int[] anIntArray226;
 
-	@OriginalMember(owner = "runetek4.client!hg", name = "w", descriptor = "[I")
+	@OriginalMember(owner = "client!hg", name = "w", descriptor = "[I")
 	private int[] anIntArray227;
 
-	@OriginalMember(owner = "runetek4.client!hg", name = "x", descriptor = "[I")
+	@OriginalMember(owner = "client!hg", name = "x", descriptor = "[I")
 	private int[] anIntArray228;
 
-	@OriginalMember(owner = "runetek4.client!hg", name = "z", descriptor = "[I")
+	@OriginalMember(owner = "client!hg", name = "z", descriptor = "[I")
 	private int[] anIntArray229;
 
-	@OriginalMember(owner = "runetek4.client!hg", name = "A", descriptor = "Lclient!sc;")
+	@OriginalMember(owner = "client!hg", name = "A", descriptor = "Lclient!sc;")
 	private HashTable aClass133_8;
 
-	@OriginalMember(owner = "runetek4.client!hg", name = "B", descriptor = "[F")
+	@OriginalMember(owner = "client!hg", name = "B", descriptor = "[F")
 	private float[] aFloatArray5;
 
-	@OriginalMember(owner = "runetek4.client!hg", name = "E", descriptor = "[[I")
+	@OriginalMember(owner = "client!hg", name = "E", descriptor = "[[I")
 	private int[][] anIntArrayArray17;
 
-	@OriginalMember(owner = "runetek4.client!hg", name = "F", descriptor = "[I")
+	@OriginalMember(owner = "client!hg", name = "F", descriptor = "[I")
 	private int[] anIntArray230;
 
-	@OriginalMember(owner = "runetek4.client!hg", name = "I", descriptor = "[[I")
+	@OriginalMember(owner = "client!hg", name = "I", descriptor = "[[I")
 	private int[][] anIntArrayArray18;
 
-	@OriginalMember(owner = "runetek4.client!hg", name = "L", descriptor = "Lclient!vi;")
+	@OriginalMember(owner = "client!hg", name = "L", descriptor = "Lclient!vi;")
 	private GlVertexBufferObject aClass155_3;
 
-	@OriginalMember(owner = "runetek4.client!hg", name = "N", descriptor = "[F")
+	@OriginalMember(owner = "client!hg", name = "N", descriptor = "[F")
 	private float[] aFloatArray6;
 
-	@OriginalMember(owner = "runetek4.client!hg", name = "P", descriptor = "[I")
+	@OriginalMember(owner = "client!hg", name = "P", descriptor = "[I")
 	private int[] anIntArray231;
 
-	@OriginalMember(owner = "runetek4.client!hg", name = "R", descriptor = "[F")
+	@OriginalMember(owner = "client!hg", name = "R", descriptor = "[F")
 	private float[] aFloatArray7;
 
-	@OriginalMember(owner = "runetek4.client!hg", name = "S", descriptor = "[Z")
+	@OriginalMember(owner = "client!hg", name = "S", descriptor = "[Z")
 	private boolean[] aBooleanArray54;
 
-	@OriginalMember(owner = "runetek4.client!hg", name = "T", descriptor = "[I")
+	@OriginalMember(owner = "client!hg", name = "T", descriptor = "[I")
 	private int[] anIntArray232;
 
-	@OriginalMember(owner = "runetek4.client!hg", name = "p", descriptor = "I")
+	@OriginalMember(owner = "client!hg", name = "p", descriptor = "I")
 	public int anInt2482 = 0;
 
-	@OriginalMember(owner = "runetek4.client!hg", name = "D", descriptor = "I")
+	@OriginalMember(owner = "client!hg", name = "D", descriptor = "I")
 	private int anInt2487 = 0;
 
-	@OriginalMember(owner = "runetek4.client!hg", name = "G", descriptor = "I")
+	@OriginalMember(owner = "client!hg", name = "G", descriptor = "I")
 	private int anInt2488 = 0;
 
-	@OriginalMember(owner = "runetek4.client!hg", name = "q", descriptor = "I")
+	@OriginalMember(owner = "client!hg", name = "q", descriptor = "I")
 	public int anInt2483 = 0;
 
-	@OriginalMember(owner = "runetek4.client!hg", name = "r", descriptor = "I")
+	@OriginalMember(owner = "client!hg", name = "r", descriptor = "I")
 	public int anInt2484 = 0;
 
-	@OriginalMember(owner = "runetek4.client!hg", name = "O", descriptor = "I")
+	@OriginalMember(owner = "client!hg", name = "O", descriptor = "I")
 	private int anInt2489 = 0;
 
-	@OriginalMember(owner = "runetek4.client!hg", name = "y", descriptor = "I")
+	@OriginalMember(owner = "client!hg", name = "y", descriptor = "I")
 	public final int texture;
 
-	@OriginalMember(owner = "runetek4.client!hg", name = "V", descriptor = "F")
+	@OriginalMember(owner = "client!hg", name = "V", descriptor = "F")
 	private final float aFloat12;
 
-	@OriginalMember(owner = "runetek4.client!hg", name = "M", descriptor = "Z")
+	@OriginalMember(owner = "client!hg", name = "M", descriptor = "Z")
 	public final boolean blend;
 
-	@OriginalMember(owner = "runetek4.client!hg", name = "u", descriptor = "Z")
+	@OriginalMember(owner = "client!hg", name = "u", descriptor = "Z")
 	private final boolean aBoolean139;
 
-	@OriginalMember(owner = "runetek4.client!hg", name = "C", descriptor = "I")
+	@OriginalMember(owner = "client!hg", name = "C", descriptor = "I")
 	public final int underwaterColor;
 
-	@OriginalMember(owner = "runetek4.client!hg", name = "<init>", descriptor = "(IFZZI)V")
+	@OriginalMember(owner = "client!hg", name = "<init>", descriptor = "(IFZZI)V")
 	public GlTile(@OriginalArg(0) int arg0, @OriginalArg(1) float arg1, @OriginalArg(2) boolean arg2, @OriginalArg(3) boolean arg3, @OriginalArg(4) int arg4) {
 		this.texture = arg0;
 		this.aFloat12 = arg1;
@@ -123,7 +127,7 @@ public final class GlTile extends Node {
 		this.underwaterColor = arg4;
 	}
 
-	@OriginalMember(owner = "runetek4.client!hg", name = "a", descriptor = "()V")
+	@OriginalMember(owner = "client!hg", name = "a", descriptor = "()V")
 	public static void method1939() {
 		aClass3_Sub15_3 = null;
 		aClass3_Sub15_2 = null;
@@ -131,7 +135,7 @@ public final class GlTile extends Node {
 		aByteBuffer4 = null;
 	}
 
-	@OriginalMember(owner = "runetek4.client!hg", name = "b", descriptor = "()V")
+	@OriginalMember(owner = "client!hg", name = "b", descriptor = "()V")
 	public final void method1940() {
 		this.anIntArray232 = new int[this.anInt2482];
 		this.anIntArray230 = new int[this.anInt2482];
@@ -154,7 +158,7 @@ public final class GlTile extends Node {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!hg", name = "a", descriptor = "(IIIFFFIF)I")
+	@OriginalMember(owner = "client!hg", name = "a", descriptor = "(IIIFFFIF)I")
 	public final int method1941(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) float arg3, @OriginalArg(4) float arg4, @OriginalArg(5) float arg5, @OriginalArg(6) int arg6, @OriginalArg(7) float arg7) {
 		@Pc(1) long local1 = 0L;
 		if ((arg0 & 0x7F) == 0 || (arg2 & 0x7F) == 0) {
@@ -183,7 +187,7 @@ public final class GlTile extends Node {
 		return this.anInt2483++;
 	}
 
-	@OriginalMember(owner = "runetek4.client!hg", name = "d", descriptor = "()V")
+	@OriginalMember(owner = "client!hg", name = "d", descriptor = "()V")
 	public final void method1943() {
 		@Pc(12) Packet local12 = new Packet((this.aBoolean139 ? 40 : 36) * this.anInt2483);
 		for (@Pc(14) int local14 = 0; local14 < this.anInt2483; local14++) {
@@ -235,7 +239,7 @@ public final class GlTile extends Node {
 		this.aFloatArray4 = null;
 	}
 
-	@OriginalMember(owner = "runetek4.client!hg", name = "a", descriptor = "([[[Lclient!bj;FZ)V")
+	@OriginalMember(owner = "client!hg", name = "a", descriptor = "([[[Lclient!bj;FZ)V")
 	public final void method1944(@OriginalArg(0) Tile[][][] arg0, @OriginalArg(1) float arg1, @OriginalArg(2) boolean arg2) {
 		if (aClass3_Sub15_3 == null || aClass3_Sub15_3.data.length < this.anInt2488 * 4) {
 			aClass3_Sub15_3 = new Packet(this.anInt2488 * 4);
@@ -376,7 +380,7 @@ public final class GlTile extends Node {
 		GlRenderer.enableDepthMask();
 	}
 
-	@OriginalMember(owner = "runetek4.client!hg", name = "a", descriptor = "(III[I[IZ)I")
+	@OriginalMember(owner = "client!hg", name = "a", descriptor = "(III[I[IZ)I")
 	public final int method1945(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int[] arg3, @OriginalArg(4) int[] arg4, @OriginalArg(5) boolean arg5) {
 		if (this.blend) {
 			this.anIntArrayArray18[this.anInt2489] = arg4;
