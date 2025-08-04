@@ -3,7 +3,7 @@ package com.jagex.runetek4.client;
 import com.jagex.runetek4.graphics.gl.GlRaster;
 import com.jagex.runetek4.graphics.gl.GlRenderer;
 import com.jagex.runetek4.util.string.LocalizedText;
-import com.jagex.runetek4.graphics.raster.SoftwareRaster;
+import com.jagex.runetek4.graphics.raster.SoftwareRenderer;
 import com.jagex.runetek4.data.cache.media.Font;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -27,10 +27,10 @@ public class LoadingBar {
             GlRaster.fillRect(GameShell.canvasWidth / 2 - 150, canvasHeight + 2, Client.mainLoadPercentage * 3, 30, 9179409);
             GlRaster.fillRect(GameShell.canvasWidth / 2 + Client.mainLoadPercentage * 3 - 150, canvasHeight + 2, 300 - Client.mainLoadPercentage * 3, 30, 0);
         } else {
-            SoftwareRaster.drawRect(GameShell.canvasWidth / 2 - 152, canvasHeight, 304, 34, 9179409);
-            SoftwareRaster.drawRect(GameShell.canvasWidth / 2 - 151, canvasHeight + 1, 302, 32, 0);
-            SoftwareRaster.fillRect(GameShell.canvasWidth / 2 - 150, canvasHeight + 2, Client.mainLoadPercentage * 3, 30, 9179409);
-            SoftwareRaster.fillRect(Client.mainLoadPercentage * 3 + GameShell.canvasWidth / 2 - 150, canvasHeight + 2, 300 - Client.mainLoadPercentage * 3, 30, 0);
+            SoftwareRenderer.drawRect(GameShell.canvasWidth / 2 - 152, canvasHeight, 304, 34, 9179409);
+            SoftwareRenderer.drawRect(GameShell.canvasWidth / 2 - 151, canvasHeight + 1, 302, 32, 0);
+            SoftwareRenderer.fillRect(GameShell.canvasWidth / 2 - 150, canvasHeight + 2, Client.mainLoadPercentage * 3, 30, 9179409);
+            SoftwareRenderer.fillRect(Client.mainLoadPercentage * 3 + GameShell.canvasWidth / 2 - 150, canvasHeight + 2, 300 - Client.mainLoadPercentage * 3, 30, 0);
         }
         font.renderCenter(Client.mainLoadSecondaryText, GameShell.canvasWidth / 2, GameShell.canvasHeigth / 2 + 4, 16777215, -1);
     }

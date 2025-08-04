@@ -2,7 +2,7 @@ package com.jagex.runetek4.graphics.font;
 
 import com.jagex.runetek4.data.cache.media.Font;
 import com.jagex.runetek4.data.js5.Js5;
-import com.jagex.runetek4.graphics.raster.SoftwareRaster;
+import com.jagex.runetek4.graphics.raster.SoftwareRenderer;
 import com.jagex.runetek4.ui.sprite.SpriteLoader;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -68,8 +68,8 @@ public final class SoftwareFont extends Font {
 
 	@OriginalMember(owner = "runetek4.client!dd", name = "a", descriptor = "([I[BIIIIIIIII[I[I)V")
 	public static void blitMasked(@OriginalArg(0) int[] arg0, @OriginalArg(1) byte[] arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) int arg8, @OriginalArg(9) int arg9, @OriginalArg(10) int arg10, @OriginalArg(11) int[] arg11, @OriginalArg(12) int[] arg12) {
-		@Pc(3) int local3 = arg2 - SoftwareRaster.clipLeft;
-		@Pc(7) int local7 = arg3 - SoftwareRaster.clipTop;
+		@Pc(3) int local3 = arg2 - SoftwareRenderer.clipLeft;
+		@Pc(7) int local7 = arg3 - SoftwareRenderer.clipTop;
 		for (@Pc(9) int local9 = local7; local9 < local7 + arg5; local9++) {
 			@Pc(18) int local18 = arg11[local9];
 			@Pc(22) int local22 = arg12[local9];
@@ -104,7 +104,7 @@ public final class SoftwareFont extends Font {
 				if (arg1[arg7++] == 0) {
 					arg8++;
 				} else {
-					SoftwareRaster.pixels[arg8++] = arg6;
+					SoftwareRenderer.pixels[arg8++] = arg6;
 				}
 			}
 			arg7 += local31 + arg10;
@@ -149,70 +149,70 @@ public final class SoftwareFont extends Font {
 	@OriginalMember(owner = "runetek4.client!dd", name = "a", descriptor = "(IIIIIIIZ)V")
 	@Override
 	protected final void renderGlyphTransparent(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6) {
-		@Pc(5) int local5 = arg1 + arg2 * SoftwareRaster.width;
-		@Pc(9) int local9 = SoftwareRaster.width - arg3;
+		@Pc(5) int local5 = arg1 + arg2 * SoftwareRenderer.width;
+		@Pc(9) int local9 = SoftwareRenderer.width - arg3;
 		@Pc(11) int local11 = 0;
 		@Pc(13) int local13 = 0;
 		@Pc(20) int local20;
-		if (arg2 < SoftwareRaster.clipTop) {
-			local20 = SoftwareRaster.clipTop - arg2;
+		if (arg2 < SoftwareRenderer.clipTop) {
+			local20 = SoftwareRenderer.clipTop - arg2;
 			arg4 -= local20;
-			arg2 = SoftwareRaster.clipTop;
+			arg2 = SoftwareRenderer.clipTop;
 			local13 = local20 * arg3;
-			local5 += local20 * SoftwareRaster.width;
+			local5 += local20 * SoftwareRenderer.width;
 		}
-		if (arg2 + arg4 > SoftwareRaster.clipBottom) {
-			arg4 -= arg2 + arg4 - SoftwareRaster.clipBottom;
+		if (arg2 + arg4 > SoftwareRenderer.clipBottom) {
+			arg4 -= arg2 + arg4 - SoftwareRenderer.clipBottom;
 		}
-		if (arg1 < SoftwareRaster.clipLeft) {
-			local20 = SoftwareRaster.clipLeft - arg1;
+		if (arg1 < SoftwareRenderer.clipLeft) {
+			local20 = SoftwareRenderer.clipLeft - arg1;
 			arg3 -= local20;
-			arg1 = SoftwareRaster.clipLeft;
+			arg1 = SoftwareRenderer.clipLeft;
 			local13 += local20;
 			local5 += local20;
 			local11 = local20;
 			local9 += local20;
 		}
-		if (arg1 + arg3 > SoftwareRaster.clipRight) {
-			local20 = arg1 + arg3 - SoftwareRaster.clipRight;
+		if (arg1 + arg3 > SoftwareRenderer.clipRight) {
+			local20 = arg1 + arg3 - SoftwareRenderer.clipRight;
 			arg3 -= local20;
 			local11 += local20;
 			local9 += local20;
 		}
 		if (arg3 > 0 && arg4 > 0) {
-			blitTransparent(SoftwareRaster.pixels, this.pixels[arg0], arg5, local13, local5, arg3, arg4, local9, local11, arg6);
+			blitTransparent(SoftwareRenderer.pixels, this.pixels[arg0], arg5, local13, local5, arg3, arg4, local9, local11, arg6);
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!dd", name = "a", descriptor = "(IIIIIIZ)V")
 	@Override
 	protected final void renderGlyph(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5) {
-		@Pc(5) int local5 = arg1 + arg2 * SoftwareRaster.width;
-		@Pc(9) int local9 = SoftwareRaster.width - arg3;
+		@Pc(5) int local5 = arg1 + arg2 * SoftwareRenderer.width;
+		@Pc(9) int local9 = SoftwareRenderer.width - arg3;
 		@Pc(11) int local11 = 0;
 		@Pc(13) int local13 = 0;
 		@Pc(20) int local20;
-		if (arg2 < SoftwareRaster.clipTop) {
-			local20 = SoftwareRaster.clipTop - arg2;
+		if (arg2 < SoftwareRenderer.clipTop) {
+			local20 = SoftwareRenderer.clipTop - arg2;
 			arg4 -= local20;
-			arg2 = SoftwareRaster.clipTop;
+			arg2 = SoftwareRenderer.clipTop;
 			local13 = local20 * arg3;
-			local5 += local20 * SoftwareRaster.width;
+			local5 += local20 * SoftwareRenderer.width;
 		}
-		if (arg2 + arg4 > SoftwareRaster.clipBottom) {
-			arg4 -= arg2 + arg4 - SoftwareRaster.clipBottom;
+		if (arg2 + arg4 > SoftwareRenderer.clipBottom) {
+			arg4 -= arg2 + arg4 - SoftwareRenderer.clipBottom;
 		}
-		if (arg1 < SoftwareRaster.clipLeft) {
-			local20 = SoftwareRaster.clipLeft - arg1;
+		if (arg1 < SoftwareRenderer.clipLeft) {
+			local20 = SoftwareRenderer.clipLeft - arg1;
 			arg3 -= local20;
-			arg1 = SoftwareRaster.clipLeft;
+			arg1 = SoftwareRenderer.clipLeft;
 			local13 += local20;
 			local5 += local20;
 			local11 = local20;
 			local9 += local20;
 		}
-		if (arg1 + arg3 > SoftwareRaster.clipRight) {
-			local20 = arg1 + arg3 - SoftwareRaster.clipRight;
+		if (arg1 + arg3 > SoftwareRenderer.clipRight) {
+			local20 = arg1 + arg3 - SoftwareRenderer.clipRight;
 			arg3 -= local20;
 			local11 += local20;
 			local9 += local20;
@@ -220,10 +220,10 @@ public final class SoftwareFont extends Font {
 		if (arg3 <= 0 || arg4 <= 0) {
 			return;
 		}
-		if (SoftwareRaster.anIntArray295 == null) {
-			blit(SoftwareRaster.pixels, this.pixels[arg0], arg5, local13, local5, arg3, arg4, local9, local11);
+		if (SoftwareRenderer.clipLeftOffsets == null) {
+			blit(SoftwareRenderer.pixels, this.pixels[arg0], arg5, local13, local5, arg3, arg4, local9, local11);
 		} else {
-			blitMasked(SoftwareRaster.pixels, this.pixels[arg0], arg1, arg2, arg3, arg4, arg5, local13, local5, local9, local11, SoftwareRaster.anIntArray295, SoftwareRaster.anIntArray296);
+			blitMasked(SoftwareRenderer.pixels, this.pixels[arg0], arg1, arg2, arg3, arg4, arg5, local13, local5, local9, local11, SoftwareRenderer.clipLeftOffsets, SoftwareRenderer.clipLineWidths);
 		}
 	}
 }

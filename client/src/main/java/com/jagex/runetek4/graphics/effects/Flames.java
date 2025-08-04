@@ -1,4 +1,4 @@
-package com.jagex.runetek4;
+package com.jagex.runetek4.graphics.effects;
 
 import com.jagex.runetek4.data.cache.media.SoftwareSprite;
 import com.jagex.runetek4.client.Client;
@@ -6,7 +6,7 @@ import com.jagex.runetek4.graphics.gl.GlRaster;
 import com.jagex.runetek4.graphics.gl.GlRenderer;
 import com.jagex.runetek4.data.js5.Js5;
 import com.jagex.runetek4.util.string.JString;
-import com.jagex.runetek4.graphics.raster.SoftwareRaster;
+import com.jagex.runetek4.graphics.raster.SoftwareRenderer;
 import com.jagex.runetek4.ui.sprite.SoftwareIndexedSprite;
 import com.jagex.runetek4.ui.sprite.SpriteLoader;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -81,7 +81,7 @@ public class Flames {
             flameCycle = 0;
         }
         @Pc(20) int local20 = 0;
-        @Pc(24) int local24 = SoftwareRaster.width * arg1;
+        @Pc(24) int local24 = SoftwareRenderer.width * arg1;
         @Pc(26) int local26 = 0;
         for (@Pc(28) int local28 = 1; local28 < 255; local28++) {
             @Pc(43) int local43 = (256 - local28) * flameShiftX[local28] / 256;
@@ -91,7 +91,7 @@ public class Flames {
             local20 += local43;
             @Pc(55) int local55;
             for (local55 = local43; local55 < 128; local55++) {
-                @Pc(65) int local65 = SoftwareRaster.pixels[local24++ + arg0];
+                @Pc(65) int local65 = SoftwareRenderer.pixels[local24++ + arg0];
                 @Pc(70) int local70 = flameIntensityBuffer[local20++];
                 if (local70 == 0) {
                     imageFlames.pixels[local26++] = local65;
@@ -109,9 +109,9 @@ public class Flames {
                 }
             }
             for (local55 = 0; local55 < local43; local55++) {
-                imageFlames.pixels[local26++] = SoftwareRaster.pixels[arg0 + local24++];
+                imageFlames.pixels[local26++] = SoftwareRenderer.pixels[arg0 + local24++];
             }
-            local24 += SoftwareRaster.width - 128;
+            local24 += SoftwareRenderer.width - 128;
         }
         if (GlRenderer.enabled) {
             GlRaster.render(imageFlames.pixels, arg0, arg1, imageFlames.width, imageFlames.height);

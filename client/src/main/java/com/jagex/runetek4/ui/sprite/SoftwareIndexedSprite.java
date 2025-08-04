@@ -1,6 +1,6 @@
 package com.jagex.runetek4.ui.sprite;
 
-import com.jagex.runetek4.graphics.raster.SoftwareRaster;
+import com.jagex.runetek4.graphics.raster.SoftwareRenderer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -203,31 +203,31 @@ public final class SoftwareIndexedSprite extends IndexedSprite {
 		if (local5 < local15) {
 			arg3 = ((local5 << 16) + local27 - local9 - 1) / local27;
 		}
-		local41 = arg0 + arg1 * SoftwareRaster.width;
-		@Pc(125) int local125 = SoftwareRaster.width - arg2;
-		if (arg1 + arg3 > SoftwareRaster.clipBottom) {
-			arg3 -= arg1 + arg3 - SoftwareRaster.clipBottom;
+		local41 = arg0 + arg1 * SoftwareRenderer.width;
+		@Pc(125) int local125 = SoftwareRenderer.width - arg2;
+		if (arg1 + arg3 > SoftwareRenderer.clipBottom) {
+			arg3 -= arg1 + arg3 - SoftwareRenderer.clipBottom;
 		}
 		@Pc(145) int local145;
-		if (arg1 < SoftwareRaster.clipTop) {
-			local145 = SoftwareRaster.clipTop - arg1;
+		if (arg1 < SoftwareRenderer.clipTop) {
+			local145 = SoftwareRenderer.clipTop - arg1;
 			arg3 -= local145;
-			local41 += local145 * SoftwareRaster.width;
+			local41 += local145 * SoftwareRenderer.width;
 			local9 += local27 * local145;
 		}
-		if (arg0 + arg2 > SoftwareRaster.clipRight) {
-			local145 = arg0 + arg2 - SoftwareRaster.clipRight;
+		if (arg0 + arg2 > SoftwareRenderer.clipRight) {
+			local145 = arg0 + arg2 - SoftwareRenderer.clipRight;
 			arg2 -= local145;
 			local125 += local145;
 		}
-		if (arg0 < SoftwareRaster.clipLeft) {
-			local145 = SoftwareRaster.clipLeft - arg0;
+		if (arg0 < SoftwareRenderer.clipLeft) {
+			local145 = SoftwareRenderer.clipLeft - arg0;
 			arg2 -= local145;
 			local41 += local145;
 			local7 += local21 * local145;
 			local125 += local145;
 		}
-		method1394(SoftwareRaster.pixels, this.pixels, this.anIntArray144, local7, local9, local41, local125, arg2, arg3, local21, local27, local2, arg4);
+		method1394(SoftwareRenderer.pixels, this.pixels, this.anIntArray144, local7, local9, local41, local125, arg2, arg3, local21, local27, local2, arg4);
 	}
 
 	@OriginalMember(owner = "runetek4.client!ek", name = "a", descriptor = "()V")
@@ -277,40 +277,40 @@ public final class SoftwareIndexedSprite extends IndexedSprite {
 	public final void drawImageAlpha(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
 		arg0 += this.xOffset;
 		arg1 += this.yOffset;
-		@Pc(15) int local15 = arg0 + arg1 * SoftwareRaster.width;
+		@Pc(15) int local15 = arg0 + arg1 * SoftwareRenderer.width;
 		@Pc(17) int local17 = 0;
 		@Pc(20) int local20 = this.height;
 		@Pc(23) int local23 = this.width;
-		@Pc(27) int local27 = SoftwareRaster.width - local23;
+		@Pc(27) int local27 = SoftwareRenderer.width - local23;
 		@Pc(29) int local29 = 0;
 		@Pc(36) int local36;
-		if (arg1 < SoftwareRaster.clipTop) {
-			local36 = SoftwareRaster.clipTop - arg1;
+		if (arg1 < SoftwareRenderer.clipTop) {
+			local36 = SoftwareRenderer.clipTop - arg1;
 			local20 -= local36;
-			arg1 = SoftwareRaster.clipTop;
+			arg1 = SoftwareRenderer.clipTop;
 			local17 = local36 * local23;
-			local15 += local36 * SoftwareRaster.width;
+			local15 += local36 * SoftwareRenderer.width;
 		}
-		if (arg1 + local20 > SoftwareRaster.clipBottom) {
-			local20 -= arg1 + local20 - SoftwareRaster.clipBottom;
+		if (arg1 + local20 > SoftwareRenderer.clipBottom) {
+			local20 -= arg1 + local20 - SoftwareRenderer.clipBottom;
 		}
-		if (arg0 < SoftwareRaster.clipLeft) {
-			local36 = SoftwareRaster.clipLeft - arg0;
+		if (arg0 < SoftwareRenderer.clipLeft) {
+			local36 = SoftwareRenderer.clipLeft - arg0;
 			local23 -= local36;
-			arg0 = SoftwareRaster.clipLeft;
+			arg0 = SoftwareRenderer.clipLeft;
 			local17 += local36;
 			local15 += local36;
 			local29 = local36;
 			local27 += local36;
 		}
-		if (arg0 + local23 > SoftwareRaster.clipRight) {
-			local36 = arg0 + local23 - SoftwareRaster.clipRight;
+		if (arg0 + local23 > SoftwareRenderer.clipRight) {
+			local36 = arg0 + local23 - SoftwareRenderer.clipRight;
 			local23 -= local36;
 			local29 += local36;
 			local27 += local36;
 		}
 		if (local23 > 0 && local20 > 0) {
-			method1397(SoftwareRaster.pixels, this.pixels, this.anIntArray144, local17, local15, local23, local20, local27, local29, arg2);
+			method1397(SoftwareRenderer.pixels, this.pixels, this.anIntArray144, local17, local15, local23, local20, local27, local29, arg2);
 		}
 	}
 
@@ -360,31 +360,31 @@ public final class SoftwareIndexedSprite extends IndexedSprite {
 		if (local5 < local15) {
 			arg3 = ((local5 << 16) + local27 - local9 - 1) / local27;
 		}
-		local41 = arg0 + arg1 * SoftwareRaster.width;
-		@Pc(125) int local125 = SoftwareRaster.width - arg2;
-		if (arg1 + arg3 > SoftwareRaster.clipBottom) {
-			arg3 -= arg1 + arg3 - SoftwareRaster.clipBottom;
+		local41 = arg0 + arg1 * SoftwareRenderer.width;
+		@Pc(125) int local125 = SoftwareRenderer.width - arg2;
+		if (arg1 + arg3 > SoftwareRenderer.clipBottom) {
+			arg3 -= arg1 + arg3 - SoftwareRenderer.clipBottom;
 		}
 		@Pc(145) int local145;
-		if (arg1 < SoftwareRaster.clipTop) {
-			local145 = SoftwareRaster.clipTop - arg1;
+		if (arg1 < SoftwareRenderer.clipTop) {
+			local145 = SoftwareRenderer.clipTop - arg1;
 			arg3 -= local145;
-			local41 += local145 * SoftwareRaster.width;
+			local41 += local145 * SoftwareRenderer.width;
 			local9 += local27 * local145;
 		}
-		if (arg0 + arg2 > SoftwareRaster.clipRight) {
-			local145 = arg0 + arg2 - SoftwareRaster.clipRight;
+		if (arg0 + arg2 > SoftwareRenderer.clipRight) {
+			local145 = arg0 + arg2 - SoftwareRenderer.clipRight;
 			arg2 -= local145;
 			local125 += local145;
 		}
-		if (arg0 < SoftwareRaster.clipLeft) {
-			local145 = SoftwareRaster.clipLeft - arg0;
+		if (arg0 < SoftwareRenderer.clipLeft) {
+			local145 = SoftwareRenderer.clipLeft - arg0;
 			arg2 -= local145;
 			local41 += local145;
 			local7 += local21 * local145;
 			local125 += local145;
 		}
-		method1391(SoftwareRaster.pixels, this.pixels, this.anIntArray144, local7, local9, local41, local125, arg2, arg3, local21, local27, local2);
+		method1391(SoftwareRenderer.pixels, this.pixels, this.anIntArray144, local7, local9, local41, local125, arg2, arg3, local21, local27, local2);
 	}
 
 	@OriginalMember(owner = "runetek4.client!ek", name = "a", descriptor = "(II)V")
@@ -392,40 +392,40 @@ public final class SoftwareIndexedSprite extends IndexedSprite {
 	public final void renderTransparent(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
 		arg0 += this.xOffset;
 		arg1 += this.yOffset;
-		@Pc(15) int local15 = arg0 + arg1 * SoftwareRaster.width;
+		@Pc(15) int local15 = arg0 + arg1 * SoftwareRenderer.width;
 		@Pc(17) int local17 = 0;
 		@Pc(20) int local20 = this.height;
 		@Pc(23) int local23 = this.width;
-		@Pc(27) int local27 = SoftwareRaster.width - local23;
+		@Pc(27) int local27 = SoftwareRenderer.width - local23;
 		@Pc(29) int local29 = 0;
 		@Pc(36) int local36;
-		if (arg1 < SoftwareRaster.clipTop) {
-			local36 = SoftwareRaster.clipTop - arg1;
+		if (arg1 < SoftwareRenderer.clipTop) {
+			local36 = SoftwareRenderer.clipTop - arg1;
 			local20 -= local36;
-			arg1 = SoftwareRaster.clipTop;
+			arg1 = SoftwareRenderer.clipTop;
 			local17 = local36 * local23;
-			local15 += local36 * SoftwareRaster.width;
+			local15 += local36 * SoftwareRenderer.width;
 		}
-		if (arg1 + local20 > SoftwareRaster.clipBottom) {
-			local20 -= arg1 + local20 - SoftwareRaster.clipBottom;
+		if (arg1 + local20 > SoftwareRenderer.clipBottom) {
+			local20 -= arg1 + local20 - SoftwareRenderer.clipBottom;
 		}
-		if (arg0 < SoftwareRaster.clipLeft) {
-			local36 = SoftwareRaster.clipLeft - arg0;
+		if (arg0 < SoftwareRenderer.clipLeft) {
+			local36 = SoftwareRenderer.clipLeft - arg0;
 			local23 -= local36;
-			arg0 = SoftwareRaster.clipLeft;
+			arg0 = SoftwareRenderer.clipLeft;
 			local17 += local36;
 			local15 += local36;
 			local29 = local36;
 			local27 += local36;
 		}
-		if (arg0 + local23 > SoftwareRaster.clipRight) {
-			local36 = arg0 + local23 - SoftwareRaster.clipRight;
+		if (arg0 + local23 > SoftwareRenderer.clipRight) {
+			local36 = arg0 + local23 - SoftwareRenderer.clipRight;
 			local23 -= local36;
 			local29 += local36;
 			local27 += local36;
 		}
 		if (local23 > 0 && local20 > 0) {
-			blockCopyTrans(SoftwareRaster.pixels, this.pixels, this.anIntArray144, local17, local15, local23, local20, local27, local29);
+			blockCopyTrans(SoftwareRenderer.pixels, this.pixels, this.anIntArray144, local17, local15, local23, local20, local27, local29);
 		}
 	}
 }

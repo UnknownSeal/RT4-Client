@@ -1,7 +1,7 @@
 package com.jagex.runetek4.ui.social;
 
 import com.jagex.runetek4.util.data.Base37;
-import com.jagex.runetek4.PlayerList;
+import com.jagex.runetek4.entity.entity.PlayerList;
 import com.jagex.runetek4.ui.chat.Chat;
 import com.jagex.runetek4.util.string.JString;
 import com.jagex.runetek4.util.string.LocalizedText;

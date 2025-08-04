@@ -1,4 +1,4 @@
-package com.jagex.runetek4;
+package com.jagex.runetek4.entity.entity;
 
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;

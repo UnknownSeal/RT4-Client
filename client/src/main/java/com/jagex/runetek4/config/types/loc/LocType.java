@@ -258,7 +258,7 @@ public final class LocType {
 		if (opcode == 1) {
 			int count = packet.g1();
 			if (count > 0) {
-				if (this.models == null || SceneGraph.aBoolean130) {
+				if (this.models == null || SceneGraph.hdLighting) {
 					this.models = new int[count];
 					this.shapes = new int[count];
 					for (int len = 0; len < count; len++) {
@@ -275,7 +275,7 @@ public final class LocType {
 			// Represents the same data as opcode 1, a packing optimization for shape 10 (centerpiece).
 			int count = packet.g1();
 			if (count > 0) {
-				if (this.models == null || SceneGraph.aBoolean130) {
+				if (this.models == null || SceneGraph.hdLighting) {
 					this.models = new int[count];
 					this.shapes = null;
 					for (int len = 0; len < count; len++) {
@@ -906,13 +906,13 @@ public final class LocType {
 			if (arg11 == 10 && arg5 > 3) {
 				if (!local234) {
 					local234 = true;
-					local195 = (SoftwareModel) local195.method4568(true, true, true);
+					local195 = (SoftwareModel) local195.createVariant(true, true, true);
 				}
 				local195.rotateY(256);
 			}
 			if (this.hillchange != 0) {
 				if (!local234) {
-					local195 = (SoftwareModel) local195.method4568(true, true, true);
+					local195 = (SoftwareModel) local195.createVariant(true, true, true);
 				}
 				local195 = local195.method4586(this.hillchange, this.hillchange_value, arg6, arg9, arg1, arg3, arg0, false);
 			}
@@ -942,7 +942,7 @@ public final class LocType {
 		}
 		if (arg11 == 10 && arg5 > 3) {
 			if (!local80) {
-				local82 = (GlModel) local82.method4568(true, true, true);
+				local82 = (GlModel) local82.createVariant(true, true, true);
 				local80 = true;
 			}
 			local82.rotateY(256);
@@ -954,7 +954,7 @@ public final class LocType {
 		}
 		if (this.hillchange != 0) {
 			if (!local80) {
-				local82 = (GlModel) local82.method4568(true, true, true);
+				local82 = (GlModel) local82.createVariant(true, true, true);
 			}
 			local82.method4110(this.hillchange, this.hillchange_value, local46, arg6, arg9, arg1, arg3, arg0);
 		}

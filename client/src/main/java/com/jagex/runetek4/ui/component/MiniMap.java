@@ -1,7 +1,8 @@
 package com.jagex.runetek4.ui.component;
 
-import com.jagex.runetek4.*;
+import com.jagex.runetek4.entity.entity.PlayerList;
 import com.jagex.runetek4.game.world.WorldLoader;
+import com.jagex.runetek4.scene.Camera;
 import com.jagex.runetek4.ui.chat.ClanChat;
 import com.jagex.runetek4.client.LoginManager;
 import com.jagex.runetek4.config.types.npc.NpcType;
@@ -25,7 +26,7 @@ import com.jagex.runetek4.ui.sprite.GlSprite;
 import com.jagex.runetek4.graphics.font.Fonts;
 import com.jagex.runetek4.util.string.JString;
 import com.jagex.runetek4.game.map.MapMarker;
-import com.jagex.runetek4.graphics.raster.SoftwareRaster;
+import com.jagex.runetek4.graphics.raster.SoftwareRenderer;
 import com.jagex.runetek4.scene.SceneGraph;
 import com.jagex.runetek4.scene.tile.PlainTile;
 import com.jagex.runetek4.scene.tile.ShapedTile;
@@ -130,7 +131,7 @@ public class MiniMap {
         if (GlRenderer.enabled) {
             GlRaster.setClip(x, y, x + component.width, y + component.height);
         } else {
-            SoftwareRaster.setClip(x, y, x + component.width, y + component.height);
+            SoftwareRenderer.setClip(x, y, x + component.width, y + component.height);
         }
         if (state != 2 && state != 5 && sprite != null) {
             @Pc(48) int angle = minimapAnticheatAngle + Camera.orbitCameraYaw & 0x7FF;
@@ -177,13 +178,13 @@ public class MiniMap {
                             if (GlRenderer.enabled) {
                                 GlFont.method1188((GlSprite) component.method489(false));
                             } else {
-                                SoftwareRaster.method2486(component.compassPixelOffsets, component.compassPixelWidths);
+                                SoftwareRenderer.setClippingMask(component.compassPixelOffsets, component.compassPixelWidths);
                             }
                             font.renderParagraphAlpha(WorldLoader.mapElementList.text[local117], x + textX + component.width / 2, y + component.height / 2 + -npcZ, local239, 50, local271, 0, 1, 0, 0);
                             if (GlRenderer.enabled) {
                                 GlFont.method1173();
                             } else {
-                                SoftwareRaster.method2482();
+                                SoftwareRenderer.invalidateClippingCache();
                             }
                         }
                     }
@@ -299,7 +300,7 @@ public class MiniMap {
             if (GlRenderer.enabled) {
                 GlRaster.fillRect(x + component.width / 2 - 1, y + -1 - -(component.height / 2), 3, 3, 16777215);
             } else {
-                SoftwareRaster.fillRect(component.width / 2 + x - 1, component.height / 2 + -1 + y, 3, 3, 16777215);
+                SoftwareRenderer.fillRect(component.width / 2 + x - 1, component.height / 2 + -1 + y, 3, 3, 16777215);
             }
         } else if (GlRenderer.enabled) {
             @Pc(1041) Sprite fallbackSprite = component.method489(false);
@@ -307,7 +308,7 @@ public class MiniMap {
                 fallbackSprite.render(x, y);
             }
         } else {
-            SoftwareRaster.method2504(x, y, component.compassPixelOffsets, component.compassPixelWidths);
+            SoftwareRenderer.clearMaskedRegion(x, y, component.compassPixelOffsets, component.compassPixelWidths);
         }
         ComponentList.rectangleRedraw[rectangle] = true;
     }
@@ -337,8 +338,8 @@ public class MiniMap {
         if (shapedTile == null) {
             return;
         }
-        row = shapedTile.anInt1966;
-        @Pc(67) int rotation = shapedTile.anInt1967;
+        row = shapedTile.shapeType;
+        @Pc(67) int rotation = shapedTile.rotation;
         @Pc(70) int underlayColor = shapedTile.underlayRGB;
         @Pc(73) int overlayColor = shapedTile.overlayRGB;
         @Pc(77) int[] shapePattern = TILE_SHAPE_PATTERNS[row];
@@ -457,17 +458,17 @@ public class MiniMap {
             for (local76 = 1; local76 < 103; local76++) {
                 if ((SceneGraph.renderFlags[plane][local76][local37] & 0x18) == 0 && !drawMinimapWalls(local76, wallColor, local37, pixelCount, plane)) {
                     if (GlRenderer.enabled) {
-                        SoftwareRaster.pixels = null;
+                        SoftwareRenderer.pixels = null;
                     } else {
-                        SoftwareRaster.frameBuffer.makeTarget();
+                        SoftwareRenderer.frameBuffer.makeTarget();
                     }
                     return false;
                 }
                 if (plane < 3 && (SceneGraph.renderFlags[plane + 1][local76][local37] & 0x8) != 0 && !drawMinimapWalls(local76, wallColor, local37, pixelCount, plane + 1)) {
                     if (GlRenderer.enabled) {
-                        SoftwareRaster.pixels = null;
+                        SoftwareRenderer.pixels = null;
                     } else {
-                        SoftwareRaster.frameBuffer.makeTarget();
+                        SoftwareRenderer.frameBuffer.makeTarget();
                     }
                     return false;
                 }
@@ -486,9 +487,9 @@ public class MiniMap {
             sprite = softwareSprite;
         }
         if (GlRenderer.enabled) {
-            SoftwareRaster.pixels = null;
+            SoftwareRenderer.pixels = null;
         } else {
-            SoftwareRaster.frameBuffer.makeTarget();
+            SoftwareRenderer.frameBuffer.makeTarget();
         }
         softwareSprite = null;
         return true;
@@ -606,7 +607,7 @@ public class MiniMap {
                 if (sceneKey > 0L) {
                     wallColor = wallColor2;
                 }
-                pixels = SoftwareRaster.pixels;
+                pixels = SoftwareRenderer.pixels;
                 pixelOffset = (52736 - z * 512) * 4 + x * 4 + 24624;
                 if (shape == LocType.WALL_STRAIGHT || shape == LocType.WALL_L) {
                     if (rotation == 0) {
@@ -682,7 +683,7 @@ public class MiniMap {
                         wallColor = 15597568;
                     }
                     pixelOffset = x * 4 + (103 - z) * 2048 + 24624;
-                    pixels = SoftwareRaster.pixels;
+                    pixels = SoftwareRenderer.pixels;
                     if (rotation == 0 || rotation == 2) {
                         pixels[pixelOffset + 1536] = wallColor;
                         pixels[pixelOffset + 1025] = wallColor;
@@ -723,7 +724,7 @@ public class MiniMap {
                     sprite.render(x, y);
                 }
             } else {
-                SoftwareRaster.method2504(x, y, component.compassPixelOffsets, component.compassPixelWidths);
+                SoftwareRenderer.clearMaskedRegion(x, y, component.compassPixelOffsets, component.compassPixelWidths);
             }
         } else if (GlRenderer.enabled) {
             ((GlSprite) Sprites.compass).renderRotatedTransparent(x, y, component.width, component.height, Sprites.compass.width / 2, Sprites.compass.height / 2, Camera.orbitCameraYaw, 256, (GlSprite) component.method489(false));

@@ -1,12 +1,12 @@
 package com.jagex.runetek4.entity.entity;
 
-import com.jagex.runetek4.*;
 import com.jagex.runetek4.audio.core.SoundPlayer;
 import com.jagex.runetek4.config.types.seq.SeqType;
 import com.jagex.runetek4.client.Client;
 import com.jagex.runetek4.config.types.seq.SeqTypeList;
 import com.jagex.runetek4.config.types.spotanim.SpotAnimTypeList;
 import com.jagex.runetek4.config.types.bas.BasType;
+import com.jagex.runetek4.scene.Camera;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -343,7 +343,7 @@ public class NpcList {
             arg0.animationDelay--;
         }
         for (local156 = 0; local156 < arg0.layeredAnimations.length; local156++) {
-            @Pc(545) PathingEntity_Class147 local545 = arg0.layeredAnimations[local156];
+            @Pc(545) PathingEntityAnimation local545 = arg0.layeredAnimations[local156];
             if (local545 != null) {
                 if (local545.delay > 0) {
                     local545.delay--;

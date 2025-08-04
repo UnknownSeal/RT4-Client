@@ -1,7 +1,8 @@
 package com.jagex.runetek4.network;
 
-import com.jagex.runetek4.*;
 import com.jagex.runetek4.data.cache.media.component.Component;
+import com.jagex.runetek4.entity.entity.PlayerList;
+import com.jagex.runetek4.scene.Camera;
 import com.jagex.runetek4.ui.chat.Chat;
 import com.jagex.runetek4.client.GameShell;
 import com.jagex.runetek4.client.LoginManager;

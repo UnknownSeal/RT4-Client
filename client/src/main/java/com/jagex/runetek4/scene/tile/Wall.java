@@ -8,7 +8,7 @@ import org.openrs2.deob.annotation.OriginalMember;
 public final class Wall {
 
     @OriginalMember(owner = "client!gd", name = "h", descriptor = "[I")
-    public static final int[] ROTATION_WALL_CORNER_TYPE = new int[] { 16, 32, 64, 128 };
+    public static final int[] CORNER_FLAGS = new int[] { 16, 32, 64, 128 };
 
     @OriginalMember(owner = "runetek4.client!jh", name = "a", descriptor = "I")
 	public int zFine;
@@ -26,7 +26,7 @@ public final class Wall {
 	public int typeA;
 
 	@OriginalMember(owner = "runetek4.client!jh", name = "o", descriptor = "I")
-	public int anInt3051;
+	public int yFine;
 
 	@OriginalMember(owner = "runetek4.client!jh", name = "q", descriptor = "I")
 	public int typeB;

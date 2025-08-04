@@ -10,7 +10,7 @@ import java.awt.image.PixelGrabber;
 
 import com.jagex.runetek4.client.GameShell;
 import com.jagex.runetek4.util.string.JString;
-import com.jagex.runetek4.graphics.raster.SoftwareRaster;
+import com.jagex.runetek4.graphics.raster.SoftwareRenderer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -127,31 +127,31 @@ public final class WorldMapFont {
 		@Pc(21) int width = src[index + 3];
 		@Pc(27) int height = src[index + 4];
 		@Pc(47) int srcIndex = src[index] * 16384 + src[index + 1] * 128 + src[index + 2];
-		@Pc(53) int destIndex = glyphX + glyphY * SoftwareRaster.width;
-		@Pc(57) int destStride = SoftwareRaster.width - width;
+		@Pc(53) int destIndex = glyphX + glyphY * SoftwareRenderer.width;
+		@Pc(57) int destStride = SoftwareRenderer.width - width;
 		@Pc(59) int srcStride = 0;
 		@Pc(66) int clipAmount;
-		if (glyphY < SoftwareRaster.clipTop) {
-			clipAmount = SoftwareRaster.clipTop - glyphY;
+		if (glyphY < SoftwareRenderer.clipTop) {
+			clipAmount = SoftwareRenderer.clipTop - glyphY;
 			height -= clipAmount;
-			glyphY = SoftwareRaster.clipTop;
+			glyphY = SoftwareRenderer.clipTop;
 			srcIndex += clipAmount * width;
-			destIndex += clipAmount * SoftwareRaster.width;
+			destIndex += clipAmount * SoftwareRenderer.width;
 		}
-		if (glyphY + height >= SoftwareRaster.clipBottom) {
-			height -= glyphY + height + 1 - SoftwareRaster.clipBottom;
+		if (glyphY + height >= SoftwareRenderer.clipBottom) {
+			height -= glyphY + height + 1 - SoftwareRenderer.clipBottom;
 		}
-		if (glyphX < SoftwareRaster.clipLeft) {
-			clipAmount = SoftwareRaster.clipLeft - glyphX;
+		if (glyphX < SoftwareRenderer.clipLeft) {
+			clipAmount = SoftwareRenderer.clipLeft - glyphX;
 			width -= clipAmount;
-			glyphX = SoftwareRaster.clipLeft;
+			glyphX = SoftwareRenderer.clipLeft;
 			srcIndex += clipAmount;
 			destIndex += clipAmount;
 			srcStride = clipAmount;
 			destStride += clipAmount;
 		}
-		if (glyphX + width >= SoftwareRaster.clipRight) {
-			clipAmount = glyphX + width + 1 - SoftwareRaster.clipRight;
+		if (glyphX + width >= SoftwareRenderer.clipRight) {
+			clipAmount = glyphX + width + 1 - SoftwareRenderer.clipRight;
 			width -= clipAmount;
 			srcStride += clipAmount;
 			destStride += clipAmount;
@@ -160,9 +160,9 @@ public final class WorldMapFont {
 			return;
 		}
 		if (this.grayscale) {
-			this.renderGlyphGrayscale(SoftwareRaster.pixels, src, color, srcIndex, destIndex, width, height, destStride, srcStride);
+			this.renderGlyphGrayscale(SoftwareRenderer.pixels, src, color, srcIndex, destIndex, width, height, destStride, srcStride);
 		} else {
-			this.renderGlyphMono(SoftwareRaster.pixels, src, color, srcIndex, destIndex, width, height, destStride, srcStride);
+			this.renderGlyphMono(SoftwareRenderer.pixels, src, color, srcIndex, destIndex, width, height, destStride, srcStride);
 		}
 	}
 
@@ -210,7 +210,7 @@ public final class WorldMapFont {
 	public void renderStringCenter(@OriginalArg(0) JString string, @OriginalArg(1) int x, @OriginalArg(2) int y, @OriginalArg(3) int color) {
 		@Pc(5) int halfWidth = this.getStringWidth(string) / 2;
 		@Pc(8) int fontHeight = this.getLineHeight();
-		if (x - halfWidth <= SoftwareRaster.clipRight && (x + halfWidth >= SoftwareRaster.clipLeft && (y - fontHeight <= SoftwareRaster.clipBottom && y >= 0))) {
+		if (x - halfWidth <= SoftwareRenderer.clipRight && (x + halfWidth >= SoftwareRenderer.clipLeft && (y - fontHeight <= SoftwareRenderer.clipBottom && y >= 0))) {
 			this.renderString(string, x - halfWidth, y, color, true);
 		}
 	}

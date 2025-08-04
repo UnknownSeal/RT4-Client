@@ -1,6 +1,5 @@
 package com.jagex.runetek4.scene;
 
-import com.jagex.runetek4.*;
 import com.jagex.runetek4.entity.entity.Player;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -27,7 +26,7 @@ public class SceneCamera {
                     if (checkPlane < 3 && (SceneGraph.renderFlags[1][local64][tileZ] & 0x2) == 2) {
                         checkPlane++;
                     }
-                    @Pc(117) int heightDifference = (SceneGraph.aByteArrayArrayArray13[checkPlane][local64][tileZ] & 0xFF) * 8 + cameraBaseHeight - SceneGraph.tileHeights[checkPlane][local64][tileZ];
+                    @Pc(117) int heightDifference = (SceneGraph.tileSettings[checkPlane][local64][tileZ] & 0xFF) * 8 + cameraBaseHeight - SceneGraph.tileHeights[checkPlane][local64][tileZ];
                     if (heightDifference > maxHeightDifference) {
                         maxHeightDifference = heightDifference;
                     }

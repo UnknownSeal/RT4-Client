@@ -48,7 +48,7 @@ public class HintArrowManager {
         @Pc(45) int maxX = baseModel.getMaxX();
         @Pc(48) int minZ = baseModel.getMinZ();
         @Pc(51) int maxZ = baseModel.getMaxZ();
-        model = model.method4560(true, true, true);
+        model = model.copy(true, true, true);
         if (yRotation != 0) {
             model.rotateY(yRotation);
         }

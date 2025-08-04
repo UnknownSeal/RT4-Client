@@ -261,7 +261,7 @@ public final class GlTile extends Node {
 		if (GlRenderer.bigEndian) {
 			for (local47 = 0; local47 < this.anInt2489; local47++) {
 				local68 = arg0[this.anIntArray231[local47]][this.anIntArray228[local47]][this.anIntArray227[local47]];
-				if (local68 != null && local68.aBoolean45) {
+				if (local68 != null && local68.hasObjects) {
 					local78 = this.anIntArrayArray17[local47];
 					if (this.blend) {
 						local86 = this.anIntArrayArray18[local47];
@@ -284,7 +284,7 @@ public final class GlTile extends Node {
 		} else {
 			for (local47 = 0; local47 < this.anInt2489; local47++) {
 				local68 = arg0[this.anIntArray231[local47]][this.anIntArray228[local47]][this.anIntArray227[local47]];
-				if (local68 != null && local68.aBoolean45) {
+				if (local68 != null && local68.hasObjects) {
 					local78 = this.anIntArrayArray17[local47];
 					if (this.blend) {
 						local86 = this.anIntArrayArray18[local47];

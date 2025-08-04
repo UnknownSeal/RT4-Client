@@ -17,6 +17,7 @@ import com.jagex.runetek4.graphics.effects.ParticleSystem;
 import com.jagex.runetek4.game.logic.HintArrowManager;
 import com.jagex.runetek4.game.inventory.Equipment;
 import com.jagex.runetek4.graphics.gl.GlRenderer;
+import com.jagex.runetek4.scene.Camera;
 import com.jagex.runetek4.util.string.JString;
 import com.jagex.runetek4.game.map.MapMarker;
 import com.jagex.runetek4.graphics.model.Model;
@@ -187,7 +188,7 @@ public final class Player extends PathingEntity {
 					} else {
 						@Pc(68) SeqType sequence = SeqTypeList.get(sequenceId);
 						@Pc(71) int exactMoveType = sequence.exactmove;
-						@Pc(76) PathingEntity_Class147 animationState = player.layeredAnimations[slotIndex];
+						@Pc(76) PathingEntityAnimation animationState = player.layeredAnimations[slotIndex];
 						if (animationState != null) {
 							if (sequenceId == animationState.sequenceId) {
 								if (exactMoveType == 0) {
@@ -207,7 +208,7 @@ public final class Player extends PathingEntity {
 							}
 						}
 						if (animationState == null) {
-							animationState = player.layeredAnimations[slotIndex] = new PathingEntity_Class147();
+							animationState = player.layeredAnimations[slotIndex] = new PathingEntityAnimation();
 							animationState.sequenceId = sequenceId;
 							animationState.direction = 1;
 							animationState.loopCount = 0;
@@ -472,7 +473,7 @@ public final class Player extends PathingEntity {
 				if (this.dstYaw == 512) {
 					loc.method4578();
 				} else if (this.dstYaw == 1024) {
-					loc.method4552();
+					loc.updateBounds();
 				} else if (this.dstYaw == 1536) {
 					loc.rotateCounterClockwise();
 				}
@@ -501,7 +502,7 @@ public final class Player extends PathingEntity {
 		if (this.dstYaw == 512) {
 			loc.rotateCounterClockwise();
 		} else if (this.dstYaw == 1024) {
-			loc.method4552();
+			loc.updateBounds();
 		} else if (this.dstYaw == 1536) {
 			loc.method4578();
 		}

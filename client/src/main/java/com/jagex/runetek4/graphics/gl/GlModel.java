@@ -2,7 +2,6 @@ package com.jagex.runetek4.graphics.gl;
 
 import java.nio.ByteBuffer;
 
-import com.jagex.runetek4.*;
 import com.jagex.runetek4.client.Preferences;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.graphics.effects.ParticleSystem;
@@ -917,8 +916,8 @@ public final class GlModel extends Model {
 
 	@OriginalMember(owner = "runetek4.client!td", name = "a", descriptor = "(ZZZ)Lclient!ak;")
 	@Override
-	public final Model method4560(@OriginalArg(0) boolean arg0, @OriginalArg(1) boolean arg1, @OriginalArg(2) boolean arg2) {
-		return this.method4114(arg0, arg1, arg2, aClass8_Sub1_Sub1_4, aClass8_Sub1_Sub1_3);
+	public final Model copy(@OriginalArg(0) boolean copyVertices, @OriginalArg(1) boolean copyNormals, @OriginalArg(2) boolean copyTextures) {
+		return this.method4114(copyVertices, copyNormals, copyTextures, aClass8_Sub1_Sub1_4, aClass8_Sub1_Sub1_3);
 	}
 
 	@OriginalMember(owner = "client!td", name = "a", descriptor = "(IIIIIIIIJILclient!ga;)V")
@@ -1144,9 +1143,9 @@ public final class GlModel extends Model {
 
 	@OriginalMember(owner = "client!td", name = "c", descriptor = "(I)V")
 	@Override
-	public void rotateZ(@OriginalArg(0) int arg0) {
-		@Pc(3) int local3 = MathUtils.sin[arg0];
-		@Pc(7) int local7 = MathUtils.cos[arg0];
+	public void rotateZ(@OriginalArg(0) int angle) {
+		@Pc(3) int local3 = MathUtils.sin[angle];
+		@Pc(7) int local7 = MathUtils.cos[angle];
 		for (@Pc(9) int local9 = 0; local9 < this.vertexCount; local9++) {
 			@Pc(29) int local29 = this.vertexY[local9] * local3 + this.vertexX[local9] * local7 >> 16;
 			this.vertexY[local9] = this.vertexY[local9] * local7 - this.vertexX[local9] * local3 >> 16;
@@ -1203,8 +1202,8 @@ public final class GlModel extends Model {
 
 	@OriginalMember(owner = "client!td", name = "b", descriptor = "(ZZZ)Lclient!ak;")
 	@Override
-	public Model method4568(@OriginalArg(0) boolean arg0, @OriginalArg(1) boolean arg1, @OriginalArg(2) boolean arg2) {
-		return this.method4114(arg0, arg1, arg2, aClass8_Sub1_Sub1_6, aClass8_Sub1_Sub1_5);
+	public Model createVariant(@OriginalArg(0) boolean shareVertices, @OriginalArg(1) boolean shareNormals, @OriginalArg(2) boolean shareTextures) {
+		return this.method4114(shareVertices, shareNormals, shareTextures, aClass8_Sub1_Sub1_6, aClass8_Sub1_Sub1_5);
 	}
 
 	@OriginalMember(owner = "client!td", name = "a", descriptor = "(Lclient!th;IIIZ)V")
@@ -1923,7 +1922,7 @@ public final class GlModel extends Model {
 	@OriginalMember(owner = "client!td", name = "p", descriptor = "()V")
 	public void method4102() {
 		if (this.aShortArray76 == null) {
-			this.method4552();
+			this.updateBounds();
 			return;
 		}
 		@Pc(7) int local7;
@@ -1944,11 +1943,11 @@ public final class GlModel extends Model {
 
 	@OriginalMember(owner = "client!td", name = "b", descriptor = "(III)V")
 	@Override
-	public void resize(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
+	public void resize(@OriginalArg(0) int scaleX, @OriginalArg(1) int scaleY, @OriginalArg(2) int scaleZ) {
 		for (@Pc(1) int local1 = 0; local1 < this.vertexCount; local1++) {
-			this.vertexX[local1] = this.vertexX[local1] * arg0 >> 7;
-			this.vertexY[local1] = this.vertexY[local1] * arg1 >> 7;
-			this.vertexZ[local1] = this.vertexZ[local1] * arg2 >> 7;
+			this.vertexX[local1] = this.vertexX[local1] * scaleX >> 7;
+			this.vertexY[local1] = this.vertexY[local1] * scaleY >> 7;
+			this.vertexZ[local1] = this.vertexZ[local1] * scaleZ >> 7;
 		}
 		this.bounds.valid = false;
 		this.vertexBuffer.valid = false;
@@ -1962,7 +1961,7 @@ public final class GlModel extends Model {
 
 	@OriginalMember(owner = "client!td", name = "e", descriptor = "()V")
 	@Override
-	public void method4552() {
+	public void updateBounds() {
 		for (@Pc(1) int local1 = 0; local1 < this.vertexCount; local1++) {
 			this.vertexX[local1] = -this.vertexX[local1];
 			this.vertexZ[local1] = -this.vertexZ[local1];
@@ -2017,7 +2016,7 @@ public final class GlModel extends Model {
 
 	@OriginalMember(owner = "client!td", name = "d", descriptor = "()Z")
 	@Override
-	protected boolean method4551() {
+	protected boolean supportsAnimation() {
 		if (this.boneVertices == null) {
 			return false;
 		}
@@ -2921,8 +2920,8 @@ public final class GlModel extends Model {
 
 	@OriginalMember(owner = "client!td", name = "a", descriptor = "(I[IIIIZ)V")
 	@Override
-	protected final void method4569(@OriginalArg(0) int arg0, @OriginalArg(1) int[] arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) boolean arg5) {
-		@Pc(2) int local2 = arg1.length;
+	protected final void applyBoneTransformHierarchy(@OriginalArg(0) int transformType, @OriginalArg(1) int[] boneIndices, @OriginalArg(2) int x, @OriginalArg(3) int y, @OriginalArg(4) int z, @OriginalArg(5) boolean updateNormals) {
+		@Pc(2) int local2 = boneIndices.length;
 		@Pc(18) int local18;
 		@Pc(26) int local26;
 		@Pc(45) int local45;
@@ -2930,16 +2929,16 @@ public final class GlModel extends Model {
 		@Pc(8) int local8;
 		@Pc(12) int local12;
 		@Pc(16) int local16;
-		if (arg0 == 0) {
-			local8 = arg2 << 4;
-			local12 = arg3 << 4;
-			local16 = arg4 << 4;
+		if (transformType == 0) {
+			local8 = x << 4;
+			local12 = y << 4;
+			local16 = z << 4;
 			local18 = 0;
 			anInt5298 = 0;
 			anInt5300 = 0;
 			anInt5299 = 0;
 			for (local26 = 0; local26 < local2; local26++) {
-				@Pc(33) int local33 = arg1[local26];
+				@Pc(33) int local33 = boneIndices[local26];
 				if (local33 < this.boneVertices.length) {
 					@Pc(43) int[] local43 = this.boneVertices[local33];
 					for (local45 = 0; local45 < local43.length; local45++) {
@@ -2964,12 +2963,12 @@ public final class GlModel extends Model {
 		}
 		@Pc(141) int[] local141;
 		@Pc(143) int local143;
-		if (arg0 == 1) {
-			local8 = arg2 << 4;
-			local12 = arg3 << 4;
-			local16 = arg4 << 4;
+		if (transformType == 1) {
+			local8 = x << 4;
+			local12 = y << 4;
+			local16 = z << 4;
 			for (local18 = 0; local18 < local2; local18++) {
-				local26 = arg1[local18];
+				local26 = boneIndices[local18];
 				if (local26 < this.boneVertices.length) {
 					local141 = this.boneVertices[local26];
 					for (local143 = 0; local143 < local141.length; local143++) {
@@ -2985,9 +2984,9 @@ public final class GlModel extends Model {
 		@Pc(246) int local246;
 		@Pc(264) int local264;
 		@Pc(484) int local484;
-		if (arg0 == 2) {
+		if (transformType == 2) {
 			for (local18 = 0; local18 < local2; local18++) {
-				local26 = arg1[local18];
+				local26 = boneIndices[local18];
 				if (local26 < this.boneVertices.length) {
 					local141 = this.boneVertices[local26];
 					for (local143 = 0; local143 < local141.length; local143++) {
@@ -2995,23 +2994,23 @@ public final class GlModel extends Model {
 						this.vertexX[local45] -= anInt5298;
 						this.vertexY[local45] -= anInt5300;
 						this.vertexZ[local45] -= anInt5299;
-						if (arg4 != 0) {
-							local53 = MathUtils.sin[arg4];
-							local246 = MathUtils.cos[arg4];
+						if (z != 0) {
+							local53 = MathUtils.sin[z];
+							local246 = MathUtils.cos[z];
 							local264 = this.vertexY[local45] * local53 + this.vertexX[local45] * local246 + 32767 >> 16;
 							this.vertexY[local45] = this.vertexY[local45] * local246 + 32767 - this.vertexX[local45] * local53 >> 16;
 							this.vertexX[local45] = local264;
 						}
-						if (arg2 != 0) {
-							local53 = MathUtils.sin[arg2];
-							local246 = MathUtils.cos[arg2];
+						if (x != 0) {
+							local53 = MathUtils.sin[x];
+							local246 = MathUtils.cos[x];
 							local264 = this.vertexY[local45] * local246 + 32767 - this.vertexZ[local45] * local53 >> 16;
 							this.vertexZ[local45] = this.vertexY[local45] * local53 + this.vertexZ[local45] * local246 + 32767 >> 16;
 							this.vertexY[local45] = local264;
 						}
-						if (arg3 != 0) {
-							local53 = MathUtils.sin[arg3];
-							local246 = MathUtils.cos[arg3];
+						if (y != 0) {
+							local53 = MathUtils.sin[y];
+							local246 = MathUtils.cos[y];
 							local264 = this.vertexZ[local45] * local53 + this.vertexX[local45] * local246 + 32767 >> 16;
 							this.vertexZ[local45] = this.vertexZ[local45] * local246 + 32767 - this.vertexX[local45] * local53 >> 16;
 							this.vertexX[local45] = local264;
@@ -3022,9 +3021,9 @@ public final class GlModel extends Model {
 					}
 				}
 			}
-			if (arg5 && this.aShortArray76 != null) {
+			if (updateNormals && this.aShortArray76 != null) {
 				for (local18 = 0; local18 < local2; local18++) {
-					local26 = arg1[local18];
+					local26 = boneIndices[local18];
 					if (local26 < this.boneVertices.length) {
 						local141 = this.boneVertices[local26];
 						for (local143 = 0; local143 < local141.length; local143++) {
@@ -3039,23 +3038,23 @@ public final class GlModel extends Model {
 								@Pc(494) int local494;
 								@Pc(498) int local498;
 								@Pc(516) int local516;
-								if (arg4 != 0) {
-									local494 = MathUtils.sin[arg4];
-									local498 = MathUtils.cos[arg4];
+								if (z != 0) {
+									local494 = MathUtils.sin[z];
+									local498 = MathUtils.cos[z];
 									local516 = this.aShortArray79[local484] * local494 + this.aShortArray76[local484] * local498 + 32767 >> 16;
 									this.aShortArray79[local484] = (short) (this.aShortArray79[local484] * local498 + 32767 - this.aShortArray76[local484] * local494 >> 16);
 									this.aShortArray76[local484] = (short) local516;
 								}
-								if (arg2 != 0) {
-									local494 = MathUtils.sin[arg2];
-									local498 = MathUtils.cos[arg2];
+								if (x != 0) {
+									local494 = MathUtils.sin[x];
+									local498 = MathUtils.cos[x];
 									local516 = this.aShortArray79[local484] * local498 + 32767 - this.aShortArray85[local484] * local494 >> 16;
 									this.aShortArray85[local484] = (short) (this.aShortArray79[local484] * local494 + this.aShortArray85[local484] * local498 + 32767 >> 16);
 									this.aShortArray79[local484] = (short) local516;
 								}
-								if (arg3 != 0) {
-									local494 = MathUtils.sin[arg3];
-									local498 = MathUtils.cos[arg3];
+								if (y != 0) {
+									local494 = MathUtils.sin[y];
+									local498 = MathUtils.cos[y];
 									local516 = this.aShortArray85[local484] * local494 + this.aShortArray76[local484] * local498 + 32767 >> 16;
 									this.aShortArray85[local484] = (short) (this.aShortArray85[local484] * local498 + 32767 - this.aShortArray76[local484] * local494 >> 16);
 									this.aShortArray76[local484] = (short) local516;
@@ -3068,9 +3067,9 @@ public final class GlModel extends Model {
 					this.normalsBuffer.valid = false;
 				}
 			}
-		} else if (arg0 == 3) {
+		} else if (transformType == 3) {
 			for (local18 = 0; local18 < local2; local18++) {
-				local26 = arg1[local18];
+				local26 = boneIndices[local18];
 				if (local26 < this.boneVertices.length) {
 					local141 = this.boneVertices[local26];
 					for (local143 = 0; local143 < local141.length; local143++) {
@@ -3078,24 +3077,24 @@ public final class GlModel extends Model {
 						this.vertexX[local45] -= anInt5298;
 						this.vertexY[local45] -= anInt5300;
 						this.vertexZ[local45] -= anInt5299;
-						this.vertexX[local45] = this.vertexX[local45] * arg2 >> 7;
-						this.vertexY[local45] = this.vertexY[local45] * arg3 >> 7;
-						this.vertexZ[local45] = this.vertexZ[local45] * arg4 >> 7;
+						this.vertexX[local45] = this.vertexX[local45] * x >> 7;
+						this.vertexY[local45] = this.vertexY[local45] * y >> 7;
+						this.vertexZ[local45] = this.vertexZ[local45] * z >> 7;
 						this.vertexX[local45] += anInt5298;
 						this.vertexY[local45] += anInt5300;
 						this.vertexZ[local45] += anInt5299;
 					}
 				}
 			}
-		} else if (arg0 == 5) {
+		} else if (transformType == 5) {
 			if (this.anIntArrayArray37 != null && this.triangleAlpha != null) {
 				for (local18 = 0; local18 < local2; local18++) {
-					local26 = arg1[local18];
+					local26 = boneIndices[local18];
 					if (local26 < this.anIntArrayArray37.length) {
 						local141 = this.anIntArrayArray37[local26];
 						for (local143 = 0; local143 < local141.length; local143++) {
 							local45 = local141[local143];
-							local53 = (this.triangleAlpha[local45] & 0xFF) + arg2 * 8;
+							local53 = (this.triangleAlpha[local45] & 0xFF) + x * 8;
 							if (local53 < 0) {
 								local53 = 0;
 							} else if (local53 > 255) {
@@ -3109,9 +3108,9 @@ public final class GlModel extends Model {
 					}
 				}
 			}
-		} else if (arg0 == 7 && this.anIntArrayArray37 != null) {
+		} else if (transformType == 7 && this.anIntArrayArray37 != null) {
 			for (local18 = 0; local18 < local2; local18++) {
-				local26 = arg1[local18];
+				local26 = boneIndices[local18];
 				if (local26 < this.anIntArrayArray37.length) {
 					local141 = this.anIntArrayArray37[local26];
 					for (local143 = 0; local143 < local141.length; local143++) {
@@ -3120,14 +3119,14 @@ public final class GlModel extends Model {
 						local246 = local53 >> 10 & 0x3F;
 						local264 = local53 >> 7 & 0x7;
 						local484 = local53 & 0x7F;
-						@Pc(932) int local932 = local246 + arg2 & 0x3F;
-						local264 += arg3 / 4;
+						@Pc(932) int local932 = local246 + x & 0x3F;
+						local264 += y / 4;
 						if (local264 < 0) {
 							local264 = 0;
 						} else if (local264 > 7) {
 							local264 = 7;
 						}
-						local484 += arg4;
+						local484 += z;
 						if (local484 < 0) {
 							local484 = 0;
 						} else if (local484 > 127) {
@@ -3145,10 +3144,10 @@ public final class GlModel extends Model {
 
 	@OriginalMember(owner = "client!td", name = "a", descriptor = "(IIII)V")
 	@Override
-	protected final void method4567(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
+	protected final void applyBoneTransform(@OriginalArg(0) int transformType, @OriginalArg(1) int x, @OriginalArg(2) int y, @OriginalArg(3) int z) {
 		@Pc(3) int local3;
 		@Pc(11) int local11;
-		if (arg0 == 0) {
+		if (transformType == 0) {
 			local3 = 0;
 			anInt5298 = 0;
 			anInt5300 = 0;
@@ -3160,45 +3159,45 @@ public final class GlModel extends Model {
 				local3++;
 			}
 			if (local3 > 0) {
-				anInt5298 = anInt5298 / local3 + arg1;
-				anInt5300 = anInt5300 / local3 + arg2;
-				anInt5299 = anInt5299 / local3 + arg3;
+				anInt5298 = anInt5298 / local3 + x;
+				anInt5300 = anInt5300 / local3 + y;
+				anInt5299 = anInt5299 / local3 + z;
 			} else {
-				anInt5298 = arg1;
-				anInt5300 = arg2;
-				anInt5299 = arg3;
+				anInt5298 = x;
+				anInt5300 = y;
+				anInt5299 = z;
 			}
-		} else if (arg0 == 1) {
+		} else if (transformType == 1) {
 			for (local3 = 0; local3 < this.vertexCount; local3++) {
-				this.vertexX[local3] += arg1;
-				this.vertexY[local3] += arg2;
-				this.vertexZ[local3] += arg3;
+				this.vertexX[local3] += x;
+				this.vertexY[local3] += y;
+				this.vertexZ[local3] += z;
 			}
 		} else {
 			@Pc(146) int local146;
 			@Pc(164) int local164;
-			if (arg0 == 2) {
+			if (transformType == 2) {
 				for (local3 = 0; local3 < this.vertexCount; local3++) {
 					this.vertexX[local3] -= anInt5298;
 					this.vertexY[local3] -= anInt5300;
 					this.vertexZ[local3] -= anInt5299;
-					if (arg3 != 0) {
-						local11 = MathUtils.sin[arg3];
-						local146 = MathUtils.cos[arg3];
+					if (z != 0) {
+						local11 = MathUtils.sin[z];
+						local146 = MathUtils.cos[z];
 						local164 = this.vertexY[local3] * local11 + this.vertexX[local3] * local146 + 32767 >> 16;
 						this.vertexY[local3] = this.vertexY[local3] * local146 + 32767 - this.vertexX[local3] * local11 >> 16;
 						this.vertexX[local3] = local164;
 					}
-					if (arg1 != 0) {
-						local11 = MathUtils.sin[arg1];
-						local146 = MathUtils.cos[arg1];
+					if (x != 0) {
+						local11 = MathUtils.sin[x];
+						local146 = MathUtils.cos[x];
 						local164 = this.vertexY[local3] * local146 + 32767 - this.vertexZ[local3] * local11 >> 16;
 						this.vertexZ[local3] = this.vertexY[local3] * local11 + this.vertexZ[local3] * local146 + 32767 >> 16;
 						this.vertexY[local3] = local164;
 					}
-					if (arg2 != 0) {
-						local11 = MathUtils.sin[arg2];
-						local146 = MathUtils.cos[arg2];
+					if (y != 0) {
+						local11 = MathUtils.sin[y];
+						local146 = MathUtils.cos[y];
 						local164 = this.vertexZ[local3] * local11 + this.vertexX[local3] * local146 + 32767 >> 16;
 						this.vertexZ[local3] = this.vertexZ[local3] * local146 + 32767 - this.vertexX[local3] * local11 >> 16;
 						this.vertexX[local3] = local164;
@@ -3207,21 +3206,21 @@ public final class GlModel extends Model {
 					this.vertexY[local3] += anInt5300;
 					this.vertexZ[local3] += anInt5299;
 				}
-			} else if (arg0 == 3) {
+			} else if (transformType == 3) {
 				for (local3 = 0; local3 < this.vertexCount; local3++) {
 					this.vertexX[local3] -= anInt5298;
 					this.vertexY[local3] -= anInt5300;
 					this.vertexZ[local3] -= anInt5299;
-					this.vertexX[local3] = this.vertexX[local3] * arg1 / 128;
-					this.vertexY[local3] = this.vertexY[local3] * arg2 / 128;
-					this.vertexZ[local3] = this.vertexZ[local3] * arg3 / 128;
+					this.vertexX[local3] = this.vertexX[local3] * x / 128;
+					this.vertexY[local3] = this.vertexY[local3] * y / 128;
+					this.vertexZ[local3] = this.vertexZ[local3] * z / 128;
 					this.vertexX[local3] += anInt5298;
 					this.vertexY[local3] += anInt5300;
 					this.vertexZ[local3] += anInt5299;
 				}
-			} else if (arg0 == 5) {
+			} else if (transformType == 5) {
 				for (local3 = 0; local3 < this.triangleCount; local3++) {
-					local11 = (this.triangleAlpha[local3] & 0xFF) + arg1 * 8;
+					local11 = (this.triangleAlpha[local3] & 0xFF) + x * 8;
 					if (local11 < 0) {
 						local11 = 0;
 					} else if (local11 > 255) {
@@ -3230,20 +3229,20 @@ public final class GlModel extends Model {
 					this.triangleAlpha[local3] = (byte) local11;
 				}
 				this.colorBuffer.valid = false;
-			} else if (arg0 == 7) {
+			} else if (transformType == 7) {
 				for (local3 = 0; local3 < this.triangleCount; local3++) {
 					local11 = this.triangleColors[local3] & 0xFFFF;
 					local146 = local11 >> 10 & 0x3F;
 					local164 = local11 >> 7 & 0x7;
 					@Pc(496) int local496 = local11 & 0x7F;
-					@Pc(502) int local502 = local146 + arg1 & 0x3F;
-					local164 += arg2 / 4;
+					@Pc(502) int local502 = local146 + x & 0x3F;
+					local164 += y / 4;
 					if (local164 < 0) {
 						local164 = 0;
 					} else if (local164 > 7) {
 						local164 = 7;
 					}
-					local496 += arg3;
+					local496 += z;
 					if (local496 < 0) {
 						local496 = 0;
 					} else if (local496 > 127) {
@@ -3383,7 +3382,7 @@ public final class GlModel extends Model {
 
 	@OriginalMember(owner = "client!td", name = "f", descriptor = "()V")
 	@Override
-	protected final void method4557() {
+	protected final void finishTransforms() {
 		for (@Pc(1) int local1 = 0; local1 < this.vertexCount; local1++) {
 			this.vertexX[local1] = this.vertexX[local1] + 7 >> 4;
 			this.vertexY[local1] = this.vertexY[local1] + 7 >> 4;

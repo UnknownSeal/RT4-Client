@@ -9,7 +9,7 @@ import com.jagex.runetek4.config.types.bas.BasTypeList;
 import com.jagex.runetek4.game.state.VarpDomain;
 import com.jagex.runetek4.graphics.model.Model;
 import com.jagex.runetek4.graphics.model.RawModel;
-import com.jagex.runetek4.entity.entity.PathingEntity_Class147;
+import com.jagex.runetek4.entity.entity.PathingEntityAnimation;
 import com.jagex.runetek4.graphics.gl.GlModel;
 import com.jagex.runetek4.graphics.gl.GlRenderer;
 import com.jagex.runetek4.util.string.JString;
@@ -456,7 +456,7 @@ public final class NpcType {
 	}
 
 	@OriginalMember(owner = "client!me", name = "a", descriptor = "([Lclient!ub;IBIIIILclient!tk;ILclient!tk;)Lclient!ak;")
-	public Model getBodyModel(@OriginalArg(0) PathingEntity_Class147[] arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) SeqType arg6, @OriginalArg(8) int arg7, @OriginalArg(9) SeqType arg8) {
+	public Model getBodyModel(@OriginalArg(0) PathingEntityAnimation[] arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) SeqType arg6, @OriginalArg(8) int arg7, @OriginalArg(9) SeqType arg8) {
 		if (this.multinpc != null) {
 			@Pc(13) NpcType local13 = this.getMultiNPC();
 			return local13 == null ? null : local13.getBodyModel(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
@@ -693,16 +693,16 @@ public final class NpcType {
 		local330 = 1;
 		for (local318 = 0; local318 < local173; local318++) {
 			if (aClass3_Sub2_Sub7Array1[local318] != null) {
-				local1218.method4565(aClass3_Sub2_Sub7Array1[local318], anIntArray259[local318], aClass3_Sub2_Sub7Array5[local318], anIntArray148[local318], anIntArray492[local318] - 1, anIntArray147[local318], local330, aClass144Array1[local318].aBoolean278, this.anIntArrayArray28[local318]);
+				local1218.blendAnimationWeighted(aClass3_Sub2_Sub7Array1[local318], anIntArray259[local318], aClass3_Sub2_Sub7Array5[local318], anIntArray148[local318], anIntArray492[local318] - 1, anIntArray147[local318], local330, aClass144Array1[local318].aBoolean278, this.anIntArrayArray28[local318]);
 			}
 			local330 <<= 0x1;
 		}
 		if (local962 != null && local1088 != null) {
-			local1218.method4570(local962, local235, local964, local221, arg4 - 1, local200, local1088, local228, local1092, local1040, arg7 - 1, local300, arg8.framegroup, arg8.aBoolean278 | arg6.aBoolean278);
+			local1218.blendLayeredAnimation(local962, local235, local964, local221, arg4 - 1, local200, local1088, local228, local1092, local1040, arg7 - 1, local300, arg8.framegroup, arg8.aBoolean278 | arg6.aBoolean278);
 		} else if (local962 != null) {
-			local1218.method4558(local962, local235, local964, local221, arg4 - 1, local200, arg8.aBoolean278);
+			local1218.blendAnimation(local962, local235, local964, local221, arg4 - 1, local200, arg8.aBoolean278);
 		} else if (local1088 != null) {
-			local1218.method4558(local1088, local228, local1092, local1040, arg7 - 1, local300, arg6.aBoolean278);
+			local1218.blendAnimation(local1088, local228, local1092, local1040, arg7 - 1, local300, arg6.aBoolean278);
 		}
 		for (local318 = 0; local318 < local173; local318++) {
 			aClass3_Sub2_Sub7Array1[local318] = null;

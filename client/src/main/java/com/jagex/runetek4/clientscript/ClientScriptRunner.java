@@ -13,6 +13,8 @@ import com.jagex.runetek4.audio.core.SoundPlayer;
 import com.jagex.runetek4.audio.midi.MidiPlayer;
 import com.jagex.runetek4.audio.streaming.MusicPlayer;
 import com.jagex.runetek4.data.cache.cs.ClientScript;
+import com.jagex.runetek4.scene.Camera;
+import com.jagex.runetek4.scene.tile.ShapedTile;
 import com.jagex.runetek4.ui.chat.Chat;
 import com.jagex.runetek4.ui.chat.ClanChat;
 import com.jagex.runetek4.ui.chat.OverHeadChat;
@@ -54,6 +56,7 @@ import com.jagex.runetek4.graphics.gl.*;
 import com.jagex.runetek4.input.Keyboard;
 import com.jagex.runetek4.input.Mouse;
 import com.jagex.runetek4.data.js5.Js5TextureProvider;
+import com.jagex.runetek4.ui.component.SubInterface;
 import com.jagex.runetek4.util.math.MathUtils;
 import com.jagex.runetek4.util.string.JString;
 import com.jagex.runetek4.util.string.LocalizedText;
@@ -66,7 +69,7 @@ import com.jagex.runetek4.network.ClientProt;
 import com.jagex.runetek4.network.Protocol;
 import com.jagex.runetek4.core.node.SecondaryLinkedList;
 import com.jagex.runetek4.graphics.raster.Rasterizer;
-import com.jagex.runetek4.graphics.raster.SoftwareRaster;
+import com.jagex.runetek4.graphics.raster.SoftwareRenderer;
 import com.jagex.runetek4.graphics.render.MaterialManager;
 import com.jagex.runetek4.scene.SceneCamera;
 import com.jagex.runetek4.scene.SceneGraph;
@@ -5110,13 +5113,13 @@ public final class ClientScriptRunner {
 						if (GlRenderer.enabled) {
 							GlRaster.method1183(local161, local359, local161 + local639, local359 + local642);
 						} else {
-							SoftwareRaster.method2498(local161, local359, local161 + local639, local642 + local359);
+							SoftwareRenderer.intersectClipBounds(local161, local359, local161 + local639, local642 + local359);
 						}
 						foregroundBar.render(local161, local359);
 						if (GlRenderer.enabled) {
 							GlRaster.setClip(screenX, screenY, screenWidth + screenX, screenY - -screenHeight);
 						} else {
-							SoftwareRaster.setClip(screenX, screenY, screenWidth + screenX, screenHeight + screenY);
+							SoftwareRenderer.setClip(screenX, screenY, screenWidth + screenX, screenHeight + screenY);
 						}
 					}
 				}
@@ -5232,13 +5235,13 @@ public final class ClientScriptRunner {
 					if (GlRenderer.enabled) {
 						GlRaster.method1183(overheadScreenX + screenX - 50, screenY, overheadScreenX + screenX + 50, screenHeight + screenY);
 					} else {
-						SoftwareRaster.method2498(screenX + overheadScreenX - 50, screenY, overheadScreenX + screenX + 50, screenHeight + screenY);
+						SoftwareRenderer.intersectClipBounds(screenX + overheadScreenX - 50, screenY, overheadScreenX + screenX + 50, screenHeight + screenY);
 					}
 					Fonts.b12Full.renderLeft(chatMessage, screenX + overheadScreenX + 50 - local642, screenY + overheadScreenY, local639, 0);
 					if (GlRenderer.enabled) {
 						GlRaster.setClip(screenX, screenY, screenWidth + screenX, screenHeight + screenY);
 					} else {
-						SoftwareRaster.setClip(screenX, screenY, screenX + screenWidth, screenY + screenHeight);
+						SoftwareRenderer.setClip(screenX, screenY, screenX + screenWidth, screenY + screenHeight);
 					}
 				}
 				if (OverHeadChat.effects[entityIndex] == 5) {
@@ -5247,7 +5250,7 @@ public final class ClientScriptRunner {
 					if (GlRenderer.enabled) {
 						GlRaster.method1183(screenX, overheadScreenY + screenY - Fonts.b12Full.characterDefaultHeight - 1, screenWidth + screenX, screenY + overheadScreenY + 5);
 					} else {
-						SoftwareRaster.method2498(screenX, overheadScreenY + screenY - Fonts.b12Full.characterDefaultHeight - 1, screenX + screenWidth, overheadScreenY + screenY + 5);
+						SoftwareRenderer.intersectClipBounds(screenX, overheadScreenY + screenY - Fonts.b12Full.characterDefaultHeight - 1, screenX + screenWidth, overheadScreenY + screenY + 5);
 					}
 					if (local642 < 25) {
 						bounceOffset = local642 - 25;
@@ -5258,7 +5261,7 @@ public final class ClientScriptRunner {
 					if (GlRenderer.enabled) {
 						GlRaster.setClip(screenX, screenY, screenX + screenWidth, screenY + screenHeight);
 					} else {
-						SoftwareRaster.setClip(screenX, screenY, screenX + screenWidth, screenY + screenHeight);
+						SoftwareRenderer.setClip(screenX, screenY, screenX + screenWidth, screenY + screenHeight);
 					}
 				}
 			} else {
@@ -6091,5 +6094,276 @@ public final class ClientScriptRunner {
 			container = component.parent;
 		}
 		return container;
+	}
+	
+	/**
+	 * Highlights the tile the player is currently on with a red border in software rendering mode
+	 */
+	public static void highlightAllTiles() {
+		// Only render in software mode, not GL mode
+		if (GlRenderer.enabled) {
+			return;
+		}
+		
+		// Only highlight the player's current tile
+		if (PlayerList.self != null) {
+			int playerTileX = PlayerList.self.xFine >> 7;  // Convert fine coordinates to tile coordinates
+			int playerTileZ = PlayerList.self.zFine >> 7;  // Convert fine coordinates to tile coordinates
+			int currentPlane = Player.plane;
+			
+			drawTileBorder(currentPlane, playerTileX, playerTileZ);
+		}
+	}
+	
+	/**
+	 * Highlights the tile the cursor is hovering over with a blue border in software rendering mode
+	 */
+	public static void highlightHoveredTile() {
+		highlightHoveredTile(0, 0); // Default viewport offset
+	}
+	
+	/**
+	 * Highlights the tile the cursor is hovering over using calculateScreenCoordinates
+	 */
+	public static void highlightHoveredTile(int viewportX, int viewportY) {
+		// Only render in software mode, not GL mode
+		if (GlRenderer.enabled) {
+			return;
+		}
+		
+		// Get raw mouse coordinates 
+		int mouseX = Mouse.lastMouseX;
+		int mouseY = Mouse.lastMouseY;
+		
+		int hoveredTileX = -1;
+		int hoveredTileZ = -1;
+		int currentPlane = Player.plane;
+		
+		// Check tiles around the player (reasonable search area)
+		int playerTileX = PlayerList.self != null ? PlayerList.self.xFine >> 7 : 52;
+		int playerTileZ = PlayerList.self != null ? PlayerList.self.zFine >> 7 : 52;
+		
+		double closestDistance = Double.MAX_VALUE;
+		
+		// Search in a reasonable area around the player
+		for (int checkX = Math.max(0, playerTileX - 20); checkX < Math.min(104, playerTileX + 20); checkX++) {
+			for (int checkZ = Math.max(0, playerTileZ - 20); checkZ < Math.min(104, playerTileZ + 20); checkZ++) {
+				// Get tile center coordinates
+				int worldX = checkX * 128 + 64;  // Center of tile
+				int worldZ = checkZ * 128 + 64;  // Center of tile
+				int worldY = SceneGraph.getTileHeight(currentPlane, worldX, worldZ);
+				
+				// Use the same calculateScreenCoordinates function we know works for overheads
+				calculateScreenCoordinates(GameShell.canvasWidth / 2, 256, worldZ, worldY, GameShell.canvasHeigth / 2, worldX, 256);
+				
+				if (overheadScreenX != -1 && overheadScreenY != -1) {
+					// Calculate distance from mouse to tile center on screen
+					double distance = Math.sqrt((mouseX - overheadScreenX) * (mouseX - overheadScreenX) + (mouseY - overheadScreenY) * (mouseY - overheadScreenY));
+					
+					// If this is the closest tile to the mouse cursor so far
+					if (distance < closestDistance && distance < 100) { // Within reasonable distance
+						closestDistance = distance;
+						hoveredTileX = checkX;
+						hoveredTileZ = checkZ;
+					}
+				}
+			}
+		}
+		
+		// Draw border for the hovered tile if found
+		if (hoveredTileX != -1 && hoveredTileZ != -1) {
+			drawTileBorderWithColor(currentPlane, hoveredTileX, hoveredTileZ, 0x0000FF); // Blue color
+		}
+	}
+	
+	/**
+	 * Draws a red border around a specific tile using its actual 3D geometry
+	 */
+	private static void drawTileBorder(int plane, int tileX, int tileZ) {
+		drawTileBorderWithColor(plane, tileX, tileZ, 0xFF0000); // Red color
+	}
+	
+	/**
+	 * Draws a colored border around a specific tile using its actual 3D geometry
+	 */
+	private static void drawTileBorderWithColor(int plane, int tileX, int tileZ, int color) {
+		// Get the tile from SceneGraph
+		if (SceneGraph.tiles == null || SceneGraph.tiles[plane] == null) {
+			return;
+		}
+		
+		Tile tile = SceneGraph.tiles[plane][tileX][tileZ];
+		if (tile == null) {
+			return;
+		}
+		
+		// Use either the shaped tile or fall back to calculating tile corners
+		if (tile.shapedTile != null) {
+			drawShapedTileBorderWithColor(tile.shapedTile, tileX, tileZ, plane, color);
+		} else {
+			drawSimpleTileBorderWithColor(tileX, tileZ, plane, color);
+		}
+	}
+	
+	/**
+	 * Draws border for a shaped tile using its actual vertex data
+	 */
+	private static void drawShapedTileBorder(ShapedTile shapedTile, int tileX, int tileZ, int plane) {
+		drawShapedTileBorderWithColor(shapedTile, tileX, tileZ, plane, 0xFF0000); // Red color
+	}
+	
+	/**
+	 * Draws border for a shaped tile using its actual vertex data with custom color
+	 */
+	private static void drawShapedTileBorderWithColor(ShapedTile shapedTile, int tileX, int tileZ, int plane, int color) {
+		int[] vertexX = shapedTile.vertexX;  // Already in world coordinates
+		int[] vertexY = shapedTile.vertexY;  // Already in world coordinates (height)
+		int[] vertexZ = shapedTile.vertexZ;  // Already in world coordinates
+		
+		if (vertexX == null || vertexY == null || vertexZ == null) {
+			return;
+		}
+		
+		int vertexCount = vertexX.length;
+		
+		// Project all vertices to screen coordinates using exact same method as drawTileOverlay
+		int[] screenX = new int[vertexCount];
+		int[] screenY = new int[vertexCount];
+		int validVertices = 0;
+		
+		// Use exact same transformation as drawTileOverlay - vertices are already in world coordinates
+		for (int i = 0; i < vertexCount; i++) {
+			// Use exact same variable names and assignments as drawTileOverlay
+			int vertexA = vertexX[i] - SceneGraph.eyeX;      // Same as line 4330
+			int relativeY = vertexY[i] - SceneGraph.eyeY;    // Same as line 4331
+			int local29 = vertexZ[i] - SceneGraph.eyeZ;      // Same as line 4332
+			
+			// Use the same pre-calculated sin/cos values that drawTileOverlay receives
+			int sinYaw = SceneGraph.sinYaw;    // MathUtils.sin[yaw] from setupSceneRender
+			int cosYaw = SceneGraph.cosYaw;    // MathUtils.cos[yaw] from setupSceneRender
+			int sinPitch = SceneGraph.sinPitch;  // MathUtils.sin[pitch] from setupSceneRender
+			int cosPitch = SceneGraph.cosPitch;  // MathUtils.cos[pitch] from setupSceneRender
+			
+			int local39 = local29 * sinPitch + vertexA * cosPitch >> 16;         // Same as line 4333
+			int rotatedZ = local29 * cosPitch - vertexA * sinPitch >> 16;        // Same as line 4334
+			int transformedY = relativeY * cosYaw - rotatedZ * sinYaw >> 16;     // Same as line 4335
+			int depth = relativeY * sinYaw + rotatedZ * cosYaw >> 16;            // Same as line 4336
+			
+			if (depth >= 50) {
+				screenX[validVertices] = Rasterizer.centerX + (local39 << 9) / depth;        // Same as line 4345
+				screenY[validVertices] = Rasterizer.centerY + (transformedY << 9) / depth;   // Same as line 4346
+				validVertices++;
+			}
+		}
+		
+		// Draw lines between consecutive vertices to form the tile border
+		if (validVertices >= 3) {
+			for (int i = 0; i < validVertices; i++) {
+				int nextIndex = (i + 1) % validVertices;
+				SoftwareRenderer.drawDiagonalLine(screenX[i], screenY[i], screenX[nextIndex], screenY[nextIndex], color);
+			}
+		}
+	}
+	
+	/**
+	 * Draws a simple rectangular border for tiles without shaped geometry
+	 */
+	private static void drawSimpleTileBorder(int tileX, int tileZ, int plane) {
+		drawSimpleTileBorderWithColor(tileX, tileZ, plane, 0xFF0000); // Red color
+	}
+	
+	/**
+	 * Draws a simple rectangular border for tiles without shaped geometry with custom color
+	 */
+	private static void drawSimpleTileBorderWithColor(int tileX, int tileZ, int plane, int color) {
+		int tileSize = 128;
+		
+		// Calculate world coordinates for tile corners (matching how ShapedTile constructor works)
+		int worldBaseX = tileX * tileSize;
+		int worldBaseZ = tileZ * tileSize;
+		
+		// Get heights at each corner using same method as ShapedTile
+		int swHeight = SceneGraph.getTileHeight(plane, worldBaseX, worldBaseZ);
+		int seHeight = SceneGraph.getTileHeight(plane, worldBaseX + tileSize, worldBaseZ);
+		int nwHeight = SceneGraph.getTileHeight(plane, worldBaseX, worldBaseZ + tileSize);
+		int neHeight = SceneGraph.getTileHeight(plane, worldBaseX + tileSize, worldBaseZ + tileSize);
+		
+		// Create corner vertices in world coordinates (same as ShapedTile vertex layout)
+		int[] cornerX = {worldBaseX, worldBaseX + tileSize, worldBaseX, worldBaseX + tileSize};
+		int[] cornerZ = {worldBaseZ, worldBaseZ, worldBaseZ + tileSize, worldBaseZ + tileSize};
+		int[] cornerY = {swHeight, seHeight, nwHeight, neHeight};
+		int[] screenX = new int[4];
+		int[] screenY = new int[4];
+		int validCorners = 0;
+		
+		// Project corners using exact same transformation as drawTileOverlay
+		for (int i = 0; i < 4; i++) {
+			// Use exact same variable names and assignments as drawTileOverlay
+			int vertexA = cornerX[i] - SceneGraph.eyeX;      // Same as line 4330
+			int relativeY = cornerY[i] - SceneGraph.eyeY;    // Same as line 4331
+			int local29 = cornerZ[i] - SceneGraph.eyeZ;      // Same as line 4332
+			
+			// Use the same pre-calculated sin/cos values that drawTileOverlay receives
+			int sinYaw = SceneGraph.sinYaw;    // MathUtils.sin[yaw] from setupSceneRender
+			int cosYaw = SceneGraph.cosYaw;    // MathUtils.cos[yaw] from setupSceneRender
+			int sinPitch = SceneGraph.sinPitch;  // MathUtils.sin[pitch] from setupSceneRender
+			int cosPitch = SceneGraph.cosPitch;  // MathUtils.cos[pitch] from setupSceneRender
+			
+			int local39 = local29 * sinPitch + vertexA * cosPitch >> 16;         // Same as line 4333
+			int rotatedZ = local29 * cosPitch - vertexA * sinPitch >> 16;        // Same as line 4334
+			int transformedY = relativeY * cosYaw - rotatedZ * sinYaw >> 16;     // Same as line 4335
+			int depth = relativeY * sinYaw + rotatedZ * cosYaw >> 16;            // Same as line 4336
+			
+			if (depth >= 50) {
+				screenX[validCorners] = Rasterizer.centerX + (local39 << 9) / depth;        // Same as line 4345
+				screenY[validCorners] = Rasterizer.centerY + (transformedY << 9) / depth;   // Same as line 4346
+				validCorners++;
+			}
+		}
+		
+		// Draw the four edges of the tile if all corners are visible
+		if (validCorners == 4) {
+			System.out.println("Drawing tile border at (" + tileX + ", " + tileZ + ") on plane " + plane);
+			SoftwareRenderer.drawDiagonalLine(screenX[0], screenY[0], screenX[1], screenY[1], color); // SW to SE
+			SoftwareRenderer.drawDiagonalLine(screenX[1], screenY[1], screenX[3], screenY[3], color); // SE to NE
+			SoftwareRenderer.drawDiagonalLine(screenX[3], screenY[3], screenX[2], screenY[2], color); // NE to NW
+			SoftwareRenderer.drawDiagonalLine(screenX[2], screenY[2], screenX[0], screenY[0], color); // NW to SW
+		}
+	}
+	
+	/**
+	 * Checks if a point is inside a quadrilateral using cross product method
+	 */
+	private static boolean isPointInQuad(int px, int py, int[] quadX, int[] quadY) {
+		// Use winding number method - check if point is inside by counting edge crossings
+		// For a convex quadrilateral, we can use the cross product method
+		
+		// Check if point is on the same side of all 4 edges
+		// SW -> SE -> NE -> NW -> SW (clockwise order)
+		int[] orderedX = {quadX[0], quadX[1], quadX[3], quadX[2]}; // SW, SE, NE, NW
+		int[] orderedY = {quadY[0], quadY[1], quadY[3], quadY[2]}; // SW, SE, NE, NW
+		
+		boolean positive = false;
+		boolean negative = false;
+		
+		for (int i = 0; i < 4; i++) {
+			int j = (i + 1) % 4;
+			
+			// Calculate cross product of edge vector and point vector
+			int edgeX = orderedX[j] - orderedX[i];
+			int edgeY = orderedY[j] - orderedY[i];
+			int pointX = px - orderedX[i];
+			int pointY = py - orderedY[i];
+			
+			long crossProduct = (long)edgeX * pointY - (long)edgeY * pointX;
+			
+			if (crossProduct > 0) positive = true;
+			if (crossProduct < 0) negative = true;
+			
+			// If we have both positive and negative, point is outside
+			if (positive && negative) return false;
+		}
+		
+		return true; // All cross products have same sign, point is inside
 	}
 }

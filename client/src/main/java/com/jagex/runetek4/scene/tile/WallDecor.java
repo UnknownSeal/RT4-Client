@@ -8,7 +8,7 @@ import org.openrs2.deob.annotation.OriginalMember;
 public final class WallDecor {
 
 	@OriginalMember(owner = "runetek4.client!df", name = "a", descriptor = "I")
-	public int anInt1388;
+	public int yFine;
 
 	@OriginalMember(owner = "runetek4.client!df", name = "d", descriptor = "Lclient!th;")
 	public Entity secondary;
@@ -17,7 +17,7 @@ public final class WallDecor {
 	public int xFine;
 
 	@OriginalMember(owner = "runetek4.client!df", name = "f", descriptor = "I")
-	public int anInt1391;
+	public int yOffset;
 
 	@OriginalMember(owner = "runetek4.client!df", name = "g", descriptor = "I")
 	public int zOffset;

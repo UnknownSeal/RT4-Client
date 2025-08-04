@@ -11,28 +11,28 @@ import org.openrs2.deob.annotation.OriginalMember;
 public final class Tile extends Node {
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "x", descriptor = "Z")
-	public boolean aBoolean45;
+	public boolean hasObjects;
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "y", descriptor = "I")
 	public int sceneryLen;
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "A", descriptor = "Z")
-	public boolean aBoolean46;
+	public boolean bridgeAbove;
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "B", descriptor = "Lclient!fg;")
 	public ShapedTile shapedTile;
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "C", descriptor = "I")
-	public int checkLocSpans;
+	public int locCheckFlags;
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "E", descriptor = "I")
-	public int blockLocSpans;
+	public int locBlockFlags;
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "G", descriptor = "Lclient!bm;")
 	public GroundDecor groundDecor;
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "I", descriptor = "I")
-	public int inverseBlockLocSpans;
+	public int inverseLocBlockFlags;
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "J", descriptor = "Lclient!df;")
 	public WallDecor wallDecor;
@@ -41,7 +41,7 @@ public final class Tile extends Node {
 	public Wall wall;
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "M", descriptor = "Lclient!bj;")
-	public Tile aClass3_Sub5_1;
+	public Tile bridgeTile;
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "N", descriptor = "Z")
 	public boolean containsLocs;
@@ -50,36 +50,36 @@ public final class Tile extends Node {
 	public PlainTile plainTile;
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "T", descriptor = "I")
-	public int backWallTypes;
+	public int backWallFlags;
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "X", descriptor = "Lclient!jj;")
 	public ObjStackEntity objStack;
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "D", descriptor = "I")
-	public int allInteriorFlags = 0;
+	public int combinedFlags = 0;
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "w", descriptor = "[Lclient!ec;")
 	public final Scenery[] scenery = new Scenery[5];
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "P", descriptor = "[I")
-	public final int[] interiorFlags = new int[5];
+	public final int[] layerCollisionFlags = new int[5];
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "H", descriptor = "I")
-	public final int anInt666;
+	public final int plane;
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "W", descriptor = "I")
-	public int anInt672;
+	public int sceneX;
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "Q", descriptor = "I")
-	public final int anInt668;
+	public final int localX;
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "R", descriptor = "I")
-	public final int anInt669;
+	public final int localZ;
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "<init>", descriptor = "(III)V")
-	public Tile(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
-		this.anInt666 = arg2;
-		this.anInt668 = this.anInt672 = arg0;
-		this.anInt669 = arg1;
+	public Tile(@OriginalArg(0) int localX, @OriginalArg(1) int localZ, @OriginalArg(2) int plane) {
+		this.plane = plane;
+		this.localX = this.sceneX = localX;
+		this.localZ = localZ;
 	}
 }

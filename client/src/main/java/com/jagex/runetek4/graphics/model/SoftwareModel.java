@@ -591,7 +591,7 @@ public final class SoftwareModel extends Model {
 
 	@OriginalMember(owner = "runetek4.client!w", name = "e", descriptor = "()V")
 	@Override
-	public final void method4552() {
+	public final void updateBounds() {
 		for (@Pc(1) int local1 = 0; local1 < this.vertexCount; local1++) {
 			this.vertexX[local1] = -this.vertexX[local1];
 			this.vertexZ[local1] = -this.vertexZ[local1];
@@ -720,7 +720,7 @@ public final class SoftwareModel extends Model {
 
 	@OriginalMember(owner = "runetek4.client!w", name = "d", descriptor = "()Z")
 	@Override
-	protected final boolean method4551() {
+	protected final boolean supportsAnimation() {
 		if (this.boneVertices == null) {
 			return false;
 		} else {
@@ -733,9 +733,9 @@ public final class SoftwareModel extends Model {
 
 	@OriginalMember(owner = "runetek4.client!w", name = "c", descriptor = "(I)V")
 	@Override
-	public final void rotateZ(@OriginalArg(0) int arg0) {
-		@Pc(3) int local3 = MathUtils.sin[arg0];
-		@Pc(7) int local7 = MathUtils.cos[arg0];
+	public final void rotateZ(@OriginalArg(0) int angle) {
+		@Pc(3) int local3 = MathUtils.sin[angle];
+		@Pc(7) int local7 = MathUtils.cos[angle];
 		for (@Pc(9) int local9 = 0; local9 < this.vertexCount; local9++) {
 			@Pc(29) int local29 = this.vertexY[local9] * local3 + this.vertexX[local9] * local7 >> 16;
 			this.vertexY[local9] = this.vertexY[local9] * local7 - this.vertexX[local9] * local3 >> 16;
@@ -1278,28 +1278,28 @@ public final class SoftwareModel extends Model {
 
 	@OriginalMember(owner = "runetek4.client!w", name = "b", descriptor = "(III)V")
 	@Override
-	public final void resize(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
+	public final void resize(@OriginalArg(0) int scaleX, @OriginalArg(1) int scaleY, @OriginalArg(2) int scaleZ) {
 		for (@Pc(1) int local1 = 0; local1 < this.vertexCount; local1++) {
-			this.vertexX[local1] = this.vertexX[local1] * arg0 / 128;
-			this.vertexY[local1] = this.vertexY[local1] * arg1 / 128;
-			this.vertexZ[local1] = this.vertexZ[local1] * arg2 / 128;
+			this.vertexX[local1] = this.vertexX[local1] * scaleX / 128;
+			this.vertexY[local1] = this.vertexY[local1] * scaleY / 128;
+			this.vertexZ[local1] = this.vertexZ[local1] * scaleZ / 128;
 		}
 		this.boundsValid = false;
 	}
 
 	@OriginalMember(owner = "runetek4.client!w", name = "a", descriptor = "(ZZZ)Lclient!ak;")
 	@Override
-	public final Model method4560(@OriginalArg(0) boolean arg0, @OriginalArg(1) boolean arg1, @OriginalArg(2) boolean arg2) {
-		if (!arg0 && aByteArray77.length < this.triangleCount) {
+	public final Model copy(@OriginalArg(0) boolean copyVertices, @OriginalArg(1) boolean copyNormals, @OriginalArg(2) boolean copyTextures) {
+		if (!copyVertices && aByteArray77.length < this.triangleCount) {
 			aByteArray77 = new byte[this.triangleCount + 100];
 		}
-		if (!arg1 && aShortArray94.length < this.triangleCount) {
+		if (!copyNormals && aShortArray94.length < this.triangleCount) {
 			anIntArray539 = new int[this.triangleCount + 100];
 			anIntArray540 = new int[this.triangleCount + 100];
 			anIntArray538 = new int[this.triangleCount + 100];
 			aShortArray94 = new short[this.triangleCount + 100];
 		}
-		return this.copy(arg0, arg1, aClass8_Sub1_Sub2_2, aByteArray77, aShortArray94, anIntArray539, anIntArray540, anIntArray538);
+		return this.copy(copyVertices, copyNormals, aClass8_Sub1_Sub2_2, aByteArray77, aShortArray94, anIntArray539, anIntArray540, anIntArray538);
 	}
 
 	@OriginalMember(owner = "runetek4.client!w", name = "j", descriptor = "()I")
@@ -1327,7 +1327,7 @@ public final class SoftwareModel extends Model {
 
 	@OriginalMember(owner = "runetek4.client!w", name = "f", descriptor = "()V")
 	@Override
-	protected final void method4557() {
+	protected final void finishTransforms() {
 		if (this.aBoolean304) {
 			this.method4581();
 			this.aBoolean304 = false;
@@ -1350,19 +1350,19 @@ public final class SoftwareModel extends Model {
 
 	@OriginalMember(owner = "runetek4.client!w", name = "a", descriptor = "(I[IIIIZ)V")
 	@Override
-	protected final void method4569(@OriginalArg(0) int arg0, @OriginalArg(1) int[] arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) boolean arg5) {
-		@Pc(2) int local2 = arg1.length;
+	protected final void applyBoneTransformHierarchy(@OriginalArg(0) int transformType, @OriginalArg(1) int[] boneIndices, @OriginalArg(2) int x, @OriginalArg(3) int y, @OriginalArg(4) int z, @OriginalArg(5) boolean updateNormals) {
+		@Pc(2) int local2 = boneIndices.length;
 		@Pc(6) int local6;
 		@Pc(14) int local14;
 		@Pc(33) int local33;
 		@Pc(41) int local41;
-		if (arg0 == 0) {
+		if (transformType == 0) {
 			local6 = 0;
 			anInt5793 = 0;
 			anInt5791 = 0;
 			anInt5792 = 0;
 			for (local14 = 0; local14 < local2; local14++) {
-				@Pc(21) int local21 = arg1[local14];
+				@Pc(21) int local21 = boneIndices[local14];
 				if (local21 < this.boneVertices.length) {
 					@Pc(31) int[] local31 = this.boneVertices[local21];
 					for (local33 = 0; local33 < local31.length; local33++) {
@@ -1375,28 +1375,28 @@ public final class SoftwareModel extends Model {
 				}
 			}
 			if (local6 > 0) {
-				anInt5793 = anInt5793 / local6 + arg2;
-				anInt5791 = anInt5791 / local6 + arg3;
-				anInt5792 = anInt5792 / local6 + arg4;
+				anInt5793 = anInt5793 / local6 + x;
+				anInt5791 = anInt5791 / local6 + y;
+				anInt5792 = anInt5792 / local6 + z;
 			} else {
-				anInt5793 = arg2;
-				anInt5791 = arg3;
-				anInt5792 = arg4;
+				anInt5793 = x;
+				anInt5791 = y;
+				anInt5792 = z;
 			}
 			return;
 		}
 		@Pc(117) int[] local117;
 		@Pc(119) int local119;
-		if (arg0 == 1) {
+		if (transformType == 1) {
 			for (local6 = 0; local6 < local2; local6++) {
-				local14 = arg1[local6];
+				local14 = boneIndices[local6];
 				if (local14 < this.boneVertices.length) {
 					local117 = this.boneVertices[local14];
 					for (local119 = 0; local119 < local117.length; local119++) {
 						local33 = local117[local119];
-						this.vertexX[local33] += arg2;
-						this.vertexY[local33] += arg3;
-						this.vertexZ[local33] += arg4;
+						this.vertexX[local33] += x;
+						this.vertexY[local33] += y;
+						this.vertexZ[local33] += z;
 					}
 				}
 			}
@@ -1404,9 +1404,9 @@ public final class SoftwareModel extends Model {
 		}
 		@Pc(222) int local222;
 		@Pc(240) int local240;
-		if (arg0 == 2) {
+		if (transformType == 2) {
 			for (local6 = 0; local6 < local2; local6++) {
-				local14 = arg1[local6];
+				local14 = boneIndices[local6];
 				if (local14 < this.boneVertices.length) {
 					local117 = this.boneVertices[local14];
 					for (local119 = 0; local119 < local117.length; local119++) {
@@ -1414,23 +1414,23 @@ public final class SoftwareModel extends Model {
 						this.vertexX[local33] -= anInt5793;
 						this.vertexY[local33] -= anInt5791;
 						this.vertexZ[local33] -= anInt5792;
-						if (arg4 != 0) {
-							local41 = MathUtils.sin[arg4];
-							local222 = MathUtils.cos[arg4];
+						if (z != 0) {
+							local41 = MathUtils.sin[z];
+							local222 = MathUtils.cos[z];
 							local240 = this.vertexY[local33] * local41 + this.vertexX[local33] * local222 + 32767 >> 16;
 							this.vertexY[local33] = this.vertexY[local33] * local222 + 32767 - this.vertexX[local33] * local41 >> 16;
 							this.vertexX[local33] = local240;
 						}
-						if (arg2 != 0) {
-							local41 = MathUtils.sin[arg2];
-							local222 = MathUtils.cos[arg2];
+						if (x != 0) {
+							local41 = MathUtils.sin[x];
+							local222 = MathUtils.cos[x];
 							local240 = this.vertexY[local33] * local222 + 32767 - this.vertexZ[local33] * local41 >> 16;
 							this.vertexZ[local33] = this.vertexY[local33] * local41 + this.vertexZ[local33] * local222 + 32767 >> 16;
 							this.vertexY[local33] = local240;
 						}
-						if (arg3 != 0) {
-							local41 = MathUtils.sin[arg3];
-							local222 = MathUtils.cos[arg3];
+						if (y != 0) {
+							local41 = MathUtils.sin[y];
+							local222 = MathUtils.cos[y];
 							local240 = this.vertexZ[local33] * local41 + this.vertexX[local33] * local222 + 32767 >> 16;
 							this.vertexZ[local33] = this.vertexZ[local33] * local222 + 32767 - this.vertexX[local33] * local41 >> 16;
 							this.vertexX[local33] = local240;
@@ -1441,9 +1441,9 @@ public final class SoftwareModel extends Model {
 					}
 				}
 			}
-		} else if (arg0 == 3) {
+		} else if (transformType == 3) {
 			for (local6 = 0; local6 < local2; local6++) {
-				local14 = arg1[local6];
+				local14 = boneIndices[local6];
 				if (local14 < this.boneVertices.length) {
 					local117 = this.boneVertices[local14];
 					for (local119 = 0; local119 < local117.length; local119++) {
@@ -1451,24 +1451,24 @@ public final class SoftwareModel extends Model {
 						this.vertexX[local33] -= anInt5793;
 						this.vertexY[local33] -= anInt5791;
 						this.vertexZ[local33] -= anInt5792;
-						this.vertexX[local33] = this.vertexX[local33] * arg2 / 128;
-						this.vertexY[local33] = this.vertexY[local33] * arg3 / 128;
-						this.vertexZ[local33] = this.vertexZ[local33] * arg4 / 128;
+						this.vertexX[local33] = this.vertexX[local33] * x / 128;
+						this.vertexY[local33] = this.vertexY[local33] * y / 128;
+						this.vertexZ[local33] = this.vertexZ[local33] * z / 128;
 						this.vertexX[local33] += anInt5793;
 						this.vertexY[local33] += anInt5791;
 						this.vertexZ[local33] += anInt5792;
 					}
 				}
 			}
-		} else if (arg0 == 5) {
+		} else if (transformType == 5) {
 			if (this.boneTriangles != null && this.triangleAlpha != null) {
 				for (local6 = 0; local6 < local2; local6++) {
-					local14 = arg1[local6];
+					local14 = boneIndices[local6];
 					if (local14 < this.boneTriangles.length) {
 						local117 = this.boneTriangles[local14];
 						for (local119 = 0; local119 < local117.length; local119++) {
 							local33 = local117[local119];
-							local41 = (this.triangleAlpha[local33] & 0xFF) + arg2 * 8;
+							local41 = (this.triangleAlpha[local33] & 0xFF) + x * 8;
 							if (local41 < 0) {
 								local41 = 0;
 							} else if (local41 > 255) {
@@ -1479,9 +1479,9 @@ public final class SoftwareModel extends Model {
 					}
 				}
 			}
-		} else if (arg0 == 7 && this.boneTriangles != null) {
+		} else if (transformType == 7 && this.boneTriangles != null) {
 			for (local6 = 0; local6 < local2; local6++) {
-				local14 = arg1[local6];
+				local14 = boneIndices[local6];
 				if (local14 < this.boneTriangles.length) {
 					local117 = this.boneTriangles[local14];
 					for (local119 = 0; local119 < local117.length; local119++) {
@@ -1490,14 +1490,14 @@ public final class SoftwareModel extends Model {
 						local222 = local41 >> 10 & 0x3F;
 						local240 = local41 >> 7 & 0x7;
 						@Pc(652) int local652 = local41 & 0x7F;
-						@Pc(658) int local658 = local222 + arg2 & 0x3F;
-						local240 += arg3;
+						@Pc(658) int local658 = local222 + x & 0x3F;
+						local240 += y;
 						if (local240 < 0) {
 							local240 = 0;
 						} else if (local240 > 7) {
 							local240 = 7;
 						}
-						local652 += arg4;
+						local652 += z;
 						if (local652 < 0) {
 							local652 = 0;
 						} else if (local652 > 127) {
@@ -2351,10 +2351,10 @@ public final class SoftwareModel extends Model {
 
 	@OriginalMember(owner = "runetek4.client!w", name = "a", descriptor = "(IIII)V")
 	@Override
-	protected final void method4567(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
+	protected final void applyBoneTransform(@OriginalArg(0) int transformType, @OriginalArg(1) int x, @OriginalArg(2) int y, @OriginalArg(3) int z) {
 		@Pc(3) int local3;
 		@Pc(11) int local11;
-		if (arg0 == 0) {
+		if (transformType == 0) {
 			local3 = 0;
 			anInt5793 = 0;
 			anInt5791 = 0;
@@ -2366,45 +2366,45 @@ public final class SoftwareModel extends Model {
 				local3++;
 			}
 			if (local3 > 0) {
-				anInt5793 = anInt5793 / local3 + arg1;
-				anInt5791 = anInt5791 / local3 + arg2;
-				anInt5792 = anInt5792 / local3 + arg3;
+				anInt5793 = anInt5793 / local3 + x;
+				anInt5791 = anInt5791 / local3 + y;
+				anInt5792 = anInt5792 / local3 + z;
 			} else {
-				anInt5793 = arg1;
-				anInt5791 = arg2;
-				anInt5792 = arg3;
+				anInt5793 = x;
+				anInt5791 = y;
+				anInt5792 = z;
 			}
-		} else if (arg0 == 1) {
+		} else if (transformType == 1) {
 			for (local3 = 0; local3 < this.vertexCount; local3++) {
-				this.vertexX[local3] += arg1;
-				this.vertexY[local3] += arg2;
-				this.vertexZ[local3] += arg3;
+				this.vertexX[local3] += x;
+				this.vertexY[local3] += y;
+				this.vertexZ[local3] += z;
 			}
 		} else {
 			@Pc(146) int local146;
 			@Pc(164) int local164;
-			if (arg0 == 2) {
+			if (transformType == 2) {
 				for (local3 = 0; local3 < this.vertexCount; local3++) {
 					this.vertexX[local3] -= anInt5793;
 					this.vertexY[local3] -= anInt5791;
 					this.vertexZ[local3] -= anInt5792;
-					if (arg3 != 0) {
-						local11 = MathUtils.sin[arg3];
-						local146 = MathUtils.cos[arg3];
+					if (z != 0) {
+						local11 = MathUtils.sin[z];
+						local146 = MathUtils.cos[z];
 						local164 = this.vertexY[local3] * local11 + this.vertexX[local3] * local146 + 32767 >> 16;
 						this.vertexY[local3] = this.vertexY[local3] * local146 + 32767 - this.vertexX[local3] * local11 >> 16;
 						this.vertexX[local3] = local164;
 					}
-					if (arg1 != 0) {
-						local11 = MathUtils.sin[arg1];
-						local146 = MathUtils.cos[arg1];
+					if (x != 0) {
+						local11 = MathUtils.sin[x];
+						local146 = MathUtils.cos[x];
 						local164 = this.vertexY[local3] * local146 + 32767 - this.vertexZ[local3] * local11 >> 16;
 						this.vertexZ[local3] = this.vertexY[local3] * local11 + this.vertexZ[local3] * local146 + 32767 >> 16;
 						this.vertexY[local3] = local164;
 					}
-					if (arg2 != 0) {
-						local11 = MathUtils.sin[arg2];
-						local146 = MathUtils.cos[arg2];
+					if (y != 0) {
+						local11 = MathUtils.sin[y];
+						local146 = MathUtils.cos[y];
 						local164 = this.vertexZ[local3] * local11 + this.vertexX[local3] * local146 + 32767 >> 16;
 						this.vertexZ[local3] = this.vertexZ[local3] * local146 + 32767 - this.vertexX[local3] * local11 >> 16;
 						this.vertexX[local3] = local164;
@@ -2413,21 +2413,21 @@ public final class SoftwareModel extends Model {
 					this.vertexY[local3] += anInt5791;
 					this.vertexZ[local3] += anInt5792;
 				}
-			} else if (arg0 == 3) {
+			} else if (transformType == 3) {
 				for (local3 = 0; local3 < this.vertexCount; local3++) {
 					this.vertexX[local3] -= anInt5793;
 					this.vertexY[local3] -= anInt5791;
 					this.vertexZ[local3] -= anInt5792;
-					this.vertexX[local3] = this.vertexX[local3] * arg1 / 128;
-					this.vertexY[local3] = this.vertexY[local3] * arg2 / 128;
-					this.vertexZ[local3] = this.vertexZ[local3] * arg3 / 128;
+					this.vertexX[local3] = this.vertexX[local3] * x / 128;
+					this.vertexY[local3] = this.vertexY[local3] * y / 128;
+					this.vertexZ[local3] = this.vertexZ[local3] * z / 128;
 					this.vertexX[local3] += anInt5793;
 					this.vertexY[local3] += anInt5791;
 					this.vertexZ[local3] += anInt5792;
 				}
-			} else if (arg0 == 5) {
+			} else if (transformType == 5) {
 				for (local3 = 0; local3 < this.triangleCount; local3++) {
-					local11 = (this.triangleAlpha[local3] & 0xFF) + arg1 * 8;
+					local11 = (this.triangleAlpha[local3] & 0xFF) + x * 8;
 					if (local11 < 0) {
 						local11 = 0;
 					} else if (local11 > 255) {
@@ -2435,20 +2435,20 @@ public final class SoftwareModel extends Model {
 					}
 					this.triangleAlpha[local3] = (byte) local11;
 				}
-			} else if (arg0 == 7) {
+			} else if (transformType == 7) {
 				for (local3 = 0; local3 < this.triangleCount; local3++) {
 					local11 = this.triangleColors[local3] & 0xFFFF;
 					local146 = local11 >> 10 & 0x3F;
 					local164 = local11 >> 7 & 0x7;
 					@Pc(492) int local492 = local11 & 0x7F;
-					@Pc(498) int local498 = local146 + arg1 & 0x3F;
-					local164 += arg2;
+					@Pc(498) int local498 = local146 + x & 0x3F;
+					local164 += y;
 					if (local164 < 0) {
 						local164 = 0;
 					} else if (local164 > 7) {
 						local164 = 7;
 					}
-					local492 += arg3;
+					local492 += z;
 					if (local492 < 0) {
 						local492 = 0;
 					} else if (local492 > 127) {
@@ -2474,16 +2474,16 @@ public final class SoftwareModel extends Model {
 
 	@OriginalMember(owner = "runetek4.client!w", name = "b", descriptor = "(ZZZ)Lclient!ak;")
 	@Override
-	public final Model method4568(@OriginalArg(0) boolean shareAlpha, @OriginalArg(1) boolean shareColors, @OriginalArg(2) boolean arg2) {
-		if (!shareAlpha && aByteArray78.length < this.triangleCount) {
+	public final Model createVariant(@OriginalArg(0) boolean shareVertices, @OriginalArg(1) boolean shareNormals, @OriginalArg(2) boolean shareTextures) {
+		if (!shareVertices && aByteArray78.length < this.triangleCount) {
 			aByteArray78 = new byte[this.triangleCount + 100];
 		}
-		if (!shareColors && aShortArray95.length < this.triangleCount) {
+		if (!shareNormals && aShortArray95.length < this.triangleCount) {
 			anIntArray554 = new int[this.triangleCount + 100];
 			anIntArray559 = new int[this.triangleCount + 100];
 			anIntArray546 = new int[this.triangleCount + 100];
 			aShortArray95 = new short[this.triangleCount + 100];
 		}
-		return this.copy(shareAlpha, shareColors, aClass8_Sub1_Sub2_3, aByteArray78, aShortArray95, anIntArray554, anIntArray559, anIntArray546);
+		return this.copy(shareVertices, shareNormals, aClass8_Sub1_Sub2_3, aByteArray78, aShortArray95, anIntArray554, anIntArray559, anIntArray546);
 	}
 }

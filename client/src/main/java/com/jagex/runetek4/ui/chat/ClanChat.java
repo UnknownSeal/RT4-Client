@@ -1,6 +1,6 @@
 package com.jagex.runetek4.ui.chat;
 
-import com.jagex.runetek4.ClanMember;
+import com.jagex.runetek4.ui.social.ClanMember;
 import com.jagex.runetek4.util.string.JString;
 import com.jagex.runetek4.network.Protocol;
 import org.openrs2.deob.annotation.OriginalArg;

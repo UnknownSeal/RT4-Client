@@ -1,15 +1,18 @@
 package com.jagex.runetek4.ui.component;
 
-import com.jagex.runetek4.*;
 import com.jagex.runetek4.config.types.obj.ObjType;
 import com.jagex.runetek4.config.types.obj.ObjTypeList;
 import com.jagex.runetek4.data.cache.CacheArchive;
 import com.jagex.runetek4.data.cache.media.Font;
 import com.jagex.runetek4.entity.entity.PlayerAppearance;
+import com.jagex.runetek4.entity.entity.PlayerList;
+import com.jagex.runetek4.entity.entity.PlayerSkillXpTable;
+import com.jagex.runetek4.graphics.effects.Flames;
 import com.jagex.runetek4.graphics.gl.GlCleaner;
 import com.jagex.runetek4.graphics.model.Model;
 import com.jagex.runetek4.graphics.model.SoftwareModel;
 import com.jagex.runetek4.graphics.raster.Rasterizer;
+import com.jagex.runetek4.scene.Camera;
 import com.jagex.runetek4.scene.SceneGraph;
 import com.jagex.runetek4.ui.chat.Chat;
 import com.jagex.runetek4.ui.chat.ClanChat;
@@ -49,7 +52,7 @@ import com.jagex.runetek4.graphics.lighting.FogManager;
 import com.jagex.runetek4.network.ClientProt;
 import com.jagex.runetek4.network.Protocol;
 import com.jagex.runetek4.core.node.Node;
-import com.jagex.runetek4.graphics.raster.SoftwareRaster;
+import com.jagex.runetek4.graphics.raster.SoftwareRenderer;
 import com.jagex.runetek4.clientscript.ClientScriptRunner;
 import com.jagex.runetek4.ui.social.FriendList;
 import com.jagex.runetek4.game.stockmarket.StockMarketManager;
@@ -336,7 +339,7 @@ public class ComponentList {
         if (GlRenderer.enabled) {
             GlRaster.method1177();
         } else {
-            SoftwareRaster.resetBounds();
+            SoftwareRenderer.resetBounds();
         }
         Protocol.sceneDelta = 0;
     }
@@ -1381,7 +1384,7 @@ public class ComponentList {
         if (GlRenderer.enabled) {
             GlRaster.setClip(clipLeft, clipTop, clipRight, clipBottom);
         } else {
-            SoftwareRaster.setClip(clipLeft, clipTop, clipRight, clipBottom);
+            SoftwareRenderer.setClip(clipLeft, clipTop, clipRight, clipBottom);
             Rasterizer.prepare();
         }
         for (@Pc(18) int i = 0; i < components.length; i++) {
@@ -1481,7 +1484,7 @@ public class ComponentList {
                                 if (GlRenderer.enabled) {
                                     GlRaster.setClip(clipLeft, clipTop, clipRight, clipBottom);
                                 } else {
-                                    SoftwareRaster.setClip(clipLeft, clipTop, clipRight, clipBottom);
+                                    SoftwareRenderer.setClip(clipLeft, clipTop, clipRight, clipBottom);
                                 }
                                 continue;
                             }
@@ -1493,7 +1496,7 @@ public class ComponentList {
                                 if (GlRenderer.enabled) {
                                     GlRaster.setClip(clipLeft, clipTop, clipRight, clipBottom);
                                 } else {
-                                    SoftwareRaster.setClip(clipLeft, clipTop, clipRight, clipBottom);
+                                    SoftwareRenderer.setClip(clipLeft, clipTop, clipRight, clipBottom);
                                 }
                                 if (MiniMap.state != 0 && MiniMap.state != 3 || ClientScriptRunner.menuVisible || clipLeft2 > ClientScriptRunner.scriptMouseX || ClientScriptRunner.scriptMouseY < clipTop2 || ClientScriptRunner.scriptMouseX >= clipRight3 || clipBottom3 <= ClientScriptRunner.scriptMouseY) {
                                     continue;
@@ -1536,7 +1539,7 @@ public class ComponentList {
                                     if (GlRenderer.enabled) {
                                         GlRaster.setClip(clipLeft, clipTop, clipRight, clipBottom);
                                     } else {
-                                        SoftwareRaster.setClip(clipLeft, clipTop, clipRight, clipBottom);
+                                        SoftwareRenderer.setClip(clipLeft, clipTop, clipRight, clipBottom);
                                     }
                                 }
                                 continue;
@@ -1548,7 +1551,7 @@ public class ComponentList {
                                 if (GlRenderer.enabled) {
                                     GlRaster.setClip(clipLeft, clipTop, clipRight, clipBottom);
                                 } else {
-                                    SoftwareRaster.setClip(clipLeft, clipTop, clipRight, clipBottom);
+                                    SoftwareRenderer.setClip(clipLeft, clipTop, clipRight, clipBottom);
                                 }
                                 continue;
                             }
@@ -1559,7 +1562,7 @@ public class ComponentList {
                                 if (GlRenderer.enabled) {
                                     GlRaster.setClip(clipLeft, clipTop, clipRight, clipBottom);
                                 } else {
-                                    SoftwareRaster.setClip(clipLeft, clipTop, clipRight, clipBottom);
+                                    SoftwareRenderer.setClip(clipLeft, clipTop, clipRight, clipBottom);
                                 }
                                 continue;
                             }
@@ -1662,7 +1665,7 @@ public class ComponentList {
                             if (GlRenderer.enabled) {
                                 GlRaster.setClip(clipLeft, clipTop, clipRight, clipBottom);
                             } else {
-                                SoftwareRaster.setClip(clipLeft, clipTop, clipRight, clipBottom);
+                                SoftwareRenderer.setClip(clipLeft, clipTop, clipRight, clipBottom);
                                 Rasterizer.prepare();
                             }
                         }
@@ -1718,8 +1721,8 @@ public class ComponentList {
                                                                 bottom = GlRaster.clipBottom;
                                                                 top = GlRaster.clipTop;
                                                             } else {
-                                                                top = SoftwareRaster.clipTop;
-                                                                bottom = SoftwareRaster.clipBottom;
+                                                                top = SoftwareRenderer.clipTop;
+                                                                bottom = SoftwareRenderer.clipBottom;
                                                             }
                                                             @Pc(1611) int local1611;
                                                             if (top > dragOffsetY + colorValue && local1571.scrollY > 0) {
@@ -1781,23 +1784,23 @@ public class ComponentList {
                                             if (GlRenderer.enabled) {
                                                 GlRaster.fillRect(renderX, renderY, component.width, component.height, clipRight2);
                                             } else {
-                                                SoftwareRaster.fillRect(renderX, renderY, component.width, component.height, clipRight2);
+                                                SoftwareRenderer.fillRect(renderX, renderY, component.width, component.height, clipRight2);
                                             }
                                         } else if (GlRenderer.enabled) {
                                             GlRaster.drawRect(renderX, renderY, component.width, component.height, clipRight2);
                                         } else {
-                                            SoftwareRaster.drawRect(renderX, renderY, component.width, component.height, clipRight2);
+                                            SoftwareRenderer.drawRect(renderX, renderY, component.width, component.height, clipRight2);
                                         }
                                     } else if (component.filled) {
                                         if (GlRenderer.enabled) {
                                             GlRaster.fillRectAlpha(renderX, renderY, component.width, component.height, clipRight2, 256 - (alpha & 0xFF));
                                         } else {
-                                            SoftwareRaster.fillRectAlpha(renderX, renderY, component.width, component.height, clipRight2, 256 - (alpha & 0xFF));
+                                            SoftwareRenderer.fillRectAlpha(renderX, renderY, component.width, component.height, clipRight2, 256 - (alpha & 0xFF));
                                         }
                                     } else if (GlRenderer.enabled) {
                                         GlRaster.drawRectAlpha(renderX, renderY, component.width, component.height, clipRight2, 256 - (alpha & 0xFF));
                                     } else {
-                                        SoftwareRaster.drawRectAlpha(renderX, renderY, component.width, component.height, clipRight2, 256 - (alpha & 0xFF));
+                                        SoftwareRenderer.drawRectAlpha(renderX, renderY, component.width, component.height, clipRight2, 256 - (alpha & 0xFF));
                                     }
                                 } else {
                                     @Pc(1921) com.jagex.runetek4.data.cache.media.Font local1921;
@@ -1894,7 +1897,7 @@ public class ComponentList {
                                                         }
                                                         GlRaster.setClip(clipLeft, clipTop, clipRight, clipBottom);
                                                     } else {
-                                                        SoftwareRaster.method2498(renderX, renderY, renderX + component.width, renderY - -component.height);
+                                                        SoftwareRenderer.intersectClipBounds(renderX, renderY, renderX + component.width, renderY - -component.height);
                                                         for (gpuMemory = 0; gpuMemory < tempValue; gpuMemory++) {
                                                             for (dragOffsetY = 0; dragOffsetY < colorValue; dragOffsetY++) {
                                                                 if (component.angle2d != 0) {
@@ -1906,7 +1909,7 @@ public class ComponentList {
                                                                 }
                                                             }
                                                         }
-                                                        SoftwareRaster.setClip(clipLeft, clipTop, clipRight, clipBottom);
+                                                        SoftwareRenderer.setClip(clipLeft, clipTop, clipRight, clipBottom);
                                                     }
                                                 } else {
                                                     tempValue = component.width * 4096 / clipBottom2;
@@ -2111,8 +2114,8 @@ public class ComponentList {
                                                     GlRaster.fillRect(gpuMemory, dragOffsetY, clipRight2, clipBottom2, 16777120);
                                                     GlRaster.drawRect(gpuMemory, dragOffsetY, clipRight2, clipBottom2, 0);
                                                 } else {
-                                                    SoftwareRaster.fillRect(gpuMemory, dragOffsetY, clipRight2, clipBottom2, 16777120);
-                                                    SoftwareRaster.drawRect(gpuMemory, dragOffsetY, clipRight2, clipBottom2, 0);
+                                                    SoftwareRenderer.fillRect(gpuMemory, dragOffsetY, clipRight2, clipBottom2, 16777120);
+                                                    SoftwareRenderer.drawRect(gpuMemory, dragOffsetY, clipRight2, clipBottom2, 0);
                                                 }
                                                 local3297 = component.text;
                                                 objId = dragOffsetY + local3299.characterDefaultHeight + 2;
@@ -2144,12 +2147,12 @@ public class ComponentList {
                                                     if (GlRenderer.enabled) {
                                                         GlRaster.drawDiagonalLine(renderX, clipBottom2, temp, tempValue, component.color);
                                                     } else {
-                                                        SoftwareRaster.drawDiagonalLine(renderX, clipBottom2, temp, tempValue, component.color);
+                                                        SoftwareRenderer.drawDiagonalLine(renderX, clipBottom2, temp, tempValue, component.color);
                                                     }
                                                 } else if (GlRenderer.enabled) {
                                                     GlRaster.method1181(renderX, clipBottom2, temp, tempValue, component.color, component.lineWidth);
                                                 } else {
-                                                    SoftwareRaster.method2494(renderX, clipBottom2, temp, tempValue, component.color, component.lineWidth);
+                                                    SoftwareRenderer.drawThickLine(renderX, clipBottom2, temp, tempValue, component.color, component.lineWidth);
                                                 }
                                             }
                                         }
@@ -2217,16 +2220,16 @@ public class ComponentList {
         }
         @Pc(54) int thumbY = scrollPosition * (height - thumbHeight - 32) / (scrollMax - height);
         if (!GlRenderer.enabled) {
-            SoftwareRaster.fillRect(x, y + 16, 16, height - 32, ClientScriptRunner.anInt4306);
-            SoftwareRaster.fillRect(x, thumbY + y + 16, 16, thumbHeight, ClientScriptRunner.anInt1704);
-            SoftwareRaster.drawVerticalLine(x, thumbY + y + 16, thumbHeight, ClientScriptRunner.anInt4938);
-            SoftwareRaster.drawVerticalLine(x + 1, thumbY + 16 + y, thumbHeight, ClientScriptRunner.anInt4938);
-            SoftwareRaster.drawHorizontalLine(x, y + thumbY + 16, 16, ClientScriptRunner.anInt4938);
-            SoftwareRaster.drawHorizontalLine(x, y + thumbY + 17, 16, ClientScriptRunner.anInt4938);
-            SoftwareRaster.drawVerticalLine(x + 15, thumbY + 16 + y, thumbHeight, ClientScriptRunner.anInt671);
-            SoftwareRaster.drawVerticalLine(x + 14, y - -17 - -thumbY, thumbHeight - 1, ClientScriptRunner.anInt671);
-            SoftwareRaster.drawHorizontalLine(x, thumbHeight + y + thumbY + 15, 16, ClientScriptRunner.anInt671);
-            SoftwareRaster.drawHorizontalLine(x + 1, thumbHeight + y - (-thumbY + -14), 15, ClientScriptRunner.anInt671);
+            SoftwareRenderer.fillRect(x, y + 16, 16, height - 32, ClientScriptRunner.anInt4306);
+            SoftwareRenderer.fillRect(x, thumbY + y + 16, 16, thumbHeight, ClientScriptRunner.anInt1704);
+            SoftwareRenderer.drawVerticalLine(x, thumbY + y + 16, thumbHeight, ClientScriptRunner.anInt4938);
+            SoftwareRenderer.drawVerticalLine(x + 1, thumbY + 16 + y, thumbHeight, ClientScriptRunner.anInt4938);
+            SoftwareRenderer.drawHorizontalLine(x, y + thumbY + 16, 16, ClientScriptRunner.anInt4938);
+            SoftwareRenderer.drawHorizontalLine(x, y + thumbY + 17, 16, ClientScriptRunner.anInt4938);
+            SoftwareRenderer.drawVerticalLine(x + 15, thumbY + 16 + y, thumbHeight, ClientScriptRunner.anInt671);
+            SoftwareRenderer.drawVerticalLine(x + 14, y - -17 - -thumbY, thumbHeight - 1, ClientScriptRunner.anInt671);
+            SoftwareRenderer.drawHorizontalLine(x, thumbHeight + y + thumbY + 15, 16, ClientScriptRunner.anInt671);
+            SoftwareRenderer.drawHorizontalLine(x + 1, thumbHeight + y - (-thumbY + -14), 15, ClientScriptRunner.anInt671);
             return;
         }
         GlRaster.fillRect(x, y + 16, 16, height - 32, ClientScriptRunner.anInt4306);

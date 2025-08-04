@@ -10,9 +10,13 @@ import com.jagex.runetek4.*;
 import com.jagex.runetek4.audio.core.MixerPcmStream;
 import com.jagex.runetek4.audio.core.SoundPlayer;
 import com.jagex.runetek4.audio.streaming.MusicPlayer;
+import com.jagex.runetek4.core.datastruct.LruHashTable;
 import com.jagex.runetek4.core.exceptions.TracingException;
+import com.jagex.runetek4.data.compression.HuffmanCodec;
 import com.jagex.runetek4.data.js5.*;
+import com.jagex.runetek4.entity.entity.*;
 import com.jagex.runetek4.game.world.WorldLoader;
+import com.jagex.runetek4.graphics.effects.Flames;
 import com.jagex.runetek4.graphics.effects.ParticleSystem;
 import com.jagex.runetek4.game.logic.HintArrowManager;
 import com.jagex.runetek4.game.logic.PathFinder;
@@ -28,6 +32,7 @@ import com.jagex.runetek4.audio.midi.MidiPlayer;
 import com.jagex.runetek4.audio.pcm.PcmResampler;
 import com.jagex.runetek4.data.cache.BufferedFile;
 import com.jagex.runetek4.graphics.lighting.*;
+import com.jagex.runetek4.scene.Camera;
 import com.jagex.runetek4.ui.chat.Chat;
 import com.jagex.runetek4.ui.chat.ClanChat;
 import com.jagex.runetek4.config.types.cursor.CursorTypeList;
@@ -57,6 +62,7 @@ import com.jagex.runetek4.graphics.font.FontMetricsList;
 import com.jagex.runetek4.graphics.font.Fonts;
 import com.jagex.runetek4.entity.loc.LocEntity;
 import com.jagex.runetek4.config.types.loc.LocType;
+import com.jagex.runetek4.ui.component.SubInterface;
 import com.jagex.runetek4.util.string.JString;
 import com.jagex.runetek4.util.string.LocalizedText;
 import com.jagex.runetek4.util.string.WordPack;
@@ -65,7 +71,7 @@ import com.jagex.runetek4.network.BufferedSocket;
 import com.jagex.runetek4.network.ClientProt;
 import com.jagex.runetek4.network.Protocol;
 import com.jagex.runetek4.network.security.ReflectionCheck;
-import com.jagex.runetek4.graphics.raster.SoftwareRaster;
+import com.jagex.runetek4.graphics.raster.SoftwareRenderer;
 import com.jagex.runetek4.graphics.render.MaterialManager;
 import com.jagex.runetek4.scene.SceneGraph;
 import com.jagex.runetek4.clientscript.ClientScriptList;
@@ -79,12 +85,9 @@ import com.jagex.runetek4.game.inventory.Inv;
 import com.jagex.runetek4.clientscript.DelayedStateChange;
 import com.jagex.runetek4.config.types.bas.BasTypeList;
 import com.jagex.runetek4.data.cache.media.component.Component;
-import com.jagex.runetek4.entity.entity.Npc;
 import com.jagex.runetek4.config.types.flo.FloTypeList;
-import com.jagex.runetek4.entity.entity.PlayerAppearance;
 import com.jagex.runetek4.input.Keyboard;
 import com.jagex.runetek4.input.MouseCapturer;
-import com.jagex.runetek4.entity.entity.NpcList;
 import com.jagex.runetek4.graphics.gl.GlCleaner;
 import com.jagex.runetek4.graphics.gl.GlModel;
 import com.jagex.runetek4.graphics.gl.GlRenderer;
@@ -93,7 +96,6 @@ import com.jagex.runetek4.input.MouseWheel;
 import com.jagex.runetek4.data.js5.index.Js5MasterIndex;
 import com.jagex.runetek4.data.js5.network.Js5CachedResourceProvider;
 import com.jagex.runetek4.graphics.raster.Rasterizer;
-import com.jagex.runetek4.entity.entity.Player;
 import com.jagex.runetek4.ui.component.ComponentList;
 import com.jagex.runetek4.ui.component.MiniMenu;
 import com.jagex.runetek4.ui.events.ComponentEvent;
@@ -139,6 +141,8 @@ public final class Client extends GameShell {
 
 	@OriginalMember(owner = "runetek4.client!a", name = "e", descriptor = "Lclient!na;")
 	public static final JString TITLE_SONG = JString.parse("scape main");
+	@OriginalMember(owner = "runetek4.client!ul", name = "I", descriptor = "Lclient!gn;")
+	public static final LruHashTable cache = new LruHashTable(4);
 
 	@OriginalMember(owner = "runetek4.client!jm", name = "A", descriptor = "Lclient!na;")
 	static final JString aClass100_603 = JString.parse("");
@@ -576,7 +580,7 @@ public final class Client extends GameShell {
 		MiniMap.sprite = null;
 		LightingManager.anInt2875 = -1;
 		unload();
-		DeadClass.cache.clear();
+		cache.clear();
 		LocType.aLocEntity_1 = new LocEntity();
 		((Js5TextureProvider) Rasterizer.textureProvider).clear();
 		LightingManager.lightCount = 0;
@@ -953,7 +957,7 @@ public final class Client extends GameShell {
 					local388 = GameShell.canvas.getGraphics();
 					for (local84 = 0; local84 < ComponentList.rectangles; local84++) {
 						if (ComponentList.rectangleRedraw[local84]) {
-							SoftwareRaster.frameBuffer.drawAt(ComponentList.rectangleWidth[local84], ComponentList.rectangleX[local84], ComponentList.rectangleHeight[local84], local388, ComponentList.rectangleY[local84]);
+							SoftwareRenderer.frameBuffer.drawAt(ComponentList.rectangleWidth[local84], ComponentList.rectangleX[local84], ComponentList.rectangleHeight[local84], local388, ComponentList.rectangleY[local84]);
 							ComponentList.rectangleRedraw[local84] = false;
 						}
 					}
@@ -963,7 +967,7 @@ public final class Client extends GameShell {
 			} else if (gameState != 0) {
 				try {
 					local388 = GameShell.canvas.getGraphics();
-					SoftwareRaster.frameBuffer.draw(local388);
+					SoftwareRenderer.frameBuffer.draw(local388);
 					for (local84 = 0; local84 < ComponentList.rectangles; local84++) {
 						ComponentList.rectangleRedraw[local84] = false;
 					}
