@@ -1130,7 +1130,7 @@ public final class JString implements ComponentString {
 
 	@OriginalMember(owner = "runetek4.client!na", name = "k", descriptor = "(I)Lclient!na;")
 	public final JString method3159() {
-		@Pc(9) JString local9 = Base37.decode37(this.encode37());
+		@Pc(9) JString local9 = Base37.fromBase37(this.encode37());
 		return local9 == null ? aClass100_967 : local9;
 	}
 

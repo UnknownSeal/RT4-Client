@@ -228,8 +228,8 @@ public final class Player extends PathingEntity {
 	@OriginalMember(owner = "runetek4.client!um", name = "a", descriptor = "(Z)V")
 	public static void updateTutorialIslandStatus() {
 		inTutorialIsland = 0;
-		@Pc(17) int playerWorldX = Camera.originX + (PlayerList.self.xFine >> 7);
-		@Pc(25) int playerWorldZ = (PlayerList.self.zFine >> 7) + Camera.originZ;
+		@Pc(17) int playerWorldX = Camera.sceneBaseTileX + (PlayerList.self.xFine >> 7);
+		@Pc(25) int playerWorldZ = (PlayerList.self.zFine >> 7) + Camera.sceneBaseTileZ;
 		if (playerWorldX >= 3053 && playerWorldX <= 3156 && playerWorldZ >= 3056 && playerWorldZ <= 3136) {
 			inTutorialIsland = 1;
 		}
@@ -318,7 +318,7 @@ public final class Player extends PathingEntity {
 		}
 		this.anInt3365 = arg0.g2();
 		@Pc(236) long local236 = arg0.g8();
-		this.username = Base37.decode37(local236).toTitleCase();
+		this.username = Base37.fromBase37(local236).toTitleCase();
 		this.combatLevel = arg0.g1();
 		if (hasSummoningLevel) {
 			this.skill = arg0.g2();
@@ -422,8 +422,8 @@ public final class Player extends PathingEntity {
 						}
 					}
 					if (local245.type == 2) {
-						@Pc(340) int local340 = (local245.targetX - Camera.originX) * 4 + 2 - PlayerList.self.xFine / 32;
-						anchorX = (local245.anInt4046 - Camera.originZ) * 4 + 2 - PlayerList.self.zFine / 32;
+						@Pc(340) int local340 = (local245.targetX - Camera.sceneBaseTileX) * 4 + 2 - PlayerList.self.xFine / 32;
+						anchorX = (local245.anInt4046 - Camera.sceneBaseTileZ) * 4 + 2 - PlayerList.self.zFine / 32;
 						this.drawOnMinimap(null, anchorX, local76, local340, arg5, arg9, arg0, arg7, arg4, arg3, arg1, local245.playerModelId, arg2, arg6);
 					}
 					if (local245.type == 10 && local245.actorTargetId >= 0 && PlayerList.players.length > local245.actorTargetId) {

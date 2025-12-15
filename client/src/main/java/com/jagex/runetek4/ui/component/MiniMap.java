@@ -153,12 +153,12 @@ public class MiniMap {
             if (WorldLoader.mapElementList != null) {
                 for (@Pc(117) int local117 = 0; local117 < WorldLoader.mapElementList.anInt5074; local117++) {
                     if (WorldLoader.mapElementList.hasFlag4Set(local117)) {
-                        flagX = (WorldLoader.mapElementList.aShortArray73[local117] - Camera.originX) * 4 + 2 - PlayerList.self.xFine / 32;
+                        flagX = (WorldLoader.mapElementList.aShortArray73[local117] - Camera.sceneBaseTileX) * 4 + 2 - PlayerList.self.xFine / 32;
                         relativeX = MathUtils.sin[angle];
                         relativeZ = MathUtils.cos[angle];
                         @Pc(156) Font font = Fonts.p11Full;
                         @Pc(164) int scaledSin = relativeX * 256 / (minimapZoom + 256);
-                        flagZ = (WorldLoader.mapElementList.aShortArray72[local117] - Camera.originZ) * 4 + 2 - PlayerList.self.zFine / 32;
+                        flagZ = (WorldLoader.mapElementList.aShortArray72[local117] - Camera.sceneBaseTileZ) * 4 + 2 - PlayerList.self.zFine / 32;
                         @Pc(189) int scaledCos = relativeZ * 256 / (minimapZoom + 256);
                         npcZ = flagZ * scaledCos - flagX * scaledSin >> 16;
                         if (WorldLoader.mapElementList.getLowerTwoBits(local117) == 1) {
@@ -278,8 +278,8 @@ public class MiniMap {
                         }
                     }
                     if (marker.type == 2) {
-                        relativeZ = (marker.targetX - Camera.originX) * 4 + 2 - PlayerList.self.xFine / 32;
-                        npcX = (-Camera.originZ + marker.anInt4046) * 4 + 2 - PlayerList.self.zFine / 32;
+                        relativeZ = (marker.targetX - Camera.sceneBaseTileX) * 4 + 2 - PlayerList.self.xFine / 32;
+                        npcX = (-Camera.sceneBaseTileZ + marker.anInt4046) * 4 + 2 - PlayerList.self.zFine / 32;
                         drawMinimapMark(marker.anInt4048, y, x, relativeZ, npcX, component);
                     }
                     if (marker.type == 10 && marker.actorTargetId >= 0 && PlayerList.players.length > marker.actorTargetId) {
@@ -292,9 +292,9 @@ public class MiniMap {
                     }
                 }
             }
-            if (LoginManager.mapFlagX != 0) {
-                flagX = LoginManager.mapFlagX * 4 + 2 - PlayerList.self.xFine / 32;
-                flagZ = LoginManager.mapFlagZ * 4 + 2 - PlayerList.self.zFine / 32;
+            if (LoginManager.flagSceneTileX != 0) {
+                flagX = LoginManager.flagSceneTileX * 4 + 2 - PlayerList.self.xFine / 32;
+                flagZ = LoginManager.flagSceneTileZ * 4 + 2 - PlayerList.self.zFine / 32;
                 drawOnMinimap(component, Sprites.mapflags, flagZ, flagX, y, x);
             }
             if (GlRenderer.enabled) {
@@ -578,7 +578,7 @@ public class MiniMap {
         while (markers.length > index) {
             @Pc(17) MapMarker marker = markers[index];
             if (marker != null && marker.type == 2) {
-                ClientScriptRunner.calculateScreenCoordinates(cameraX >> 1, cameraPlane, (marker.anInt4046 - Camera.originZ << 7) + marker.anInt4047, marker.anInt4050 * 2, cameraY >> 1, marker.anInt4045 + (marker.targetX - Camera.originX << 7), cameraZ);
+                ClientScriptRunner.calculateScreenCoordinates(cameraX >> 1, cameraPlane, (marker.anInt4046 - Camera.sceneBaseTileZ << 7) + marker.anInt4047, marker.anInt4050 * 2, cameraY >> 1, marker.anInt4045 + (marker.targetX - Camera.sceneBaseTileX << 7), cameraZ);
                 if (ClientScriptRunner.overheadScreenX > -1 && Client.loop % 20 < 10) {
                     Sprites.headhints[marker.anInt4048].render(screenX + ClientScriptRunner.overheadScreenX - 12, screenY + -28 - -ClientScriptRunner.overheadScreenY);
                 }

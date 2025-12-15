@@ -267,8 +267,8 @@ public class WorldLoader {
         @Pc(49) int worldZ;
         @Pc(53) byte[] terrainData;
         for (regionIndex = 0; regionIndex < regionCount; regionIndex++) {
-            worldX = (regionBitPacked[regionIndex] >> 8) * 64 - Camera.originX;
-            worldZ = (regionBitPacked[regionIndex] & 0xFF) * 64 - Camera.originZ;
+            worldX = (regionBitPacked[regionIndex] >> 8) * 64 - Camera.sceneBaseTileX;
+            worldZ = (regionBitPacked[regionIndex] & 0xFF) * 64 - Camera.sceneBaseTileZ;
             terrainData = mapDataBuffers[regionIndex];
             if (terrainData != null) {
                 Client.audioLoop();
@@ -276,8 +276,8 @@ public class WorldLoader {
             }
         }
         for (regionIndex = 0; regionIndex < regionCount; regionIndex++) {
-            worldX = (regionBitPacked[regionIndex] >> 8) * 64 - Camera.originX;
-            worldZ = (regionBitPacked[regionIndex] & 0xFF) * 64 - Camera.originZ;
+            worldX = (regionBitPacked[regionIndex] >> 8) * 64 - Camera.sceneBaseTileX;
+            worldZ = (regionBitPacked[regionIndex] & 0xFF) * 64 - Camera.sceneBaseTileZ;
             terrainData = mapDataBuffers[regionIndex];
             if (terrainData == null && SceneGraph.centralZoneZ < 800) {
                 Client.audioLoop();
@@ -305,13 +305,13 @@ public class WorldLoader {
             Client.processGameStatus(25);
         }
         Fonts.drawTextOnScreen(true, LocalizedText.LOADING);
-        @Pc(53) int oldOriginZ = Camera.originZ;
-        @Pc(55) int oldOriginX = Camera.originX;
-        Camera.originZ = zoneZ * 8 - 48;
-        Camera.originX = (zoneX - 6) * 8;
+        @Pc(53) int oldOriginZ = Camera.sceneBaseTileZ;
+        @Pc(55) int oldOriginX = Camera.sceneBaseTileX;
+        Camera.sceneBaseTileZ = zoneZ * 8 - 48;
+        Camera.sceneBaseTileX = (zoneX - 6) * 8;
         map = MapList.getContainingSource(SceneGraph.centralZoneX * 8, SceneGraph.centralZoneZ * 8);
-        @Pc(81) int deltaZ = Camera.originZ - oldOriginZ;
-        @Pc(86) int deltaX = Camera.originX - oldOriginX;
+        @Pc(81) int deltaZ = Camera.sceneBaseTileZ - oldOriginZ;
+        @Pc(86) int deltaX = Camera.sceneBaseTileX - oldOriginX;
         mapElementList = null;
         @Pc(96) int npcIndex;
         @Pc(103) Npc npc;
@@ -408,9 +408,9 @@ public class WorldLoader {
             Camera.cameraType = 1;
         }
         SoundPlayer.size = 0;
-        if (LoginManager.mapFlagX != 0) {
-            LoginManager.mapFlagZ -= deltaZ;
-            LoginManager.mapFlagX -= deltaX;
+        if (LoginManager.flagSceneTileX != 0) {
+            LoginManager.flagSceneTileZ -= deltaZ;
+            LoginManager.flagSceneTileX -= deltaX;
         }
         if (GlRenderer.enabled && isWorldTransition && (Math.abs(deltaX) > 104 || Math.abs(deltaZ) > 104)) {
             FogManager.setInstantFade();
@@ -432,8 +432,8 @@ public class WorldLoader {
         for (@Pc(25) int regionIndex = 0; regionIndex < regionCount; regionIndex++) {
             @Pc(32) byte[] locationData = locationDataBuffers[regionIndex];
             if (locationData != null) {
-                @Pc(45) int worldX = (regionBitPacked[regionIndex] >> 8) * 64 - Camera.originX;
-                @Pc(56) int worldZ = (regionBitPacked[regionIndex] & 0xFF) * 64 - Camera.originZ;
+                @Pc(45) int worldX = (regionBitPacked[regionIndex] >> 8) * 64 - Camera.sceneBaseTileX;
+                @Pc(56) int worldZ = (regionBitPacked[regionIndex] & 0xFF) * 64 - Camera.sceneBaseTileZ;
                 Client.audioLoop();
                 SceneGraph.readLocs(worldX, underWater, locationData, worldZ, PathFinder.collisionMaps);
             }
@@ -562,8 +562,8 @@ public class WorldLoader {
         for (regionIndex = 0; regionIndex < mapFilesBuffer.length; regionIndex++) {
             @Pc(294) byte[] locationData = locationMapFilesBuffer[regionIndex];
             if (locationData != null) {
-                chunkZ = (regionBitPacked[regionIndex] & 0xFF) * 64 - Camera.originZ;
-                chunkX = (regionBitPacked[regionIndex] >> 8) * 64 - Camera.originX;
+                chunkZ = (regionBitPacked[regionIndex] & 0xFF) * 64 - Camera.sceneBaseTileZ;
+                chunkX = (regionBitPacked[regionIndex] >> 8) * 64 - Camera.sceneBaseTileX;
                 if (SceneGraph.dynamicMapRegion) {
                     chunkZ = 10;
                     chunkX = 10;
@@ -573,8 +573,8 @@ public class WorldLoader {
             if (GlRenderer.enabled) {
                 locationData = underWaterLocationsMapFilesBuffer[regionIndex];
                 if (locationData != null) {
-                    chunkX = (regionBitPacked[regionIndex] >> 8) * 64 - Camera.originX;
-                    chunkZ = (regionBitPacked[regionIndex] & 0xFF) * 64 - Camera.originZ;
+                    chunkX = (regionBitPacked[regionIndex] >> 8) * 64 - Camera.sceneBaseTileX;
+                    chunkZ = (regionBitPacked[regionIndex] & 0xFF) * 64 - Camera.sceneBaseTileZ;
                     if (SceneGraph.dynamicMapRegion) {
                         chunkZ = 10;
                         chunkX = 10;
@@ -766,9 +766,9 @@ public class WorldLoader {
                     @Pc(103) int packedSpawnData = packet.g2();
                     @Pc(107) int plane = packedSpawnData >> 14;
                     @Pc(113) int localX = packedSpawnData >> 7 & 0x3F;
-                    @Pc(125) int worldX = localX + (regionBitPacked[regionIndex] >> 8) * 64 - Camera.originX;
+                    @Pc(125) int worldX = localX + (regionBitPacked[regionIndex] >> 8) * 64 - Camera.sceneBaseTileX;
                     @Pc(129) int localZ = packedSpawnData & 0x3F;
-                    @Pc(142) int worldZ = localZ + (regionBitPacked[regionIndex] & 0xFF) * 64 - Camera.originZ;
+                    @Pc(142) int worldZ = localZ + (regionBitPacked[regionIndex] & 0xFF) * 64 - Camera.sceneBaseTileZ;
                     @Pc(148) NpcType npcType = NpcTypeList.get(packet.g2());
                     if (NpcList.npcs[globalNpcId] == null && (npcType.walkflags & 0x1) > 0 && plane == SceneGraph.centralPlane && worldX >= 0 && npcType.size + worldX < 104 && worldZ >= 0 && worldZ + npcType.size < 104) {
                         NpcList.npcs[globalNpcId] = new Npc();

@@ -17,40 +17,40 @@ import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-@OriginalClass("runetek4.client!ma")
+@OriginalClass("client!ma")
 public final class BufferedSocket implements Runnable {
 
-	@OriginalMember(owner = "runetek4.client!ma", name = "h", descriptor = "[B")
+	@OriginalMember(owner = "client!ma", name = "h", descriptor = "[B")
 	private byte[] buffer;
 
-	@OriginalMember(owner = "runetek4.client!ma", name = "n", descriptor = "Lsignlink!im;")
+	@OriginalMember(owner = "client!ma", name = "n", descriptor = "Lsignlink!im;")
 	private PrivilegedRequest thread;
 
-	@OriginalMember(owner = "runetek4.client!ma", name = "l", descriptor = "I")
+	@OriginalMember(owner = "client!ma", name = "l", descriptor = "I")
 	private int readPointer = 0;
 
-	@OriginalMember(owner = "runetek4.client!ma", name = "b", descriptor = "I")
+	@OriginalMember(owner = "client!ma", name = "b", descriptor = "I")
 	private int writePointer = 0;
 
-	@OriginalMember(owner = "runetek4.client!ma", name = "v", descriptor = "Z")
+	@OriginalMember(owner = "client!ma", name = "v", descriptor = "Z")
 	private boolean closed = false;
 
-	@OriginalMember(owner = "runetek4.client!ma", name = "y", descriptor = "Z")
+	@OriginalMember(owner = "client!ma", name = "y", descriptor = "Z")
 	private boolean error = false;
 
-	@OriginalMember(owner = "runetek4.client!ma", name = "r", descriptor = "Lsignlink!ll;")
+	@OriginalMember(owner = "client!ma", name = "r", descriptor = "Lsignlink!ll;")
 	private final SignLink signLink;
 
-	@OriginalMember(owner = "runetek4.client!ma", name = "k", descriptor = "Ljava/net/Socket;")
+	@OriginalMember(owner = "client!ma", name = "k", descriptor = "Ljava/net/Socket;")
 	private final Socket socket;
 
-	@OriginalMember(owner = "runetek4.client!ma", name = "e", descriptor = "Ljava/io/InputStream;")
+	@OriginalMember(owner = "client!ma", name = "e", descriptor = "Ljava/io/InputStream;")
 	private InputStream in;
 
-	@OriginalMember(owner = "runetek4.client!ma", name = "c", descriptor = "Ljava/io/OutputStream;")
+	@OriginalMember(owner = "client!ma", name = "c", descriptor = "Ljava/io/OutputStream;")
 	private OutputStream out;
 
-	@OriginalMember(owner = "runetek4.client!ma", name = "<init>", descriptor = "(Ljava/net/Socket;Lsignlink!ll;)V")
+	@OriginalMember(owner = "client!ma", name = "<init>", descriptor = "(Ljava/net/Socket;Lsignlink!ll;)V")
 	public BufferedSocket(@OriginalArg(0) Socket socket, @OriginalArg(1) SignLink signLink) throws IOException {
 		this.signLink = signLink;
 		this.socket = socket;
@@ -60,7 +60,7 @@ public final class BufferedSocket implements Runnable {
 		this.out = this.socket.getOutputStream();
 	}
 
-	@OriginalMember(owner = "runetek4.client!ma", name = "run", descriptor = "()V")
+	@OriginalMember(owner = "client!ma", name = "run", descriptor = "()V")
 	@Override
 	public final void run() {
 		try {
@@ -124,7 +124,7 @@ public final class BufferedSocket implements Runnable {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!ma", name = "a", descriptor = "(III[B)V")
+	@OriginalMember(owner = "client!ma", name = "a", descriptor = "(III[B)V")
 	public final void read(@OriginalArg(0) int off, @OriginalArg(1) int len, @OriginalArg(3) byte[] b) throws IOException {
 		if (this.closed) {
 			return;

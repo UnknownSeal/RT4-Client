@@ -77,10 +77,10 @@ public class LoginManager {
     public static int idleNetCycles = 0;
 
     @OriginalMember(owner = "runetek4.client!gk", name = "h", descriptor = "I")
-    public static int mapFlagZ = 0;
+    public static int flagSceneTileZ = 0;
 
     @OriginalMember(owner = "runetek4.client!ja", name = "n", descriptor = "I")
-    public static int mapFlagX = 0;
+    public static int flagSceneTileX = 0;
 
     @OriginalMember(owner = "runetek4.client!ol", name = "V", descriptor = "I")
     public static int step = 0;
@@ -283,8 +283,8 @@ public class LoginManager {
 
     @OriginalMember(owner = "client!ca", name = "h", descriptor = "(I)V")
     public static void setupLoadingScreenRegion() {
-        @Pc(10) int centerRegionX = (Camera.renderX >> 10) + (Camera.originX >> 3);
-        @Pc(23) int centerRegionZ = (Camera.renderZ >> 10) + (Camera.originZ >> 3);
+        @Pc(10) int centerRegionX = (Camera.renderX >> 10) + (Camera.sceneBaseTileX >> 3);
+        @Pc(23) int centerRegionZ = (Camera.renderZ >> 10) + (Camera.sceneBaseTileZ >> 3);
         WorldLoader.locationMapFilesBuffer = new byte[18][];
         WorldLoader.underWaterLocationsMapFileIds = new int[18];
         WorldLoader.npcSpawnsFilesBuffer = new byte[18][];
@@ -748,7 +748,7 @@ public class LoginManager {
         Protocol.opcode3 = -1;
         ClientScriptRunner.menuVisible = false;
         Protocol.packetSize = 0;
-        mapFlagX = 0;
+        flagSceneTileX = 0;
         MiniMenu.menuActionRow = 0;
         Protocol.opcode2 = -1;
         MiniMap.state = 0;

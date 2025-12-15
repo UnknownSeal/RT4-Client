@@ -707,8 +707,8 @@ public class MiniMenu {
         if (actionCode == LOC_ACTION_4) {
             PathFinder.findPathToLoc(key, param2, param1);
             Protocol.outboundBuffer.pIsaac1(247);
-            Protocol.outboundBuffer.p2_alt1(Camera.originZ + param2);
-            Protocol.outboundBuffer.p2_alt3(param1 + Camera.originX);
+            Protocol.outboundBuffer.p2_alt1(Camera.sceneBaseTileZ + param2);
+            Protocol.outboundBuffer.p2_alt3(param1 + Camera.sceneBaseTileX);
             Protocol.outboundBuffer.p2(Integer.MAX_VALUE & (int) (key >>> 32));
         }
         if (actionCode == OBJ_OBJ_ACTION) {
@@ -772,13 +772,15 @@ public class MiniMenu {
         if (actionCode == LOC_ACTION_1) {
             PathFinder.findPathToLoc(key, param2, param1);
             Protocol.outboundBuffer.pIsaac1(254);
-            Protocol.outboundBuffer.p2_alt1(param1 + Camera.originX);
+            Protocol.outboundBuffer.p2_alt1(param1 + Camera.sceneBaseTileX);
             Protocol.outboundBuffer.p2_alt2((int) (key >>> 32) & Integer.MAX_VALUE);
-            Protocol.outboundBuffer.p2(param2 + Camera.originZ);
+            Protocol.outboundBuffer.p2(param2 + Camera.sceneBaseTileZ);
         }
+
         if (actionCode == COMPONENT_ACTION_CLOSE) {
             ComponentList.closeModal();
         }
+
         if (actionCode == COMPONENT_NPC_ACTION) {
             npc = NpcList.npcs[keyInt];
             if (npc != null) {
@@ -793,6 +795,7 @@ public class MiniMenu {
                 Protocol.outboundBuffer.p2_alt3(keyInt);
             }
         }
+
         @Pc(560) boolean pathFound;
         if (actionCode == OBJSTACK_ACTION_1) {
             if (Client.game == 1) {
@@ -808,16 +811,16 @@ public class MiniMenu {
             Crosshair.CrosshairMode = 2;
             Crosshair.y = Mouse.mouseClickY;
             Protocol.outboundBuffer.pIsaac1(66);
-            Protocol.outboundBuffer.p2_alt1(Camera.originX + param1);
+            Protocol.outboundBuffer.p2_alt1(Camera.sceneBaseTileX + param1);
             Protocol.outboundBuffer.p2(keyInt);
-            Protocol.outboundBuffer.p2_alt3(param2 + Camera.originZ);
+            Protocol.outboundBuffer.p2_alt3(param2 + Camera.sceneBaseTileZ);
         }
         if (actionCode == LOC_ACTION_5) {
             PathFinder.findPathToLoc(key, param2, param1);
             Protocol.outboundBuffer.pIsaac1(170);
             Protocol.outboundBuffer.p2_alt3(Integer.MAX_VALUE & (int) (key >>> 32));
-            Protocol.outboundBuffer.p2_alt3(param1 + Camera.originX);
-            Protocol.outboundBuffer.p2_alt3(param2 + Camera.originZ);
+            Protocol.outboundBuffer.p2_alt3(param1 + Camera.sceneBaseTileX);
+            Protocol.outboundBuffer.p2_alt3(param2 + Camera.sceneBaseTileZ);
         }
         if (actionCode == OBJ_EXAMINE) {
             Crosshair.CrosshairMode = 2;
@@ -845,7 +848,7 @@ public class MiniMenu {
                 setWalkTarget(Player.plane, param1, param2);
             } else if (keyInt == 1) {
                 if (LoginManager.staffModLevel > 0 && Keyboard.pressedKeys[82] && Keyboard.pressedKeys[81]) {
-                    Cheat.teleport(Camera.originX + param1, Camera.originZ + param2, Player.plane);
+                    Cheat.teleport(Camera.sceneBaseTileX + param1, Camera.sceneBaseTileZ + param2, Player.plane);
                 } else if (PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 0, true, 0, param1, 0, 0, 1, param2, PlayerList.self.movementQueueX[0])) {
                     Protocol.outboundBuffer.p1(ComponentList.anInt5);
                     Protocol.outboundBuffer.p1(anInt2878);
@@ -919,8 +922,8 @@ public class MiniMenu {
             PathFinder.findPathToLoc(key, param2, param1);
             Protocol.outboundBuffer.pIsaac1(84);
             Protocol.outboundBuffer.p2_alt3(Integer.MAX_VALUE & (int) (key >>> 32));
-            Protocol.outboundBuffer.p2_alt3(Camera.originZ + param2);
-            Protocol.outboundBuffer.p2_alt1(param1 + Camera.originX);
+            Protocol.outboundBuffer.p2_alt3(Camera.sceneBaseTileZ + param2);
+            Protocol.outboundBuffer.p2_alt1(param1 + Camera.sceneBaseTileX);
         }
         if (actionCode == OBJ_OPERATE_ACTION) {
             Protocol.outboundBuffer.pIsaac1(206);
@@ -933,9 +936,9 @@ public class MiniMenu {
         }
         if (actionCode == OBJ_LOC_ACTION && PathFinder.findPathToLoc(key, param2, param1)) {
             Protocol.outboundBuffer.pIsaac1(134);
-            Protocol.outboundBuffer.p2_alt2(Camera.originX + param1);
+            Protocol.outboundBuffer.p2_alt2(Camera.sceneBaseTileX + param1);
             Protocol.outboundBuffer.p2(anInt4997);
-            Protocol.outboundBuffer.p2_alt1(param2 + Camera.originZ);
+            Protocol.outboundBuffer.p2_alt1(param2 + Camera.sceneBaseTileZ);
             Protocol.outboundBuffer.p2(anInt4370);
             Protocol.outboundBuffer.p4_alt3(MiniMap.anInt5062);
             Protocol.outboundBuffer.p2_alt2((int) (key >>> 32) & Integer.MAX_VALUE);
@@ -979,8 +982,8 @@ public class MiniMenu {
             Crosshair.y = Mouse.mouseClickY;
             Protocol.outboundBuffer.pIsaac1(228);
             Protocol.outboundBuffer.p2(keyInt);
-            Protocol.outboundBuffer.p2_alt1(Camera.originX + param1);
-            Protocol.outboundBuffer.p2_alt3(Camera.originZ + param2);
+            Protocol.outboundBuffer.p2_alt1(Camera.sceneBaseTileX + param1);
+            Protocol.outboundBuffer.p2_alt3(Camera.sceneBaseTileZ + param2);
         }
         if (actionCode == NPC_ACTION_3) {
             npc = NpcList.npcs[keyInt];
@@ -1062,8 +1065,8 @@ public class MiniMenu {
             Crosshair.y = Mouse.mouseClickY;
             Crosshair.CrosshairCycle = 0;
             Protocol.outboundBuffer.pIsaac1(109);
-            Protocol.outboundBuffer.p2_alt1(param2 + Camera.originZ);
-            Protocol.outboundBuffer.p2(param1 + Camera.originX);
+            Protocol.outboundBuffer.p2_alt1(param2 + Camera.sceneBaseTileZ);
+            Protocol.outboundBuffer.p2(param1 + Camera.sceneBaseTileX);
             Protocol.outboundBuffer.p2_alt3(keyInt);
         }
         if (actionCode == OBJ_IN_COMPONENT_ACTION_1) {
@@ -1135,11 +1138,11 @@ public class MiniMenu {
             Crosshair.y = Mouse.mouseClickY;
             Crosshair.CrosshairMode = 2;
             Protocol.outboundBuffer.pIsaac1(101);
-            Protocol.outboundBuffer.p2_alt3(param1 + Camera.originX);
+            Protocol.outboundBuffer.p2_alt3(param1 + Camera.sceneBaseTileX);
             Protocol.outboundBuffer.p2_alt1(anInt4370);
             Protocol.outboundBuffer.p2_alt1(anInt4997);
             Protocol.outboundBuffer.p2_alt1(keyInt);
-            Protocol.outboundBuffer.p2_alt3(Camera.originZ + param2);
+            Protocol.outboundBuffer.p2_alt3(Camera.sceneBaseTileZ + param2);
             Protocol.outboundBuffer.p4_alt3(MiniMap.anInt5062);
         }
         if (actionCode == LOC_ACTION_EXAMINE) {
@@ -1157,9 +1160,9 @@ public class MiniMenu {
             } else if (keyInt == 1) {
                 Protocol.outboundBuffer.pIsaac1(131);
                 Protocol.outboundBuffer.p4_alt3(useWithComponentId);
-                Protocol.outboundBuffer.p2_alt2(Camera.originX + param1);
+                Protocol.outboundBuffer.p2_alt2(Camera.sceneBaseTileX + param1);
                 Protocol.outboundBuffer.p2_alt3(useWithSlot);
-                Protocol.outboundBuffer.p2_alt2(param2 + Camera.originZ);
+                Protocol.outboundBuffer.p2_alt2(param2 + Camera.sceneBaseTileZ);
             }
         }
         if (actionCode == UNKNOWN_8) {
@@ -1211,14 +1214,14 @@ public class MiniMenu {
             Crosshair.x = Mouse.mouseClickX;
             Crosshair.CrosshairCycle = 0;
             Protocol.outboundBuffer.pIsaac1(48);
-            Protocol.outboundBuffer.p2_alt2(param1 + Camera.originX);
+            Protocol.outboundBuffer.p2_alt2(param1 + Camera.sceneBaseTileX);
             Protocol.outboundBuffer.p2_alt3(keyInt);
-            Protocol.outboundBuffer.p2_alt1(Camera.originZ + param2);
+            Protocol.outboundBuffer.p2_alt1(Camera.sceneBaseTileZ + param2);
         }
         if (actionCode == COMPONENT_LOC_ACTION && PathFinder.findPathToLoc(key, param2, param1)) {
             Protocol.outboundBuffer.pIsaac1(233);
-            Protocol.outboundBuffer.p2_alt3(param2 + Camera.originZ);
-            Protocol.outboundBuffer.p2_alt2(Camera.originX + param1);
+            Protocol.outboundBuffer.p2_alt3(param2 + Camera.sceneBaseTileZ);
+            Protocol.outboundBuffer.p2_alt2(Camera.sceneBaseTileX + param1);
             Protocol.outboundBuffer.p2_alt3(useWithSlot);
             Protocol.outboundBuffer.p4rme(useWithComponentId);
             Protocol.outboundBuffer.p2_alt2((int) (key >>> 32) & Integer.MAX_VALUE);
@@ -1261,8 +1264,8 @@ public class MiniMenu {
         if (actionCode == LOC_ACTION_2) {
             PathFinder.findPathToLoc(key, param2, param1);
             Protocol.outboundBuffer.pIsaac1(194);
-            Protocol.outboundBuffer.p2_alt3(param2 + Camera.originZ);
-            Protocol.outboundBuffer.p2_alt1(Camera.originX + param1);
+            Protocol.outboundBuffer.p2_alt3(param2 + Camera.sceneBaseTileZ);
+            Protocol.outboundBuffer.p2_alt1(Camera.sceneBaseTileX + param1);
             Protocol.outboundBuffer.p2((int) (key >>> 32) & Integer.MAX_VALUE);
         }
         if (actionCode == UNKNOWN_48) {
@@ -1306,9 +1309,9 @@ public class MiniMenu {
             Crosshair.CrosshairCycle = 0;
             Protocol.outboundBuffer.pIsaac1(73);
             Protocol.outboundBuffer.p4rme(useWithComponentId);
-            Protocol.outboundBuffer.p2(Camera.originZ + param2);
+            Protocol.outboundBuffer.p2(Camera.sceneBaseTileZ + param2);
             Protocol.outboundBuffer.p2_alt3(keyInt);
-            Protocol.outboundBuffer.p2_alt3(param1 + Camera.originX);
+            Protocol.outboundBuffer.p2_alt3(param1 + Camera.sceneBaseTileX);
             Protocol.outboundBuffer.p2_alt1(useWithSlot);
         }
         if (actionCode == UNKNOWN_12) {
@@ -1323,11 +1326,11 @@ public class MiniMenu {
                 Protocol.anInt4422 = 1;
                 setWalkTarget(Player.plane, param1, param2);
             } else if (LoginManager.staffModLevel > 0 && Keyboard.pressedKeys[82] && Keyboard.pressedKeys[81]) {
-                Cheat.teleport(param1 + Camera.originX, Camera.originZ - -param2, Player.plane);
+                Cheat.teleport(param1 + Camera.sceneBaseTileX, Camera.sceneBaseTileZ - -param2, Player.plane);
             } else {
                 Protocol.outboundBuffer.pIsaac1(179);
-                Protocol.outboundBuffer.p2(param2 + Camera.originZ);
-                Protocol.outboundBuffer.p2(param1 + Camera.originX);
+                Protocol.outboundBuffer.p2(param2 + Camera.sceneBaseTileZ);
+                Protocol.outboundBuffer.p2(param1 + Camera.sceneBaseTileX);
             }
         }
         if (actionCode == UNKNOWN_6) {
@@ -1357,8 +1360,8 @@ public class MiniMenu {
             Crosshair.CrosshairMode = 2;
             Protocol.outboundBuffer.pIsaac1(33);
             Protocol.outboundBuffer.p2(keyInt);
-            Protocol.outboundBuffer.p2(Camera.originX + param1);
-            Protocol.outboundBuffer.p2_alt1(Camera.originZ + param2);
+            Protocol.outboundBuffer.p2(Camera.sceneBaseTileX + param1);
+            Protocol.outboundBuffer.p2_alt1(Camera.sceneBaseTileZ + param2);
         }
         if (actionCode == NPC_ACTION_2) {
             npc = NpcList.npcs[keyInt];

@@ -647,7 +647,7 @@ public final class Client extends GameShell {
 		}
 		MiniMenu.anInt5014 = 0;
 		Camera.cameraAnticheatOffsetX = (int) (Math.random() * 100.0D) - 50;
-		LoginManager.mapFlagZ = 0;
+		LoginManager.flagSceneTileZ = 0;
 		Camera.orbitCameraYaw = (int) (Math.random() * 20.0D) - 10 & 0x7FF;
 		LightingManager.anInt2875 = -1;
 		PlayerList.playerCount = 0;
@@ -656,7 +656,7 @@ public final class Client extends GameShell {
 		MiniMenu.useWithActive = false;
 		MiniMap.minimapZoom = (int) (Math.random() * 30.0D) - 20;
 		SoundPlayer.size = 0;
-		LoginManager.mapFlagX = 0;
+		LoginManager.flagSceneTileX = 0;
 		MiniMap.minimapAnticheatAngle = (int) (Math.random() * 120.0D) - 60;
 		Chat.size = 0;
 		Camera.cameraAnticheatAngle = (int) (Math.random() * 80.0D) - 40;

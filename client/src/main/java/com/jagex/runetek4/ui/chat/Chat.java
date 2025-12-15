@@ -9,30 +9,41 @@ import org.openrs2.deob.annotation.Pc;
 public class Chat {
     @OriginalMember(owner = "client!ca", name = "eb", descriptor = "[I")
     public static final int[] types = new int[100];
-    @OriginalMember(owner = "runetek4.client!fb", name = "l", descriptor = "[Lclient!na;")
+
+    @OriginalMember(owner = "client!fb", name = "l", descriptor = "[Lclient!na;")
     public static final JString[] clans = new JString[100];
-    @OriginalMember(owner = "runetek4.client!sj", name = "q", descriptor = "[Lclient!na;")
+
+    @OriginalMember(owner = "client!sj", name = "q", descriptor = "[Lclient!na;")
     public static final JString[] messages = new JString[100];
-    @OriginalMember(owner = "runetek4.client!th", name = "l", descriptor = "[I")
+
+    @OriginalMember(owner = "client!th", name = "l", descriptor = "[I")
     public static final int[] phraseIds = new int[100];
-    @OriginalMember(owner = "runetek4.client!mc", name = "Y", descriptor = "[Lclient!na;")
+
+    @OriginalMember(owner = "client!mc", name = "Y", descriptor = "[Lclient!na;")
     public static final JString[] names = new JString[100];
-    @OriginalMember(owner = "runetek4.client!t", name = "w", descriptor = "[J")
+
+    @OriginalMember(owner = "client!t", name = "w", descriptor = "[J")
     public static final long[] recentMessages = new long[100];
-    @OriginalMember(owner = "runetek4.client!dm", name = "u", descriptor = "I")
+
+    @OriginalMember(owner = "client!dm", name = "u", descriptor = "I")
     public static int transmitAt = 0;
-    @OriginalMember(owner = "runetek4.client!f", name = "Z", descriptor = "I")
+
+    @OriginalMember(owner = "client!f", name = "Z", descriptor = "I")
     public static int size = 0;
-    @OriginalMember(owner = "runetek4.client!gk", name = "i", descriptor = "I")
+
+    @OriginalMember(owner = "client!gk", name = "i", descriptor = "I")
     public static int tradeFilter = 0;
-    @OriginalMember(owner = "runetek4.client!dm", name = "m", descriptor = "I")
+
+    @OriginalMember(owner = "client!dm", name = "m", descriptor = "I")
     public static int privateFilter = 0;
-    @OriginalMember(owner = "runetek4.client!ej", name = "U", descriptor = "I")
+
+    @OriginalMember(owner = "client!ej", name = "U", descriptor = "I")
     public static int publicFilter = 0;
-    @OriginalMember(owner = "runetek4.client!ug", name = "e", descriptor = "I")
+
+    @OriginalMember(owner = "client!ug", name = "e", descriptor = "I")
     public static int messageCounter = 0;
 
-    @OriginalMember(owner = "runetek4.client!md", name = "a", descriptor = "(IILclient!na;Lclient!na;BLclient!na;)V")
+    @OriginalMember(owner = "client!md", name = "a", descriptor = "(IILclient!na;Lclient!na;BLclient!na;)V")
     public static void add(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) JString arg2, @OriginalArg(3) JString arg3, @OriginalArg(5) JString arg4) {
         for (@Pc(14) int local14 = 99; local14 > 0; local14--) {
             types[local14] = types[local14 - 1];
@@ -50,12 +61,12 @@ public class Chat {
         clans[0] = arg3;
     }
 
-    @OriginalMember(owner = "runetek4.client!i", name = "a", descriptor = "(Lclient!na;ILclient!na;I)V")
+    @OriginalMember(owner = "client!i", name = "a", descriptor = "(Lclient!na;ILclient!na;I)V")
     public static void addMessage(@OriginalArg(0) JString arg0, @OriginalArg(1) int arg1, @OriginalArg(2) JString arg2) {
         add(-1, arg1, arg2, null, arg0);
     }
 
-    @OriginalMember(owner = "runetek4.client!fm", name = "a", descriptor = "(ILclient!na;Lclient!na;Lclient!na;I)V")
+    @OriginalMember(owner = "client!fm", name = "a", descriptor = "(ILclient!na;Lclient!na;Lclient!na;I)V")
     public static void method1598(@OriginalArg(1) JString arg0, @OriginalArg(2) JString arg1, @OriginalArg(3) JString arg2) {
         add(-1, 9, arg0, arg2, arg1);
     }

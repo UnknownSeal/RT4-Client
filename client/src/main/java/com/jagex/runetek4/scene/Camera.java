@@ -54,9 +54,9 @@ public class Camera {
     @OriginalMember(owner = "runetek4.client!me", name = "k", descriptor = "I")
     public static int cameraSplineId = -1;
     @OriginalMember(owner = "runetek4.client!lc", name = "n", descriptor = "I")
-    public static int originZ;
+    public static int sceneBaseTileZ;
     @OriginalMember(owner = "runetek4.client!se", name = "a", descriptor = "I")
-    public static int originX;
+    public static int sceneBaseTileX;
     @OriginalMember(owner = "client!bc", name = "I", descriptor = "Z")
     public static boolean shouldReverse = false;
     @OriginalMember(owner = "runetek4.client!km", name = "Pc", descriptor = "I")
@@ -245,8 +245,8 @@ public class Camera {
             cameraPosition[coordinateAxis] = (float) keyframe0 + (((float) cubicTerm * animationProgress + (float) quadraticTerm) * animationProgress + (float) linearTerm) * animationProgress;
         }
         cameraY = (int) cameraPosition[1] * -1;
-        renderX = (int) cameraPosition[0] - originX * 128;
-        renderZ = (int) cameraPosition[2] - originZ * 128;
+        renderX = (int) cameraPosition[0] - sceneBaseTileX * 128;
+        renderZ = (int) cameraPosition[2] - sceneBaseTileZ * 128;
         @Pc(226) float[] lookAtPosition = new float[3];
         keyframe0Scaled = lookAtKeyframe * 2;
         for (keyframe1Scaled = 0; keyframe1Scaled < 3; keyframe1Scaled++) {

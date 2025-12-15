@@ -13,28 +13,34 @@ public class OverHeadChat {
     @OriginalMember(owner = "client!bf", name = "I", descriptor = "[I")
     public static final int[] CHAT_COLORS = new int[]{16776960, 16711680, 65280, 65535, 16711935, 16777215};
 
-    @OriginalMember(owner = "runetek4.client!pg", name = "fb", descriptor = "I")
+    @OriginalMember(owner = "client!pg", name = "fb", descriptor = "I")
     public static final int capacity = 50;
-    @OriginalMember(owner = "runetek4.client!pg", name = "P", descriptor = "[Lclient!na;")
+
+    @OriginalMember(owner = "client!pg", name = "P", descriptor = "[Lclient!na;")
     public static final JString[] messages = new JString[capacity];
-    @OriginalMember(owner = "runetek4.client!pg", name = "R", descriptor = "[I")
+
+    @OriginalMember(owner = "client!pg", name = "R", descriptor = "[I")
     public static final int[] anIntArray385 = new int[capacity];
-    @OriginalMember(owner = "runetek4.client!pg", name = "lb", descriptor = "[I")
+
+    @OriginalMember(owner = "client!pg", name = "lb", descriptor = "[I")
     public static final int[] anIntArray392 = new int[capacity];
+
     @OriginalMember(owner = "runetek4.client!pg", name = "eb", descriptor = "[I")
     public static final int[] colors = new int[capacity];
-    @OriginalMember(owner = "runetek4.client!pg", name = "Q", descriptor = "[I")
+
+    @OriginalMember(owner = "client!pg", name = "Q", descriptor = "[I")
     public static final int[] loops = new int[capacity];
 
-    @OriginalMember(owner = "runetek4.client!pg", name = "kb", descriptor = "[I")
+    @OriginalMember(owner = "client!pg", name = "kb", descriptor = "[I")
     public static final int[] effects = new int[capacity];
 
-    @OriginalMember(owner = "runetek4.client!pg", name = "Z", descriptor = "[I")
+    @OriginalMember(owner = "client!pg", name = "Z", descriptor = "[I")
     public static final int[] anIntArray387 = new int[capacity];
 
-    @OriginalMember(owner = "runetek4.client!pg", name = "cb", descriptor = "[I")
+    @OriginalMember(owner = "client!pg", name = "cb", descriptor = "[I")
     public static final int[] anIntArray389 = new int[capacity];
-    @OriginalMember(owner = "runetek4.client!wi", name = "bb", descriptor = "I")
+
+    @OriginalMember(owner = "client!wi", name = "bb", descriptor = "I")
     public static int sizes = 0;
 
     @OriginalMember(owner = "client!bi", name = "f", descriptor = "(B)V")

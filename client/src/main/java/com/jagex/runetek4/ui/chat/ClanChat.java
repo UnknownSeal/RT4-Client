@@ -8,51 +8,57 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public class ClanChat {
-    @OriginalMember(owner = "runetek4.client!wj", name = "l", descriptor = "I")
+    @OriginalMember(owner = "client!wj", name = "l", descriptor = "I")
     public static int transmitAt = 0;
-    @OriginalMember(owner = "runetek4.client!mj", name = "u", descriptor = "B")
+
+    @OriginalMember(owner = "client!mj", name = "u", descriptor = "B")
     public static byte rank;
-    @OriginalMember(owner = "runetek4.client!e", name = "rc", descriptor = "B")
+
+    @OriginalMember(owner = "client!e", name = "rc", descriptor = "B")
     public static byte minKick;
-    @OriginalMember(owner = "runetek4.client!wb", name = "m", descriptor = "Lclient!na;")
+
+    @OriginalMember(owner = "client!wb", name = "m", descriptor = "Lclient!na;")
     public static JString owner = null;
+
     @OriginalMember(owner = "client!be", name = "ac", descriptor = "Lclient!na;")
     public static JString name = null;
-    @OriginalMember(owner = "runetek4.client!rg", name = "y", descriptor = "I")
+
+    @OriginalMember(owner = "client!rg", name = "y", descriptor = "I")
     public static int size;
-    @OriginalMember(owner = "runetek4.client!qc", name = "bb", descriptor = "[Lclient!kl;")
+
+    @OriginalMember(owner = "client!qc", name = "bb", descriptor = "[Lclient!kl;")
     public static ClanMember[] members;
 
-    @OriginalMember(owner = "runetek4.client!kh", name = "b", descriptor = "(I)V")
+    @OriginalMember(owner = "client!kh", name = "b", descriptor = "(I)V")
     public static void leave() {
         Protocol.outboundBuffer.pIsaac1(104);
         Protocol.outboundBuffer.p8(0L);
     }
 
-    @OriginalMember(owner = "runetek4.client!mf", name = "a", descriptor = "(JI)V")
-    public static void join(@OriginalArg(0) long arg0) {
-        if ((long) 0 != arg0) {
+    @OriginalMember(owner = "client!mf", name = "a", descriptor = "(JI)V")
+    public static void join(@OriginalArg(0) long clanName) {
+        if ((long) 0 != clanName) {
             Protocol.outboundBuffer.pIsaac1(104);
-            Protocol.outboundBuffer.p8(arg0);
+            Protocol.outboundBuffer.p8(clanName);
         }
     }
 
-    @OriginalMember(owner = "runetek4.client!od", name = "a", descriptor = "(ILclient!na;)V")
-    public static void kick(@OriginalArg(1) JString arg0) {
+    @OriginalMember(owner = "client!od", name = "a", descriptor = "(ILclient!na;)V")
+    public static void kick(@OriginalArg(1) JString userToKick) {
         if (members == null) {
             return;
         }
-        @Pc(22) long local22 = arg0.encode37();
-        @Pc(24) int local24 = 0;
-        if (local22 == 0L) {
+        @Pc(22) long username37 = userToKick.encode37();
+        @Pc(24) int i = 0;
+        if (username37 == 0L) {
             return;
         }
-        while (members.length > local24 && members[local24].nodeId != local22) {
-            local24++;
+        while (members.length > i && members[i].nodeId != username37) {
+            i++;
         }
-        if (local24 < members.length && members[local24] != null) {
+        if (i < members.length && members[i] != null) {
             Protocol.outboundBuffer.pIsaac1(162);
-            Protocol.outboundBuffer.p8(members[local24].nodeId);
+            Protocol.outboundBuffer.p8(members[i].nodeId);
         }
     }
 }

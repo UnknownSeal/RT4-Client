@@ -409,7 +409,7 @@ public class Game {
                         Protocol.outboundBuffer.p2(ComponentList.selectedInventorySlot);
                         Protocol.outboundBuffer.p4_alt1(ComponentList.clickedInventoryComponent.id);
                         Protocol.outboundBuffer.p2_alt2(MiniMenu.mouseInvInterfaceIndex);
-                        Protocol.outboundBuffer.p1_alt3(moveItemInsertionMode);
+                        Protocol.outboundBuffer.p1b_alt3(moveItemInsertionMode);
                     }
                 } else if ((VarpDomain.oneMouseButton == 1 || MiniMenu.isComponentAction(MiniMenu.menuActionRow - 1)) && MiniMenu.menuActionRow > 2) {
                     ClientScriptRunner.determineMenuSize();
@@ -470,11 +470,11 @@ public class Game {
                                                     y = 3;
                                                 }
                                                 // Cheat
-                                                Cheat.teleport(PlayerList.self.movementQueueX[0] + Camera.originX, PlayerList.self.movementQueueZ[0] + Camera.originZ, y);
+                                                Cheat.teleport(PlayerList.self.movementQueueX[0] + Camera.sceneBaseTileX, PlayerList.self.movementQueueZ[0] + Camera.sceneBaseTileZ, y);
                                             }
                                             if (LoginManager.staffModLevel > 0 && Keyboard.pressedKeys[82] && Keyboard.pressedKeys[81]) {
                                                 if (MiniMenu.clickTileX != -1) {
-                                                    Cheat.teleport(Camera.originX + MiniMenu.clickTileX, Camera.originZ + MiniMenu.clickTileZ, Player.plane);
+                                                    Cheat.teleport(Camera.sceneBaseTileX + MiniMenu.clickTileX, Camera.sceneBaseTileZ + MiniMenu.clickTileZ, Player.plane);
                                                 }
                                                 Protocol.anInt4422 = 0;
                                                 MiniMenu.anInt3096 = 0;
@@ -482,9 +482,9 @@ public class Game {
                                                 if (MiniMenu.clickTileX != -1) {
                                                     Protocol.outboundBuffer.pIsaac1(131);
                                                     Protocol.outboundBuffer.p4_alt3(MiniMenu.useWithComponentId);
-                                                    Protocol.outboundBuffer.p2_alt2(Camera.originX + MiniMenu.clickTileX);
+                                                    Protocol.outboundBuffer.p2_alt2(Camera.sceneBaseTileX + MiniMenu.clickTileX);
                                                     Protocol.outboundBuffer.p2_alt3(MiniMenu.useWithSlot);
-                                                    Protocol.outboundBuffer.p2_alt2(MiniMenu.clickTileZ + Camera.originZ);
+                                                    Protocol.outboundBuffer.p2_alt2(MiniMenu.clickTileZ + Camera.sceneBaseTileZ);
                                                     Crosshair.CrosshairMode = 1;
                                                     Crosshair.CrosshairCycle = 0;
                                                     Crosshair.y = Mouse.mouseClickY;
@@ -494,8 +494,8 @@ public class Game {
                                             } else if (Protocol.anInt4422 == 2) {
                                                 if (MiniMenu.clickTileX != -1) {
                                                     Protocol.outboundBuffer.pIsaac1(179);
-                                                    Protocol.outboundBuffer.p2(Camera.originZ + MiniMenu.clickTileZ);
-                                                    Protocol.outboundBuffer.p2(MiniMenu.clickTileX + Camera.originX);
+                                                    Protocol.outboundBuffer.p2(Camera.sceneBaseTileZ + MiniMenu.clickTileZ);
+                                                    Protocol.outboundBuffer.p2(MiniMenu.clickTileX + Camera.sceneBaseTileX);
                                                     Crosshair.CrosshairCycle = 0;
                                                     Crosshair.CrosshairMode = 1;
                                                     Crosshair.x = Mouse.mouseClickX;
@@ -692,10 +692,10 @@ public class Game {
         MusicPlayer.groupId = -1;
         AreaSoundManager.clear(true);
         SceneGraph.dynamicMapRegion = false;
-        Camera.originZ = 0;
+        Camera.sceneBaseTileZ = 0;
         SceneGraph.centralZoneX = 0;
         SceneGraph.centralZoneZ = 0;
-        Camera.originX = 0;
+        Camera.sceneBaseTileX = 0;
         for (i = 0; i < MiniMap.hintMapMarkers.length; i++) {
             MiniMap.hintMapMarkers[i] = null;
         }

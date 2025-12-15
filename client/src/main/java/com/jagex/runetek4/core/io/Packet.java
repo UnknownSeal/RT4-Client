@@ -215,7 +215,7 @@ public class Packet extends Node {
 	}
 
 	@OriginalMember(owner = "client!wa", name = "d", descriptor = "(II)V")
-	public final void p1_alt3(@OriginalArg(1) int value) {
+	public final void p1b_alt3(@OriginalArg(1) int value) {
 		this.data[this.offset++] = (byte) (128 - value);
 	}
 
@@ -538,7 +538,7 @@ public class Packet extends Node {
 	}
 
 	@OriginalMember(owner = "client!wa", name = "n", descriptor = "(I)B")
-	public final byte p1_alt3() {
+	public final byte p1b_alt3() {
 		return (byte) (this.data[this.offset++] - 128);
 	}
 

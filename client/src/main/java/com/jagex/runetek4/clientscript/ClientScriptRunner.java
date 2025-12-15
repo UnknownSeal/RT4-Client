@@ -564,10 +564,10 @@ public final class ClientScriptRunner {
 					value = VarpDomain.getVarbitValue(pc2);
 				}
 				if (opcode == 18) {
-					value = (PlayerList.self.xFine >> 7) + Camera.originX;
+					value = (PlayerList.self.xFine >> 7) + Camera.sceneBaseTileX;
 				}
 				if (opcode == 19) {
-					value = (PlayerList.self.zFine >> 7) + Camera.originZ;
+					value = (PlayerList.self.zFine >> 7) + Camera.sceneBaseTileZ;
 				}
 				if (opcode == 20) {
 					value = script[pc++];
@@ -2047,8 +2047,8 @@ public final class ClientScriptRunner {
 									}
 									if (opcode == 3308) {
 										componentId = Player.plane;
-										interfaceType = Camera.originX + (PlayerList.self.xFine >> 7);
-										j = (PlayerList.self.zFine >> 7) + Camera.originZ;
+										interfaceType = Camera.sceneBaseTileX + (PlayerList.self.xFine >> 7);
+										j = (PlayerList.self.zFine >> 7) + Camera.sceneBaseTileZ;
 										scriptIntValues[isp++] = (componentId << 28) - (-(interfaceType << 14) - j);
 										continue;
 									}
@@ -2439,7 +2439,7 @@ public final class ClientScriptRunner {
 										isp--;
 										componentId = scriptIntValues[isp];
 										if (FriendList.state != 0 && IgnoreList.ignoreCount > componentId) {
-											scriptStringValues[ssp++] = Base37.decode37(IgnoreList.encodedIgnores[componentId]).toTitleCase();
+											scriptStringValues[ssp++] = Base37.fromBase37(IgnoreList.encodedIgnores[componentId]).toTitleCase();
 											continue;
 										}
 										scriptStringValues[ssp++] = EMPTY_STRING;
@@ -3753,7 +3753,7 @@ public final class ClientScriptRunner {
 														i = scriptIntValues[isp + 3];
 														j = scriptIntValues[isp + 2];
 														interfaceType = scriptIntValues[isp + 1];
-														Camera.setCameraTargetPosition(false, j, interfaceType, i, (componentId & 0x3FFF) - Camera.originZ, (componentId >> 14 & 0x3FFF) - Camera.originX);
+														Camera.setCameraTargetPosition(false, j, interfaceType, i, (componentId & 0x3FFF) - Camera.sceneBaseTileZ, (componentId >> 14 & 0x3FFF) - Camera.sceneBaseTileX);
 														continue;
 													}
 													if (opcode == 5501) {
@@ -3762,7 +3762,7 @@ public final class ClientScriptRunner {
 														componentId = scriptIntValues[isp];
 														i = scriptIntValues[isp + 3];
 														j = scriptIntValues[isp + 2];
-														Camera.setCameraLookAtTarget(interfaceType, (componentId & 0x3FFF) - Camera.originZ, j, (componentId >> 14 & 0x3FFF) - Camera.originX, i);
+														Camera.setCameraLookAtTarget(interfaceType, (componentId & 0x3FFF) - Camera.sceneBaseTileZ, j, (componentId >> 14 & 0x3FFF) - Camera.sceneBaseTileX, i);
 														continue;
 													}
 													if (opcode == 5502) {
@@ -5284,8 +5284,8 @@ public final class ClientScriptRunner {
 	@OriginalMember(owner = "client!cn", name = "b", descriptor = "(ZI)V")
 	public static void pushPlayers(@OriginalArg(0) boolean arg0) {
 		@Pc(3) int playerCount = PlayerList.playerCount;
-		if (LoginManager.mapFlagX == PlayerList.self.xFine >> 7 && PlayerList.self.zFine >> 7 == LoginManager.mapFlagZ) {
-			LoginManager.mapFlagX = 0;
+		if (LoginManager.flagSceneTileX == PlayerList.self.xFine >> 7 && PlayerList.self.zFine >> 7 == LoginManager.flagSceneTileZ) {
+			LoginManager.flagSceneTileX = 0;
 		}
 		if (arg0) {
 			playerCount = 1;
@@ -5658,16 +5658,16 @@ public final class ClientScriptRunner {
 		} else {
 			@Pc(47) int queueRead = 0;
 			@Pc(49) byte queueStart = 0;
-			PathFinder.queueX[0] = startX;
+			PathFinder.bfsStepX[0] = startX;
 			@Pc(69) int queueWrite = queueStart + 1;
-			PathFinder.queueZ[0] = startZ;
+			PathFinder.bfsStepZ[0] = startZ;
 			tileMarkings[Player.plane][startX][startZ] = markValue;
 			while (queueRead != queueWrite) {
-				@Pc(94) int direction1 = PathFinder.queueX[queueRead] >> 16 & 0xFF;
-				@Pc(102) int direction2 = PathFinder.queueX[queueRead] >> 24 & 0xFF;
-				@Pc(108) int currentX = PathFinder.queueX[queueRead] & 0xFFFF;
-				@Pc(116) int direction3 = PathFinder.queueZ[queueRead] >> 16 & 0xFF;
-				@Pc(122) int currentZ = PathFinder.queueZ[queueRead] & 0xFFFF;
+				@Pc(94) int direction1 = PathFinder.bfsStepX[queueRead] >> 16 & 0xFF;
+				@Pc(102) int direction2 = PathFinder.bfsStepX[queueRead] >> 24 & 0xFF;
+				@Pc(108) int currentX = PathFinder.bfsStepX[queueRead] & 0xFFFF;
+				@Pc(116) int direction3 = PathFinder.bfsStepZ[queueRead] >> 16 & 0xFF;
+				@Pc(122) int currentZ = PathFinder.bfsStepZ[queueRead] & 0xFFFF;
 				queueRead = queueRead + 1 & 0xFFF;
 				@Pc(130) boolean isBlocked = false;
 				@Pc(132) boolean foundVisible = false;
@@ -5749,56 +5749,56 @@ public final class ClientScriptRunner {
 				}
 				if (!isBlocked) {
 					if (currentX >= 1 && tileMarkings[Player.plane][currentX - 1][currentZ] != markValue) {
-						PathFinder.queueX[queueWrite] = currentX - 1 | 0x120000 | 0xD3000000;
-						PathFinder.queueZ[queueWrite] = currentZ | 0x130000;
+						PathFinder.bfsStepX[queueWrite] = currentX - 1 | 0x120000 | 0xD3000000;
+						PathFinder.bfsStepZ[queueWrite] = currentZ | 0x130000;
 						queueWrite = queueWrite + 1 & 0xFFF;
 						tileMarkings[Player.plane][currentX - 1][currentZ] = markValue;
 					}
 					currentZ++;
 					if (currentZ < 104) {
 						if (currentX - 1 >= 0 && markValue != tileMarkings[Player.plane][currentX - 1][currentZ] && (SceneGraph.renderFlags[Player.plane][currentX][currentZ] & 0x4) == 0 && (SceneGraph.renderFlags[Player.plane][currentX - 1][currentZ - 1] & 0x4) == 0) {
-							PathFinder.queueX[queueWrite] = 0x52000000 | 0x120000 | currentX - 1;
-							PathFinder.queueZ[queueWrite] = currentZ | 0x130000;
+							PathFinder.bfsStepX[queueWrite] = 0x52000000 | 0x120000 | currentX - 1;
+							PathFinder.bfsStepZ[queueWrite] = currentZ | 0x130000;
 							tileMarkings[Player.plane][currentX - 1][currentZ] = markValue;
 							queueWrite = queueWrite + 1 & 0xFFF;
 						}
 						if (markValue != tileMarkings[Player.plane][currentX][currentZ]) {
-							PathFinder.queueX[queueWrite] = currentX | 0x13000000 | 0x520000;
-							PathFinder.queueZ[queueWrite] = currentZ | 0x530000;
+							PathFinder.bfsStepX[queueWrite] = currentX | 0x13000000 | 0x520000;
+							PathFinder.bfsStepZ[queueWrite] = currentZ | 0x530000;
 							queueWrite = queueWrite + 1 & 0xFFF;
 							tileMarkings[Player.plane][currentX][currentZ] = markValue;
 						}
 						if (currentX + 1 < 104 && tileMarkings[Player.plane][currentX + 1][currentZ] != markValue && (SceneGraph.renderFlags[Player.plane][currentX][currentZ] & 0x4) == 0 && (SceneGraph.renderFlags[Player.plane][currentX + 1][currentZ - 1] & 0x4) == 0) {
-							PathFinder.queueX[queueWrite] = 0x92000000 | 0x520000 | currentX + 1;
-							PathFinder.queueZ[queueWrite] = currentZ | 0x530000;
+							PathFinder.bfsStepX[queueWrite] = 0x92000000 | 0x520000 | currentX + 1;
+							PathFinder.bfsStepZ[queueWrite] = currentZ | 0x530000;
 							tileMarkings[Player.plane][currentX + 1][currentZ] = markValue;
 							queueWrite = queueWrite + 1 & 0xFFF;
 						}
 					}
 					currentZ--;
 					if (currentX + 1 < 104 && markValue != tileMarkings[Player.plane][currentX + 1][currentZ]) {
-						PathFinder.queueX[queueWrite] = currentX + 1 | 0x920000 | 0x53000000;
-						PathFinder.queueZ[queueWrite] = currentZ | 0x930000;
+						PathFinder.bfsStepX[queueWrite] = currentX + 1 | 0x920000 | 0x53000000;
+						PathFinder.bfsStepZ[queueWrite] = currentZ | 0x930000;
 						tileMarkings[Player.plane][currentX + 1][currentZ] = markValue;
 						queueWrite = queueWrite + 1 & 0xFFF;
 					}
 					currentZ--;
 					if (currentZ >= 0) {
 						if (currentX - 1 >= 0 && tileMarkings[Player.plane][currentX - 1][currentZ] != markValue && (SceneGraph.renderFlags[Player.plane][currentX][currentZ] & 0x4) == 0 && (SceneGraph.renderFlags[Player.plane][currentX - 1][currentZ + 1] & 0x4) == 0) {
-							PathFinder.queueX[queueWrite] = currentX - 1 | 0xD20000 | 0x12000000;
-							PathFinder.queueZ[queueWrite] = currentZ | 0xD30000;
+							PathFinder.bfsStepX[queueWrite] = currentX - 1 | 0xD20000 | 0x12000000;
+							PathFinder.bfsStepZ[queueWrite] = currentZ | 0xD30000;
 							tileMarkings[Player.plane][currentX - 1][currentZ] = markValue;
 							queueWrite = queueWrite + 1 & 0xFFF;
 						}
 						if (markValue != tileMarkings[Player.plane][currentX][currentZ]) {
-							PathFinder.queueX[queueWrite] = currentX | 0xD20000 | 0x93000000;
-							PathFinder.queueZ[queueWrite] = currentZ | 0xD30000;
+							PathFinder.bfsStepX[queueWrite] = currentX | 0xD20000 | 0x93000000;
+							PathFinder.bfsStepZ[queueWrite] = currentZ | 0xD30000;
 							queueWrite = queueWrite + 1 & 0xFFF;
 							tileMarkings[Player.plane][currentX][currentZ] = markValue;
 						}
 						if (currentX + 1 < 104 && tileMarkings[Player.plane][currentX + 1][currentZ] != markValue && (SceneGraph.renderFlags[Player.plane][currentX][currentZ] & 0x4) == 0 && (SceneGraph.renderFlags[Player.plane][currentX + 1][currentZ + 1] & 0x4) == 0) {
-							PathFinder.queueX[queueWrite] = currentX + 1 | 0xD2000000 | 0x920000;
-							PathFinder.queueZ[queueWrite] = currentZ | 0x930000;
+							PathFinder.bfsStepX[queueWrite] = currentX + 1 | 0xD2000000 | 0x920000;
+							PathFinder.bfsStepZ[queueWrite] = currentZ | 0x930000;
 							tileMarkings[Player.plane][currentX + 1][currentZ] = markValue;
 							queueWrite = queueWrite + 1 & 0xFFF;
 						}

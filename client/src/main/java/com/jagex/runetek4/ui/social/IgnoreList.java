@@ -12,21 +12,22 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public class IgnoreList {
-    @OriginalMember(owner = "runetek4.client!pf", name = "h", descriptor = "[J")
+    @OriginalMember(owner = "client!pf", name = "h", descriptor = "[J")
     public static final long[] encodedIgnores = new long[100];
-    @OriginalMember(owner = "runetek4.client!pi", name = "V", descriptor = "[Lclient!na;")
-    public static final JString[] ignoreNames = new JString[100];
 
-    @OriginalMember(owner = "runetek4.client!cl", name = "Z", descriptor = "I")
+    @OriginalMember(owner = "client!pi", name = "V", descriptor = "[Lclient!na;")
+    public static final JString[] ignoreName37 = new JString[100];
+
+    @OriginalMember(owner = "client!cl", name = "Z", descriptor = "I")
     public static int ignoreCount = 0;
 
-    @OriginalMember(owner = "runetek4.client!te", name = "b", descriptor = "(Lclient!na;I)Z")
+    @OriginalMember(owner = "client!te", name = "b", descriptor = "(Lclient!na;I)Z")
     public static boolean contains(@OriginalArg(0) JString arg0) {
         if (arg0 == null) {
             return false;
         }
         for (@Pc(11) int local11 = 0; local11 < ignoreCount; local11++) {
-            if (arg0.equalsIgnoreCase(ignoreNames[local11])) {
+            if (arg0.equalsIgnoreCase(ignoreName37[local11])) {
                 return true;
             }
         }
@@ -42,7 +43,7 @@ public class IgnoreList {
             Chat.addMessage(JString.EMPTY, 0, LocalizedText.IGNORELISTFULL);
             return;
         }
-        @Pc(34) JString displayName = Base37.decode37(username).toTitleCase();
+        @Pc(34) JString displayName = Base37.fromBase37(username).toTitleCase();
         @Pc(36) int i;
         for (i = 0; i < ignoreCount; i++) {
             if (encodedIgnores[i] == username) {
@@ -61,27 +62,27 @@ public class IgnoreList {
             return;
         }
         encodedIgnores[ignoreCount] = username;
-        ignoreNames[ignoreCount++] = Base37.decode37(username);
+        ignoreName37[ignoreCount++] = Base37.fromBase37(username);
         FriendList.transmitAt = ComponentList.transmitTimer;
         Protocol.outboundBuffer.pIsaac1(34);
         Protocol.outboundBuffer.p8(username);
     }
 
     @OriginalMember(owner = "client!fh", name = "a", descriptor = "(JI)V")
-    public static void remove(@OriginalArg(0) long arg0) {
-        if (arg0 == 0L) {
+    public static void remove(@OriginalArg(0) long username) {
+        if (username == 0L) {
             return;
         }
-        for (@Pc(12) int local12 = 0; local12 < ignoreCount; local12++) {
-            if (encodedIgnores[local12] == arg0) {
+        for (@Pc(12) int i = 0; i < ignoreCount; i++) {
+            if (encodedIgnores[i] == username) {
                 ignoreCount--;
-                for (@Pc(36) int local36 = local12; local36 < ignoreCount; local36++) {
-                    encodedIgnores[local36] = encodedIgnores[local36 + 1];
-                    ignoreNames[local36] = ignoreNames[local36 + 1];
+                for (@Pc(36) int j = i; j < ignoreCount; j++) {
+                    encodedIgnores[j] = encodedIgnores[j + 1];
+                    ignoreName37[j] = ignoreName37[j + 1];
                 }
                 FriendList.transmitAt = ComponentList.transmitTimer;
                 Protocol.outboundBuffer.pIsaac1(213);
-                Protocol.outboundBuffer.p8(arg0);
+                Protocol.outboundBuffer.p8(username);
                 break;
             }
         }

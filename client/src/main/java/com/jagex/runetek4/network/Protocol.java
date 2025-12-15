@@ -283,7 +283,7 @@ public class Protocol {
             Game.tryReconnect();
             return true;
         } catch (@Pc(19) Exception exception) {
-            @Pc(61) String message = "T2 - " + opcode + "," + opcode3 + "," + opcode4 + " - " + packetSize + "," + (Camera.originX + PlayerList.self.movementQueueX[0]) + "," + (PlayerList.self.movementQueueZ[0] + Camera.originZ) + " - ";
+            @Pc(61) String message = "T2 - " + opcode + "," + opcode3 + "," + opcode4 + " - " + packetSize + "," + (Camera.sceneBaseTileX + PlayerList.self.movementQueueX[0]) + "," + (PlayerList.self.movementQueueZ[0] + Camera.sceneBaseTileZ) + " - ";
             for (@Pc(63) int byteIndex = 0; byteIndex < packetSize && byteIndex < 50; byteIndex++) {
                 message = message + inboundBuffer.data[byteIndex] + ",";
             }
@@ -505,7 +505,7 @@ public class Protocol {
             return true;
         } else if (opcode == 153) {
             opcode = -1;
-            LoginManager.mapFlagX = 0;
+            LoginManager.flagSceneTileX = 0;
             return true;
         } else {
             @Pc(864) int world;
@@ -559,11 +559,11 @@ public class Protocol {
                     Chat.messageCounter = (Chat.messageCounter + 1) % 100;
                     @Pc(999) JString local999 = QuickChatPhraseTypeList.get(local916).decodeMessage(inboundBuffer);
                     if (chatType == 2 || chatType == 3) {
-                        Chat.add(local916, 20, local999, Base37.decode37(username).toTitleCase(), JString.concatenate(new JString[] { IMG1, Base37.decode37(senderName).toTitleCase() }));
+                        Chat.add(local916, 20, local999, Base37.fromBase37(username).toTitleCase(), JString.concatenate(new JString[] { IMG1, Base37.fromBase37(senderName).toTitleCase() }));
                     } else if (chatType == 1) {
-                        Chat.add(local916, 20, local999, Base37.decode37(username).toTitleCase(), JString.concatenate(new JString[] { IMG0, Base37.decode37(senderName).toTitleCase() }));
+                        Chat.add(local916, 20, local999, Base37.fromBase37(username).toTitleCase(), JString.concatenate(new JString[] { IMG0, Base37.fromBase37(senderName).toTitleCase() }));
                     } else {
-                        Chat.add(local916, 20, local999, Base37.decode37(username).toTitleCase(), Base37.decode37(senderName).toTitleCase());
+                        Chat.add(local916, 20, local999, Base37.fromBase37(username).toTitleCase(), Base37.fromBase37(senderName).toTitleCase());
                     }
                 }
                 opcode = -1;
@@ -584,8 +584,8 @@ public class Protocol {
                     return true;
                 }
                 username = inboundBuffer.g8();
-                ClanChat.name = Base37.decode37(username);
-                ClanChat.owner = Base37.decode37(senderName);
+                ClanChat.name = Base37.fromBase37(username);
+                ClanChat.owner = Base37.fromBase37(senderName);
                 ClanChat.minKick = inboundBuffer.g1s();
                 count = inboundBuffer.g1();
                 if (count == 255) {
@@ -597,7 +597,7 @@ public class Protocol {
                 for (chatFlags = 0; chatFlags < ClanChat.size; chatFlags++) {
                     local1158[chatFlags] = new ClanMember();
                     local1158[chatFlags].nodeId = inboundBuffer.g8();
-                    local1158[chatFlags].username = Base37.decode37(local1158[chatFlags].nodeId);
+                    local1158[chatFlags].username = Base37.fromBase37(local1158[chatFlags].nodeId);
                     local1158[chatFlags].world = inboundBuffer.g2();
                     local1158[chatFlags].rank = inboundBuffer.g1s();
                     local1158[chatFlags].worldName = inboundBuffer.gjstr();
@@ -717,7 +717,7 @@ public class Protocol {
                     senderName = inboundBuffer.g8();
                     world = inboundBuffer.g2();
                     local1409 = QuickChatPhraseTypeList.get(world).decodeMessage(inboundBuffer);
-                    Chat.add(world, 19, local1409, null, Base37.decode37(senderName).toTitleCase());
+                    Chat.add(world, 19, local1409, null, Base37.fromBase37(senderName).toTitleCase());
                     opcode = -1;
                     return true;
                 } else if (opcode == 169) {
@@ -867,8 +867,8 @@ public class Protocol {
                             }
                         } else {
                             count = world >> 28 & 0x3;
-                            i = (world >> 14 & 0x3FFF) - Camera.originX;
-                            chatFlags = (world & 0x3FFF) - Camera.originZ;
+                            i = (world >> 14 & 0x3FFF) - Camera.sceneBaseTileX;
+                            chatFlags = (world & 0x3FFF) - Camera.sceneBaseTileZ;
                             if (i >= 0 && chatFlags >= 0 && i < 104 && chatFlags < 104) {
                                 chatFlags = chatFlags * 128 + 64;
                                 i = i * 128 + 64;
@@ -1019,7 +1019,7 @@ public class Protocol {
                             if (world > 0) {
                                 worldName = inboundBuffer.gjstr();
                             }
-                            @Pc(2834) JString displayName = Base37.decode37(senderName).toTitleCase();
+                            @Pc(2834) JString displayName = Base37.fromBase37(senderName).toTitleCase();
                             for (j = 0; j < FriendList.friendCount; j++) {
                                 if (senderName == FriendList.encodedUsernames[j]) {
                                     if (world != FriendList.friendWorlds[j]) {
@@ -1144,11 +1144,11 @@ public class Protocol {
                                 Chat.messageCounter = (Chat.messageCounter + 1) % 100;
                                 local3020 = QuickChatPhraseTypeList.get(j).decodeMessage(inboundBuffer);
                                 if (chatFlags == 2) {
-                                    Chat.add(j, 18, local3020, null, JString.concatenate(new JString[] { IMG1, Base37.decode37(senderName).toTitleCase() }));
+                                    Chat.add(j, 18, local3020, null, JString.concatenate(new JString[] { IMG1, Base37.fromBase37(senderName).toTitleCase() }));
                                 } else if (chatFlags == 1) {
-                                    Chat.add(j, 18, local3020, null, JString.concatenate(new JString[] { IMG0, Base37.decode37(senderName).toTitleCase() }));
+                                    Chat.add(j, 18, local3020, null, JString.concatenate(new JString[] { IMG0, Base37.fromBase37(senderName).toTitleCase() }));
                                 } else {
-                                    Chat.add(j, 18, local3020, null, Base37.decode37(senderName).toTitleCase());
+                                    Chat.add(j, 18, local3020, null, Base37.fromBase37(senderName).toTitleCase());
                                 }
                             }
                             opcode = -1;
@@ -1266,7 +1266,7 @@ public class Protocol {
                             } else if (opcode == 71) {
                                 senderName = inboundBuffer.g8();
                                 messageText = Font.escape(formatChatMessage(inboundBuffer).encodeMessage());
-                                Chat.addMessage(Base37.decode37(senderName).toTitleCase(), 6, messageText);
+                                Chat.addMessage(Base37.fromBase37(senderName).toTitleCase(), 6, messageText);
                                 opcode = -1;
                                 return true;
                             } else if (opcode == 42) {
@@ -1380,7 +1380,7 @@ public class Protocol {
                                 IgnoreList.ignoreCount = packetSize / 8;
                                 for (ii = 0; ii < IgnoreList.ignoreCount; ii++) {
                                     IgnoreList.encodedIgnores[ii] = inboundBuffer.g8();
-                                    IgnoreList.ignoreNames[ii] = Base37.decode37(IgnoreList.encodedIgnores[ii]);
+                                    IgnoreList.ignoreName37[ii] = Base37.fromBase37(IgnoreList.encodedIgnores[ii]);
                                 }
                                 FriendList.transmitAt = ComponentList.transmitTimer;
                                 opcode = -1;
@@ -1411,8 +1411,8 @@ public class Protocol {
                                 }
                                 chatType = i & 0x3FFF;
                                 j = i >> 14 & 0x3FFF;
-                                j -= Camera.originX;
-                                chatType -= Camera.originZ;
+                                j -= Camera.sceneBaseTileX;
+                                chatType -= Camera.sceneBaseTileZ;
                                 chatFlags = i >> 28 & 0x3;
                                 SceneGraph.attachLocToTile(chatFlags, world, param1, chatType, slot, j, count);
                                 opcode = -1;
@@ -1452,11 +1452,11 @@ public class Protocol {
                                     Chat.messageCounter = (Chat.messageCounter + 1) % 100;
                                     @Pc(4518) JString local4518 = Font.escape(formatChatMessage(inboundBuffer).encodeMessage());
                                     if (chatFlags == 2 || chatFlags == 3) {
-                                        Chat.addMessage(JString.concatenate(new JString[] { IMG1, Base37.decode37(senderName).toTitleCase() }), 7, local4518);
+                                        Chat.addMessage(JString.concatenate(new JString[] { IMG1, Base37.fromBase37(senderName).toTitleCase() }), 7, local4518);
                                     } else if (chatFlags == 1) {
-                                        Chat.addMessage(JString.concatenate(new JString[] { IMG0, Base37.decode37(senderName).toTitleCase() }), 7, local4518);
+                                        Chat.addMessage(JString.concatenate(new JString[] { IMG0, Base37.fromBase37(senderName).toTitleCase() }), 7, local4518);
                                     } else {
-                                        Chat.addMessage(Base37.decode37(senderName).toTitleCase(), 3, local4518);
+                                        Chat.addMessage(Base37.fromBase37(senderName).toTitleCase(), 3, local4518);
                                     }
                                 }
                                 opcode = -1;
@@ -1498,11 +1498,11 @@ public class Protocol {
                                     Chat.messageCounter = (Chat.messageCounter + 1) % 100;
                                     local3038 = Font.escape(formatChatMessage(inboundBuffer).encodeMessage());
                                     if (chatType == 2 || chatType == 3) {
-                                        Chat.method1598(local3038, JString.concatenate(new JString[] { IMG1, Base37.decode37(senderName).toTitleCase() }), Base37.decode37(username).toTitleCase());
+                                        Chat.method1598(local3038, JString.concatenate(new JString[] { IMG1, Base37.fromBase37(senderName).toTitleCase() }), Base37.fromBase37(username).toTitleCase());
                                     } else if (chatType == 1) {
-                                        Chat.method1598(local3038, JString.concatenate(new JString[] { IMG0, Base37.decode37(senderName).toTitleCase() }), Base37.decode37(username).toTitleCase());
+                                        Chat.method1598(local3038, JString.concatenate(new JString[] { IMG0, Base37.fromBase37(senderName).toTitleCase() }), Base37.fromBase37(username).toTitleCase());
                                     } else {
-                                        Chat.method1598(local3038, Base37.decode37(senderName).toTitleCase(), Base37.decode37(username).toTitleCase());
+                                        Chat.method1598(local3038, Base37.fromBase37(senderName).toTitleCase(), Base37.fromBase37(username).toTitleCase());
                                     }
                                 }
                                 opcode = -1;
@@ -1685,7 +1685,7 @@ public class Protocol {
                                         worldName = inboundBuffer.gjstr();
                                         @Pc(5347) ClanMember local5347 = new ClanMember();
                                         local5347.nodeId = senderName;
-                                        local5347.username = Base37.decode37(local5347.nodeId);
+                                        local5347.username = Base37.fromBase37(local5347.nodeId);
                                         local5347.rank = local5325;
                                         local5347.worldName = worldName;
                                         local5347.world = world;
@@ -2093,8 +2093,8 @@ public class Protocol {
                     local27 = inboundBuffer.g1();
                     local31 = (local27 >> 4 & 0x7) + SceneGraph.currentChunkX;
                     local39 = (local27 & 0x7) + SceneGraph.currentChunkZ;
-                    @Pc(605) byte local605 = inboundBuffer.p1_alt3();
-                    @Pc(609) byte local609 = inboundBuffer.p1_alt3();
+                    @Pc(605) byte local605 = inboundBuffer.p1b_alt3();
+                    @Pc(609) byte local609 = inboundBuffer.p1b_alt3();
                     @Pc(613) byte local613 = inboundBuffer.g1sub();
                     local228 = inboundBuffer.g2sub();
                     local232 = inboundBuffer.g2le();

@@ -108,46 +108,46 @@ public class ClientProt {
     }
 
     @OriginalMember(owner = "runetek4.client!pi", name = "c", descriptor = "(III)V")
-    public static void method3502(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1) {
-        @Pc(13) int local13 = arg0;
-        if (arg0 > 25) {
-            local13 = 25;
+    public static void method3502(@OriginalArg(1) int length, @OriginalArg(2) int type) {
+        @Pc(13) int bufferSize = length;
+        if (length > 25) {
+            bufferSize = 25;
         }
-        arg0--;
-        @Pc(23) int local23 = PathFinder.queueX[arg0];
-        @Pc(27) int local27 = PathFinder.queueZ[arg0];
-        if (arg1 == 0) {
+        length--;
+        @Pc(23) int startX = PathFinder.bfsStepX[length];
+        @Pc(27) int startZ = PathFinder.bfsStepZ[length];
+
+        if (type == 0) {
             Protocol.outboundBuffer.pIsaac1(215);
-            Protocol.outboundBuffer.p1(local13 + local13 + 3);
-            System.out.println("Steps: " + (local13 + local13 + 3));
+            Protocol.outboundBuffer.p1(bufferSize + bufferSize + 3);
         }
-        if (arg1 == 1) {
+        if (type == 1) {
             Protocol.outboundBuffer.pIsaac1(39);
-            Protocol.outboundBuffer.p1(local13 + local13 + 3 + 14);
+            Protocol.outboundBuffer.p1(bufferSize + bufferSize + 3 + 14);
         }
-        if (arg1 == 2) {
+        if (type == 2) {
             Protocol.outboundBuffer.pIsaac1(77);
-            Protocol.outboundBuffer.p1(local13 + local13 + 3);
+            Protocol.outboundBuffer.p1(bufferSize + bufferSize + 3);
         }
         Protocol.outboundBuffer.p1b_alt1(Keyboard.pressedKeys[Keyboard.KEY_CTRL] ? 1 : 0);
+
         System.out.println("InvertRun: " + (Keyboard.pressedKeys[Keyboard.KEY_CTRL] ? 1 : 0) );
-        Protocol.outboundBuffer.p2((Camera.originX + local23));
-        System.out.println("StartX: " + (Camera.originX + local23));
-        Protocol.outboundBuffer.p2_alt2(Camera.originZ + local27);
-        System.out.println("StartZ: " + (Camera.originZ + local27));
-        LoginManager.mapFlagZ = PathFinder.queueZ[0];
-        LoginManager.mapFlagX = PathFinder.queueX[0];
-        for (@Pc(126) int local126 = 1; local126 < local13; local126++) {
-            arg0--;
-            Protocol.outboundBuffer.p1b_alt1(PathFinder.queueX[arg0] - local23);
-            System.out.println(PathFinder.queueX[arg0] - local23);
-            Protocol.outboundBuffer.p1_alt3(PathFinder.queueZ[arg0] - local27);
-            System.out.println(PathFinder.queueZ[arg0] - local27);
+
+        Protocol.outboundBuffer.p2((startX + Camera.sceneBaseTileX));
+        Protocol.outboundBuffer.p2_alt2(startZ + Camera.sceneBaseTileZ);
+
+        LoginManager.flagSceneTileX = PathFinder.bfsStepX[0];
+        LoginManager.flagSceneTileZ = PathFinder.bfsStepZ[0];
+
+        for (@Pc(126) int i = 1; i < bufferSize; i++) {
+            length--;
+            Protocol.outboundBuffer.p1b_alt1(PathFinder.bfsStepX[length] - startX);
+            Protocol.outboundBuffer.p1b_alt3(PathFinder.bfsStepZ[length] - startZ);
         }
     }
 
     @OriginalMember(owner = "runetek4.client!wh", name = "a", descriptor = "(IILclient!na;)V")
-    public static void clickPlayerOption(@OriginalArg(0) int arg0, @OriginalArg(2) JString arg1) {
+    public static void clickPlayerOption(@OriginalArg(0) int type, @OriginalArg(2) JString arg1) {
         @Pc(7) JString local7 = arg1.method3159().toTitleCase();
         @Pc(13) boolean local13 = false;
         for (@Pc(15) int local15 = 0; local15 < PlayerList.playerCount; local15++) {
@@ -155,19 +155,19 @@ public class ClientProt {
             if (local28 != null && local28.username != null && local28.username.equalsIgnoreCase(local7)) {
                 local13 = true;
                 PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local28.movementQueueX[0], 1, 0, 2, local28.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
-                if (arg0 == 1) {
+                if (type == 1) {
                     Protocol.outboundBuffer.pIsaac1(68);
                     Protocol.outboundBuffer.p2_alt3(PlayerList.playerIds[local15]);
-                } else if (arg0 == 4) {
+                } else if (type == 4) {
                     Protocol.outboundBuffer.pIsaac1(180);
                     Protocol.outboundBuffer.p2_alt3(PlayerList.playerIds[local15]);
-                } else if (arg0 == 5) {
+                } else if (type == 5) {
                     Protocol.outboundBuffer.pIsaac1(4);
                     Protocol.outboundBuffer.p2_alt1(PlayerList.playerIds[local15]);
-                } else if (arg0 == 6) {
+                } else if (type == 6) {
                     Protocol.outboundBuffer.pIsaac1(133);
                     Protocol.outboundBuffer.p2_alt1(PlayerList.playerIds[local15]);
-                } else if (arg0 == 7) {
+                } else if (type == 7) {
                     Protocol.outboundBuffer.pIsaac1(114);
                     Protocol.outboundBuffer.p2_alt3(PlayerList.playerIds[local15]);
                 }
