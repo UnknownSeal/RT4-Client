@@ -12,6 +12,8 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
+import static com.jagex.runetek4.network.ClientProt.*;
+
 public class FriendList {
 
     @OriginalMember(owner = "client!hd", name = "g", descriptor = "[J")
@@ -93,7 +95,7 @@ public class FriendList {
         friendGame[friendCount] = false;
         friendCount++;
         transmitAt = ComponentList.transmitTimer;
-        Protocol.outboundBuffer.pIsaac1(120);
+        Protocol.outboundBuffer.pIsaac1(FRIENDLIST_ADD);
         Protocol.outboundBuffer.p8(username);
     }
 
@@ -114,7 +116,7 @@ public class FriendList {
                     friendGame[i] = friendGame[i + 1];
                 }
                 transmitAt = ComponentList.transmitTimer;
-                Protocol.outboundBuffer.pIsaac1(57);
+                Protocol.outboundBuffer.pIsaac1(FRIENDLIST_DEL);
                 Protocol.outboundBuffer.p8(username);
                 break;
             }
@@ -123,7 +125,7 @@ public class FriendList {
 
     @OriginalMember(owner = "client!ni", name = "a", descriptor = "(ILclient!na;I)V")
     public static void setRank(@OriginalArg(1) JString username, @OriginalArg(2) int rank) {
-        Protocol.outboundBuffer.pIsaac1(188);
+        Protocol.outboundBuffer.pIsaac1(FRIEND_SETRANK);
         Protocol.outboundBuffer.p1b_alt1(rank);
         Protocol.outboundBuffer.p8(username.encode37());
     }

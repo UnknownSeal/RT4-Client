@@ -98,6 +98,9 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
+import static com.jagex.runetek4.network.ClientProt.MESSAGE_PRIVATE;
+import static com.jagex.runetek4.network.ClientProt.MESSAGE_PUBLIC;
+
 public final class ClientScriptRunner {
 
 	@OriginalMember(owner = "client!bm", name = "p", descriptor = "Lclient!na;")
@@ -3029,7 +3032,7 @@ public final class ClientScriptRunner {
 																effect = 5;
 															}
 														}
-														Protocol.outboundBuffer.pIsaac1(237);
+														Protocol.outboundBuffer.pIsaac1(MESSAGE_PUBLIC);
 														Protocol.outboundBuffer.p1(0);
 														start = Protocol.outboundBuffer.offset;
 														Protocol.outboundBuffer.p1(color);
@@ -3046,7 +3049,7 @@ public final class ClientScriptRunner {
 													chatTypedLowercase = scriptStringValues[ssp + 1];
 													chatTyped = scriptStringValues[ssp];
 													if (LoginManager.staffModLevel != 0 || (!LoginManager.playerUnderage || LoginManager.parentalChatConsent) && !LoginManager.worldQuickChat) {
-														Protocol.outboundBuffer.pIsaac1(201);
+														Protocol.outboundBuffer.pIsaac1(MESSAGE_PRIVATE);
 														Protocol.outboundBuffer.p1(0);
 														j = Protocol.outboundBuffer.offset;
 														Protocol.outboundBuffer.p8(chatTyped.encode37());

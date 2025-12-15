@@ -25,6 +25,15 @@ import org.openrs2.deob.annotation.Pc;
 import java.io.IOException;
 
 public class ClientProt {
+    public static int DETECT_MODIFIED_CLIENT = 20;
+    public static int FRIENDLIST_ADD = 120;
+    public static int FRIENDLIST_DEL = 57;
+    public static int FRIEND_SETRANK = 188;
+    public static int TRANSMITVAR_VERIFYID = 177;
+    public static int SOUND_SONGEND = 137;
+    public static int MESSAGE_PUBLIC = 237;
+    public static int MESSAGE_PRIVATE = 201;
+
     @OriginalMember(owner = "runetek4.client!ej", name = "i", descriptor = "(I)V")
     public static void sendWindowDetails() {
         Protocol.outboundBuffer.pIsaac1(243);
@@ -107,7 +116,7 @@ public class ClientProt {
         }
     }
 
-    @OriginalMember(owner = "runetek4.client!pi", name = "c", descriptor = "(III)V")
+    @OriginalMember(owner = "client!pi", name = "c", descriptor = "(III)V")
     public static void method3502(@OriginalArg(1) int length, @OriginalArg(2) int type) {
         @Pc(13) int bufferSize = length;
         if (length > 25) {
@@ -130,9 +139,6 @@ public class ClientProt {
             Protocol.outboundBuffer.p1(bufferSize + bufferSize + 3);
         }
         Protocol.outboundBuffer.p1b_alt1(Keyboard.pressedKeys[Keyboard.KEY_CTRL] ? 1 : 0);
-
-        System.out.println("InvertRun: " + (Keyboard.pressedKeys[Keyboard.KEY_CTRL] ? 1 : 0) );
-
         Protocol.outboundBuffer.p2((startX + Camera.sceneBaseTileX));
         Protocol.outboundBuffer.p2_alt2(startZ + Camera.sceneBaseTileZ);
 
@@ -146,7 +152,7 @@ public class ClientProt {
         }
     }
 
-    @OriginalMember(owner = "runetek4.client!wh", name = "a", descriptor = "(IILclient!na;)V")
+    @OriginalMember(owner = "client!wh", name = "a", descriptor = "(IILclient!na;)V")
     public static void clickPlayerOption(@OriginalArg(0) int type, @OriginalArg(2) JString arg1) {
         @Pc(7) JString local7 = arg1.method3159().toTitleCase();
         @Pc(13) boolean local13 = false;

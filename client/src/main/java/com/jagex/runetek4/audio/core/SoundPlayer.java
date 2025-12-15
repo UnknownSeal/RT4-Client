@@ -13,6 +13,8 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
+import static com.jagex.runetek4.network.ClientProt.SOUND_SONGEND;
+
 public class SoundPlayer {
 
     @OriginalMember(owner = "runetek4.client!qe", name = "t", descriptor = "[I")
@@ -144,7 +146,7 @@ public class SoundPlayer {
             }
             MidiPlayer.jingle = false;
         } else if (Preferences.musicVolume != 0 && MusicPlayer.groupId != -1 && !MidiPlayer.isPlaying()) {
-            Protocol.outboundBuffer.pIsaac1(137);
+            Protocol.outboundBuffer.pIsaac1(SOUND_SONGEND);
             Protocol.outboundBuffer.p4(MusicPlayer.groupId);
             MusicPlayer.groupId = -1;
         }

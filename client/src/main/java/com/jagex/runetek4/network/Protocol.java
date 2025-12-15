@@ -68,6 +68,8 @@ import org.openrs2.deob.annotation.Pc;
 
 import java.io.IOException;
 
+import static com.jagex.runetek4.network.ClientProt.TRANSMITVAR_VERIFYID;
+
 public class Protocol {
 
     @OriginalMember(owner = "client!ag", name = "P", descriptor = "Lclient!i;")
@@ -2878,7 +2880,7 @@ public class Protocol {
 
     @OriginalMember(owner = "client!fk", name = "c", descriptor = "(I)V")
     public static void transmitVerifyId() {
-        outboundBuffer.pIsaac1(177);
+        outboundBuffer.pIsaac1(TRANSMITVAR_VERIFYID);
         outboundBuffer.p2(verifyId);
     }
 

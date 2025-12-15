@@ -38,6 +38,8 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
+import static com.jagex.runetek4.network.ClientProt.DETECT_MODIFIED_CLIENT;
+
 public class WorldLoader {
     @OriginalMember(owner = "client!bh", name = "C", descriptor = "Lclient!na;")
     public static final JString COMPLETE_PERCENT = JString.parse("<br>(X100(U(Y");
@@ -713,7 +715,7 @@ public class WorldLoader {
         Client.unload();
         aBoolean252 = false;
         if (GameShell.frame != null && Protocol.gameServerSocket != null && Client.gameState == 25) {
-            Protocol.outboundBuffer.pIsaac1(20);
+            Protocol.outboundBuffer.pIsaac1(DETECT_MODIFIED_CLIENT);
             Protocol.outboundBuffer.p4(1057001181);
         }
         if (!SceneGraph.dynamicMapRegion) {
