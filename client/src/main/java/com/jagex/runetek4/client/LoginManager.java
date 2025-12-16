@@ -774,7 +774,7 @@ public class LoginManager {
         for (i = 0; i < 100; i++) {
             ComponentList.componentNeedsRedraw[i] = true;
         }
-        ClientProt.sendWindowDetails();
+        ClientProt.sendWindowStatus();
     }
 
 }

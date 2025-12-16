@@ -318,7 +318,7 @@ public final class DisplayMode {
 			ComponentList.updateInterfaceLayout(true);
 		}
 		if (Protocol.gameServerSocket != null && (Client.gameState == 30 || Client.gameState == 25)) {
-			ClientProt.sendWindowDetails();
+			ClientProt.sendWindowStatus();
 		}
 		for (@Pc(466) int local466 = 0; local466 < 100; local466++) {
 			ComponentList.componentNeedsRedraw[local466] = true;

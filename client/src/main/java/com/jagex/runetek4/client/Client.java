@@ -742,7 +742,7 @@ public final class Client extends GameShell {
 		aShortArray88 = aShortArray19 = aShortArray74 = aShortArray87 = new short[256];
 		LoginManager.method4637();
 		ComponentList.hasScrollbar = false;
-		ClientProt.sendWindowDetails();
+		ClientProt.sendWindowStatus();
 	}
 
 	@OriginalMember(owner = "runetek4.client!rc", name = "d", descriptor = "(I)V")

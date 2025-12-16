@@ -47,6 +47,8 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
+import static com.jagex.runetek4.network.ClientProt.OPLOC6;
+
 public class MiniMenu {
     @OriginalMember(owner = "runetek4.client!se", name = "m", descriptor = "Lclient!na;")
     public static final JString aClass100_961 = JString.parse(" )2>");
@@ -1150,7 +1152,7 @@ public class MiniMenu {
             Crosshair.x = Mouse.mouseClickX;
             Crosshair.CrosshairMode = 2;
             Crosshair.y = Mouse.mouseClickY;
-            Protocol.outboundBuffer.pIsaac1(94);
+            Protocol.outboundBuffer.pIsaac1(OPLOC6);
             Protocol.outboundBuffer.p2_alt3(keyInt);
         }
         if (actionCode == UNKNOWN_11) {

@@ -37,6 +37,8 @@ import org.openrs2.deob.annotation.Pc;
 
 import java.io.IOException;
 
+import static com.jagex.runetek4.network.ClientProt.*;
+
 public class Game {
 
     @OriginalMember(owner = "client!gg", name = "a", descriptor = "(Z)V")
@@ -73,7 +75,7 @@ public class Game {
             if (!MouseCapturer.enabled) {
                 MouseCapturer.instance.samples = 0;
             } else if (Mouse.clickButton != 0 || MouseCapturer.instance.samples >= 40) {
-                Protocol.outboundBuffer.pIsaac1(123);
+                Protocol.outboundBuffer.pIsaac1(EVENT_MOUSE_MOVE);
                 samples = 0;
                 Protocol.outboundBuffer.p1(0);
                 offset = Protocol.outboundBuffer.offset;
@@ -169,7 +171,7 @@ public class Game {
             if (Mouse.clickButton == 2) {
                 button = 1;
             }
-            Protocol.outboundBuffer.pIsaac1(75);
+            Protocol.outboundBuffer.pIsaac1(EVENT_MOUSE_CLICK);
             Protocol.outboundBuffer.p2_alt3(button << 15 | x);
             Protocol.outboundBuffer.p4_alt3(i | samples << 16);
         }
@@ -190,18 +192,18 @@ public class Game {
         if (Protocol.aBoolean228 && Protocol.anInt551 <= 0) {
             Protocol.anInt551 = 20;
             Protocol.aBoolean228 = false;
-            Protocol.outboundBuffer.pIsaac1(21);
+            Protocol.outboundBuffer.pIsaac1(EVENT_CAMERA_POSITION);
             Protocol.outboundBuffer.p2_alt2(Camera.orbitCameraPitch);
             Protocol.outboundBuffer.p2_alt1(Camera.orbitCameraYaw);
         }
         if (GameShell.focus && !Protocol.prevFocus) {
             Protocol.prevFocus = true;
-            Protocol.outboundBuffer.pIsaac1(22);
+            Protocol.outboundBuffer.pIsaac1(EVENT_APPLET_FOCUS);
             Protocol.outboundBuffer.p1(1);
         }
         if (!GameShell.focus && Protocol.prevFocus) {
             Protocol.prevFocus = false;
-            Protocol.outboundBuffer.pIsaac1(22);
+            Protocol.outboundBuffer.pIsaac1(EVENT_APPLET_FOCUS);
             Protocol.outboundBuffer.p1(0);
         }
         if (!Preferences.sentToServer) {
@@ -564,7 +566,7 @@ public class Game {
                                                 Protocol.openUrlRequest = null;
                                                 Protocol.newTab = false;
                                             }
-                                            Protocol.anInt3251++;
+                                            Protocol.noTimeoutCycle++;
                                             MiniMap.minimapOffsetCycle++;
                                             Protocol.cameraOffsetCycle++;
                                             if (Protocol.cameraOffsetCycle > 500) {
@@ -620,8 +622,8 @@ public class Game {
                                             if (MiniMap.minimapAnticheatAngle > 60) {
                                                 MiniMap.minimapAngleModifier = -2;
                                             }
-                                            if (Protocol.anInt3251 > 50) {
-                                                Protocol.outboundBuffer.pIsaac1(93);
+                                            if (Protocol.noTimeoutCycle > 50) {
+                                                Protocol.outboundBuffer.pIsaac1(NO_TIMEOUT);
                                             }
                                             if (Protocol.verifyIdChanged) {
                                                 Protocol.transmitVerifyId();
@@ -630,7 +632,7 @@ public class Game {
                                             try {
                                                 if (Protocol.gameServerSocket != null && Protocol.outboundBuffer.offset > 0) {
                                                     Protocol.gameServerSocket.write(Protocol.outboundBuffer.offset, Protocol.outboundBuffer.data);
-                                                    Protocol.anInt3251 = 0;
+                                                    Protocol.noTimeoutCycle = 0;
                                                     Protocol.outboundBuffer.offset = 0;
                                                 }
                                             } catch (@Pc(2266) IOException local2266) {

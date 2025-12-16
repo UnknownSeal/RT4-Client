@@ -169,7 +169,7 @@ public class Protocol {
     public static boolean verifyIdChanged = false;
 
     @OriginalMember(owner = "runetek4.client!kd", name = "ob", descriptor = "I")
-    public static int anInt3251 = 0;
+    public static int noTimeoutCycle = 0;
 
     @OriginalMember(owner = "runetek4.client!jk", name = "B", descriptor = "Lclient!ma;")
     public static BufferedSocket gameServerSocket;
@@ -2095,8 +2095,8 @@ public class Protocol {
                     local27 = inboundBuffer.g1();
                     local31 = (local27 >> 4 & 0x7) + SceneGraph.currentChunkX;
                     local39 = (local27 & 0x7) + SceneGraph.currentChunkZ;
-                    @Pc(605) byte local605 = inboundBuffer.p1b_alt3();
-                    @Pc(609) byte local609 = inboundBuffer.p1b_alt3();
+                    @Pc(605) byte local605 = inboundBuffer.g1b_alt3();
+                    @Pc(609) byte local609 = inboundBuffer.g1b_alt3();
                     @Pc(613) byte local613 = inboundBuffer.g1sub();
                     local228 = inboundBuffer.g2sub();
                     local232 = inboundBuffer.g2le();
@@ -2480,7 +2480,7 @@ public class Protocol {
         if ((flags & 0x1) != 0) {
             chatFlags = inboundBuffer.gSmart1or2();
             staffModLevel = inboundBuffer.g1add();
-            player.addHit(staffModLevel, Client.loop, chatFlags);
+            player.hit(staffModLevel, Client.loop, chatFlags);
             player.hitpointsBarVisibleUntil = Client.loop + 300;
             player.hitpointsBar = inboundBuffer.g1_alt3();
         }
@@ -2532,7 +2532,7 @@ public class Protocol {
         if ((flags & 0x200) != 0) {
             chatFlags = inboundBuffer.gSmart1or2();
             staffModLevel = inboundBuffer.g1_alt3();
-            player.addHit(staffModLevel, Client.loop, chatFlags);
+            player.hit(staffModLevel, Client.loop, chatFlags);
         }
         if ((flags & 0x800) != 0) {
             chatFlags = inboundBuffer.p1neg();
@@ -2733,14 +2733,14 @@ public class Protocol {
             if ((local18 & 0x40) != 0) {
                 local43 = inboundBuffer.g1(); // Hit value
                 info = inboundBuffer.p1neg(); // Color
-                npc.addHit(info, Client.loop, local43);
+                npc.hit(info, Client.loop, local43);
                 npc.hitpointsBarVisibleUntil = Client.loop + 300;
                 npc.hitpointsBar = inboundBuffer.g1_alt3();
             }
             if ((local18 & 0x2) != 0) {
                 local43 = inboundBuffer.p1neg(); // Hit value
                 info = inboundBuffer.g1_alt3(); // Color
-                npc.addHit(info, Client.loop, local43);
+                npc.hit(info, Client.loop, local43);
             }
             if ((local18 & 0x10) != 0) {
                 local43 = inboundBuffer.g2(); // Animation ID

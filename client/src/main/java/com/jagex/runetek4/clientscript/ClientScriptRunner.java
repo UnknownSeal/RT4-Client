@@ -98,8 +98,7 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-import static com.jagex.runetek4.network.ClientProt.MESSAGE_PRIVATE;
-import static com.jagex.runetek4.network.ClientProt.MESSAGE_PUBLIC;
+import static com.jagex.runetek4.network.ClientProt.*;
 
 public final class ClientScriptRunner {
 
@@ -2880,7 +2879,7 @@ public final class ClientScriptRunner {
 													isp -= 2;
 													interfaceType = scriptIntValues[isp];
 													j = scriptIntValues[isp + 1];
-													Protocol.outboundBuffer.pIsaac1(99);
+													Protocol.outboundBuffer.pIsaac1(REPORT_ABUSE);
 													Protocol.outboundBuffer.p8(chatTyped.encode37());
 													Protocol.outboundBuffer.p1(interfaceType - 1);
 													Protocol.outboundBuffer.p1(j);
@@ -5127,7 +5126,7 @@ public final class ClientScriptRunner {
 					}
 				}
 				for (iconYOffset = 0; iconYOffset < 4; iconYOffset++) {
-					if (local17.hitVisibleUntil[iconYOffset] > Client.loop) {
+					if (local17.damageCycles[iconYOffset] > Client.loop) {
 						if (local17 instanceof Npc) {
 							@Pc(725) Npc local725 = (Npc) local17;
 							@Pc(728) NpcType local728 = local725.type;
@@ -5152,8 +5151,8 @@ public final class ClientScriptRunner {
 								overheadScreenY -= 10;
 								overheadScreenX += 15;
 							}
-							Sprites.hitmarks[local17.hitTypes[iconYOffset]].render(screenX + overheadScreenX - 12, screenY + overheadScreenY - 12);
-							Fonts.p11Full.renderCenter(JString.parseInt(local17.hitDamages[iconYOffset]), overheadScreenX + screenX - 1, overheadScreenY + 3 + screenY, 16777215, 0);
+							Sprites.hitmarks[local17.damageTypes[iconYOffset]].render(screenX + overheadScreenX - 12, screenY + overheadScreenY - 12);
+							Fonts.p11Full.renderCenter(JString.parseInt(local17.damageValues[iconYOffset]), overheadScreenX + screenX - 1, overheadScreenY + 3 + screenY, 16777215, 0);
 						}
 					}
 				}

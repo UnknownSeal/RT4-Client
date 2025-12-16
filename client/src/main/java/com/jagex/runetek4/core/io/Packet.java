@@ -538,7 +538,7 @@ public class Packet extends Node {
 	}
 
 	@OriginalMember(owner = "client!wa", name = "n", descriptor = "(I)B")
-	public final byte p1b_alt3() {
+	public final byte g1b_alt3() {
 		return (byte) (this.data[this.offset++] - 128);
 	}
 

@@ -112,7 +112,7 @@ public abstract class PathingEntity extends Entity {
 	private int anInt3367 = 0;
 
 	@OriginalMember(owner = "client!fe", name = "L", descriptor = "[I")
-	public final int[] hitVisibleUntil = new int[4];
+	public final int[] damageCycles = new int[4];
 
 	@OriginalMember(owner = "client!fe", name = "K", descriptor = "[I")
 	public final int[] movementQueueX = new int[10];
@@ -205,7 +205,7 @@ public abstract class PathingEntity extends Entity {
 	private int anInt3355 = 0;
 
 	@OriginalMember(owner = "client!fe", name = "Mb", descriptor = "[I")
-	public final int[] hitTypes = new int[4];
+	public final int[] damageTypes = new int[4];
 
 	@OriginalMember(owner = "client!fe", name = "zb", descriptor = "I")
 	public int spotanimId = 0;
@@ -247,7 +247,7 @@ public abstract class PathingEntity extends Entity {
 	public int anInt3407 = 0;
 
 	@OriginalMember(owner = "client!fe", name = "ic", descriptor = "[I")
-	public final int[] hitDamages = new int[4];
+	public final int[] damageValues = new int[4];
 
 	@OriginalMember(owner = "client!fe", name = "Ib", descriptor = "I")
 	public int movementQueueSnapshot = 0;
@@ -426,12 +426,12 @@ public abstract class PathingEntity extends Entity {
 	}
 
 	@OriginalMember(owner = "client!fe", name = "a", descriptor = "(IIII)V")
-	public final void addHit(@OriginalArg(0) int type, @OriginalArg(2) int loop, @OriginalArg(3) int damage) {
+	public final void hit(@OriginalArg(0) int type, @OriginalArg(2) int loopCycle, @OriginalArg(3) int value) {
 		for (@Pc(11) int i = 0; i < 4; i++) {
-			if (loop >= this.hitVisibleUntil[i]) {
-				this.hitDamages[i] = damage;
-				this.hitTypes[i] = type;
-				this.hitVisibleUntil[i] = loop + 70;
+			if (this.damageCycles[i] <= loopCycle) {
+				this.damageValues[i] = value;
+				this.damageTypes[i] = type;
+				this.damageCycles[i] = loopCycle + 70;
 				return;
 			}
 		}

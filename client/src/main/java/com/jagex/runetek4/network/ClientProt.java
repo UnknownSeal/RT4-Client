@@ -33,18 +33,47 @@ public class ClientProt {
     public static int SOUND_SONGEND = 137;
     public static int MESSAGE_PUBLIC = 237;
     public static int MESSAGE_PRIVATE = 201;
+    public static int OPLOC6 = 94;
+    public static int WINDOW_STATUS = 243;
+    public static int NO_TIMEOUT = 93;
+    public static int CLIENT_CHEAT = 44;
 
-    @OriginalMember(owner = "runetek4.client!ej", name = "i", descriptor = "(I)V")
-    public static void sendWindowDetails() {
-        Protocol.outboundBuffer.pIsaac1(243);
+    public static int IF_BUTTON1 = 155;
+    public static int IF_BUTTON2 = 196;
+    public static int IF_BUTTON3 = 124;
+    public static int IF_BUTTON4 = 199;
+    public static int IF_BUTTON5 = 234;
+    public static int IF_BUTTON6 = 168;
+    public static int IF_BUTTON7 = 166;
+    public static int IF_BUTTON8 = 64;
+    public static int IF_BUTTON9 = 53;
+    public static int IF_BUTTON10 = 9;
+
+    public static int REPORT_ABUSE = 99;
+
+    public static int MOVE_GAMECLICK = 215;
+    public static int MOVE_MINIMAPCLICK = 39;
+    public static int MOVE_SCRIPTED = 77;
+
+    public static int CLOSE_MODAL = 184;
+
+    // Event stuff
+    public static int EVENT_MOUSE_MOVE = 123;
+    public static int EVENT_MOUSE_CLICK = 75;
+    public static int EVENT_CAMERA_POSITION = 21;
+    public static int EVENT_APPLET_FOCUS = 22;
+
+    @OriginalMember(owner = "client!ej", name = "i", descriptor = "(I)V")
+    public static void sendWindowStatus() {
+        Protocol.outboundBuffer.pIsaac1(WINDOW_STATUS);
         Protocol.outboundBuffer.p1(DisplayMode.getWindowMode());
         Protocol.outboundBuffer.p2(GameShell.canvasWidth);
         Protocol.outboundBuffer.p2(GameShell.canvasHeigth);
         Protocol.outboundBuffer.p1(Preferences.antiAliasingMode);
     }
 
-    @OriginalMember(owner = "runetek4.client!vg", name = "a", descriptor = "(Lclient!na;IIBI)V")
-    public static void method4512(@OriginalArg(0) JString arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(4) int arg3) {
+    @OriginalMember(owner = "client!vg", name = "a", descriptor = "(Lclient!na;IIBI)V")
+    public static void method4512(@OriginalArg(0) JString arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int type, @OriginalArg(4) int arg3) {
         @Pc(8) Component local8 = ComponentList.getCreatedComponent(arg3, arg1);
         if (local8 == null) {
             return;
@@ -54,63 +83,63 @@ public class ClientProt {
             local19.arguments = local8.onOptionClick;
             local19.source = local8;
             local19.opBase = arg0;
-            local19.op = arg2;
+            local19.op = type;
             ClientScriptRunner.run(local19);
         }
         @Pc(37) boolean local37 = true;
         if (local8.contentType > 0) {
             local37 = MiniMenu.shouldTriggerIdleTimeout(local8);
         }
-        if (!local37 || !ComponentList.getServerActiveProperties(local8).isButtonEnabled(arg2 - 1)) {
+        if (!local37 || !ComponentList.getServerActiveProperties(local8).isButtonEnabled(type - 1)) {
             return;
         }
-        if (arg2 == 1) {
-            Protocol.outboundBuffer.pIsaac1(155);
+        if (type == 1) {
+            Protocol.outboundBuffer.pIsaac1(IF_BUTTON1);
             Protocol.outboundBuffer.p4(arg3);
             Protocol.outboundBuffer.p2(arg1);
         }
-        if (arg2 == 2) {
-            Protocol.outboundBuffer.pIsaac1(196);
+        if (type == 2) {
+            Protocol.outboundBuffer.pIsaac1(IF_BUTTON2);
             Protocol.outboundBuffer.p4(arg3);
             Protocol.outboundBuffer.p2(arg1);
         }
-        if (arg2 == 3) {
-            Protocol.outboundBuffer.pIsaac1(124);
+        if (type == 3) {
+            Protocol.outboundBuffer.pIsaac1(IF_BUTTON3);
             Protocol.outboundBuffer.p4(arg3);
             Protocol.outboundBuffer.p2(arg1);
         }
-        if (arg2 == 4) {
-            Protocol.outboundBuffer.pIsaac1(199);
+        if (type == 4) {
+            Protocol.outboundBuffer.pIsaac1(IF_BUTTON4);
             Protocol.outboundBuffer.p4(arg3);
             Protocol.outboundBuffer.p2(arg1);
         }
-        if (arg2 == 5) {
-            Protocol.outboundBuffer.pIsaac1(234);
+        if (type == 5) {
+            Protocol.outboundBuffer.pIsaac1(IF_BUTTON5);
             Protocol.outboundBuffer.p4(arg3);
             Protocol.outboundBuffer.p2(arg1);
         }
-        if (arg2 == 6) {
-            Protocol.outboundBuffer.pIsaac1(168);
+        if (type == 6) {
+            Protocol.outboundBuffer.pIsaac1(IF_BUTTON6);
             Protocol.outboundBuffer.p4(arg3);
             Protocol.outboundBuffer.p2(arg1);
         }
-        if (arg2 == 7) {
-            Protocol.outboundBuffer.pIsaac1(166);
+        if (type == 7) {
+            Protocol.outboundBuffer.pIsaac1(IF_BUTTON7);
             Protocol.outboundBuffer.p4(arg3);
             Protocol.outboundBuffer.p2(arg1);
         }
-        if (arg2 == 8) {
-            Protocol.outboundBuffer.pIsaac1(64);
+        if (type == 8) {
+            Protocol.outboundBuffer.pIsaac1(IF_BUTTON8);
             Protocol.outboundBuffer.p4(arg3);
             Protocol.outboundBuffer.p2(arg1);
         }
-        if (arg2 == 9) {
-            Protocol.outboundBuffer.pIsaac1(53);
+        if (type == 9) {
+            Protocol.outboundBuffer.pIsaac1(IF_BUTTON9);
             Protocol.outboundBuffer.p4(arg3);
             Protocol.outboundBuffer.p2(arg1);
         }
-        if (arg2 == 10) {
-            Protocol.outboundBuffer.pIsaac1(9);
+        if (type == 10) {
+            Protocol.outboundBuffer.pIsaac1(IF_BUTTON10);
             Protocol.outboundBuffer.p4(arg3);
             Protocol.outboundBuffer.p2(arg1);
         }
@@ -127,15 +156,15 @@ public class ClientProt {
         @Pc(27) int startZ = PathFinder.bfsStepZ[length];
 
         if (type == 0) {
-            Protocol.outboundBuffer.pIsaac1(215);
+            Protocol.outboundBuffer.pIsaac1(MOVE_GAMECLICK);
             Protocol.outboundBuffer.p1(bufferSize + bufferSize + 3);
         }
         if (type == 1) {
-            Protocol.outboundBuffer.pIsaac1(39);
+            Protocol.outboundBuffer.pIsaac1(MOVE_MINIMAPCLICK);
             Protocol.outboundBuffer.p1(bufferSize + bufferSize + 3 + 14);
         }
         if (type == 2) {
-            Protocol.outboundBuffer.pIsaac1(77);
+            Protocol.outboundBuffer.pIsaac1(MOVE_SCRIPTED);
             Protocol.outboundBuffer.p1(bufferSize + bufferSize + 3);
         }
         Protocol.outboundBuffer.p1b_alt1(Keyboard.pressedKeys[Keyboard.KEY_CTRL] ? 1 : 0);
@@ -191,17 +220,17 @@ public class ClientProt {
         if (Client.gameState != 30 && Client.gameState != 25) {
             return;
         }
-        Protocol.anInt3251++;
-        if (Protocol.anInt3251 < 50 && !arg0) {
+        Protocol.noTimeoutCycle++;
+        if (Protocol.noTimeoutCycle < 50 && !arg0) {
             return;
         }
-        Protocol.anInt3251 = 0;
+        Protocol.noTimeoutCycle = 0;
         if (!LoginManager.aBoolean247 && Protocol.gameServerSocket != null) {
-            Protocol.outboundBuffer.pIsaac1(93);
+            Protocol.outboundBuffer.pIsaac1(NO_TIMEOUT);
             try {
                 Protocol.gameServerSocket.write(Protocol.outboundBuffer.offset, Protocol.outboundBuffer.data);
                 Protocol.outboundBuffer.offset = 0;
-            } catch (@Pc(53) IOException local53) {
+            } catch (@Pc(53) IOException ioException) {
                 LoginManager.aBoolean247 = true;
             }
         }

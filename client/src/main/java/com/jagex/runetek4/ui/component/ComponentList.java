@@ -66,6 +66,8 @@ import org.openrs2.deob.annotation.Pc;
 
 import java.awt.*;
 
+import static com.jagex.runetek4.network.ClientProt.CLOSE_MODAL;
+
 public class ComponentList {
     @OriginalMember(owner = "runetek4.client!sg", name = "q", descriptor = "[I")
     public static final int[] keyCodes = new int[128];
@@ -1365,9 +1367,9 @@ public class ComponentList {
         }
     }
 
-    @OriginalMember(owner = "runetek4.client!mc", name = "f", descriptor = "(B)V")
+    @OriginalMember(owner = "client!mc", name = "f", descriptor = "(B)V")
     public static void closeModal() {
-        Protocol.outboundBuffer.pIsaac1(184);
+        Protocol.outboundBuffer.pIsaac1(CLOSE_MODAL);
         for (@Pc(18) SubInterface subInterface = (SubInterface) openInterfaces.head(); subInterface != null; subInterface = (SubInterface) openInterfaces.next()) {
             if (subInterface.modalType == 0) {
                 closeInterface(true, subInterface);
@@ -1379,7 +1381,7 @@ public class ComponentList {
         }
     }
 
-    @OriginalMember(owner = "runetek4.client!gn", name = "a", descriptor = "(III[Lclient!be;IIIIBI)V")
+    @OriginalMember(owner = "client!gn", name = "a", descriptor = "(III[Lclient!be;IIIIBI)V")
     public static void renderComponent(@OriginalArg(0) int clipLeft, @OriginalArg(1) int offsetY, @OriginalArg(2) int offsetX, @OriginalArg(3) Component[] components, @OriginalArg(4) int clipRight, @OriginalArg(5) int layer, @OriginalArg(6) int clipTop, @OriginalArg(7) int clipBottom, @OriginalArg(9) int parentRectangle) {
         if (GlRenderer.enabled) {
             GlRaster.setClip(clipLeft, clipTop, clipRight, clipBottom);
