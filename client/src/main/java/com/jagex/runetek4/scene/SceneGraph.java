@@ -5765,8 +5765,6 @@ public class SceneGraph {
             setupSceneRender(Camera.renderX, Camera.cameraY, Camera.renderZ, Camera.cameraPitch, Camera.cameraYaw, ClientScriptRunner.tileMarkings, ClientScriptRunner.maxHeights, ClientScriptRunner.anIntArray338, ClientScriptRunner.anIntArray518, ClientScriptRunner.anIntArray134, ClientScriptRunner.anIntArray476, Player.plane + 1, roofVisibilityFlag, PlayerList.self.xFine >> 7, PlayerList.self.zFine >> 7);
             Client.audioLoop();
             ClientScriptRunner.clearAllScenery();
-            ClientScriptRunner.highlightAllTiles();
-            ClientScriptRunner.highlightHoveredTile(x, y);
             ClientScriptRunner.drawOverheads(y, width, x, 256, height, 256);
             MiniMap.renderOverheadHints(width, x, height, 256, 256, y);
         }
