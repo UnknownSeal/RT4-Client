@@ -52,9 +52,9 @@ public class StringUtils {
             arg3 /= 10L;
         }
         local61 = 0;
-        @Pc(137) JString local137;
+        @Pc(137) JString newComponent;
         if (arg3 == 0L) {
-            local137 = aClass100_17;
+            newComponent = aClass100_17;
         } else {
             @Pc(95) JString local95 = JString.allocate(0);
             while (arg3 > 0L) {
@@ -65,12 +65,12 @@ public class StringUtils {
                 local61++;
                 arg3 /= 10L;
             }
-            local137 = local95;
+            newComponent = local95;
         }
         if (local59.length() > 0) {
             local59.method3113(local28);
         }
-        return JString.concatenate(new JString[] { local9, local137.method3124(), local59.method3124() });
+        return JString.concatenate(new JString[] { local9, newComponent.method3124(), local59.method3124() });
     }
 
     @OriginalMember(owner = "runetek4.client!fi", name = "a", descriptor = "(BI)Lclient!na;")
