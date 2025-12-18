@@ -339,7 +339,7 @@ public class Protocol {
         opcode2 = opcode;
         LoginManager.idleNetCycles = 0;
         @Pc(133) int ii;
-        if (opcode == 60) {
+        if (opcode == VARP_SMALL) {
             ii = inboundBuffer.g2sub();
             @Pc(137) byte local137 = inboundBuffer.g1neg();
             VarpDomain.setVarpServer(local137, ii);
@@ -348,7 +348,7 @@ public class Protocol {
         }
         @Pc(171) int slot;
         @Pc(156) JString argTypes;
-        if (opcode == 115) {
+        if (opcode == CLIENTSCRIPT_RUN) {
             int tracknum = inboundBuffer.g2();
             argTypes = inboundBuffer.gjstr();
             @Pc(163) Object[] scriptArgs = new Object[argTypes.length() + 1];
@@ -372,7 +372,7 @@ public class Protocol {
         @Pc(262) boolean ignored;
         @Pc(277) int i;
         @Pc(506) JString worldName;
-        if (opcode == 70) {
+        if (opcode == MESSAGE_GAME) {
             @Pc(245) JString message = inboundBuffer.gjstr();
             if (message.endsWith(TRADEREQ)) {
                 argTypes = message.substring(message.indexOf(JString.COLON_SIGN), 0);
@@ -497,7 +497,7 @@ public class Protocol {
             }
             opcode = -1;
             return true;
-        } else if (opcode == 230) {
+        } else if (opcode == MAP_UPDATE) {
             SceneGraph.currentChunkZ = inboundBuffer.g1add();
             SceneGraph.currentChunkX = inboundBuffer.g1_alt3();
             while (packetSize > inboundBuffer.offset) {
@@ -506,7 +506,7 @@ public class Protocol {
             }
             opcode = -1;
             return true;
-        } else if (opcode == 153) {
+        } else if (opcode == SCENE_RESET) {
             opcode = -1;
             LoginManager.flagSceneTileX = 0;
             return true;
@@ -527,7 +527,7 @@ public class Protocol {
             @Pc(916) int local916;
             @Pc(899) long messageId1;
             @Pc(904) long messageId2;
-            if (opcode == 81) {
+            if (opcode == MESSAGE_QUICKCHAT_FRIEND) {
                 senderName = inboundBuffer.g8();
                 inboundBuffer.g1s();
                 username = inboundBuffer.g8();
@@ -627,13 +627,13 @@ public class Protocol {
                 ClanChat.members = local1158;
                 opcode = -1;
                 return true;
-            } else if (opcode == 164) {
+            } else if (opcode == LAST_LOGIN_INFO) {
                 // LAST_LOGIN_INFO
                 ii = inboundBuffer.g4rme();
                 Player.lastLogAddress = GameShell.signLink.getReverseDns(ii);
                 opcode = -1;
                 return true;
-            } else if (opcode == 225) {
+            } else if (opcode == PLAYER_INFO) {
                 // PLAYER_INFO
                 readPlayerInfoPacket();
                 opcode = -1;
@@ -673,7 +673,7 @@ public class Protocol {
                     }
                     opcode = -1;
                     return true;
-                } else if (opcode == 226) {
+                } else if (opcode == VARP_LARGE) {
                     ii = inboundBuffer.g4();
                     param1 = inboundBuffer.g2sub();
                     VarpDomain.setVarpServer(ii, param1);
@@ -688,7 +688,7 @@ public class Protocol {
                     }
                     opcode = -1;
                     return true;
-                } else if (opcode == 145) {
+                } else if (opcode == IF_OPENTOP) {
                     // IF_OPENTOP
                     int parent = inboundBuffer.g2leadd();
                     int reset = inboundBuffer.g1add();
@@ -707,7 +707,7 @@ public class Protocol {
                     }
                     opcode = -1;
                     return true;
-                } else if (opcode == 69) {
+                } else if (opcode == VARC_SMALL) {
                     int verifyID = inboundBuffer.g2leadd();
                     param1 = inboundBuffer.g4();
                     world = inboundBuffer.g2sub();
@@ -716,24 +716,24 @@ public class Protocol {
                     }
                     opcode = -1;
                     return true;
-                } else if (opcode == 141) {
+                } else if (opcode == MESSAGE_QUICKCHAT_CLANCHAT) {
                     senderName = inboundBuffer.g8();
                     world = inboundBuffer.g2();
                     local1409 = QuickChatPhraseTypeList.get(world).decodeMessage(inboundBuffer);
                     Chat.add(world, 19, local1409, null, Base37.fromBase37(senderName).toTitleCase());
                     opcode = -1;
                     return true;
-                } else if (opcode == 169) {
+                } else if (opcode == RANDOM_VERIFY) {
                     writeRandom(inboundBuffer);
                     opcode = -1;
                     return true;
-                } else if (opcode == 89) {
+                } else if (opcode == RESET_ANIMS) {
                     VarpDomain.resetVarBits();
                     ComponentList.redrawActiveInterfaces();
                     VarpDomain.updatedVarpsWriterIndex += 32;
                     opcode = -1;
                     return true;
-                } else if (opcode == 125) {
+                } else if (opcode == CAM_LOOKAT) {
                     int verifyID = inboundBuffer.g2();
                     param1 = inboundBuffer.g1();
                     world = inboundBuffer.g1();
@@ -757,7 +757,7 @@ public class Protocol {
                 } else {
                     @Pc(1814) ServerActiveProperties local1814;
                     @Pc(1804) ServerActiveProperties local1804;
-                    if (opcode == 9) {
+                    if (opcode == IF_SETEVENTS) {
                         ii = inboundBuffer.g2leadd();
                         param1 = inboundBuffer.g4me();
                         int verifyID = inboundBuffer.g2sub();
@@ -788,7 +788,7 @@ public class Protocol {
                         return true;
                     }
                     @Pc(1986) int j;
-                    if (opcode == 56) {
+                    if (opcode == SPOTANIM_ENTITY) {
                         ii = inboundBuffer.g2();
                         param1 = inboundBuffer.g2le();
                         world = inboundBuffer.g4rme();
@@ -891,7 +891,7 @@ public class Protocol {
                         }
                         opcode = -1;
                         return true;
-                    } else if (opcode == 38) {
+                    } else if (opcode == UPDATE_STAT) {
                         // UPDATE_STAT
                         ComponentList.redrawActiveInterfaces();
                         ii = inboundBuffer.g1add();
@@ -912,7 +912,7 @@ public class Protocol {
                         readZonePacket();
                         opcode = -1;
                         return true;
-                    } else if (opcode == 149) {
+                    } else if (opcode == IF_CLOSE_SUB) {
                         int verifyID = inboundBuffer.g2();
                         param1 = inboundBuffer.g4();
                         if (setVerifyID(verifyID)) {
@@ -927,7 +927,7 @@ public class Protocol {
                         }
                         opcode = -1;
                         return true;
-                    } else if (opcode == 187) {
+                    } else if (opcode == CAM_ORBIT) {
                         ii = inboundBuffer.g2le();
                         int verifyID = inboundBuffer.g2();
                         world = inboundBuffer.g2();
@@ -953,7 +953,7 @@ public class Protocol {
                         }
                         opcode = -1;
                         return true;
-                    } else if (opcode == 112) {
+                    } else if (opcode == MAP_CLEAR_ZONE) {
                         SceneGraph.currentChunkX = inboundBuffer.g1();
                         SceneGraph.currentChunkZ = inboundBuffer.p1neg();
                         for (ii = SceneGraph.currentChunkX; ii < SceneGraph.currentChunkX + 8; ii++) {
@@ -971,7 +971,7 @@ public class Protocol {
                         }
                         opcode = -1;
                         return true;
-                    } else if (opcode == 144) {
+                    } else if (opcode == INV_RESET_COMPONENT) {
                         ii = inboundBuffer.p4rme();
                         @Pc(2666) Component local2666 = ComponentList.getComponent(ii);
                         for (world = 0; world < local2666.invSlotObjId.length; world++) {
@@ -993,11 +993,11 @@ public class Protocol {
                         }
                         opcode = -1;
                         return true;
-                    } else if (opcode == 192) {
+                    } else if (opcode == MINIMAP_STATE) {
                         MiniMap.state = inboundBuffer.g1();
                         opcode = -1;
                         return true;
-                    } else if (opcode == 13) {
+                    } else if (opcode == PLAYER_TELEPORT) {
                         ii = inboundBuffer.g1_alt3();
                         param1 = inboundBuffer.g1add();
                         world = inboundBuffer.g1();
@@ -1009,7 +1009,7 @@ public class Protocol {
                         @Pc(3002) int local3002;
                         @Pc(3038) JString local3038;
                         @Pc(3020) JString local3020;
-                        if (opcode == 62) {
+                        if (opcode == FRIENDLIST_LOADED) {
                             senderName = inboundBuffer.g8();
                             world = inboundBuffer.g2();
                             slot = inboundBuffer.g1();
@@ -1084,7 +1084,7 @@ public class Protocol {
                             }
                             opcode = -1;
                             return true;
-                        } else if (opcode == 160) {
+                        } else if (opcode == WALK_TEXT) {
                             if (packetSize == 0) {
                                 MiniMenu.walkText = LocalizedText.WALKHERE;
                             } else {
@@ -1092,7 +1092,7 @@ public class Protocol {
                             }
                             opcode = -1;
                             return true;
-                        } else if (opcode == 128) {
+                        } else if (opcode == SYNC_VARP_LARGE) {
                             for (ii = 0; ii < VarpDomain.activeVarps.length; ii++) {
                                 if (VarpDomain.serverVarps[ii] != VarpDomain.activeVarps[ii]) {
                                     VarpDomain.activeVarps[ii] = VarpDomain.serverVarps[ii];
@@ -1102,7 +1102,7 @@ public class Protocol {
                             }
                             opcode = -1;
                             return true;
-                        } else if (opcode == 154) {
+                        } else if (opcode == CAM_TARGET) {
                             int verifyID = inboundBuffer.g2();
                             param1 = inboundBuffer.g1();
                             world = inboundBuffer.g1();
@@ -1114,7 +1114,7 @@ public class Protocol {
                             }
                             opcode = -1;
                             return true;
-                        } else if (opcode == 247) {
+                        } else if (opcode == MESSAGE_QUICKCHAT_PRIVATE) {
                             senderName = inboundBuffer.g8();
                             username = inboundBuffer.g2();
                             messageId1 = inboundBuffer.g3();
@@ -1187,7 +1187,7 @@ public class Protocol {
                                 }
                                 opcode = -1;
                                 return true;
-                            } else if (opcode == 27) {
+                            } else if (opcode == CAM_SHAKE) {
                                 int verifyID = inboundBuffer.g2();
                                 param1 = inboundBuffer.g1();
                                 world = inboundBuffer.g1();
@@ -1212,16 +1212,16 @@ public class Protocol {
                                 }
                                 opcode = -1;
                                 return true;
-                            } else if (opcode == 85) {
+                            } else if (opcode == SYSTEM_UPDATE) {
                                 Player.systemUpdateTimer = inboundBuffer.g2() * 30;
                                 opcode = -1;
                                 ComponentList.miscTransmitAt = ComponentList.transmitTimer;
                                 return true;
-                            } else if (opcode == 114) {
+                            } else if (opcode == REFLECTION_CHECK) {
                                 ReflectionCheck.push(GameShell.signLink, inboundBuffer, packetSize);
                                 opcode = -1;
                                 return true;
-                            } else if (opcode == 65) {
+                            } else if (opcode == VARC_LEGACY) {
                                 int verifyID = inboundBuffer.g2le();
                                 param1 = inboundBuffer.p1neg();
                                 world = inboundBuffer.g2leadd();
@@ -1230,7 +1230,7 @@ public class Protocol {
                                 }
                                 opcode = -1;
                                 return true;
-                            } else if (opcode == 234) {
+                            } else if (opcode == UPDATE_RUNENERGY) {
                                 // UPDATE_RUNENERGY
                                 ComponentList.redrawActiveInterfaces();
                                 Player.runEnergy = inboundBuffer.g1();
@@ -1243,13 +1243,13 @@ public class Protocol {
                                 }
                                 opcode = -1;
                                 return true;
-                            } else if (opcode == 191) {
+                            } else if (opcode == INV_DELETE) {
                                 ii = inboundBuffer.g2le();
                                 Inv.delete(ii);
                                 Inv.updatedInventories[Inv.updatedInventoriesWriterIndex++ & 0x1F] = ii & 0x7FFF;
                                 opcode = -1;
                                 return true;
-                            } else if (opcode == 102) {
+                            } else if (opcode == NPC_ANIM) {
                                 ii = inboundBuffer.g2le();
                                 param1 = inboundBuffer.g1_alt3();
                                 world = inboundBuffer.g2();
@@ -1259,7 +1259,7 @@ public class Protocol {
                                 }
                                 opcode = -1;
                                 return true;
-                            } else if (opcode == 159) {
+                            } else if (opcode == UPDATE_RUNWEIGHT) {
                                 // UPDATE_RUNWEIGHT
                                 ComponentList.redrawActiveInterfaces();
                                 Player.weightCarried = inboundBuffer.g2s();
@@ -1272,7 +1272,7 @@ public class Protocol {
                                 Chat.addMessage(Base37.fromBase37(senderName).toTitleCase(), 6, messageText);
                                 opcode = -1;
                                 return true;
-                            } else if (opcode == 42) {
+                            } else if (opcode == URL_OPEN) {
                                 if (GameShell.fullScreenFrame != null) {
                                     DisplayMode.setWindowMode(false, Preferences.favoriteWorlds, -1, -1);
                                 }
@@ -1299,13 +1299,13 @@ public class Protocol {
                                 }
                                 opcode = -1;
                                 return true;
-                            } else if (opcode == 37) {
+                            } else if (opcode == VARBIT) {
                                 ii = inboundBuffer.g1add();
                                 param1 = inboundBuffer.g2le();
                                 VarpDomain.setVarbitServer(ii, param1);
                                 opcode = -1;
                                 return true;
-                            } else if (opcode == 155) {
+                            } else if (opcode == IF_OPENSUB) {
                                 // IF_OPENSUB
                                 int flags = inboundBuffer.g1();
                                 int windowID = inboundBuffer.p4rme();
@@ -1388,7 +1388,7 @@ public class Protocol {
                                 FriendList.transmitAt = ComponentList.transmitTimer;
                                 opcode = -1;
                                 return true;
-                            } else if (opcode == 32) {
+                            } else if (opcode == NPC_INFO) {
                                 readNpcPacket();
                                 opcode = -1;
                                 return true;
@@ -1420,7 +1420,7 @@ public class Protocol {
                                 SceneGraph.attachLocToTile(chatFlags, world, param1, chatType, slot, j, count);
                                 opcode = -1;
                                 return true;
-                            } else if (opcode == 0) {
+                            } else if (opcode == MESSAGE_PRIVATE) {
                                 senderName = inboundBuffer.g8();
                                 username = inboundBuffer.g2();
                                 messageId1 = inboundBuffer.g3();
@@ -1464,7 +1464,7 @@ public class Protocol {
                                 }
                                 opcode = -1;
                                 return true;
-                            } else if (opcode == 54) {
+                            } else if (opcode == MESSAGE_PRIVATE_RECIPIENT) {
                                 senderName = inboundBuffer.g8();
                                 inboundBuffer.g1s();
                                 username = inboundBuffer.g8();
@@ -1510,7 +1510,7 @@ public class Protocol {
                                 }
                                 opcode = -1;
                                 return true;
-                            } else if (opcode == 214) {
+                            } else if (opcode == MAP_REBUILD) {
                                 readRebuildPacket(true);
                                 opcode = -1;
                                 return true;
@@ -1545,7 +1545,7 @@ public class Protocol {
                                 }
                                 opcode = -1;
                                 return true;
-                            } else if (opcode == 84) {
+                            } else if (opcode == VARBIT_LARGE) {
                                 ii = inboundBuffer.g4me();
                                 param1 = inboundBuffer.g2leadd();
                                 VarpDomain.setVarbitServer(ii, param1);
@@ -1553,7 +1553,7 @@ public class Protocol {
                                 return true;
                             } else {
                                 @Pc(4956) Component component;
-                                if (opcode == 22) {
+                                if (opcode == INV_TRANSMIT) {
                                     ii = inboundBuffer.g4();
                                     param1 = inboundBuffer.g2();
                                     if (ii < -70000) {
@@ -1587,14 +1587,14 @@ public class Protocol {
                                     Inv.updatedInventories[Inv.updatedInventoriesWriterIndex++ & 0x1F] = param1 & 0x7FFF;
                                     opcode = -1;
                                     return true;
-                                } else if (opcode == 24) {
+                                } else if (opcode == CAM_RESET) {
                                     int verifyID = inboundBuffer.g2();
                                     if (setVerifyID(verifyID)) {
                                         Camera.resetCameraEffects();
                                     }
                                     opcode = -1;
                                     return true;
-                                } else if (opcode == 86) {
+                                } else if (opcode == LOGOUT) {
                                     Game.processLogout();
                                     opcode = -1;
                                     return false;
@@ -1621,11 +1621,11 @@ public class Protocol {
                                     }
                                     opcode = -1;
                                     return true;
-                                } else if (opcode == 162) {
+                                } else if (opcode == MAP_REBUILD_PARTIAL) {
                                     readRebuildPacket(false);
                                     opcode = -1;
                                     return true;
-                                } else if (opcode == 165) {
+                                } else if (opcode == IF_SETOBJECT) {
                                     int verifyID = inboundBuffer.g2le();
                                     param1 = inboundBuffer.g2le();
                                     if (param1 == 65535) {
@@ -1659,7 +1659,7 @@ public class Protocol {
                                     FriendList.transmitAt = ComponentList.transmitTimer;
                                     opcode = -1;
                                     return true;
-                                } else if (opcode == 196) {
+                                } else if (opcode == CLANCHAT_MEMBER_UPDATE) {
                                     senderName = inboundBuffer.g8();
                                     world = inboundBuffer.g2();
                                     @Pc(5325) byte local5325 = inboundBuffer.g1s();
@@ -1760,7 +1760,7 @@ public class Protocol {
                                     }
                                     opcode = -1;
                                     return true;
-                                } else if (opcode == 105) {
+                                } else if (opcode == INV_TRANSMIT_FULL) {
                                     ii = inboundBuffer.g4();
                                     param1 = inboundBuffer.g2();
                                     if (ii < -70000) {
@@ -1798,17 +1798,17 @@ public class Protocol {
                                     Inv.updatedInventories[Inv.updatedInventoriesWriterIndex++ & 0x1F] = param1 & 0x7FFF;
                                     opcode = -1;
                                     return true;
-                                } else if (opcode == 142) {
+                                } else if (opcode == COOKIE_STORE) {
                                     // Called removed method3954, stored username to cookie
                                     //method3954(inboundBuffer.gjstr());
                                     opcode = -1;
                                     return true;
-                                } else if (opcode == 26) {
+                                } else if (opcode == MAP_COORDS) {
                                     SceneGraph.currentChunkX = inboundBuffer.p1neg();
                                     SceneGraph.currentChunkZ = inboundBuffer.g1();
                                     opcode = -1;
                                     return true;
-                                } else if (opcode == 4) {
+                                } else if (opcode == MUSIC_PLAY) {
                                     ii = inboundBuffer.g2leadd();
                                     if (ii == 65535) {
                                         ii = -1;
