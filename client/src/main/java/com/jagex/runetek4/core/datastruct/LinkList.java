@@ -7,7 +7,7 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("runetek4.client!ih")
-public final class LinkedList {
+public final class LinkList {
 
 	@OriginalMember(owner = "runetek4.client!ih", name = "p", descriptor = "Lclient!ab;")
 	private Node aClass3_110;
@@ -16,7 +16,7 @@ public final class LinkedList {
 	public final Node aClass3_109 = new Node();
 
 	@OriginalMember(owner = "runetek4.client!ih", name = "<init>", descriptor = "()V")
-	public LinkedList() {
+	public LinkList() {
 		this.aClass3_109.next = this.aClass3_109;
 		this.aClass3_109.prev = this.aClass3_109;
 	}
@@ -46,7 +46,7 @@ public final class LinkedList {
 	}
 
 	@OriginalMember(owner = "client!ih", name = "a", descriptor = "(ZLclient!ab;)V")
-	public void addTail(@OriginalArg(1) Node arg0) {
+	public void push(@OriginalArg(1) Node arg0) {
 		if (arg0.next != null) {
 			arg0.unlink();
 		}

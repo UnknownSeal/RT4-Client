@@ -2,7 +2,7 @@ package com.jagex.runetek4.game.locs;
 
 import com.jagex.runetek4.config.types.loc.LocTypeList;
 import com.jagex.runetek4.config.types.loc.LocType;
-import com.jagex.runetek4.core.datastruct.LinkedList;
+import com.jagex.runetek4.core.datastruct.LinkList;
 import com.jagex.runetek4.core.node.Node;
 import com.jagex.runetek4.scene.SceneGraph;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -14,7 +14,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class ChangeLocRequest extends Node {
 
 	@OriginalMember(owner = "client!ca", name = "X", descriptor = "Lclient!ih;")
-	public static LinkedList queue = new LinkedList();
+	public static LinkList queue = new LinkList();
 	@OriginalMember(owner = "runetek4.client!cd", name = "r", descriptor = "I")
 	public int z;
 
@@ -67,7 +67,7 @@ public final class ChangeLocRequest extends Node {
 			loc.level = level;
 			loc.layer = layer;
 			init(loc);
-			queue.addTail(loc);
+			queue.push(loc);
 		}
 		loc.anInt926 = type;
 		loc.setLoops = setLoops;

@@ -54,7 +54,7 @@ import com.jagex.runetek4.config.types.struct.StructTypeList;
 import com.jagex.runetek4.config.types.varbit.VarBitTypeList;
 import com.jagex.runetek4.config.types.varp.VarpTypeList;
 import com.jagex.runetek4.core.datastruct.HashTable;
-import com.jagex.runetek4.core.datastruct.LinkedList;
+import com.jagex.runetek4.core.datastruct.LinkList;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.logic.CollisionMap;
 import com.jagex.runetek4.data.cache.Cache;
@@ -680,7 +680,7 @@ public final class Client extends GameShell {
 				}
 			}
 		}
-		ChangeLocRequest.queue = new LinkedList();
+		ChangeLocRequest.queue = new LinkList();
 		FriendList.state = 0;
 		FriendList.friendCount = 0;
 		VarpDomain.resetVarBits();
@@ -1235,12 +1235,12 @@ public final class Client extends GameShell {
 							npcEntity.movementQueueSpeed[0] = 1;
 							npcEntity.movementQueueX[0] = local98 + (npcEntity.xFine >> 7);
 							npcEntity.movementQueueZ[0] = local106 + (npcEntity.zFine >> 7);
-							PathFinder.collisionMaps[Player.plane].unflagScenery(npcEntity.xFine >> 7, npcEntity.getSize(), false, 0, npcEntity.getSize(), npcEntity.zFine >> 7);
-							if (npcEntity.movementQueueX[0] >= 0 && npcEntity.movementQueueX[0] <= 104 - npcEntity.getSize() && npcEntity.movementQueueZ[0] >= 0 && npcEntity.movementQueueZ[0] <= 104 - npcEntity.getSize() && PathFinder.collisionMaps[Player.plane].method3054(npcEntity.zFine >> 7, npcEntity.movementQueueZ[0], npcEntity.movementQueueX[0], npcEntity.xFine >> 7)) {
+							PathFinder.collisionMaps[Player.currentLevel].unflagScenery(npcEntity.xFine >> 7, npcEntity.getSize(), false, 0, npcEntity.getSize(), npcEntity.zFine >> 7);
+							if (npcEntity.movementQueueX[0] >= 0 && npcEntity.movementQueueX[0] <= 104 - npcEntity.getSize() && npcEntity.movementQueueZ[0] >= 0 && npcEntity.movementQueueZ[0] <= 104 - npcEntity.getSize() && PathFinder.collisionMaps[Player.currentLevel].method3054(npcEntity.zFine >> 7, npcEntity.movementQueueZ[0], npcEntity.movementQueueX[0], npcEntity.xFine >> 7)) {
 								if (npcEntity.getSize() > 1) {
 									for (@Pc(226) int local226 = npcEntity.movementQueueX[0]; npcEntity.movementQueueX[0] + npcEntity.getSize() > local226; local226++) {
 										for (@Pc(246) int local246 = npcEntity.movementQueueZ[0]; npcEntity.movementQueueZ[0] + npcEntity.getSize() > local246; local246++) {
-											if ((PathFinder.collisionMaps[Player.plane].flags[local226][local246] & 0x12401FF) != 0) {
+											if ((PathFinder.collisionMaps[Player.currentLevel].flags[local226][local246] & 0x12401FF) != 0) {
 												continue nextNpc;
 											}
 										}
@@ -1253,7 +1253,7 @@ public final class Client extends GameShell {
 					NpcList.method2247(npcEntity);
 					NpcList.method949(npcEntity);
 					NpcList.method879(npcEntity);
-					PathFinder.collisionMaps[Player.plane].flagScenery(npcEntity.xFine >> 7, false, npcEntity.zFine >> 7, npcEntity.getSize(), npcEntity.getSize());
+					PathFinder.collisionMaps[Player.currentLevel].flagScenery(npcEntity.xFine >> 7, false, npcEntity.zFine >> 7, npcEntity.getSize(), npcEntity.getSize());
 				}
 			}
 		}

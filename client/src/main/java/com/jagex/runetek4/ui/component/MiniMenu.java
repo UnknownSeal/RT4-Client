@@ -15,7 +15,7 @@ import com.jagex.runetek4.config.types.obj.ObjTypeList;
 import com.jagex.runetek4.config.types.param.ParamType;
 import com.jagex.runetek4.config.types.param.ParamTypeList;
 import com.jagex.runetek4.config.types.loc.LocType;
-import com.jagex.runetek4.core.datastruct.LinkedList;
+import com.jagex.runetek4.core.datastruct.LinkList;
 import com.jagex.runetek4.entity.entity.Npc;
 import com.jagex.runetek4.entity.entity.NpcList;
 import com.jagex.runetek4.entity.entity.Player;
@@ -33,7 +33,7 @@ import com.jagex.runetek4.util.string.LocalizedText;
 import com.jagex.runetek4.graphics.model.Model;
 import com.jagex.runetek4.network.ClientProt;
 import com.jagex.runetek4.network.Protocol;
-import com.jagex.runetek4.entity.loc.ObjStackNode;
+import com.jagex.runetek4.entity.loc.ClientObj;
 import com.jagex.runetek4.graphics.raster.Rasterizer;
 import com.jagex.runetek4.graphics.raster.SoftwareRenderer;
 import com.jagex.runetek4.scene.SceneGraph;
@@ -847,10 +847,10 @@ public class MiniMenu {
         }
         if (actionCode == WALK_HERE) {
             if (keyInt == 0) {
-                setWalkTarget(Player.plane, param1, param2);
+                setWalkTarget(Player.currentLevel, param1, param2);
             } else if (keyInt == 1) {
                 if (LoginManager.staffModLevel > 0 && Keyboard.pressedKeys[82] && Keyboard.pressedKeys[81]) {
-                    Cheat.teleport(Camera.sceneBaseTileX + param1, Camera.sceneBaseTileZ + param2, Player.plane);
+                    Cheat.teleport(Camera.sceneBaseTileX + param1, Camera.sceneBaseTileZ + param2, Player.currentLevel);
                 } else if (PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 0, true, 0, param1, 0, 0, 1, param2, PlayerList.self.movementQueueX[0])) {
                     Protocol.outboundBuffer.p1(ComponentList.anInt5);
                     Protocol.outboundBuffer.p1(anInt2878);
@@ -1158,7 +1158,7 @@ public class MiniMenu {
         if (actionCode == UNKNOWN_11) {
             if (keyInt == 0) {
                 anInt3096 = 1;
-                setWalkTarget(Player.plane, param1, param2);
+                setWalkTarget(Player.currentLevel, param1, param2);
             } else if (keyInt == 1) {
                 Protocol.outboundBuffer.pIsaac1(131);
                 Protocol.outboundBuffer.p4_alt3(useWithComponentId);
@@ -1326,9 +1326,9 @@ public class MiniMenu {
         if (actionCode == UNKNOWN_36) {
             if (keyInt == 0) {
                 Protocol.anInt4422 = 1;
-                setWalkTarget(Player.plane, param1, param2);
+                setWalkTarget(Player.currentLevel, param1, param2);
             } else if (LoginManager.staffModLevel > 0 && Keyboard.pressedKeys[82] && Keyboard.pressedKeys[81]) {
-                Cheat.teleport(param1 + Camera.sceneBaseTileX, Camera.sceneBaseTileZ - -param2, Player.plane);
+                Cheat.teleport(param1 + Camera.sceneBaseTileX, Camera.sceneBaseTileZ - -param2, Player.currentLevel);
             } else {
                 Protocol.outboundBuffer.pIsaac1(179);
                 Protocol.outboundBuffer.p2(param2 + Camera.sceneBaseTileZ);
@@ -1446,7 +1446,7 @@ public class MiniMenu {
             if (key != lastKey) {
                 lastKey = key;
                 @Pc(240) int opIndex;
-                if (entityType == 2 && SceneGraph.isLocValid(Player.plane, worldY, localZ, key)) {
+                if (entityType == 2 && SceneGraph.isLocValid(Player.currentLevel, worldY, localZ, key)) {
                     @Pc(172) LocType locType = LocTypeList.get(entityId);
                     if (locType.multiloc != null) {
                         locType = locType.getMultiLoc();
@@ -1554,10 +1554,10 @@ public class MiniMenu {
                     addPlayerEntries(entityId, localZ, player, worldY);
                 }
                 if (entityType == 3) {
-                    @Pc(931) LinkedList objStack = SceneGraph.objStacks[Player.plane][worldY][localZ];
+                    @Pc(931) LinkList objStack = SceneGraph.objStacks[Player.currentLevel][worldY][localZ];
                     if (objStack != null) {
-                        for (@Pc(940) ObjStackNode objNode = (ObjStackNode) objStack.tail(); objNode != null; objNode = (ObjStackNode) objStack.prev()) {
-                            opIndex = objNode.value.type;
+                        for (@Pc(940) ClientObj objNode = (ClientObj) objStack.tail(); objNode != null; objNode = (ClientObj) objStack.prev()) {
+                            opIndex = objNode.value.id;
                             @Pc(951) ObjType objType = ObjTypeList.get(opIndex);
                             if (anInt5014 == 1) {
                                 addActionRow(MiniMap.anInt4075, (long) opIndex, JString.concatenate(new JString[] {aClass100_203, aClass100_947, objType.name}), worldY, (short) 33, LocalizedText.USE, localZ);

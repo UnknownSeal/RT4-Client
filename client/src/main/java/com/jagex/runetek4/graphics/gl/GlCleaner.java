@@ -1,6 +1,6 @@
 package com.jagex.runetek4.graphics.gl;
 
-import com.jagex.runetek4.core.datastruct.LinkedList;
+import com.jagex.runetek4.core.datastruct.LinkList;
 import com.jagex.runetek4.MonotonicTime;
 import com.jagex.runetek4.core.datastruct.IntWrapper;
 import com.jogamp.opengl.GL2;
@@ -10,13 +10,13 @@ import org.openrs2.deob.annotation.Pc;
 
 public class GlCleaner {
     @OriginalMember(owner = "client!fa", name = "b", descriptor = "Lclient!ih;")
-    static final LinkedList aClass69_48 = new LinkedList();
+    static final LinkList aClass69_48 = new LinkList();
     @OriginalMember(owner = "client!fa", name = "g", descriptor = "Lclient!ih;")
-    static final LinkedList aClass69_49 = new LinkedList();
+    static final LinkList aClass69_49 = new LinkList();
     @OriginalMember(owner = "client!fa", name = "h", descriptor = "Lclient!ih;")
-    static final LinkedList aClass69_50 = new LinkedList();
+    static final LinkList aClass69_50 = new LinkList();
     @OriginalMember(owner = "client!fa", name = "i", descriptor = "Lclient!ih;")
-    static final LinkedList aClass69_51 = new LinkedList();
+    static final LinkList aClass69_51 = new LinkList();
     @OriginalMember(owner = "client!fa", name = "j", descriptor = "[I")
     private static final int[] anIntArray151 = new int[1000];
     @OriginalMember(owner = "client!fa", name = "e", descriptor = "I")
@@ -93,7 +93,7 @@ public class GlCleaner {
         if (arg2 == contextId) {
             @Pc(8) IntWrapper local8 = new IntWrapper(arg1);
             local8.nodeId = arg0;
-            aClass69_50.addTail(local8);
+            aClass69_50.push(local8);
         }
     }
 
@@ -102,7 +102,7 @@ public class GlCleaner {
         if (arg1 == contextId) {
             @Pc(7) IntWrapper local7 = new IntWrapper();
             local7.nodeId = arg0;
-            aClass69_51.addTail(local7);
+            aClass69_51.push(local7);
         }
     }
 
@@ -123,7 +123,7 @@ public class GlCleaner {
         if (arg2 == contextId) {
             @Pc(8) IntWrapper local8 = new IntWrapper(arg1);
             local8.nodeId = arg0;
-            aClass69_48.addTail(local8);
+            aClass69_48.push(local8);
         }
     }
 
@@ -132,7 +132,7 @@ public class GlCleaner {
         if (arg2 == contextId) {
             @Pc(8) IntWrapper local8 = new IntWrapper(arg1);
             local8.nodeId = arg0;
-            aClass69_49.addTail(local8);
+            aClass69_49.push(local8);
         }
     }
 }

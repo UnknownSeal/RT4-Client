@@ -277,7 +277,7 @@ public class LoginManager {
                 }
             }
         }
-        AreaSoundManager.redraw(Protocol.sceneDelta, PlayerList.self.xFine, PlayerList.self.zFine, Player.plane);
+        AreaSoundManager.redraw(Protocol.sceneDelta, PlayerList.self.xFine, PlayerList.self.zFine, Player.currentLevel);
         Protocol.sceneDelta = 0;
     }
 
@@ -698,7 +698,7 @@ public class LoginManager {
                 parentalAdvertConsent = Protocol.inboundBuffer.g1() == 1;
                 worldQuickChat = Protocol.inboundBuffer.g1() == 1;
                 MouseCapturer.enabled = Protocol.inboundBuffer.g1() == 1;
-                PlayerList.selfId = Protocol.inboundBuffer.g2();
+                PlayerList.localPid = Protocol.inboundBuffer.g2();
                 playerMember = Protocol.inboundBuffer.g1() == 1;
                 membersWorld = Protocol.inboundBuffer.g1() == 1;
                 LocTypeList.setAllowMembers(membersWorld);

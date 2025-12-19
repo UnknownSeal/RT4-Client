@@ -1,6 +1,6 @@
 package com.jagex.runetek4.graphics.cache;
 
-import com.jagex.runetek4.core.datastruct.LinkedList;
+import com.jagex.runetek4.core.datastruct.LinkList;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -23,7 +23,7 @@ public final class MonochromeImageCache {
 	private int size = 0;
 
 	@OriginalMember(owner = "runetek4.client!nd", name = "g", descriptor = "Lclient!ih;")
-	private LinkedList recentlyUsed = new LinkedList();
+	private LinkList recentlyUsed = new LinkList();
 
 	@OriginalMember(owner = "runetek4.client!nd", name = "w", descriptor = "Z")
 	public boolean invalid = false;

@@ -55,18 +55,18 @@ public class HintArrowManager {
         @Pc(94) int vertexIndex;
         if (GlRenderer.enabled) {
             @Pc(68) GlModel glModel = (GlModel) model;
-            if (baseHeight != SceneGraph.getTileHeight(Player.plane, worldZ + minX, worldX + minZ) || baseHeight != SceneGraph.getTileHeight(Player.plane, worldZ + maxX, maxZ + worldX)) {
+            if (baseHeight != SceneGraph.getTileHeight(Player.currentLevel, worldZ + minX, worldX + minZ) || baseHeight != SceneGraph.getTileHeight(Player.currentLevel, worldZ + maxX, maxZ + worldX)) {
                 for (vertexIndex = 0; vertexIndex < glModel.vertexCount; vertexIndex++) {
-                    glModel.vertexY[vertexIndex] += SceneGraph.getTileHeight(Player.plane, glModel.vertexX[vertexIndex] + worldZ, glModel.vertexZ[vertexIndex] + worldX) - baseHeight;
+                    glModel.vertexY[vertexIndex] += SceneGraph.getTileHeight(Player.currentLevel, glModel.vertexX[vertexIndex] + worldZ, glModel.vertexZ[vertexIndex] + worldX) - baseHeight;
                 }
                 glModel.vertexBuffer.valid = false;
                 glModel.bounds.valid = false;
             }
         } else {
             @Pc(142) SoftwareModel softwareModel = (SoftwareModel) model;
-            if (baseHeight != SceneGraph.getTileHeight(Player.plane, minX + worldZ, minZ + worldX) || baseHeight != SceneGraph.getTileHeight(Player.plane, worldZ + maxX, maxZ + worldX)) {
+            if (baseHeight != SceneGraph.getTileHeight(Player.currentLevel, minX + worldZ, minZ + worldX) || baseHeight != SceneGraph.getTileHeight(Player.currentLevel, worldZ + maxX, maxZ + worldX)) {
                 for (vertexIndex = 0; vertexIndex < softwareModel.vertexCount; vertexIndex++) {
-                    softwareModel.vertexY[vertexIndex] += SceneGraph.getTileHeight(Player.plane, worldZ + softwareModel.vertexX[vertexIndex], softwareModel.vertexZ[vertexIndex] + worldX) - baseHeight;
+                    softwareModel.vertexY[vertexIndex] += SceneGraph.getTileHeight(Player.currentLevel, worldZ + softwareModel.vertexX[vertexIndex], softwareModel.vertexZ[vertexIndex] + worldX) - baseHeight;
                 }
                 softwareModel.boundsValid = false;
             }

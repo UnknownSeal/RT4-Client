@@ -361,7 +361,7 @@ public class WorldLoader {
                 player.zFine -= deltaZ * 128;
             }
         }
-        Player.plane = plane;
+        Player.currentLevel = plane;
         PlayerList.self.teleport(playerLocalZ, false, playerLocalX);
         @Pc(322) byte endTileX = 104;
         @Pc(324) byte startTileX = 0;
@@ -665,10 +665,10 @@ public class WorldLoader {
         }
         ClientProt.ping(true);
         index = SceneGraph.firstVisibleLevel;
-        if (index > Player.plane) {
-            index = Player.plane;
+        if (index > Player.currentLevel) {
+            index = Player.currentLevel;
         }
-        if (index < Player.plane - 1) {
+        if (index < Player.currentLevel - 1) {
             // TODO why is this here?
         }
         if (SceneGraph.allLevelsAreVisible()) {
@@ -706,7 +706,7 @@ public class WorldLoader {
         }
         for (chunkX = 0; chunkX < 104; chunkX++) {
             for (chunkZ = 0; chunkZ < 104; chunkZ++) {
-                Protocol.spawnGroundObject(chunkZ, chunkX);
+                Protocol.sortObjStacks(chunkX, chunkZ);
             }
         }
         ClientScriptRunner.method2218();

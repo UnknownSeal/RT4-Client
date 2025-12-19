@@ -1,6 +1,6 @@
 package com.jagex.runetek4.audio.core;
 
-import com.jagex.runetek4.core.datastruct.LinkedList;
+import com.jagex.runetek4.core.datastruct.LinkList;
 import com.jagex.runetek4.core.node.Node;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -11,10 +11,10 @@ import org.openrs2.deob.annotation.Pc;
 public final class MixerPcmStream extends PcmStream {
 
 	@OriginalMember(owner = "runetek4.client!ei", name = "t", descriptor = "Lclient!ih;")
-	private final LinkedList aClass69_43 = new LinkedList();
+	private final LinkList aClass69_43 = new LinkList();
 
 	@OriginalMember(owner = "runetek4.client!ei", name = "u", descriptor = "Lclient!ih;")
-	private final LinkedList aClass69_44 = new LinkedList();
+	private final LinkList aClass69_44 = new LinkList();
 
 	@OriginalMember(owner = "runetek4.client!ei", name = "v", descriptor = "I")
 	private int anInt1780 = 0;

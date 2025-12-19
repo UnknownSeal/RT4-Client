@@ -1,6 +1,6 @@
 package com.jagex.runetek4.game.map;
 
-import com.jagex.runetek4.core.datastruct.LinkedList;
+import com.jagex.runetek4.core.datastruct.LinkList;
 import com.jagex.runetek4.data.cache.media.SoftwareSprite;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.data.js5.Js5;
@@ -11,7 +11,7 @@ import org.openrs2.deob.annotation.Pc;
 
 public class MapList {
     @OriginalMember(owner = "client!sh", name = "a", descriptor = "Lclient!ih;")
-    public static final LinkedList areas = new LinkedList();
+    public static final LinkList areas = new LinkList();
     @OriginalMember(owner = "client!ed", name = "D", descriptor = "Lclient!na;")
     public static final JString DETAILS = JString.parse("details");
     @OriginalMember(owner = "client!je", name = "W", descriptor = "Lclient!ve;")
@@ -40,7 +40,7 @@ public class MapList {
         @Pc(25) int local25 = archive.getGroupId(DETAILS);
         @Pc(30) int[] local30 = archive.getFileIds(local25);
         for (@Pc(32) int local32 = 0; local32 < local30.length; local32++) {
-            areas.addTail(Map.create(new Packet(archive.getfile(local25, local30[local32]))));
+            areas.push(Map.create(new Packet(archive.getfile(local25, local30[local32]))));
         }
     }
 

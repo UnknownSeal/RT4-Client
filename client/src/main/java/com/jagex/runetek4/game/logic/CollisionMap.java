@@ -9,7 +9,6 @@ import org.openrs2.deob.annotation.Pc;
 @OriginalClass("client!mj")
 public final class CollisionMap {
 
-
 	@OriginalMember(owner = "client!mj", name = "p", descriptor = "I")
 	private final int offsetZ;
 
@@ -17,29 +16,29 @@ public final class CollisionMap {
 	private final int offsetX;
 
 	@OriginalMember(owner = "client!mj", name = "e", descriptor = "I")
-	private final int width;
+	private final int sizeX;
 
 	@OriginalMember(owner = "client!mj", name = "k", descriptor = "I")
-	private final int length;
+	private final int sizeZ;
 
 	@OriginalMember(owner = "client!mj", name = "m", descriptor = "[[I")
 	public final int[][] flags;
 
 	@OriginalMember(owner = "client!mj", name = "<init>", descriptor = "(II)V")
-	public CollisionMap(@OriginalArg(0) int width, @OriginalArg(1) int length) {
+	public CollisionMap(@OriginalArg(0) int sizeX, @OriginalArg(1) int sizeZ) {
 		this.offsetZ = 0;
 		this.offsetX = 0;
-		this.width = width;
-		this.length = length;
-		this.flags = new int[this.width][this.length];
+		this.sizeX = sizeX;
+		this.sizeZ = sizeZ;
+		this.flags = new int[this.sizeX][this.sizeZ];
 		this.reset();
 	}
 
 	@OriginalMember(owner = "client!mj", name = "a", descriptor = "(I)V")
 	public void reset() {
-		for (@Pc(3) int x = 0; x < this.width; x++) {
-			for (@Pc(13) int z = 0; z < this.length; z++) {
-				if (x == 0 || z == 0 || x >= this.width - 5 || this.length - 5 <= z) {
+		for (@Pc(3) int x = 0; x < this.sizeX; x++) {
+			for (@Pc(13) int z = 0; z < this.sizeZ; z++) {
+				if (x == 0 || z == 0 || x >= this.sizeX - 5 || this.sizeZ - 5 <= z) {
 					this.flags[x][z] = 0xFFFFFF;
 				} else {
 					this.flags[x][z] = 0;
@@ -563,9 +562,9 @@ public final class CollisionMap {
 			flags = 131328;
 		}
 		for (@Pc(25) int x0 = x; x0 < x + arg3; x0++) {
-			if (x0 >= 0 && x0 < this.width) {
+			if (x0 >= 0 && x0 < this.sizeX) {
 				for (@Pc(47) int z0 = z; z0 < arg4 + z; z0++) {
-					if (z0 >= 0 && this.length > z0) {
+					if (z0 >= 0 && this.sizeZ > z0) {
 						this.flag(x0, z0, flags);
 					}
 				}
@@ -816,7 +815,7 @@ public final class CollisionMap {
 		}
 		@Pc(22) int local22 = arg1 - this.offsetZ;
 		@Pc(33) int local33 = arg2 - this.offsetX;
-		if (local33 < 0 || this.width <= local33 || local22 < 0 || local22 >= this.length) {
+		if (local33 < 0 || this.sizeX <= local33 || local22 < 0 || local22 >= this.sizeZ) {
 			return false;
 		}
 		@Pc(61) int local61 = arg0 - this.offsetZ;
@@ -921,9 +920,9 @@ public final class CollisionMap {
 			length = temp;
 		}
 		for (temp = x; temp < x + width; temp++) {
-			if (temp >= 0 && temp < this.width) {
+			if (temp >= 0 && temp < this.sizeX) {
 				for (@Pc(61) int z0 = z; z0 < length + z; z0++) {
-					if (z0 >= 0 && this.length > z0) {
+					if (z0 >= 0 && this.sizeZ > z0) {
 						this.unflag(temp, z0, flags);
 					}
 				}

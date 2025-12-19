@@ -1,6 +1,6 @@
 package com.jagex.runetek4.graphics.cache;
 
-import com.jagex.runetek4.core.datastruct.LinkedList;
+import com.jagex.runetek4.core.datastruct.LinkList;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -19,7 +19,7 @@ public final class ColorImageCache {
 	private int singleRow = -1;
 
 	@OriginalMember(owner = "client!pf", name = "p", descriptor = "Lclient!ih;")
-	private LinkedList recentlyUsed = new LinkedList();
+	private LinkList recentlyUsed = new LinkList();
 
 	@OriginalMember(owner = "client!pf", name = "t", descriptor = "Z")
 	public boolean invalid = false;

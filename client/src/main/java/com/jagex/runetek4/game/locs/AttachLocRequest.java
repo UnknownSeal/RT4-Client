@@ -4,7 +4,7 @@ import com.jagex.runetek4.entity.entity.PlayerList;
 import com.jagex.runetek4.client.Client;
 import com.jagex.runetek4.config.types.loc.LocTypeList;
 import com.jagex.runetek4.config.types.loc.LocType;
-import com.jagex.runetek4.core.datastruct.LinkedList;
+import com.jagex.runetek4.core.datastruct.LinkList;
 import com.jagex.runetek4.entity.entity.Entity;
 import com.jagex.runetek4.entity.entity.NpcList;
 import com.jagex.runetek4.entity.entity.PathingEntity;
@@ -25,7 +25,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class AttachLocRequest extends Node {
 
 	@OriginalMember(owner = "runetek4.client!ka", name = "q", descriptor = "Lclient!ih;")
-	public static final LinkedList queue = new LinkedList();
+	public static final LinkList queue = new LinkList();
 
 	@OriginalMember(owner = "runetek4.client!cn", name = "p", descriptor = "I")
 	public int setLoops;
@@ -74,7 +74,7 @@ public final class AttachLocRequest extends Node {
 			@Pc(29) int playerId;
 			if (request.entityId < 0) {
 				playerId = -request.entityId - 1;
-				if (playerId == PlayerList.selfId) {
+				if (playerId == PlayerList.localPid) {
 					entity = PlayerList.self;
 				} else {
 					entity = PlayerList.players[playerId];
@@ -85,7 +85,7 @@ public final class AttachLocRequest extends Node {
 			}
 			if (entity != null) {
 				@Pc(63) LocType type = LocTypeList.get(request.locId);
-				if (Player.plane < 3) {
+				if (Player.currentLevel < 3) {
 					// TODO why is this here?
 				}
 				@Pc(86) int width;
@@ -101,33 +101,33 @@ public final class AttachLocRequest extends Node {
 				@Pc(110) int centerX0 = (width >> 1) + request.x;
 				@Pc(117) int centerZ0 = (length >> 1) + request.z;
 				@Pc(126) int centerZ1 = (length + 1 >> 1) + request.z;
-				@Pc(130) int[][] tileHeights = SceneGraph.tileHeights[Player.plane];
+				@Pc(130) int[][] tileHeights = SceneGraph.tileHeights[Player.currentLevel];
 				@Pc(157) int y = tileHeights[centerX1][centerZ1] + tileHeights[centerX0][centerZ1] + tileHeights[centerX0][centerZ0] + tileHeights[centerX1][centerZ0] >> 2;
 				@Pc(159) Entity attachment = null;
 				@Pc(164) int layer = Loc.LAYERS[request.shape];
 				if (layer == 0) {
-					@Pc(176) Wall wall = SceneGraph.getWall(Player.plane, request.x, request.z);
+					@Pc(176) Wall wall = SceneGraph.getWall(Player.currentLevel, request.x, request.z);
 					if (wall != null) {
 						attachment = wall.primary;
 					}
 				} else if (layer == 1) {
-					@Pc(231) WallDecor wallDecor = SceneGraph.getWallDecor(Player.plane, request.x, request.z);
+					@Pc(231) WallDecor wallDecor = SceneGraph.getWallDecor(Player.currentLevel, request.x, request.z);
 					if (wallDecor != null) {
 						attachment = wallDecor.primary;
 					}
 				} else if (layer == 2) {
-					@Pc(198) Scenery scenery = SceneGraph.getScenery(Player.plane, request.x, request.z);
+					@Pc(198) Scenery scenery = SceneGraph.getScenery(Player.currentLevel, request.x, request.z);
 					if (scenery != null) {
 						attachment = scenery.entity;
 					}
 				} else if (layer == 3) {
-					@Pc(216) GroundDecor groundDecor = SceneGraph.getGroundDecor(Player.plane, request.x, request.z);
+					@Pc(216) GroundDecor groundDecor = SceneGraph.getGroundDecor(Player.currentLevel, request.x, request.z);
 					if (groundDecor != null) {
 						attachment = groundDecor.entity;
 					}
 				}
 				if (attachment != null) {
-					ChangeLocRequest.push(Player.plane, request.z, 0, request.x, request.resetLoops + 1, -1, layer, 0, request.setLoops + 1);
+					ChangeLocRequest.push(Player.currentLevel, request.z, 0, request.x, request.resetLoops + 1, -1, layer, 0, request.setLoops + 1);
 					entity.attachmentResetAt = request.resetLoops + Client.loop;
 					entity.attachmentZFine = length * 64 + request.z * 128;
 					entity.attachmentXFine = width * 64 + request.x * 128;
@@ -173,6 +173,6 @@ public final class AttachLocRequest extends Node {
 		req.x0Delta = x0Delta;
 		req.x1Delta = x1Delta;
 		req.shape = shape;
-		queue.addTail(req);
+		queue.push(req);
 	}
 }

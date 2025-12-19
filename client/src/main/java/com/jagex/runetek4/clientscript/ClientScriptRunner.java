@@ -2116,7 +2116,7 @@ public final class ClientScriptRunner {
 									}
 									if (opcode == 3308) {
                                         // Extract X coordinate from packed coord
-										tempInt2 = Player.plane;
+										tempInt2 = Player.currentLevel;
 										tempInt1 = Camera.sceneBaseTileX + (PlayerList.self.xFine >> 7); // Convert fine coords to tiles
 										j = (PlayerList.self.zFine >> 7) + Camera.sceneBaseTileZ;
 										scriptIntValues[isp++] = (tempInt2 << 28) - (-(tempInt1 << 14) - j);
@@ -5060,7 +5060,7 @@ public final class ClientScriptRunner {
 			overheadScreenX = -1;
 			return;
 		}
-		@Pc(38) int local38 = SceneGraph.getTileHeight(Player.plane, arg5, arg2) - arg3;
+		@Pc(38) int local38 = SceneGraph.getTileHeight(Player.currentLevel, arg5, arg2) - arg3;
 		@Pc(42) int local42 = arg2 - Camera.renderZ;
 		@Pc(46) int local46 = local38 - Camera.cameraY;
 		@Pc(50) int local50 = arg5 - Camera.renderX;
@@ -5588,12 +5588,12 @@ public final class ClientScriptRunner {
 					}
 				}
 				if (player.attachment == null || Client.loop < player.attachmentSetAt || player.attachmentResetAt <= Client.loop) {
-					player.groundHeight = SceneGraph.getTileHeight(Player.plane, player.xFine, player.zFine);
-					SceneGraph.addTemporary(Player.plane, player.xFine, player.zFine, player.groundHeight, (sceneZ - 1) * 64 + 60, player, player.orientation, entityBitset, player.seqStretches);
+					player.groundHeight = SceneGraph.getTileHeight(Player.currentLevel, player.xFine, player.zFine);
+					SceneGraph.addTemporary(Player.currentLevel, player.xFine, player.zFine, player.groundHeight, (sceneZ - 1) * 64 + 60, player, player.orientation, entityBitset, player.seqStretches);
 				} else {
 					player.lowMemory = false;
-					player.groundHeight = SceneGraph.getTileHeight(Player.plane, player.xFine, player.zFine);
-					addTemporary(Player.plane, player.xFine, player.zFine, player.groundHeight, player, player.orientation, entityBitset, player.atachmentX0, player.attachmentZ0, player.attachmentX1, player.attachmentZ1);
+					player.groundHeight = SceneGraph.getTileHeight(Player.currentLevel, player.xFine, player.zFine);
+					addTemporary(Player.currentLevel, player.xFine, player.zFine, player.groundHeight, player, player.orientation, entityBitset, player.atachmentX0, player.attachmentZ0, player.attachmentX1, player.attachmentZ1);
 				}
 			}
 		}
@@ -5709,8 +5709,8 @@ public final class ClientScriptRunner {
 				if (!npc.type.active) {
 					entityBitset |= Long.MIN_VALUE;
 				}
-				npc.groundHeight = SceneGraph.getTileHeight(Player.plane, npc.xFine, npc.zFine);
-				SceneGraph.addTemporary(Player.plane, npc.xFine, npc.zFine, npc.groundHeight, npcSize * 64 + 60 - 64, npc, npc.orientation, entityBitset, npc.seqStretches);
+				npc.groundHeight = SceneGraph.getTileHeight(Player.currentLevel, npc.xFine, npc.zFine);
+				SceneGraph.addTemporary(Player.currentLevel, npc.xFine, npc.zFine, npc.groundHeight, npcSize * 64 + 60 - 64, npc, npc.orientation, entityBitset, npc.seqStretches);
 			}
 		}
 	}
@@ -5720,7 +5720,7 @@ public final class ClientScriptRunner {
 	public static void updateSceneProjectiles() {
 		for (@Pc(16) ProjAnimNode projectileNode = (ProjAnimNode) SceneGraph.projectiles.head(); projectileNode != null; projectileNode = (ProjAnimNode) SceneGraph.projectiles.next()) {
 			@Pc(21) ProjectileAnimation projectile = projectileNode.value;
-			if (Player.plane != projectile.currentPlane || projectile.lastCycle < Client.loop) {
+			if (Player.currentLevel != projectile.currentPlane || projectile.lastCycle < Client.loop) {
 				projectileNode.unlink();
 			} else if (Client.loop >= projectile.firstCycle) {
 				if (projectile.target > 0) {
@@ -5732,7 +5732,7 @@ public final class ClientScriptRunner {
 				if (projectile.target < 0) {
 					@Pc(102) int playerIndex = -projectile.target - 1;
 					@Pc(107) Player player;
-					if (PlayerList.selfId == playerIndex) {
+					if (PlayerList.localPid == playerIndex) {
 						player = PlayerList.self;
 					} else {
 						player = PlayerList.players[playerIndex];
@@ -5742,7 +5742,7 @@ public final class ClientScriptRunner {
 					}
 				}
 				projectile.update(Protocol.sceneDelta);
-				SceneGraph.addTemporary(Player.plane, (int) projectile.x, (int) projectile.y, (int) projectile.z, 60, projectile, projectile.yaw, -1L, false);
+				SceneGraph.addTemporary(Player.currentLevel, (int) projectile.x, (int) projectile.y, (int) projectile.z, 60, projectile, projectile.yaw, -1L, false);
 			}
 		}
 	}
@@ -5752,7 +5752,7 @@ public final class ClientScriptRunner {
 	public static void updateSpotAnims() {
 		for (@Pc(9) SpotAnimEntity spotAnimNode = (SpotAnimEntity) SceneGraph.spotanims.head(); spotAnimNode != null; spotAnimNode = (SpotAnimEntity) SceneGraph.spotanims.next()) {
 			@Pc(15) SpotAnim animation = spotAnimNode.animation;
-			if (animation.level != Player.plane || animation.seqComplete) {
+			if (animation.level != Player.currentLevel || animation.seqComplete) {
 				spotAnimNode.unlink();
 			} else if (animation.startCycle <= Client.loop) {
 				animation.update(Protocol.sceneDelta);
@@ -5830,9 +5830,9 @@ public final class ClientScriptRunner {
 	@OriginalMember(owner = "runetek4.client!uj", name = "a", descriptor = "(BZII[[[Lclient!bj;I)Z")
 	public static boolean calculateVisibleRegion(@OriginalArg(1) boolean forceVisible, @OriginalArg(2) int startX, @OriginalArg(3) int startZ, @OriginalArg(4) Tile[][][] tiles, @OriginalArg(5) int regionIndex) {
 		@Pc(14) byte markValue = forceVisible ? 1 : (byte) (anInt3325 & 0xFF);
-		if (markValue == tileMarkings[Player.plane][startX][startZ]) {
+		if (markValue == tileMarkings[Player.currentLevel][startX][startZ]) {
 			return false;
-		} else if ((SceneGraph.renderFlags[Player.plane][startX][startZ] & 0x4) == 0) {
+		} else if ((SceneGraph.renderFlags[Player.currentLevel][startX][startZ] & 0x4) == 0) {
 			return false;
 		} else {
 			@Pc(47) int queueRead = 0;
@@ -5840,7 +5840,7 @@ public final class ClientScriptRunner {
 			PathFinder.bfsStepX[0] = startX;
 			@Pc(69) int queueWrite = queueStart + 1;
 			PathFinder.bfsStepZ[0] = startZ;
-			tileMarkings[Player.plane][startX][startZ] = markValue;
+			tileMarkings[Player.currentLevel][startX][startZ] = markValue;
 			while (queueRead != queueWrite) {
 				@Pc(94) int direction1 = PathFinder.bfsStepX[queueRead] >> 16 & 0xFF;
 				@Pc(102) int direction2 = PathFinder.bfsStepX[queueRead] >> 24 & 0xFF;
@@ -5850,12 +5850,12 @@ public final class ClientScriptRunner {
 				queueRead = queueRead + 1 & 0xFFF;
 				@Pc(130) boolean isBlocked = false;
 				@Pc(132) boolean foundVisible = false;
-				if ((SceneGraph.renderFlags[Player.plane][currentX][currentZ] & 0x4) == 0) {
+				if ((SceneGraph.renderFlags[Player.currentLevel][currentX][currentZ] & 0x4) == 0) {
 					isBlocked = true;
 				}
 				@Pc(150) int level;
 				@Pc(191) int local191;
-				label238: for (level = Player.plane + 1; level <= 3; level++) {
+				label238: for (level = Player.currentLevel + 1; level <= 3; level++) {
 					if ((SceneGraph.renderFlags[level][currentX][currentZ] & 0x8) == 0) {
 						@Pc(227) int sceneType;
 						@Pc(358) int local358;
@@ -5910,8 +5910,8 @@ public final class ClientScriptRunner {
 					}
 				}
 				if (foundVisible) {
-					if (SceneGraph.tileHeights[Player.plane + 1][currentX][currentZ] > maxHeights[regionIndex]) {
-						maxHeights[regionIndex] = SceneGraph.tileHeights[Player.plane + 1][currentX][currentZ];
+					if (SceneGraph.tileHeights[Player.currentLevel + 1][currentX][currentZ] > maxHeights[regionIndex]) {
+						maxHeights[regionIndex] = SceneGraph.tileHeights[Player.currentLevel + 1][currentX][currentZ];
 					}
 					level = currentX << 7;
 					if (level < anIntArray338[regionIndex]) {
@@ -5927,58 +5927,58 @@ public final class ClientScriptRunner {
 					}
 				}
 				if (!isBlocked) {
-					if (currentX >= 1 && tileMarkings[Player.plane][currentX - 1][currentZ] != markValue) {
+					if (currentX >= 1 && tileMarkings[Player.currentLevel][currentX - 1][currentZ] != markValue) {
 						PathFinder.bfsStepX[queueWrite] = currentX - 1 | 0x120000 | 0xD3000000;
 						PathFinder.bfsStepZ[queueWrite] = currentZ | 0x130000;
 						queueWrite = queueWrite + 1 & 0xFFF;
-						tileMarkings[Player.plane][currentX - 1][currentZ] = markValue;
+						tileMarkings[Player.currentLevel][currentX - 1][currentZ] = markValue;
 					}
 					currentZ++;
 					if (currentZ < 104) {
-						if (currentX - 1 >= 0 && markValue != tileMarkings[Player.plane][currentX - 1][currentZ] && (SceneGraph.renderFlags[Player.plane][currentX][currentZ] & 0x4) == 0 && (SceneGraph.renderFlags[Player.plane][currentX - 1][currentZ - 1] & 0x4) == 0) {
+						if (currentX - 1 >= 0 && markValue != tileMarkings[Player.currentLevel][currentX - 1][currentZ] && (SceneGraph.renderFlags[Player.currentLevel][currentX][currentZ] & 0x4) == 0 && (SceneGraph.renderFlags[Player.currentLevel][currentX - 1][currentZ - 1] & 0x4) == 0) {
 							PathFinder.bfsStepX[queueWrite] = 0x52000000 | 0x120000 | currentX - 1;
 							PathFinder.bfsStepZ[queueWrite] = currentZ | 0x130000;
-							tileMarkings[Player.plane][currentX - 1][currentZ] = markValue;
+							tileMarkings[Player.currentLevel][currentX - 1][currentZ] = markValue;
 							queueWrite = queueWrite + 1 & 0xFFF;
 						}
-						if (markValue != tileMarkings[Player.plane][currentX][currentZ]) {
+						if (markValue != tileMarkings[Player.currentLevel][currentX][currentZ]) {
 							PathFinder.bfsStepX[queueWrite] = currentX | 0x13000000 | 0x520000;
 							PathFinder.bfsStepZ[queueWrite] = currentZ | 0x530000;
 							queueWrite = queueWrite + 1 & 0xFFF;
-							tileMarkings[Player.plane][currentX][currentZ] = markValue;
+							tileMarkings[Player.currentLevel][currentX][currentZ] = markValue;
 						}
-						if (currentX + 1 < 104 && tileMarkings[Player.plane][currentX + 1][currentZ] != markValue && (SceneGraph.renderFlags[Player.plane][currentX][currentZ] & 0x4) == 0 && (SceneGraph.renderFlags[Player.plane][currentX + 1][currentZ - 1] & 0x4) == 0) {
+						if (currentX + 1 < 104 && tileMarkings[Player.currentLevel][currentX + 1][currentZ] != markValue && (SceneGraph.renderFlags[Player.currentLevel][currentX][currentZ] & 0x4) == 0 && (SceneGraph.renderFlags[Player.currentLevel][currentX + 1][currentZ - 1] & 0x4) == 0) {
 							PathFinder.bfsStepX[queueWrite] = 0x92000000 | 0x520000 | currentX + 1;
 							PathFinder.bfsStepZ[queueWrite] = currentZ | 0x530000;
-							tileMarkings[Player.plane][currentX + 1][currentZ] = markValue;
+							tileMarkings[Player.currentLevel][currentX + 1][currentZ] = markValue;
 							queueWrite = queueWrite + 1 & 0xFFF;
 						}
 					}
 					currentZ--;
-					if (currentX + 1 < 104 && markValue != tileMarkings[Player.plane][currentX + 1][currentZ]) {
+					if (currentX + 1 < 104 && markValue != tileMarkings[Player.currentLevel][currentX + 1][currentZ]) {
 						PathFinder.bfsStepX[queueWrite] = currentX + 1 | 0x920000 | 0x53000000;
 						PathFinder.bfsStepZ[queueWrite] = currentZ | 0x930000;
-						tileMarkings[Player.plane][currentX + 1][currentZ] = markValue;
+						tileMarkings[Player.currentLevel][currentX + 1][currentZ] = markValue;
 						queueWrite = queueWrite + 1 & 0xFFF;
 					}
 					currentZ--;
 					if (currentZ >= 0) {
-						if (currentX - 1 >= 0 && tileMarkings[Player.plane][currentX - 1][currentZ] != markValue && (SceneGraph.renderFlags[Player.plane][currentX][currentZ] & 0x4) == 0 && (SceneGraph.renderFlags[Player.plane][currentX - 1][currentZ + 1] & 0x4) == 0) {
+						if (currentX - 1 >= 0 && tileMarkings[Player.currentLevel][currentX - 1][currentZ] != markValue && (SceneGraph.renderFlags[Player.currentLevel][currentX][currentZ] & 0x4) == 0 && (SceneGraph.renderFlags[Player.currentLevel][currentX - 1][currentZ + 1] & 0x4) == 0) {
 							PathFinder.bfsStepX[queueWrite] = currentX - 1 | 0xD20000 | 0x12000000;
 							PathFinder.bfsStepZ[queueWrite] = currentZ | 0xD30000;
-							tileMarkings[Player.plane][currentX - 1][currentZ] = markValue;
+							tileMarkings[Player.currentLevel][currentX - 1][currentZ] = markValue;
 							queueWrite = queueWrite + 1 & 0xFFF;
 						}
-						if (markValue != tileMarkings[Player.plane][currentX][currentZ]) {
+						if (markValue != tileMarkings[Player.currentLevel][currentX][currentZ]) {
 							PathFinder.bfsStepX[queueWrite] = currentX | 0xD20000 | 0x93000000;
 							PathFinder.bfsStepZ[queueWrite] = currentZ | 0xD30000;
 							queueWrite = queueWrite + 1 & 0xFFF;
-							tileMarkings[Player.plane][currentX][currentZ] = markValue;
+							tileMarkings[Player.currentLevel][currentX][currentZ] = markValue;
 						}
-						if (currentX + 1 < 104 && tileMarkings[Player.plane][currentX + 1][currentZ] != markValue && (SceneGraph.renderFlags[Player.plane][currentX][currentZ] & 0x4) == 0 && (SceneGraph.renderFlags[Player.plane][currentX + 1][currentZ + 1] & 0x4) == 0) {
+						if (currentX + 1 < 104 && tileMarkings[Player.currentLevel][currentX + 1][currentZ] != markValue && (SceneGraph.renderFlags[Player.currentLevel][currentX][currentZ] & 0x4) == 0 && (SceneGraph.renderFlags[Player.currentLevel][currentX + 1][currentZ + 1] & 0x4) == 0) {
 							PathFinder.bfsStepX[queueWrite] = currentX + 1 | 0xD2000000 | 0x920000;
 							PathFinder.bfsStepZ[queueWrite] = currentZ | 0x930000;
-							tileMarkings[Player.plane][currentX + 1][currentZ] = markValue;
+							tileMarkings[Player.currentLevel][currentX + 1][currentZ] = markValue;
 							queueWrite = queueWrite + 1 & 0xFFF;
 						}
 					}
@@ -6077,7 +6077,7 @@ public final class ClientScriptRunner {
 				tileMarkings[local33][stripIndex][local40] = markValue;
 			}
 		}
-		if (Player.plane == 3) {
+		if (Player.currentLevel == 3) {
 			return;
 		}
 		for (local33 = 0; local33 < 2; local33++) {
@@ -6088,13 +6088,13 @@ public final class ClientScriptRunner {
 			anIntArray134[local33] = 0;
 		}
 		if (Camera.cameraType != 1) {
-			local33 = SceneGraph.getTileHeight(Player.plane, Camera.renderX, Camera.renderZ);
-			if (local33 - Camera.cameraY < 800 && (SceneGraph.renderFlags[Player.plane][Camera.renderX >> 7][Camera.renderZ >> 7] & 0x4) != 0) {
+			local33 = SceneGraph.getTileHeight(Player.currentLevel, Camera.renderX, Camera.renderZ);
+			if (local33 - Camera.cameraY < 800 && (SceneGraph.renderFlags[Player.currentLevel][Camera.renderX >> 7][Camera.renderZ >> 7] & 0x4) != 0) {
 				calculateVisibleRegion(false, Camera.renderX >> 7, Camera.renderZ >> 7, SceneGraph.tiles, 1);
 			}
 			return;
 		}
-		if ((SceneGraph.renderFlags[Player.plane][PlayerList.self.xFine >> 7][PlayerList.self.zFine >> 7] & 0x4) != 0) {
+		if ((SceneGraph.renderFlags[Player.currentLevel][PlayerList.self.xFine >> 7][PlayerList.self.zFine >> 7] & 0x4) != 0) {
 			calculateVisibleRegion(false, PlayerList.self.xFine >> 7, PlayerList.self.zFine >> 7, SceneGraph.tiles, 0);
 		}
 		if (Camera.cameraPitch >= 310) {
@@ -6127,7 +6127,7 @@ public final class ClientScriptRunner {
 				} else if (local40 > playerZ) {
 					local40--;
 				}
-				if ((SceneGraph.renderFlags[Player.plane][local33][local40] & 0x4) != 0) {
+				if ((SceneGraph.renderFlags[Player.currentLevel][local33][local40] & 0x4) != 0) {
 					calculateVisibleRegion(false, local33, local40, SceneGraph.tiles, 1);
 					break;
 				}
@@ -6139,7 +6139,7 @@ public final class ClientScriptRunner {
 						local33--;
 					}
 					local186 -= 65536;
-					if ((SceneGraph.renderFlags[Player.plane][local33][local40] & 0x4) != 0) {
+					if ((SceneGraph.renderFlags[Player.currentLevel][local33][local40] & 0x4) != 0) {
 						calculateVisibleRegion(false, local33, local40, SceneGraph.tiles, 1);
 						break;
 					}
@@ -6155,7 +6155,7 @@ public final class ClientScriptRunner {
 			} else if (local33 > playerX) {
 				local33--;
 			}
-			if ((SceneGraph.renderFlags[Player.plane][local33][local40] & 0x4) != 0) {
+			if ((SceneGraph.renderFlags[Player.currentLevel][local33][local40] & 0x4) != 0) {
 				calculateVisibleRegion(false, local33, local40, SceneGraph.tiles, 1);
 				break;
 			}
@@ -6167,7 +6167,7 @@ public final class ClientScriptRunner {
 					local40--;
 				}
 				local186 -= 65536;
-				if ((SceneGraph.renderFlags[Player.plane][local33][local40] & 0x4) != 0) {
+				if ((SceneGraph.renderFlags[Player.currentLevel][local33][local40] & 0x4) != 0) {
 					calculateVisibleRegion(false, local33, local40, SceneGraph.tiles, 1);
 					break;
 				}

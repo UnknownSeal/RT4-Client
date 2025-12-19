@@ -37,6 +37,8 @@ public class ClientProt {
     public static int WINDOW_STATUS = 243;
     public static int NO_TIMEOUT = 93;
     public static int CLIENT_CHEAT = 44;
+    public static int IGNORELIST_ADD = 34;
+    public static int IGNORELIST_DEL = 213;
 
     public static int IF_BUTTON1 = 155;
     public static int IF_BUTTON2 = 196;

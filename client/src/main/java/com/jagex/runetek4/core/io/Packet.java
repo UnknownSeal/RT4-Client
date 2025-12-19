@@ -257,7 +257,7 @@ public class Packet extends Node {
 	}
 
 	@OriginalMember(owner = "client!wa", name = "g", descriptor = "(B)I")
-	public final int g1add() {
+	public final int g1_alt1() {
 		return this.data[this.offset++] - 128 & 0xFF;
 	}
 
@@ -300,7 +300,7 @@ public class Packet extends Node {
 	}
 
 	@OriginalMember(owner = "client!wa", name = "g", descriptor = "(I)I")
-	public final int g2sub() {
+	public final int g2_alt2() {
 		this.offset += 2;
 		return ((this.data[this.offset - 2] & 0xFF) << 8) + (this.data[this.offset - 1] - 128 & 0xFF);
 	}
@@ -359,7 +359,7 @@ public class Packet extends Node {
 	}
 
 	@OriginalMember(owner = "client!wa", name = "i", descriptor = "(I)I")
-	public final int g2le() {
+	public final int g2_al1() {
 		this.offset += 2;
 		return ((this.data[this.offset - 1] & 0xFF) << 8) + (this.data[this.offset - 2] & 0xFF);
 	}
@@ -487,7 +487,7 @@ public class Packet extends Node {
 	}
 
 	@OriginalMember(owner = "client!wa", name = "k", descriptor = "(B)I")
-	public final int g2leadd() {
+	public final int g2_alt3() {
 		this.offset += 2;
 		return ((this.data[this.offset - 1] & 0xFF) << 8) + (this.data[this.offset - 2] - 128 & 0xFF);
 	}
@@ -513,7 +513,7 @@ public class Packet extends Node {
 	}
 
 	@OriginalMember(owner = "client!wa", name = "g", descriptor = "(Z)I")
-	public final int p1neg() {
+	public final int g1_alt2() {
 		return -this.data[this.offset++] & 0xFF;
 	}
 

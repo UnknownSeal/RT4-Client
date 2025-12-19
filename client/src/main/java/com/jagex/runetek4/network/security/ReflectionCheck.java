@@ -1,6 +1,6 @@
 package com.jagex.runetek4.network.security;
 
-import com.jagex.runetek4.core.datastruct.LinkedList;
+import com.jagex.runetek4.core.datastruct.LinkList;
 import com.jagex.runetek4.PrivilegedRequest;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.core.io.PacketBit;
@@ -21,7 +21,7 @@ import java.lang.reflect.Method;
 public final class ReflectionCheck extends Node {
 
 	@OriginalMember(owner = "runetek4.client!qi", name = "u", descriptor = "Lclient!ih;")
-	public static LinkedList queue = new LinkedList();
+	public static LinkList queue = new LinkList();
 
 	@OriginalMember(owner = "runetek4.client!ed", name = "p", descriptor = "I")
 	public int size;
@@ -49,7 +49,7 @@ public final class ReflectionCheck extends Node {
 
     @OriginalMember(owner = "runetek4.client!j", name = "c", descriptor = "(I)V")
     public static void clear() {
-        queue = new LinkedList();
+        queue = new LinkList();
     }
 
 	@OriginalMember(owner = "runetek4.client!t", name = "a", descriptor = "(Lclient!i;II)V")
@@ -233,7 +233,7 @@ public final class ReflectionCheck extends Node {
 				check.errorCodes[local59] = -5;
 			}
 		}
-		queue.addTail(check);
+		queue.push(check);
 	}
 
 	@OriginalMember(owner = "client!ag", name = "a", descriptor = "(ILjava/lang/String;)Ljava/lang/Class;")

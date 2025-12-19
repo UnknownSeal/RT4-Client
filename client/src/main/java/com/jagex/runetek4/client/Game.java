@@ -465,7 +465,7 @@ public class Game {
                                                 ClientScriptRunner.handleComponentDrag();
                                             }
                                             if (LoginManager.staffModLevel > 0 && Keyboard.pressedKeys[82] && Keyboard.pressedKeys[81] && MouseWheel.wheelRotation != 0) {
-                                                y = Player.plane - MouseWheel.wheelRotation;
+                                                y = Player.currentLevel - MouseWheel.wheelRotation;
                                                 if (y < 0) {
                                                     y = 0;
                                                 } else if (y > 3) {
@@ -476,7 +476,7 @@ public class Game {
                                             }
                                             if (LoginManager.staffModLevel > 0 && Keyboard.pressedKeys[82] && Keyboard.pressedKeys[81]) {
                                                 if (MiniMenu.clickTileX != -1) {
-                                                    Cheat.teleport(Camera.sceneBaseTileX + MiniMenu.clickTileX, Camera.sceneBaseTileZ + MiniMenu.clickTileZ, Player.plane);
+                                                    Cheat.teleport(Camera.sceneBaseTileX + MiniMenu.clickTileX, Camera.sceneBaseTileZ + MiniMenu.clickTileZ, Player.currentLevel);
                                                 }
                                                 Protocol.anInt4422 = 0;
                                                 MiniMenu.anInt3096 = 0;

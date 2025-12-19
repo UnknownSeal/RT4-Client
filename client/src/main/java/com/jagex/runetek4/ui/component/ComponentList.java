@@ -27,7 +27,7 @@ import com.jagex.runetek4.config.types.cursor.CursorTypeList;
 import com.jagex.runetek4.config.types.seq.SeqTypeList;
 import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.core.datastruct.HashTableIterator;
-import com.jagex.runetek4.core.datastruct.LinkedList;
+import com.jagex.runetek4.core.datastruct.LinkList;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.config.types.cursor.CursorType;
 import com.jagex.runetek4.entity.entity.Player;
@@ -86,11 +86,11 @@ public class ComponentList {
     @OriginalMember(owner = "runetek4.client!qj", name = "i", descriptor = "[I")
     public static final int[] keyChars = new int[128];
     @OriginalMember(owner = "runetek4.client!ac", name = "i", descriptor = "Lclient!ih;")
-    public static final LinkedList highPriorityRequests = new LinkedList();
+    public static final LinkList highPriorityRequests = new LinkList();
     @OriginalMember(owner = "runetek4.client!ja", name = "f", descriptor = "Lclient!ih;")
-    public static final LinkedList mediumPriorityRequests = new LinkedList();
+    public static final LinkList mediumPriorityRequests = new LinkList();
     @OriginalMember(owner = "runetek4.client!p", name = "c", descriptor = "Lclient!ih;")
-    public static final LinkedList lowPriorityRequests = new LinkedList();
+    public static final LinkList lowPriorityRequests = new LinkList();
     @OriginalMember(owner = "runetek4.client!rb", name = "b", descriptor = "Lclient!sc;")
     public static final HashTable properties = new HashTable(512);
     @OriginalMember(owner = "runetek4.client!ql", name = "h", descriptor = "Lclient!na;")
@@ -621,7 +621,7 @@ public class ComponentList {
             @Pc(305) ComponentEvent resizeEvent = new ComponentEvent();
             resizeEvent.arguments = component.onResize;
             resizeEvent.source = component;
-            lowPriorityRequests.addTail(resizeEvent);
+            lowPriorityRequests.push(resizeEvent);
         }
     }
 
@@ -893,7 +893,7 @@ public class ComponentList {
                                 request.source = component;
                                 request.mouseY = MouseWheel.wheelRotation;
                                 request.arguments = component.onScroll;
-                                lowPriorityRequests.addTail(request);
+                                lowPriorityRequests.push(request);
                             }
                             if (ClientScriptRunner.dragComponent != null || clickedInventoryComponent != null || ClientScriptRunner.menuVisible || component.contentType != 1400 && anInt3337 > 0) {
                                 mouseClicked = false;
@@ -970,7 +970,7 @@ public class ComponentList {
                                     request.mouseX = Mouse.mouseClickX - componentX;
                                     request.mouseY = Mouse.mouseClickY - componentY;
                                     request.arguments = component.onClickRepeat;
-                                    lowPriorityRequests.addTail(request);
+                                    lowPriorityRequests.push(request);
                                 }
                             }
                             if (component.mousePressed && mousePressed && component.onDrag != null) {
@@ -980,7 +980,7 @@ public class ComponentList {
                                 request.mouseX = Mouse.lastMouseX - componentX;
                                 request.mouseY = Mouse.lastMouseY - componentY;
                                 request.arguments = component.onDrag;
-                                lowPriorityRequests.addTail(request);
+                                lowPriorityRequests.push(request);
                             }
                             if (component.mousePressed && !mousePressed) {
                                 component.mousePressed = false;
@@ -991,7 +991,7 @@ public class ComponentList {
                                     request.mouseX = Mouse.lastMouseX - componentX;
                                     request.mouseY = Mouse.lastMouseY - componentY;
                                     request.arguments = component.onRelease;
-                                    mediumPriorityRequests.addTail(request);
+                                    mediumPriorityRequests.push(request);
                                 }
                             }
                             if (mousePressed && component.onHold != null) {
@@ -1001,7 +1001,7 @@ public class ComponentList {
                                 request.mouseX = Mouse.lastMouseX - componentX;
                                 request.mouseY = Mouse.lastMouseY - componentY;
                                 request.arguments = component.onHold;
-                                lowPriorityRequests.addTail(request);
+                                lowPriorityRequests.push(request);
                             }
                             if (!component.mouseHover && mouseOver) {
                                 component.mouseHover = true;
@@ -1012,7 +1012,7 @@ public class ComponentList {
                                     request.mouseX = Mouse.lastMouseX - componentX;
                                     request.mouseY = Mouse.lastMouseY - componentY;
                                     request.arguments = component.onMouseOver;
-                                    lowPriorityRequests.addTail(request);
+                                    lowPriorityRequests.push(request);
                                 }
                             }
                             if (component.mouseHover && mouseOver && component.onMouseRepeat != null) {
@@ -1022,7 +1022,7 @@ public class ComponentList {
                                 request.mouseX = Mouse.lastMouseX - componentX;
                                 request.mouseY = Mouse.lastMouseY - componentY;
                                 request.arguments = component.onMouseRepeat;
-                                lowPriorityRequests.addTail(request);
+                                lowPriorityRequests.push(request);
                             }
                             if (component.mouseHover && !mouseOver) {
                                 component.mouseHover = false;
@@ -1033,14 +1033,14 @@ public class ComponentList {
                                     request.mouseX = Mouse.lastMouseX - componentX;
                                     request.mouseY = Mouse.lastMouseY - componentY;
                                     request.arguments = component.onMouseLeave;
-                                    mediumPriorityRequests.addTail(request);
+                                    mediumPriorityRequests.push(request);
                                 }
                             }
                             if (component.onTimer != null) {
                                 request = new ComponentEvent();
                                 request.source = component;
                                 request.arguments = component.onTimer;
-                                highPriorityRequests.addTail(request);
+                                highPriorityRequests.push(request);
                             }
                             @Pc(966) ComponentEvent request2;
                             if (component.onVarcTransmit != null && VarcDomain.updatedVarcsWriterIndex > component.updatedVarcsReaderIndex) {
@@ -1048,7 +1048,7 @@ public class ComponentList {
                                     request = new ComponentEvent();
                                     request.source = component;
                                     request.arguments = component.onVarcTransmit;
-                                    lowPriorityRequests.addTail(request);
+                                    lowPriorityRequests.push(request);
                                 } else {
                                     label563: for (hotkeyIndex = component.updatedVarcsReaderIndex; hotkeyIndex < VarcDomain.updatedVarcsWriterIndex; hotkeyIndex++) {
                                         skill = VarcDomain.updatedVarcs[hotkeyIndex & 0x1F];
@@ -1057,7 +1057,7 @@ public class ComponentList {
                                                 request2 = new ComponentEvent();
                                                 request2.source = component;
                                                 request2.arguments = component.onVarcTransmit;
-                                                lowPriorityRequests.addTail(request2);
+                                                lowPriorityRequests.push(request2);
                                                 break label563;
                                             }
                                         }
@@ -1070,7 +1070,7 @@ public class ComponentList {
                                     request = new ComponentEvent();
                                     request.source = component;
                                     request.arguments = component.onVarcstrTransmit;
-                                    lowPriorityRequests.addTail(request);
+                                    lowPriorityRequests.push(request);
                                 } else {
                                     label539: for (hotkeyIndex = component.updatedVarcstrsReaderIndex; hotkeyIndex < VarcDomain.updatedVarcstrsWriterIndex; hotkeyIndex++) {
                                         skill = VarcDomain.updatedVarcstrs[hotkeyIndex & 0x1F];
@@ -1079,7 +1079,7 @@ public class ComponentList {
                                                 request2 = new ComponentEvent();
                                                 request2.source = component;
                                                 request2.arguments = component.onVarcstrTransmit;
-                                                lowPriorityRequests.addTail(request2);
+                                                lowPriorityRequests.push(request2);
                                                 break label539;
                                             }
                                         }
@@ -1092,7 +1092,7 @@ public class ComponentList {
                                     request = new ComponentEvent();
                                     request.source = component;
                                     request.arguments = component.onVarpTransmit;
-                                    lowPriorityRequests.addTail(request);
+                                    lowPriorityRequests.push(request);
                                 } else {
                                     label515: for (hotkeyIndex = component.updatedVarpsReaderIndex; hotkeyIndex < VarpDomain.updatedVarpsWriterIndex; hotkeyIndex++) {
                                         skill = VarpDomain.updatedVarps[hotkeyIndex & 0x1F];
@@ -1101,7 +1101,7 @@ public class ComponentList {
                                                 request2 = new ComponentEvent();
                                                 request2.source = component;
                                                 request2.arguments = component.onVarpTransmit;
-                                                lowPriorityRequests.addTail(request2);
+                                                lowPriorityRequests.push(request2);
                                                 break label515;
                                             }
                                         }
@@ -1114,7 +1114,7 @@ public class ComponentList {
                                     request = new ComponentEvent();
                                     request.source = component;
                                     request.arguments = component.onInvTransmit;
-                                    lowPriorityRequests.addTail(request);
+                                    lowPriorityRequests.push(request);
                                 } else {
                                     label491: for (hotkeyIndex = component.updatedInventoriesReaderIndex; hotkeyIndex < Inv.updatedInventoriesWriterIndex; hotkeyIndex++) {
                                         skill = Inv.updatedInventories[hotkeyIndex & 0x1F];
@@ -1123,7 +1123,7 @@ public class ComponentList {
                                                 request2 = new ComponentEvent();
                                                 request2.source = component;
                                                 request2.arguments = component.onInvTransmit;
-                                                lowPriorityRequests.addTail(request2);
+                                                lowPriorityRequests.push(request2);
                                                 break label491;
                                             }
                                         }
@@ -1136,7 +1136,7 @@ public class ComponentList {
                                     request = new ComponentEvent();
                                     request.source = component;
                                     request.arguments = component.onStatTransmit;
-                                    lowPriorityRequests.addTail(request);
+                                    lowPriorityRequests.push(request);
                                 } else {
                                     label467: for (hotkeyIndex = component.updatedStatsReaderIndex; hotkeyIndex < PlayerSkillXpTable.updatedStatsWriterIndex; hotkeyIndex++) {
                                         skill = PlayerSkillXpTable.updatedStats[hotkeyIndex & 0x1F];
@@ -1145,7 +1145,7 @@ public class ComponentList {
                                                 request2 = new ComponentEvent();
                                                 request2.source = component;
                                                 request2.arguments = component.onStatTransmit;
-                                                lowPriorityRequests.addTail(request2);
+                                                lowPriorityRequests.push(request2);
                                                 break label467;
                                             }
                                         }
@@ -1157,31 +1157,31 @@ public class ComponentList {
                                 request = new ComponentEvent();
                                 request.source = component;
                                 request.arguments = component.onMsg;
-                                lowPriorityRequests.addTail(request);
+                                lowPriorityRequests.push(request);
                             }
                             if (FriendList.transmitAt > component.lastTransmitTimer && component.onFriendTransmit != null) {
                                 request = new ComponentEvent();
                                 request.source = component;
                                 request.arguments = component.onFriendTransmit;
-                                lowPriorityRequests.addTail(request);
+                                lowPriorityRequests.push(request);
                             }
                             if (ClanChat.transmitAt > component.lastTransmitTimer && component.onClanTransmit != null) {
                                 request = new ComponentEvent();
                                 request.source = component;
                                 request.arguments = component.onClanTransmit;
-                                lowPriorityRequests.addTail(request);
+                                lowPriorityRequests.push(request);
                             }
                             if (StockMarketManager.transmitAt > component.lastTransmitTimer && component.onStockTransmit != null) {
                                 request = new ComponentEvent();
                                 request.source = component;
                                 request.arguments = component.onStockTransmit;
-                                lowPriorityRequests.addTail(request);
+                                lowPriorityRequests.push(request);
                             }
                             if (miscTransmitAt > component.lastTransmitTimer && component.onMiscTransmit != null) {
                                 request = new ComponentEvent();
                                 request.source = component;
                                 request.arguments = component.onMiscTransmit;
-                                lowPriorityRequests.addTail(request);
+                                lowPriorityRequests.push(request);
                             }
                             component.lastTransmitTimer = transmitTimer;
                             if (component.onKey != null) {
@@ -1191,14 +1191,14 @@ public class ComponentList {
                                     local1430.keyCode = keyCodes[hotkeyIndex];
                                     local1430.keyChar = keyChars[hotkeyIndex];
                                     local1430.arguments = component.onKey;
-                                    lowPriorityRequests.addTail(local1430);
+                                    lowPriorityRequests.push(local1430);
                                 }
                             }
                             if (Camera.shouldReverse && component.onMinimapUnlock != null) {
                                 request = new ComponentEvent();
                                 request.source = component;
                                 request.arguments = component.onMinimapUnlock;
-                                lowPriorityRequests.addTail(request);
+                                lowPriorityRequests.push(request);
                             }
                         }
                     }
@@ -1965,7 +1965,7 @@ public class ComponentList {
                                                     local2589 = PlayerAppearance.DEFAULT.createAnimatedBodyModel(null, -1, null, null, 0, -1, 0, -1, -1);
                                                 } else {
                                                     colorValue = component.modelId & 0x7FF;
-                                                    if (colorValue == PlayerList.selfId) {
+                                                    if (colorValue == PlayerList.localPid) {
                                                         colorValue = 2047;
                                                     }
                                                     @Pc(2751) Player local2751 = PlayerList.players[colorValue];

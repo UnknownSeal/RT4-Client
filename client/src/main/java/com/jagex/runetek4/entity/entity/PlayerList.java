@@ -19,7 +19,7 @@ public class PlayerList {
     public static final int[] anIntArray309 = new int[] { 1, 4 };
 
     @OriginalMember(owner = "client!bf", name = "E", descriptor = "I")
-    public static int selfId = -1;
+    public static int localPid = -1;
 
     @OriginalMember(owner = "client!nk", name = "O", descriptor = "Lclient!e;")
     public static Player self;

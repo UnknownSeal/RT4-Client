@@ -10,7 +10,7 @@ import com.jagex.runetek4.config.types.flu.FluTypeList;
 import com.jagex.runetek4.config.types.light.LightTypeList;
 import com.jagex.runetek4.config.types.loc.LocTypeList;
 import com.jagex.runetek4.core.datastruct.HashTable;
-import com.jagex.runetek4.core.datastruct.LinkedList;
+import com.jagex.runetek4.core.datastruct.LinkList;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.config.types.loc.LocType;
 import com.jagex.runetek4.config.types.light.LightType;
@@ -58,13 +58,13 @@ public class SceneGraph {
     public static final byte[][][] renderFlags = new byte[4][104][104];
 
     @OriginalMember(owner = "runetek4.client!rj", name = "U", descriptor = "Lclient!ih;")
-    public static final LinkedList projectiles = new LinkedList();
+    public static final LinkList projectiles = new LinkList();
 
     @OriginalMember(owner = "runetek4.client!hk", name = "W", descriptor = "Lclient!ih;")
-    public static final LinkedList spotanims = new LinkedList();
+    public static final LinkList spotanims = new LinkList();
 
     @OriginalMember(owner = "runetek4.client!mi", name = "Y", descriptor = "[[[Lclient!ih;")
-    public static final LinkedList[][][] objStacks = new LinkedList[4][104][104];
+    public static final LinkList[][][] objStacks = new LinkList[4][104][104];
 
     @OriginalMember(owner = "runetek4.client!te", name = "B", descriptor = "[I")
     public static final int[] WALL_DECORATION_ROTATION_FORWARD_Z = new int[] { 0, -1, 0, 1 };
@@ -124,7 +124,7 @@ public class SceneGraph {
     public static final int[] tmpLocalY = new int[6];
 
     @OriginalMember(owner = "client!ah", name = "p", descriptor = "Lclient!ih;")
-    public static final LinkedList drawTileQueue = new LinkedList();
+    public static final LinkList drawTileQueue = new LinkList();
 
     @OriginalMember(owner = "client!sh", name = "i", descriptor = "[[I")
     public static final int[][] SHAPE_OVERLAY_COORDINATES = new int[][] { { 0, 128, 0, 0, 128, 0, 128, 128 }, { 0, 128, 0, 0, 128, 0 }, { 0, 0, 64, 128, 0, 128 }, { 128, 128, 64, 128, 128, 0 }, { 0, 0, 128, 0, 128, 128, 64, 128 }, { 0, 128, 0, 0, 128, 0, 64, 128 }, { 64, 128, 0, 128, 0, 0, 64, 0 }, { 0, 0, 64, 0, 0, 64 }, { 128, 0, 128, 128, 0, 128, 0, 64, 64, 0 }, { 0, 128, 0, 0, 32, 64, 64, 96, 128, 128 }, { 0, 0, 128, 0, 128, 128, 64, 96, 32, 64 }, { 0, 0, 128, 0, 96, 32, 32, 32 } };
@@ -1788,7 +1788,7 @@ public class SceneGraph {
     }
 
     @OriginalMember(owner = "runetek4.client!pb", name = "b", descriptor = "(III)Lclient!jj;")
-    public static ObjStackEntity removeObjStack(@OriginalArg(0) int plane, @OriginalArg(1) int x, @OriginalArg(2) int z) {
+    public static ObjStackEntity removeGroundObjects(@OriginalArg(0) int plane, @OriginalArg(1) int x, @OriginalArg(2) int z) {
         @Pc(7) Tile tile = tiles[plane][x][z];
         if (tile == null) {
             return null;
@@ -2492,7 +2492,7 @@ public class SceneGraph {
 
     @OriginalMember(owner = "runetek4.client!ub", name = "a", descriptor = "(Lclient!bj;Z)V")
     public static void renderScene(@OriginalArg(0) Tile startTile, @OriginalArg(1) boolean checkOcclusion) {
-        drawTileQueue.addTail(startTile);
+        drawTileQueue.push(startTile);
         while (true) {
             @Pc(8) Tile tile;
             @Pc(18) int tileX;
@@ -2798,25 +2798,25 @@ public class SceneGraph {
                                                 if (tileX < eyeTileX && (x & 0x4) != 0) {
                                                     adjacentTile = tiles[tileX + 1][tileZ];
                                                     if (adjacentTile != null && adjacentTile.bridgeAbove) {
-                                                        drawTileQueue.addTail(adjacentTile);
+                                                        drawTileQueue.push(adjacentTile);
                                                     }
                                                 }
                                                 if (tileZ < eyeTileZ && (x & 0x2) != 0) {
                                                     adjacentTile = tiles[tileX][tileZ + 1];
                                                     if (adjacentTile != null && adjacentTile.bridgeAbove) {
-                                                        drawTileQueue.addTail(adjacentTile);
+                                                        drawTileQueue.push(adjacentTile);
                                                     }
                                                 }
                                                 if (tileX > eyeTileX && (x & 0x1) != 0) {
                                                     adjacentTile = tiles[tileX - 1][tileZ];
                                                     if (adjacentTile != null && adjacentTile.bridgeAbove) {
-                                                        drawTileQueue.addTail(adjacentTile);
+                                                        drawTileQueue.push(adjacentTile);
                                                     }
                                                 }
                                                 if (tileZ > eyeTileZ && (x & 0x8) != 0) {
                                                     adjacentTile = tiles[tileX][tileZ - 1];
                                                     if (adjacentTile != null && adjacentTile.bridgeAbove) {
-                                                        drawTileQueue.addTail(adjacentTile);
+                                                        drawTileQueue.push(adjacentTile);
                                                     }
                                                 }
                                             }
@@ -2983,9 +2983,9 @@ public class SceneGraph {
                                                     for (y = selectedScenery.zMin; y <= selectedScenery.zMax; y++) {
                                                         @Pc(1863) Tile spanTile = tiles[x][y];
                                                         if (spanTile.locCheckFlags != 0) {
-                                                            drawTileQueue.addTail(spanTile);
+                                                            drawTileQueue.push(spanTile);
                                                         } else if ((x != tileX || y != tileZ) && spanTile.bridgeAbove) {
-                                                            drawTileQueue.addTail(spanTile);
+                                                            drawTileQueue.push(spanTile);
                                                         }
                                                     }
                                                 }
@@ -3093,31 +3093,31 @@ public class SceneGraph {
             if (plane < planes - 1) {
                 neighborTile = SceneGraph.tiles[plane + 1][tileX][tileZ];
                 if (neighborTile != null && neighborTile.bridgeAbove) {
-                    drawTileQueue.addTail(neighborTile);
+                    drawTileQueue.push(neighborTile);
                 }
             }
             if (tileX < eyeTileX) {
                 neighborTile = tiles[tileX + 1][tileZ];
                 if (neighborTile != null && neighborTile.bridgeAbove) {
-                    drawTileQueue.addTail(neighborTile);
+                    drawTileQueue.push(neighborTile);
                 }
             }
             if (tileZ < eyeTileZ) {
                 neighborTile = tiles[tileX][tileZ + 1];
                 if (neighborTile != null && neighborTile.bridgeAbove) {
-                    drawTileQueue.addTail(neighborTile);
+                    drawTileQueue.push(neighborTile);
                 }
             }
             if (tileX > eyeTileX) {
                 neighborTile = tiles[tileX - 1][tileZ];
                 if (neighborTile != null && neighborTile.bridgeAbove) {
-                    drawTileQueue.addTail(neighborTile);
+                    drawTileQueue.push(neighborTile);
                 }
             }
             if (tileZ > eyeTileZ) {
                 neighborTile = tiles[tileX][tileZ - 1];
                 if (neighborTile != null && neighborTile.bridgeAbove) {
-                    drawTileQueue.addTail(neighborTile);
+                    drawTileQueue.push(neighborTile);
                 }
             }
         }
@@ -3264,10 +3264,10 @@ public class SceneGraph {
 
     @OriginalMember(owner = "client!ch", name = "c", descriptor = "(I)V")
     public static void updatePlayerPlane() {
-        if (!allLevelsAreVisible() && centralPlane != Player.plane) {
-            WorldLoader.initializeMapRegion(Player.plane, centralZoneZ, centralZoneX, PlayerList.self.movementQueueZ[0], false, PlayerList.self.movementQueueX[0]);
-        } else if (Player.plane != LightingManager.anInt2875 && MiniMap.drawMap(Player.plane)) {
-            LightingManager.anInt2875 = Player.plane;
+        if (!allLevelsAreVisible() && centralPlane != Player.currentLevel) {
+            WorldLoader.initializeMapRegion(Player.currentLevel, centralZoneZ, centralZoneX, PlayerList.self.movementQueueZ[0], false, PlayerList.self.movementQueueX[0]);
+        } else if (Player.currentLevel != LightingManager.anInt2875 && MiniMap.drawMap(Player.currentLevel)) {
+            LightingManager.anInt2875 = Player.currentLevel;
             ClientScriptRunner.method2218();
         }
     }
@@ -5675,7 +5675,7 @@ public class SceneGraph {
             if (Camera.cameraModifierEnabled[4] && Camera.cameraAmplitude[4] + 128 > pitch) {
                 pitch = Camera.cameraAmplitude[4] + 128;
             }
-            Camera.orbitCamera(Camera.cameraX, height, getTileHeight(Player.plane, PlayerList.self.xFine, PlayerList.self.zFine) - 50, 600 + (pitch * 3), cameraY, Camera.cameraZ, pitch);
+            Camera.orbitCamera(Camera.cameraX, height, getTileHeight(Player.currentLevel, PlayerList.self.xFine, PlayerList.self.zFine) - 50, 600 + (pitch * 3), cameraY, Camera.cameraZ, pitch);
         }
         cameraY = Camera.cameraY;
         pitch = Camera.renderX;
@@ -5752,7 +5752,7 @@ public class SceneGraph {
             GlRenderer.clearColorAndDepthBuffers(jitter);
             MaterialManager.method2731(Camera.cameraPitch, Camera.renderZ, Camera.cameraY, Camera.renderX, Camera.cameraYaw);
             GlRenderer.anInt5323 = Client.loop;
-            setupSceneRender(Camera.renderX, Camera.cameraY, Camera.renderZ, Camera.cameraPitch, Camera.cameraYaw, ClientScriptRunner.tileMarkings, ClientScriptRunner.maxHeights, ClientScriptRunner.anIntArray338, ClientScriptRunner.anIntArray518, ClientScriptRunner.anIntArray134, ClientScriptRunner.anIntArray476, Player.plane + 1, roofVisibilityFlag, PlayerList.self.xFine >> 7, PlayerList.self.zFine >> 7);
+            setupSceneRender(Camera.renderX, Camera.cameraY, Camera.renderZ, Camera.cameraPitch, Camera.cameraYaw, ClientScriptRunner.tileMarkings, ClientScriptRunner.maxHeights, ClientScriptRunner.anIntArray338, ClientScriptRunner.anIntArray518, ClientScriptRunner.anIntArray134, ClientScriptRunner.anIntArray476, Player.currentLevel + 1, roofVisibilityFlag, PlayerList.self.xFine >> 7, PlayerList.self.zFine >> 7);
             ClientScriptRunner.aBoolean299 = true;
             LightingManager.method2390();
             MaterialManager.method2731(0, 0, 0, 0, 0);
@@ -5762,7 +5762,7 @@ public class SceneGraph {
             MiniMap.renderOverheadHints(width, x, height, ClientScriptRunner.anInt5029, ClientScriptRunner.anInt5029, y);
         } else {
             SoftwareRenderer.fillRect(x, y, width, height, 0);
-            setupSceneRender(Camera.renderX, Camera.cameraY, Camera.renderZ, Camera.cameraPitch, Camera.cameraYaw, ClientScriptRunner.tileMarkings, ClientScriptRunner.maxHeights, ClientScriptRunner.anIntArray338, ClientScriptRunner.anIntArray518, ClientScriptRunner.anIntArray134, ClientScriptRunner.anIntArray476, Player.plane + 1, roofVisibilityFlag, PlayerList.self.xFine >> 7, PlayerList.self.zFine >> 7);
+            setupSceneRender(Camera.renderX, Camera.cameraY, Camera.renderZ, Camera.cameraPitch, Camera.cameraYaw, ClientScriptRunner.tileMarkings, ClientScriptRunner.maxHeights, ClientScriptRunner.anIntArray338, ClientScriptRunner.anIntArray518, ClientScriptRunner.anIntArray134, ClientScriptRunner.anIntArray476, Player.currentLevel + 1, roofVisibilityFlag, PlayerList.self.xFine >> 7, PlayerList.self.zFine >> 7);
             Client.audioLoop();
             ClientScriptRunner.clearAllScenery();
             ClientScriptRunner.drawOverheads(y, width, x, 256, height, 256);

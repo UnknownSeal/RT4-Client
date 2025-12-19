@@ -10,7 +10,7 @@ import com.jagex.runetek4.config.types.loc.LocType;
 import com.jagex.runetek4.config.types.npc.NpcType;
 import com.jagex.runetek4.config.types.bas.BasType;
 
-import com.jagex.runetek4.core.datastruct.LinkedList;
+import com.jagex.runetek4.core.datastruct.LinkList;
 import com.jagex.runetek4.entity.entity.Npc;
 import com.jagex.runetek4.entity.entity.Player;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -19,10 +19,10 @@ import org.openrs2.deob.annotation.Pc;
 
 public class AreaSoundManager {
     @OriginalMember(owner = "client!ab", name = "n", descriptor = "Lclient!ih;")
-    public static final LinkedList locSounds = new LinkedList();
+    public static final LinkList locSounds = new LinkList();
 
     @OriginalMember(owner = "client!ma", name = "x", descriptor = "Lclient!ih;")
-    public static final LinkedList npcSounds = new LinkedList();
+    public static final LinkList npcSounds = new LinkList();
 
     @OriginalMember(owner = "runetek4.client!he", name = "ab", descriptor = "Lclient!sc;")
     public static final HashTable playerSounds = new HashTable(16);
@@ -55,7 +55,7 @@ public class AreaSoundManager {
             if (sound.bgsound_random != null) {
                 sound.remainingLoops = sound.bgsound_mindelay + (int) (Math.random() * (double) (sound.bgsound_maxdelay - sound.bgsound_mindelay));
             }
-            locSounds.addTail(sound);
+            locSounds.push(sound);
         } else if (npc != null) {
             sound.npc = npc;
             @Pc(138) NpcType npcType = npc.type;
@@ -69,7 +69,7 @@ public class AreaSoundManager {
                 sound.bgsound = Npc.getSound(npc);
                 sound.bgsound_range = npcType.bgsound_range * 128;
             }
-            npcSounds.addTail(sound);
+            npcSounds.push(sound);
         } else if (player != null) {
             sound.player = player;
             sound.maxXFine = (x + player.getSize()) * 128;
@@ -305,7 +305,7 @@ public class AreaSoundManager {
     public static void updatePlayerAreaSound(@OriginalArg(0) Player player) {
         @Pc(12) AreaSound exisitngSound = (AreaSound) playerSounds.get(player.username.encode37());
         if (exisitngSound == null) {
-            add(player.movementQueueZ[0], null, 0, null, player.movementQueueX[0], Player.plane, player);
+            add(player.movementQueueZ[0], null, 0, null, player.movementQueueX[0], Player.currentLevel, player);
         } else {
             exisitngSound.update();
         }

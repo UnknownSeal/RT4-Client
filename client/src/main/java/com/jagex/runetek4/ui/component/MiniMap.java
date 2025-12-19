@@ -14,7 +14,7 @@ import com.jagex.runetek4.config.types.loc.LocTypeList;
 import com.jagex.runetek4.config.types.msi.MSITypeList;
 import com.jagex.runetek4.config.types.loc.LocType;
 import com.jagex.runetek4.config.types.msi.MSIType;
-import com.jagex.runetek4.core.datastruct.LinkedList;
+import com.jagex.runetek4.core.datastruct.LinkList;
 import com.jagex.runetek4.entity.entity.Npc;
 import com.jagex.runetek4.entity.entity.NpcList;
 import com.jagex.runetek4.entity.entity.Player;
@@ -204,7 +204,7 @@ public class MiniMap {
             }
             for (flagX = 0; flagX < 104; flagX++) {
                 for (flagZ = 0; flagZ < 104; flagZ++) {
-                    @Pc(439) LinkedList objStack = SceneGraph.objStacks[Player.plane][flagX][flagZ];
+                    @Pc(439) LinkList objStack = SceneGraph.objStacks[Player.currentLevel][flagX][flagZ];
                     if (objStack != null) {
                         relativeZ = flagX * 4 + 2 - PlayerList.self.xFine / 32;
                         npcX = flagZ * 4 + 2 - PlayerList.self.zFine / 32;
@@ -405,7 +405,7 @@ public class MiniMap {
             locs = 0;
             for (local37 = 0; local37 < 104; local37++) {
                 for (local76 = 0; local76 < 104; local76++) {
-                    @Pc(169) long locationKey = SceneGraph.getGroundDecorKey(Player.plane, local37 + 0, local76);
+                    @Pc(169) long locationKey = SceneGraph.getGroundDecorKey(Player.currentLevel, local37 + 0, local76);
                     if (locationKey != 0L) {
                         @Pc(184) LocType locType = LocTypeList.get((int) (locationKey >>> 32) & Integer.MAX_VALUE);
                         @Pc(187) int mapFunction = locType.mapfunction;
@@ -425,7 +425,7 @@ public class MiniMap {
                             @Pc(237) int adjustedZ = local76;
                             adjustedX = local37;
                             if (mapFunction != 22 && mapFunction != 29 && mapFunction != 34 && mapFunction != 36 && mapFunction != 46 && mapFunction != 47 && mapFunction != 48) {
-                                @Pc(269) int[][] collisionFlags = PathFinder.collisionMaps[Player.plane].flags;
+                                @Pc(269) int[][] collisionFlags = PathFinder.collisionMaps[Player.currentLevel].flags;
                                 for (@Pc(271) int attempt = 0; attempt < 10; attempt++) {
                                     @Pc(281) int direction = (int) (Math.random() * 4.0D);
                                     if (direction == 0 && adjustedX > 0 && local37 - 3 < adjustedX && (collisionFlags[adjustedX - 1][adjustedZ] & 0x12C0108) == 0) {

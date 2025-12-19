@@ -1,6 +1,7 @@
 package com.jagex.runetek4.network;
 
 import com.jagex.runetek4.*;
+import com.jagex.runetek4.game.logic.CollisionConstants;
 import com.jagex.runetek4.game.world.WorldLoader;
 import com.jagex.runetek4.graphics.animation.ProjAnimNode;
 import com.jagex.runetek4.graphics.animation.ProjectileAnimation;
@@ -24,7 +25,7 @@ import com.jagex.runetek4.config.types.obj.ObjTypeList;
 import com.jagex.runetek4.config.types.quickchat.QuickChatPhraseTypeList;
 import com.jagex.runetek4.config.types.seq.SeqTypeList;
 import com.jagex.runetek4.config.types.spotanim.SpotAnimTypeList;
-import com.jagex.runetek4.core.datastruct.LinkedList;
+import com.jagex.runetek4.core.datastruct.LinkList;
 import com.jagex.runetek4.core.exceptions.TracingException;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.core.io.PacketBit;
@@ -48,7 +49,7 @@ import com.jagex.runetek4.game.map.MapMarker;
 import com.jagex.runetek4.network.security.ReflectionCheck;
 import com.jagex.runetek4.entity.loc.Loc;
 import com.jagex.runetek4.entity.loc.ObjStack;
-import com.jagex.runetek4.entity.loc.ObjStackNode;
+import com.jagex.runetek4.entity.loc.ClientObj;
 import com.jagex.runetek4.scene.SceneCamera;
 import com.jagex.runetek4.scene.SceneGraph;
 import com.jagex.runetek4.clientscript.ClientScriptRunner;
@@ -340,7 +341,7 @@ public class Protocol {
         LoginManager.idleNetCycles = 0;
         @Pc(133) int ii;
         if (opcode == VARP_SMALL) {
-            ii = inboundBuffer.g2sub();
+            ii = inboundBuffer.g2_alt2();
             @Pc(137) byte local137 = inboundBuffer.g1neg();
             VarpDomain.setVarpServer(local137, ii);
             opcode = -1;
@@ -489,8 +490,8 @@ public class Protocol {
         @Pc(786) int param1;
         @Pc(790) JString messageText;
         if (opcode == 123) {
-            ii = inboundBuffer.g2le();
-            int verifyID = inboundBuffer.g2sub();
+            ii = inboundBuffer.g2_al1();
+            int verifyID = inboundBuffer.g2_alt2();
             messageText = inboundBuffer.gjstr();
             if (setVerifyID(verifyID)) {
                 DelayedStateChange.method3498(messageText, ii);
@@ -498,7 +499,7 @@ public class Protocol {
             opcode = -1;
             return true;
         } else if (opcode == MAP_UPDATE) {
-            SceneGraph.currentChunkZ = inboundBuffer.g1add();
+            SceneGraph.currentChunkZ = inboundBuffer.g1_alt1();
             SceneGraph.currentChunkX = inboundBuffer.g1_alt3();
             while (packetSize > inboundBuffer.offset) {
                 opcode = inboundBuffer.g1();
@@ -514,7 +515,7 @@ public class Protocol {
             @Pc(864) int world;
             if (opcode == 220) {
                 ii = inboundBuffer.p4rme();
-                param1 = inboundBuffer.g2le();
+                param1 = inboundBuffer.g2_al1();
                 int verifyID = inboundBuffer.g2();
                 if (setVerifyID(verifyID)) {
                     DelayedStateChange.method3938(param1, ii);
@@ -641,7 +642,7 @@ public class Protocol {
             } else if (opcode == 48) {
                 int verifyID = inboundBuffer.g2();
                 argTypes = inboundBuffer.gjstr();
-                world = inboundBuffer.g2leadd();
+                world = inboundBuffer.g2_alt3();
                 if (setVerifyID(verifyID)) {
                     DelayedStateChange.method3498(argTypes, world);
                 }
@@ -656,7 +657,7 @@ public class Protocol {
             } else {
                 @Pc(1409) JString local1409;
                 if (opcode == 44) {
-                    ii = inboundBuffer.g2leadd();
+                    ii = inboundBuffer.g2_alt3();
                     if (ii == 65535) {
                         ii = -1;
                     }
@@ -675,12 +676,12 @@ public class Protocol {
                     return true;
                 } else if (opcode == VARP_LARGE) {
                     ii = inboundBuffer.g4();
-                    param1 = inboundBuffer.g2sub();
+                    param1 = inboundBuffer.g2_alt2();
                     VarpDomain.setVarpServer(ii, param1);
                     opcode = -1;
                     return true;
                 } else if (opcode == 21) {
-                    ii = inboundBuffer.p1neg();
+                    ii = inboundBuffer.g1_alt2();
                     int verifyID = inboundBuffer.g2();
                     world = inboundBuffer.g4me();
                     if (setVerifyID(verifyID)) {
@@ -690,9 +691,9 @@ public class Protocol {
                     return true;
                 } else if (opcode == IF_OPENTOP) {
                     // IF_OPENTOP
-                    int parent = inboundBuffer.g2leadd();
-                    int reset = inboundBuffer.g1add();
-                    int verifyID = inboundBuffer.g2leadd();
+                    int parent = inboundBuffer.g2_alt3();
+                    int reset = inboundBuffer.g1_alt1();
+                    int verifyID = inboundBuffer.g2_alt3();
                     if (setVerifyID(verifyID)) {
                         if (reset == 2) {
                             WorldMap.reset();
@@ -708,9 +709,9 @@ public class Protocol {
                     opcode = -1;
                     return true;
                 } else if (opcode == VARC_SMALL) {
-                    int verifyID = inboundBuffer.g2leadd();
+                    int verifyID = inboundBuffer.g2_alt3();
                     param1 = inboundBuffer.g4();
-                    world = inboundBuffer.g2sub();
+                    world = inboundBuffer.g2_alt2();
                     if (setVerifyID(verifyID)) {
                         DelayedStateChange.updateVarC(world, param1);
                     }
@@ -748,7 +749,7 @@ public class Protocol {
                 } else if (opcode == 36) {
                     ii = inboundBuffer.p4rme();
                     param1 = inboundBuffer.g2les();
-                    int verifyID = inboundBuffer.g2sub();
+                    int verifyID = inboundBuffer.g2_alt2();
                     if (setVerifyID(verifyID)) {
                         DelayedStateChange.method3893(ii, param1);
                     }
@@ -758,14 +759,14 @@ public class Protocol {
                     @Pc(1814) ServerActiveProperties local1814;
                     @Pc(1804) ServerActiveProperties local1804;
                     if (opcode == IF_SETEVENTS) {
-                        ii = inboundBuffer.g2leadd();
+                        ii = inboundBuffer.g2_alt3();
                         param1 = inboundBuffer.g4me();
-                        int verifyID = inboundBuffer.g2sub();
-                        slot = inboundBuffer.g2le();
+                        int verifyID = inboundBuffer.g2_alt2();
+                        slot = inboundBuffer.g2_al1();
                         if (slot == 65535) {
                             slot = -1;
                         }
-                        count = inboundBuffer.g2sub();
+                        count = inboundBuffer.g2_alt2();
                         if (count == 65535) {
                             count = -1;
                         }
@@ -790,9 +791,9 @@ public class Protocol {
                     @Pc(1986) int j;
                     if (opcode == SPOTANIM_ENTITY) {
                         ii = inboundBuffer.g2();
-                        param1 = inboundBuffer.g2le();
+                        param1 = inboundBuffer.g2_al1();
                         world = inboundBuffer.g4rme();
-                        slot = inboundBuffer.g2leadd();
+                        slot = inboundBuffer.g2_alt3();
                         if (world >> 30 == 0) {
                             @Pc(1994) SeqType local1994;
                             if (world >> 29 != 0) {
@@ -830,7 +831,7 @@ public class Protocol {
                             } else if (world >> 28 != 0) {
                                 count = world & 0xFFFF;
                                 @Pc(2033) Player local2033;
-                                if (PlayerList.selfId == count) {
+                                if (PlayerList.localPid == count) {
                                     local2033 = PlayerList.self;
                                 } else {
                                     local2033 = PlayerList.players[count];
@@ -876,16 +877,16 @@ public class Protocol {
                                 chatFlags = chatFlags * 128 + 64;
                                 i = i * 128 + 64;
                                 @Pc(2241) SpotAnim local2241 = new SpotAnim(slot, count, i, chatFlags, SceneGraph.getTileHeight(count, i, chatFlags) - param1, ii, Client.loop);
-                                SceneGraph.spotanims.addTail(new SpotAnimEntity(local2241));
+                                SceneGraph.spotanims.push(new SpotAnimEntity(local2241));
                             }
                         }
                         opcode = -1;
                         return true;
                     } else if (opcode == 207) {
                         ii = inboundBuffer.p4rme();
-                        int verifyID = inboundBuffer.g2sub();
+                        int verifyID = inboundBuffer.g2_alt2();
                         world = inboundBuffer.g2();
-                        slot = inboundBuffer.g2sub();
+                        slot = inboundBuffer.g2_alt2();
                         if (setVerifyID(verifyID)) {
                             DelayedStateChange.setComponentModelRotationSpeedServer(slot + (world << 16), ii);
                         }
@@ -894,7 +895,7 @@ public class Protocol {
                     } else if (opcode == UPDATE_STAT) {
                         // UPDATE_STAT
                         ComponentList.redrawActiveInterfaces();
-                        ii = inboundBuffer.g1add();
+                        ii = inboundBuffer.g1_alt1();
                         param1 = inboundBuffer.g4rme();
                         world = inboundBuffer.g1();
                         PlayerSkillXpTable.experience[world] = param1;
@@ -908,7 +909,7 @@ public class Protocol {
                         PlayerSkillXpTable.updatedStats[PlayerSkillXpTable.updatedStatsWriterIndex++ & 0x1F] = world;
                         opcode = -1;
                         return true;
-                    } else if (opcode == 104 || opcode == 121 || opcode == 97 || opcode == 14 || opcode == 202 || opcode == 135 || opcode == 17 || opcode == 16 || opcode == 240 || opcode == 33 || opcode == 20 || opcode == 195 || opcode == 179) {
+                    } else if (opcode == 104 || opcode == 121 || opcode == 97 || opcode == 14 || opcode == ZONE_LOC_ATTACH || opcode == 135 || opcode == 17 || opcode == 16 || opcode == 240 || opcode == 33 || opcode == ZONE_LOC_MERGE || opcode == ZONE_LOC_DEL || opcode == ZONE_LOC_ADD_CHANGE) {
                         readZonePacket();
                         opcode = -1;
                         return true;
@@ -928,7 +929,7 @@ public class Protocol {
                         opcode = -1;
                         return true;
                     } else if (opcode == CAM_ORBIT) {
-                        ii = inboundBuffer.g2le();
+                        ii = inboundBuffer.g2_al1();
                         int verifyID = inboundBuffer.g2();
                         world = inboundBuffer.g2();
                         if (setVerifyID(verifyID)) {
@@ -944,9 +945,9 @@ public class Protocol {
                         return true;
                     } else if (opcode == 132) {
                         ii = inboundBuffer.g2();
-                        int verifyID = inboundBuffer.g2sub();
-                        world = inboundBuffer.g2leadd();
-                        slot = inboundBuffer.g2leadd();
+                        int verifyID = inboundBuffer.g2_alt2();
+                        world = inboundBuffer.g2_alt3();
+                        slot = inboundBuffer.g2_alt3();
                         count = inboundBuffer.g4();
                         if (setVerifyID(verifyID)) {
                             DelayedStateChange.updateView(world, count, slot, ii);
@@ -955,17 +956,17 @@ public class Protocol {
                         return true;
                     } else if (opcode == MAP_CLEAR_ZONE) {
                         SceneGraph.currentChunkX = inboundBuffer.g1();
-                        SceneGraph.currentChunkZ = inboundBuffer.p1neg();
+                        SceneGraph.currentChunkZ = inboundBuffer.g1_alt2();
                         for (ii = SceneGraph.currentChunkX; ii < SceneGraph.currentChunkX + 8; ii++) {
                             for (param1 = SceneGraph.currentChunkZ; param1 < SceneGraph.currentChunkZ + 8; param1++) {
-                                if (SceneGraph.objStacks[Player.plane][ii][param1] != null) {
-                                    SceneGraph.objStacks[Player.plane][ii][param1] = null;
-                                    spawnGroundObject(param1, ii);
+                                if (SceneGraph.objStacks[Player.currentLevel][ii][param1] != null) {
+                                    SceneGraph.objStacks[Player.currentLevel][ii][param1] = null;
+                                    sortObjStacks(ii, param1);
                                 }
                             }
                         }
                         for (@Pc(2604) ChangeLocRequest local2604 = (ChangeLocRequest) ChangeLocRequest.queue.head(); local2604 != null; local2604 = (ChangeLocRequest) ChangeLocRequest.queue.next()) {
-                            if (local2604.x >= SceneGraph.currentChunkX && SceneGraph.currentChunkX + 8 > local2604.x && local2604.z >= SceneGraph.currentChunkZ && local2604.z < SceneGraph.currentChunkZ + 8 && local2604.level == Player.plane) {
+                            if (local2604.x >= SceneGraph.currentChunkX && SceneGraph.currentChunkX + 8 > local2604.x && local2604.z >= SceneGraph.currentChunkZ && local2604.z < SceneGraph.currentChunkZ + 8 && local2604.level == Player.currentLevel) {
                                 local2604.resetLoops = 0;
                             }
                         }
@@ -983,8 +984,8 @@ public class Protocol {
                         return true;
                     } else if (opcode == 130) {
                         ii = inboundBuffer.g4me();
-                        int verifyID = inboundBuffer.g2leadd();
-                        world = inboundBuffer.g2sub();
+                        int verifyID = inboundBuffer.g2_alt3();
+                        world = inboundBuffer.g2_alt2();
                         if (world == 65535) {
                             world = -1;
                         }
@@ -999,9 +1000,9 @@ public class Protocol {
                         return true;
                     } else if (opcode == PLAYER_TELEPORT) {
                         ii = inboundBuffer.g1_alt3();
-                        param1 = inboundBuffer.g1add();
+                        param1 = inboundBuffer.g1_alt1();
                         world = inboundBuffer.g1();
-                        Player.plane = param1 >> 1;
+                        Player.currentLevel = param1 >> 1;
                         PlayerList.self.teleport(ii, (param1 & 0x1) == 1, world);
                         opcode = -1;
                         return true;
@@ -1160,7 +1161,7 @@ public class Protocol {
                             @Pc(3456) SubInterface oldSubInterface;
                             if (opcode == 176) {
                                 ii = inboundBuffer.g4rme();
-                                int verifyID = inboundBuffer.g2sub();
+                                int verifyID = inboundBuffer.g2_alt2();
                                 world = inboundBuffer.g4rme();
                                 if (setVerifyID(verifyID)) {
                                     @Pc(3449) SubInterface newSubInterface = (SubInterface) ComponentList.openInterfaces.get((long) ii);
@@ -1205,8 +1206,8 @@ public class Protocol {
                                 return true;
                             } else if (opcode == 2) {
                                 ii = inboundBuffer.g4rme();
-                                int verifyID = inboundBuffer.g2sub();
-                                world = inboundBuffer.g2leadd();
+                                int verifyID = inboundBuffer.g2_alt2();
+                                world = inboundBuffer.g2_alt3();
                                 if (setVerifyID(verifyID)) {
                                     DelayedStateChange.setColor(world, ii);
                                 }
@@ -1222,9 +1223,9 @@ public class Protocol {
                                 opcode = -1;
                                 return true;
                             } else if (opcode == VARC_LEGACY) {
-                                int verifyID = inboundBuffer.g2le();
-                                param1 = inboundBuffer.p1neg();
-                                world = inboundBuffer.g2leadd();
+                                int verifyID = inboundBuffer.g2_al1();
+                                param1 = inboundBuffer.g1_alt2();
+                                world = inboundBuffer.g2_alt3();
                                 if (setVerifyID(verifyID)) {
                                     DelayedStateChange.updateVarC(world, param1);
                                 }
@@ -1244,13 +1245,13 @@ public class Protocol {
                                 opcode = -1;
                                 return true;
                             } else if (opcode == INV_DELETE) {
-                                ii = inboundBuffer.g2le();
+                                ii = inboundBuffer.g2_al1();
                                 Inv.delete(ii);
                                 Inv.updatedInventories[Inv.updatedInventoriesWriterIndex++ & 0x1F] = ii & 0x7FFF;
                                 opcode = -1;
                                 return true;
                             } else if (opcode == NPC_ANIM) {
-                                ii = inboundBuffer.g2le();
+                                ii = inboundBuffer.g2_al1();
                                 param1 = inboundBuffer.g1_alt3();
                                 world = inboundBuffer.g2();
                                 @Pc(3766) Npc local3766 = NpcList.npcs[ii];
@@ -1289,19 +1290,19 @@ public class Protocol {
                                 opcode = -1;
                                 return true;
                             } else if (opcode == 111) {
-                                int verifyID = inboundBuffer.g2sub();
+                                int verifyID = inboundBuffer.g2_alt2();
                                 param1 = inboundBuffer.p4rme();
-                                world = inboundBuffer.g2leadd();
-                                slot = inboundBuffer.g2le();
-                                count = inboundBuffer.g2leadd();
+                                world = inboundBuffer.g2_alt3();
+                                slot = inboundBuffer.g2_al1();
+                                count = inboundBuffer.g2_alt3();
                                 if (setVerifyID(verifyID)) {
                                     DelayedStateChange.updateComponentModel(world, 7, param1, slot << 16 | count);
                                 }
                                 opcode = -1;
                                 return true;
                             } else if (opcode == VARBIT) {
-                                ii = inboundBuffer.g1add();
-                                param1 = inboundBuffer.g2le();
+                                ii = inboundBuffer.g1_alt1();
+                                param1 = inboundBuffer.g2_al1();
                                 VarpDomain.setVarbitServer(ii, param1);
                                 opcode = -1;
                                 return true;
@@ -1309,7 +1310,7 @@ public class Protocol {
                                 // IF_OPENSUB
                                 int flags = inboundBuffer.g1();
                                 int windowID = inboundBuffer.p4rme();
-                                int verifyID = inboundBuffer.g2sub();
+                                int verifyID = inboundBuffer.g2_alt2();
                                 int interfaceID = inboundBuffer.g2();
                                 if (setVerifyID(verifyID)) {
                                     SubInterface SubInterface = (SubInterface) ComponentList.openInterfaces.get(windowID);
@@ -1393,7 +1394,7 @@ public class Protocol {
                                 opcode = -1;
                                 return true;
                             } else if (opcode == 119) {
-                                int verifyID = inboundBuffer.g2sub();
+                                int verifyID = inboundBuffer.g2_alt2();
                                 param1 = inboundBuffer.g4me();
                                 world = inboundBuffer.g2s();
                                 slot = inboundBuffer.g2sadd();
@@ -1525,7 +1526,7 @@ public class Protocol {
                                 opcode = -1;
                                 return true;
                             } else if (opcode == 66) {
-                                int verifyID = inboundBuffer.g2leadd();
+                                int verifyID = inboundBuffer.g2_alt3();
                                 param1 = inboundBuffer.g4rme();
                                 if (setVerifyID(verifyID)) {
                                     world = 0;
@@ -1539,7 +1540,7 @@ public class Protocol {
                             } else if (opcode == 171) {
                                 ii = inboundBuffer.p4rme();
                                 argTypes = inboundBuffer.gjstr();
-                                int verifyID = inboundBuffer.g2sub();
+                                int verifyID = inboundBuffer.g2_alt2();
                                 if (setVerifyID(verifyID)) {
                                     DelayedStateChange.method3617(argTypes, ii);
                                 }
@@ -1547,7 +1548,7 @@ public class Protocol {
                                 return true;
                             } else if (opcode == VARBIT_LARGE) {
                                 ii = inboundBuffer.g4me();
-                                param1 = inboundBuffer.g2leadd();
+                                param1 = inboundBuffer.g2_alt3();
                                 VarpDomain.setVarbitServer(ii, param1);
                                 opcode = -1;
                                 return true;
@@ -1610,12 +1611,12 @@ public class Protocol {
                                     StockMarketManager.transmitAt = ComponentList.transmitTimer;
                                     return true;
                                 } else if (opcode == 73) {
-                                    ii = inboundBuffer.g2sub();
+                                    ii = inboundBuffer.g2_alt2();
                                     param1 = inboundBuffer.g4me();
                                     if (ii == 65535) {
                                         ii = -1;
                                     }
-                                    int verifyID = inboundBuffer.g2le();
+                                    int verifyID = inboundBuffer.g2_al1();
                                     if (setVerifyID(verifyID)) {
                                         DelayedStateChange.updateComponentModel(-1, 2, param1, ii);
                                     }
@@ -1626,13 +1627,13 @@ public class Protocol {
                                     opcode = -1;
                                     return true;
                                 } else if (opcode == IF_SETOBJECT) {
-                                    int verifyID = inboundBuffer.g2le();
-                                    param1 = inboundBuffer.g2le();
+                                    int verifyID = inboundBuffer.g2_al1();
+                                    param1 = inboundBuffer.g2_al1();
                                     if (param1 == 65535) {
                                         param1 = -1;
                                     }
                                     world = inboundBuffer.g4();
-                                    slot = inboundBuffer.g2sub();
+                                    slot = inboundBuffer.g2_alt2();
                                     count = inboundBuffer.g4rme();
                                     if (slot == 65535) {
                                         slot = -1;
@@ -1731,11 +1732,11 @@ public class Protocol {
                                 } else if (opcode == 50) {
                                     ii = inboundBuffer.g4();
                                     param1 = inboundBuffer.p4rme();
-                                    world = inboundBuffer.g2leadd();
+                                    world = inboundBuffer.g2_alt3();
                                     if (world == 65535) {
                                         world = -1;
                                     }
-                                    int verifyID = inboundBuffer.g2le();
+                                    int verifyID = inboundBuffer.g2_al1();
                                     if (setVerifyID(verifyID)) {
                                         @Pc(5603) Component com = ComponentList.getComponent(param1);
                                         @Pc(5615) ObjType obj;
@@ -1804,12 +1805,12 @@ public class Protocol {
                                     opcode = -1;
                                     return true;
                                 } else if (opcode == MAP_COORDS) {
-                                    SceneGraph.currentChunkX = inboundBuffer.p1neg();
+                                    SceneGraph.currentChunkX = inboundBuffer.g1_alt2();
                                     SceneGraph.currentChunkZ = inboundBuffer.g1();
                                     opcode = -1;
                                     return true;
                                 } else if (opcode == MUSIC_PLAY) {
-                                    ii = inboundBuffer.g2leadd();
+                                    ii = inboundBuffer.g2_alt3();
                                     if (ii == 65535) {
                                         ii = -1;
                                     }
@@ -1818,7 +1819,7 @@ public class Protocol {
                                     return true;
                                 } else if (opcode == 208) {
                                     ii = inboundBuffer.g3le();
-                                    param1 = inboundBuffer.g2le();
+                                    param1 = inboundBuffer.g2_al1();
                                     if (param1 == 65535) {
                                         param1 = -1;
                                     }
@@ -1936,47 +1937,49 @@ public class Protocol {
         }
     }
 
-    @OriginalMember(owner = "runetek4.client!rm", name = "a", descriptor = "(IBI)V")
-    public static void spawnGroundObject(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1) {
-        @Pc(9) LinkedList local9 = SceneGraph.objStacks[Player.plane][arg1][arg0];
-        if (local9 == null) {
-            SceneGraph.removeObjStack(Player.plane, arg1, arg0);
+    @OriginalMember(owner = "client!rm", name = "a", descriptor = "(IBI)V")
+    public static void sortObjStacks(@OriginalArg(2) int x, @OriginalArg(0) int z) {
+        @Pc(9) LinkList objStacks = SceneGraph.objStacks[Player.currentLevel][x][z];
+
+        if (objStacks == null) {
+            SceneGraph.removeGroundObjects(Player.currentLevel, x, z);
             return;
         }
-        @Pc(28) int local28 = -99999999;
-        @Pc(30) ObjStackNode local30 = null;
-        @Pc(35) ObjStackNode local35;
-        for (local35 = (ObjStackNode) local9.head(); local35 != null; local35 = (ObjStackNode) local9.next()) {
-            @Pc(44) ObjType local44 = ObjTypeList.get(local35.value.type);
+        @Pc(28) int topCost = -99999999;
+        @Pc(30) ClientObj topObj = null;
+
+        @Pc(35) ClientObj local35;
+        for (local35 = (ClientObj) objStacks.head(); local35 != null; local35 = (ClientObj) objStacks.next()) {
+            @Pc(44) ObjType local44 = ObjTypeList.get(local35.value.id);
             @Pc(47) int local47 = local44.cost;
             if (local44.stackable == 1) {
-                local47 *= local35.value.amount + 1;
+                local47 *= local35.value.count + 1;
             }
-            if (local28 < local47) {
-                local28 = local47;
-                local30 = local35;
+            if (topCost < local47) {
+                topCost = local47;
+                topObj = local35;
             }
         }
-        if (local30 == null) {
-            SceneGraph.removeObjStack(Player.plane, arg1, arg0);
+        if (topObj == null) {
+            SceneGraph.removeGroundObjects(Player.currentLevel, x, z);
             return;
         }
-        local9.addHead(local30);
+        objStacks.addHead(topObj);
         @Pc(89) ObjStack local89 = null;
         @Pc(91) ObjStack local91 = null;
-        for (local35 = (ObjStackNode) local9.head(); local35 != null; local35 = (ObjStackNode) local9.next()) {
+        for (local35 = (ClientObj) objStacks.head(); local35 != null; local35 = (ClientObj) objStacks.next()) {
             @Pc(103) ObjStack local103 = local35.value;
-            if (local103.type != local30.value.type) {
+            if (local103.id != topObj.value.id) {
                 if (local89 == null) {
                     local89 = local103;
                 }
-                if (local103.type != local89.type && local91 == null) {
+                if (local103.id != local89.id && local91 == null) {
                     local91 = local103;
                 }
             }
         }
-        @Pc(152) long local152 = (long) ((arg0 << 7) + arg1 + 1610612736);
-        SceneGraph.setObjStack(Player.plane, arg1, arg0, SceneGraph.getTileHeight(Player.plane, arg1 * 128 + 64, arg0 * 128 + 64), local30.value, local152, local89, local91);
+        @Pc(152) long local152 = (long) ((z << 7) + x + 1610612736);
+        SceneGraph.setObjStack(Player.currentLevel, x, z, SceneGraph.getTileHeight(Player.currentLevel, x * 128 + 64, z * 128 + 64), topObj.value, local152, local89, local91);
     }
 
     @OriginalMember(owner = "client!g", name = "b", descriptor = "(B)V")
@@ -1993,39 +1996,42 @@ public class Protocol {
             // Delete a location from the zone
             // Used for ex. removing doors
 
-            local15 = inboundBuffer.p1neg(); // Shape + rotation packed
+            local15 = inboundBuffer.g1_alt2(); // Shape + rotation packed
             local19 = local15 & 0x3; // Rotation
             local23 = local15 >> 2; // Shape type (wall, ground etc)
             local27 = Loc.LAYERS[local23]; // Get layer for this shape
+
             local31 = inboundBuffer.g1(); // Zone coordinates
             local39 = (local31 >> 4 & 0x7) + SceneGraph.currentChunkX; // Zone X
             local45 = (local31 & 0x7) + SceneGraph.currentChunkZ; // Zone Z
 
             if (local39 >= 0 && local45 >= 0 && local39 < 104 && local45 < 104) {
                 // Delete the location ath this position
-                ChangeLocRequest.push(Player.plane, local45, local19, local39, -1, -1, local27, local23, 0);
+                ChangeLocRequest.push(Player.currentLevel, local45, local19, local39, -1, -1, local27, local23, 0);
             }
         } else if (opcode == ZONE_OBJ_ADD) {
             // ZONE_OBJ_ADD
             // Add ground objects visible for all players
-            local15 = inboundBuffer.g2le(); // Object type ID
+            local15 = inboundBuffer.g2_al1(); // Object type ID
             local23 = inboundBuffer.g1(); // Zone coordinates
+
             local27 = (local23 & 0x7) + SceneGraph.currentChunkZ; // Zone Z
             local19 = (local23 >> 4 & 0x7) + SceneGraph.currentChunkX; // Zone X
-            local31 = inboundBuffer.g2sub(); // Item count
+
+            local31 = inboundBuffer.g2_alt2(); // Item count
 
             if (local19 >= 0 && local27 >= 0 && local19 < 104 && local27 < 104) {
                 @Pc(122) ObjStack local122 = new ObjStack();
-                local122.amount = local31; // Stack size
-                local122.type = local15; // Item ID
+                local122.count = local31; // Stack size
+                local122.id = local15; // Item ID
 
                 // Create obj stack if not existing
-                if (SceneGraph.objStacks[Player.plane][local19][local27] == null) {
-                    SceneGraph.objStacks[Player.plane][local19][local27] = new LinkedList();
+                if (SceneGraph.objStacks[Player.currentLevel][local19][local27] == null) {
+                    SceneGraph.objStacks[Player.currentLevel][local19][local27] = new LinkList();
                 }
 
-                SceneGraph.objStacks[Player.plane][local19][local27].addTail(new ObjStackNode(local122));
-                spawnGroundObject(local27, local19); // Render the object
+                SceneGraph.objStacks[Player.currentLevel][local19][local27].push(new ClientObj(local122));
+                sortObjStacks(local19, local27); // Render the object
             }
         } else {
             @Pc(218) int local218;
@@ -2065,9 +2071,9 @@ public class Protocol {
                     local19 = local19 * 64;
                     local23 = local23 * 64;
 
-                    local317 = new ProjectileAnimation(local45, Player.plane, local23, local19, SceneGraph.getTileHeight(Player.plane, local23, local19) - local218, Client.loop + local228, local232 + Client.loop, local236, local247, local39, local224);
-                    local317.setTarget(local31, Client.loop + local228, -local224 + SceneGraph.getTileHeight(Player.plane, local27, local31), local27);
-                    SceneGraph.projectiles.addTail(new ProjAnimNode(local317));
+                    local317 = new ProjectileAnimation(local45, Player.currentLevel, local23, local19, SceneGraph.getTileHeight(Player.currentLevel, local23, local19) - local218, Client.loop + local228, local232 + Client.loop, local236, local247, local39, local224);
+                    local317.setTarget(local31, Client.loop + local228, -local224 + SceneGraph.getTileHeight(Player.currentLevel, local27, local31), local27);
+                    SceneGraph.projectiles.push(new ProjAnimNode(local317));
                 }
             } else if (opcode == ZONE_MAP_ANIM) {
                 // ZONE_MAP_ANIM
@@ -2087,46 +2093,46 @@ public class Protocol {
                     // Create spot anim at position
                     @Pc(427) SpotAnim local427 = new SpotAnim(
                             local27, // Spotanim ID
-                            Player.plane, // Height level
+                            Player.currentLevel, // Height level
                             local23, local19, // Position
-                            SceneGraph.getTileHeight(Player.plane, local23, local19) - local31, // Height
+                            SceneGraph.getTileHeight(Player.currentLevel, local23, local19) - local31, // Height
                             local39, // Duration
                             Client.loop // Start cycle
                     );
-                    SceneGraph.spotanims.addTail(new SpotAnimEntity(local427));
+                    SceneGraph.spotanims.push(new SpotAnimEntity(local427));
                 }
             } else if (opcode == ZONE_LOC_ADD_CHANGE) {
                 // ZONE_LOC_ADD_CHANGE
                 // Add or change location with animation
-                local15 = inboundBuffer.g1add(); // Shape + rotation
+                local15 = inboundBuffer.g1_alt1(); // Shape + rotation
                 local23 = local15 >> 2; // Shape type
                 local19 = local15 & 0x3; // Rotation
                 local27 = Loc.LAYERS[local23]; // Layer for rendering order
                 local31 = inboundBuffer.g1(); // Zone coordinates
                 local39 = SceneGraph.currentChunkX + (local31 >> 4 & 0x7); // Zone X
                 local45 = (local31 & 0x7) + SceneGraph.currentChunkZ; // Zone Z
-                local218 = inboundBuffer.g2sub(); // Location Type ID
+                local218 = inboundBuffer.g2_alt2(); // Location Type ID
                 if (local39 >= 0 && local45 >= 0 && local39 < 104 && local45 < 104) {
-                    ChangeLocRequest.push(Player.plane, local45, local19, local39, -1, local218, local27, local23, 0);
+                    ChangeLocRequest.push(Player.currentLevel, local45, local19, local39, -1, local218, local27, local23, 0);
                 }
             } else if (opcode == ZONE_LOC_MERGE) {
                 // ZONE_LOC_MERGE
                 // Attach location directly to tile
                 local15 = inboundBuffer.g1_alt3(); // Zone coordinates
-                local23 = (local15 >> 4 & 0x7) + SceneGraph.currentChunkX; // Zone X
-                local19 = SceneGraph.currentChunkZ + (local15 & 0x7); // Zone >
-                local27 = inboundBuffer.g1_alt3(); // Shape + rotation
-                local31 = local27 >> 2; // Shape type
-                local39 = local27 & 0x3; // Rotation
-                local45 = Loc.LAYERS[local31]; // Rendering layer
-                local218 = inboundBuffer.g2le(); // Location type ID
+                int x = SceneGraph.currentChunkX + (local15 >> 4 & 0x7); // Zone X
+                int z = SceneGraph.currentChunkZ + (local15 & 0x7); // Zone Z
+                int info = inboundBuffer.g1_alt3(); // Shape + rotation
+                int shape = info >> 2; // Shape type
+                int angle = info & 0x3; // Angle
+                local45 = Loc.LAYERS[shape]; // Rendering layer
+                local218 = inboundBuffer.g2_al1(); // Location type ID
 
                 if (local218 == 65535) {
                     local218 = -1; // -1 = remove
                 }
 
                 // Attach directly to scene graph tile
-                SceneGraph.attachLocToTile(Player.plane, local39, local31, local19, local45, local23, local218);
+                SceneGraph.attachLocToTile(Player.currentLevel, angle, shape, z, local45, x, local218);
             } else {
                 @Pc(633) int local633;
                 if (opcode == ZONE_LOC_ATTACH) {
@@ -2139,15 +2145,15 @@ public class Protocol {
                     local23 = local15 >> 2; // Location shape
                     local19 = local15 & 0x3; // Rotation (0-3, 0/90/180/270 degrees)
                     local27 = inboundBuffer.g1(); // Zone coordnates packed
-                    local31 = (local27 >> 4 & 0x7) + SceneGraph.currentChunkX; // Extract zone X
-                    local39 = (local27 & 0x7) + SceneGraph.currentChunkZ; // Extract Zone Z
+                    local31 = SceneGraph.currentChunkX + (local27 >> 4 & 0x7); // Extract zone X
+                    local39 = SceneGraph.currentChunkZ + (local27 & 0x7); // Extract Zone Z
 
                     // Read transformation parameters OpenGL specific
                     @Pc(605) byte local605 = inboundBuffer.g1b_alt3();
                     @Pc(609) byte local609 = inboundBuffer.g1b_alt3();
                     @Pc(613) byte local613 = inboundBuffer.g1sub();
-                    local228 = inboundBuffer.g2sub(); // Tranform value 1
-                    local232 = inboundBuffer.g2le(); // Transform value 2
+                    local228 = inboundBuffer.g2_alt2(); // Tranform value 1
+                    local232 = inboundBuffer.g2_al1(); // Transform value 2
                     @Pc(625) byte local625 = inboundBuffer.g1s();
                     local247 = inboundBuffer.g2(); // Location type ID
                     local633 = inboundBuffer.g2lesadd(); // Transform value 3
@@ -2173,27 +2179,28 @@ public class Protocol {
                     // ZONE_OBJ_COUNT
                     // Update existing ground object stack count
                     local15 = inboundBuffer.g1(); // Zone coordinate
-                    local19 = SceneGraph.currentChunkZ + (local15 & 0x7); // Zone Z
-                    local23 = (local15 >> 4 & 0x7) + SceneGraph.currentChunkX; // Zone X
-                    local27 = inboundBuffer.g2(); // Object type ID
-                    local31 = inboundBuffer.g2(); // Old count
-                    local39 = inboundBuffer.g2(); // New count
+                    int z = SceneGraph.currentChunkZ + (local15 & 0x7); // Zone Z
+                    int x = SceneGraph.currentChunkX + (local15 >> 4 & 0x7); // Zone X
 
-                    if (local23 >= 0 && local19 >= 0 && local23 < 104 && local19 < 104) {
-                        @Pc(710) LinkedList local710 = SceneGraph.objStacks[Player.plane][local23][local19];
+                    int id = inboundBuffer.g2(); // Object type ID
+                    int oldCount = inboundBuffer.g2(); // Old count
+                    int newCount = inboundBuffer.g2(); // New count
 
-                        if (local710 != null) {
+                    if (x >= 0 && z >= 0 && x < CollisionConstants.SIZE && z < CollisionConstants.SIZE) {
+                        @Pc(710) LinkList list = SceneGraph.objStacks[Player.currentLevel][x][z];
+
+                        if (list != null) {
                             // Find the matching object stack
-                            for (@Pc(718) ObjStackNode local718 = (ObjStackNode) local710.head(); local718 != null; local718 = (ObjStackNode) local710.next()) {
-                                @Pc(723) ObjStack local723 = local718.value;
+                            for (@Pc(718) ClientObj obj = (ClientObj) list.head(); obj != null; obj = (ClientObj) list.next()) {
+                                @Pc(723) ObjStack local723 = obj.value;
 
                                 // Match by type and old count
-                                if ((local27 & 0x7FFF) == local723.type && local31 == local723.amount) {
-                                    local723.amount = local39; // Update to new count
+                                if ((id & 0x7FFF) == local723.id && oldCount == local723.count) {
+                                    local723.count = newCount; // Update to new count
                                     break;
                                 }
                             }
-                            spawnGroundObject(local19, local23);
+                            sortObjStacks(x, z);
                         }
                     }
                 } else if (opcode == ZONE_OBJ_ADD_PRIVATE) {
@@ -2201,25 +2208,27 @@ public class Protocol {
                     // Add "private" ground objects
                     // Only visible to specific player
                     // Private items create a separate stack from public items
-                    local15 = inboundBuffer.g2leadd(); // Player ID
-                    local23 = inboundBuffer.p1neg(); // Zone coordinates
-                    local27 = SceneGraph.currentChunkZ + (local23 & 0x7); // Zone Z
-                    local19 = (local23 >> 4 & 0x7) + SceneGraph.currentChunkX; // Zone X
-                    local31 = inboundBuffer.g2le(); // Item count
-                    local39 = inboundBuffer.g2le(); // Object type ID
+                    int receiver = inboundBuffer.g2_alt3(); // Player ID
+                    local23 = inboundBuffer.g1_alt2(); // Zone coordinates
 
-                    if (local19 >= 0 && local27 >= 0 && local19 < 104 && local27 < 104 && PlayerList.selfId != local15) {
+                    int z = SceneGraph.currentChunkZ + (local23 & 0x7); // Zone Z
+                    int x = SceneGraph.currentChunkX + (local23 >> 4 & 0x7); // Zone X
+
+                    int count = inboundBuffer.g2_al1(); // Item count
+                    int id = inboundBuffer.g2_al1(); // Object type ID
+
+                    if (x >= 0 && z >= 0 && x < CollisionConstants.SIZE && z < CollisionConstants.SIZE && receiver != PlayerList.localPid) {
                         @Pc(812) ObjStack local812 = new ObjStack();
-                        local812.amount = local31; // Stack size
-                        local812.type = local39; // Item ID
+                        local812.count = count; // Stack size
+                        local812.id = id; // Item ID
 
                         // Create obj stack if not existing
-                        if (SceneGraph.objStacks[Player.plane][local19][local27] == null) {
-                            SceneGraph.objStacks[Player.plane][local19][local27] = new LinkedList();
+                        if (SceneGraph.objStacks[Player.currentLevel][x][z] == null) {
+                            SceneGraph.objStacks[Player.currentLevel][x][z] = new LinkList();
                         }
 
-                        SceneGraph.objStacks[Player.plane][local19][local27].addTail(new ObjStackNode(local812));
-                        spawnGroundObject(local27, local19); // Render the object
+                        SceneGraph.objStacks[Player.currentLevel][x][z].push(new ClientObj(local812));
+                        sortObjStacks(x, z); // Render the object
                     }
                 } else if (opcode == ZONE_MAP_PROJANIM) {
                     // Zone_MAP_PROJANIM
@@ -2253,9 +2262,9 @@ public class Protocol {
                         // Create projectile animation
                         local317 = new ProjectileAnimation(
                                 local45, // Spotanim ID
-                                Player.plane, // Height level
+                                Player.currentLevel, // Height level
                                 local23, local19, // Start position
-                                SceneGraph.getTileHeight(Player.plane, local23, local19) - local218, // Start height
+                                SceneGraph.getTileHeight(Player.currentLevel, local23, local19) - local218, // Start height
                                 local228 + Client.loop, // Start cycle
                                 local232 + Client.loop, // End cycle
                                 local236, // Angle
@@ -2265,8 +2274,8 @@ public class Protocol {
                         );
 
                         //Set target position
-                        local317.setTarget(local31, Client.loop + local228, SceneGraph.getTileHeight(Player.plane, local27, local31) - local224, local27);
-                        SceneGraph.projectiles.addTail(new ProjAnimNode(local317));
+                        local317.setTarget(local31, Client.loop + local228, SceneGraph.getTileHeight(Player.currentLevel, local27, local31) - local224, local27);
+                        SceneGraph.projectiles.push(new ProjAnimNode(local317));
                     }
                 } else if (opcode == ZONE_MAP_PROJANIM_SPECIFIC) {
                     // ZONE_MAP_PROJANIM_SPECIFIC
@@ -2315,7 +2324,7 @@ public class Protocol {
                                 local1184 = -local39 - 1;
                                 local1194 = local1184 >> 11 & 0xF;
                                 local1188 = local1184 & 0x7FF;
-                                if (PlayerList.selfId == local1188) {
+                                if (PlayerList.localPid == local1188) {
                                     local1198 = PlayerList.self;
                                 } else {
                                     local1198 = PlayerList.players[local1188];
@@ -2347,9 +2356,9 @@ public class Protocol {
                         }
 
                         // Create projectile wiht adjusted source position
-                        @Pc(1331) ProjectileAnimation local1331 = new ProjectileAnimation(local218, Player.plane, local23, local19, SceneGraph.getTileHeight(Player.plane, local23, local19) - local224, local232 + Client.loop, local236 + Client.loop, local247, local633, local45, local228);
-                        local1331.setTarget(local31, local232 + Client.loop, -local228 + SceneGraph.getTileHeight(Player.plane, local27, local31), local27);
-                        SceneGraph.projectiles.addTail(new ProjAnimNode(local1331));
+                        @Pc(1331) ProjectileAnimation local1331 = new ProjectileAnimation(local218, Player.currentLevel, local23, local19, SceneGraph.getTileHeight(Player.currentLevel, local23, local19) - local224, local232 + Client.loop, local236 + Client.loop, local247, local633, local45, local228);
+                        local1331.setTarget(local31, local232 + Client.loop, -local228 + SceneGraph.getTileHeight(Player.currentLevel, local27, local31), local27);
+                        SceneGraph.projectiles.push(new ProjAnimNode(local1331));
                     }
                 } else if (opcode == ZONE_SOUND_AREA) {
                     // ZONE_SOUND_AREA
@@ -2398,12 +2407,12 @@ public class Protocol {
                     local27 = inboundBuffer.g2(); // Object type ID
 
                     if (local23 >= 0 && local19 >= 0 && local23 < 104 && local19 < 104) {
-                        @Pc(1565) LinkedList local1565 = SceneGraph.objStacks[Player.plane][local23][local19];
+                        @Pc(1565) LinkList local1565 = SceneGraph.objStacks[Player.currentLevel][local23][local19];
 
                         if (local1565 != null) {
                             // Find and remove the matching object
-                            for (@Pc(1572) ObjStackNode local1572 = (ObjStackNode) local1565.head(); local1572 != null; local1572 = (ObjStackNode) local1565.next()) {
-                                if (local1572.value.type == (local27 & 0x7FFF)) {
+                            for (@Pc(1572) ClientObj local1572 = (ClientObj) local1565.head(); local1572 != null; local1572 = (ClientObj) local1565.next()) {
+                                if (local1572.value.id == (local27 & 0x7FFF)) {
                                     local1572.unlink(); // Remove from list
                                     break;
                                 }
@@ -2411,9 +2420,9 @@ public class Protocol {
 
                             // Clean up empty list
                             if (local1565.head() == null) {
-                                SceneGraph.objStacks[Player.plane][local23][local19] = null;
+                                SceneGraph.objStacks[Player.currentLevel][local23][local19] = null;
                             }
-                            spawnGroundObject(local19, local23);
+                            sortObjStacks(local23, local19);
                         }
                     }
                 }
@@ -2434,7 +2443,7 @@ public class Protocol {
         @Pc(151) int chunkZ;
         @Pc(169) int regionId;
         if (!SceneGraph.dynamicMapRegion) {
-            playerPlane = inboundBuffer.g2sub();
+            playerPlane = inboundBuffer.g2_alt2();
             regionCount = (packetSize - inboundBuffer.offset) / 16;
             WorldLoader.regionsXteaKeys = new int[regionCount][4];
             for (local26 = 0; local26 < regionCount; local26++) {
@@ -2444,8 +2453,8 @@ public class Protocol {
             }
             local26 = inboundBuffer.g1_alt3();
             local31 = inboundBuffer.g2();
-            playerZ = inboundBuffer.g2sub();
-            local64 = inboundBuffer.g2sub();
+            playerZ = inboundBuffer.g2_alt2();
+            local64 = inboundBuffer.g2_alt2();
             WorldLoader.regionBitPacked = new int[regionCount];
             WorldLoader.mapFilesBuffer = new byte[regionCount][];
             WorldLoader.npcSpawnsFilesBuffer = null;
@@ -2487,10 +2496,10 @@ public class Protocol {
             WorldLoader.initializeMapRegion(local26, playerZ, local31, local64, false, playerPlane);
             return;
         }
-        playerPlane = inboundBuffer.g2leadd();
-        regionCount = inboundBuffer.g2leadd();
+        playerPlane = inboundBuffer.g2_alt3();
+        regionCount = inboundBuffer.g2_alt3();
         local26 = inboundBuffer.g1_alt3();
-        local31 = inboundBuffer.g2leadd();
+        local31 = inboundBuffer.g2_alt3();
         inboundBuffer.accessBits();
         @Pc(391) int local391;
         for (playerZ = 0; playerZ < 4; playerZ++) {
@@ -2565,7 +2574,7 @@ public class Protocol {
         @Pc(24) int local24;
         if ((flags & 0x80) != 0) {
 
-            chatFlags = inboundBuffer.g2le();
+            chatFlags = inboundBuffer.g2_al1();
             staffModLevel = inboundBuffer.g1();
             @Pc(21) int len = inboundBuffer.g1();
             local24 = inboundBuffer.offset;
@@ -2620,7 +2629,7 @@ public class Protocol {
         }
         if ((flags & 0x1) != 0) {
             chatFlags = inboundBuffer.gSmart1or2();
-            staffModLevel = inboundBuffer.g1add();
+            staffModLevel = inboundBuffer.g1_alt1();
             player.hit(staffModLevel, Client.loop, chatFlags);
             player.hitpointsBarVisibleUntil = Client.loop + 300;
             player.hitpointsBar = inboundBuffer.g1_alt3();
@@ -2634,7 +2643,7 @@ public class Protocol {
             Player.animate(staffModLevel, chatFlags, player);
         }
         if ((flags & 0x4) != 0) {
-            chatFlags = inboundBuffer.g1add();
+            chatFlags = inboundBuffer.g1_alt1();
             @Pc(309) byte[] local309 = new byte[chatFlags];
             @Pc(314) Packet local314 = new Packet(local309);
             inboundBuffer.gdata(chatFlags, local309);
@@ -2642,19 +2651,19 @@ public class Protocol {
             player.decodeAppearance(local314);
         }
         if ((flags & 0x2) != 0) {
-            player.faceEntity = inboundBuffer.g2sub();
+            player.faceEntity = inboundBuffer.g2_alt2();
             if (player.faceEntity == 65535) {
                 player.faceEntity = -1;
             }
         }
         if ((flags & 0x400) != 0) {
-            player.anInt3380 = inboundBuffer.p1neg();
+            player.anInt3380 = inboundBuffer.g1_alt2();
             player.anInt3428 = inboundBuffer.g1();
-            player.anInt3416 = inboundBuffer.g1add();
+            player.anInt3416 = inboundBuffer.g1_alt1();
             player.anInt3392 = inboundBuffer.g1();
-            player.anInt3395 = inboundBuffer.g2le() + Client.loop;
-            player.anInt3386 = inboundBuffer.g2le() + Client.loop;
-            player.anInt3431 = inboundBuffer.p1neg();
+            player.anInt3395 = inboundBuffer.g2_al1() + Client.loop;
+            player.anInt3386 = inboundBuffer.g2_al1() + Client.loop;
+            player.anInt3431 = inboundBuffer.g1_alt2();
             player.movementQueueSize = 1;
             player.movementQueueSnapshot = 0;
         }
@@ -2676,23 +2685,23 @@ public class Protocol {
             player.hit(staffModLevel, Client.loop, chatFlags);
         }
         if ((flags & 0x800) != 0) {
-            chatFlags = inboundBuffer.p1neg();
+            chatFlags = inboundBuffer.g1_alt2();
             @Pc(502) int[] local502 = new int[chatFlags];
             @Pc(505) int[] local505 = new int[chatFlags];
             @Pc(508) int[] local508 = new int[chatFlags];
             for (@Pc(510) int local510 = 0; local510 < chatFlags; local510++) {
-                @Pc(521) int local521 = inboundBuffer.g2le();
+                @Pc(521) int local521 = inboundBuffer.g2_al1();
                 if (local521 == 65535) {
                     local521 = -1;
                 }
                 local502[local510] = local521;
-                local505[local510] = inboundBuffer.g1add();
+                local505[local510] = inboundBuffer.g1_alt1();
                 local508[local510] = inboundBuffer.g2();
             }
             Player.updateLayeredAnimations(local505, local502, player, local508);
         }
         if ((flags & 0x100) != 0) {
-            chatFlags = inboundBuffer.g2le();
+            chatFlags = inboundBuffer.g2_al1();
             if (chatFlags == 65535) {
                 chatFlags = -1;
             }
@@ -2724,7 +2733,7 @@ public class Protocol {
         }
         if ((flags & 0x40) != 0) {
             player.faceX = inboundBuffer.g2();
-            player.faceY = inboundBuffer.g2leadd();
+            player.faceY = inboundBuffer.g2_alt3();
         }
     }
 
@@ -2794,7 +2803,7 @@ public class Protocol {
         } else if (local23 == 3) {
             local54 = inboundBuffer.gBit(7);
             local64 = inboundBuffer.gBit(1);
-            Player.plane = inboundBuffer.gBit(2);
+            Player.currentLevel = inboundBuffer.gBit(2);
             @Pc(163) int local163 = inboundBuffer.gBit(1);
             if (local163 == 1) {
                 extendedIds[extendedCount++] = 2047;
@@ -2873,13 +2882,13 @@ public class Protocol {
             @Pc(47) int info;
             if ((local18 & 0x40) != 0) {
                 local43 = inboundBuffer.g1(); // Hit value
-                info = inboundBuffer.p1neg(); // Color
+                info = inboundBuffer.g1_alt2(); // Color
                 npc.hit(info, Client.loop, local43);
                 npc.hitpointsBarVisibleUntil = Client.loop + 300;
                 npc.hitpointsBar = inboundBuffer.g1_alt3();
             }
             if ((local18 & 0x2) != 0) {
-                local43 = inboundBuffer.p1neg(); // Hit value
+                local43 = inboundBuffer.g1_alt2(); // Hit value
                 info = inboundBuffer.g1_alt3(); // Color
                 npc.hit(info, Client.loop, local43);
             }
@@ -2892,13 +2901,13 @@ public class Protocol {
                 animateNpc(info, local43, npc);
             }
             if ((local18 & 0x4) != 0) {
-                npc.faceEntity = inboundBuffer.g2sub();
+                npc.faceEntity = inboundBuffer.g2_alt2();
                 if (npc.faceEntity == 65535) {
                     npc.faceEntity = -1;
                 }
             }
             if ((local18 & 0x80) != 0) {
-                local43 = inboundBuffer.g2sub();
+                local43 = inboundBuffer.g2_alt2();
                 if (local43 == 65535) {
                     local43 = -1;
                 }
@@ -2932,11 +2941,11 @@ public class Protocol {
                 if (npc.type.hasAreaSound()) {
                     AreaSoundManager.remove(npc);
                 }
-                npc.setNpcType(NpcTypeList.get(inboundBuffer.g2le()));
+                npc.setNpcType(NpcTypeList.get(inboundBuffer.g2_al1()));
                 npc.setSize(npc.type.size);
                 npc.anInt3365 = npc.type.nas;
                 if (npc.type.hasAreaSound()) {
-                    AreaSoundManager.add(npc.movementQueueZ[0], null, 0, npc, npc.movementQueueX[0], Player.plane, null);
+                    AreaSoundManager.add(npc.movementQueueZ[0], null, 0, npc, npc.movementQueueX[0], Player.currentLevel, null);
                 }
             }
             if ((local18 & 0x20) != 0) {
@@ -2944,12 +2953,12 @@ public class Protocol {
                 npc.chatLoops = 100;
             }
             if ((local18 & 0x100) != 0) {
-                local43 = inboundBuffer.p1neg();
+                local43 = inboundBuffer.g1_alt2();
                 @Pc(331) int[] local331 = new int[local43];
                 @Pc(334) int[] local334 = new int[local43];
                 @Pc(337) int[] local337 = new int[local43];
                 for (@Pc(339) int local339 = 0; local339 < local43; local339++) {
-                    @Pc(350) int local350 = inboundBuffer.g2le();
+                    @Pc(350) int local350 = inboundBuffer.g2_al1();
                     if (local350 == 65535) {
                         local350 = -1;
                     }
@@ -2960,7 +2969,7 @@ public class Protocol {
                 method3037(local337, npc, local334, local331);
             }
             if ((local18 & 0x200) != 0) {
-                npc.faceX = inboundBuffer.g2sub();
+                npc.faceX = inboundBuffer.g2_alt2();
                 npc.faceY = inboundBuffer.g2();
             }
         }
@@ -3009,7 +3018,7 @@ public class Protocol {
                     }
                     npc.teleport(npc.getSize(), PlayerList.self.movementQueueX[0] + local124, local105 + PlayerList.self.movementQueueZ[0], local66 == 1);
                     if (npc.type.hasAreaSound()) {
-                        AreaSoundManager.add(npc.movementQueueZ[0], null, 0, npc, npc.movementQueueX[0], Player.plane, null);
+                        AreaSoundManager.add(npc.movementQueueZ[0], null, 0, npc, npc.movementQueueX[0], Player.currentLevel, null);
                     }
                     continue;
                 }

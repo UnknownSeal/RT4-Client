@@ -329,7 +329,7 @@ public final class MidiPcmStream extends PcmStream {
 			}
 			this.aClass3_Sub25ArrayArray2[channel][note.anInt3776] = note;
 		}
-		this.noteStream.notes.addTail(note);
+		this.noteStream.notes.push(note);
 		this.notes[channel][key] = note;
 	}
 

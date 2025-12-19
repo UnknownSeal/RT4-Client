@@ -11,6 +11,9 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
+import static com.jagex.runetek4.network.ClientProt.IGNORELIST_ADD;
+import static com.jagex.runetek4.network.ClientProt.IGNORELIST_DEL;
+
 public class IgnoreList {
     @OriginalMember(owner = "client!pf", name = "h", descriptor = "[J")
     public static final long[] encodedIgnores = new long[100];
@@ -64,7 +67,7 @@ public class IgnoreList {
         encodedIgnores[ignoreCount] = username;
         ignoreName37[ignoreCount++] = Base37.fromBase37(username);
         FriendList.transmitAt = ComponentList.transmitTimer;
-        Protocol.outboundBuffer.pIsaac1(34);
+        Protocol.outboundBuffer.pIsaac1(IGNORELIST_ADD);
         Protocol.outboundBuffer.p8(username);
     }
 
@@ -81,7 +84,7 @@ public class IgnoreList {
                     ignoreName37[j] = ignoreName37[j + 1];
                 }
                 FriendList.transmitAt = ComponentList.transmitTimer;
-                Protocol.outboundBuffer.pIsaac1(213);
+                Protocol.outboundBuffer.pIsaac1(IGNORELIST_DEL);
                 Protocol.outboundBuffer.p8(username);
                 break;
             }

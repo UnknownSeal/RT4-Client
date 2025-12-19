@@ -50,7 +50,7 @@ public final class Player extends PathingEntity {
     public static int inTutorialIsland = 0;
 
 	@OriginalMember(owner = "runetek4.client!ee", name = "b", descriptor = "I")
-	public static int plane;
+	public static int currentLevel;
 
     @OriginalMember(owner = "runetek4.client!ea", name = "r", descriptor = "[[B")
     public static byte[][] aByteArrayArray8;

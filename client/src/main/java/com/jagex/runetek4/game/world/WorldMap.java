@@ -10,7 +10,7 @@ import com.jagex.runetek4.config.types.flu.FluType;
 import com.jagex.runetek4.config.types.flu.FluTypeList;
 import com.jagex.runetek4.config.types.loc.LocTypeList;
 import com.jagex.runetek4.config.types.msi.MSITypeList;
-import com.jagex.runetek4.core.datastruct.LinkedList;
+import com.jagex.runetek4.core.datastruct.LinkList;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.config.types.loc.LocType;
 import com.jagex.runetek4.config.types.msi.MSIType;
@@ -63,7 +63,7 @@ public class WorldMap {
     public static final int anInt3254 = (int) (Math.random() * 17.0D) - 8;
 
     @OriginalMember(owner = "client!lf", name = "c", descriptor = "Lclient!ih;")
-    public static final LinkedList mapFunctions = new LinkedList();
+    public static final LinkList mapFunctions = new LinkList();
 
     @OriginalMember(owner = "client!he", name = "db", descriptor = "Lclient!na;")
     public static final JString aClass100_517 = JString.parse("");
@@ -75,7 +75,7 @@ public class WorldMap {
     public static final JString aClass100_872 = JString.parse("<br>");
 
     @OriginalMember(owner = "client!nj", name = "h", descriptor = "Lclient!ih;")
-    public static final LinkedList aClass69_97 = new LinkedList();
+    public static final LinkList aClass69_97 = new LinkList();
 
     @OriginalMember(owner = "client!di", name = "q", descriptor = "[Lclient!na;")
     public static final JString[] lines = new JString[5];
@@ -727,7 +727,7 @@ public class WorldMap {
                                         mapFunction.id = type.mapfunction;
                                         mapFunction.x = mapx;
                                         mapFunction.z = mapz;
-                                        mapFunctions.addTail(mapFunction);
+                                        mapFunctions.push(mapFunction);
                                     }
                                 }
                             }
@@ -1391,7 +1391,7 @@ public class WorldMap {
                                             local243.x = local65;
                                             local243.z = local144;
                                             local243.id = local222.mapfunction;
-                                            aClass69_97.addTail(local243);
+                                            aClass69_97.push(local243);
                                         } else {
                                             MapList.sprites[local222.mapfunction].render(local65 - 7, local144 + -7);
                                         }

@@ -1,6 +1,6 @@
 package com.jagex.runetek4.game.map;
 
-import com.jagex.runetek4.core.datastruct.LinkedList;
+import com.jagex.runetek4.core.datastruct.LinkList;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.util.string.JString;
 import com.jagex.runetek4.core.node.SecondaryNode;
@@ -46,7 +46,7 @@ public final class Map extends SecondaryNode {
 	public final int originX;
 
 	@OriginalMember(owner = "runetek4.client!bn", name = "ab", descriptor = "Lclient!ih;")
-	public final LinkedList chunks;
+	public final LinkList chunks;
 
 	@OriginalMember(owner = "runetek4.client!bn", name = "<init>", descriptor = "(Lclient!na;Lclient!na;IIIZI)V")
 	public Map(@OriginalArg(0) JString arg0, @OriginalArg(1) JString arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) boolean arg5, @OriginalArg(6) int arg6) {
@@ -60,7 +60,7 @@ public final class Map extends SecondaryNode {
 		if (this.defaultZoom == 255) {
 			this.defaultZoom = 0;
 		}
-		this.chunks = new LinkedList();
+		this.chunks = new LinkList();
 	}
 
     @OriginalMember(owner = "runetek4.client!rb", name = "a", descriptor = "(Lclient!wa;Z)Lclient!bn;")
@@ -68,7 +68,7 @@ public final class Map extends SecondaryNode {
         @Pc(35) Map map = new Map(packet.gjstr(), packet.gjstr(), packet.g2(), packet.g2(), packet.g4(), packet.g1() == 1, packet.g1());
         @Pc(39) int chunkCount = packet.g1();
         for (@Pc(41) int chunkIndex = 0; chunkIndex < chunkCount; chunkIndex++) {
-            map.chunks.addTail(new MapChunk(packet.g2(), packet.g2(), packet.g2(), packet.g2()));
+            map.chunks.push(new MapChunk(packet.g2(), packet.g2(), packet.g2(), packet.g2()));
         }
         map.computeBounds();
         return map;

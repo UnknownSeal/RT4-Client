@@ -1,6 +1,6 @@
 package com.jagex.runetek4.graphics.animation;
 
-import com.jagex.runetek4.core.datastruct.LinkedList;
+import com.jagex.runetek4.core.datastruct.LinkList;
 import com.jagex.runetek4.core.node.SecondaryNode;
 import com.jagex.runetek4.data.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -16,7 +16,7 @@ public final class AnimFrameset extends SecondaryNode {
 
 	@OriginalMember(owner = "client!cl", name = "<init>", descriptor = "(Lclient!ve;Lclient!ve;IZ)V")
 	public AnimFrameset(@OriginalArg(0) Js5 animsArchive, @OriginalArg(1) Js5 basesArchive, @OriginalArg(2) int id, @OriginalArg(3) boolean bool) {
-		@Pc(5) LinkedList bases = new LinkedList();
+		@Pc(5) LinkList bases = new LinkList();
 		@Pc(10) int capacity = animsArchive.getGroupCapacity(id);
 		this.frames = new AnimFrame[capacity];
 		@Pc(19) int[] fileIds = animsArchive.getFileIds(id);
@@ -35,7 +35,7 @@ public final class AnimFrameset extends SecondaryNode {
 			if (base == null) {
 				@Pc(85) byte[] baseBytes = basesArchive.fetchFileNoDiscard(0, baseId);
 				base = new AnimBase(baseId, baseBytes);
-				bases.addTail(base);
+				bases.push(base);
 			}
 			this.frames[fileIds[i]] = new AnimFrame(bytes, base);
 		}

@@ -1,6 +1,6 @@
 package com.jagex.runetek4.audio.midi;
 
-import com.jagex.runetek4.core.datastruct.LinkedList;
+import com.jagex.runetek4.core.datastruct.LinkList;
 
 import com.jagex.runetek4.audio.core.MixerPcmStream;
 
@@ -19,7 +19,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class MidiNoteStream extends PcmStream {
 
 	@OriginalMember(owner = "client!te", name = "w", descriptor = "Lclient!ih;")
-	public final LinkedList notes = new LinkedList();
+	public final LinkList notes = new LinkList();
 
 	@OriginalMember(owner = "client!te", name = "K", descriptor = "Lclient!ei;")
 	public final MixerPcmStream mixer = new MixerPcmStream();

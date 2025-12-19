@@ -2,7 +2,7 @@ package com.jagex.runetek4.data.js5.network;
 
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.core.datastruct.HashTable;
-import com.jagex.runetek4.core.datastruct.LinkedList;
+import com.jagex.runetek4.core.datastruct.LinkList;
 import com.jagex.runetek4.data.js5.*;
 import com.jagex.runetek4.core.node.Node;
 import com.jagex.runetek4.data.cache.Cache;
@@ -39,7 +39,7 @@ public final class Js5CachedResourceProvider extends Js5ResourceProvider {
 	private int group = 0;
 
 	@OriginalMember(owner = "client!bg", name = "R", descriptor = "Lclient!ih;")
-	private final LinkedList prefetchQueue = new LinkedList();
+	private final LinkList prefetchQueue = new LinkList();
 
 	@OriginalMember(owner = "client!bg", name = "V", descriptor = "J")
 	private long orphanCheckTime = 0L;
@@ -54,7 +54,7 @@ public final class Js5CachedResourceProvider extends Js5ResourceProvider {
 	private boolean verifyAll;
 
 	@OriginalMember(owner = "client!bg", name = "U", descriptor = "Lclient!ih;")
-	private LinkedList groupQueue;
+	private LinkList groupQueue;
 
 	@OriginalMember(owner = "client!bg", name = "J", descriptor = "Lclient!k;")
 	private final Js5CacheQueue cacheQueue;
@@ -85,7 +85,7 @@ public final class Js5CachedResourceProvider extends Js5ResourceProvider {
 			this.verifyAll = false;
 		} else {
 			this.verifyAll = true;
-			this.groupQueue = new LinkedList();
+			this.groupQueue = new LinkList();
 		}
 		this.cacheQueue = cacheQueue;
 		this.expectedChecksum = expectedChecksum;
@@ -112,7 +112,7 @@ public final class Js5CachedResourceProvider extends Js5ResourceProvider {
 		}
 		node = new Node();
 		node.nodeId = arg0;
-		this.prefetchQueue.addTail(node);
+		this.prefetchQueue.push(node);
 	}
 
 	@OriginalMember(owner = "client!bg", name = "b", descriptor = "(I)Lclient!ii;")
@@ -182,7 +182,7 @@ public final class Js5CachedResourceProvider extends Js5ResourceProvider {
 		if (this.cache != null) {
 			this.prefetchAll = true;
 			if (this.groupQueue == null) {
-				this.groupQueue = new LinkedList();
+				this.groupQueue = new LinkList();
 			}
 		}
 	}
@@ -241,7 +241,7 @@ public final class Js5CachedResourceProvider extends Js5ResourceProvider {
 							local32 = false;
 							local37 = new Node();
 							local37.nodeId = this.group;
-							this.groupQueue.addTail(local37);
+							this.groupQueue.push(local37);
 						}
 						this.group++;
 					}
@@ -277,7 +277,7 @@ public final class Js5CachedResourceProvider extends Js5ResourceProvider {
 						if (this.groupStatus[this.group] != 1) {
 							local37 = new Node();
 							local37.nodeId = this.group;
-							this.groupQueue.addTail(local37);
+							this.groupQueue.push(local37);
 							local32 = false;
 						}
 						this.group++;

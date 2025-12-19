@@ -83,7 +83,7 @@ public class NpcList {
         @Pc(70) int index;
         if (e.faceEntity >= 32768) {
             index = e.faceEntity - 32768;
-            if (index == PlayerList.selfId) {
+            if (index == PlayerList.localPid) {
                 index = 2047;
             }
             @Pc(83) Player player = PlayerList.players[index];

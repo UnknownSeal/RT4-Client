@@ -108,11 +108,11 @@ public class Camera {
     public static void updateLockedCamera() {
         @Pc(9) int targetWorldX = targetTileX * 128 + 64;
         @Pc(15) int targetWorldZ = targetTileZ * 128 + 64;
-        @Pc(23) int targetHeight = SceneGraph.getTileHeight(Player.plane, targetWorldZ, targetWorldX) - heightOffset;
+        @Pc(23) int targetHeight = SceneGraph.getTileHeight(Player.currentLevel, targetWorldZ, targetWorldX) - heightOffset;
         if (interpolationSpeed >= 100) {
             renderX = targetTileZ * 128 + 64;
             renderZ = targetTileX * 128 + 64;
-            cameraY = SceneGraph.getTileHeight(Player.plane, renderX, renderZ) - heightOffset;
+            cameraY = SceneGraph.getTileHeight(Player.currentLevel, renderX, renderZ) - heightOffset;
         } else {
             if (renderX < targetWorldZ) {
                 renderX += minInterpolationStep + interpolationSpeed * (targetWorldZ - renderX) / 1000;
@@ -153,7 +153,7 @@ public class Camera {
         }
         targetWorldX = lookAtTileX * 128 + 64;
         targetWorldZ = lookAtTileZ * 128 + 64;
-        targetHeight = SceneGraph.getTileHeight(Player.plane, targetWorldZ, targetWorldX) - lookAtHeightOffset;
+        targetHeight = SceneGraph.getTileHeight(Player.currentLevel, targetWorldZ, targetWorldX) - lookAtHeightOffset;
         @Pc(236) int heightDifference = targetHeight - cameraY;
         @Pc(241) int zDistance = targetWorldX - renderZ;
         @Pc(246) int xDistance = targetWorldZ - renderX;
@@ -279,7 +279,7 @@ public class Camera {
         if (angleInterpolationSpeed >= 100) {
             @Pc(30) int targetWorldZ = lookAtTileZ * 128 + 64;
             @Pc(36) int targetWorldX = lookAtTileX * 128 + 64;
-            @Pc(44) int targetHeight = SceneGraph.getTileHeight(Player.plane, targetWorldZ, targetWorldX) - lookAtHeightOffset;
+            @Pc(44) int targetHeight = SceneGraph.getTileHeight(Player.currentLevel, targetWorldZ, targetWorldX) - lookAtHeightOffset;
             @Pc(49) int heightDifference = targetHeight - cameraY;
             @Pc(54) int zDistance = targetWorldZ - renderX;
             @Pc(59) int xDistance = targetWorldX - renderZ;
@@ -306,7 +306,7 @@ public class Camera {
         if (forceImmediate && Camera.interpolationSpeed >= 100) {
             renderX = Camera.targetTileZ * 128 + 64;
             renderZ = Camera.targetTileX * 128 + 64;
-            cameraY = SceneGraph.getTileHeight(Player.plane, renderX, renderZ) - Camera.heightOffset;
+            cameraY = SceneGraph.getTileHeight(Player.currentLevel, renderX, renderZ) - Camera.heightOffset;
         }
         cameraType = 2;
     }
