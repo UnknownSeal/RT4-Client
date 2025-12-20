@@ -620,19 +620,19 @@ public final class Client extends GameShell {
 
 	@OriginalMember(owner = "runetek4.client!tk", name = "a", descriptor = "(Z)V")
 	public static void method4221() {
-		Protocol.anInt4762 = 0;
+		Protocol.mouseIdleFrameCount = 0;
 		Protocol.prevFocus = true;
 		Mouse.prevClickTime = 0L;
 		MouseCapturer.instance.samples = 0;
 		focus = true;
 		ReflectionCheck.clear();
-		Protocol.opcode4 = -1;
-		Protocol.opcode3 = -1;
-		Protocol.opcode = -1;
+		Protocol.thirdLastOpcode = -1;
+		Protocol.secondLastOpcode = -1;
+		Protocol.currentOpcode = -1;
 		Protocol.idleTimeout = 0;
 		Player.systemUpdateTimer = 0;
 		Protocol.outboundBuffer.offset = 0;
-		Protocol.opcode2 = -1;
+		Protocol.previousOpcode = -1;
 		LoginManager.idleNetCycles = 0;
 		Protocol.inboundBuffer.offset = 0;
 		@Pc(3506) int i;
@@ -735,7 +735,7 @@ public final class Client extends GameShell {
 		if (GlRenderer.enabled) {
 			FogManager.setInstantFade();
 		}
-		Protocol.aBoolean228 = true;
+		Protocol.shouldSendCameraPosition = true;
 		Protocol.verifyId = 0;
 		MiniMenu.walkText = LocalizedText.WALKHERE;
 		ClientScriptRunner.neverRemoveRoofs = false;

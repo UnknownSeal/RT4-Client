@@ -2077,7 +2077,7 @@ public class ComponentList {
                                                     }
                                                 }
                                             }
-                                            if (component.type == 8 && Protocol.aClass13_11 == component && Protocol.anInt5235 == ClientScriptRunner.anInt4504) {
+                                            if (component.type == 8 && Protocol.aClass13_11 == component && Protocol.componentDragAnimationStep == ClientScriptRunner.anInt4504) {
                                                 clipBottom2 = 0;
                                                 clipRight2 = 0;
                                                 @Pc(3297) JString local3297 = component.text;

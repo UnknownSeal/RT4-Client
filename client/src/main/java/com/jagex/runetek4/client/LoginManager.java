@@ -257,8 +257,8 @@ public class LoginManager {
         if (MiniMenu.anInt3096 == 1) {
             MiniMenu.anInt3096 = 2;
         }
-        if (Protocol.anInt4422 == 1) {
-            Protocol.anInt4422 = 2;
+        if (Protocol.walkRequestState == 1) {
+            Protocol.walkRequestState = 2;
         }
         if (Cheat.rectDebug == 3) {
             for (@Pc(189) int rectIndex = 0; rectIndex < ComponentList.rectangles; rectIndex++) {
@@ -703,7 +703,7 @@ public class LoginManager {
                 membersWorld = Protocol.inboundBuffer.g1() == 1;
                 LocTypeList.setAllowMembers(membersWorld);
                 ObjTypeList.setAllowMembers(membersWorld);
-                Protocol.opcode = Protocol.inboundBuffer.gIssac1();
+                Protocol.currentOpcode = Protocol.inboundBuffer.gIssac1();
                 Protocol.packetSize = Protocol.inboundBuffer.g2();
                 step = 9;
             }
@@ -718,7 +718,7 @@ public class LoginManager {
                 Client.method4221();
                 SceneGraph.centralZoneX = -1;
                 Protocol.readRebuildPacket(false);
-                Protocol.opcode = -1;
+                Protocol.currentOpcode = -1;
                 return;
             }
         } catch (@Pc(977) IOException local977) {
@@ -745,18 +745,18 @@ public class LoginManager {
     @OriginalMember(owner = "runetek4.client!dh", name = "a", descriptor = "(Z)V")
     public static void reconnect() {
         Protocol.outboundBuffer.offset = 0;
-        Protocol.opcode3 = -1;
+        Protocol.secondLastOpcode = -1;
         ClientScriptRunner.menuVisible = false;
         Protocol.packetSize = 0;
         flagSceneTileX = 0;
         MiniMenu.menuActionRow = 0;
-        Protocol.opcode2 = -1;
+        Protocol.previousOpcode = -1;
         MiniMap.state = 0;
         Player.systemUpdateTimer = 0;
-        Protocol.opcode4 = -1;
+        Protocol.thirdLastOpcode = -1;
         Protocol.inboundBuffer.offset = 0;
         idleNetCycles = 0;
-        Protocol.opcode = -1;
+        Protocol.currentOpcode = -1;
         @Pc(35) int i;
         for (i = 0; i < PlayerList.players.length; i++) {
             if (PlayerList.players[i] != null) {
