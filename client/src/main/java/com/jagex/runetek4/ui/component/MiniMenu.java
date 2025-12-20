@@ -1325,7 +1325,7 @@ public class MiniMenu {
         }
         if (actionCode == UNKNOWN_36) {
             if (keyInt == 0) {
-                Protocol.anInt4422 = 1;
+                Protocol.walkRequestState = 1;
                 setWalkTarget(Player.currentLevel, param1, param2);
             } else if (LoginManager.staffModLevel > 0 && Keyboard.pressedKeys[82] && Keyboard.pressedKeys[81]) {
                 Cheat.teleport(param1 + Camera.sceneBaseTileX, Camera.sceneBaseTileZ - -param2, Player.currentLevel);

@@ -104,36 +104,36 @@ public class Game {
                         MouseCapturer.mouseRecorderPrevX = x;
                         dy = y - MouseCapturer.mouseRecorderPrevY;
                         MouseCapturer.mouseRecorderPrevY = y;
-                        if (Protocol.anInt4762 < 8 && dx >= -32 && dx <= 31 && dy >= -32 && dy <= 31) {
+                        if (Protocol.mouseIdleFrameCount < 8 && dx >= -32 && dx <= 31 && dy >= -32 && dy <= 31) {
                             dy += 32;
                             dx += 32;
-                            Protocol.outboundBuffer.p2(dy + (Protocol.anInt4762 << 12) + (dx << 6));
-                            Protocol.anInt4762 = 0;
-                        } else if (Protocol.anInt4762 < 32 && dx >= -128 && dx <= 127 && dy >= -128 && dy <= 127) {
-                            Protocol.outboundBuffer.p1(Protocol.anInt4762 + 128);
+                            Protocol.outboundBuffer.p2(dy + (Protocol.mouseIdleFrameCount << 12) + (dx << 6));
+                            Protocol.mouseIdleFrameCount = 0;
+                        } else if (Protocol.mouseIdleFrameCount < 32 && dx >= -128 && dx <= 127 && dy >= -128 && dy <= 127) {
+                            Protocol.outboundBuffer.p1(Protocol.mouseIdleFrameCount + 128);
                             dy += 128;
                             dx += 128;
                             Protocol.outboundBuffer.p2((dx << 8) + dy);
-                            Protocol.anInt4762 = 0;
-                        } else if (Protocol.anInt4762 < 32) {
-                            Protocol.outboundBuffer.p1(Protocol.anInt4762 + 192);
+                            Protocol.mouseIdleFrameCount = 0;
+                        } else if (Protocol.mouseIdleFrameCount < 32) {
+                            Protocol.outboundBuffer.p1(Protocol.mouseIdleFrameCount + 192);
                             if (outsideWindow) {
                                 Protocol.outboundBuffer.p4(Integer.MIN_VALUE);
                             } else {
                                 Protocol.outboundBuffer.p4(x | y << 16);
                             }
-                            Protocol.anInt4762 = 0;
+                            Protocol.mouseIdleFrameCount = 0;
                         } else {
-                            Protocol.outboundBuffer.p2(Protocol.anInt4762 + 57344);
+                            Protocol.outboundBuffer.p2(Protocol.mouseIdleFrameCount + 57344);
                             if (outsideWindow) {
                                 Protocol.outboundBuffer.p4(Integer.MIN_VALUE);
                             } else {
                                 Protocol.outboundBuffer.p4(x | y << 16);
                             }
-                            Protocol.anInt4762 = 0;
+                            Protocol.mouseIdleFrameCount = 0;
                         }
-                    } else if (Protocol.anInt4762 < 2047) {
-                        Protocol.anInt4762++;
+                    } else if (Protocol.mouseIdleFrameCount < 2047) {
+                        Protocol.mouseIdleFrameCount++;
                     }
                 }
                 Protocol.outboundBuffer.p1len(Protocol.outboundBuffer.offset - offset);
@@ -175,23 +175,23 @@ public class Game {
             Protocol.outboundBuffer.p2_alt3(button << 15 | x);
             Protocol.outboundBuffer.p4_alt3(i | samples << 16);
         }
-        if (Protocol.anInt551 > 0) {
-            Protocol.anInt551--;
+        if (Protocol.cameraPositionUpdateCooldown > 0) {
+            Protocol.cameraPositionUpdateCooldown--;
         }
         if (Preferences.aBoolean63) {
             for (i = 0; i < ComponentList.keyQueueSize; i++) {
                 offset = ComponentList.keyCodes[i];
                 if (offset == 98 || offset == 99 || offset == 96 || offset == 97) {
-                    Protocol.aBoolean228 = true;
+                    Protocol.shouldSendCameraPosition = true;
                     break;
                 }
             }
         } else if (Keyboard.pressedKeys[96] || Keyboard.pressedKeys[97] || Keyboard.pressedKeys[98] || Keyboard.pressedKeys[99]) {
-            Protocol.aBoolean228 = true;
+            Protocol.shouldSendCameraPosition = true;
         }
-        if (Protocol.aBoolean228 && Protocol.anInt551 <= 0) {
-            Protocol.anInt551 = 20;
-            Protocol.aBoolean228 = false;
+        if (Protocol.shouldSendCameraPosition && Protocol.cameraPositionUpdateCooldown <= 0) {
+            Protocol.cameraPositionUpdateCooldown = 20;
+            Protocol.shouldSendCameraPosition = false;
             Protocol.outboundBuffer.pIsaac1(EVENT_CAMERA_POSITION);
             Protocol.outboundBuffer.p2_alt2(Camera.orbitCameraPitch);
             Protocol.outboundBuffer.p2_alt1(Camera.orbitCameraYaw);
@@ -478,7 +478,7 @@ public class Game {
                                                 if (MiniMenu.clickTileX != -1) {
                                                     Cheat.teleport(Camera.sceneBaseTileX + MiniMenu.clickTileX, Camera.sceneBaseTileZ + MiniMenu.clickTileZ, Player.currentLevel);
                                                 }
-                                                Protocol.anInt4422 = 0;
+                                                Protocol.walkRequestState = 0;
                                                 MiniMenu.anInt3096 = 0;
                                             } else if (MiniMenu.anInt3096 == 2) {
                                                 if (MiniMenu.clickTileX != -1) {
@@ -493,7 +493,7 @@ public class Game {
                                                     Crosshair.x = Mouse.mouseClickX;
                                                 }
                                                 MiniMenu.anInt3096 = 0;
-                                            } else if (Protocol.anInt4422 == 2) {
+                                            } else if (Protocol.walkRequestState == 2) {
                                                 if (MiniMenu.clickTileX != -1) {
                                                     Protocol.outboundBuffer.pIsaac1(179);
                                                     Protocol.outboundBuffer.p2(Camera.sceneBaseTileZ + MiniMenu.clickTileZ);
@@ -503,8 +503,8 @@ public class Game {
                                                     Crosshair.x = Mouse.mouseClickX;
                                                     Crosshair.y = Mouse.mouseClickY;
                                                 }
-                                                Protocol.anInt4422 = 0;
-                                            } else if (MiniMenu.clickTileX != -1 && MiniMenu.anInt3096 == 0 && Protocol.anInt4422 == 0) {
+                                                Protocol.walkRequestState = 0;
+                                            } else if (MiniMenu.clickTileX != -1 && MiniMenu.anInt3096 == 0 && Protocol.walkRequestState == 0) {
                                                 @Pc(1871) boolean success = PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 0, true, 0, MiniMenu.clickTileX, 0, 0, 0, MiniMenu.clickTileZ, PlayerList.self.movementQueueX[0]);
                                                 if (success) {
                                                     Crosshair.y = Mouse.mouseClickY;
@@ -523,7 +523,7 @@ public class Game {
                                                     ComponentList.redraw(ComponentList.aClass13_22);
                                                 }
                                             }
-                                            if (local1508 != Protocol.aClass13_11 && ClientScriptRunner.anInt4504 == Protocol.anInt5235) {
+                                            if (local1508 != Protocol.aClass13_11 && ClientScriptRunner.anInt4504 == Protocol.componentDragAnimationStep) {
                                                 if (local1508 != null) {
                                                     ComponentList.redraw(local1508);
                                                 }
@@ -532,12 +532,12 @@ public class Game {
                                                 }
                                             }
                                             if (Protocol.aClass13_11 == null) {
-                                                if (Protocol.anInt5235 > 0) {
-                                                    Protocol.anInt5235--;
+                                                if (Protocol.componentDragAnimationStep > 0) {
+                                                    Protocol.componentDragAnimationStep--;
                                                 }
-                                            } else if (Protocol.anInt5235 < ClientScriptRunner.anInt4504) {
-                                                Protocol.anInt5235++;
-                                                if (ClientScriptRunner.anInt4504 == Protocol.anInt5235) {
+                                            } else if (Protocol.componentDragAnimationStep < ClientScriptRunner.anInt4504) {
+                                                Protocol.componentDragAnimationStep++;
+                                                if (ClientScriptRunner.anInt4504 == Protocol.componentDragAnimationStep) {
                                                     ComponentList.redraw(Protocol.aClass13_11);
                                                 }
                                             }
