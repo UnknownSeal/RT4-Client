@@ -17,4 +17,10 @@ public class CoordinateConstants {
     public static final int LEVEL_SHIFT = 1;
     public static final int TELEPORT_FLAG_MASK = 0x1;
 
+    // Rotation/Orientation
+    public static final int ROTATION_MASK = 0x3;
+
+    // Location packing
+    public static final int LOC_PARAM_SHIFT = 2;
+
 }

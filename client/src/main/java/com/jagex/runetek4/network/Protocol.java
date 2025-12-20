@@ -218,6 +218,7 @@ public class Protocol {
     @OriginalMember(owner = "runetek4.client!rm", name = "c", descriptor = "I")
     public static int cameraOffsetYawModifier = 1;
 
+
     @OriginalMember(owner = "runetek4.client!dc", name = "b", descriptor = "(Z)V")
     public static void readPlayerInfo() {
         @Pc(6) int newPlayerCount = inboundBuffer.gBit(8);
@@ -1341,33 +1342,33 @@ public class Protocol {
                             } else if (currentOpcode == 217) {
                                 ii = inboundBuffer.g1();
                                 @Pc(4084) MapMarker local4084 = new MapMarker();
-                                param1 = ii >> 6;
-                                local4084.type = ii & 0x3F;
+                                param1 = ii >> MAP_MARKER_PARAM_SHIFT;
+                                local4084.type = ii & MAP_MARKER_TYPE_MASK;
                                 local4084.anInt4048 = inboundBuffer.g1();
                                 if (local4084.anInt4048 >= 0 && local4084.anInt4048 < Sprites.headhints.length) {
-                                    if (local4084.type == 1 || local4084.type == 10) {
+                                    if (local4084.type == MAP_MARKER_NPC || local4084.type == MAP_MARKER_PLAYER) {
                                         local4084.actorTargetId = inboundBuffer.g2();
                                         inboundBuffer.offset += 3;
-                                    } else if (local4084.type >= 2 && local4084.type <= 6) {
+                                    } else if (local4084.type >= MAP_MARKER_COORD_MIN && local4084.type <= MAP_MARKER_COORD_MAX) {
                                         if (local4084.type == 2) {
-                                            local4084.anInt4045 = 64;
-                                            local4084.anInt4047 = 64;
+                                            local4084.anInt4045 = TILE_CENTER_OFFSET;
+                                            local4084.anInt4047 = TILE_CENTER_OFFSET;
                                         }
                                         if (local4084.type == 3) {
                                             local4084.anInt4045 = 0;
-                                            local4084.anInt4047 = 64;
+                                            local4084.anInt4047 = TILE_CENTER_OFFSET;
                                         }
                                         if (local4084.type == 4) {
-                                            local4084.anInt4045 = 128;
-                                            local4084.anInt4047 = 64;
+                                            local4084.anInt4045 = TILE_SIZE;
+                                            local4084.anInt4047 = TILE_CENTER_OFFSET;
                                         }
                                         if (local4084.type == 5) {
-                                            local4084.anInt4045 = 64;
+                                            local4084.anInt4045 = TILE_CENTER_OFFSET;
                                             local4084.anInt4047 = 0;
                                         }
                                         if (local4084.type == 6) {
-                                            local4084.anInt4045 = 64;
-                                            local4084.anInt4047 = 128;
+                                            local4084.anInt4045 = TILE_CENTER_OFFSET;
+                                            local4084.anInt4047 = TILE_SIZE;
                                         }
                                         local4084.type = 2;
                                         local4084.targetX = inboundBuffer.g2();
@@ -1384,7 +1385,7 @@ public class Protocol {
                                 return true;
                             } else if (currentOpcode == 126) {
                                 // UPDATE_IGNORELIST
-                                IgnoreList.ignoreCount = packetSize / 8;
+                                IgnoreList.ignoreCount = packetSize / IGNORE_LIST_ENTRY_SIZE;
                                 for (ii = 0; ii < IgnoreList.ignoreCount; ii++) {
                                     IgnoreList.encodedIgnores[ii] = inboundBuffer.g8();
                                     IgnoreList.ignoreName37[ii] = Base37.fromBase37(IgnoreList.encodedIgnores[ii]);
@@ -1408,19 +1409,19 @@ public class Protocol {
                                 return true;
                             } else if (currentOpcode == 235) {
                                 ii = inboundBuffer.g1_alt3();
-                                param1 = ii >> 2;
-                                world = ii & 0x3;
+                                param1 = ii >> LOC_PARAM_SHIFT;
+                                world = ii & ROTATION_MASK;
                                 slot = Loc.LAYERS[param1];
                                 count = inboundBuffer.g2();
                                 i = inboundBuffer.g4();
                                 if (count == 65535) {
                                     count = -1;
                                 }
-                                chatType = i & 0x3FFF;
-                                j = i >> 14 & 0x3FFF;
+                                chatType = i & COORD_MASK;
+                                j = i >> COORD_X_SHIFT & COORD_MASK;
                                 j -= Camera.sceneBaseTileX;
                                 chatType -= Camera.sceneBaseTileZ;
-                                chatFlags = i >> 28 & 0x3;
+                                chatFlags = i >> PLANE_SHIFT & PLANE_MASK;
                                 SceneGraph.attachLocToTile(chatFlags, world, param1, chatType, slot, j, count);
                                 currentOpcode = -1;
                                 return true;
@@ -1433,7 +1434,7 @@ public class Protocol {
                                 @Pc(4431) long local4431 = messageId1 + (username << 32);
                                 local3002 = 0;
                                 label1450: while (true) {
-                                    if (local3002 >= 100) {
+                                    if (local3002 >= MAX_RECENT_MESSAGES) {
                                         if (chatFlags <= 1) {
                                             if (LoginManager.playerUnderage && !LoginManager.parentalChatConsent || LoginManager.worldQuickChat) {
                                                 local4425 = true;
@@ -1456,7 +1457,7 @@ public class Protocol {
                                 }
                                 if (!local4425 && Player.inTutorialIsland == 0) {
                                     Chat.recentMessages[Chat.messageCounter] = local4431;
-                                    Chat.messageCounter = (Chat.messageCounter + 1) % 100;
+                                    Chat.messageCounter = (Chat.messageCounter + 1) % MAX_RECENT_MESSAGES;
                                     @Pc(4518) JString local4518 = Font.escape(formatChatMessage(inboundBuffer).encodeMessage());
                                     if (chatFlags == 2 || chatFlags == 3) {
                                         Chat.addMessage(JString.concatenate(new JString[] { IMG1, Base37.fromBase37(senderName).toTitleCase() }), 7, local4518);
@@ -1479,7 +1480,7 @@ public class Protocol {
                                 @Pc(4632) boolean local4632 = false;
                                 @Pc(4634) int local4634 = 0;
                                 label1575: while (true) {
-                                    if (local4634 >= 100) {
+                                    if (local4634 >= MAX_RECENT_MESSAGES) {
                                         if (chatType <= 1) {
                                             if (LoginManager.playerUnderage && !LoginManager.parentalChatConsent || LoginManager.worldQuickChat) {
                                                 local4632 = true;
@@ -1502,7 +1503,7 @@ public class Protocol {
                                 }
                                 if (!local4632 && Player.inTutorialIsland == 0) {
                                     Chat.recentMessages[Chat.messageCounter] = local4626;
-                                    Chat.messageCounter = (Chat.messageCounter + 1) % 100;
+                                    Chat.messageCounter = (Chat.messageCounter + 1) % MAX_RECENT_MESSAGES;
                                     local3038 = Font.escape(formatChatMessage(inboundBuffer).encodeMessage());
                                     if (chatType == 2 || chatType == 3) {
                                         Chat.method1598(local3038, JString.concatenate(new JString[] { IMG1, Base37.fromBase37(senderName).toTitleCase() }), Base37.fromBase37(username).toTitleCase());
@@ -1560,8 +1561,8 @@ public class Protocol {
                                 if (currentOpcode == INV_TRANSMIT) {
                                     ii = inboundBuffer.g4();
                                     param1 = inboundBuffer.g2();
-                                    if (ii < -70000) {
-                                        param1 += 32768;
+                                    if (ii < INVENTORY_COMPONENT_OFFSET) {
+                                        param1 += INVENTORY_PARAM_OFFSET;
                                     }
                                     if (ii < 0) {
                                         component = null;
@@ -1574,7 +1575,7 @@ public class Protocol {
                                         i = 0;
                                         if (count != 0) {
                                             i = inboundBuffer.g1();
-                                            if (i == 255) {
+                                            if (i == EXTENDED_COUNT_MARKER) {
                                                 i = inboundBuffer.g4();
                                             }
                                         }
@@ -1588,7 +1589,7 @@ public class Protocol {
                                         ComponentList.redraw(component);
                                     }
                                     ComponentList.redrawActiveInterfaces();
-                                    Inv.updatedInventories[Inv.updatedInventoriesWriterIndex++ & 0x1F] = param1 & 0x7FFF;
+                                    Inv.updatedInventories[Inv.updatedInventoriesWriterIndex++ & CIRCULAR_BUFFER_MASK] = param1 & INVENTORY_ID_MASK;
                                     currentOpcode = -1;
                                     return true;
                                 } else if (currentOpcode == CAM_RESET) {
@@ -1721,7 +1722,7 @@ public class Protocol {
                                             ClanChat.members[chatType + 1] = ClanChat.members[chatType];
                                         }
                                         if (ClanChat.size == 0) {
-                                            ClanChat.members = new ClanMember[100];
+                                            ClanChat.members = new ClanMember[MAX_CLAN_MEMBERS];
                                         }
                                         ClanChat.members[j + 1] = local5347;
                                         if (Player.name37 == senderName) {
@@ -1755,7 +1756,7 @@ public class Protocol {
                                         } else {
                                             obj = ObjTypeList.get(world);
                                             com.modelXAngle = obj.xan2d;
-                                            com.modelZoom = obj.zoom2d * 100 / ii;
+                                            com.modelZoom = obj.zoom2d * ZOOM_PERCENTAGE / ii;
                                             com.modelType = 4;
                                             com.modelId = world;
                                             com.modelYAngle = obj.yan2d;
@@ -1767,8 +1768,8 @@ public class Protocol {
                                 } else if (currentOpcode == INV_TRANSMIT_FULL) {
                                     ii = inboundBuffer.g4();
                                     param1 = inboundBuffer.g2();
-                                    if (ii < -70000) {
-                                        param1 += 32768;
+                                    if (ii < INVENTORY_COMPONENT_OFFSET) {
+                                        param1 += INVENTORY_PARAM_OFFSET;
                                     }
                                     if (ii >= 0) {
                                         component = ComponentList.getComponent(ii);
@@ -1785,7 +1786,7 @@ public class Protocol {
                                     slot = inboundBuffer.g2();
                                     for (count = 0; count < slot; count++) {
                                         i = inboundBuffer.g1_alt3();
-                                        if (i == 255) {
+                                        if (i == EXTENDED_COUNT_MARKER) {
                                             i = inboundBuffer.g4();
                                         }
                                         chatFlags = inboundBuffer.g2();
@@ -1799,7 +1800,7 @@ public class Protocol {
                                         ComponentList.redraw(component);
                                     }
                                     ComponentList.redrawActiveInterfaces();
-                                    Inv.updatedInventories[Inv.updatedInventoriesWriterIndex++ & 0x1F] = param1 & 0x7FFF;
+                                    Inv.updatedInventories[Inv.updatedInventoriesWriterIndex++ & CIRCULAR_BUFFER_MASK] = param1 & INVENTORY_ID_MASK;
                                     currentOpcode = -1;
                                     return true;
                                 } else if (currentOpcode == COOKIE_STORE) {
