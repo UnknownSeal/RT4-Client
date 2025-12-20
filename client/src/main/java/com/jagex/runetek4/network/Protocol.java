@@ -1949,14 +1949,14 @@ public class Protocol {
             SceneGraph.removeGroundObjects(Player.currentLevel, x, z);
             return;
         }
-        @Pc(28) int topCost = -99999999;
+        @Pc(28) int topCost = MIN_COST_VALUE;
         @Pc(30) ClientObj topObj = null;
 
         @Pc(35) ClientObj local35;
         for (local35 = (ClientObj) objStacks.head(); local35 != null; local35 = (ClientObj) objStacks.next()) {
             @Pc(44) ObjType local44 = ObjTypeList.get(local35.value.id);
             @Pc(47) int local47 = local44.cost;
-            if (local44.stackable == 1) {
+            if (local44.stackable == STACKABLE_FLAG) {
                 local47 *= local35.value.count + 1;
             }
             if (topCost < local47) {
@@ -1982,8 +1982,8 @@ public class Protocol {
                 }
             }
         }
-        @Pc(152) long local152 = (long) ((z << 7) + x + 1610612736);
-        SceneGraph.setObjStack(Player.currentLevel, x, z, SceneGraph.getTileHeight(Player.currentLevel, x * 128 + 64, z * 128 + 64), topObj.value, local152, local89, local91);
+        @Pc(152) long local152 = (long) ((z << COORD_HASH_SHIFT) + x + COORD_HASH_OFFSET);
+        SceneGraph.setObjStack(Player.currentLevel, x, z, SceneGraph.getTileHeight(Player.currentLevel, x * TILE_SIZE + TILE_CENTER_OFFSET, z * TILE_SIZE + TILE_CENTER_OFFSET), topObj.value, local152, local89, local91);
     }
 
     @OriginalMember(owner = "client!g", name = "b", descriptor = "(B)V")
@@ -2001,13 +2001,13 @@ public class Protocol {
             // Used for ex. removing doors
 
             local15 = inboundBuffer.g1_alt2(); // Shape + rotation packed
-            local19 = local15 & 0x3; // Rotation
-            local23 = local15 >> 2; // Shape type (wall, ground etc)
+            local19 = local15 & ROTATION_MASK; // Rotation
+            local23 = local15 >> LOC_PARAM_SHIFT; // Shape type (wall, ground etc)
             local27 = Loc.LAYERS[local23]; // Get layer for this shape
 
             local31 = inboundBuffer.g1(); // Zone coordinates
-            local39 = (local31 >> 4 & 0x7) + SceneGraph.currentChunkX; // Zone X
-            local45 = (local31 & 0x7) + SceneGraph.currentChunkZ; // Zone Z
+            local39 = (local31 >> ZONE_COORD_SHIFT & ZONE_COORD_MASK) + SceneGraph.currentChunkX; // Zone X
+            local45 = (local31 & ZONE_COORD_MASK) + SceneGraph.currentChunkZ; // Zone Z
 
             if (local39 >= 0 && local45 >= 0 && local39 < 104 && local45 < 104) {
                 // Delete the location ath this position
@@ -2019,12 +2019,12 @@ public class Protocol {
             local15 = inboundBuffer.g2_al1(); // Object type ID
             local23 = inboundBuffer.g1(); // Zone coordinates
 
-            local27 = (local23 & 0x7) + SceneGraph.currentChunkZ; // Zone Z
-            local19 = (local23 >> 4 & 0x7) + SceneGraph.currentChunkX; // Zone X
+            local27 = (local23 & ZONE_COORD_MASK) + SceneGraph.currentChunkZ; // Zone Z
+            local19 = (local23 >> ZONE_COORD_SHIFT & ZONE_COORD_MASK) + SceneGraph.currentChunkX; // Zone X
 
             local31 = inboundBuffer.g2_alt2(); // Item count
 
-            if (local19 >= 0 && local27 >= 0 && local19 < 104 && local27 < 104) {
+            if (local19 >= 0 && local27 >= 0 && local19 < SIZE && local27 < SIZE) {
                 @Pc(122) ObjStack local122 = new ObjStack();
                 local122.count = local31; // Stack size
                 local122.id = local15; // Item ID
@@ -2049,31 +2049,31 @@ public class Protocol {
                 // ZONE_MAP_PROJANIM_SMALL
                 // Simple projectile
                 local15 = inboundBuffer.g1(); // Starting coordinate
-                local23 = SceneGraph.currentChunkX * 2 + (local15 >> 4 & 0xF); // start X
-                local19 = (local15 & 0xF) + SceneGraph.currentChunkZ * 2; // Start Z
+                local23 = SceneGraph.currentChunkX * 2 + (local15 >> ZONE_COORD_SHIFT & ZONE_COORD_MASK_4BIT); // start X
+                local19 = (local15 & ZONE_COORD_MASK_4BIT) + SceneGraph.currentChunkZ * 2; // Start Z
                 local27 = local23 + inboundBuffer.g1s(); // Target X offset
                 local31 = inboundBuffer.g1s() + local19; // Target Z offset
                 local39 = inboundBuffer.g2s(); // Source entity
                 local45 = inboundBuffer.g2(); // Projectile spotanim ID
-                local218 = inboundBuffer.g1() * 4; // Start height
-                local224 = inboundBuffer.g1() * 4; // End height
+                local218 = inboundBuffer.g1() * HEIGHT_SCALE_FACTOR; // Start height
+                local224 = inboundBuffer.g1() * HEIGHT_SCALE_FACTOR; // End height
                 local228 = inboundBuffer.g2(); // Start cycle
                 local232 = inboundBuffer.g2(); // End cycle
                 local236 = inboundBuffer.g1(); // Angle
 
-                if (local236 == 255) {
+                if (local236 == NO_ANGLE_SPECIFIED) {
                     local236 = -1;
                 }
 
                 local247 = inboundBuffer.g1(); // Arc
 
-                if (local23 >= 0 && local19 >= 0 && local23 < 208 && local19 < 208 && local27 >= 0 && local31 >= 0 && local27 < 208 && local31 < 208 && local45 != 65535) {
-                    local31 *= 64;
+                if (local23 >= 0 && local19 >= 0 && local23 < BUILD_AREA_HALF_TILES && local19 < BUILD_AREA_HALF_TILES && local27 >= 0 && local31 >= 0 && local27 < BUILD_AREA_HALF_TILES && local31 < BUILD_AREA_HALF_TILES && local45 != 65535) {
+                    local31 *= HALF_TILE_SIZE;
 
                     // Convert to world coordinates
-                    local27 = local27 * 64;
-                    local19 = local19 * 64;
-                    local23 = local23 * 64;
+                    local27 = local27 * HALF_TILE_SIZE;
+                    local19 = local19 * HALF_TILE_SIZE;
+                    local23 = local23 * HALF_TILE_SIZE;
 
                     local317 = new ProjectileAnimation(local45, Player.currentLevel, local23, local19, SceneGraph.getTileHeight(Player.currentLevel, local23, local19) - local218, Client.loop + local228, local232 + Client.loop, local236, local247, local39, local224);
                     local317.setTarget(local31, Client.loop + local228, -local224 + SceneGraph.getTileHeight(Player.currentLevel, local27, local31), local27);
@@ -2083,16 +2083,16 @@ public class Protocol {
                 // ZONE_MAP_ANIM
                 // Spot animation
                 local15 = inboundBuffer.g1(); // Zone coordinate
-                local23 = SceneGraph.currentChunkX + (local15 >> 4 & 0x7); // Zone X
-                local19 = SceneGraph.currentChunkZ + (local15 & 0x7); // Zone Z
+                local23 = SceneGraph.currentChunkX + (local15 >> ZONE_COORD_SHIFT & ZONE_COORD_MASK); // Zone X
+                local19 = SceneGraph.currentChunkZ + (local15 & ZONE_COORD_MASK); // Zone Z
                 local27 = inboundBuffer.g2(); // Spotanim type ID
                 local31 = inboundBuffer.g1(); // Height offset
                 local39 = inboundBuffer.g2(); // Duration/cycle
 
-                if (local23 >= 0 && local19 >= 0 && local23 < 104 && local19 < 104) {
+                if (local23 >= 0 && local19 >= 0 && local23 < SIZE && local19 < SIZE) {
                     // Convert to world coodinates
-                    local23 = local23 * 128 + 64;
-                    local19 = local19 * 128 + 64;
+                    local23 = local23 * TILE_SIZE + TILE_CENTER_OFFSET;
+                    local19 = local19 * TILE_SIZE + TILE_CENTER_OFFSET;
 
                     // Create spot anim at position
                     @Pc(427) SpotAnim local427 = new SpotAnim(
@@ -2109,25 +2109,25 @@ public class Protocol {
                 // ZONE_LOC_ADD_CHANGE
                 // Add or change location with animation
                 local15 = inboundBuffer.g1_alt1(); // Shape + rotation
-                local23 = local15 >> 2; // Shape type
-                local19 = local15 & 0x3; // Rotation
+                local23 = local15 >> LOC_PARAM_SHIFT; // Shape type
+                local19 = local15 & ROTATION_MASK; // Rotation
                 local27 = Loc.LAYERS[local23]; // Layer for rendering order
                 local31 = inboundBuffer.g1(); // Zone coordinates
-                local39 = SceneGraph.currentChunkX + (local31 >> 4 & 0x7); // Zone X
-                local45 = (local31 & 0x7) + SceneGraph.currentChunkZ; // Zone Z
+                local39 = SceneGraph.currentChunkX + (local31 >> ZONE_COORD_SHIFT & ZONE_COORD_MASK); // Zone X
+                local45 = (local31 & ZONE_COORD_MASK) + SceneGraph.currentChunkZ; // Zone Z
                 local218 = inboundBuffer.g2_alt2(); // Location Type ID
-                if (local39 >= 0 && local45 >= 0 && local39 < 104 && local45 < 104) {
+                if (local39 >= 0 && local45 >= 0 && local39 < SIZE && local45 < SIZE) {
                     ChangeLocRequest.push(Player.currentLevel, local45, local19, local39, -1, local218, local27, local23, 0);
                 }
             } else if (currentOpcode == ZONE_LOC_MERGE) {
                 // ZONE_LOC_MERGE
                 // Attach location directly to tile
                 local15 = inboundBuffer.g1_alt3(); // Zone coordinates
-                int x = SceneGraph.currentChunkX + (local15 >> 4 & 0x7); // Zone X
-                int z = SceneGraph.currentChunkZ + (local15 & 0x7); // Zone Z
+                int x = SceneGraph.currentChunkX + (local15 >> ZONE_COORD_SHIFT & ZONE_COORD_MASK); // Zone X
+                int z = SceneGraph.currentChunkZ + (local15 & ZONE_COORD_MASK); // Zone Z
                 int info = inboundBuffer.g1_alt3(); // Shape + rotation
                 int shape = info >> 2; // Shape type
-                int angle = info & 0x3; // Angle
+                int angle = info & ROTATION_MASK; // Angle
                 local45 = Loc.LAYERS[shape]; // Rendering layer
                 local218 = inboundBuffer.g2_al1(); // Location type ID
 
@@ -2147,10 +2147,10 @@ public class Protocol {
                     // Skiped if in Software renderer
                     local15 = inboundBuffer.g1(); // Shape + rotation packed
                     local23 = local15 >> 2; // Location shape
-                    local19 = local15 & 0x3; // Rotation (0-3, 0/90/180/270 degrees)
+                    local19 = local15 & ROTATION_MASK; // Rotation (0-3, 0/90/180/270 degrees)
                     local27 = inboundBuffer.g1(); // Zone coordnates packed
-                    local31 = SceneGraph.currentChunkX + (local27 >> 4 & 0x7); // Extract zone X
-                    local39 = SceneGraph.currentChunkZ + (local27 & 0x7); // Extract Zone Z
+                    local31 = SceneGraph.currentChunkX + (local27 >> ZONE_COORD_SHIFT & ZONE_COORD_MASK); // Extract zone X
+                    local39 = SceneGraph.currentChunkZ + (local27 & ZONE_COORD_MASK); // Extract Zone Z
 
                     // Read transformation parameters OpenGL specific
                     @Pc(605) byte local605 = inboundBuffer.g1b_alt3();
@@ -2199,7 +2199,7 @@ public class Protocol {
                                 @Pc(723) ObjStack local723 = obj.value;
 
                                 // Match by type and old count
-                                if ((id & 0x7FFF) == local723.id && oldCount == local723.count) {
+                                if ((id & INVENTORY_ID_MASK) == local723.id && oldCount == local723.count) {
                                     local723.count = newCount; // Update to new count
                                     break;
                                 }
@@ -2215,8 +2215,8 @@ public class Protocol {
                     int receiver = inboundBuffer.g2_alt3(); // Player ID
                     local23 = inboundBuffer.g1_alt2(); // Zone coordinates
 
-                    int z = SceneGraph.currentChunkZ + (local23 & 0x7); // Zone Z
-                    int x = SceneGraph.currentChunkX + (local23 >> 4 & 0x7); // Zone X
+                    int z = SceneGraph.currentChunkZ + (local23 & ZONE_COORD_MASK); // Zone Z
+                    int x = SceneGraph.currentChunkX + (local23 >> ZONE_COORD_SHIFT & ZONE_COORD_MASK); // Zone X
 
                     int count = inboundBuffer.g2_al1(); // Item count
                     int id = inboundBuffer.g2_al1(); // Object type ID
@@ -2238,30 +2238,30 @@ public class Protocol {
                     // Zone_MAP_PROJANIM
                     // Projectile animation
                     local15 = inboundBuffer.g1(); // Starting zone coordinate
-                    local23 = SceneGraph.currentChunkX + (local15 >> 4 & 0x7); // Start zone X
-                    local19 = (local15 & 0x7) + SceneGraph.currentChunkZ; // Start zone Z
+                    local23 = SceneGraph.currentChunkX + (local15 >> ZONE_COORD_SHIFT & ZONE_COORD_MASK); // Start zone X
+                    local19 = (local15 & ZONE_COORD_MASK) + SceneGraph.currentChunkZ; // Start zone Z
                     local27 = local23 + inboundBuffer.g1s(); // Target tile X (offset)
                     local31 = inboundBuffer.g1s() + local19; // Target tile Z (offset)
                     local39 = inboundBuffer.g2s(); // Source entity
                     local45 = inboundBuffer.g2(); // Projectile spotanim ID
-                    local218 = inboundBuffer.g1() * 4; // Start height offset
-                    local224 = inboundBuffer.g1() * 4; // End height offset
+                    local218 = inboundBuffer.g1() * HEIGHT_SCALE_FACTOR; // Start height offset
+                    local224 = inboundBuffer.g1() * HEIGHT_SCALE_FACTOR; // End height offset
                     local228 = inboundBuffer.g2(); // Start cycle (delay before showing)
                     local232 = inboundBuffer.g2(); // End cycle
                     local236 = inboundBuffer.g1(); // Angle/slope
                     local247 = inboundBuffer.g1(); // Arc height
 
-                    if (local236 == 255) {
+                    if (local236 == NO_ANGLE_SPECIFIED) {
                         local236 = -1; // No angle specified
                     }
 
                     // Validate coordinates are in bounds
-                    if (local23 >= 0 && local19 >= 0 && local23 < 104 && local19 < 104 && local27 >= 0 && local31 >= 0 && local27 < 104 && local31 < 104 && local45 != 65535) {
+                    if (local23 >= 0 && local19 >= 0 && local23 < SIZE && local19 < SIZE && local27 >= 0 && local31 >= 0 && local27 < SIZE && local31 < SIZE && local45 != 65535) {
                         //Convert tile coords to world coordinates
-                        local31 = local31 * 128 + 64;
-                        local19 = local19 * 128 + 64;
-                        local23 = local23 * 128 + 64;
-                        local27 = local27 * 128 + 64;
+                        local31 = local31 * TILE_SIZE + TILE_CENTER_OFFSET;
+                        local19 = local19 * TILE_SIZE + TILE_CENTER_OFFSET;
+                        local23 = local23 * TILE_SIZE + TILE_CENTER_OFFSET;
+                        local27 = local27 * TILE_SIZE + TILE_CENTER_OFFSET;
 
                         // Create projectile animation
                         local317 = new ProjectileAnimation(
@@ -2286,30 +2286,30 @@ public class Protocol {
                     // Entity-specific projectile with source tracking
                     // Used for ex. projectiles fired from specific entities
                     local15 = inboundBuffer.g1(); // Starting coordinate
-                    local19 = SceneGraph.currentChunkZ * 2 + (local15 & 0xF); // Start Z (doubled)
-                    local23 = SceneGraph.currentChunkX * 2 + (local15 >> 4 & 0xF); // Start X (doubled)
+                    local19 = SceneGraph.currentChunkZ * 2 + (local15 & ZONE_COORD_MASK_4BIT); // Start Z (doubled)
+                    local23 = SceneGraph.currentChunkX * 2 + (local15 >> ZONE_COORD_SHIFT & ZONE_COORD_MASK_4BIT); // Start X (doubled)
                     local27 = inboundBuffer.g1s() + local23; // Target X
                     local31 = inboundBuffer.g1s() + local19; // Target Z
                     local39 = inboundBuffer.g2s(); // Source entity ID (packed)
                     local45 = inboundBuffer.g2s(); // Target entity ID (packed)
                     local218 = inboundBuffer.g2(); // Projectile spotanim ID
                     local224 = inboundBuffer.g1s(); // Vertical offset
-                    local228 = inboundBuffer.g1() * 4; // Height offset at target
+                    local228 = inboundBuffer.g1() * HEIGHT_SCALE_FACTOR; // Height offset at target
                     local232 = inboundBuffer.g2(); // Start cycle
                     local236 = inboundBuffer.g2(); // End cycle
                     local247 = inboundBuffer.g1(); // Angle
                     local633 = inboundBuffer.g1(); // Arc height
 
-                    if (local247 == 255) {
+                    if (local247 == NO_ANGLE_SPECIFIED) {
                         local247 = -1;
                     }
 
-                    if (local23 >= 0 && local19 >= 0 && local23 < 208 && local19 < 208 && local27 >= 0 && local31 >= 0 && local27 < 208 && local31 < 208 && local218 != 65535) {
+                    if (local23 >= 0 && local19 >= 0 && local23 < BUILD_AREA_HALF_TILES && local19 < BUILD_AREA_HALF_TILES && local27 >= 0 && local31 >= 0 && local27 < BUILD_AREA_HALF_TILES && local31 < BUILD_AREA_HALF_TILES && local218 != 65535) {
                         // Convert 4x4 coords to world coords
-                        local27 = local27 * 64;
-                        local23 *= 64;
-                        local31 *= 64;
-                        local19 *= 64;
+                        local27 = local27 * HALF_TILE_SIZE;
+                        local23 *= HALF_TILE_SIZE;
+                        local31 *= HALF_TILE_SIZE;
+                        local19 *= HALF_TILE_SIZE;
 
                         // If source entity specified, apply model attachment offset
                         if (local39 != 0) {
@@ -2320,14 +2320,14 @@ public class Protocol {
                             if (local39 >= 0) {
                                 // Positive = NPC
                                 local1184 = local39 - 1;
-                                local1188 = local1184 & 0x7FF; // Bottom 11 bits = NPC Index
-                                local1194 = local1184 >> 11 & 0xF; // Top 4 bits = body part/slot
+                                local1188 = local1184 & ENTITY_INDEX_MASK; // Bottom 11 bits = NPC Index
+                                local1194 = local1184 >> ENTITY_SLOT_SHIFT & ENTITY_SLOT_MASK; // Top 4 bits = body part/slot
                                 local1198 = NpcList.npcs[local1188];
                             } else {
                                 // Negative = Player
                                 local1184 = -local39 - 1;
-                                local1194 = local1184 >> 11 & 0xF;
-                                local1188 = local1184 & 0x7FF;
+                                local1194 = local1184 >> ENTITY_SLOT_SHIFT & ENTITY_SLOT_MASK;
+                                local1188 = local1184 & ENTITY_INDEX_MASK;
                                 if (PlayerList.localPid == local1188) {
                                     local1198 = PlayerList.self;
                                 } else {
@@ -2350,8 +2350,8 @@ public class Protocol {
                                     @Pc(1274) int local1274 = MathUtils.cos[local1198.orientation];
 
                                     // Apply rotation matrix
-                                    @Pc(1284) int local1284 = local1188 * local1274 + local1264 * local1269 >> 16;
-                                    @Pc(1295) int local1295 = local1274 * local1264 - local1188 * local1269 >> 16;
+                                    @Pc(1284) int local1284 = local1188 * local1274 + local1264 * local1269 >> FIXED_POINT_SHIFT;
+                                    @Pc(1295) int local1295 = local1274 * local1264 - local1188 * local1269 >> FIXED_POINT_SHIFT;
 
                                     local19 += local1295;
                                     local23 += local1284;
@@ -2368,8 +2368,8 @@ public class Protocol {
                     // ZONE_SOUND_AREA
                     // Area sound effect
                     local15 = inboundBuffer.g1(); // Zone coordinate
-                    local23 = SceneGraph.currentChunkX + (local15 >> 4 & 0x7); // Zone X
-                    local19 = SceneGraph.currentChunkZ + (local15 & 0x7); // Zone Z
+                    local23 = SceneGraph.currentChunkX + (local15 >> ZONE_COORD_SHIFT & ZONE_COORD_MASK); // Zone X
+                    local19 = SceneGraph.currentChunkZ + (local15 & ZONE_COORD_MASK); // Zone Z
                     local27 = inboundBuffer.g2(); // Sound effect ID
 
                     if (local27 == 65535) {
@@ -2377,10 +2377,10 @@ public class Protocol {
                     }
 
                     local31 = inboundBuffer.g1(); // Sound parameters packed
-                    local39 = local31 >> 4 & 0xF; // Sound radius (tile distance)
+                    local39 = local31 >> SOUND_RADIUS_SHIFT & SOUND_RADIUS_MASK; // Sound radius (tile distance)
                     local218 = inboundBuffer.g1(); // Delay before playing
-                    local45 = local31 & 0x7; // Loop count
-                    if (local23 >= 0 && local19 >= 0 && local23 < 104 && local19 < 104) {
+                    local45 = local31 & SOUND_LOOP_MASK; // Loop count
+                    if (local23 >= 0 && local19 >= 0 && local23 < SIZE && local19 < SIZE) {
                         local224 = local39 + 1; // Radius
 
                         //Only play if player is within range
@@ -2390,7 +2390,7 @@ public class Protocol {
                                 && PlayerList.self.movementQueueZ[0] <= local224 + local19
                                 && Preferences.ambientSoundsVolume != 0 // Volume enabled
                                 && local45 > 0 // Has loop count
-                                && SoundPlayer.size < 50 // Sound queue not full
+                                && SoundPlayer.size < MAX_SOUND_QUEUE_SIZE // Sound queue not full
                                 && local27 != -1) { // Valid sound ID
 
                             // Add sound to player queue

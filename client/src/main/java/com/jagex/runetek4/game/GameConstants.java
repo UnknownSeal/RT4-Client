@@ -34,4 +34,21 @@ public class GameConstants {
     public static final int MAP_MARKER_COORD_MIN = 2;
     public static final int MAP_MARKER_COORD_MAX = 6;
 
+    // Object stacking
+    public static final int MIN_COST_VALUE = -99999999;
+    public static final int STACKABLE_FLAG = 1;
+
+    // Entity packing
+    public static final int ENTITY_INDEX_MASK = 0x7FF;
+    public static final int ENTITY_SLOT_SHIFT = 11;
+    public static final int ENTITY_SLOT_MASK = 0xF;
+
+    // Sound system
+    public static final int SOUND_RADIUS_SHIFT = 4;
+    public static final int SOUND_RADIUS_MASK = 0xF;
+    public static final int SOUND_LOOP_MASK = 0x7;
+    public static final int MAX_SOUND_QUEUE_SIZE = 50;
+
+    // Angle/direction marker
+    public static final int NO_ANGLE_SPECIFIED = 255;
 }
