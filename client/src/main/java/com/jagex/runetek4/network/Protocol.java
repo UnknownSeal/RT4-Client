@@ -73,15 +73,17 @@ import static com.jagex.runetek4.game.GameConstants.*;
 import static com.jagex.runetek4.game.logic.CollisionConstants.*;
 import static com.jagex.runetek4.game.world.CoordinateConstants.*;
 import static com.jagex.runetek4.network.ClientProt.TRANSMITVAR_VERIFYID;
+import static com.jagex.runetek4.network.ProtocolContants.*;
+import static com.jagex.runetek4.network.ProtocolContants.DYNAMIC_REGION_BITS;
 import static com.jagex.runetek4.network.ServerProt.*;
 
 public class Protocol {
 
     @OriginalMember(owner = "client!ag", name = "P", descriptor = "Lclient!i;")
-    public static final PacketBit outboundBuffer = new PacketBit(5000);
+    public static final PacketBit outboundBuffer = new PacketBit(OUTBOUND_BUFFER_SIZE);
 
     @OriginalMember(owner = "runetek4.client!eg", name = "e", descriptor = "Lclient!i;")
-    public static final PacketBit inboundBuffer = new PacketBit(65536);
+    public static final PacketBit inboundBuffer = new PacketBit(INBOUND_BUFFER_SIZE);
 
     @OriginalMember(owner = "runetek4.client!ef", name = "f", descriptor = "Lclient!na;")
     public static final JString DUELSTAKE = JString.parse(":duelstake:");
@@ -90,13 +92,13 @@ public class Protocol {
     public static final JString CHALREQ = JString.parse(":chalreq:");
 
     @OriginalMember(owner = "runetek4.client!wb", name = "f", descriptor = "Lclient!wa;")
-    public static final Packet CHAT_PACKET = new Packet(new byte[5000]);
+    public static final Packet CHAT_PACKET = new Packet(new byte[CHAT_PACKET_SIZE]);
 
     @OriginalMember(owner = "client!eb", name = "p", descriptor = "[I")
-    public static final int[] removedIds = new int[1000];
+    public static final int[] removedIds = new int[MAX_REMOVED_IDS];
 
     @OriginalMember(owner = "client!dh", name = "d", descriptor = "[I")
-    public static final int[] extendedIds = new int[2048];
+    public static final int[] extendedIds = new int[MAX_EXTENDED_IDS];
 
     @OriginalMember(owner = "runetek4.client!ta", name = "z", descriptor = "[I")
     public static final int[] PACKET_LENGTHS = new int[] { -1, 0, 8, 0, 2, 0, 0, 0, 0, 12, 0, 1, 0, 3, 7, 0, 15, 6, 0, 0, 4, 7, -2, -1, 2, 0, 2, 8, 0, 0, 0, 0, -2, 5, 0, 0, 8, 3, 6, 0, 0, 0, -1, 0, -1, 0, 0, 6, -2, 0, 12, 0, 0, 0, -1, -2, 10, 0, 0, 0, 3, 0, -1, 0, 0, 5, 6, 0, 0, 8, -1, -1, 0, 8, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 6, 2, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 5, 0, 0, -2, 0, 0, 0, 0, 0, 12, 2, 0, -2, -2, 20, 0, 0, 10, 0, 15, 0, -1, 0, 8, -2, 0, 0, 0, 8, 0, 12, 0, 0, 7, 0, 0, 0, 0, 0, -1, -1, 0, 4, 5, 0, 0, 0, 6, 0, 0, 0, 0, 8, 9, 0, 0, 0, 2, -1, 0, -2, 0, 4, 14, 0, 0, 0, 24, 0, -2, 5, 0, 0, 0, 10, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 6, 0, 0, 0, 2, 1, 0, 0, 2, -1, 1, 0, 0, 0, 0, 14, 0, 0, 0, 0, 10, 5, 0, 0, 0, 0, 0, -2, 0, 0, 9, 0, 0, 8, 0, 0, 0, 0, -2, 6, 0, 0, 0, -2, 0, 3, 0, 1, 7, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 3, 0, 0 };
@@ -117,13 +119,13 @@ public class Protocol {
     public static final JString TRADE = JString.parse(":trade:");
 
     @OriginalMember(owner = "runetek4.client!pb", name = "x", descriptor = "[[[I")
-    public static final int[][][] dynamicRegionData = new int[LEVELS][BUILD_AREA_SIZE][BUILD_AREA_SIZE];
+    public static final int[][][] dynamicRegionData = new int[CollisionConstants.LEVELS][ProtocolContants.BUILD_AREA_SIZE][ProtocolContants.BUILD_AREA_SIZE];
 
     @OriginalMember(owner = "client!fc", name = "f", descriptor = "Lclient!na;")
     public static final JString IMG0 = JString.parse("<img=0>");
 
     @OriginalMember(owner = "client!ch", name = "z", descriptor = "[I")
-    public static final int[] cameraModifierCycle = new int[5];
+    public static final int[] cameraModifierCycle = new int[CAMERA_MODIFIER_COUNT];
 
     @OriginalMember(owner = "runetek4.client!pg", name = "db", descriptor = "Lclient!na;")
     public static final JString ASSISTREQ = JString.parse(":assistreq:");
@@ -804,7 +806,7 @@ public class Protocol {
                                 count = world & ENTITY_ID_MASK;
                                 @Pc(1894) Npc local1894 = NpcList.npcs[count];
                                 if (local1894 != null) {
-                                    if (slot == 65535) {
+                                    if (slot == INVALID_ID_U16) {
                                         slot = -1;
                                     }
                                     local1245 = true;
@@ -841,7 +843,7 @@ public class Protocol {
                                     local2033 = PlayerList.players[count];
                                 }
                                 if (local2033 != null) {
-                                    if (slot == 65535) {
+                                    if (slot == INVALID_ID_U16) {
                                         slot = -1;
                                     }
                                     local1245 = true;
@@ -852,7 +854,7 @@ public class Protocol {
                                         local2033.spotAnimStart = ii + Client.loop;
                                         local2033.spotAnimY = param1;
                                         local2033.spotAnimId = slot;
-                                        if (local2033.spotAnimId == 65535) {
+                                        if (local2033.spotAnimId == INVALID_ID_U16) {
                                             local2033.spotAnimId = -1;
                                         }
                                         local2033.anInt3418 = 1;
@@ -990,7 +992,7 @@ public class Protocol {
                         ii = inboundBuffer.g4me();
                         int verifyID = inboundBuffer.g2_alt3();
                         world = inboundBuffer.g2_alt2();
-                        if (world == 65535) {
+                        if (world == INVALID_ID_U16) {
                             world = -1;
                         }
                         if (setVerifyID(verifyID)) {
@@ -1376,7 +1378,7 @@ public class Protocol {
                                         local4084.anInt4050 = inboundBuffer.g1();
                                     }
                                     local4084.playerModelId = inboundBuffer.g2();
-                                    if (local4084.playerModelId == 65535) {
+                                    if (local4084.playerModelId == INVALID_ID_U16) {
                                         local4084.playerModelId = -1;
                                     }
                                     MiniMap.hintMapMarkers[param1] = local4084;
@@ -1617,7 +1619,7 @@ public class Protocol {
                                 } else if (currentOpcode == 73) {
                                     ii = inboundBuffer.g2_alt2();
                                     param1 = inboundBuffer.g4me();
-                                    if (ii == 65535) {
+                                    if (ii == INVALID_ID_U16) {
                                         ii = -1;
                                     }
                                     int verifyID = inboundBuffer.g2_al1();
@@ -1633,13 +1635,13 @@ public class Protocol {
                                 } else if (currentOpcode == IF_SETOBJECT) {
                                     int verifyID = inboundBuffer.g2_al1();
                                     param1 = inboundBuffer.g2_al1();
-                                    if (param1 == 65535) {
+                                    if (param1 == INVALID_ID_U16) {
                                         param1 = -1;
                                     }
                                     world = inboundBuffer.g4();
                                     slot = inboundBuffer.g2_alt2();
                                     count = inboundBuffer.g4rme();
-                                    if (slot == 65535) {
+                                    if (slot == INVALID_ID_U16) {
                                         slot = -1;
                                     }
                                     if (setVerifyID(verifyID)) {
@@ -1737,7 +1739,7 @@ public class Protocol {
                                     ii = inboundBuffer.g4();
                                     param1 = inboundBuffer.p4rme();
                                     world = inboundBuffer.g2_alt3();
-                                    if (world == 65535) {
+                                    if (world == INVALID_ID_U16) {
                                         world = -1;
                                     }
                                     int verifyID = inboundBuffer.g2_al1();
@@ -1815,7 +1817,7 @@ public class Protocol {
                                     return true;
                                 } else if (currentOpcode == MUSIC_PLAY) {
                                     ii = inboundBuffer.g2_alt3();
-                                    if (ii == 65535) {
+                                    if (ii == INVALID_ID_U16) {
                                         ii = -1;
                                     }
                                     MusicPlayer.playSong(ii);
@@ -1824,7 +1826,7 @@ public class Protocol {
                                 } else if (currentOpcode == 208) {
                                     ii = inboundBuffer.g3le();
                                     param1 = inboundBuffer.g2_al1();
-                                    if (param1 == 65535) {
+                                    if (param1 == INVALID_ID_U16) {
                                         param1 = -1;
                                     }
                                     MusicPlayer.playJingle(ii, param1);
@@ -1845,7 +1847,7 @@ public class Protocol {
 
     @OriginalMember(owner = "client!uc", name = "a", descriptor = "(IB)Z")
     public static boolean setVerifyID(@OriginalArg(0) int verifyID) {
-        verifyId = verifyID + 1 & 0xFFFF;
+        verifyId = verifyID + 1 & U16_MASK;
         verifyIdChanged = true;
         return true;
     }
@@ -1853,7 +1855,7 @@ public class Protocol {
     @OriginalMember(owner = "client!dm", name = "a", descriptor = "(B)V")
     public static void clearAreaNPCs() {
         inboundBuffer.accessBits();
-        @Pc(13) int npcsInArea = inboundBuffer.gBit(8);
+        @Pc(13) int npcsInArea = inboundBuffer.gBit(NPC_COUNT_BITS);
         @Pc(22) int i;
         if (NpcList.npcCount > npcsInArea) {
             for (i = npcsInArea; i < NpcList.npcCount; i++) {
@@ -2131,7 +2133,7 @@ public class Protocol {
                 local45 = Loc.LAYERS[shape]; // Rendering layer
                 local218 = inboundBuffer.g2_al1(); // Location type ID
 
-                if (local218 == 65535) {
+                if (local218 == INVALID_ID_U16) {
                     local218 = -1; // -1 = remove
                 }
 
@@ -2372,7 +2374,7 @@ public class Protocol {
                     local19 = SceneGraph.currentChunkZ + (local15 & ZONE_COORD_MASK); // Zone Z
                     local27 = inboundBuffer.g2(); // Sound effect ID
 
-                    if (local27 == 65535) {
+                    if (local27 == INVALID_ID_U16) {
                         local27 = -1; // No sound
                     }
 
@@ -2398,7 +2400,7 @@ public class Protocol {
                             SoundPlayer.loops[SoundPlayer.size] = local45; // Loop count
                             SoundPlayer.delays[SoundPlayer.size] = local218; // Delay
                             SoundPlayer.sounds[SoundPlayer.size] = null;
-                            SoundPlayer.positions[SoundPlayer.size] = local39 + (local23 << 16) + (local19 << 8); // Pack position + radius
+                            SoundPlayer.positions[SoundPlayer.size] = local39 + (local23 << POSITION_X_SHIFT) + (local19 << POSITION_Y_SHIFT); // Pack position + radius
                             SoundPlayer.size++;
                         }
                     }
@@ -2406,17 +2408,17 @@ public class Protocol {
                     // ZONE_OBJ_DEL
                     // Delete ground objects from zone
                     local15 = inboundBuffer.g1_alt3(); // Zone coordinates
-                    local19 = SceneGraph.currentChunkZ + (local15 & 0x7); // Zone Z
-                    local23 = (local15 >> 4 & 0x7) + SceneGraph.currentChunkX; // Zone X
+                    local19 = SceneGraph.currentChunkZ + (local15 & ZONE_COORD_MASK); // Zone Z
+                    local23 = (local15 >> ZONE_COORD_SHIFT & ZONE_COORD_MASK) + SceneGraph.currentChunkX; // Zone X
                     local27 = inboundBuffer.g2(); // Object type ID
 
-                    if (local23 >= 0 && local19 >= 0 && local23 < 104 && local19 < 104) {
+                    if (local23 >= 0 && local19 >= 0 && local23 < CollisionConstants.SIZE && local19 < CollisionConstants.SIZE) {
                         @Pc(1565) LinkList local1565 = SceneGraph.objStacks[Player.currentLevel][local23][local19];
 
                         if (local1565 != null) {
                             // Find and remove the matching object
                             for (@Pc(1572) ClientObj local1572 = (ClientObj) local1565.head(); local1572 != null; local1572 = (ClientObj) local1565.next()) {
-                                if (local1572.value.id == (local27 & 0x7FFF)) {
+                                if (local1572.value.id == (local27 & INVENTORY_ID_MASK)) {
                                     local1572.unlink(); // Remove from list
                                     break;
                                 }
@@ -2448,10 +2450,10 @@ public class Protocol {
         @Pc(169) int regionId;
         if (!SceneGraph.dynamicMapRegion) {
             playerPlane = inboundBuffer.g2_alt2();
-            regionCount = (packetSize - inboundBuffer.offset) / 16;
-            WorldLoader.regionsXteaKeys = new int[regionCount][4];
+            regionCount = (packetSize - inboundBuffer.offset) /  XTEA_ENTRY_SIZE_BYTES;
+            WorldLoader.regionsXteaKeys = new int[regionCount][XTEA_KEY_SIZE];
             for (local26 = 0; local26 < regionCount; local26++) {
-                for (local31 = 0; local31 < 4; local31++) {
+                for (local31 = 0; local31 < XTEA_KEY_SIZE; local31++) {
                     WorldLoader.regionsXteaKeys[local26][local31] = inboundBuffer.p4rme();
                 }
             }
@@ -2472,16 +2474,16 @@ public class Protocol {
             WorldLoader.underWaterLocationsMapFileIds = new int[regionCount];
             regionCount = 0;
             @Pc(100) boolean isTutorialIsland = false;
-            if ((local31 / 8 == 48 || local31 / 8 == 49) && playerZ / 8 == 48) {
+            if ((local31 / MAP_SQUARE_SIZE == TUTORIAL_ISLAND_X1 || local31 / MAP_SQUARE_SIZE == TUTORIAL_ISLAND_X2) && playerZ / MAP_SQUARE_SIZE == TUTORIAL_ISLAND_Z2) {
                 isTutorialIsland = true;
             }
-            if (local31 / 8 == 48 && playerZ / 8 == 148) {
+            if (local31 / MAP_SQUARE_SIZE == TUTORIAL_ISLAND_X1 && playerZ / MAP_SQUARE_SIZE == TUTORIAL_ISLAND_Z5) {
                 isTutorialIsland = true;
             }
-            for (chunkX = (local31 - 6) / 8; chunkX <= (local31 + 6) / 8; chunkX++) {
-                for (chunkZ = (playerZ - 6) / 8; chunkZ <= (playerZ + 6) / 8; chunkZ++) {
-                    regionId = (chunkX << 8) + chunkZ;
-                    if (isTutorialIsland && (chunkZ == 49 || chunkZ == 149 || chunkZ == 147 || chunkX == 50 || chunkX == 49 && chunkZ == 47)) {
+            for (chunkX = (local31 - MAP_LOAD_RADIUS) / MAP_SQUARE_SIZE; chunkX <= (local31 + MAP_LOAD_RADIUS) / MAP_SQUARE_SIZE; chunkX++) {
+                for (chunkZ = (playerZ - MAP_LOAD_RADIUS) / MAP_SQUARE_SIZE; chunkZ <= (playerZ + MAP_LOAD_RADIUS) / MAP_SQUARE_SIZE; chunkZ++) {
+                    regionId = (chunkX << REGION_ID_SHIFT) + chunkZ;
+                    if (isTutorialIsland && (chunkZ == TUTORIAL_ISLAND_Z3 || chunkZ == TUTORIAL_ISLAND_Z6 || chunkZ == TUTORIAL_ISLAND_Z4 || chunkX == TUTORIAL_ISLAND_X3 || chunkX == TUTORIAL_ISLAND_X2 && chunkZ == TUTORIAL_ISLAND_Z1)) {
                         WorldLoader.regionBitPacked[regionCount] = regionId;
                         WorldLoader.mapFileIds[regionCount] = -1;
                         WorldLoader.locationsMapFileIds[regionCount] = -1;
@@ -2506,12 +2508,12 @@ public class Protocol {
         local31 = inboundBuffer.g2_alt3();
         inboundBuffer.accessBits();
         @Pc(391) int local391;
-        for (playerZ = 0; playerZ < 4; playerZ++) {
-            for (local64 = 0; local64 < 13; local64++) {
-                for (local391 = 0; local391 < 13; local391++) {
+        for (playerZ = 0; playerZ < CollisionConstants.LEVELS; playerZ++) {
+            for (local64 = 0; local64 < BUILD_AREA_SIZE; local64++) {
+                for (local391 = 0; local391 < BUILD_AREA_SIZE; local391++) {
                     chunkX = inboundBuffer.gBit(1);
                     if (chunkX == 1) {
-                        dynamicRegionData[playerZ][local64][local391] = inboundBuffer.gBit(26);
+                        dynamicRegionData[playerZ][local64][local391] = inboundBuffer.gBit(DYNAMIC_REGION_BITS);
                     } else {
                         dynamicRegionData[playerZ][local64][local391] = -1;
                     }
@@ -2519,10 +2521,10 @@ public class Protocol {
             }
         }
         inboundBuffer.accessBytes();
-        playerZ = (packetSize - inboundBuffer.offset) / 16;
-        WorldLoader.regionsXteaKeys = new int[playerZ][4];
+        playerZ = (packetSize - inboundBuffer.offset) / XTEA_ENTRY_SIZE_BYTES;
+        WorldLoader.regionsXteaKeys = new int[playerZ][XTEA_KEY_SIZE];
         for (local64 = 0; local64 < playerZ; local64++) {
-            for (local391 = 0; local391 < 4; local391++) {
+            for (local391 = 0; local391 < XTEA_KEY_SIZE; local391++) {
                 WorldLoader.regionsXteaKeys[local64][local391] = inboundBuffer.p4rme();
             }
         }
@@ -2539,14 +2541,14 @@ public class Protocol {
         WorldLoader.npcSpawnsFilesBuffer = null;
         WorldLoader.underWaterMapFilesBuffer = new byte[playerZ][];
         playerZ = 0;
-        for (local391 = 0; local391 < 4; local391++) {
-            for (chunkX = 0; chunkX < 13; chunkX++) {
-                for (chunkZ = 0; chunkZ < 13; chunkZ++) {
+        for (local391 = 0; local391 < CollisionConstants.LEVELS; local391++) {
+            for (chunkX = 0; chunkX < BUILD_AREA_SIZE; chunkX++) {
+                for (chunkZ = 0; chunkZ < BUILD_AREA_SIZE; chunkZ++) {
                     regionId = dynamicRegionData[local391][chunkX][chunkZ];
                     if (regionId != -1) {
-                        @Pc(555) int local555 = regionId >> 14 & 0x3FF;
-                        @Pc(561) int local561 = regionId >> 3 & 0x7FF;
-                        @Pc(571) int local571 = local561 / 8 + (local555 / 8 << 8);
+                        @Pc(555) int local555 = regionId >>  REGION_X_SHIFT & REGION_X_MASK;
+                        @Pc(561) int local561 = regionId >> REGION_Z_SHIFT & REGION_Z_MASK;
+                        @Pc(571) int local571 = local561 / MAP_SQUARE_SIZE + (local555 / MAP_SQUARE_SIZE << REGION_ID_SHIFT);
                         @Pc(573) int local573;
                         for (local573 = 0; local573 < playerZ; local573++) {
                             if (local571 == WorldLoader.regionBitPacked[local573]) {
@@ -2556,8 +2558,8 @@ public class Protocol {
                         }
                         if (local571 != -1) {
                             WorldLoader.regionBitPacked[playerZ] = local571;
-                            @Pc(609) int local609 = local571 & 0xFF;
-                            local573 = local571 >> 8 & 0xFF;
+                            @Pc(609) int local609 = local571 & BYTE_MASK;
+                            local573 = local571 >> REGION_ID_SHIFT & BYTE_MASK;
                             WorldLoader.mapFileIds[playerZ] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { WorldLoader.m, JString.parseInt(local573), WorldLoader.UNDERSCORE, JString.parseInt(local609) }));
                             WorldLoader.locationsMapFileIds[playerZ] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { WorldLoader.l, JString.parseInt(local573), WorldLoader.UNDERSCORE, JString.parseInt(local609) }));
                             WorldLoader.underWaterMapFileIds[playerZ] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { LoginManager.um, JString.parseInt(local573), WorldLoader.UNDERSCORE, JString.parseInt(local609) }));
@@ -2576,14 +2578,14 @@ public class Protocol {
         @Pc(13) int chatFlags;
         @Pc(17) int staffModLevel;
         @Pc(24) int local24;
-        if ((flags & 0x80) != 0) {
+        if ((flags & PLAYER_UPDATE_FLAG_CHAT) != 0) {
 
             chatFlags = inboundBuffer.g2_al1();
             staffModLevel = inboundBuffer.g1();
             @Pc(21) int len = inboundBuffer.g1();
             local24 = inboundBuffer.offset;
 
-            @Pc(35) boolean quickChat = (chatFlags & 0x8000) != 0;
+            @Pc(35) boolean quickChat = (chatFlags & QUICKCHAT_FLAG) != 0;
 
             if (player.username != null && player.appearance != null) {
                 @Pc(48) long encodedUsername = player.username.encode37();
@@ -2610,43 +2612,43 @@ public class Protocol {
                     @Pc(127) JString message;
                     if (quickChat) {
                         @Pc(112) QuickChatPhrase quickChatPhrase = QuickChatPhraseType.method3568(CHAT_PACKET);
-                        chatFlags &= 0x7FFF;
+                        chatFlags &= QUICKCHAT_FLAG_MASK;
                         phraseId = quickChatPhrase.id;
                         message = quickChatPhrase.type.decodeMessage(CHAT_PACKET);
                     } else {
                         message = Font.escape(formatChatMessage(CHAT_PACKET).encodeMessage());
                     }
                     player.chatMessage = message.trim();
-                    player.chatEffect = chatFlags & 0xFF;
-                    player.chatLoops = 150;
-                    player.chatColor = chatFlags >> 8;
-                    if (staffModLevel == 2) {
-                        Chat.add(phraseId, quickChat ? 17 : 1, message, null, JString.concatenate(new JString[] {IMG1, player.getUsername() }));
-                    } else if (staffModLevel == 1) {
-                        Chat.add(phraseId, quickChat ? 17 : 1, message, null, JString.concatenate(new JString[] {IMG0, player.getUsername() }));
+                    player.chatEffect = chatFlags & CHAT_EFFECT_MASK;
+                    player.chatLoops = CHAT_DURATION_LOOPS;
+                    player.chatColor = chatFlags >> CHAT_COLOR_SHIFT;
+                    if (staffModLevel == STAFF_MOD_LEVEL_JMOD) {
+                        Chat.add(phraseId, quickChat ? CHAT_TYPE_QUICKCHAT : CHAT_TYPE_PUBLIC, message, null, JString.concatenate(new JString[] {IMG1, player.getUsername() }));
+                    } else if (staffModLevel == STAFF_MOD_LEVEL_PMOD) {
+                        Chat.add(phraseId, quickChat ? CHAT_TYPE_QUICKCHAT : CHAT_TYPE_PUBLIC, message, null, JString.concatenate(new JString[] {IMG0, player.getUsername() }));
                     } else {
-                        Chat.add(phraseId, quickChat ? 17 : 2, message, null, player.getUsername());
+                        Chat.add(phraseId, quickChat ? CHAT_TYPE_QUICKCHAT : CHAT_TYPE_NORMAL, message, null, player.getUsername());
                     }
                 }
             }
             inboundBuffer.offset = local24 + len;
         }
-        if ((flags & 0x1) != 0) {
+        if ((flags & PLAYER_UPDATE_FLAG_HIT_PRIMARY) != 0) {
             chatFlags = inboundBuffer.gSmart1or2();
             staffModLevel = inboundBuffer.g1_alt1();
             player.hit(staffModLevel, Client.loop, chatFlags);
-            player.hitpointsBarVisibleUntil = Client.loop + 300;
+            player.hitpointsBarVisibleUntil = Client.loop + HITPOINTS_BAR_DURATION;
             player.hitpointsBar = inboundBuffer.g1_alt3();
         }
-        if ((flags & 0x8) != 0) {
+        if ((flags & PLAYER_UPDATE_FLAG_ANIM) != 0) {
             chatFlags = inboundBuffer.g2();
-            if (chatFlags == 65535) {
+            if (chatFlags == INVALID_ID_U16) {
                 chatFlags = -1;
             }
             staffModLevel = inboundBuffer.g1();
             Player.animate(staffModLevel, chatFlags, player);
         }
-        if ((flags & 0x4) != 0) {
+        if ((flags & PLAYER_UPDATE_FLAG_APPEARANCE) != 0) {
             chatFlags = inboundBuffer.g1_alt1();
             @Pc(309) byte[] local309 = new byte[chatFlags];
             @Pc(314) Packet local314 = new Packet(local309);
@@ -2654,13 +2656,13 @@ public class Protocol {
             PlayerList.appearanceCache[arg1] = local314;
             player.decodeAppearance(local314);
         }
-        if ((flags & 0x2) != 0) {
+        if ((flags & PLAYER_UPDATE_FLAG_FACE_ENTITY) != 0) {
             player.faceEntity = inboundBuffer.g2_alt2();
-            if (player.faceEntity == 65535) {
+            if (player.faceEntity == INVALID_ID_U16) {
                 player.faceEntity = -1;
             }
         }
-        if ((flags & 0x400) != 0) {
+        if ((flags & PLAYER_UPDATE_FLAG_FORCE_MOVE) != 0) {
             player.anInt3380 = inboundBuffer.g1_alt2();
             player.anInt3428 = inboundBuffer.g1();
             player.anInt3416 = inboundBuffer.g1_alt1();
@@ -2671,9 +2673,9 @@ public class Protocol {
             player.movementQueueSize = 1;
             player.movementQueueSnapshot = 0;
         }
-        if ((flags & 0x20) != 0) {
+        if ((flags & PLAYER_UPDATE_FLAG_OVERHEAD_CHAT) != 0) {
             player.chatMessage = inboundBuffer.gjstr();
-            if (player.chatMessage.charAt(0) == 126) {
+            if (player.chatMessage.charAt(0) == TILDE_CHAR) {
                 player.chatMessage = player.chatMessage.substring(1);
                 Chat.addMessage(player.getUsername(), 2, player.chatMessage);
             } else if (player == PlayerList.self) {
@@ -2681,21 +2683,21 @@ public class Protocol {
             }
             player.chatEffect = 0;
             player.chatColor = 0;
-            player.chatLoops = 150;
+            player.chatLoops = CHAT_DURATION_LOOPS;
         }
-        if ((flags & 0x200) != 0) {
+        if ((flags & PLAYER_UPDATE_FLAG_HIT_SECONDARY) != 0) {
             chatFlags = inboundBuffer.gSmart1or2();
             staffModLevel = inboundBuffer.g1_alt3();
             player.hit(staffModLevel, Client.loop, chatFlags);
         }
-        if ((flags & 0x800) != 0) {
+        if ((flags & PLAYER_UPDATE_FLAG_SPOTANIM) != 0) {
             chatFlags = inboundBuffer.g1_alt2();
             @Pc(502) int[] local502 = new int[chatFlags];
             @Pc(505) int[] local505 = new int[chatFlags];
             @Pc(508) int[] local508 = new int[chatFlags];
             for (@Pc(510) int local510 = 0; local510 < chatFlags; local510++) {
                 @Pc(521) int local521 = inboundBuffer.g2_al1();
-                if (local521 == 65535) {
+                if (local521 == INVALID_ID_U16) {
                     local521 = -1;
                 }
                 local502[local510] = local521;
@@ -2704,9 +2706,9 @@ public class Protocol {
             }
             Player.updateLayeredAnimations(local505, local502, player, local508);
         }
-        if ((flags & 0x100) != 0) {
+        if ((flags & PLAYER_UPDATE_FLAG_SPOTANIM_EXTENDED) != 0) {
             chatFlags = inboundBuffer.g2_al1();
-            if (chatFlags == 65535) {
+            if (chatFlags == INVALID_ID_U16) {
                 chatFlags = -1;
             }
             staffModLevel = inboundBuffer.p4rme();
@@ -2715,14 +2717,14 @@ public class Protocol {
                 local573 = false;
             }
             if (local573) {
-                player.spotAnimStart = (staffModLevel & 0xFFFF) + Client.loop;
+                player.spotAnimStart = (staffModLevel & U16_MASK) + Client.loop;
                 player.anInt3361 = 0;
                 player.spotanimId = 0;
                 player.spotAnimId = chatFlags;
                 if (player.spotAnimStart > Client.loop) {
                     player.spotanimId = -1;
                 }
-                player.spotAnimY = staffModLevel >> 16;
+                player.spotAnimY = staffModLevel >> UPPER_WORD_SHIFT;
                 player.anInt3418 = 1;
                 if (player.spotAnimId != -1 && Client.loop == player.spotAnimStart) {
                     local24 = SpotAnimTypeList.get(player.spotAnimId).seqId;
@@ -2735,7 +2737,7 @@ public class Protocol {
                 }
             }
         }
-        if ((flags & 0x40) != 0) {
+        if ((flags & PLAYER_UPDATE_FLAG_FACE_COORD) != 0) {
             player.faceX = inboundBuffer.g2();
             player.faceY = inboundBuffer.g2_alt3();
         }
@@ -2778,7 +2780,7 @@ public class Protocol {
         }
         @Pc(23) int local23 = inboundBuffer.gBit(2);
         if (local23 == 0) {
-            extendedIds[extendedCount++] = 2047;
+            extendedIds[extendedCount++] = LOCAL_PLAYER_INDEX;
             return;
         }
         @Pc(54) int local54;
@@ -2788,7 +2790,7 @@ public class Protocol {
             PlayerList.self.move(1, local54);
             local64 = inboundBuffer.gBit(1);
             if (local64 == 1) {
-                extendedIds[extendedCount++] = 2047;
+                extendedIds[extendedCount++] = LOCAL_PLAYER_INDEX;
             }
         } else if (local23 == 2) {
             if (inboundBuffer.gBit(1) == 1) {
