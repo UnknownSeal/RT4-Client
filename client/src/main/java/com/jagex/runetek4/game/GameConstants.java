@@ -85,4 +85,45 @@ public class GameConstants {
     public static final int TUTORIAL_ISLAND_Z4 = 147;
     public static final int TUTORIAL_ISLAND_Z5 = 148;
     public static final int TUTORIAL_ISLAND_Z6 = 149;
+
+    // Animation exactmove types
+    public static final int EXACTMOVE_RESTART = 0;
+    public static final int EXACTMOVE_RESET = 1;
+    public static final int EXACTMOVE_CONTINUE = 2;
+
+    // NPC Chat
+    public static final int NPC_CHAT_DURATION_LOOPS = 100;
+
+    // Menu system
+    public static final int MENU_OPTION_ROW_HEIGHT = 15;
+    public static final int MENU_WIDTH_PADDING = 8;
+    public static final int MENU_HEIGHT_WITH_SCROLLBAR = 26;
+    public static final int MENU_HEIGHT_NO_SCROLLBAR = 22;
+    public static final int MENU_Y_OFFSET_SCROLLBAR = 35;
+    public static final int MENU_Y_OFFSET_NO_SCROLLBAR = 31;
+    public static final int MENU_BOUNDS_PADDING = 10;
+    public static final int MENU_HIT_AREA_TOP = -13;
+    public static final int MENU_HIT_AREA_BOTTOM = 3;
+
+    // Menu states
+    public static final int MENU_STATE_OPEN = 1;
+    public static final int MENU_STATE_EXECUTE = 2;
+
+    // Mouse button
+    public static final int MOUSE_BUTTON_LEFT = 1;
+    public static final int MOUSE_BUTTON_RIGHT = 2;
+
+    // Menu action types (for inventory dragging)
+    public static final int MENU_ACTION_EXAMINE_ITEM = 25;
+    public static final int MENU_ACTION_ITEM_OPT_1 = 23;
+    public static final int MENU_ACTION_ITEM_OPT_2 = 48;
+    public static final int MENU_ACTION_ITEM_OPT_3 = 7;
+    public static final int MENU_ACTION_ITEM_OPT_4 = 13;
+    public static final int MENU_ACTION_ITEM_OPT_5 = 47;
+    public static final int MENU_ACTION_USE_ITEM = 5;
+    public static final int MENU_ACTION_43 = 43;
+    public static final int MENU_ACTION_35 = 35;
+    public static final int MENU_ACTION_58 = 58;
+    public static final int MENU_ACTION_CANCEL = 22;
+    public static final int MENU_ACTION_CONTINUE = 1006;
 }

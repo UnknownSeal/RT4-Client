@@ -22,6 +22,45 @@ public class ProtocolContants {
     public static final int PLAYER_UPDATE_FLAG_SPOTANIM_EXTENDED = 0x100;
     public static final int PLAYER_UPDATE_FLAG_FACE_COORD = 0x40;
 
+    // Player info bits
+    public static final int PLAYER_INFO_BITS_REQUIRED = 11;
+    public static final int PLAYER_INDEX_BITS = 11;
+    public static final int PLAYER_COORD_BITS = 7;
+    public static final int PLAYER_LEVEL_BITS = 2;
+    public static final int PLAYER_ANGLE_BITS = 3;
+    public static final int PLAYER_DELTA_BITS = 5;
+    public static final int PLAYER_DELTA_THRESHOLD = 15;
+    public static final int PLAYER_DELTA_OFFSET = 32;
+
+    // NPC info bits
+    public static final int NPC_INFO_BITS_REQUIRED = 27;
+    public static final int NPC_INDEX_BITS = 15;
+    public static final int NPC_TYPE_BITS = 14;
+    public static final int NPC_ANGLE_BITS = 3;
+    public static final int NPC_DELTA_BITS = 5;
+    public static final int NPC_DELTA_THRESHOLD = 15;
+    public static final int NPC_DELTA_OFFSET = 32;
+    public static final int NPC_END_MARKER = 32767;
+
+    // NPC update flags
+    public static final int NPC_UPDATE_FLAG_HIT_PRIMARY = 0x40;
+    public static final int NPC_UPDATE_FLAG_HIT_SECONDARY = 0x2;
+    public static final int NPC_UPDATE_FLAG_ANIM = 0x10;
+    public static final int NPC_UPDATE_FLAG_FACE_ENTITY = 0x4;
+    public static final int NPC_UPDATE_FLAG_SPOTANIM = 0x80;
+    public static final int NPC_UPDATE_FLAG_TRANSFORM = 0x1;
+    public static final int NPC_UPDATE_FLAG_OVERHEAD_CHAT = 0x20;
+    public static final int NPC_UPDATE_FLAG_LAYERED_ANIM = 0x100;
+    public static final int NPC_UPDATE_FLAG_FACE_COORD = 0x200;
+    public static final int NPC_UPDATE_FLAG_EXTENDED = 0x8;
+    public static final int PLAYER_UPDATE_FLAG_EXTENDED = 0x10;
+
+    // Random data
+    public static final int RANDOM_DATA_SIZE = 24;
+
+    // Bit shift
+    public static final int BIT_SHIFT_1 = 0x1;
+
     // Network bits
     public static final int NPC_COUNT_BITS = 8;
     public static final int DYNAMIC_REGION_BITS = 26;

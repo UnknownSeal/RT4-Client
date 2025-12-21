@@ -2804,17 +2804,17 @@ public class Protocol {
             }
             local54 = inboundBuffer.gBit(1);
             if (local54 == 1) {
-                extendedIds[extendedCount++] = 2047;
+                extendedIds[extendedCount++] = LOCAL_PLAYER_INDEX;
             }
         } else if (local23 == 3) {
-            local54 = inboundBuffer.gBit(7);
+            local54 = inboundBuffer.gBit(PLAYER_COORD_BITS);
             local64 = inboundBuffer.gBit(1);
-            Player.currentLevel = inboundBuffer.gBit(2);
+            Player.currentLevel = inboundBuffer.gBit(PLAYER_LEVEL_BITS);
             @Pc(163) int local163 = inboundBuffer.gBit(1);
             if (local163 == 1) {
-                extendedIds[extendedCount++] = 2047;
+                extendedIds[extendedCount++] = LOCAL_PLAYER_INDEX;
             }
-            @Pc(181) int local181 = inboundBuffer.gBit(7);
+            @Pc(181) int local181 = inboundBuffer.gBit(PLAYER_COORD_BITS);
             PlayerList.self.teleport(local181, local64 == 1, local54);
         }
     }
@@ -2822,9 +2822,9 @@ public class Protocol {
     @OriginalMember(owner = "runetek4.client!se", name = "a", descriptor = "(I)V")
     public static void readNewPlayerInfo() {
         while (true) {
-            if (inboundBuffer.bitsAvailable(packetSize) >= 11) {
-                @Pc(20) int index = inboundBuffer.gBit(11);
-                if (index != 2047) {
+            if (inboundBuffer.bitsAvailable(packetSize) >= PLAYER_INFO_BITS_REQUIRED) {
+                @Pc(20) int index = inboundBuffer.gBit(PLAYER_INDEX_BITS);
+                if (index != LOCAL_PLAYER_INDEX) {
                     @Pc(27) boolean local27 = false;
                     if (PlayerList.players[index] == null) {
                         PlayerList.players[index] = new Player();
@@ -2840,18 +2840,18 @@ public class Protocol {
                     if (local73 == 1) {
                         extendedIds[extendedCount++] = index;
                     }
-                    @Pc(92) int dx = inboundBuffer.gBit(5);
-                    @Pc(99) int local99 = PathingEntity.ANGLES[inboundBuffer.gBit(3)];
-                    if (dx > 15) {
-                        dx -= 32;
+                    @Pc(92) int dx = inboundBuffer.gBit(PLAYER_DELTA_BITS);
+                    @Pc(99) int local99 = PathingEntity.ANGLES[inboundBuffer.gBit(PLAYER_ANGLE_BITS)];
+                    if (dx > PLAYER_DELTA_THRESHOLD) {
+                        dx -= PLAYER_DELTA_OFFSET;
                     }
                     if (local27) {
                         player.dstYaw = player.orientation = local99;
                     }
                     @Pc(116) int jump = inboundBuffer.gBit(1);
-                    @Pc(121) int dz = inboundBuffer.gBit(5);
-                    if (dz > 15) {
-                        dz -= 32;
+                    @Pc(121) int dz = inboundBuffer.gBit(PLAYER_DELTA_BITS);
+                    if (dz > PLAYER_DELTA_THRESHOLD) {
+                        dz -= PLAYER_DELTA_OFFSET;
                     }
                     player.teleport(dx + PlayerList.self.movementQueueX[0], jump == 1, PlayerList.self.movementQueueZ[0] + dz);
                     continue;
@@ -2868,8 +2868,8 @@ public class Protocol {
             @Pc(31) int id = extendedIds[i];
             @Pc(35) Player player = PlayerList.players[id];
             @Pc(39) int flags = inboundBuffer.g1();
-            if ((flags & 0x10) != 0) {
-                flags += inboundBuffer.g1() << 8;
+            if ((flags & PLAYER_UPDATE_FLAG_EXTENDED) != 0) {
+                flags += inboundBuffer.g1() << REGION_ID_SHIFT;
             }
             readExtendedPlayerInfo(flags, id, player);
         }
@@ -2881,40 +2881,40 @@ public class Protocol {
             @Pc(10) int extendedId = extendedIds[i];
             @Pc(14) Npc npc = NpcList.npcs[extendedId];
             @Pc(18) int local18 = inboundBuffer.g1();
-            if ((local18 & 0x8) != 0) {
-                local18 += inboundBuffer.g1() << 8;
+            if ((local18 & NPC_UPDATE_FLAG_EXTENDED) != 0) {
+                local18 += inboundBuffer.g1() << REGION_ID_SHIFT;
             }
             @Pc(43) int local43;
             @Pc(47) int info;
-            if ((local18 & 0x40) != 0) {
+            if ((local18 & NPC_UPDATE_FLAG_HIT_PRIMARY) != 0) {
                 local43 = inboundBuffer.g1(); // Hit value
                 info = inboundBuffer.g1_alt2(); // Color
                 npc.hit(info, Client.loop, local43);
-                npc.hitpointsBarVisibleUntil = Client.loop + 300;
+                npc.hitpointsBarVisibleUntil = Client.loop + HITPOINTS_BAR_DURATION;
                 npc.hitpointsBar = inboundBuffer.g1_alt3();
             }
-            if ((local18 & 0x2) != 0) {
+            if ((local18 & NPC_UPDATE_FLAG_HIT_SECONDARY) != 0) {
                 local43 = inboundBuffer.g1_alt2(); // Hit value
                 info = inboundBuffer.g1_alt3(); // Color
                 npc.hit(info, Client.loop, local43);
             }
-            if ((local18 & 0x10) != 0) {
+            if ((local18 & NPC_UPDATE_FLAG_ANIM) != 0) {
                 local43 = inboundBuffer.g2(); // Animation ID
                 info = inboundBuffer.g1(); // Sequence
-                if (local43 == 65535) {
+                if (local43 == INVALID_ID_U16) {
                     local43 = -1;
                 }
                 animateNpc(info, local43, npc);
             }
-            if ((local18 & 0x4) != 0) {
+            if ((local18 & NPC_UPDATE_FLAG_FACE_ENTITY) != 0) {
                 npc.faceEntity = inboundBuffer.g2_alt2();
-                if (npc.faceEntity == 65535) {
+                if (npc.faceEntity == INVALID_ID_U16) {
                     npc.faceEntity = -1;
                 }
             }
-            if ((local18 & 0x80) != 0) {
+            if ((local18 & NPC_UPDATE_FLAG_SPOTANIM) != 0) {
                 local43 = inboundBuffer.g2_alt2();
-                if (local43 == 65535) {
+                if (local43 == INVALID_ID_U16) {
                     local43 = -1;
                 }
                 info = inboundBuffer.g4me();
@@ -2924,10 +2924,10 @@ public class Protocol {
                 }
                 if (local147) {
                     npc.spotAnimId = local43;
-                    npc.spotAnimStart = (info & 0xFFFF) + Client.loop;
+                    npc.spotAnimStart = (info & U16_MASK) + Client.loop;
                     npc.anInt3361 = 0;
                     npc.spotanimId = 0;
-                    npc.spotAnimY = info >> 16;
+                    npc.spotAnimY = info >> UPPER_WORD_SHIFT;
                     npc.anInt3418 = 1;
                     if (npc.spotAnimStart > Client.loop) {
                         npc.spotanimId = -1;
@@ -2943,7 +2943,7 @@ public class Protocol {
                     }
                 }
             }
-            if ((local18 & 0x1) != 0) {
+            if ((local18 & NPC_UPDATE_FLAG_TRANSFORM) != 0) {
                 if (npc.type.hasAreaSound()) {
                     AreaSoundManager.remove(npc);
                 }
@@ -2954,18 +2954,18 @@ public class Protocol {
                     AreaSoundManager.add(npc.movementQueueZ[0], null, 0, npc, npc.movementQueueX[0], Player.currentLevel, null);
                 }
             }
-            if ((local18 & 0x20) != 0) {
+            if ((local18 & NPC_UPDATE_FLAG_OVERHEAD_CHAT) != 0) {
                 npc.chatMessage = inboundBuffer.gjstr();
-                npc.chatLoops = 100;
+                npc.chatLoops = NPC_CHAT_DURATION_LOOPS;
             }
-            if ((local18 & 0x100) != 0) {
+            if ((local18 & NPC_UPDATE_FLAG_LAYERED_ANIM) != 0) {
                 local43 = inboundBuffer.g1_alt2();
                 @Pc(331) int[] local331 = new int[local43];
                 @Pc(334) int[] local334 = new int[local43];
                 @Pc(337) int[] local337 = new int[local43];
                 for (@Pc(339) int local339 = 0; local339 < local43; local339++) {
                     @Pc(350) int local350 = inboundBuffer.g2_al1();
-                    if (local350 == 65535) {
+                    if (local350 == INVALID_ID_U16) {
                         local350 = -1;
                     }
                     local331[local339] = local350;
@@ -2974,7 +2974,7 @@ public class Protocol {
                 }
                 method3037(local337, npc, local334, local331);
             }
-            if ((local18 & 0x200) != 0) {
+            if ((local18 & NPC_UPDATE_FLAG_FACE_COORD) != 0) {
                 npc.faceX = inboundBuffer.g2_alt2();
                 npc.faceY = inboundBuffer.g2();
             }
@@ -2984,9 +2984,9 @@ public class Protocol {
     @OriginalMember(owner = "runetek4.client!wj", name = "a", descriptor = "(I)V")
     public static void loadAreaNPCs() {
         while (true) {
-            if (inboundBuffer.bitsAvailable(packetSize) >= 27) {
-                @Pc(14) int npcIndex = inboundBuffer.gBit(15);
-                if (npcIndex != 32767) {
+            if (inboundBuffer.bitsAvailable(packetSize) >= NPC_INFO_BITS_REQUIRED) {
+                @Pc(14) int npcIndex = inboundBuffer.gBit(NPC_INDEX_BITS);
+                if (npcIndex != NPC_END_MARKER) {
                     @Pc(19) boolean local19 = false;
                     if (NpcList.npcs[npcIndex] == null) {
                         local19 = true;
@@ -2999,7 +2999,7 @@ public class Protocol {
                         AreaSoundManager.remove(npc);
                     }
                     @Pc(66) int local66 = inboundBuffer.gBit(1);
-                    @Pc(73) int angle = PathingEntity.ANGLES[inboundBuffer.gBit(3)];
+                    @Pc(73) int angle = PathingEntity.ANGLES[inboundBuffer.gBit(NPC_ANGLE_BITS)];
                     if (local19) {
                         npc.dstYaw = npc.orientation = angle;
                     }
@@ -3008,13 +3008,13 @@ public class Protocol {
                         extendedIds[extendedCount++] = npcIndex;
                     }
                     @Pc(105) int local105 = inboundBuffer.gBit(5);
-                    npc.setNpcType(NpcTypeList.get(inboundBuffer.gBit(14)));
-                    if (local105 > 15) {
-                        local105 -= 32;
+                    npc.setNpcType(NpcTypeList.get(inboundBuffer.gBit(NPC_TYPE_BITS)));
+                    if (local105 > NPC_DELTA_THRESHOLD) {
+                        local105 -= NPC_DELTA_OFFSET;
                     }
-                    @Pc(124) int local124 = inboundBuffer.gBit(5);
-                    if (local124 > 15) {
-                        local124 -= 32;
+                    @Pc(124) int local124 = inboundBuffer.gBit(NPC_DELTA_BITS);
+                    if (local124 > NPC_DELTA_THRESHOLD) {
+                        local124 -= NPC_DELTA_OFFSET;
                     }
                     npc.setSize(npc.type.size);
                     npc.anInt3365 = npc.type.nas;
@@ -3045,11 +3045,11 @@ public class Protocol {
         if (Client.uid != null) {
             try {
                 Client.uid.seek(0L);
-                Client.uid.write(arg0.data, arg0.offset, 24);
+                Client.uid.write(arg0.data, arg0.offset, RANDOM_DATA_SIZE);
             } catch (@Pc(16) Exception ignored) {
             }
         }
-        arg0.offset += 24;
+        arg0.offset += RANDOM_DATA_SIZE;
     }
 
     @OriginalMember(owner = "client!fc", name = "a", descriptor = "(Lclient!wa;I)Lclient!na;")
@@ -3064,7 +3064,7 @@ public class Protocol {
             @Pc(19) int local19 = arg0[local3];
             @Pc(23) int local23 = arg2[local3];
             for (@Pc(25) int local25 = 0; local19 != 0 && arg1.layeredAnimations.length > local25; local25++) {
-                if ((local19 & 0x1) != 0) {
+                if ((local19 & BIT_SHIFT_1) != 0) {
                     if (local15 == -1) {
                         arg1.layeredAnimations[local25] = null;
                     } else {
@@ -3073,16 +3073,16 @@ public class Protocol {
                         @Pc(68) int local68 = local60.exactmove;
                         if (local65 != null) {
                             if (local15 == local65.sequenceId) {
-                                if (local68 == 0) {
+                                if (local68 == EXACTMOVE_RESTART) {
                                     local65 = arg1.layeredAnimations[local25] = null;
-                                } else if (local68 == 1) {
+                                } else if (local68 == EXACTMOVE_RESET) {
                                     local65.frameIndex = 0;
                                     local65.frameTime = 0;
                                     local65.direction = 1;
                                     local65.loopCount = 0;
                                     local65.delay = local23;
                                     SoundPlayer.playSeqSound(arg1.zFine, local60, arg1.xFine, false, 0);
-                                } else if (local68 == 2) {
+                                } else if (local68 == EXACTMOVE_CONTINUE) {
                                     local65.frameTime = 0;
                                 }
                             } else if (local60.priority >= SeqTypeList.get(local65.sequenceId).priority) {
@@ -3101,7 +3101,7 @@ public class Protocol {
                         }
                     }
                 }
-                local19 >>>= 0x1;
+                local19 >>>= BIT_SHIFT_1;
             }
         }
     }
@@ -3111,7 +3111,7 @@ public class Protocol {
         if (npc.primarySeqId == animationId && animationId != -1) {
             @Pc(10) SeqType seqType = SeqTypeList.get(animationId);
             @Pc(13) int local13 = seqType.exactmove;
-            if (local13 == 1) {
+            if (local13 == EXACTMOVE_RESET) {
                 npc.animationDirection = 1;
                 npc.animationFrameDelay = 0;
                 npc.animationFrame = 0;
@@ -3119,7 +3119,7 @@ public class Protocol {
                 npc.animationDelay = arg0;
                 SoundPlayer.playSeqSound(npc.zFine, seqType, npc.xFine, false, npc.animationFrameDelay);
             }
-            if (local13 == 2) {
+            if (local13 == EXACTMOVE_CONTINUE) {
                 npc.animationLoopCounter = 0;
             }
         } else if (animationId == -1 || npc.primarySeqId == -1 || SeqTypeList.get(animationId).priority >= SeqTypeList.get(npc.primarySeqId).priority) {
@@ -3158,7 +3158,7 @@ public class Protocol {
                 MiniMenu.removeActionRow(local53);
             }
         }
-        if (MiniMenu.menuActionRow == 1) {
+        if (MiniMenu.menuActionRow == MOUSE_BUTTON_LEFT) {
             ClientScriptRunner.menuVisible = false;
             ComponentList.redrawScreen(ComponentList.menuX, ComponentList.menuWidth, ComponentList.menuY, ComponentList.menuHeight);
         } else {
@@ -3170,8 +3170,8 @@ public class Protocol {
                     local53 = local104;
                 }
             }
-            ComponentList.menuWidth = local53 + 8;
-            ComponentList.menuHeight = MiniMenu.menuActionRow * 15 + (ComponentList.hasScrollbar ? 26 : 22);
+            ComponentList.menuWidth = local53 + MENU_WIDTH_PADDING;
+            ComponentList.menuHeight = MiniMenu.menuActionRow * MENU_OPTION_ROW_HEIGHT + (ComponentList.hasScrollbar ? MENU_HEIGHT_WITH_SCROLLBAR : MENU_HEIGHT_NO_SCROLLBAR);
         }
         if (local28 != null) {
             ComponentList.updateContainerLayout(local28, false);
@@ -3194,7 +3194,7 @@ public class Protocol {
         if (!ClientScriptRunner.menuVisible) {
             if (local20 == 1 && MiniMenu.menuActionRow > 0) {
                 @Pc(37) short local37 = MiniMenu.actions[MiniMenu.menuActionRow - 1];
-                if (local37 == 25 || local37 == 23 || local37 == 48 || local37 == 7 || local37 == 13 || local37 == 47 || local37 == 5 || local37 == 43 || local37 == 35 || local37 == 58 || local37 == 22 || local37 == 1006) {
+                if (local37 == MENU_ACTION_EXAMINE_ITEM || local37 == MENU_ACTION_ITEM_OPT_1 || local37 == MENU_ACTION_ITEM_OPT_2 || local37 == MENU_ACTION_ITEM_OPT_3 || local37 == MENU_ACTION_ITEM_OPT_4 || local37 == MENU_ACTION_ITEM_OPT_5 || local37 == MENU_ACTION_USE_ITEM || local37 == MENU_ACTION_43 || local37 == MENU_ACTION_35 || local37 == MENU_ACTION_58 || local37 == MENU_ACTION_CANCEL || local37 == MENU_ACTION_CONTINUE) {
                     local93 = MiniMenu.intArgs1[MiniMenu.menuActionRow - 1];
                     local99 = MiniMenu.intArgs2[MiniMenu.menuActionRow - 1];
                     @Pc(103) Component local103 = ComponentList.getComponent(local99);
@@ -3214,27 +3214,27 @@ public class Protocol {
                     }
                 }
             }
-            if (local20 == 1 && (VarpDomain.oneMouseButton == 1 && MiniMenu.menuActionRow > 2 || MiniMenu.isComponentAction(MiniMenu.menuActionRow - 1))) {
-                local20 = 2;
+            if (local20 == MOUSE_BUTTON_LEFT && (VarpDomain.oneMouseButton == 1 && MiniMenu.menuActionRow > 2 || MiniMenu.isComponentAction(MiniMenu.menuActionRow - 1))) {
+                local20 = MOUSE_BUTTON_RIGHT;
             }
-            if (local20 == 2 && MiniMenu.menuActionRow > 0 || MiniMenu.menuState == 1) {
+            if (local20 == MOUSE_BUTTON_RIGHT && MiniMenu.menuActionRow > 0 || MiniMenu.menuState == MENU_STATE_OPEN) {
                 ClientScriptRunner.determineMenuSize();
             }
-            if (local20 == 1 && MiniMenu.menuActionRow > 0 || MiniMenu.menuState == 2) {
+            if (local20 == MOUSE_BUTTON_LEFT && MiniMenu.menuActionRow > 0 || MiniMenu.menuState == MENU_STATE_EXECUTE) {
                 MiniMenu.processMenuActions();
             }
             return;
         }
         @Pc(204) int local204;
-        if (local20 != 1) {
+        if (local20 != MOUSE_BUTTON_LEFT) {
             local93 = Mouse.lastMouseY;
             local204 = Mouse.lastMouseX;
-            if (local204 < ComponentList.menuX - 10 || local204 > ComponentList.menuWidth + ComponentList.menuX + 10 || ComponentList.menuY - 10 > local93 || local93 > ComponentList.menuHeight + ComponentList.menuY + 10) {
+            if (local204 < ComponentList.menuX - MENU_BOUNDS_PADDING || local204 > ComponentList.menuWidth + ComponentList.menuX + MENU_BOUNDS_PADDING || ComponentList.menuY - MENU_BOUNDS_PADDING > local93 || local93 > ComponentList.menuHeight + ComponentList.menuY + MENU_BOUNDS_PADDING) {
                 ClientScriptRunner.menuVisible = false;
                 ComponentList.redrawScreen(ComponentList.menuX, ComponentList.menuWidth, ComponentList.menuY, ComponentList.menuHeight);
             }
         }
-        if (local20 != 1) {
+        if (local20 != MOUSE_BUTTON_LEFT) {
             return;
         }
         local204 = ComponentList.menuX;
@@ -3246,11 +3246,11 @@ public class Protocol {
         for (@Pc(271) int local271 = 0; local271 < MiniMenu.menuActionRow; local271++) {
             @Pc(289) int local289;
             if (ComponentList.hasScrollbar) {
-                local289 = (MiniMenu.menuActionRow - local271 - 1) * 15 + local93 + 35;
+                local289 = (MiniMenu.menuActionRow - local271 - 1) * MENU_OPTION_ROW_HEIGHT + local93 + MENU_Y_OFFSET_SCROLLBAR;
             } else {
-                local289 = (MiniMenu.menuActionRow - local271 - 1) * 15 + local93 + 31;
+                local289 = (MiniMenu.menuActionRow - local271 - 1) * MENU_OPTION_ROW_HEIGHT + local93 + MENU_Y_OFFSET_NO_SCROLLBAR;
             }
-            if (local265 > local204 && local204 + local99 > local265 && local289 - 13 < local267 && local289 + 3 > local267) {
+            if (local265 > local204 && local204 + local99 > local265 && local289 - MENU_HIT_AREA_TOP < local267 && local289 + MENU_HIT_AREA_BOTTOM > local267) {
                 local269 = local271;
             }
         }
