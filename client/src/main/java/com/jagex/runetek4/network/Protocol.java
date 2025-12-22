@@ -68,6 +68,7 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 import java.io.IOException;
+import java.util.Objects;
 
 import static com.jagex.runetek4.game.GameConstants.*;
 import static com.jagex.runetek4.game.logic.CollisionConstants.*;
@@ -573,7 +574,7 @@ public class Protocol {
                     } else if (chatType == 1) {
                         Chat.add(phraseId, 20, decodedMessage, Base37.fromBase37(username).toTitleCase(), JString.concatenate(new JString[] { IMG0, Base37.fromBase37(senderName).toTitleCase() }));
                     } else {
-                        Chat.add(phraseId, 20, decodedMessage, Base37.fromBase37(username).toTitleCase(), Base37.fromBase37(senderName).toTitleCase());
+                        Chat.add(phraseId, 20, decodedMessage, Objects.requireNonNull(Base37.fromBase37(username)).toTitleCase(), Base37.fromBase37(senderName).toTitleCase());
                     }
                 }
                 currentOpcode = -1;
@@ -581,7 +582,7 @@ public class Protocol {
             }
             @Pc(1146) int count;
             @Pc(1160) int chatFlags;
-            @Pc(1245) boolean local1245;
+            @Pc(1245) boolean isSorted;
             if (currentOpcode == CLANCHAT_CHANNEL) {
                 ClanChat.transmitAt = ComponentList.transmitTimer;
                 senderName = inboundBuffer.g8();
@@ -617,17 +618,17 @@ public class Protocol {
                 }
                 chatType = ClanChat.size;
                 while (chatType > 0) {
-                    local1245 = true;
+                    isSorted = true;
                     chatType--;
                     for (phraseId = 0; phraseId < chatType; phraseId++) {
                         if (clanMembers[phraseId].username.method3139(clanMembers[phraseId + 1].username) > 0) {
-                            local1245 = false;
+                            isSorted = false;
                             @Pc(1279) ClanMember clanMember = clanMembers[phraseId];
                             clanMembers[phraseId] = clanMembers[phraseId + 1];
                             clanMembers[phraseId + 1] = clanMember;
                         }
                     }
-                    if (local1245) {
+                    if (isSorted) {
                         break;
                     }
                 }
@@ -809,11 +810,11 @@ public class Protocol {
                                     if (slot == INVALID_ID_U16) {
                                         slot = -1;
                                     }
-                                    local1245 = true;
+                                    isSorted = true;
                                     if (slot != -1 && npc.spotAnimId != -1 && SeqTypeList.get(SpotAnimTypeList.get(slot).seqId).priority < SeqTypeList.get(SpotAnimTypeList.get(npc.spotAnimId).seqId).priority) {
-                                        local1245 = false;
+                                        isSorted = false;
                                     }
-                                    if (local1245) {
+                                    if (isSorted) {
                                         npc.anInt3361 = 0;
                                         npc.spotAnimId = slot;
                                         npc.spotAnimStart = Client.loop + ii;
@@ -846,11 +847,11 @@ public class Protocol {
                                     if (slot == INVALID_ID_U16) {
                                         slot = -1;
                                     }
-                                    local1245 = true;
+                                    isSorted = true;
                                     if (slot != -1 && player.spotAnimId != -1 && SeqTypeList.get(SpotAnimTypeList.get(slot).seqId).priority < SeqTypeList.get(SpotAnimTypeList.get(player.spotAnimId).seqId).priority) {
-                                        local1245 = false;
+                                        isSorted = false;
                                     }
-                                    if (local1245) {
+                                    if (isSorted) {
                                         player.spotAnimStart = ii + Client.loop;
                                         player.spotAnimY = param1;
                                         player.spotAnimId = slot;
@@ -2574,7 +2575,7 @@ public class Protocol {
     }
 
     @OriginalMember(owner = "client!gk", name = "a", descriptor = "(IIBLclient!e;)V")
-    public static void readExtendedPlayerInfo(@OriginalArg(0) int flags, @OriginalArg(1) int arg1, @OriginalArg(3) Player player) {
+    public static void readExtendedPlayerInfo(@OriginalArg(0) int flags, @OriginalArg(1) int playerId, @OriginalArg(3) Player player) {
         @Pc(13) int chatFlags;
         @Pc(17) int staffModLevel;
         @Pc(24) int regionCount;
@@ -2653,7 +2654,7 @@ public class Protocol {
             @Pc(309) byte[] appearanceData = new byte[chatFlags];
             @Pc(314) Packet appearanceBuffer = new Packet(appearanceData);
             inboundBuffer.gdata(chatFlags, appearanceData);
-            PlayerList.appearanceCache[arg1] = appearanceBuffer;
+            PlayerList.appearanceCache[playerId] = appearanceBuffer;
             player.decodeAppearance(appearanceBuffer);
         }
         if ((flags & PLAYER_UPDATE_FLAG_FACE_ENTITY) != 0) {
@@ -2972,7 +2973,7 @@ public class Protocol {
                     animSlots[animIndex] = inboundBuffer.g1_alt3();
                     animDelays[animIndex] = inboundBuffer.g2();
                 }
-                method3037(animDelays, npc, animSlots, animIds);
+                updateNpcLayeredAnimations(animDelays, npc, animSlots, animIds);
             }
             if ((updateFlags & NPC_UPDATE_FLAG_FACE_COORD) != 0) {
                 npc.faceX = inboundBuffer.g2_alt2();
@@ -3058,46 +3059,46 @@ public class Protocol {
     }
 
     @OriginalMember(owner = "runetek4.client!mi", name = "a", descriptor = "([IBLclient!km;[I[I)V")
-    public static void method3037(@OriginalArg(0) int[] arg0, @OriginalArg(2) Npc arg1, @OriginalArg(3) int[] arg2, @OriginalArg(4) int[] arg3) {
-        for (@Pc(3) int animIndex = 0; animIndex < arg3.length; animIndex++) {
-            @Pc(15) int animId = arg3[animIndex];
-            @Pc(19) int slotMask = arg0[animIndex];
-            @Pc(23) int delay = arg2[animIndex];
-            for (@Pc(25) int slotIndex = 0; slotMask != 0 && arg1.layeredAnimations.length > slotIndex; slotIndex++) {
+    public static void updateNpcLayeredAnimations(@OriginalArg(0) int[] slotMasks, @OriginalArg(2) Npc npc, @OriginalArg(3) int[] delays, @OriginalArg(4) int[] animIds) {
+        for (@Pc(3) int animIndex = 0; animIndex < animIds.length; animIndex++) {
+            @Pc(15) int animId = animIds[animIndex];
+            @Pc(19) int slotMask = slotMasks[animIndex];
+            @Pc(23) int delay = delays[animIndex];
+            for (@Pc(25) int slotIndex = 0; slotMask != 0 && npc.layeredAnimations.length > slotIndex; slotIndex++) {
                 if ((slotMask & BIT_SHIFT_1) != 0) {
                     if (animId == -1) {
-                        arg1.layeredAnimations[slotIndex] = null;
+                        npc.layeredAnimations[slotIndex] = null;
                     } else {
                         @Pc(60) SeqType seqType = SeqTypeList.get(animId);
-                        @Pc(65) PathingEntityAnimation animation = arg1.layeredAnimations[slotIndex];
+                        @Pc(65) PathingEntityAnimation animation = npc.layeredAnimations[slotIndex];
                         @Pc(68) int exactMove = seqType.exactmove;
                         if (animation != null) {
                             if (animId == animation.sequenceId) {
                                 if (exactMove == EXACTMOVE_RESTART) {
-                                    animation = arg1.layeredAnimations[slotIndex] = null;
+                                    animation = npc.layeredAnimations[slotIndex] = null;
                                 } else if (exactMove == EXACTMOVE_RESET) {
                                     animation.frameIndex = 0;
                                     animation.frameTime = 0;
                                     animation.direction = 1;
                                     animation.loopCount = 0;
                                     animation.delay = delay;
-                                    SoundPlayer.playSeqSound(arg1.zFine, seqType, arg1.xFine, false, 0);
+                                    SoundPlayer.playSeqSound(npc.zFine, seqType, npc.xFine, false, 0);
                                 } else if (exactMove == EXACTMOVE_CONTINUE) {
                                     animation.frameTime = 0;
                                 }
                             } else if (seqType.priority >= SeqTypeList.get(animation.sequenceId).priority) {
-                                animation = arg1.layeredAnimations[slotIndex] = null;
+                                animation = npc.layeredAnimations[slotIndex] = null;
                             }
                         }
                         if (animation == null) {
-                            animation = arg1.layeredAnimations[slotIndex] = new PathingEntityAnimation();
+                            animation = npc.layeredAnimations[slotIndex] = new PathingEntityAnimation();
                             animation.direction = 1;
                             animation.loopCount = 0;
                             animation.delay = delay;
                             animation.sequenceId = animId;
                             animation.frameTime = 0;
                             animation.frameIndex = 0;
-                            SoundPlayer.playSeqSound(arg1.zFine, seqType, arg1.xFine, false, 0);
+                            SoundPlayer.playSeqSound(npc.zFine, seqType, npc.xFine, false, 0);
                         }
                     }
                 }
@@ -3107,7 +3108,7 @@ public class Protocol {
     }
 
     @OriginalMember(owner = "runetek4.client!sc", name = "a", descriptor = "(IIILclient!km;)V")
-    public static void animateNpc(@OriginalArg(0) int arg0, @OriginalArg(1) int animationId, @OriginalArg(3) Npc npc) {
+    public static void animateNpc(@OriginalArg(0) int delay, @OriginalArg(1) int animationId, @OriginalArg(3) Npc npc) {
         if (npc.primarySeqId == animationId && animationId != -1) {
             @Pc(10) SeqType seqType = SeqTypeList.get(animationId);
             @Pc(13) int exactMove = seqType.exactmove;
@@ -3116,7 +3117,7 @@ public class Protocol {
                 npc.animationFrameDelay = 0;
                 npc.animationFrame = 0;
                 npc.animationLoopCounter = 0;
-                npc.animationDelay = arg0;
+                npc.animationDelay = delay;
                 SoundPlayer.playSeqSound(npc.zFine, seqType, npc.xFine, false, npc.animationFrameDelay);
             }
             if (exactMove == EXACTMOVE_CONTINUE) {
@@ -3127,7 +3128,7 @@ public class Protocol {
             npc.primarySeqId = animationId;
             npc.animationDirection = 1;
             npc.animationLoopCounter = 0;
-            npc.animationDelay = arg0;
+            npc.animationDelay = delay;
             npc.movementQueueSnapshot = npc.movementQueueSize;
             npc.animationFrameDelay = 0;
             if (npc.primarySeqId != -1) {
@@ -3137,13 +3138,13 @@ public class Protocol {
     }
 
     @OriginalMember(owner = "client!dh", name = "a", descriptor = "(IIII)Lclient!wk;")
-    public static SubInterface openSubInterface(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2) {
+    public static SubInterface openSubInterface(@OriginalArg(1) int interfaceId, @OriginalArg(2) int windowId, @OriginalArg(3) int modalType) {
         @Pc(9) SubInterface subInterface = new SubInterface();
-        subInterface.modalType = arg2;
-        subInterface.interfaceId = arg0;
-        ComponentList.openInterfaces.put(subInterface, arg1);
-        ComponentList.resetComponentAnimations(arg0);
-        @Pc(28) Component component = ComponentList.getComponent(arg1);
+        subInterface.modalType = modalType;
+        subInterface.interfaceId = interfaceId;
+        ComponentList.openInterfaces.put(subInterface, windowId);
+        ComponentList.resetComponentAnimations(interfaceId);
+        @Pc(28) Component component = ComponentList.getComponent(windowId);
         if (component != null) {
             ComponentList.redraw(component);
         }
@@ -3176,7 +3177,7 @@ public class Protocol {
         if (component != null) {
             ComponentList.updateContainerLayout(component, false);
         }
-        ComponentList.runInterfaceInitScripts(arg0);
+        ComponentList.runInterfaceInitScripts(interfaceId);
         if (ComponentList.topLevelInterface != -1) {
             ComponentList.runScripts(1, ComponentList.topLevelInterface);
         }
@@ -3184,7 +3185,7 @@ public class Protocol {
     }
 
     @OriginalMember(owner = "client!ah", name = "b", descriptor = "(I)V")
-    public static void method843() {
+    public static void handleMenuClick() {
         if (ComponentList.clickedInventoryComponent != null || ClientScriptRunner.dragComponent != null) {
             return;
         }

@@ -515,7 +515,7 @@ public class Game {
                                                 }
                                             }
                                             MiniMenu.clickTileX = -1;
-                                            Protocol.method843();
+                                            Protocol.handleMenuClick();
                                             if (ComponentList.aClass13_22 != component) {
                                                 if (component != null) {
                                                     ComponentList.redraw(component);
