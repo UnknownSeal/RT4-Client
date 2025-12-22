@@ -2045,7 +2045,7 @@ public class Protocol {
             @Pc(232) int endCycle;
             @Pc(247) int arc;
             @Pc(224) int endHeight;
-            @Pc(236) int local236;
+            @Pc(236) int Angle;
             @Pc(317) ProjectileAnimation projectile;
             if (currentOpcode == ZONE_MAP_PROJANIM_SMALL) {
                 // ZONE_MAP_PROJANIM_SMALL
@@ -2061,10 +2061,10 @@ public class Protocol {
                 endHeight = inboundBuffer.g1() * HEIGHT_SCALE_FACTOR; // End height
                 startCycle = inboundBuffer.g2(); // Start cycle
                 endCycle = inboundBuffer.g2(); // End cycle
-                local236 = inboundBuffer.g1(); // Angle
+                Angle = inboundBuffer.g1(); // Angle
 
-                if (local236 == NO_ANGLE_SPECIFIED) {
-                    local236 = -1;
+                if (Angle == NO_ANGLE_SPECIFIED) {
+                    Angle = -1;
                 }
 
                 arc = inboundBuffer.g1(); // Arc
@@ -2077,7 +2077,7 @@ public class Protocol {
                     local19 = local19 * HALF_TILE_SIZE;
                     local23 = local23 * HALF_TILE_SIZE;
 
-                    projectile = new ProjectileAnimation(local45, Player.currentLevel, local23, local19, SceneGraph.getTileHeight(Player.currentLevel, local23, local19) - startHeight, Client.loop + startCycle, endCycle + Client.loop, local236, arc, local39, endHeight);
+                    projectile = new ProjectileAnimation(local45, Player.currentLevel, local23, local19, SceneGraph.getTileHeight(Player.currentLevel, local23, local19) - startHeight, Client.loop + startCycle, endCycle + Client.loop, Angle, arc, local39, endHeight);
                     projectile.setTarget(local31, Client.loop + startCycle, -endHeight + SceneGraph.getTileHeight(Player.currentLevel, local27, local31), local27);
                     SceneGraph.projectiles.push(new ProjAnimNode(projectile));
                 }
@@ -2250,11 +2250,11 @@ public class Protocol {
                     endHeight = inboundBuffer.g1() * HEIGHT_SCALE_FACTOR; // End height offset
                     startCycle = inboundBuffer.g2(); // Start cycle (delay before showing)
                     endCycle = inboundBuffer.g2(); // End cycle
-                    local236 = inboundBuffer.g1(); // Angle/slope
+                    Angle = inboundBuffer.g1(); // Angle/slope
                     arc = inboundBuffer.g1(); // Arc height
 
-                    if (local236 == NO_ANGLE_SPECIFIED) {
-                        local236 = -1; // No angle specified
+                    if (Angle == NO_ANGLE_SPECIFIED) {
+                        Angle = -1; // No angle specified
                     }
 
                     // Validate coordinates are in bounds
@@ -2273,7 +2273,7 @@ public class Protocol {
                                 SceneGraph.getTileHeight(Player.currentLevel, local23, local19) - startHeight, // Start height
                                 startCycle + Client.loop, // Start cycle
                                 endCycle + Client.loop, // End cycle
-                                local236, // Angle
+                                Angle, // Angle
                                 arc, //Arc
                                 local39, // Source entity
                                 endHeight // End height offset
@@ -2298,7 +2298,7 @@ public class Protocol {
                     endHeight = inboundBuffer.g1s(); // Vertical offset
                     startCycle = inboundBuffer.g1() * HEIGHT_SCALE_FACTOR; // Height offset at target
                     endCycle = inboundBuffer.g2(); // Start cycle
-                    local236 = inboundBuffer.g2(); // End cycle
+                    Angle = inboundBuffer.g2(); // End cycle
                     arc = inboundBuffer.g1(); // Angle
                     transformValue3 = inboundBuffer.g1(); // Arc height
 
@@ -2362,7 +2362,7 @@ public class Protocol {
                         }
 
                         // Create projectile wiht adjusted source position
-                        @Pc(1331) ProjectileAnimation proj = new ProjectileAnimation(startHeight, Player.currentLevel, local23, local19, SceneGraph.getTileHeight(Player.currentLevel, local23, local19) - endHeight, endCycle + Client.loop, local236 + Client.loop, arc, transformValue3, local45, startCycle);
+                        @Pc(1331) ProjectileAnimation proj = new ProjectileAnimation(startHeight, Player.currentLevel, local23, local19, SceneGraph.getTileHeight(Player.currentLevel, local23, local19) - endHeight, endCycle + Client.loop, Angle + Client.loop, arc, transformValue3, local45, startCycle);
                         proj.setTarget(local31, endCycle + Client.loop, -startCycle + SceneGraph.getTileHeight(Player.currentLevel, local27, local31), local27);
                         SceneGraph.projectiles.push(new ProjAnimNode(proj));
                     }
@@ -2413,19 +2413,19 @@ public class Protocol {
                     local27 = inboundBuffer.g2(); // Object type ID
 
                     if (local23 >= 0 && local19 >= 0 && local23 < CollisionConstants.SIZE && local19 < CollisionConstants.SIZE) {
-                        @Pc(1565) LinkList local1565 = SceneGraph.objStacks[Player.currentLevel][local23][local19];
+                        @Pc(1565) LinkList objStackList = SceneGraph.objStacks[Player.currentLevel][local23][local19];
 
-                        if (local1565 != null) {
+                        if (objStackList != null) {
                             // Find and remove the matching object
-                            for (@Pc(1572) ClientObj local1572 = (ClientObj) local1565.head(); local1572 != null; local1572 = (ClientObj) local1565.next()) {
-                                if (local1572.value.id == (local27 & INVENTORY_ID_MASK)) {
-                                    local1572.unlink(); // Remove from list
+                            for (@Pc(1572) ClientObj objIterator = (ClientObj) objStackList.head(); objIterator != null; objIterator = (ClientObj) objStackList.next()) {
+                                if (objIterator.value.id == (local27 & INVENTORY_ID_MASK)) {
+                                    objIterator.unlink(); // Remove from list
                                     break;
                                 }
                             }
 
                             // Clean up empty list
-                            if (local1565.head() == null) {
+                            if (objStackList.head() == null) {
                                 SceneGraph.objStacks[Player.currentLevel][local23][local19] = null;
                             }
                             sortObjStacks(local23, local19);
@@ -2650,11 +2650,11 @@ public class Protocol {
         }
         if ((flags & PLAYER_UPDATE_FLAG_APPEARANCE) != 0) {
             chatFlags = inboundBuffer.g1_alt1();
-            @Pc(309) byte[] local309 = new byte[chatFlags];
-            @Pc(314) Packet local314 = new Packet(local309);
-            inboundBuffer.gdata(chatFlags, local309);
-            PlayerList.appearanceCache[arg1] = local314;
-            player.decodeAppearance(local314);
+            @Pc(309) byte[] appearanceData = new byte[chatFlags];
+            @Pc(314) Packet appearanceBuffer = new Packet(appearanceData);
+            inboundBuffer.gdata(chatFlags, appearanceData);
+            PlayerList.appearanceCache[arg1] = appearanceBuffer;
+            player.decodeAppearance(appearanceBuffer);
         }
         if ((flags & PLAYER_UPDATE_FLAG_FACE_ENTITY) != 0) {
             player.faceEntity = inboundBuffer.g2_alt2();
@@ -2692,19 +2692,19 @@ public class Protocol {
         }
         if ((flags & PLAYER_UPDATE_FLAG_SPOTANIM) != 0) {
             chatFlags = inboundBuffer.g1_alt2();
-            @Pc(502) int[] local502 = new int[chatFlags];
-            @Pc(505) int[] local505 = new int[chatFlags];
-            @Pc(508) int[] local508 = new int[chatFlags];
-            for (@Pc(510) int local510 = 0; local510 < chatFlags; local510++) {
-                @Pc(521) int local521 = inboundBuffer.g2_al1();
-                if (local521 == INVALID_ID_U16) {
-                    local521 = -1;
+            @Pc(502) int[] spotAnimIds = new int[chatFlags];
+            @Pc(505) int[] spotAnimSlots = new int[chatFlags];
+            @Pc(508) int[] spotAnimDelays = new int[chatFlags];
+            for (@Pc(510) int animIndex = 0; animIndex < chatFlags; animIndex++) {
+                @Pc(521) int spotAnimId = inboundBuffer.g2_al1();
+                if (spotAnimId == INVALID_ID_U16) {
+                    spotAnimId = -1;
                 }
-                local502[local510] = local521;
-                local505[local510] = inboundBuffer.g1_alt1();
-                local508[local510] = inboundBuffer.g2();
+                spotAnimIds[animIndex] = spotAnimId;
+                spotAnimSlots[animIndex] = inboundBuffer.g1_alt1();
+                spotAnimDelays[animIndex] = inboundBuffer.g2();
             }
-            Player.updateLayeredAnimations(local505, local502, player, local508);
+            Player.updateLayeredAnimations(spotAnimSlots, spotAnimIds, player, spotAnimDelays);
         }
         if ((flags & PLAYER_UPDATE_FLAG_SPOTANIM_EXTENDED) != 0) {
             chatFlags = inboundBuffer.g2_al1();
@@ -2712,11 +2712,11 @@ public class Protocol {
                 chatFlags = -1;
             }
             staffModLevel = inboundBuffer.p4rme();
-            @Pc(573) boolean local573 = true;
+            @Pc(573) boolean shouldReplace = true;
             if (chatFlags != -1 && player.spotAnimId != -1 && SeqTypeList.get(SpotAnimTypeList.get(chatFlags).seqId).priority < SeqTypeList.get(SpotAnimTypeList.get(player.spotAnimId).seqId).priority) {
-                local573 = false;
+                shouldReplace = false;
             }
-            if (local573) {
+            if (shouldReplace) {
                 player.spotAnimStart = (staffModLevel & U16_MASK) + Client.loop;
                 player.anInt3361 = 0;
                 player.spotanimId = 0;
@@ -2774,48 +2774,48 @@ public class Protocol {
     @OriginalMember(owner = "client!bg", name = "a", descriptor = "(B)V")
     public static void readSelfPlayerInfo() {
         inboundBuffer.accessBits();
-        @Pc(11) int local11 = inboundBuffer.gBit(1);
-        if (local11 == 0) {
+        @Pc(11) int hasUpdate = inboundBuffer.gBit(1);
+        if (hasUpdate == 0) {
             return;
         }
-        @Pc(23) int local23 = inboundBuffer.gBit(2);
-        if (local23 == 0) {
+        @Pc(23) int updateType = inboundBuffer.gBit(2);
+        if (updateType == 0) {
             extendedIds[extendedCount++] = LOCAL_PLAYER_INDEX;
             return;
         }
-        @Pc(54) int local54;
-        @Pc(64) int local64;
-        if (local23 == 1) {
-            local54 = inboundBuffer.gBit(3);
-            PlayerList.self.move(1, local54);
-            local64 = inboundBuffer.gBit(1);
-            if (local64 == 1) {
+        @Pc(54) int direction;
+        @Pc(64) int hasExtendedInfo;
+        if (updateType == 1) {
+            direction = inboundBuffer.gBit(3);
+            PlayerList.self.move(1, direction);
+            hasExtendedInfo = inboundBuffer.gBit(1);
+            if (hasExtendedInfo == 1) {
                 extendedIds[extendedCount++] = LOCAL_PLAYER_INDEX;
             }
-        } else if (local23 == 2) {
+        } else if (updateType == 2) {
             if (inboundBuffer.gBit(1) == 1) {
-                local54 = inboundBuffer.gBit(3);
-                PlayerList.self.move(2, local54);
-                local64 = inboundBuffer.gBit(3);
-                PlayerList.self.move(2, local64);
+                direction = inboundBuffer.gBit(3);
+                PlayerList.self.move(2, direction);
+                hasExtendedInfo = inboundBuffer.gBit(3);
+                PlayerList.self.move(2, hasExtendedInfo);
             } else {
-                local54 = inboundBuffer.gBit(3);
-                PlayerList.self.move(0, local54);
+                direction = inboundBuffer.gBit(3);
+                PlayerList.self.move(0, direction);
             }
-            local54 = inboundBuffer.gBit(1);
-            if (local54 == 1) {
+            direction = inboundBuffer.gBit(1);
+            if (direction == 1) {
                 extendedIds[extendedCount++] = LOCAL_PLAYER_INDEX;
             }
-        } else if (local23 == 3) {
-            local54 = inboundBuffer.gBit(PLAYER_COORD_BITS);
-            local64 = inboundBuffer.gBit(1);
+        } else if (updateType == 3) {
+            direction = inboundBuffer.gBit(PLAYER_COORD_BITS);
+            hasExtendedInfo = inboundBuffer.gBit(1);
             Player.currentLevel = inboundBuffer.gBit(PLAYER_LEVEL_BITS);
             @Pc(163) int local163 = inboundBuffer.gBit(1);
             if (local163 == 1) {
                 extendedIds[extendedCount++] = LOCAL_PLAYER_INDEX;
             }
-            @Pc(181) int local181 = inboundBuffer.gBit(PLAYER_COORD_BITS);
-            PlayerList.self.teleport(local181, local64 == 1, local54);
+            @Pc(181) int coordZ = inboundBuffer.gBit(PLAYER_COORD_BITS);
+            PlayerList.self.teleport(coordZ, hasExtendedInfo == 1, direction);
         }
     }
 
@@ -2825,10 +2825,10 @@ public class Protocol {
             if (inboundBuffer.bitsAvailable(packetSize) >= PLAYER_INFO_BITS_REQUIRED) {
                 @Pc(20) int index = inboundBuffer.gBit(PLAYER_INDEX_BITS);
                 if (index != LOCAL_PLAYER_INDEX) {
-                    @Pc(27) boolean local27 = false;
+                    @Pc(27) boolean isNewPlayer = false;
                     if (PlayerList.players[index] == null) {
                         PlayerList.players[index] = new Player();
-                        local27 = true;
+                        isNewPlayer = true;
                         if (PlayerList.appearanceCache[index] != null) {
                             PlayerList.players[index].decodeAppearance(PlayerList.appearanceCache[index]);
                         }
@@ -2836,17 +2836,17 @@ public class Protocol {
                     PlayerList.playerIds[PlayerList.playerCount++] = index;
                     @Pc(65) Player player = PlayerList.players[index];
                     player.lastSeenLoop = Client.loop;
-                    @Pc(73) int local73 = inboundBuffer.gBit(1);
-                    if (local73 == 1) {
+                    @Pc(73) int hasExtendedInfo = inboundBuffer.gBit(1);
+                    if (hasExtendedInfo == 1) {
                         extendedIds[extendedCount++] = index;
                     }
                     @Pc(92) int dx = inboundBuffer.gBit(PLAYER_DELTA_BITS);
-                    @Pc(99) int local99 = PathingEntity.ANGLES[inboundBuffer.gBit(PLAYER_ANGLE_BITS)];
+                    @Pc(99) int orientation = PathingEntity.ANGLES[inboundBuffer.gBit(PLAYER_ANGLE_BITS)];
                     if (dx > PLAYER_DELTA_THRESHOLD) {
                         dx -= PLAYER_DELTA_OFFSET;
                     }
-                    if (local27) {
-                        player.dstYaw = player.orientation = local99;
+                    if (isNewPlayer) {
+                        player.dstYaw = player.orientation = orientation;
                     }
                     @Pc(116) int jump = inboundBuffer.gBit(1);
                     @Pc(121) int dz = inboundBuffer.gBit(PLAYER_DELTA_BITS);
@@ -2880,50 +2880,50 @@ public class Protocol {
         for (@Pc(3) int i = 0; i < extendedCount; i++) {
             @Pc(10) int extendedId = extendedIds[i];
             @Pc(14) Npc npc = NpcList.npcs[extendedId];
-            @Pc(18) int local18 = inboundBuffer.g1();
-            if ((local18 & NPC_UPDATE_FLAG_EXTENDED) != 0) {
-                local18 += inboundBuffer.g1() << REGION_ID_SHIFT;
+            @Pc(18) int updateFlags = inboundBuffer.g1();
+            if ((updateFlags & NPC_UPDATE_FLAG_EXTENDED) != 0) {
+                updateFlags += inboundBuffer.g1() << REGION_ID_SHIFT;
             }
-            @Pc(43) int local43;
+            @Pc(43) int value;
             @Pc(47) int info;
-            if ((local18 & NPC_UPDATE_FLAG_HIT_PRIMARY) != 0) {
-                local43 = inboundBuffer.g1(); // Hit value
+            if ((updateFlags & NPC_UPDATE_FLAG_HIT_PRIMARY) != 0) {
+                value = inboundBuffer.g1(); // Hit value
                 info = inboundBuffer.g1_alt2(); // Color
-                npc.hit(info, Client.loop, local43);
+                npc.hit(info, Client.loop, value);
                 npc.hitpointsBarVisibleUntil = Client.loop + HITPOINTS_BAR_DURATION;
                 npc.hitpointsBar = inboundBuffer.g1_alt3();
             }
-            if ((local18 & NPC_UPDATE_FLAG_HIT_SECONDARY) != 0) {
-                local43 = inboundBuffer.g1_alt2(); // Hit value
+            if ((updateFlags & NPC_UPDATE_FLAG_HIT_SECONDARY) != 0) {
+                value = inboundBuffer.g1_alt2(); // Hit value
                 info = inboundBuffer.g1_alt3(); // Color
-                npc.hit(info, Client.loop, local43);
+                npc.hit(info, Client.loop, value);
             }
-            if ((local18 & NPC_UPDATE_FLAG_ANIM) != 0) {
-                local43 = inboundBuffer.g2(); // Animation ID
+            if ((updateFlags & NPC_UPDATE_FLAG_ANIM) != 0) {
+                value = inboundBuffer.g2(); // Animation ID
                 info = inboundBuffer.g1(); // Sequence
-                if (local43 == INVALID_ID_U16) {
-                    local43 = -1;
+                if (value == INVALID_ID_U16) {
+                    value = -1;
                 }
-                animateNpc(info, local43, npc);
+                animateNpc(info, value, npc);
             }
-            if ((local18 & NPC_UPDATE_FLAG_FACE_ENTITY) != 0) {
+            if ((updateFlags & NPC_UPDATE_FLAG_FACE_ENTITY) != 0) {
                 npc.faceEntity = inboundBuffer.g2_alt2();
                 if (npc.faceEntity == INVALID_ID_U16) {
                     npc.faceEntity = -1;
                 }
             }
-            if ((local18 & NPC_UPDATE_FLAG_SPOTANIM) != 0) {
-                local43 = inboundBuffer.g2_alt2();
-                if (local43 == INVALID_ID_U16) {
-                    local43 = -1;
+            if ((updateFlags & NPC_UPDATE_FLAG_SPOTANIM) != 0) {
+                value = inboundBuffer.g2_alt2();
+                if (value == INVALID_ID_U16) {
+                    value = -1;
                 }
                 info = inboundBuffer.g4me();
-                @Pc(147) boolean local147 = true;
-                if (local43 != -1 && npc.spotAnimId != -1 && SeqTypeList.get(SpotAnimTypeList.get(local43).seqId).priority < SeqTypeList.get(SpotAnimTypeList.get(npc.spotAnimId).seqId).priority) {
-                    local147 = false;
+                @Pc(147) boolean shouldReplace = true;
+                if (value != -1 && npc.spotAnimId != -1 && SeqTypeList.get(SpotAnimTypeList.get(value).seqId).priority < SeqTypeList.get(SpotAnimTypeList.get(npc.spotAnimId).seqId).priority) {
+                    shouldReplace = false;
                 }
-                if (local147) {
-                    npc.spotAnimId = local43;
+                if (shouldReplace) {
+                    npc.spotAnimId = value;
                     npc.spotAnimStart = (info & U16_MASK) + Client.loop;
                     npc.anInt3361 = 0;
                     npc.spotanimId = 0;
@@ -2935,15 +2935,15 @@ public class Protocol {
                     if (npc.spotAnimId != -1 && npc.spotAnimStart == Client.loop) {
                         @Pc(227) int seqId = SpotAnimTypeList.get(npc.spotAnimId).seqId;
                         if (seqId != -1) {
-                            @Pc(236) SeqType local236 = SeqTypeList.get(seqId);
-                            if (local236 != null && local236.frames != null) {
-                                SoundPlayer.playSeqSound(npc.zFine, local236, npc.xFine, false, 0);
+                            @Pc(236) SeqType seqType = SeqTypeList.get(seqId);
+                            if (seqType != null && seqType.frames != null) {
+                                SoundPlayer.playSeqSound(npc.zFine, seqType, npc.xFine, false, 0);
                             }
                         }
                     }
                 }
             }
-            if ((local18 & NPC_UPDATE_FLAG_TRANSFORM) != 0) {
+            if ((updateFlags & NPC_UPDATE_FLAG_TRANSFORM) != 0) {
                 if (npc.type.hasAreaSound()) {
                     AreaSoundManager.remove(npc);
                 }
@@ -2954,27 +2954,27 @@ public class Protocol {
                     AreaSoundManager.add(npc.movementQueueZ[0], null, 0, npc, npc.movementQueueX[0], Player.currentLevel, null);
                 }
             }
-            if ((local18 & NPC_UPDATE_FLAG_OVERHEAD_CHAT) != 0) {
+            if ((updateFlags & NPC_UPDATE_FLAG_OVERHEAD_CHAT) != 0) {
                 npc.chatMessage = inboundBuffer.gjstr();
                 npc.chatLoops = NPC_CHAT_DURATION_LOOPS;
             }
-            if ((local18 & NPC_UPDATE_FLAG_LAYERED_ANIM) != 0) {
-                local43 = inboundBuffer.g1_alt2();
-                @Pc(331) int[] local331 = new int[local43];
-                @Pc(334) int[] local334 = new int[local43];
-                @Pc(337) int[] local337 = new int[local43];
-                for (@Pc(339) int local339 = 0; local339 < local43; local339++) {
-                    @Pc(350) int local350 = inboundBuffer.g2_al1();
-                    if (local350 == INVALID_ID_U16) {
-                        local350 = -1;
+            if ((updateFlags & NPC_UPDATE_FLAG_LAYERED_ANIM) != 0) {
+                value = inboundBuffer.g1_alt2();
+                @Pc(331) int[] animIds = new int[value];
+                @Pc(334) int[] animSlots = new int[value];
+                @Pc(337) int[] animDelays = new int[value];
+                for (@Pc(339) int animIndex = 0; animIndex < value; animIndex++) {
+                    @Pc(350) int animId = inboundBuffer.g2_al1();
+                    if (animId == INVALID_ID_U16) {
+                        animId = -1;
                     }
-                    local331[local339] = local350;
-                    local334[local339] = inboundBuffer.g1_alt3();
-                    local337[local339] = inboundBuffer.g2();
+                    animIds[animIndex] = animId;
+                    animSlots[animIndex] = inboundBuffer.g1_alt3();
+                    animDelays[animIndex] = inboundBuffer.g2();
                 }
-                method3037(local337, npc, local334, local331);
+                method3037(animDelays, npc, animSlots, animIds);
             }
-            if ((local18 & NPC_UPDATE_FLAG_FACE_COORD) != 0) {
+            if ((updateFlags & NPC_UPDATE_FLAG_FACE_COORD) != 0) {
                 npc.faceX = inboundBuffer.g2_alt2();
                 npc.faceY = inboundBuffer.g2();
             }
@@ -2987,9 +2987,9 @@ public class Protocol {
             if (inboundBuffer.bitsAvailable(packetSize) >= NPC_INFO_BITS_REQUIRED) {
                 @Pc(14) int npcIndex = inboundBuffer.gBit(NPC_INDEX_BITS);
                 if (npcIndex != NPC_END_MARKER) {
-                    @Pc(19) boolean local19 = false;
+                    @Pc(19) boolean isNewNpc = false;
                     if (NpcList.npcs[npcIndex] == null) {
-                        local19 = true;
+                        isNewNpc = true;
                         NpcList.npcs[npcIndex] = new Npc();
                     }
                     @Pc(37) Npc npc = NpcList.npcs[npcIndex];
@@ -2998,23 +2998,23 @@ public class Protocol {
                     if (npc.type != null && npc.type.hasAreaSound()) {
                         AreaSoundManager.remove(npc);
                     }
-                    @Pc(66) int local66 = inboundBuffer.gBit(1);
+                    @Pc(66) int jump = inboundBuffer.gBit(1);
                     @Pc(73) int angle = PathingEntity.ANGLES[inboundBuffer.gBit(NPC_ANGLE_BITS)];
-                    if (local19) {
+                    if (isNewNpc) {
                         npc.dstYaw = npc.orientation = angle;
                     }
-                    @Pc(86) int local86 = inboundBuffer.gBit(1);
-                    if (local86 == 1) {
+                    @Pc(86) int hasExtendedInfo = inboundBuffer.gBit(1);
+                    if (hasExtendedInfo == 1) {
                         extendedIds[extendedCount++] = npcIndex;
                     }
-                    @Pc(105) int local105 = inboundBuffer.gBit(5);
+                    @Pc(105) int deltaZ = inboundBuffer.gBit(5);
                     npc.setNpcType(NpcTypeList.get(inboundBuffer.gBit(NPC_TYPE_BITS)));
-                    if (local105 > NPC_DELTA_THRESHOLD) {
-                        local105 -= NPC_DELTA_OFFSET;
+                    if (deltaZ > NPC_DELTA_THRESHOLD) {
+                        deltaZ -= NPC_DELTA_OFFSET;
                     }
-                    @Pc(124) int local124 = inboundBuffer.gBit(NPC_DELTA_BITS);
-                    if (local124 > NPC_DELTA_THRESHOLD) {
-                        local124 -= NPC_DELTA_OFFSET;
+                    @Pc(124) int deltaX = inboundBuffer.gBit(NPC_DELTA_BITS);
+                    if (deltaX > NPC_DELTA_THRESHOLD) {
+                        deltaX -= NPC_DELTA_OFFSET;
                     }
                     npc.setSize(npc.type.size);
                     npc.anInt3365 = npc.type.nas;
@@ -3022,7 +3022,7 @@ public class Protocol {
                     if (npc.anInt3376 == 0) {
                         npc.orientation = 0;
                     }
-                    npc.teleport(npc.getSize(), PlayerList.self.movementQueueX[0] + local124, local105 + PlayerList.self.movementQueueZ[0], local66 == 1);
+                    npc.teleport(npc.getSize(), PlayerList.self.movementQueueX[0] + deltaX, deltaZ + PlayerList.self.movementQueueZ[0], jump == 1);
                     if (npc.type.hasAreaSound()) {
                         AreaSoundManager.add(npc.movementQueueZ[0], null, 0, npc, npc.movementQueueX[0], Player.currentLevel, null);
                     }
@@ -3059,49 +3059,49 @@ public class Protocol {
 
     @OriginalMember(owner = "runetek4.client!mi", name = "a", descriptor = "([IBLclient!km;[I[I)V")
     public static void method3037(@OriginalArg(0) int[] arg0, @OriginalArg(2) Npc arg1, @OriginalArg(3) int[] arg2, @OriginalArg(4) int[] arg3) {
-        for (@Pc(3) int local3 = 0; local3 < arg3.length; local3++) {
-            @Pc(15) int local15 = arg3[local3];
-            @Pc(19) int local19 = arg0[local3];
-            @Pc(23) int local23 = arg2[local3];
-            for (@Pc(25) int local25 = 0; local19 != 0 && arg1.layeredAnimations.length > local25; local25++) {
-                if ((local19 & BIT_SHIFT_1) != 0) {
-                    if (local15 == -1) {
-                        arg1.layeredAnimations[local25] = null;
+        for (@Pc(3) int animIndex = 0; animIndex < arg3.length; animIndex++) {
+            @Pc(15) int animId = arg3[animIndex];
+            @Pc(19) int slotMask = arg0[animIndex];
+            @Pc(23) int delay = arg2[animIndex];
+            for (@Pc(25) int slotIndex = 0; slotMask != 0 && arg1.layeredAnimations.length > slotIndex; slotIndex++) {
+                if ((slotMask & BIT_SHIFT_1) != 0) {
+                    if (animId == -1) {
+                        arg1.layeredAnimations[slotIndex] = null;
                     } else {
-                        @Pc(60) SeqType local60 = SeqTypeList.get(local15);
-                        @Pc(65) PathingEntityAnimation local65 = arg1.layeredAnimations[local25];
-                        @Pc(68) int local68 = local60.exactmove;
-                        if (local65 != null) {
-                            if (local15 == local65.sequenceId) {
-                                if (local68 == EXACTMOVE_RESTART) {
-                                    local65 = arg1.layeredAnimations[local25] = null;
-                                } else if (local68 == EXACTMOVE_RESET) {
-                                    local65.frameIndex = 0;
-                                    local65.frameTime = 0;
-                                    local65.direction = 1;
-                                    local65.loopCount = 0;
-                                    local65.delay = local23;
-                                    SoundPlayer.playSeqSound(arg1.zFine, local60, arg1.xFine, false, 0);
-                                } else if (local68 == EXACTMOVE_CONTINUE) {
-                                    local65.frameTime = 0;
+                        @Pc(60) SeqType seqType = SeqTypeList.get(animId);
+                        @Pc(65) PathingEntityAnimation animation = arg1.layeredAnimations[slotIndex];
+                        @Pc(68) int exactMove = seqType.exactmove;
+                        if (animation != null) {
+                            if (animId == animation.sequenceId) {
+                                if (exactMove == EXACTMOVE_RESTART) {
+                                    animation = arg1.layeredAnimations[slotIndex] = null;
+                                } else if (exactMove == EXACTMOVE_RESET) {
+                                    animation.frameIndex = 0;
+                                    animation.frameTime = 0;
+                                    animation.direction = 1;
+                                    animation.loopCount = 0;
+                                    animation.delay = delay;
+                                    SoundPlayer.playSeqSound(arg1.zFine, seqType, arg1.xFine, false, 0);
+                                } else if (exactMove == EXACTMOVE_CONTINUE) {
+                                    animation.frameTime = 0;
                                 }
-                            } else if (local60.priority >= SeqTypeList.get(local65.sequenceId).priority) {
-                                local65 = arg1.layeredAnimations[local25] = null;
+                            } else if (seqType.priority >= SeqTypeList.get(animation.sequenceId).priority) {
+                                animation = arg1.layeredAnimations[slotIndex] = null;
                             }
                         }
-                        if (local65 == null) {
-                            local65 = arg1.layeredAnimations[local25] = new PathingEntityAnimation();
-                            local65.direction = 1;
-                            local65.loopCount = 0;
-                            local65.delay = local23;
-                            local65.sequenceId = local15;
-                            local65.frameTime = 0;
-                            local65.frameIndex = 0;
-                            SoundPlayer.playSeqSound(arg1.zFine, local60, arg1.xFine, false, 0);
+                        if (animation == null) {
+                            animation = arg1.layeredAnimations[slotIndex] = new PathingEntityAnimation();
+                            animation.direction = 1;
+                            animation.loopCount = 0;
+                            animation.delay = delay;
+                            animation.sequenceId = animId;
+                            animation.frameTime = 0;
+                            animation.frameIndex = 0;
+                            SoundPlayer.playSeqSound(arg1.zFine, seqType, arg1.xFine, false, 0);
                         }
                     }
                 }
-                local19 >>>= BIT_SHIFT_1;
+                slotMask >>>= BIT_SHIFT_1;
             }
         }
     }
@@ -3110,8 +3110,8 @@ public class Protocol {
     public static void animateNpc(@OriginalArg(0) int arg0, @OriginalArg(1) int animationId, @OriginalArg(3) Npc npc) {
         if (npc.primarySeqId == animationId && animationId != -1) {
             @Pc(10) SeqType seqType = SeqTypeList.get(animationId);
-            @Pc(13) int local13 = seqType.exactmove;
-            if (local13 == EXACTMOVE_RESET) {
+            @Pc(13) int exactMove = seqType.exactmove;
+            if (exactMove == EXACTMOVE_RESET) {
                 npc.animationDirection = 1;
                 npc.animationFrameDelay = 0;
                 npc.animationFrame = 0;
@@ -3119,7 +3119,7 @@ public class Protocol {
                 npc.animationDelay = arg0;
                 SoundPlayer.playSeqSound(npc.zFine, seqType, npc.xFine, false, npc.animationFrameDelay);
             }
-            if (local13 == EXACTMOVE_CONTINUE) {
+            if (exactMove == EXACTMOVE_CONTINUE) {
                 npc.animationLoopCounter = 0;
             }
         } else if (animationId == -1 || npc.primarySeqId == -1 || SeqTypeList.get(animationId).priority >= SeqTypeList.get(npc.primarySeqId).priority) {
@@ -3138,24 +3138,24 @@ public class Protocol {
 
     @OriginalMember(owner = "client!dh", name = "a", descriptor = "(IIII)Lclient!wk;")
     public static SubInterface openSubInterface(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2) {
-        @Pc(9) SubInterface local9 = new SubInterface();
-        local9.modalType = arg2;
-        local9.interfaceId = arg0;
-        ComponentList.openInterfaces.put(local9, arg1);
+        @Pc(9) SubInterface subInterface = new SubInterface();
+        subInterface.modalType = arg2;
+        subInterface.interfaceId = arg0;
+        ComponentList.openInterfaces.put(subInterface, arg1);
         ComponentList.resetComponentAnimations(arg0);
-        @Pc(28) Component local28 = ComponentList.getComponent(arg1);
-        if (local28 != null) {
-            ComponentList.redraw(local28);
+        @Pc(28) Component component = ComponentList.getComponent(arg1);
+        if (component != null) {
+            ComponentList.redraw(component);
         }
         if (ClientScriptRunner.modalBackgroundComponent != null) {
             ComponentList.redraw(ClientScriptRunner.modalBackgroundComponent);
             ClientScriptRunner.modalBackgroundComponent = null;
         }
-        @Pc(45) int local45 = MiniMenu.menuActionRow;
-        @Pc(53) int local53;
-        for (local53 = 0; local53 < local45; local53++) {
-            if (ComponentList.shouldRemoveMenuAction(MiniMenu.actions[local53])) {
-                MiniMenu.removeActionRow(local53);
+        @Pc(45) int initialMenuSize = MiniMenu.menuActionRow;
+        @Pc(53) int menuIndex;
+        for (menuIndex = 0; menuIndex < initialMenuSize; menuIndex++) {
+            if (ComponentList.shouldRemoveMenuAction(MiniMenu.actions[menuIndex])) {
+                MiniMenu.removeActionRow(menuIndex);
             }
         }
         if (MiniMenu.menuActionRow == MOUSE_BUTTON_LEFT) {
@@ -3163,24 +3163,24 @@ public class Protocol {
             ComponentList.redrawScreen(ComponentList.menuX, ComponentList.menuWidth, ComponentList.menuY, ComponentList.menuHeight);
         } else {
             ComponentList.redrawScreen(ComponentList.menuX, ComponentList.menuWidth, ComponentList.menuY, ComponentList.menuHeight);
-            local53 = Fonts.b12Full.getStringWidth(LocalizedText.CHOOSE_OPTION);
-            for (@Pc(95) int local95 = 0; local95 < MiniMenu.menuActionRow; local95++) {
-                @Pc(104) int local104 = Fonts.b12Full.getStringWidth(MiniMenu.getOp(local95));
-                if (local104 > local53) {
-                    local53 = local104;
+            menuIndex = Fonts.b12Full.getStringWidth(LocalizedText.CHOOSE_OPTION);
+            for (@Pc(95) int menu_index = 0; menu_index < MiniMenu.menuActionRow; menu_index++) {
+                @Pc(104) int optionWidth = Fonts.b12Full.getStringWidth(MiniMenu.getOp(menu_index));
+                if (optionWidth > menuIndex) {
+                    menuIndex = optionWidth;
                 }
             }
-            ComponentList.menuWidth = local53 + MENU_WIDTH_PADDING;
+            ComponentList.menuWidth = menuIndex + MENU_WIDTH_PADDING;
             ComponentList.menuHeight = MiniMenu.menuActionRow * MENU_OPTION_ROW_HEIGHT + (ComponentList.hasScrollbar ? MENU_HEIGHT_WITH_SCROLLBAR : MENU_HEIGHT_NO_SCROLLBAR);
         }
-        if (local28 != null) {
-            ComponentList.updateContainerLayout(local28, false);
+        if (component != null) {
+            ComponentList.updateContainerLayout(component, false);
         }
         ComponentList.runInterfaceInitScripts(arg0);
         if (ComponentList.topLevelInterface != -1) {
             ComponentList.runScripts(1, ComponentList.topLevelInterface);
         }
-        return local9;
+        return subInterface;
     }
 
     @OriginalMember(owner = "client!ah", name = "b", descriptor = "(I)V")
@@ -3188,74 +3188,74 @@ public class Protocol {
         if (ComponentList.clickedInventoryComponent != null || ClientScriptRunner.dragComponent != null) {
             return;
         }
-        @Pc(20) int local20 = Mouse.clickButton;
-        @Pc(93) int local93;
-        @Pc(99) int local99;
+        @Pc(20) int clickButton = Mouse.clickButton;
+        @Pc(93) int componentSlot;
+        @Pc(99) int componentId;
         if (!ClientScriptRunner.menuVisible) {
-            if (local20 == 1 && MiniMenu.menuActionRow > 0) {
-                @Pc(37) short local37 = MiniMenu.actions[MiniMenu.menuActionRow - 1];
-                if (local37 == MENU_ACTION_EXAMINE_ITEM || local37 == MENU_ACTION_ITEM_OPT_1 || local37 == MENU_ACTION_ITEM_OPT_2 || local37 == MENU_ACTION_ITEM_OPT_3 || local37 == MENU_ACTION_ITEM_OPT_4 || local37 == MENU_ACTION_ITEM_OPT_5 || local37 == MENU_ACTION_USE_ITEM || local37 == MENU_ACTION_43 || local37 == MENU_ACTION_35 || local37 == MENU_ACTION_58 || local37 == MENU_ACTION_CANCEL || local37 == MENU_ACTION_CONTINUE) {
-                    local93 = MiniMenu.intArgs1[MiniMenu.menuActionRow - 1];
-                    local99 = MiniMenu.intArgs2[MiniMenu.menuActionRow - 1];
-                    @Pc(103) Component local103 = ComponentList.getComponent(local99);
-                    @Pc(106) ServerActiveProperties local106 = ComponentList.getServerActiveProperties(local103);
-                    if (local106.isObjSwapEnabled() || local106.isObjReplaceEnabled()) {
+            if (clickButton == 1 && MiniMenu.menuActionRow > 0) {
+                @Pc(37) short actionType = MiniMenu.actions[MiniMenu.menuActionRow - 1];
+                if (actionType == MENU_ACTION_EXAMINE_ITEM || actionType == MENU_ACTION_ITEM_OPT_1 || actionType == MENU_ACTION_ITEM_OPT_2 || actionType == MENU_ACTION_ITEM_OPT_3 || actionType == MENU_ACTION_ITEM_OPT_4 || actionType == MENU_ACTION_ITEM_OPT_5 || actionType == MENU_ACTION_USE_ITEM || actionType == MENU_ACTION_43 || actionType == MENU_ACTION_35 || actionType == MENU_ACTION_58 || actionType == MENU_ACTION_CANCEL || actionType == MENU_ACTION_CONTINUE) {
+                    componentSlot = MiniMenu.intArgs1[MiniMenu.menuActionRow - 1];
+                    componentId = MiniMenu.intArgs2[MiniMenu.menuActionRow - 1];
+                    @Pc(103) Component component = ComponentList.getComponent(componentId);
+                    @Pc(106) ServerActiveProperties activeProperties = ComponentList.getServerActiveProperties(component);
+                    if (activeProperties.isObjSwapEnabled() || activeProperties.isObjReplaceEnabled()) {
                         ComponentList.lastItemDragTime = 0;
                         ComponentList.draggingClickedInventoryObject = false;
                         if (ComponentList.clickedInventoryComponent != null) {
                             ComponentList.redraw(ComponentList.clickedInventoryComponent);
                         }
-                        ComponentList.clickedInventoryComponent = ComponentList.getComponent(local99);
+                        ComponentList.clickedInventoryComponent = ComponentList.getComponent(componentId);
                         ComponentList.clickedInventoryComponentX = Mouse.mouseClickX;
                         ComponentList.clickedInventoryComponentY = Mouse.mouseClickY;
-                        ComponentList.selectedInventorySlot = local93;
+                        ComponentList.selectedInventorySlot = componentSlot;
                         ComponentList.redraw(ComponentList.clickedInventoryComponent);
                         return;
                     }
                 }
             }
-            if (local20 == MOUSE_BUTTON_LEFT && (VarpDomain.oneMouseButton == 1 && MiniMenu.menuActionRow > 2 || MiniMenu.isComponentAction(MiniMenu.menuActionRow - 1))) {
-                local20 = MOUSE_BUTTON_RIGHT;
+            if (clickButton == MOUSE_BUTTON_LEFT && (VarpDomain.oneMouseButton == 1 && MiniMenu.menuActionRow > 2 || MiniMenu.isComponentAction(MiniMenu.menuActionRow - 1))) {
+                clickButton = MOUSE_BUTTON_RIGHT;
             }
-            if (local20 == MOUSE_BUTTON_RIGHT && MiniMenu.menuActionRow > 0 || MiniMenu.menuState == MENU_STATE_OPEN) {
+            if (clickButton == MOUSE_BUTTON_RIGHT && MiniMenu.menuActionRow > 0 || MiniMenu.menuState == MENU_STATE_OPEN) {
                 ClientScriptRunner.determineMenuSize();
             }
-            if (local20 == MOUSE_BUTTON_LEFT && MiniMenu.menuActionRow > 0 || MiniMenu.menuState == MENU_STATE_EXECUTE) {
+            if (clickButton == MOUSE_BUTTON_LEFT && MiniMenu.menuActionRow > 0 || MiniMenu.menuState == MENU_STATE_EXECUTE) {
                 MiniMenu.processMenuActions();
             }
             return;
         }
-        @Pc(204) int local204;
-        if (local20 != MOUSE_BUTTON_LEFT) {
-            local93 = Mouse.lastMouseY;
-            local204 = Mouse.lastMouseX;
-            if (local204 < ComponentList.menuX - MENU_BOUNDS_PADDING || local204 > ComponentList.menuWidth + ComponentList.menuX + MENU_BOUNDS_PADDING || ComponentList.menuY - MENU_BOUNDS_PADDING > local93 || local93 > ComponentList.menuHeight + ComponentList.menuY + MENU_BOUNDS_PADDING) {
+        @Pc(204) int menuX;
+        if (clickButton != MOUSE_BUTTON_LEFT) {
+            componentSlot = Mouse.lastMouseY;
+            menuX = Mouse.lastMouseX;
+            if (menuX < ComponentList.menuX - MENU_BOUNDS_PADDING || menuX > ComponentList.menuWidth + ComponentList.menuX + MENU_BOUNDS_PADDING || ComponentList.menuY - MENU_BOUNDS_PADDING > componentSlot || componentSlot > ComponentList.menuHeight + ComponentList.menuY + MENU_BOUNDS_PADDING) {
                 ClientScriptRunner.menuVisible = false;
                 ComponentList.redrawScreen(ComponentList.menuX, ComponentList.menuWidth, ComponentList.menuY, ComponentList.menuHeight);
             }
         }
-        if (local20 != MOUSE_BUTTON_LEFT) {
+        if (clickButton != MOUSE_BUTTON_LEFT) {
             return;
         }
-        local204 = ComponentList.menuX;
-        local93 = ComponentList.menuY;
-        local99 = ComponentList.menuWidth;
-        @Pc(265) int local265 = Mouse.mouseClickX;
-        @Pc(267) int local267 = Mouse.mouseClickY;
-        @Pc(269) int local269 = -1;
-        for (@Pc(271) int local271 = 0; local271 < MiniMenu.menuActionRow; local271++) {
-            @Pc(289) int local289;
+        menuX = ComponentList.menuX;
+        componentSlot = ComponentList.menuY;
+        componentId = ComponentList.menuWidth;
+        @Pc(265) int mouseClickX = Mouse.mouseClickX;
+        @Pc(267) int mouseClickY = Mouse.mouseClickY;
+        @Pc(269) int selectedRow = -1;
+        for (@Pc(271) int rowIndex = 0; rowIndex < MiniMenu.menuActionRow; rowIndex++) {
+            @Pc(289) int rowYPosition;
             if (ComponentList.hasScrollbar) {
-                local289 = (MiniMenu.menuActionRow - local271 - 1) * MENU_OPTION_ROW_HEIGHT + local93 + MENU_Y_OFFSET_SCROLLBAR;
+                rowYPosition = (MiniMenu.menuActionRow - rowIndex - 1) * MENU_OPTION_ROW_HEIGHT + componentSlot + MENU_Y_OFFSET_SCROLLBAR;
             } else {
-                local289 = (MiniMenu.menuActionRow - local271 - 1) * MENU_OPTION_ROW_HEIGHT + local93 + MENU_Y_OFFSET_NO_SCROLLBAR;
+                rowYPosition = (MiniMenu.menuActionRow - rowIndex - 1) * MENU_OPTION_ROW_HEIGHT + componentSlot + MENU_Y_OFFSET_NO_SCROLLBAR;
             }
-            if (local265 > local204 && local204 + local99 > local265 && local289 - MENU_HIT_AREA_TOP < local267 && local289 + MENU_HIT_AREA_BOTTOM > local267) {
-                local269 = local271;
+            if (mouseClickX > menuX && menuX + componentId > mouseClickX && rowYPosition - MENU_HIT_AREA_TOP < mouseClickY && rowYPosition + MENU_HIT_AREA_BOTTOM > mouseClickY) {
+                selectedRow = rowIndex;
             }
         }
-        if (local269 != -1) {
-            MiniMenu.doAction(local269);
+        if (selectedRow != -1) {
+            MiniMenu.doAction(selectedRow);
         }
         ClientScriptRunner.menuVisible = false;
         ComponentList.redrawScreen(ComponentList.menuX, ComponentList.menuWidth, ComponentList.menuY, ComponentList.menuHeight);
