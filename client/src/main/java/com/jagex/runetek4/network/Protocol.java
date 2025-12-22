@@ -543,7 +543,7 @@ public class Protocol {
                 chatType = inboundBuffer.g1();
                 @Pc(910) boolean local910 = false;
                 local916 = inboundBuffer.g2();
-                @Pc(922) long local922 = (messageId1 << 32) + messageId2;
+                @Pc(922) long local922 = (messageId1 << MESSAGE_ID_HIGH_SHIFT) + messageId2;
                 @Pc(924) int local924 = 0;
                 label1320: while (true) {
                     if (local924 < MAX_RECENT_MESSAGES) {
@@ -778,7 +778,7 @@ public class Protocol {
                         }
                         if (setVerifyID(verifyID)) {
                             for (i = count; i <= slot; i++) {
-                                messageId2 = (long) i + ((long) param1 << 32);
+                                messageId2 = (long) i + ((long) param1 << MESSAGE_ID_HIGH_SHIFT);
                                 local1804 = (ServerActiveProperties) ComponentList.properties.get(messageId2);
                                 if (local1804 != null) {
                                     local1814 = new ServerActiveProperties(local1804.events, ii);
@@ -800,9 +800,9 @@ public class Protocol {
                         param1 = inboundBuffer.g2_al1();
                         world = inboundBuffer.g4rme();
                         slot = inboundBuffer.g2_alt3();
-                        if (world >> 30 == 0) {
+                        if (world >> ENTITY_TYPE_SHIFT_CHECK == 0) {
                             @Pc(1994) SeqType local1994;
-                            if (world >> 29 != 0) {
+                            if (world >> ENTITY_TYPE_NPC_SHIFT != 0) {
                                 count = world & ENTITY_ID_MASK;
                                 @Pc(1894) Npc local1894 = NpcList.npcs[count];
                                 if (local1894 != null) {
@@ -834,7 +834,7 @@ public class Protocol {
                                         }
                                     }
                                 }
-                            } else if (world >> 28 != 0) {
+                            } else if (world >> ENTITY_TYPE_PLAYER_SHIFT != 0) {
                                 count = world & ENTITY_ID_MASK;
                                 @Pc(2033) Player local2033;
                                 if (PlayerList.localPid == count) {
@@ -894,7 +894,7 @@ public class Protocol {
                         world = inboundBuffer.g2();
                         slot = inboundBuffer.g2_alt2();
                         if (setVerifyID(verifyID)) {
-                            DelayedStateChange.setComponentModelRotationSpeedServer(slot + (world << 16), ii);
+                            DelayedStateChange.setComponentModelRotationSpeedServer(slot + (world << COMPONENT_UPPER_WORD_SHIFT), ii);
                         }
                         currentOpcode = -1;
                         return true;
@@ -915,7 +915,7 @@ public class Protocol {
                         PlayerSkillXpTable.updatedStats[PlayerSkillXpTable.updatedStatsWriterIndex++ & CIRCULAR_BUFFER_MASK] = world;
                         currentOpcode = -1;
                         return true;
-                    } else if (currentOpcode == 104 || currentOpcode == 121 || currentOpcode == 97 || currentOpcode == 14 || currentOpcode == ZONE_LOC_ATTACH || currentOpcode == 135 || currentOpcode == 17 || currentOpcode == 16 || currentOpcode == 240 || currentOpcode == 33 || currentOpcode == ZONE_LOC_MERGE || currentOpcode == ZONE_LOC_DEL || currentOpcode == ZONE_LOC_ADD_CHANGE) {
+                    } else if (currentOpcode == ZONE_MAP_PROJANIM_SPECIFIC || currentOpcode == ZONE_MAP_PROJANIM_SMALL || currentOpcode == ZONE_SOUND_AREA || currentOpcode == ZONE_OBJ_COUNT || currentOpcode == ZONE_LOC_ATTACH || currentOpcode == ZONE_OBJ_ADD_PRIVATE || currentOpcode == ZONE_MAP_ANIM || currentOpcode == ZONE_MAP_PROJANIM || currentOpcode == ZONE_OBJ_DEL || currentOpcode == ZONE_OBJ_ADD || currentOpcode == ZONE_LOC_MERGE || currentOpcode == ZONE_LOC_DEL || currentOpcode == ZONE_LOC_ADD_CHANGE) {
                         readZonePacket();
                         currentOpcode = -1;
                         return true;
@@ -1128,7 +1128,7 @@ public class Protocol {
                             chatFlags = inboundBuffer.g1();
                             j = inboundBuffer.g2();
                             @Pc(3263) boolean local3263 = false;
-                            @Pc(3270) long local3270 = (username << 32) + messageId1;
+                            @Pc(3270) long local3270 = (username << MESSAGE_ID_HIGH_SHIFT) + messageId1;
                             @Pc(3272) int local3272 = 0;
                             label1402: while (true) {
                                 if (local3272 < MAX_RECENT_MESSAGES) {
@@ -1302,7 +1302,7 @@ public class Protocol {
                                 slot = inboundBuffer.g2_al1();
                                 count = inboundBuffer.g2_alt3();
                                 if (setVerifyID(verifyID)) {
-                                    DelayedStateChange.updateComponentModel(world, 7, param1, slot << 16 | count);
+                                    DelayedStateChange.updateComponentModel(world, 7, param1, slot << COMPONENT_UPPER_WORD_SHIFT | count);
                                 }
                                 currentOpcode = -1;
                                 return true;
@@ -1433,7 +1433,7 @@ public class Protocol {
                                 messageId1 = inboundBuffer.g3();
                                 chatFlags = inboundBuffer.g1();
                                 @Pc(4425) boolean local4425 = false;
-                                @Pc(4431) long local4431 = messageId1 + (username << 32);
+                                @Pc(4431) long local4431 = messageId1 + (username << MESSAGE_ID_HIGH_SHIFT);
                                 local3002 = 0;
                                 label1450: while (true) {
                                     if (local3002 >= MAX_RECENT_MESSAGES) {
@@ -1477,7 +1477,7 @@ public class Protocol {
                                 username = inboundBuffer.g8();
                                 messageId1 = inboundBuffer.g2();
                                 messageId2 = inboundBuffer.g3();
-                                @Pc(4626) long local4626 = (messageId1 << 32) + messageId2;
+                                @Pc(4626) long local4626 = (messageId1 << MESSAGE_ID_HIGH_SHIFT) + messageId2;
                                 chatType = inboundBuffer.g1();
                                 @Pc(4632) boolean local4632 = false;
                                 @Pc(4634) int local4634 = 0;
@@ -1543,7 +1543,7 @@ public class Protocol {
                                 }
                                 currentOpcode = -1;
                                 return true;
-                            } else if (currentOpcode == 171) {
+                            } else if (currentOpcode == IF_SETHIDE) {
                                 ii = inboundBuffer.p4rme();
                                 argTypes = inboundBuffer.gjstr();
                                 int verifyID = inboundBuffer.g2_alt2();
@@ -1646,7 +1646,7 @@ public class Protocol {
                                     }
                                     if (setVerifyID(verifyID)) {
                                         for (i = slot; i <= param1; i++) {
-                                            messageId2 = ((long) world << 32) + ((long) i);
+                                            messageId2 = ((long) world << MESSAGE_ID_HIGH_SHIFT) + ((long) i);
                                             local1804 = (ServerActiveProperties) ComponentList.properties.get(messageId2);
                                             if (local1804 != null) {
                                                 local1814 = new ServerActiveProperties(count, local1804.targetParam);
@@ -2128,7 +2128,7 @@ public class Protocol {
                 int x = SceneGraph.currentChunkX + (local15 >> ZONE_COORD_SHIFT & ZONE_COORD_MASK); // Zone X
                 int z = SceneGraph.currentChunkZ + (local15 & ZONE_COORD_MASK); // Zone Z
                 int info = inboundBuffer.g1_alt3(); // Shape + rotation
-                int shape = info >> 2; // Shape type
+                int shape = info >> LOC_SHAPE_SHIFT; // Shape type
                 int angle = info & ROTATION_MASK; // Angle
                 local45 = Loc.LAYERS[shape]; // Rendering layer
                 local218 = inboundBuffer.g2_al1(); // Location type ID
@@ -2148,7 +2148,7 @@ public class Protocol {
                     // Contains transformation matrices for smooth OpenGl animation
                     // Skiped if in Software renderer
                     local15 = inboundBuffer.g1(); // Shape + rotation packed
-                    local23 = local15 >> 2; // Location shape
+                    local23 = local15 >> LOC_SHAPE_SHIFT; // Location shape
                     local19 = local15 & ROTATION_MASK; // Rotation (0-3, 0/90/180/270 degrees)
                     local27 = inboundBuffer.g1(); // Zone coordnates packed
                     local31 = SceneGraph.currentChunkX + (local27 >> ZONE_COORD_SHIFT & ZONE_COORD_MASK); // Extract zone X

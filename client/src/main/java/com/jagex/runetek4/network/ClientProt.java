@@ -49,6 +49,7 @@ public class ClientProt {
     public static int MOVE_GAMECLICK = 215;
     public static int MOVE_MINIMAPCLICK = 39;
     public static int MOVE_SCRIPTED = 77;
+    public static int MOVE_CLICK_ALT = 179;
 
     // Player actions
     public static int OPPLAYER1 = 68;
@@ -59,6 +60,7 @@ public class ClientProt {
     public static int OPPLAYER6 = 71;
     public static int OPPLAYER7 = 114;
     public static int OPPLAYERT = 148;
+    public static int OPPLAYER_ACTION_ALT = 106;
 
     // NPC actions
     public static int OPNPC1 = 78;
@@ -67,6 +69,7 @@ public class ClientProt {
     public static int OPNPC4 = 30;
     public static int OPNPC5 = 253;
     public static int OPNPCT = 239;
+    public static int OPNPC_ACTION2_ALT = 3;
 
     // Location actions
     public static int OPLOC1 = 254;
@@ -84,6 +87,7 @@ public class ClientProt {
     public static int OPOBJSTACK4 = 101;
     public static int OPOBJSTACK5 = 195;
     public static int OPOBJSTACKT = 218;
+    public static int OPOBJSTACK_ACTION2_ALT = 33;
 
     // Inventory item actions
     public static int OPOBJ1 = 72;
@@ -126,6 +130,7 @@ public class ClientProt {
     public static int EVENT_CAMERA_POSITION = 21;
     public static int EVENT_APPLET_FOCUS = 22;
     public static int WINDOW_STATUS = 243;
+    public static int EVENT_IDLE = 245;
 
     // Game actions
     public static int LOGOUT = 10;

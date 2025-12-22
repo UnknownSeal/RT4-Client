@@ -496,7 +496,7 @@ public class Game {
                                                 MiniMenu.anInt3096 = 0;
                                             } else if (Protocol.walkRequestState == 2) {
                                                 if (MiniMenu.clickTileX != -1) {
-                                                    Protocol.outboundBuffer.pIsaac1(179);
+                                                    Protocol.outboundBuffer.pIsaac1(ClientProt.MOVE_CLICK_ALT);
                                                     Protocol.outboundBuffer.p2(Camera.sceneBaseTileZ + MiniMenu.clickTileZ);
                                                     Protocol.outboundBuffer.p2(MiniMenu.clickTileX + Camera.sceneBaseTileX);
                                                     Crosshair.CrosshairCycle = 0;
@@ -557,7 +557,7 @@ public class Game {
                                             if (y > 15000 && x > 15000) {
                                                 Protocol.idleTimeout = 250;
                                                 Mouse.setIdleLoops(14500);
-                                                Protocol.outboundBuffer.pIsaac1(245);
+                                                Protocol.outboundBuffer.pIsaac1(ClientProt.EVENT_IDLE);
                                             }
                                             if (Protocol.openUrlRequest != null && Protocol.openUrlRequest.status == 1) {
                                                 if (Protocol.openUrlRequest.result != null) {

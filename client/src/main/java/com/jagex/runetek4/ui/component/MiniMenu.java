@@ -47,8 +47,6 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-import static com.jagex.runetek4.network.ClientProt.OPLOC6;
-
 public class MiniMenu {
     @OriginalMember(owner = "runetek4.client!se", name = "m", descriptor = "Lclient!na;")
     public static final JString aClass100_961 = JString.parse(" )2>");
@@ -1152,7 +1150,7 @@ public class MiniMenu {
             Crosshair.x = Mouse.mouseClickX;
             Crosshair.CrosshairMode = 2;
             Crosshair.y = Mouse.mouseClickY;
-            Protocol.outboundBuffer.pIsaac1(OPLOC6);
+            Protocol.outboundBuffer.pIsaac1(ClientProt.OPLOC6);
             Protocol.outboundBuffer.p2_alt3(keyInt);
         }
         if (actionCode == COMPONENT_ACTION) {
@@ -1330,7 +1328,7 @@ public class MiniMenu {
             } else if (LoginManager.staffModLevel > 0 && Keyboard.pressedKeys[82] && Keyboard.pressedKeys[81]) {
                 Cheat.teleport(param1 + Camera.sceneBaseTileX, Camera.sceneBaseTileZ - -param2, Player.currentLevel);
             } else {
-                Protocol.outboundBuffer.pIsaac1(179);
+                Protocol.outboundBuffer.pIsaac1(ClientProt.MOVE_CLICK_ALT);
                 Protocol.outboundBuffer.p2(param2 + Camera.sceneBaseTileZ);
                 Protocol.outboundBuffer.p2(param1 + Camera.sceneBaseTileX);
             }
@@ -1343,7 +1341,7 @@ public class MiniMenu {
                 Crosshair.CrosshairCycle = 0;
                 Crosshair.CrosshairMode = 2;
                 Crosshair.x = Mouse.mouseClickX;
-                Protocol.outboundBuffer.pIsaac1(106);
+                Protocol.outboundBuffer.pIsaac1(ClientProt.OPPLAYER_ACTION_ALT);
                 Protocol.outboundBuffer.p2(keyInt);
             }
         }
@@ -1360,7 +1358,7 @@ public class MiniMenu {
             Crosshair.CrosshairCycle = 0;
             Crosshair.x = Mouse.mouseClickX;
             Crosshair.CrosshairMode = 2;
-            Protocol.outboundBuffer.pIsaac1(33);
+            Protocol.outboundBuffer.pIsaac1(ClientProt.OPOBJSTACK_ACTION2_ALT);
             Protocol.outboundBuffer.p2(keyInt);
             Protocol.outboundBuffer.p2(Camera.sceneBaseTileX + param1);
             Protocol.outboundBuffer.p2_alt1(Camera.sceneBaseTileZ + param2);
@@ -1373,7 +1371,7 @@ public class MiniMenu {
                 Crosshair.CrosshairCycle = 0;
                 Crosshair.y = Mouse.mouseClickY;
                 Crosshair.CrosshairMode = 2;
-                Protocol.outboundBuffer.pIsaac1(3);
+                Protocol.outboundBuffer.pIsaac1(ClientProt.OPNPC_ACTION2_ALT);
                 Protocol.outboundBuffer.p2_alt3(keyInt);
             }
         }

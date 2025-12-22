@@ -55,11 +55,18 @@ public class ProtocolConstants {
     public static final int NPC_UPDATE_FLAG_EXTENDED = 0x8;
     public static final int PLAYER_UPDATE_FLAG_EXTENDED = 0x10;
 
+    // Entity type flags
+    public static final int ENTITY_TYPE_SHIFT_CHECK = 30;
+    public static final int ENTITY_TYPE_NPC_SHIFT = 29;
+    public static final int ENTITY_TYPE_PLAYER_SHIFT = 28;
+
     // Random data
     public static final int RANDOM_DATA_SIZE = 24;
 
     // Bit shift
     public static final int BIT_SHIFT_1 = 0x1;
+    public static final int MESSAGE_ID_HIGH_SHIFT = 32;
+    public static final int COMPONENT_UPPER_WORD_SHIFT = 16;
 
     // Network bits
     public static final int NPC_COUNT_BITS = 8;
@@ -81,4 +88,6 @@ public class ProtocolConstants {
     // Build area
     public static final int BUILD_AREA_SIZE = 13;
 
+    // Location shape extraction
+    public static final int LOC_SHAPE_SHIFT = 2;
 }
