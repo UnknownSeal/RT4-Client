@@ -25,21 +25,14 @@ import org.openrs2.deob.annotation.Pc;
 import java.io.IOException;
 
 public class ClientProt {
+
+    // System/Security
     public static int DETECT_MODIFIED_CLIENT = 20;
-    public static int FRIENDLIST_ADD = 120;
-    public static int FRIENDLIST_DEL = 57;
-    public static int FRIEND_SETRANK = 188;
-    public static int TRANSMITVAR_VERIFYID = 177;
-    public static int SOUND_SONGEND = 137;
-    public static int MESSAGE_PUBLIC = 237;
-    public static int MESSAGE_PRIVATE = 201;
-    public static int OPLOC6 = 94;
-    public static int WINDOW_STATUS = 243;
     public static int NO_TIMEOUT = 93;
     public static int CLIENT_CHEAT = 44;
-    public static int IGNORELIST_ADD = 34;
-    public static int IGNORELIST_DEL = 213;
+    public static int TRANSMITVAR_VERIFYID = 177;
 
+    // Interface buttons
     public static int IF_BUTTON1 = 155;
     public static int IF_BUTTON2 = 196;
     public static int IF_BUTTON3 = 124;
@@ -50,20 +43,35 @@ public class ClientProt {
     public static int IF_BUTTON8 = 64;
     public static int IF_BUTTON9 = 53;
     public static int IF_BUTTON10 = 9;
+    public static int CLOSE_MODAL = 184;
 
-    public static int REPORT_ABUSE = 99;
-
+    // Movement
     public static int MOVE_GAMECLICK = 215;
     public static int MOVE_MINIMAPCLICK = 39;
     public static int MOVE_SCRIPTED = 77;
 
-    public static int CLOSE_MODAL = 184;
+    // Social
+    public static int MESSAGE_PUBLIC = 237;
+    public static int MESSAGE_PRIVATE = 201;
+    public static int FRIENDLIST_ADD = 120;
+    public static int FRIENDLIST_DEL = 57;
+    public static int FRIEND_SETRANK = 188;
+    public static int IGNORELIST_ADD = 34;
+    public static int IGNORELIST_DEL = 213;
+    public static int REPORT_ABUSE = 99;
 
-    // Event stuff
+    // Audio
+    public static int SOUND_SONGEND = 137;
+
+    // World interaction
+    public static int OPLOC6 = 94;
+
+    // Client events
     public static int EVENT_MOUSE_MOVE = 123;
     public static int EVENT_MOUSE_CLICK = 75;
     public static int EVENT_CAMERA_POSITION = 21;
     public static int EVENT_APPLET_FOCUS = 22;
+    public static int WINDOW_STATUS = 243;
 
     @OriginalMember(owner = "client!ej", name = "i", descriptor = "(I)V")
     public static void sendWindowStatus() {
