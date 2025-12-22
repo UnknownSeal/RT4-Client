@@ -658,7 +658,7 @@ public class LoginManager {
             }
             if (step == 6) {
                 Protocol.outboundBuffer.offset = 0;
-                Protocol.outboundBuffer.pIsaac1(17);
+                Protocol.outboundBuffer.pIsaac1(ClientProt.LOGIN_TIMINGS);
                 Protocol.gameServerSocket.write(Protocol.outboundBuffer.offset, Protocol.outboundBuffer.data);
                 step = 4;
                 return;

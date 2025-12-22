@@ -73,8 +73,8 @@ import static com.jagex.runetek4.game.GameConstants.*;
 import static com.jagex.runetek4.game.logic.CollisionConstants.*;
 import static com.jagex.runetek4.game.world.CoordinateConstants.*;
 import static com.jagex.runetek4.network.ClientProt.TRANSMITVAR_VERIFYID;
-import static com.jagex.runetek4.network.ProtocolContants.*;
-import static com.jagex.runetek4.network.ProtocolContants.DYNAMIC_REGION_BITS;
+import static com.jagex.runetek4.network.ProtocolConstants.*;
+import static com.jagex.runetek4.network.ProtocolConstants.DYNAMIC_REGION_BITS;
 import static com.jagex.runetek4.network.ServerProt.*;
 
 public class Protocol {
@@ -119,7 +119,7 @@ public class Protocol {
     public static final JString TRADE = JString.parse(":trade:");
 
     @OriginalMember(owner = "runetek4.client!pb", name = "x", descriptor = "[[[I")
-    public static final int[][][] dynamicRegionData = new int[CollisionConstants.LEVELS][ProtocolContants.BUILD_AREA_SIZE][ProtocolContants.BUILD_AREA_SIZE];
+    public static final int[][][] dynamicRegionData = new int[CollisionConstants.LEVELS][ProtocolConstants.BUILD_AREA_SIZE][ProtocolConstants.BUILD_AREA_SIZE];
 
     @OriginalMember(owner = "client!fc", name = "f", descriptor = "Lclient!na;")
     public static final JString IMG0 = JString.parse("<img=0>");
@@ -495,7 +495,7 @@ public class Protocol {
         }
         @Pc(786) int param1;
         @Pc(790) JString messageText;
-        if (currentOpcode == 123) {
+        if (currentOpcode == IF_SETTEXT) {
             ii = inboundBuffer.g2_al1();
             int verifyID = inboundBuffer.g2_alt2();
             messageText = inboundBuffer.gjstr();
@@ -582,7 +582,7 @@ public class Protocol {
             @Pc(1146) int count;
             @Pc(1160) int chatFlags;
             @Pc(1245) boolean local1245;
-            if (currentOpcode == 55) {
+            if (currentOpcode == CLANCHAT_CHANNEL) {
                 ClanChat.transmitAt = ComponentList.transmitTimer;
                 senderName = inboundBuffer.g8();
                 if (senderName == 0L) {
@@ -645,7 +645,7 @@ public class Protocol {
                 readPlayerInfoPacket();
                 currentOpcode = -1;
                 return true;
-            } else if (currentOpcode == 48) {
+            } else if (currentOpcode == IF_SETTEXT_ALT) {
                 int verifyID = inboundBuffer.g2();
                 argTypes = inboundBuffer.gjstr();
                 world = inboundBuffer.g2_alt3();
@@ -654,7 +654,7 @@ public class Protocol {
                 }
                 currentOpcode = -1;
                 return true;
-            } else if (currentOpcode == 232) {
+            } else if (currentOpcode == CHAT_FILTER_SETTINGS) {
                 Chat.publicFilter = inboundBuffer.g1();
                 Chat.privateFilter = inboundBuffer.g1();
                 Chat.tradeFilter = inboundBuffer.g1();
@@ -662,7 +662,7 @@ public class Protocol {
                 return true;
             } else {
                 @Pc(1409) JString local1409;
-                if (currentOpcode == 44) {
+                if (currentOpcode == SET_PLAYER_OPTION) {
                     ii = inboundBuffer.g2_alt3();
                     if (ii == 65535) {
                         ii = -1;
@@ -888,7 +888,7 @@ public class Protocol {
                         }
                         currentOpcode = -1;
                         return true;
-                    } else if (currentOpcode == 207) {
+                    } else if (currentOpcode == IF_SETMODELROTATION) {
                         ii = inboundBuffer.p4rme();
                         int verifyID = inboundBuffer.g2_alt2();
                         world = inboundBuffer.g2();
@@ -949,7 +949,7 @@ public class Protocol {
                         }
                         currentOpcode = -1;
                         return true;
-                    } else if (currentOpcode == 132) {
+                    } else if (currentOpcode == UPDATE_VIEW) {
                         ii = inboundBuffer.g2();
                         int verifyID = inboundBuffer.g2_alt2();
                         world = inboundBuffer.g2_alt3();
@@ -988,7 +988,7 @@ public class Protocol {
                         ComponentList.redraw(local2666);
                         currentOpcode = -1;
                         return true;
-                    } else if (currentOpcode == 130) {
+                    } else if (currentOpcode == IF_SETMODEL) {
                         ii = inboundBuffer.g4me();
                         int verifyID = inboundBuffer.g2_alt3();
                         world = inboundBuffer.g2_alt2();
@@ -1165,7 +1165,7 @@ public class Protocol {
                             return true;
                         } else {
                             @Pc(3456) SubInterface oldSubInterface;
-                            if (currentOpcode == 176) {
+                            if (currentOpcode == IF_MOVESUB) {
                                 ii = inboundBuffer.g4rme();
                                 int verifyID = inboundBuffer.g2_alt2();
                                 world = inboundBuffer.g4rme();
@@ -1210,7 +1210,7 @@ public class Protocol {
                                 }
                                 currentOpcode = -1;
                                 return true;
-                            } else if (currentOpcode == 2) {
+                            } else if (currentOpcode == IF_SETCOLOR) {
                                 ii = inboundBuffer.g4rme();
                                 int verifyID = inboundBuffer.g2_alt2();
                                 world = inboundBuffer.g2_alt3();
@@ -1244,7 +1244,7 @@ public class Protocol {
                                 ComponentList.miscTransmitAt = ComponentList.transmitTimer;
                                 currentOpcode = -1;
                                 return true;
-                            } else if (currentOpcode == 209) {
+                            } else if (currentOpcode == IF_RUNSCRIPT) {
                                 if (ComponentList.topLevelInterface != -1) {
                                     ComponentList.runScripts(0, ComponentList.topLevelInterface);
                                 }
@@ -1273,7 +1273,7 @@ public class Protocol {
                                 ComponentList.miscTransmitAt = ComponentList.transmitTimer;
                                 currentOpcode = -1;
                                 return true;
-                            } else if (currentOpcode == 71) {
+                            } else if (currentOpcode == MESSAGE_BROADCAST) {
                                 senderName = inboundBuffer.g8();
                                 messageText = Font.escape(formatChatMessage(inboundBuffer).encodeMessage());
                                 Chat.addMessage(Base37.fromBase37(senderName).toTitleCase(), 6, messageText);
@@ -1295,7 +1295,7 @@ public class Protocol {
                                 }
                                 currentOpcode = -1;
                                 return true;
-                            } else if (currentOpcode == 111) {
+                            } else if (currentOpcode == IF_SETMODEL_TYPE7) {
                                 int verifyID = inboundBuffer.g2_alt2();
                                 param1 = inboundBuffer.p4rme();
                                 world = inboundBuffer.g2_alt3();
@@ -1327,7 +1327,7 @@ public class Protocol {
                                 }
                                 currentOpcode = -1;
                                 return true;
-                            } else if (currentOpcode == 131) {
+                            } else if (currentOpcode == RESET_PLAYER_NPC_ANIMS) {
                                 // RESET_ANIMS
                                 for (ii = 0; ii < PlayerList.players.length; ii++) {
                                     if (PlayerList.players[ii] != null) {
@@ -1341,7 +1341,7 @@ public class Protocol {
                                 }
                                 currentOpcode = -1;
                                 return true;
-                            } else if (currentOpcode == 217) {
+                            } else if (currentOpcode == HINT_ARROW) {
                                 ii = inboundBuffer.g1();
                                 @Pc(4084) MapMarker local4084 = new MapMarker();
                                 param1 = ii >> MAP_MARKER_PARAM_SHIFT;
@@ -1385,7 +1385,7 @@ public class Protocol {
                                 }
                                 currentOpcode = -1;
                                 return true;
-                            } else if (currentOpcode == 126) {
+                            } else if (currentOpcode == UPDATE_IGNORELIST) {
                                 // UPDATE_IGNORELIST
                                 IgnoreList.ignoreCount = packetSize / IGNORE_LIST_ENTRY_SIZE;
                                 for (ii = 0; ii < IgnoreList.ignoreCount; ii++) {
@@ -1521,7 +1521,7 @@ public class Protocol {
                                 readRebuildPacket(true);
                                 currentOpcode = -1;
                                 return true;
-                            } else if (currentOpcode == 172) {
+                            } else if (currentOpcode == SOUND_EFFECT) {
                                 ii = inboundBuffer.g2();
                                 param1 = inboundBuffer.g1();
                                 if (ii == 65535) {
@@ -1531,7 +1531,7 @@ public class Protocol {
                                 SoundPlayer.play(param1, ii, world);
                                 currentOpcode = -1;
                                 return true;
-                            } else if (currentOpcode == 66) {
+                            } else if (currentOpcode == IF_SETMODEL_HEAD) {
                                 int verifyID = inboundBuffer.g2_alt3();
                                 param1 = inboundBuffer.g4rme();
                                 if (setVerifyID(verifyID)) {
@@ -1605,7 +1605,7 @@ public class Protocol {
                                     Game.processLogout();
                                     currentOpcode = -1;
                                     return false;
-                                } else if (currentOpcode == 116) {
+                                } else if (currentOpcode == GE_OFFER_UPDATE) {
                                     ii = inboundBuffer.g1();
                                     if (inboundBuffer.g1() == 0) {
                                         StockMarketManager.offers[ii] = new StockMarketOffer();
@@ -1616,7 +1616,7 @@ public class Protocol {
                                     currentOpcode = -1;
                                     StockMarketManager.transmitAt = ComponentList.transmitTimer;
                                     return true;
-                                } else if (currentOpcode == 73) {
+                                } else if (currentOpcode == IF_SETMODEL_TYPE2) {
                                     ii = inboundBuffer.g2_alt2();
                                     param1 = inboundBuffer.g4me();
                                     if (ii == INVALID_ID_U16) {
@@ -1661,7 +1661,7 @@ public class Protocol {
                                     }
                                     currentOpcode = -1;
                                     return true;
-                                } else if (currentOpcode == 197) {
+                                } else if (currentOpcode == FRIENDLIST_STATE) {
                                     FriendList.state = inboundBuffer.g1();
                                     FriendList.transmitAt = ComponentList.transmitTimer;
                                     currentOpcode = -1;
@@ -1735,7 +1735,7 @@ public class Protocol {
                                     currentOpcode = -1;
                                     ClanChat.transmitAt = ComponentList.transmitTimer;
                                     return true;
-                                } else if (currentOpcode == 50) {
+                                } else if (currentOpcode == IF_SETMODEL_OBJ) {
                                     ii = inboundBuffer.g4();
                                     param1 = inboundBuffer.p4rme();
                                     world = inboundBuffer.g2_alt3();
@@ -1823,7 +1823,7 @@ public class Protocol {
                                     MusicPlayer.playSong(ii);
                                     currentOpcode = -1;
                                     return true;
-                                } else if (currentOpcode == 208) {
+                                } else if (currentOpcode == MUSIC_JINGLE) {
                                     ii = inboundBuffer.g3le();
                                     param1 = inboundBuffer.g2_al1();
                                     if (param1 == INVALID_ID_U16) {

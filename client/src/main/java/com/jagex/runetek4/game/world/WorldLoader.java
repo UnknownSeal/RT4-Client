@@ -737,7 +737,7 @@ public class WorldLoader {
         } else {
             Client.processGameStatus(30);
             if (Protocol.gameServerSocket != null) {
-                Protocol.outboundBuffer.pIsaac1(110);
+                Protocol.outboundBuffer.pIsaac1(ClientProt.MAP_BUILD_COMPLETE);
             }
         }
         WorldMap.method2720();

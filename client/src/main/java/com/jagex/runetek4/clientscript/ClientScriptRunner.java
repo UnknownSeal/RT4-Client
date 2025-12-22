@@ -441,7 +441,7 @@ public final class ClientScriptRunner {
 						run(event);
 					}
 					if (ComponentList.targetComponent != null && ComponentList.canAcceptDrop(dragComponent) != null) {
-						Protocol.outboundBuffer.pIsaac1(79);
+						Protocol.outboundBuffer.pIsaac1(ClientProt.OPHELDT);
 						Protocol.outboundBuffer.p4_alt3(dragComponent.id);
 						Protocol.outboundBuffer.p2_alt1(ComponentList.targetComponent.createdComponentId);
 						Protocol.outboundBuffer.p4(ComponentList.targetComponent.id);
@@ -1993,21 +1993,21 @@ public final class ClientScriptRunner {
 										if (tempString1.isInt()) {
 											tempInt1 = tempString1.parseInt();
 										}
-										Protocol.outboundBuffer.pIsaac1(23);
+										Protocol.outboundBuffer.pIsaac1(ClientProt.IF_ON_COMPONENT);
 										Protocol.outboundBuffer.p4(tempInt1);
 										continue;
 									}
 									if (opcode == 3105) {
 										ssp--;
 										tempString1 = scriptStringValues[ssp];
-										Protocol.outboundBuffer.pIsaac1(244);
+										Protocol.outboundBuffer.pIsaac1(ClientProt.IF_ON_COMPONENT2);
 										Protocol.outboundBuffer.p8(tempString1.encode37());
 										continue;
 									}
 									if (opcode == 3106) {
 										ssp--;
 										tempString1 = scriptStringValues[ssp];
-										Protocol.outboundBuffer.pIsaac1(65);
+										Protocol.outboundBuffer.pIsaac1(ClientProt.IF_ON_COMPONENT3);
 										Protocol.outboundBuffer.p1(tempString1.length() + 1);
 										Protocol.outboundBuffer.pjstr(tempString1);
 										continue;
@@ -2040,7 +2040,7 @@ public final class ClientScriptRunner {
 									if (opcode == 3110) {
 										isp--;
 										tempInt2 = scriptIntValues[isp];
-										Protocol.outboundBuffer.pIsaac1(111);
+										Protocol.outboundBuffer.pIsaac1(ClientProt.IF_ON_COMPONENT4);
 										Protocol.outboundBuffer.p2(tempInt2);
 										continue;
 									}
@@ -2975,7 +2975,7 @@ public final class ClientScriptRunner {
 													Chat.publicFilter = scriptIntValues[isp];
 													Chat.privateFilter = scriptIntValues[isp + 1];
 													Chat.tradeFilter = scriptIntValues[isp + 2];
-													Protocol.outboundBuffer.pIsaac1(157);
+													Protocol.outboundBuffer.pIsaac1(ClientProt.CLIENTSCRIPT_TRIGGERED);
 													Protocol.outboundBuffer.p1(Chat.publicFilter);
 													Protocol.outboundBuffer.p1(Chat.privateFilter);
 													Protocol.outboundBuffer.p1(Chat.tradeFilter);
@@ -3298,7 +3298,7 @@ public final class ClientScriptRunner {
 													continue;
 												}
 												if (opcode == 5059) {
-													Protocol.outboundBuffer.pIsaac1(167);
+													Protocol.outboundBuffer.pIsaac1(ClientProt.CLIENTSCRIPT_167);
 													Protocol.outboundBuffer.p1(0);
 													tempInt2 = Protocol.outboundBuffer.offset;
 													Protocol.outboundBuffer.p1(0);
@@ -3310,7 +3310,7 @@ public final class ClientScriptRunner {
 												if (opcode == 5060) {
 													ssp--;
 													tempString1 = scriptStringValues[ssp];
-													Protocol.outboundBuffer.pIsaac1(178);
+													Protocol.outboundBuffer.pIsaac1(ClientProt.CLIENTSCRIPT_178);
 													Protocol.outboundBuffer.p1(0);
 													tempInt1 = Protocol.outboundBuffer.offset;
 													Protocol.outboundBuffer.p8(tempString1.encode37());
@@ -3320,7 +3320,7 @@ public final class ClientScriptRunner {
 													continue;
 												}
 												if (opcode == 5061) {
-													Protocol.outboundBuffer.pIsaac1(167);
+													Protocol.outboundBuffer.pIsaac1(ClientProt.CLIENTSCRIPT_167);
 													Protocol.outboundBuffer.p1(0);
 													tempInt2 = Protocol.outboundBuffer.offset;
 													Protocol.outboundBuffer.p1(1);
@@ -3701,7 +3701,7 @@ public final class ClientScriptRunner {
 														chatTypedLowercase = scriptStringValues[ssp + 1];
 														isp--;
 														j = scriptIntValues[isp];
-														Protocol.outboundBuffer.pIsaac1(117);
+														Protocol.outboundBuffer.pIsaac1(ClientProt.CLIENTSCRIPT_117);
 														Protocol.outboundBuffer.p1(Packet.gjstrlen(tempString1) + Packet.gjstrlen(chatTypedLowercase) + 1);
 														Protocol.outboundBuffer.pjstr(tempString1);
 														Protocol.outboundBuffer.pjstr(chatTypedLowercase);

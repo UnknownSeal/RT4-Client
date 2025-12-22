@@ -1,6 +1,6 @@
 package com.jagex.runetek4.network;
 
-public class ProtocolContants {
+public class ProtocolConstants {
 
     // Packet buffers
     public static final int OUTBOUND_BUFFER_SIZE = 5000;

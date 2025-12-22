@@ -6,6 +6,7 @@ import com.jagex.runetek4.audio.spatial.AreaSoundManager;
 import com.jagex.runetek4.audio.streaming.MusicPlayer;
 import com.jagex.runetek4.data.cache.media.component.Component;
 import com.jagex.runetek4.entity.entity.PlayerList;
+import com.jagex.runetek4.network.ClientProt;
 import com.jagex.runetek4.scene.Camera;
 import com.jagex.runetek4.ui.chat.OverHeadChat;
 import com.jagex.runetek4.game.logic.PathFinder;
@@ -207,7 +208,7 @@ public class Game {
             Protocol.outboundBuffer.p1(0);
         }
         if (!Preferences.sentToServer) {
-            Protocol.outboundBuffer.pIsaac1(98);
+            Protocol.outboundBuffer.pIsaac1(ClientProt.IDLE_LOGOUT);
             Protocol.outboundBuffer.p4(Preferences.toInt());
             Preferences.sentToServer = true;
         }
@@ -407,7 +408,7 @@ public class Game {
                         } else {
                             component.swapObjs(MiniMenu.mouseInvInterfaceIndex, ComponentList.selectedInventorySlot);
                         }
-                        Protocol.outboundBuffer.pIsaac1(231);
+                        Protocol.outboundBuffer.pIsaac1(ClientProt.REFLECTION_CHECK_REPLY);
                         Protocol.outboundBuffer.p2(ComponentList.selectedInventorySlot);
                         Protocol.outboundBuffer.p4_alt1(ComponentList.clickedInventoryComponent.id);
                         Protocol.outboundBuffer.p2_alt2(MiniMenu.mouseInvInterfaceIndex);
@@ -482,7 +483,7 @@ public class Game {
                                                 MiniMenu.anInt3096 = 0;
                                             } else if (MiniMenu.anInt3096 == 2) {
                                                 if (MiniMenu.clickTileX != -1) {
-                                                    Protocol.outboundBuffer.pIsaac1(131);
+                                                    Protocol.outboundBuffer.pIsaac1(ClientProt.OPOBJT);
                                                     Protocol.outboundBuffer.p4_alt3(MiniMenu.useWithComponentId);
                                                     Protocol.outboundBuffer.p2_alt2(Camera.sceneBaseTileX + MiniMenu.clickTileX);
                                                     Protocol.outboundBuffer.p2_alt3(MiniMenu.useWithSlot);
