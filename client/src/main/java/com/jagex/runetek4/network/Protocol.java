@@ -326,7 +326,7 @@ public class Protocol {
             }
             gameServerSocket.read(0, 1, inboundBuffer.data);
             available--;
-            packetSize = inboundBuffer.data[0] & 0xFF;
+            packetSize = inboundBuffer.data[0] & BYTE_MASK;
         }
         if (packetSize == -2) {
             if (available <= 1) {
@@ -348,6 +348,7 @@ public class Protocol {
         LoginManager.idleNetCycles = 0;
         @Pc(133) int ii;
         if (currentOpcode == VARP_SMALL) {
+            // Update a player variable with a small value (< 128)
             ii = inboundBuffer.g2_alt2();
             @Pc(137) byte varpId = inboundBuffer.g1neg();
             VarpDomain.setVarpServer(varpId, ii);
@@ -357,11 +358,13 @@ public class Protocol {
         @Pc(171) int slot;
         @Pc(156) JString argTypes;
         if (currentOpcode == CLIENTSCRIPT_RUN) {
+            // Execute a ClientScript with arguments passed from the server
+            // Server sends Script ID, argument types and values
             int tracknum = inboundBuffer.g2();
             argTypes = inboundBuffer.gjstr();
             @Pc(163) Object[] scriptArgs = new Object[argTypes.length() + 1];
             for (slot = argTypes.length() - 1; slot >= 0; slot--) {
-                if (argTypes.charAt(slot) == 115) {
+                if (argTypes.charAt(slot) == 115) { // 115 = string argument
                     scriptArgs[slot + 1] = inboundBuffer.gjstr();
                 } else {
                     scriptArgs[slot + 1] = Integer.valueOf(inboundBuffer.g4());
@@ -381,6 +384,8 @@ public class Protocol {
         @Pc(277) int i;
         @Pc(506) JString worldName;
         if (currentOpcode == MESSAGE_GAME) {
+            // Game messages with special suffixes
+            // Ex. :tradereq:
             @Pc(245) JString message = inboundBuffer.gjstr();
             if (message.endsWith(TRADEREQ)) {
                 argTypes = message.substring(message.indexOf(JString.COLON_SIGN), 0);
@@ -497,6 +502,8 @@ public class Protocol {
         @Pc(786) int param1;
         @Pc(790) JString messageText;
         if (currentOpcode == IF_SETTEXT) {
+            // Set text on a interface component
+            // Takes: component, verify_id, text
             ii = inboundBuffer.g2_al1();
             int verifyID = inboundBuffer.g2_alt2();
             messageText = inboundBuffer.gjstr();
@@ -520,7 +527,7 @@ public class Protocol {
             return true;
         } else {
             @Pc(864) int world;
-            if (currentOpcode == 220) {
+            if (currentOpcode == IF_SETCOMPONENT_PARAMS) {
                 ii = inboundBuffer.p4rme();
                 param1 = inboundBuffer.g2_al1();
                 int verifyID = inboundBuffer.g2();
@@ -536,6 +543,7 @@ public class Protocol {
             @Pc(899) long messageId1;
             @Pc(904) long messageId2;
             if (currentOpcode == MESSAGE_QUICKCHAT_FRIEND) {
+                // Quickchat message from friend
                 senderName = inboundBuffer.g8();
                 inboundBuffer.g1s();
                 username = inboundBuffer.g8();
@@ -544,7 +552,7 @@ public class Protocol {
                 chatType = inboundBuffer.g1();
                 @Pc(910) boolean isDuplicate = false;
                 phraseId = inboundBuffer.g2();
-                @Pc(922) long combinedMessageId = (messageId1 << MESSAGE_ID_HIGH_SHIFT) + messageId2;
+                @Pc(922) long combinedMessageId = (messageId1 << MESSAGE_ID_HIGH_SHIFT) + messageId2; // Combine parts into 64-bit unique message ID
                 @Pc(924) int messageIndex = 0;
                 label1320: while (true) {
                     if (messageIndex < MAX_RECENT_MESSAGES) {
@@ -584,6 +592,7 @@ public class Protocol {
             @Pc(1160) int chatFlags;
             @Pc(1245) boolean isSorted;
             if (currentOpcode == CLANCHAT_CHANNEL) {
+                // Complete clan chat channel data
                 ClanChat.transmitAt = ComponentList.transmitTimer;
                 senderName = inboundBuffer.g8();
                 if (senderName == 0L) {
@@ -599,7 +608,8 @@ public class Protocol {
                 ClanChat.owner = Base37.fromBase37(senderName);
                 ClanChat.minKick = inboundBuffer.g1s();
                 count = inboundBuffer.g1();
-                if (count == 255) {
+                if (count == EXTENDED_COUNT_MARKER) {
+                    // Extended member list follows in separate packet
                     currentOpcode = -1;
                     return true;
                 }
@@ -617,6 +627,7 @@ public class Protocol {
                     }
                 }
                 chatType = ClanChat.size;
+                // Alphabetically sort clan members by name
                 while (chatType > 0) {
                     isSorted = true;
                     chatType--;
@@ -637,16 +648,19 @@ public class Protocol {
                 return true;
             } else if (currentOpcode == LAST_LOGIN_INFO) {
                 // LAST_LOGIN_INFO
+                // Last IP Adress
                 ii = inboundBuffer.g4rme();
                 Player.lastLogAddress = GameShell.signLink.getReverseDns(ii);
                 currentOpcode = -1;
                 return true;
             } else if (currentOpcode == PLAYER_INFO) {
                 // PLAYER_INFO
+                // Player entity updates
                 readPlayerInfoPacket();
                 currentOpcode = -1;
                 return true;
             } else if (currentOpcode == IF_SETTEXT_ALT) {
+                // Alternative format for setting text on component
                 int verifyID = inboundBuffer.g2();
                 argTypes = inboundBuffer.gjstr();
                 world = inboundBuffer.g2_alt3();
@@ -656,6 +670,7 @@ public class Protocol {
                 currentOpcode = -1;
                 return true;
             } else if (currentOpcode == CHAT_FILTER_SETTINGS) {
+                // Update chat filter settings
                 Chat.publicFilter = inboundBuffer.g1();
                 Chat.privateFilter = inboundBuffer.g1();
                 Chat.tradeFilter = inboundBuffer.g1();
@@ -664,8 +679,9 @@ public class Protocol {
             } else {
                 @Pc(1409) JString message_text;
                 if (currentOpcode == SET_PLAYER_OPTION) {
+                    // Sets option text, cursor type, right-click options on players
                     ii = inboundBuffer.g2_alt3();
-                    if (ii == 65535) {
+                    if (ii == INVALID_ID_U16) {
                         ii = -1;
                     }
                     param1 = inboundBuffer.g1();
@@ -682,12 +698,13 @@ public class Protocol {
                     currentOpcode = -1;
                     return true;
                 } else if (currentOpcode == VARP_LARGE) {
+                    // Update a player variable with large ID (> 255)
                     ii = inboundBuffer.g4();
                     param1 = inboundBuffer.g2_alt2();
                     VarpDomain.setVarpServer(ii, param1);
                     currentOpcode = -1;
                     return true;
-                } else if (currentOpcode == 21) {
+                } else if (currentOpcode == IF_SETCOMPONENT_PARAMS2) {
                     ii = inboundBuffer.g1_alt2();
                     int verifyID = inboundBuffer.g2();
                     world = inboundBuffer.g4me();
@@ -698,6 +715,9 @@ public class Protocol {
                     return true;
                 } else if (currentOpcode == IF_OPENTOP) {
                     // IF_OPENTOP
+                    // Open a modal
+                    // Replaces current main interface
+                    // Optionally reset world map
                     int parent = inboundBuffer.g2_alt3();
                     int reset = inboundBuffer.g1_alt1();
                     int verifyID = inboundBuffer.g2_alt3();
@@ -716,6 +736,7 @@ public class Protocol {
                     currentOpcode = -1;
                     return true;
                 } else if (currentOpcode == VARC_SMALL) {
+                    // Update client variable
                     int verifyID = inboundBuffer.g2_alt3();
                     param1 = inboundBuffer.g4();
                     world = inboundBuffer.g2_alt2();
@@ -725,6 +746,7 @@ public class Protocol {
                     currentOpcode = -1;
                     return true;
                 } else if (currentOpcode == MESSAGE_QUICKCHAT_CLANCHAT) {
+                    // Quickchat message in clan chat
                     senderName = inboundBuffer.g8();
                     world = inboundBuffer.g2();
                     message_text = QuickChatPhraseTypeList.get(world).decodeMessage(inboundBuffer);
@@ -732,16 +754,19 @@ public class Protocol {
                     currentOpcode = -1;
                     return true;
                 } else if (currentOpcode == RANDOM_VERIFY) {
+                    // Anti botting verification
                     writeRandom(inboundBuffer);
                     currentOpcode = -1;
                     return true;
                 } else if (currentOpcode == RESET_ANIMS) {
+                    // Reset varbits and trigger interface redraw
                     VarpDomain.resetVarBits();
                     ComponentList.redrawActiveInterfaces();
                     VarpDomain.updatedVarpsWriterIndex += 32;
                     currentOpcode = -1;
                     return true;
                 } else if (currentOpcode == CAM_LOOKAT) {
+                    // Set camera to look at a specific coordinate
                     int verifyID = inboundBuffer.g2();
                     param1 = inboundBuffer.g1();
                     world = inboundBuffer.g1();
@@ -753,7 +778,7 @@ public class Protocol {
                     }
                     currentOpcode = -1;
                     return true;
-                } else if (currentOpcode == 36) {
+                } else if (currentOpcode == IF_SETCOMPONENT_PARAMS3) {
                     ii = inboundBuffer.p4rme();
                     param1 = inboundBuffer.g2les();
                     int verifyID = inboundBuffer.g2_alt2();
@@ -766,20 +791,22 @@ public class Protocol {
                     @Pc(1814) ServerActiveProperties activeProperties1;
                     @Pc(1804) ServerActiveProperties activeProperties2;
                     if (currentOpcode == IF_SETEVENTS) {
+                        // Set which events a component can recieve
+                        // ex. mouse clicks, dragging, key presses
                         ii = inboundBuffer.g2_alt3();
                         param1 = inboundBuffer.g4me();
                         int verifyID = inboundBuffer.g2_alt2();
                         slot = inboundBuffer.g2_al1();
-                        if (slot == 65535) {
+                        if (slot == INVALID_ID_U16) {
                             slot = -1;
                         }
                         count = inboundBuffer.g2_alt2();
-                        if (count == 65535) {
+                        if (count == INVALID_ID_U16) {
                             count = -1;
                         }
                         if (setVerifyID(verifyID)) {
                             for (i = count; i <= slot; i++) {
-                                messageId2 = (long) i + ((long) param1 << MESSAGE_ID_HIGH_SHIFT);
+                                messageId2 = (long) i + ((long) param1 << MESSAGE_ID_HIGH_SHIFT); // Combine component ID + slot into a unique key
                                 activeProperties2 = (ServerActiveProperties) ComponentList.properties.get(messageId2);
                                 if (activeProperties2 != null) {
                                     activeProperties1 = new ServerActiveProperties(activeProperties2.events, ii);
@@ -797,12 +824,17 @@ public class Protocol {
                     }
                     @Pc(1986) int j;
                     if (currentOpcode == SPOTANIM_ENTITY) {
+                        // Play a spot animation on entity or coordinate
                         ii = inboundBuffer.g2();
                         param1 = inboundBuffer.g2_al1();
                         world = inboundBuffer.g4rme();
                         slot = inboundBuffer.g2_alt3();
+                        // Check entity type from packedworld coordinate
+                        // ENTITY_TYPE_SHIFT_CHECK = 0: Entity
+                        // ENTITY_TYPE_SHIFT_CHECK = 1: World coordinate
                         if (world >> ENTITY_TYPE_SHIFT_CHECK == 0) {
                             @Pc(1994) SeqType seqType;
+                            // ENTITY_TYPE_NPC_SHIFT = NPC
                             if (world >> ENTITY_TYPE_NPC_SHIFT != 0) {
                                 count = world & ENTITY_ID_MASK;
                                 @Pc(1894) Npc npc = NpcList.npcs[count];
@@ -811,6 +843,7 @@ public class Protocol {
                                         slot = -1;
                                     }
                                     isSorted = true;
+                                    // Check animation priority
                                     if (slot != -1 && npc.spotAnimId != -1 && SeqTypeList.get(SpotAnimTypeList.get(slot).seqId).priority < SeqTypeList.get(SpotAnimTypeList.get(npc.spotAnimId).seqId).priority) {
                                         isSorted = false;
                                     }
@@ -835,6 +868,7 @@ public class Protocol {
                                         }
                                     }
                                 }
+                                // ENTITY_TYPE_PLAYER_SHIFT = Player
                             } else if (world >> ENTITY_TYPE_PLAYER_SHIFT != 0) {
                                 count = world & ENTITY_ID_MASK;
                                 @Pc(2033) Player player;
@@ -877,9 +911,10 @@ public class Protocol {
                                 }
                             }
                         } else {
+                            // Extract coordinate from packed value
                             count = world >> PLANE_SHIFT & PLANE_MASK;
-                            i = (world >> COORD_X_SHIFT & COORD_MASK) - Camera.sceneBaseTileX;
-                            chatFlags = (world & COORD_MASK) - Camera.sceneBaseTileZ;
+                            i = (world >> COORD_X_SHIFT & COORD_MASK) - Camera.sceneBaseTileX; // X coordinate
+                            chatFlags = (world & COORD_MASK) - Camera.sceneBaseTileZ; // Z coordinate
                             if (i >= 0 && chatFlags >= 0 && i < SIZE && chatFlags < SIZE) {
                                 chatFlags = chatFlags * TILE_SIZE + TILE_CENTER_OFFSET;
                                 i = i * TILE_SIZE + TILE_CENTER_OFFSET;
@@ -890,6 +925,7 @@ public class Protocol {
                         currentOpcode = -1;
                         return true;
                     } else if (currentOpcode == IF_SETMODELROTATION) {
+                        // Set 3D model rotation speed on component
                         ii = inboundBuffer.p4rme();
                         int verifyID = inboundBuffer.g2_alt2();
                         world = inboundBuffer.g2();
@@ -901,6 +937,8 @@ public class Protocol {
                         return true;
                     } else if (currentOpcode == UPDATE_STAT) {
                         // UPDATE_STAT
+                        // Update players skill level and xp
+                        // Sends boosted level
                         ComponentList.redrawActiveInterfaces();
                         ii = inboundBuffer.g1_alt1();
                         param1 = inboundBuffer.g4rme();
@@ -908,6 +946,7 @@ public class Protocol {
                         PlayerSkillXpTable.experience[world] = param1;
                         PlayerSkillXpTable.boostedLevels[world] = ii;
                         PlayerSkillXpTable.baseLevels[world] = 1;
+                        // Calculate base level from xp
                         for (slot = 0; slot < MAX_SKILL_LEVEL_INDEX; slot++) {
                             if (PlayerSkillXpTable.xpLevelLookup[slot] <= param1) {
                                 PlayerSkillXpTable.baseLevels[world] = slot + 2;
@@ -917,10 +956,12 @@ public class Protocol {
                         currentOpcode = -1;
                         return true;
                     } else if (currentOpcode == ZONE_MAP_PROJANIM_SPECIFIC || currentOpcode == ZONE_MAP_PROJANIM_SMALL || currentOpcode == ZONE_SOUND_AREA || currentOpcode == ZONE_OBJ_COUNT || currentOpcode == ZONE_LOC_ATTACH || currentOpcode == ZONE_OBJ_ADD_PRIVATE || currentOpcode == ZONE_MAP_ANIM || currentOpcode == ZONE_MAP_PROJANIM || currentOpcode == ZONE_OBJ_DEL || currentOpcode == ZONE_OBJ_ADD || currentOpcode == ZONE_LOC_MERGE || currentOpcode == ZONE_LOC_DEL || currentOpcode == ZONE_LOC_ADD_CHANGE) {
+                        // Zone update packet
                         readZonePacket();
                         currentOpcode = -1;
                         return true;
                     } else if (currentOpcode == IF_CLOSE_SUB) {
+                        // Close sub-interface
                         int verifyID = inboundBuffer.g2();
                         param1 = inboundBuffer.g4();
                         if (setVerifyID(verifyID)) {
@@ -936,13 +977,15 @@ public class Protocol {
                         currentOpcode = -1;
                         return true;
                     } else if (currentOpcode == CAM_ORBIT) {
+                        // Set orbital camera angles
+                        // Controls yaw and pitch
                         ii = inboundBuffer.g2_al1();
                         int verifyID = inboundBuffer.g2();
                         world = inboundBuffer.g2();
                         if (setVerifyID(verifyID)) {
                             Camera.orbitCameraYaw = ii;
                             Camera.orbitCameraPitch = world;
-                            if (Camera.cameraType == 2) {
+                            if (Camera.cameraType == 2) { // Camera type 2 = orbital camera
                                 Camera.cameraPitch = Camera.orbitCameraPitch;
                                 Camera.cameraYaw = Camera.orbitCameraYaw;
                             }
@@ -951,6 +994,7 @@ public class Protocol {
                         currentOpcode = -1;
                         return true;
                     } else if (currentOpcode == UPDATE_VIEW) {
+                        // Update interface component view settings
                         ii = inboundBuffer.g2();
                         int verifyID = inboundBuffer.g2_alt2();
                         world = inboundBuffer.g2_alt3();
@@ -962,6 +1006,7 @@ public class Protocol {
                         currentOpcode = -1;
                         return true;
                     } else if (currentOpcode == MAP_CLEAR_ZONE) {
+                        // Clear all ground items in a 8x8 area
                         SceneGraph.currentChunkX = inboundBuffer.g1();
                         SceneGraph.currentChunkZ = inboundBuffer.g1_alt2();
                         for (ii = SceneGraph.currentChunkX; ii < SceneGraph.currentChunkX + ZONE_SIZE; ii++) {
@@ -980,6 +1025,7 @@ public class Protocol {
                         currentOpcode = -1;
                         return true;
                     } else if (currentOpcode == INV_RESET_COMPONENT) {
+                        // Clear all item in interface inventory component
                         ii = inboundBuffer.p4rme();
                         @Pc(2666) Component component = ComponentList.getComponent(ii);
                         for (world = 0; world < component.invSlotObjId.length; world++) {
@@ -990,6 +1036,7 @@ public class Protocol {
                         currentOpcode = -1;
                         return true;
                     } else if (currentOpcode == IF_SETMODEL) {
+                        // Set 3D model on interface component
                         ii = inboundBuffer.g4me();
                         int verifyID = inboundBuffer.g2_alt3();
                         world = inboundBuffer.g2_alt2();
@@ -1002,10 +1049,12 @@ public class Protocol {
                         currentOpcode = -1;
                         return true;
                     } else if (currentOpcode == MINIMAP_STATE) {
+                        // Set minimap visibility state
                         MiniMap.state = inboundBuffer.g1();
                         currentOpcode = -1;
                         return true;
                     } else if (currentOpcode == PLAYER_TELEPORT) {
+                        // Teleport player to coordinate
                         ii = inboundBuffer.g1_alt3();
                         param1 = inboundBuffer.g1_alt1();
                         world = inboundBuffer.g1();
@@ -1018,6 +1067,9 @@ public class Protocol {
                         @Pc(3038) JString message_Text;
                         @Pc(3020) JString quickChatText;
                         if (currentOpcode == FRIENDLIST_LOADED) {
+                            // Update or add friend to friends list
+                            // Sends online status, world, rank, username
+                            // Sorted by online on current world
                             senderName = inboundBuffer.g8();
                             world = inboundBuffer.g2();
                             slot = inboundBuffer.g1();
@@ -1093,6 +1145,8 @@ public class Protocol {
                             currentOpcode = -1;
                             return true;
                         } else if (currentOpcode == WALK_TEXT) {
+                            // Set custom "Walk here" text
+                            // Empty = use default
                             if (packetSize == 0) {
                                 MiniMenu.walkText = LocalizedText.WALKHERE;
                             } else {
@@ -1101,6 +1155,8 @@ public class Protocol {
                             currentOpcode = -1;
                             return true;
                         } else if (currentOpcode == SYNC_VARP_LARGE) {
+                            // Synchronize all player variables from server to client
+                            // Used after login or major state change
                             for (ii = 0; ii < VarpDomain.activeVarps.length; ii++) {
                                 if (VarpDomain.serverVarps[ii] != VarpDomain.activeVarps[ii]) {
                                     VarpDomain.activeVarps[ii] = VarpDomain.serverVarps[ii];
@@ -1111,6 +1167,7 @@ public class Protocol {
                             currentOpcode = -1;
                             return true;
                         } else if (currentOpcode == CAM_TARGET) {
+                            // Set camera target position with smoothing
                             int verifyID = inboundBuffer.g2();
                             param1 = inboundBuffer.g1();
                             world = inboundBuffer.g1();
@@ -1123,6 +1180,7 @@ public class Protocol {
                             currentOpcode = -1;
                             return true;
                         } else if (currentOpcode == MESSAGE_QUICKCHAT_PRIVATE) {
+                            // Private quickchat message
                             senderName = inboundBuffer.g8();
                             username = inboundBuffer.g2();
                             messageId1 = inboundBuffer.g3();
@@ -1167,6 +1225,7 @@ public class Protocol {
                         } else {
                             @Pc(3456) SubInterface oldSubInterface;
                             if (currentOpcode == IF_MOVESUB) {
+                                // Move a sub-interface from one component slot to another
                                 ii = inboundBuffer.g4rme();
                                 int verifyID = inboundBuffer.g2_alt2();
                                 world = inboundBuffer.g4rme();
@@ -1196,6 +1255,7 @@ public class Protocol {
                                 currentOpcode = -1;
                                 return true;
                             } else if (currentOpcode == CAM_SHAKE) {
+                                // Triggers camera shake effect
                                 int verifyID = inboundBuffer.g2();
                                 param1 = inboundBuffer.g1();
                                 world = inboundBuffer.g1();
@@ -1212,6 +1272,7 @@ public class Protocol {
                                 currentOpcode = -1;
                                 return true;
                             } else if (currentOpcode == IF_SETCOLOR) {
+                                // Set component color in RGB
                                 ii = inboundBuffer.g4rme();
                                 int verifyID = inboundBuffer.g2_alt2();
                                 world = inboundBuffer.g2_alt3();
@@ -1221,15 +1282,19 @@ public class Protocol {
                                 currentOpcode = -1;
                                 return true;
                             } else if (currentOpcode == SYSTEM_UPDATE) {
+                                // Starts server update countdown
                                 Player.systemUpdateTimer = inboundBuffer.g2() * SYSTEM_UPDATE_TICK_MULTIPLIER;
                                 currentOpcode = -1;
                                 ComponentList.miscTransmitAt = ComponentList.transmitTimer;
                                 return true;
                             } else if (currentOpcode == REFLECTION_CHECK) {
+                                // Anti botting reflection check
+                                // Server asks client to inspect it's own code via reflection
                                 ReflectionCheck.push(GameShell.signLink, inboundBuffer, packetSize);
                                 currentOpcode = -1;
                                 return true;
                             } else if (currentOpcode == VARC_LEGACY) {
+                                // Legacy format for client variable updates
                                 int verifyID = inboundBuffer.g2_al1();
                                 param1 = inboundBuffer.g1_alt2();
                                 world = inboundBuffer.g2_alt3();
@@ -1240,24 +1305,28 @@ public class Protocol {
                                 return true;
                             } else if (currentOpcode == UPDATE_RUNENERGY) {
                                 // UPDATE_RUNENERGY
+                                // update player run energy percentage
                                 ComponentList.redrawActiveInterfaces();
                                 Player.runEnergy = inboundBuffer.g1();
                                 ComponentList.miscTransmitAt = ComponentList.transmitTimer;
                                 currentOpcode = -1;
                                 return true;
                             } else if (currentOpcode == IF_RUNSCRIPT) {
+                                // Execute ClientScript on specific component
                                 if (ComponentList.topLevelInterface != -1) {
                                     ComponentList.runScripts(0, ComponentList.topLevelInterface);
                                 }
                                 currentOpcode = -1;
                                 return true;
                             } else if (currentOpcode == INV_DELETE) {
+                                // remove item from inventory
                                 ii = inboundBuffer.g2_al1();
                                 Inv.delete(ii);
-                                Inv.updatedInventories[Inv.updatedInventoriesWriterIndex++ & 0x1F] = ii & INVENTORY_ID_MASK;
+                                Inv.updatedInventories[Inv.updatedInventoriesWriterIndex++ & CIRCULAR_BUFFER_MASK] = ii & INVENTORY_ID_MASK;
                                 currentOpcode = -1;
                                 return true;
                             } else if (currentOpcode == NPC_ANIM) {
+                                // Play animation on a specific NPC
                                 ii = inboundBuffer.g2_al1();
                                 param1 = inboundBuffer.g1_alt3();
                                 world = inboundBuffer.g2();
@@ -1269,18 +1338,21 @@ public class Protocol {
                                 return true;
                             } else if (currentOpcode == UPDATE_RUNWEIGHT) {
                                 // UPDATE_RUNWEIGHT
+                                // Update player's weight
                                 ComponentList.redrawActiveInterfaces();
                                 Player.weightCarried = inboundBuffer.g2s();
                                 ComponentList.miscTransmitAt = ComponentList.transmitTimer;
                                 currentOpcode = -1;
                                 return true;
                             } else if (currentOpcode == MESSAGE_BROADCAST) {
+                                // Server wide broadcast message
                                 senderName = inboundBuffer.g8();
                                 messageText = Font.escape(formatChatMessage(inboundBuffer).encodeMessage());
                                 Chat.addMessage(Base37.fromBase37(senderName).toTitleCase(), 6, messageText);
                                 currentOpcode = -1;
                                 return true;
                             } else if (currentOpcode == URL_OPEN) {
+                                // Open URL in browser
                                 if (GameShell.fullScreenFrame != null) {
                                     DisplayMode.setWindowMode(false, Preferences.favoriteWorlds, -1, -1);
                                 }
@@ -1308,6 +1380,7 @@ public class Protocol {
                                 currentOpcode = -1;
                                 return true;
                             } else if (currentOpcode == VARBIT) {
+                                // Update varbit (bit-packed variables within a player variable)
                                 ii = inboundBuffer.g1_alt1();
                                 param1 = inboundBuffer.g2_al1();
                                 VarpDomain.setVarbitServer(ii, param1);
@@ -1315,6 +1388,7 @@ public class Protocol {
                                 return true;
                             } else if (currentOpcode == IF_OPENSUB) {
                                 // IF_OPENSUB
+                                // Open sub-interface in component slot
                                 int flags = inboundBuffer.g1();
                                 int windowID = inboundBuffer.p4rme();
                                 int verifyID = inboundBuffer.g2_alt2();
@@ -1330,6 +1404,8 @@ public class Protocol {
                                 return true;
                             } else if (currentOpcode == RESET_PLAYER_NPC_ANIMS) {
                                 // RESET_ANIMS
+                                // Reset all entity animations
+                                // Clears animations for all players and NPCs
                                 for (ii = 0; ii < PlayerList.players.length; ii++) {
                                     if (PlayerList.players[ii] != null) {
                                         PlayerList.players[ii].primarySeqId = -1;
@@ -1343,6 +1419,8 @@ public class Protocol {
                                 currentOpcode = -1;
                                 return true;
                             } else if (currentOpcode == HINT_ARROW) {
+                                // Dsiplay hint arrow poiting on location/entity
+                                // Can target entities, players and coordinates
                                 ii = inboundBuffer.g1();
                                 @Pc(4084) MapMarker local4084 = new MapMarker();
                                 param1 = ii >> MAP_MARKER_PARAM_SHIFT;
@@ -1388,6 +1466,7 @@ public class Protocol {
                                 return true;
                             } else if (currentOpcode == UPDATE_IGNORELIST) {
                                 // UPDATE_IGNORELIST
+                                // Add or update ignored players
                                 IgnoreList.ignoreCount = packetSize / IGNORE_LIST_ENTRY_SIZE;
                                 for (ii = 0; ii < IgnoreList.ignoreCount; ii++) {
                                     IgnoreList.encodedIgnores[ii] = inboundBuffer.g8();
@@ -1397,10 +1476,11 @@ public class Protocol {
                                 currentOpcode = -1;
                                 return true;
                             } else if (currentOpcode == NPC_INFO) {
+                                // NPC entity updates
                                 readNpcPacket();
                                 currentOpcode = -1;
                                 return true;
-                            } else if (currentOpcode == 119) {
+                            } else if (currentOpcode == IF_SETCOMPONENT_PARAMS4) {
                                 int verifyID = inboundBuffer.g2_alt2();
                                 param1 = inboundBuffer.g4me();
                                 world = inboundBuffer.g2s();
@@ -1410,14 +1490,15 @@ public class Protocol {
                                 }
                                 currentOpcode = -1;
                                 return true;
-                            } else if (currentOpcode == 235) {
+                            } else if (currentOpcode == ZONE_LOC_ATTACH_SIMPLE) {
+                                // Attach location to tile
                                 ii = inboundBuffer.g1_alt3();
                                 param1 = ii >> LOC_PARAM_SHIFT;
                                 world = ii & ROTATION_MASK;
                                 slot = Loc.LAYERS[param1];
                                 count = inboundBuffer.g2();
                                 i = inboundBuffer.g4();
-                                if (count == 65535) {
+                                if (count == INVALID_ID_U16) {
                                     count = -1;
                                 }
                                 chatType = i & COORD_MASK;
@@ -1429,6 +1510,7 @@ public class Protocol {
                                 currentOpcode = -1;
                                 return true;
                             } else if (currentOpcode == MESSAGE_PRIVATE) {
+                                // Private chat from friend
                                 senderName = inboundBuffer.g8();
                                 username = inboundBuffer.g2();
                                 messageId1 = inboundBuffer.g3();
@@ -1473,6 +1555,7 @@ public class Protocol {
                                 currentOpcode = -1;
                                 return true;
                             } else if (currentOpcode == MESSAGE_PRIVATE_RECIPIENT) {
+                                // Echo of sent private message
                                 senderName = inboundBuffer.g8();
                                 inboundBuffer.g1s();
                                 username = inboundBuffer.g8();
@@ -1519,13 +1602,16 @@ public class Protocol {
                                 currentOpcode = -1;
                                 return true;
                             } else if (currentOpcode == MAP_REBUILD) {
+                                // Full dynamic map region rebuild
+                                // Used for dynamic regions
                                 readRebuildPacket(true);
                                 currentOpcode = -1;
                                 return true;
                             } else if (currentOpcode == SOUND_EFFECT) {
+                                // Play sound effect at location
                                 ii = inboundBuffer.g2();
                                 param1 = inboundBuffer.g1();
-                                if (ii == 65535) {
+                                if (ii == INVALID_ID_U16) {
                                     ii = -1;
                                 }
                                 world = inboundBuffer.g2();
@@ -1533,6 +1619,7 @@ public class Protocol {
                                 currentOpcode = -1;
                                 return true;
                             } else if (currentOpcode == IF_SETMODEL_HEAD) {
+                                // Set NPC head model on component
                                 int verifyID = inboundBuffer.g2_alt3();
                                 param1 = inboundBuffer.g4rme();
                                 if (setVerifyID(verifyID)) {
@@ -1545,6 +1632,7 @@ public class Protocol {
                                 currentOpcode = -1;
                                 return true;
                             } else if (currentOpcode == IF_SETHIDE) {
+                                // Show or hide a interface component
                                 ii = inboundBuffer.p4rme();
                                 argTypes = inboundBuffer.gjstr();
                                 int verifyID = inboundBuffer.g2_alt2();
@@ -1554,6 +1642,7 @@ public class Protocol {
                                 currentOpcode = -1;
                                 return true;
                             } else if (currentOpcode == VARBIT_LARGE) {
+                                // Update VarBit with large ID (> 65535)
                                 ii = inboundBuffer.g4me();
                                 param1 = inboundBuffer.g2_alt3();
                                 VarpDomain.setVarbitServer(ii, param1);
@@ -1562,6 +1651,8 @@ public class Protocol {
                             } else {
                                 @Pc(4956) Component component;
                                 if (currentOpcode == INV_TRANSMIT) {
+                                    // Sen partial inventory update
+                                    // Updates specific changed slots
                                     ii = inboundBuffer.g4();
                                     param1 = inboundBuffer.g2();
                                     if (ii < INVENTORY_COMPONENT_OFFSET) {
@@ -1596,6 +1687,8 @@ public class Protocol {
                                     currentOpcode = -1;
                                     return true;
                                 } else if (currentOpcode == CAM_RESET) {
+                                    // Reset camera to default player-following mode
+                                    // Clear scripted movement
                                     int verifyID = inboundBuffer.g2();
                                     if (setVerifyID(verifyID)) {
                                         Camera.resetCameraEffects();
@@ -1603,10 +1696,12 @@ public class Protocol {
                                     currentOpcode = -1;
                                     return true;
                                 } else if (currentOpcode == LOGOUT) {
+                                    // Server initiated logout
                                     Game.processLogout();
                                     currentOpcode = -1;
                                     return false;
                                 } else if (currentOpcode == GE_OFFER_UPDATE) {
+                                    // GE offer status changed
                                     ii = inboundBuffer.g1();
                                     if (inboundBuffer.g1() == 0) {
                                         StockMarketManager.offers[ii] = new StockMarketOffer();
@@ -1630,10 +1725,12 @@ public class Protocol {
                                     currentOpcode = -1;
                                     return true;
                                 } else if (currentOpcode == MAP_REBUILD_PARTIAL) {
+                                    // Static map region load
                                     readRebuildPacket(false);
                                     currentOpcode = -1;
                                     return true;
                                 } else if (currentOpcode == IF_SETOBJECT) {
+                                    // Dsiplay object/item on a component
                                     int verifyID = inboundBuffer.g2_al1();
                                     param1 = inboundBuffer.g2_al1();
                                     if (param1 == INVALID_ID_U16) {
@@ -1663,11 +1760,13 @@ public class Protocol {
                                     currentOpcode = -1;
                                     return true;
                                 } else if (currentOpcode == FRIENDLIST_STATE) {
+                                    // Initialize friends list loading state
                                     FriendList.state = inboundBuffer.g1();
                                     FriendList.transmitAt = ComponentList.transmitTimer;
                                     currentOpcode = -1;
                                     return true;
                                 } else if (currentOpcode == CLANCHAT_MEMBER_UPDATE) {
+                                    // Single clan chat member update
                                     senderName = inboundBuffer.g8();
                                     world = inboundBuffer.g2();
                                     @Pc(5325) byte memberRank = inboundBuffer.g1s();
@@ -1737,6 +1836,7 @@ public class Protocol {
                                     ClanChat.transmitAt = ComponentList.transmitTimer;
                                     return true;
                                 } else if (currentOpcode == IF_SETMODEL_OBJ) {
+                                    // Set object/item model on component
                                     ii = inboundBuffer.g4();
                                     param1 = inboundBuffer.p4rme();
                                     world = inboundBuffer.g2_alt3();
@@ -1769,6 +1869,7 @@ public class Protocol {
                                     currentOpcode = -1;
                                     return true;
                                 } else if (currentOpcode == INV_TRANSMIT_FULL) {
+                                    // Send complete inventory content
                                     ii = inboundBuffer.g4();
                                     param1 = inboundBuffer.g2();
                                     if (ii < INVENTORY_COMPONENT_OFFSET) {
@@ -1812,11 +1913,14 @@ public class Protocol {
                                     currentOpcode = -1;
                                     return true;
                                 } else if (currentOpcode == MAP_COORDS) {
+                                    // Update base map coordinates
                                     SceneGraph.currentChunkX = inboundBuffer.g1_alt2();
                                     SceneGraph.currentChunkZ = inboundBuffer.g1();
                                     currentOpcode = -1;
                                     return true;
                                 } else if (currentOpcode == MUSIC_PLAY) {
+                                    // Play music
+                                    // Starts looping by track ID
                                     ii = inboundBuffer.g2_alt3();
                                     if (ii == INVALID_ID_U16) {
                                         ii = -1;
@@ -1825,6 +1929,7 @@ public class Protocol {
                                     currentOpcode = -1;
                                     return true;
                                 } else if (currentOpcode == MUSIC_JINGLE) {
+                                    // Play short jingle (non-looping)
                                     ii = inboundBuffer.g3le();
                                     param1 = inboundBuffer.g2_al1();
                                     if (param1 == INVALID_ID_U16) {
@@ -2070,7 +2175,7 @@ public class Protocol {
 
                 arc = inboundBuffer.g1(); // Arc
 
-                if (local23 >= 0 && local19 >= 0 && local23 < BUILD_AREA_HALF_TILES && local19 < BUILD_AREA_HALF_TILES && local27 >= 0 && local31 >= 0 && local27 < BUILD_AREA_HALF_TILES && local31 < BUILD_AREA_HALF_TILES && local45 != 65535) {
+                if (local23 >= 0 && local19 >= 0 && local23 < BUILD_AREA_HALF_TILES && local19 < BUILD_AREA_HALF_TILES && local27 >= 0 && local31 >= 0 && local27 < BUILD_AREA_HALF_TILES && local31 < BUILD_AREA_HALF_TILES && local45 != INVALID_ID_U16) {
                     local31 *= HALF_TILE_SIZE;
 
                     // Convert to world coordinates
@@ -2186,8 +2291,8 @@ public class Protocol {
                     // ZONE_OBJ_COUNT
                     // Update existing ground object stack count
                     packedData = inboundBuffer.g1(); // Zone coordinate
-                    int z = SceneGraph.currentChunkZ + (packedData & 0x7); // Zone Z
-                    int x = SceneGraph.currentChunkX + (packedData >> 4 & 0x7); // Zone X
+                    int z = SceneGraph.currentChunkZ + (packedData & ZONE_COORD_MASK); // Zone Z
+                    int x = SceneGraph.currentChunkX + (packedData >> ZONE_COORD_SHIFT & ZONE_COORD_MASK); // Zone X
 
                     int id = inboundBuffer.g2(); // Object type ID
                     int oldCount = inboundBuffer.g2(); // Old count
@@ -2259,7 +2364,7 @@ public class Protocol {
                     }
 
                     // Validate coordinates are in bounds
-                    if (local23 >= 0 && local19 >= 0 && local23 < SIZE && local19 < SIZE && local27 >= 0 && local31 >= 0 && local27 < SIZE && local31 < SIZE && local45 != 65535) {
+                    if (local23 >= 0 && local19 >= 0 && local23 < SIZE && local19 < SIZE && local27 >= 0 && local31 >= 0 && local27 < SIZE && local31 < SIZE && local45 != INVALID_ID_U16) {
                         //Convert tile coords to world coordinates
                         local31 = local31 * TILE_SIZE + TILE_CENTER_OFFSET;
                         local19 = local19 * TILE_SIZE + TILE_CENTER_OFFSET;
@@ -2307,7 +2412,7 @@ public class Protocol {
                         arc = -1;
                     }
 
-                    if (local23 >= 0 && local19 >= 0 && local23 < BUILD_AREA_HALF_TILES && local19 < BUILD_AREA_HALF_TILES && local27 >= 0 && local31 >= 0 && local27 < BUILD_AREA_HALF_TILES && local31 < BUILD_AREA_HALF_TILES && startHeight != 65535) {
+                    if (local23 >= 0 && local19 >= 0 && local23 < BUILD_AREA_HALF_TILES && local19 < BUILD_AREA_HALF_TILES && local27 >= 0 && local31 >= 0 && local27 < BUILD_AREA_HALF_TILES && local31 < BUILD_AREA_HALF_TILES && startHeight != INVALID_ID_U16) {
                         // Convert 4x4 coords to world coords
                         local27 = local27 * HALF_TILE_SIZE;
                         local23 *= HALF_TILE_SIZE;
@@ -3042,20 +3147,20 @@ public class Protocol {
     }
 
     @OriginalMember(owner = "runetek4.client!wc", name = "a", descriptor = "(Lclient!wa;I)V")
-    public static void writeRandom(@OriginalArg(0) Packet arg0) {
+    public static void writeRandom(@OriginalArg(0) Packet buffer) {
         if (Client.uid != null) {
             try {
                 Client.uid.seek(0L);
-                Client.uid.write(arg0.data, arg0.offset, RANDOM_DATA_SIZE);
+                Client.uid.write(buffer.data, buffer.offset, RANDOM_DATA_SIZE);
             } catch (@Pc(16) Exception ignored) {
             }
         }
-        arg0.offset += RANDOM_DATA_SIZE;
+        buffer.offset += RANDOM_DATA_SIZE;
     }
 
     @OriginalMember(owner = "client!fc", name = "a", descriptor = "(Lclient!wa;I)Lclient!na;")
-    public static JString formatChatMessage(@OriginalArg(0) Packet arg0) {
-        return WordPack.readStringInternal(arg0);
+    public static JString formatChatMessage(@OriginalArg(0) Packet buffer) {
+        return WordPack.readStringInternal(buffer);
     }
 
     @OriginalMember(owner = "runetek4.client!mi", name = "a", descriptor = "([IBLclient!km;[I[I)V")

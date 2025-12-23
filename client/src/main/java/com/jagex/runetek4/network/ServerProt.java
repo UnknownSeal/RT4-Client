@@ -7,6 +7,7 @@ public final class ServerProt {
     public static final int ZONE_LOC_ADD_CHANGE = 179;
     public static final int ZONE_LOC_MERGE = 20;
     public static final int ZONE_LOC_ATTACH = 202;
+    public static final int ZONE_LOC_ATTACH_SIMPLE = 235;
 
     // Ground item zone packets
     public static final int ZONE_OBJ_ADD = 33;
@@ -36,15 +37,11 @@ public final class ServerProt {
     public static final int IF_SETTEXT_ALT = 48;
     public static final int IF_SETOBJECT = 165;
     public static final int IF_SETCOLOR = 2;
-    public static final int IF_SETANIM = 200;
     public static final int IF_SETHIDE = 171;
-    public static final int IF_SETPLAYERMODEL_BASE = 77;
-    public static final int IF_SETPLAYERMODEL_WEAR = 45;
-    public static final int IF_SETPLAYERMODEL_SELF = 222;
-    public static final int IF_SETNPCMODEL = 188;
-    public static final int IF_SETANGLE = 157;
-    public static final int IF_SETSCROLLPOS = 129;
-    public static final int IF_SETPOSITION = 59;
+    public static final int IF_SETCOMPONENT_PARAMS = 220;
+    public static final int IF_SETCOMPONENT_PARAMS2 = 21;
+    public static final int IF_SETCOMPONENT_PARAMS3 = 36;
+    public static final int IF_SETCOMPONENT_PARAMS4 = 119;
 
     // Interface models packets
     public static final int IF_SETMODEL = 130;
@@ -53,19 +50,12 @@ public final class ServerProt {
     public static final int IF_SETMODEL_TYPE2 = 73;
     public static final int IF_SETMODEL_TYPE7 = 111;
     public static final int IF_SETMODELROTATION = 207;
-    public static final int IF_SETPLAYERMODEL_OBJ = 68;
-
-    // Interface advanced packets
-    public static final int UPDATE_ZONE_FULL_FOLLOWS = 146;
-    public static final int UPDATE_ZONE_PARTIAL_FOLLOWS = 182;
-    public static final int UPDATE_ZONE_PARTIAL_ENCLOSED = 204;
 
     // Inventory packets
     public static final int INV_TRANSMIT = 22;
     public static final int INV_TRANSMIT_FULL = 105;
     public static final int INV_DELETE = 191;
     public static final int INV_RESET_COMPONENT = 144;
-    public static final int INV_CLEAR = 28;
 
     // Varp/Varc packets
     public static final int VARP_SMALL = 60;
@@ -75,8 +65,6 @@ public final class ServerProt {
     public static final int VARC_SMALL = 69;
     public static final int VARC_LEGACY = 65;
     public static final int SYNC_VARP_LARGE = 128;
-    public static final int VARC_LARGE = 210;
-    public static final int RESET_CLIENT_VARCACHE = 218;
 
     // Player update packets
     public static final int UPDATE_STAT = 38;
@@ -85,7 +73,6 @@ public final class ServerProt {
     public static final int PLAYER_INFO = 225;
     public static final int PLAYER_TELEPORT = 13;
     public static final int SET_PLAYER_OPTION = 44;
-    public static final int PLAYER_HEADICONS = 103;
 
     // Player/NPC animation packets
     public static final int RESET_ANIMS = 89;
@@ -113,7 +100,6 @@ public final class ServerProt {
     public static final int HINT_ARROW = 217;
     public static final int SCENE_RESET = 153;
     public static final int MINIMAP_STATE = 192;
-    public static final int DYNAMIC_REGION = 67;
 
     // Social packets
     public static final int MESSAGE_PRIVATE = 0;
@@ -129,7 +115,6 @@ public final class ServerProt {
     public static final int UPDATE_IGNORELIST = 126;
     public static final int CLANCHAT_CHANNEL = 55;
     public static final int CLANCHAT_MEMBER_UPDATE = 196;
-    public static final int CLANCHAT_MESSAGE = 100;
 
     // Audio
     public static final int MUSIC_PLAY = 4;
@@ -149,10 +134,5 @@ public final class ServerProt {
     public static final int WALK_TEXT = 160;
     public static final int LAST_LOGIN_INFO = 164;
     public static final int COOKIE_STORE = 142; // Removed
-    public static final int SYNTH_SOUND = 88;
-    public static final int MIDI_SONG = 249;
-    public static final int MIDI_JINGLE = 11;
-    public static final int UPDATE_ZONE_RESET = 212;
-    public static final int UPDATE_REBOOT_TIMER = 133;
 
 }
