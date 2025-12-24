@@ -179,7 +179,7 @@ public class Game {
         if (Protocol.cameraPositionUpdateCooldown > 0) {
             Protocol.cameraPositionUpdateCooldown--;
         }
-        if (Preferences.aBoolean63) {
+        if (Preferences.keyboardCameraEnabled) {
             for (i = 0; i < ComponentList.keyQueueSize; i++) {
                 offset = ComponentList.keyCodes[i];
                 if (offset == 98 || offset == 99 || offset == 96 || offset == 97) {

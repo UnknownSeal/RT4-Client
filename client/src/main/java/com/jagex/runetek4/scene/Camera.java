@@ -337,7 +337,7 @@ public class Camera {
         if (cameraX != targetPlayerX) {
             cameraX += (targetPlayerX - cameraX) / 16;
         }
-        if (Preferences.aBoolean63) {
+        if (Preferences.keyboardCameraEnabled) {
             for (@Pc(93) int keyIndex = 0; keyIndex < ComponentList.keyQueueSize; keyIndex++) {
                 @Pc(104) int keyCode = ComponentList.keyCodes[keyIndex];
                 if (keyCode == 98) {
@@ -382,7 +382,7 @@ public class Camera {
             } else if (heightOffset > 100) {
                 heightOffset = 100;
             }
-            scaledDistance = heightOffset * (ClientScriptRunner.aShort27 - ClientScriptRunner.aShort30) / 100 + ClientScriptRunner.aShort30;
+            scaledDistance = heightOffset * (ClientScriptRunner.maxDistanceScale - ClientScriptRunner.minDistanceScale) / 100 + ClientScriptRunner.minDistanceScale;
             distance = scaledDistance * distance >> 8;
         }
         heightOffset = 2048 - pitch & 0x7FF;

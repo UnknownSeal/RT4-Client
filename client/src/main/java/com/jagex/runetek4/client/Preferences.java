@@ -27,7 +27,7 @@ public class Preferences {
     public static int ambientSoundsVolume = 127;
 
     @OriginalMember(owner = "runetek4.client!cj", name = "h", descriptor = "Z")
-    public static boolean aBoolean63;
+    public static boolean keyboardCameraEnabled;
 
     @OriginalMember(owner = "client!bh", name = "z", descriptor = "Z")
     public static boolean sentToServer = true;
@@ -168,7 +168,7 @@ public class Preferences {
         }
         lastWorldId = 0;
         buildArea = 0;
-        aBoolean63 = false;
+        keyboardCameraEnabled = false;
         cursorsEnabled = true;
         safeMode = false;
         hdr = false;
@@ -234,7 +234,7 @@ public class Preferences {
         local4.p4(lastWorldId);
         local4.p1(favoriteWorlds);
         local4.p1(safeMode ? 1 : 0);
-        local4.p1(aBoolean63 ? 1 : 0);
+        local4.p1(keyboardCameraEnabled ? 1 : 0);
         local4.p1(buildArea);
         local4.p1(hdr ? 1 : 0);
         local4.p1(cursorsEnabled ? 1 : 0);
@@ -344,7 +344,7 @@ public class Preferences {
             safeMode = packet.g1() == 1;
         }
         if (version >= 8) {
-            aBoolean63 = packet.g1() == 1;
+            keyboardCameraEnabled = packet.g1() == 1;
         }
         if (version >= 9) {
             buildArea = packet.g1();

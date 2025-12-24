@@ -330,22 +330,22 @@ public final class ClientScriptRunner {
 	public static int fp = 0;
 
 	@OriginalMember(owner = "runetek4.client!od", name = "g", descriptor = "S")
-	public static short aShort25 = 256;
+	public static short minZoomScale = 256;
 
 	@OriginalMember(owner = "client!an", name = "db", descriptor = "S")
-	public static short aShort9 = 205;
+	public static short maxZoomScale = 205;
 
 	@OriginalMember(owner = "runetek4.client!mc", name = "tb", descriptor = "S")
-	public static short aShort22 = 1;
+	public static short minZoomConstraint = 1;
 
 	@OriginalMember(owner = "runetek4.client!ac", name = "k", descriptor = "S")
-	public static short aShort1 = 32767;
+	public static short maxZoomConstraint = 32767;
 
 	@OriginalMember(owner = "runetek4.client!nc", name = "n", descriptor = "I")
-	public static int anInt4055 = 0;
+	public static int calculatedViewportWidth = 0;
 
 	@OriginalMember(owner = "runetek4.client!tm", name = "i", descriptor = "I")
-	public static int anInt5377 = 0;
+	public static int calculatedViewportHeight = 0;
 
 	@OriginalMember(owner = "client!bn", name = "eb", descriptor = "I")
 	public static int anInt773 = 0;
@@ -357,10 +357,10 @@ public final class ClientScriptRunner {
 	public static int anInt5029 = 0;
 
 	@OriginalMember(owner = "runetek4.client!kd", name = "yb", descriptor = "S")
-	public static short aShort21 = 32767;
+	public static short maxAspectRatio = 32767;
 
 	@OriginalMember(owner = "client!ee", name = "f", descriptor = "S")
-	public static short aShort12 = 1;
+	public static short minAspectRatio = 1;
 
 	@OriginalMember(owner = "runetek4.client!kk", name = "j", descriptor = "I")
 	public static int anInt3325 = 0;
@@ -369,7 +369,7 @@ public final class ClientScriptRunner {
 	public static byte[][][] tileMarkings;
 
 	@OriginalMember(owner = "runetek4.client!vg", name = "b", descriptor = "S")
-	public static short aShort30 = 256;
+	public static short minDistanceScale = 256;
 
 	@OriginalMember(owner = "runetek4.client!lj", name = "z", descriptor = "[I")
 	public static int[] anIntArray338 = new int[2];
@@ -390,7 +390,7 @@ public final class ClientScriptRunner {
 	public static int overheadScreenY = -1;
 
 	@OriginalMember(owner = "runetek4.client!pb", name = "rb", descriptor = "S")
-	public static short aShort27 = 320;
+	public static short maxDistanceScale = 320;
 
 	@OriginalMember(owner = "runetek4.client!t", name = "b", descriptor = "(I)V")
 	public static void clear() {
@@ -4392,68 +4392,68 @@ public final class ClientScriptRunner {
 														continue;
 													}
 												} else if (opcode < 6300) {
-													if (opcode == SCREEN_SETSHORTS_25_9) {
+													if (opcode == CAM_SETZOOMSCALE) {
 														isp -= 2;
-														aShort25 = (short) scriptIntValues[isp];
-														if (aShort25 <= 0) {
-															aShort25 = 256;
+														minZoomScale = (short) scriptIntValues[isp];
+														if (minZoomScale <= 0) {
+															minZoomScale = 256;
 														}
-														aShort9 = (short) scriptIntValues[isp + 1];
-														if (aShort9 <= 0) {
-															aShort9 = 205;
+														maxZoomScale = (short) scriptIntValues[isp + 1];
+														if (maxZoomScale <= 0) {
+															maxZoomScale = 205;
 														}
 														continue;
 													}
-													if (opcode == SCREEN_SETSHORTS_30_27) {
+													if (opcode == CAM_SETDISTSCALE) {
 														isp -= 2;
-														aShort30 = (short) scriptIntValues[isp];
-														if (aShort30 <= 0) {
-															aShort30 = 256;
+														minDistanceScale = (short) scriptIntValues[isp];
+														if (minDistanceScale <= 0) {
+															minDistanceScale = 256;
 														}
-														aShort27 = (short) scriptIntValues[isp + 1];
-														if (aShort27 <= 0) {
-															aShort27 = 320;
+														maxDistanceScale = (short) scriptIntValues[isp + 1];
+														if (maxDistanceScale <= 0) {
+															maxDistanceScale = 320;
 														}
 														continue;
 													}
-													if (opcode == SCREEN_SETSHORTS_MULTI) {
+													if (opcode == CAM_SETCONSTRAINTS) {
 														isp -= 4;
-														aShort22 = (short) scriptIntValues[isp];
-														if (aShort22 <= 0) {
-															aShort22 = 1;
+														minZoomConstraint = (short) scriptIntValues[isp];
+														if (minZoomConstraint <= 0) {
+															minZoomConstraint = 1;
 														}
-														aShort1 = (short) scriptIntValues[isp + 1];
-														if (aShort1 <= 0) {
-															aShort1 = 32767;
-														} else if (aShort22 > aShort1) {
-															aShort1 = aShort22;
+														maxZoomConstraint = (short) scriptIntValues[isp + 1];
+														if (maxZoomConstraint <= 0) {
+															maxZoomConstraint = 32767;
+														} else if (minZoomConstraint > maxZoomConstraint) {
+															maxZoomConstraint = minZoomConstraint;
 														}
-														aShort12 = (short) scriptIntValues[isp + 2];
-														if (aShort12 <= 0) {
-															aShort12 = 1;
+														minAspectRatio = (short) scriptIntValues[isp + 2];
+														if (minAspectRatio <= 0) {
+															minAspectRatio = 1;
 														}
-														aShort21 = (short) scriptIntValues[isp + 3];
-														if (aShort21 <= 0) {
-															aShort21 = 32767;
-														} else if (aShort21 < aShort12) {
-															aShort21 = aShort12;
+														maxAspectRatio = (short) scriptIntValues[isp + 3];
+														if (maxAspectRatio <= 0) {
+															maxAspectRatio = 32767;
+														} else if (maxAspectRatio < minAspectRatio) {
+															maxAspectRatio = minAspectRatio;
 														}
 														continue;
 													}
-													if (opcode == SCREEN_GETCALCINTS) {
+													if (opcode == CAM_GETVIEWPORTSIZE) {
 														method2314(ComponentList.specialComponent.width, 0, ComponentList.specialComponent.height, 0, false);
-														scriptIntValues[isp++] = anInt4055;
-														scriptIntValues[isp++] = anInt5377;
+														scriptIntValues[isp++] = calculatedViewportWidth;
+														scriptIntValues[isp++] = calculatedViewportHeight;
 														continue;
 													}
-													if (opcode == SCREEN_GETSHORTS_30_27) {
-														scriptIntValues[isp++] = aShort30;
-														scriptIntValues[isp++] = aShort27;
+													if (opcode == CAM_GETDISTSCALE) {
+														scriptIntValues[isp++] = minDistanceScale;
+														scriptIntValues[isp++] = maxDistanceScale;
 														continue;
 													}
-													if (opcode == SCREEN_GETSHORTS_25_9) {
-														scriptIntValues[isp++] = aShort25;
-														scriptIntValues[isp++] = aShort9;
+													if (opcode == CAM_GETZOOMSCALE) {
+														scriptIntValues[isp++] = minZoomScale;
+														scriptIntValues[isp++] = maxZoomScale;
 														continue;
 													}
 												} else if (opcode < 6400) {
@@ -4615,14 +4615,14 @@ public final class ClientScriptRunner {
 														continue;
 													}
 												} else if (opcode < 6700) {
-													if (opcode == SET_BOOLEAN63) {
+													if (opcode == SET_KEYBOARDCAMERA) {
 														isp--;
-														Preferences.aBoolean63 = scriptIntValues[isp] == 1;
+														Preferences.keyboardCameraEnabled = scriptIntValues[isp] == 1;
 														Preferences.write(GameShell.signLink);
 														continue;
 													}
-													if (opcode == GET_BOOLEAN63) {
-														scriptIntValues[isp++] = Preferences.aBoolean63 ? 1 : 0;
+													if (opcode == GET_KEYBOARDCAMERA) {
+														scriptIntValues[isp++] = Preferences.keyboardCameraEnabled ? 1 : 0;
 														continue;
 													}
 												}
@@ -5105,21 +5105,21 @@ public final class ClientScriptRunner {
 			} else if (local25 > 100) {
 				local25 = 100;
 			}
-			@Pc(51) int local51 = local25 * (aShort9 - aShort25) / 100 + aShort25;
-			if (aShort22 > local51) {
-				local51 = aShort22;
-			} else if (aShort1 < local51) {
-				local51 = aShort1;
+			@Pc(51) int local51 = local25 * (maxZoomScale - minZoomScale) / 100 + minZoomScale;
+			if (minZoomConstraint > local51) {
+				local51 = minZoomConstraint;
+			} else if (maxZoomConstraint < local51) {
+				local51 = maxZoomConstraint;
 			}
 			@Pc(73) int local73 = local51 * arg2 * 512 / (arg0 * 334);
 			@Pc(115) int local115;
 			@Pc(122) int local122;
 			@Pc(86) short local86;
-			if (local73 < aShort12) {
-				local86 = aShort12;
+			if (local73 < minAspectRatio) {
+				local86 = minAspectRatio;
 				local51 = arg0 * 334 * local86 / (arg2 * 512);
-				if (aShort1 < local51) {
-					local51 = aShort1;
+				if (maxZoomConstraint < local51) {
+					local51 = maxZoomConstraint;
 					local115 = arg2 * 512 * local51 / (local86 * 334);
 					local122 = (arg0 - local115) / 2;
 					if (arg4) {
@@ -5130,11 +5130,11 @@ public final class ClientScriptRunner {
 					arg3 += local122;
 					arg0 -= local122 * 2;
 				}
-			} else if (aShort21 < local73) {
-				local86 = aShort21;
+			} else if (maxAspectRatio < local73) {
+				local86 = maxAspectRatio;
 				local51 = local86 * arg0 * 334 / (arg2 * 512);
-				if (aShort22 > local51) {
-					local51 = aShort22;
+				if (minZoomConstraint > local51) {
+					local51 = minZoomConstraint;
 					local115 = local86 * arg0 * 334 / (local51 * 512);
 					local122 = (arg2 - local115) / 2;
 					if (arg4) {
@@ -5148,8 +5148,8 @@ public final class ClientScriptRunner {
 			}
 			anInt5029 = local51 * arg2 / 334;
 		}
-		anInt4055 = (short) arg0;
-		anInt5377 = (short) arg2;
+		calculatedViewportWidth = (short) arg0;
+		calculatedViewportHeight = (short) arg2;
 		anInt773 = arg1;
 		anInt983 = arg3;
 	}
