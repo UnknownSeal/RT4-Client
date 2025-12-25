@@ -120,7 +120,7 @@ public class ComponentList {
     @OriginalMember(owner = "runetek4.client!rg", name = "s", descriptor = "I")
     public static int anInt5574 = -1;
     @OriginalMember(owner = "runetek4.client!og", name = "e", descriptor = "Lclient!be;")
-    public static Component aClass13_22;
+    public static Component previousMouseOverComponent;
     @OriginalMember(owner = "runetek4.client!gd", name = "j", descriptor = "I")
     public static int lastItemDragTime = 0;
     @OriginalMember(owner = "runetek4.client!qk", name = "f", descriptor = "I")
@@ -166,7 +166,7 @@ public class ComponentList {
     @OriginalMember(owner = "client!bj", name = "s", descriptor = "I")
     public static int lastMouseY = -1;
     @OriginalMember(owner = "runetek4.client!kl", name = "s", descriptor = "I")
-    public static int anInt3337 = 0;
+    public static int worldMapState = 0;
     @OriginalMember(owner = "runetek4.client!jk", name = "p", descriptor = "I")
     public static int lastMouseX = -1;
     @OriginalMember(owner = "client!df", name = "n", descriptor = "I")
@@ -817,7 +817,7 @@ public class ComponentList {
                 }
                 if (!component.if3 || effectiveClipLeft < effectiveClipRight && effectiveClipTop < effectiveClipBottom) {
                     if (component.type == 0) {
-                        if (!component.if3 && isHidden(component) && aClass13_22 != component) {
+                        if (!component.if3 && isHidden(component) && previousMouseOverComponent != component) {
                             continue;
                         }
                         if (component.noClickThrough && Mouse.lastMouseX >= effectiveClipLeft && Mouse.lastMouseY >= effectiveClipTop && Mouse.lastMouseX < effectiveClipRight && Mouse.lastMouseY < effectiveClipBottom) {
@@ -831,7 +831,7 @@ public class ComponentList {
                                 ClientScriptRunner.dragComponent = null;
                                 ClientScriptRunner.containerComponent = null;
                             }
-                            anInt3337 = 0;
+                            worldMapState = 0;
                         }
                     }
                     if (component.if3) {
@@ -895,7 +895,7 @@ public class ComponentList {
                                 request.arguments = component.onScroll;
                                 lowPriorityRequests.push(request);
                             }
-                            if (ClientScriptRunner.dragComponent != null || clickedInventoryComponent != null || ClientScriptRunner.menuVisible || component.contentType != 1400 && anInt3337 > 0) {
+                            if (ClientScriptRunner.dragComponent != null || clickedInventoryComponent != null || ClientScriptRunner.menuVisible || component.contentType != 1400 && worldMapState > 0) {
                                 mouseClicked = false;
                                 mousePressed = false;
                                 mouseOver = false;
@@ -928,24 +928,24 @@ public class ComponentList {
                                             closeModal();
                                             continue;
                                         }
-                                        anInt3337 = 1;
+                                        worldMapState = 1;
                                         ClientScriptRunner.dragStartX = Mouse.lastMouseX;
                                         ClientScriptRunner.dragStartY = Mouse.lastMouseY;
                                         continue;
                                     }
-                                    if (mousePressed && anInt3337 > 0) {
-                                        if (anInt3337 == 1 && (ClientScriptRunner.dragStartX != Mouse.lastMouseX || ClientScriptRunner.dragStartY != Mouse.lastMouseY)) {
+                                    if (mousePressed && worldMapState > 0) {
+                                        if (worldMapState == 1 && (ClientScriptRunner.dragStartX != Mouse.lastMouseX || ClientScriptRunner.dragStartY != Mouse.lastMouseY)) {
                                             anInt4620 = WorldMap.anInt435;
                                             anInt1885 = WorldMap.anInt919;
-                                            anInt3337 = 2;
+                                            worldMapState = 2;
                                         }
-                                        if (anInt3337 == 2) {
+                                        if (worldMapState == 2) {
                                             WorldMap.method1964(anInt4620 + (int) ((double) (ClientScriptRunner.dragStartX - Mouse.lastMouseX) * 2.0D / (double) WorldMap.targetZoom));
                                             WorldMap.method4641(anInt1885 + (int) ((double) (ClientScriptRunner.dragStartY - Mouse.lastMouseY) * 2.0D / (double) WorldMap.targetZoom));
                                         }
                                         continue;
                                     }
-                                    anInt3337 = 0;
+                                    worldMapState = 0;
                                     continue;
                                 }
                                 if (component.contentType == 1401) {
@@ -1205,13 +1205,13 @@ public class ComponentList {
                     if (!component.if3 && ClientScriptRunner.dragComponent == null && clickedInventoryComponent == null && !ClientScriptRunner.menuVisible) {
                         if ((component.anInt470 >= 0 || component.overColor != 0) && Mouse.lastMouseX >= effectiveClipLeft && Mouse.lastMouseY >= effectiveClipTop && Mouse.lastMouseX < effectiveClipRight && Mouse.lastMouseY < effectiveClipBottom) {
                             if (component.anInt470 >= 0) {
-                                aClass13_22 = components[component.anInt470];
+                                previousMouseOverComponent = components[component.anInt470];
                             } else {
-                                aClass13_22 = component;
+                                previousMouseOverComponent = component;
                             }
                         }
                         if (component.type == 8 && Mouse.lastMouseX >= effectiveClipLeft && Mouse.lastMouseY >= effectiveClipTop && Mouse.lastMouseX < effectiveClipRight && Mouse.lastMouseY < effectiveClipBottom) {
-                            Protocol.aClass13_11 = component;
+                            Protocol.dragHoverComponent = component;
                         }
                         if (component.scrollMaxV > component.height) {
                             handleScrollbar(Mouse.lastMouseY, component.height, component, Mouse.lastMouseX, componentX + component.width, componentY, component.scrollMaxV);
@@ -1307,7 +1307,7 @@ public class ComponentList {
             @Pc(15) Component component = components[componentIndex];
             if (component != null && component.overlayer == parentId && (!component.if3 || !isHidden(component))) {
                 if (component.type == 0) {
-                    if (!component.if3 && isHidden(component) && component != aClass13_22) {
+                    if (!component.if3 && isHidden(component) && component != previousMouseOverComponent) {
                         continue;
                     }
                     updateComponentState(component.id, components);
@@ -1420,7 +1420,7 @@ public class ComponentList {
                         if (layer != -1412584499 && !component.dragRenderBehavior) {
                             ClientScriptRunner.anInt4696 = offsetX;
                             ClientScriptRunner.anInt3126 = offsetY;
-                            ClientScriptRunner.aClass13Array13 = components;
+                            ClientScriptRunner.tempComponentArray = components;
                             continue;
                         }
                         if (ClientScriptRunner.isDragging && dragActive) {
@@ -1611,7 +1611,7 @@ public class ComponentList {
                                 }
                                 tileZ = dragOffsetY * 10000 / gpuMemory;
                                 tileX = objId * 100 / gpuMemory;
-                                @Pc(968) JString local968 = JString.concatenate(new JString[] { Cheat.DEBUG_CACHE, StringUtils.formatNumber(0, true, 2, (long) tileZ), ClientScriptRunner.aClass100_672, JString.parseInt(tileX), ClientScriptRunner.aClass100_80});
+                                @Pc(968) JString local968 = JString.concatenate(new JString[] { Cheat.DEBUG_CACHE, StringUtils.formatNumber(0, true, 2, (long) tileZ), ClientScriptRunner.TYPE_SIG_UNION_X, JString.parseInt(tileX), ClientScriptRunner.TYPE_SIG_UNION_Y});
                                 Fonts.p11Full.renderRight(local968, clipRight2, clipBottom2, 16776960, -1);
                                 clipBottom2 += 12;
                                 componentNeedsRedraw[rectangle] = true;
@@ -1638,7 +1638,7 @@ public class ComponentList {
                             }
                         }
                         if (component.type == 0) {
-                            if (!component.if3 && isHidden(component) && aClass13_22 != component) {
+                            if (!component.if3 && isHidden(component) && previousMouseOverComponent != component) {
                                 continue;
                             }
                             if (!component.if3) {
@@ -1772,12 +1772,12 @@ public class ComponentList {
                                 } else if (component.type == 3) {
                                     if (ClientScriptRunner.isTrue(component)) {
                                         clipRight2 = component.activeColor;
-                                        if (aClass13_22 == component && component.anInt475 != 0) {
+                                        if (previousMouseOverComponent == component && component.anInt475 != 0) {
                                             clipRight2 = component.anInt475;
                                         }
                                     } else {
                                         clipRight2 = component.color;
-                                        if (component == aClass13_22 && component.overColor != 0) {
+                                        if (component == previousMouseOverComponent && component.overColor != 0) {
                                             clipRight2 = component.overColor;
                                         }
                                     }
@@ -1812,7 +1812,7 @@ public class ComponentList {
                                             @Pc(1934) JString local1934 = component.text;
                                             if (ClientScriptRunner.isTrue(component)) {
                                                 clipBottom2 = component.activeColor;
-                                                if (aClass13_22 == component && component.anInt475 != 0) {
+                                                if (previousMouseOverComponent == component && component.anInt475 != 0) {
                                                     clipBottom2 = component.anInt475;
                                                 }
                                                 if (component.activeText.length() > 0) {
@@ -1820,7 +1820,7 @@ public class ComponentList {
                                                 }
                                             } else {
                                                 clipBottom2 = component.color;
-                                                if (aClass13_22 == component && component.overColor != 0) {
+                                                if (previousMouseOverComponent == component && component.overColor != 0) {
                                                     clipBottom2 = component.overColor;
                                                 }
                                             }
@@ -1987,8 +1987,8 @@ public class ComponentList {
                                                 }
                                             }
                                             if (local2589 != null) {
-                                                if (component.anInt451 > 0) {
-                                                    colorValue = (component.width << 8) / component.anInt451;
+                                                if (component.maxModelSize > 0) {
+                                                    colorValue = (component.width << 8) / component.maxModelSize;
                                                 } else {
                                                     colorValue = 256;
                                                 }
@@ -2077,7 +2077,7 @@ public class ComponentList {
                                                     }
                                                 }
                                             }
-                                            if (component.type == 8 && Protocol.aClass13_11 == component && Protocol.componentDragAnimationStep == ClientScriptRunner.anInt4504) {
+                                            if (component.type == 8 && Protocol.dragHoverComponent == component && Protocol.dragHoverAnimationProgress == ClientScriptRunner.MAX_CALL_STACK_DEPTH) {
                                                 clipBottom2 = 0;
                                                 clipRight2 = 0;
                                                 @Pc(3297) JString local3297 = component.text;
@@ -2222,27 +2222,27 @@ public class ComponentList {
         }
         @Pc(54) int thumbY = scrollPosition * (height - thumbHeight - 32) / (scrollMax - height);
         if (!GlRenderer.enabled) {
-            SoftwareRenderer.fillRect(x, y + 16, 16, height - 32, ClientScriptRunner.anInt4306);
-            SoftwareRenderer.fillRect(x, thumbY + y + 16, 16, thumbHeight, ClientScriptRunner.anInt1704);
-            SoftwareRenderer.drawVerticalLine(x, thumbY + y + 16, thumbHeight, ClientScriptRunner.anInt4938);
-            SoftwareRenderer.drawVerticalLine(x + 1, thumbY + 16 + y, thumbHeight, ClientScriptRunner.anInt4938);
-            SoftwareRenderer.drawHorizontalLine(x, y + thumbY + 16, 16, ClientScriptRunner.anInt4938);
-            SoftwareRenderer.drawHorizontalLine(x, y + thumbY + 17, 16, ClientScriptRunner.anInt4938);
-            SoftwareRenderer.drawVerticalLine(x + 15, thumbY + 16 + y, thumbHeight, ClientScriptRunner.anInt671);
-            SoftwareRenderer.drawVerticalLine(x + 14, y - -17 - -thumbY, thumbHeight - 1, ClientScriptRunner.anInt671);
-            SoftwareRenderer.drawHorizontalLine(x, thumbHeight + y + thumbY + 15, 16, ClientScriptRunner.anInt671);
-            SoftwareRenderer.drawHorizontalLine(x + 1, thumbHeight + y - (-thumbY + -14), 15, ClientScriptRunner.anInt671);
+            SoftwareRenderer.fillRect(x, y + 16, 16, height - 32, ClientScriptRunner.COLOR_LIGHT_BROWN);
+            SoftwareRenderer.fillRect(x, thumbY + y + 16, 16, thumbHeight, ClientScriptRunner.COLOR_ORANGE_BROWN);
+            SoftwareRenderer.drawVerticalLine(x, thumbY + y + 16, thumbHeight, ClientScriptRunner.COLOR_LIGHT_GRAY);
+            SoftwareRenderer.drawVerticalLine(x + 1, thumbY + 16 + y, thumbHeight, ClientScriptRunner.COLOR_LIGHT_GRAY);
+            SoftwareRenderer.drawHorizontalLine(x, y + thumbY + 16, 16, ClientScriptRunner.COLOR_LIGHT_GRAY);
+            SoftwareRenderer.drawHorizontalLine(x, y + thumbY + 17, 16, ClientScriptRunner.COLOR_LIGHT_GRAY);
+            SoftwareRenderer.drawVerticalLine(x + 15, thumbY + 16 + y, thumbHeight, ClientScriptRunner.COLOR_DARK_RED);
+            SoftwareRenderer.drawVerticalLine(x + 14, y - -17 - -thumbY, thumbHeight - 1, ClientScriptRunner.COLOR_DARK_RED);
+            SoftwareRenderer.drawHorizontalLine(x, thumbHeight + y + thumbY + 15, 16, ClientScriptRunner.COLOR_DARK_RED);
+            SoftwareRenderer.drawHorizontalLine(x + 1, thumbHeight + y - (-thumbY + -14), 15, ClientScriptRunner.COLOR_DARK_RED);
             return;
         }
-        GlRaster.fillRect(x, y + 16, 16, height - 32, ClientScriptRunner.anInt4306);
-        GlRaster.fillRect(x, y + thumbY + 16, 16, thumbHeight, ClientScriptRunner.anInt1704);
-        GlRaster.method1176(x, thumbY + y + 16, thumbHeight, ClientScriptRunner.anInt4938);
-        GlRaster.method1176(x + 1, thumbY + 16 + y, thumbHeight, ClientScriptRunner.anInt4938);
-        GlRaster.method1174(x, thumbY + y + 16, 16, ClientScriptRunner.anInt4938);
-        GlRaster.method1174(x, thumbY + y + 17, 16, ClientScriptRunner.anInt4938);
-        GlRaster.method1176(x + 15, y + (16 - -thumbY), thumbHeight, ClientScriptRunner.anInt671);
-        GlRaster.method1176(x + 14, y - -thumbY + 17, thumbHeight - 1, ClientScriptRunner.anInt671);
-        GlRaster.method1174(x, thumbHeight + y + thumbY + 15, 16, ClientScriptRunner.anInt671);
-        GlRaster.method1174(x + 1, y + 14 - -thumbY + thumbHeight, 15, ClientScriptRunner.anInt671);
+        GlRaster.fillRect(x, y + 16, 16, height - 32, ClientScriptRunner.COLOR_LIGHT_BROWN);
+        GlRaster.fillRect(x, y + thumbY + 16, 16, thumbHeight, ClientScriptRunner.COLOR_ORANGE_BROWN);
+        GlRaster.method1176(x, thumbY + y + 16, thumbHeight, ClientScriptRunner.COLOR_LIGHT_GRAY);
+        GlRaster.method1176(x + 1, thumbY + 16 + y, thumbHeight, ClientScriptRunner.COLOR_LIGHT_GRAY);
+        GlRaster.method1174(x, thumbY + y + 16, 16, ClientScriptRunner.COLOR_LIGHT_GRAY);
+        GlRaster.method1174(x, thumbY + y + 17, 16, ClientScriptRunner.COLOR_LIGHT_GRAY);
+        GlRaster.method1176(x + 15, y + (16 - -thumbY), thumbHeight, ClientScriptRunner.COLOR_DARK_RED);
+        GlRaster.method1176(x + 14, y - -thumbY + 17, thumbHeight - 1, ClientScriptRunner.COLOR_DARK_RED);
+        GlRaster.method1174(x, thumbHeight + y + thumbY + 15, 16, ClientScriptRunner.COLOR_DARK_RED);
+        GlRaster.method1174(x + 1, y + 14 - -thumbY + thumbHeight, 15, ClientScriptRunner.COLOR_DARK_RED);
     }
 }

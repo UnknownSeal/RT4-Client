@@ -97,48 +97,54 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
+import static com.jagex.runetek4.clientscript.ClientScriptOpcode.*;
+import static com.jagex.runetek4.clientscript.ClientScriptOpcode.CLIENTSCRIPT_117;
+import static com.jagex.runetek4.clientscript.ClientScriptOpcode.IF_ON_COMPONENT;
+import static com.jagex.runetek4.clientscript.ClientScriptOpcode.IF_ON_COMPONENT2;
+import static com.jagex.runetek4.clientscript.ClientScriptOpcode.IF_ON_COMPONENT3;
+import static com.jagex.runetek4.clientscript.ClientScriptOpcode.IF_ON_COMPONENT4;
 import static com.jagex.runetek4.network.ClientProt.*;
 
 public final class ClientScriptRunner {
 
 	@OriginalMember(owner = "client!bm", name = "p", descriptor = "Lclient!na;")
-	public static final JString U1 = JString.parse("(U1");
+	public static final JString TYPE_SIG_U1 = JString.parse("(U1");
 
 	@OriginalMember(owner = "runetek4.client!wh", name = "u", descriptor = "Lclient!na;")
-	public static final JString U2 = JString.parse("(U2");
+	public static final JString TYPE_SIG_U2 = JString.parse("(U2");
 
 	@OriginalMember(owner = "runetek4.client!mj", name = "g", descriptor = "Lclient!na;")
-	public static final JString U3 = JString.parse("(U3");
+	public static final JString TYPE_SIG_U3 = JString.parse("(U3");
 
 	@OriginalMember(owner = "runetek4.client!hh", name = "a", descriptor = "Lclient!na;")
-	public static final JString U4 = JString.parse("(U4");
+	public static final JString TYPE_SIG_U4 = JString.parse("(U4");
 
 	@OriginalMember(owner = "runetek4.client!tb", name = "P", descriptor = "Lclient!na;")
-	public static final JString U5 = JString.parse("(U5");
+	public static final JString TYPE_SIG_U5 = JString.parse("(U5");
 
 	@OriginalMember(owner = "runetek4.client!jh", name = "g", descriptor = "Lclient!na;")
-	public static final JString Udns = JString.parse("(Udns");
+	public static final JString TYPE_SIG_DNS = JString.parse("(Udns");
 
 	@OriginalMember(owner = "runetek4.client!lh", name = "z", descriptor = "Lclient!na;")
-	public static final JString aClass100_672 = JString.parse("(U (X");
+	public static final JString TYPE_SIG_UNION_X = JString.parse("(U (X");
 
 	@OriginalMember(owner = "client!bd", name = "b", descriptor = "Lclient!na;")
-	public static final JString aClass100_80 = JString.parse("(U(Y");
+	public static final JString TYPE_SIG_UNION_Y = JString.parse("(U(Y");
 
 	@OriginalMember(owner = "runetek4.client!oj", name = "p", descriptor = "I")
-	public static final int anInt4306 = 2301979;
+	public static final int COLOR_LIGHT_BROWN = 2301979;
 
 	@OriginalMember(owner = "runetek4.client!ec", name = "l", descriptor = "I")
-	public static final int anInt1704 = 5063219;
+	public static final int COLOR_ORANGE_BROWN = 5063219;
 
 	@OriginalMember(owner = "runetek4.client!rl", name = "Z", descriptor = "I")
-	public static final int anInt4938 = 7759444;
+	public static final int COLOR_LIGHT_GRAY = 7759444;
 
 	@OriginalMember(owner = "client!bj", name = "V", descriptor = "I")
-	public static final int anInt671 = 3353893;
+	public static final int COLOR_DARK_RED = 3353893;
 
 	@OriginalMember(owner = "runetek4.client!pg", name = "V", descriptor = "I")
-	public static final int anInt4504 = 50;
+	public static final int MAX_CALL_STACK_DEPTH = 50;
 
 	@OriginalMember(owner = "runetek4.client!ab", name = "j", descriptor = "[Lclient!na;")
 	public static final JString[] scriptStringValues = new JString[1000];
@@ -159,16 +165,16 @@ public final class ClientScriptRunner {
 	public static final JString ERROR_VIA = JString.parse("(U0a )2 via: ");
 
 	@OriginalMember(owner = "client!fl", name = "H", descriptor = "Lclient!na;")
-	public static final JString aClass100_446 = JString.parse("<img=0>");
+	public static final JString SPRITE_TAG_0 = JString.parse("<img=0>");
 
 	@OriginalMember(owner = "runetek4.client!nd", name = "b", descriptor = "Lclient!na;")
 	public static final JString ERROR_PREFIX = JString.parse("Clientscript error in: ");
 
 	@OriginalMember(owner = "runetek4.client!hm", name = "R", descriptor = "Lclient!na;")
-	public static final JString aClass100_537 = JString.parse("<img=1>");
+	public static final JString SPRITE_TAG_1 = JString.parse("<img=1>");
 
 	@OriginalMember(owner = "runetek4.client!hn", name = "K", descriptor = "Ljava/util/Calendar;")
-	public static final Calendar aCalendar2 = Calendar.getInstance();
+	public static final Calendar calendar = Calendar.getInstance();
 
 	@OriginalMember(owner = "runetek4.client!kk", name = "m", descriptor = "Lclient!na;")
 	public static final JString CS_ERROR = JString.parse("Clientscript error )2 check log for details");
@@ -177,10 +183,10 @@ public final class ClientScriptRunner {
 	public static final GoSubFrame[] callStack = new GoSubFrame[50];
 
 	@OriginalMember(owner = "client!ee", name = "j", descriptor = "[I")
-	public static final int[] anIntArray140 = new int[5];
+	public static final int[] stackDepthCounters = new int[5];
 
 	@OriginalMember(owner = "runetek4.client!oe", name = "i", descriptor = "[[I")
-	public static final int[][] anIntArrayArray33 = new int[5][5000];
+	public static final int[][] nestedStackValues = new int[5][5000];
 
 	@OriginalMember(owner = "runetek4.client!rl", name = "eb", descriptor = "Lclient!na;")
 	public static final JString ERROR_IN_SCRIPT = JString.parse("(U0a )2 in: ");
@@ -213,13 +219,13 @@ public final class ClientScriptRunner {
 	public static final int[][] entityCountsPerTile = new int[104][104];
 
 	@OriginalMember(owner = "runetek4.client!n", name = "e", descriptor = "Lclient!na;")
-	public static final JString aClass100_767 = JString.parse(")2");
+	public static final JString ESCAPE_CHAR = JString.parse(")2");
 
 	@OriginalMember(owner = "runetek4.client!ob", name = "p", descriptor = "Lclient!na;")
 	public static final JString ERROR_MISSING_GOSUB = JString.parse("(U0a )2 non)2existant gosub script)2num: ");
 
 	@OriginalMember(owner = "runetek4.client!af", name = "m", descriptor = "Lclient!na;")
-	public static final JString aClass100_10 = JString.parse("<br>");
+	public static final JString HTML_LINE_BREAK = JString.parse("<br>");
 
 	@OriginalMember(owner = "runetek4.client!em", name = "z", descriptor = "Z")
 	public static boolean menuVisible = false;
@@ -240,7 +246,7 @@ public final class ClientScriptRunner {
 	public static JString url;
 
 	@OriginalMember(owner = "runetek4.client!th", name = "m", descriptor = "[Lclient!be;")
-	public static Component[] aClass13Array13;
+	public static Component[] tempComponentArray;
 
 	@OriginalMember(owner = "runetek4.client!k", name = "j", descriptor = "I")
 	public static int anInt3126;
@@ -324,22 +330,22 @@ public final class ClientScriptRunner {
 	public static int fp = 0;
 
 	@OriginalMember(owner = "runetek4.client!od", name = "g", descriptor = "S")
-	public static short aShort25 = 256;
+	public static short minZoomScale = 256;
 
 	@OriginalMember(owner = "client!an", name = "db", descriptor = "S")
-	public static short aShort9 = 205;
+	public static short maxZoomScale = 205;
 
 	@OriginalMember(owner = "runetek4.client!mc", name = "tb", descriptor = "S")
-	public static short aShort22 = 1;
+	public static short minZoomConstraint = 1;
 
 	@OriginalMember(owner = "runetek4.client!ac", name = "k", descriptor = "S")
-	public static short aShort1 = 32767;
+	public static short maxZoomConstraint = 32767;
 
 	@OriginalMember(owner = "runetek4.client!nc", name = "n", descriptor = "I")
-	public static int anInt4055 = 0;
+	public static int calculatedViewportWidth = 0;
 
 	@OriginalMember(owner = "runetek4.client!tm", name = "i", descriptor = "I")
-	public static int anInt5377 = 0;
+	public static int calculatedViewportHeight = 0;
 
 	@OriginalMember(owner = "client!bn", name = "eb", descriptor = "I")
 	public static int anInt773 = 0;
@@ -351,10 +357,10 @@ public final class ClientScriptRunner {
 	public static int anInt5029 = 0;
 
 	@OriginalMember(owner = "runetek4.client!kd", name = "yb", descriptor = "S")
-	public static short aShort21 = 32767;
+	public static short maxAspectRatio = 32767;
 
 	@OriginalMember(owner = "client!ee", name = "f", descriptor = "S")
-	public static short aShort12 = 1;
+	public static short minAspectRatio = 1;
 
 	@OriginalMember(owner = "runetek4.client!kk", name = "j", descriptor = "I")
 	public static int anInt3325 = 0;
@@ -363,7 +369,7 @@ public final class ClientScriptRunner {
 	public static byte[][][] tileMarkings;
 
 	@OriginalMember(owner = "runetek4.client!vg", name = "b", descriptor = "S")
-	public static short aShort30 = 256;
+	public static short minDistanceScale = 256;
 
 	@OriginalMember(owner = "runetek4.client!lj", name = "z", descriptor = "[I")
 	public static int[] anIntArray338 = new int[2];
@@ -384,7 +390,7 @@ public final class ClientScriptRunner {
 	public static int overheadScreenY = -1;
 
 	@OriginalMember(owner = "runetek4.client!pb", name = "rb", descriptor = "S")
-	public static short aShort27 = 320;
+	public static short maxDistanceScale = 320;
 
 	@OriginalMember(owner = "runetek4.client!t", name = "b", descriptor = "(I)V")
 	public static void clear() {
@@ -441,7 +447,7 @@ public final class ClientScriptRunner {
 						run(event);
 					}
 					if (ComponentList.targetComponent != null && ComponentList.canAcceptDrop(dragComponent) != null) {
-						Protocol.outboundBuffer.pIsaac1(79);
+						Protocol.outboundBuffer.pIsaac1(ClientProt.OPHELDT);
 						Protocol.outboundBuffer.p4_alt3(dragComponent.id);
 						Protocol.outboundBuffer.p2_alt1(ComponentList.targetComponent.createdComponentId);
 						Protocol.outboundBuffer.p4(ComponentList.targetComponent.id);
@@ -478,20 +484,20 @@ public final class ClientScriptRunner {
 				@Pc(41) int value = 0;
 				@Pc(46) int opcode = script[pc++];
 				@Pc(48) byte nextOperator = 0;
-				if (opcode == 0) {
+				if (opcode == PUSH_CONSTANT_INT) {
 					return accumulator;
 				}
-				if (opcode == 15) {
+				if (opcode == OP_SUBTRACT) {
 					nextOperator = 1;
 				}
-				if (opcode == 16) {
+				if (opcode == OP_DIVIDE) {
 					nextOperator = 2;
 				}
-				if (opcode == 1) {
+				if (opcode == PUSH_VARP) {
                     // load_skill_level {skill}
 					value = PlayerSkillXpTable.boostedLevels[script[pc++]]; // Current skill level (with boosts)
                 }
-				if (opcode == 17) {
+				if (opcode == OP_MULTIPLY) {
 					nextOperator = 3;
 				}
 				if (opcode == 2) {
@@ -506,7 +512,7 @@ public final class ClientScriptRunner {
 				@Pc(135) Component com;
 				@Pc(140) int objTypeId;
 				@Pc(152) int slotIndex;
-				if (opcode == 4) { // load_inv_count {interface id} {obj id}
+				if (opcode == LOAD_INV_COUNT) { // load_inv_count {interface id} {obj id}
 					interfaceId = script[pc++] << 16; // Interface ID
 					@Pc(131) int componentId = interfaceId + script[pc++]; // Component ID
 					com = ComponentList.getComponent(componentId);
@@ -519,24 +525,24 @@ public final class ClientScriptRunner {
 						}
 					}
 				}
-				if (opcode == 5) {
+				if (opcode == LOAD_VAR) {
                     // load_var {id}
 					value = VarpDomain.activeVarps[script[pc++]];
 				}
-				if (opcode == 6) {
+				if (opcode == LOAD_NEXT_LEVEL_XP) {
                     // load_next_level_xp {skill}
 					value = PlayerSkillXpTable.xpLevelLookup[PlayerSkillXpTable.baseLevels[script[pc++]] - 1];
 				}
-				if (opcode == 7) {
+				if (opcode == LOAD_VARP_PERCENT) {
                     // Load varp as percentage (0-100)
                     // 46875 is the max varp value that maps to 100%
 					value = VarpDomain.activeVarps[script[pc++]] * 100 / 46875;
 				}
-				if (opcode == 8) {
+				if (opcode == LOAD_COMBAT_LEVEL) {
                     // load_combat_level
 					value = PlayerList.self.combatLevel;
 				}
-				if (opcode == 9) {
+				if (opcode == LOAD_TOTAL_LEVEL) {
                     // load_total_level
 					for (interfaceId = 0; interfaceId < 25; interfaceId++) {
 						if (PlayerSkillXpTable.ENABLED_SKILLS[interfaceId]) {
@@ -544,7 +550,7 @@ public final class ClientScriptRunner {
 						}
 					}
 				}
-				if (opcode == 10) {
+				if (opcode == LOAD_INV_CONTAINS) {
                     // load_inv_contains {interface id} {obj id}
                     // Check if inventory contains at least one of an item
 					interfaceId = script[pc++] << 16;
@@ -560,32 +566,32 @@ public final class ClientScriptRunner {
 						}
 					}
 				}
-				if (opcode == 11) {
+				if (opcode == LOAD_ENERGY) {
                     // load_energy
 					value = Player.runEnergy;
 				}
-				if (opcode == 12) {
+				if (opcode == LOAD_WEIGHT) {
                     // load_weight
 					value = Player.weightCarried;
 				}
-				if (opcode == 13) {
+				if (opcode == LOAD_BOOL) {
                     // load_bool {varp} {bit: 0..31}
                     // Extract a single bit from a varp as boolean (0 or 1)
 					interfaceId = VarpDomain.activeVarps[script[pc++]]; // The varp value
 					@Pc(353) int leastSignificantBit = script[pc++];
 					value = (0x1 << leastSignificantBit & interfaceId) == 0 ? 0 : 1; // Test if bit is set
 				}
-				if (opcode == 14) {
+				if (opcode == LOAD_VARBIT) {
 					interfaceId = script[pc++];
 					value = VarpDomain.getVarbitValue(interfaceId);
 				}
-				if (opcode == 18) {
+				if (opcode == COORD_X) {
 					value = (PlayerList.self.xFine >> 7) + Camera.sceneBaseTileX;
 				}
-				if (opcode == 19) {
+				if (opcode == COORD_Z) {
 					value = (PlayerList.self.zFine >> 7) + Camera.sceneBaseTileZ;
 				}
-				if (opcode == 20) {
+				if (opcode == PUSH_CONSTANT) {
 					value = script[pc++];
 				}
 
@@ -728,25 +734,25 @@ public final class ClientScriptRunner {
 				if (opcode < 100) {
 					// core language ops (not commands)
 
-					if (opcode == 0) {
+					if (opcode == PUSH_CONSTANT_INT) {
 						// push_constant_int
 						scriptIntValues[isp++] = intOperands[pc];
 						continue;
 					}
-					if (opcode == 1) {
+					if (opcode == PUSH_VARP) {
 						// push_varp
 						id = intOperands[pc];
 						scriptIntValues[isp++] = VarpDomain.activeVarps[id];
 						continue;
 					}
-					if (opcode == 2) {
+					if (opcode == POP_VARP) {
 						// pop_varp
 						id = intOperands[pc];
-						isp--;
+						isp--; // Decrement then read
 						VarpDomain.setVarpClient(id, scriptIntValues[isp]);
 						continue;
 					}
-					if (opcode == 3) {
+					if (opcode == PUSH_CONSTANT_STRING) {
 						// push_constant_string
 						scriptStringValues[ssp++] = clientScript.stringOperands[pc];
 						continue;
@@ -788,7 +794,7 @@ public final class ClientScriptRunner {
 						}
 						continue;
 					}
-					if (opcode == 21) {
+					if (opcode == RETURN) {
 						// return
 						if (fp == 0) {
 							return;
@@ -802,20 +808,20 @@ public final class ClientScriptRunner {
 						intOperands = clientScript.intOperands;
 						continue;
 					}
-					if (opcode == 25) {
+					if (opcode == PUSH_VARBIT) {
 						// push_varbit
 						id = intOperands[pc];
 						scriptIntValues[isp++] = VarpDomain.getVarbitValue(id);
 						continue;
 					}
-					if (opcode == 27) {
+					if (opcode == POP_VARBIT) {
 						// pop_varbit
 						id = intOperands[pc];
-						isp--;
+						isp--; // Decrement then read
 						VarpDomain.setVarbitClient(id, scriptIntValues[isp]);
 						continue;
 					}
-					if (opcode == 31) {
+					if (opcode == BRANCH_LESS_THAN_OR_EQUALS) {
 						// branch_less_than_or_equals
 						isp -= 2;
 						if (scriptIntValues[isp + 1] >= scriptIntValues[isp]) {
@@ -823,7 +829,7 @@ public final class ClientScriptRunner {
 						}
 						continue;
 					}
-					if (opcode == 32) {
+					if (opcode == BRANCH_GREATER_THAN_OR_EQUALS) {
 						// branch_greater_than_or_equals
 						isp -= 2;
 						if (scriptIntValues[isp] >= scriptIntValues[isp + 1]) {
@@ -831,32 +837,32 @@ public final class ClientScriptRunner {
 						}
 						continue;
 					}
-					if (opcode == 33) {
+					if (opcode == PUSH_INT_LOCAL) {
 						// push_int_local
 						scriptIntValues[isp++] = intLocals[intOperands[pc]];
 						continue;
 					}
 					@Pc(555) int localIndex;
-					if (opcode == 34) {
+					if (opcode == POP_INT_LOCAL) {
 						// pop_int_local
 						localIndex = intOperands[pc];
-						isp--;
+						isp--; // Decrement then read
 						intLocals[localIndex] = scriptIntValues[isp];
 						continue;
 					}
-					if (opcode == 35) {
+					if (opcode == PUSH_STRING_LOCAL) {
 						// push_string_local
 						scriptStringValues[ssp++] = stringLocals[intOperands[pc]];
 						continue;
 					}
-					if (opcode == 36) {
+					if (opcode == POP_STRING_LOCAL) {
 						// pop_string_local
 						localIndex = intOperands[pc];
 						ssp--;
 						stringLocals[localIndex] = scriptStringValues[ssp];
 						continue;
 					}
-					if (opcode == 37) {
+					if (opcode == JOIN_STRING) {
 						// join_string
 						id = intOperands[pc];
 						ssp -= id;
@@ -864,17 +870,17 @@ public final class ClientScriptRunner {
 						scriptStringValues[ssp++] = tempString1;
 						continue;
 					}
-					if (opcode == 38) {
+					if (opcode == POP_INT_DISCARD) {
 						// pop_int_discard
-						isp--;
+						isp--; // Decrement then read
 						continue;
 					}
-					if (opcode == 39) {
+					if (opcode == POP_STRING_DISCARD) {
 						// pop_string_discard
 						ssp--;
 						continue;
 					}
-					if (opcode == 40) {
+					if (opcode == GOSUB_WITH_PARAMS) {
 						// gosub_with_params, call another ClientScript
 						id = intOperands[pc]; // Script ID to call
 						@Pc(642) ClientScript invokeScript = ClientScriptList.get(id);
@@ -916,28 +922,28 @@ public final class ClientScriptRunner {
 						stringLocals = invokeScriptStringLocals; // Switch to new string locals
 						continue;
 					}
-					if (opcode == 42) {
+					if (opcode == PUSH_VARC_INT) {
 						// push_varc_int
 						scriptIntValues[isp++] = VarcDomain.varcs[intOperands[pc]];
 						continue;
 					}
-					if (opcode == 43) {
+					if (opcode == POP_VARC_INT) {
 						// pop_varc_int
 						id = intOperands[pc];
-						isp--;
+						isp--; // Decrement then read
 						VarcDomain.varcs[id] = scriptIntValues[isp];
-						DelayedStateChange.setVarcClient(id);
+						ClientServerStateSync.setVarcClient(id);
 						continue;
 					}
-					if (opcode == 44) {
+					if (opcode == DEFINE_ARRAY) {
                         // define_array
                         // Arrays are global and indexed by ID, used for things like NPC lists, item lists etc
 						id = intOperands[pc] >> 16; // Array ID
-						isp--;
+						isp--; // Decrement then read
 						tempInt1 = scriptIntValues[isp]; // New array size
 						tempInt2 = intOperands[pc] & 0xFFFF; // Array type/opcode
 						if (tempInt1 >= 0 && tempInt1 <= 5000) { // Validate size
-							anIntArray140[id] = tempInt1; // Store the array size
+							stackDepthCounters[id] = tempInt1; // Store the array size
 
                             // Determine default value based on array type
 							@Pc(828) byte defaultValue = -1; // Most arrays default to -1
@@ -951,35 +957,35 @@ public final class ClientScriptRunner {
 								if (tempInt1 <= i) {
 									continue nextOp;
 								}
-								anIntArrayArray33[id][i] = defaultValue;
+								nestedStackValues[id][i] = defaultValue;
 								i++;
 							}
 						}
 						throw new RuntimeException(); // Size out of valid range
 					}
-					if (opcode == 45) {
+					if (opcode == ARRAY_GET) {
                         // array_get
 						id = intOperands[pc]; // Array ID
-						isp--;
+						isp--; // Decrement then read
 						tempInt2 = scriptIntValues[isp]; // Array index
-						if (tempInt2 >= 0 && tempInt2 < anIntArray140[id]) { // Bounds check
-							scriptIntValues[isp++] = anIntArrayArray33[id][tempInt2]; // Push value
+						if (tempInt2 >= 0 && tempInt2 < stackDepthCounters[id]) { // Bounds check
+							scriptIntValues[isp++] = nestedStackValues[id][tempInt2]; // Push value
 							continue;
 						}
 						throw new RuntimeException(); // Index out of bounds
 					}
-					if (opcode == 46) {
+					if (opcode == ARRAY_SET) {
                         // array_set
 						id = intOperands[pc]; // Array ID
 						isp -= 2;
 						tempInt2 = scriptIntValues[isp]; // Array index
-						if (tempInt2 >= 0 && tempInt2 < anIntArray140[id]) { // Bounds check
-							anIntArrayArray33[id][tempInt2] = scriptIntValues[isp + 1]; // Set value
+						if (tempInt2 >= 0 && tempInt2 < stackDepthCounters[id]) { // Bounds check
+							nestedStackValues[id][tempInt2] = scriptIntValues[isp + 1]; // Set value
 							continue;
 						}
 						throw new RuntimeException(); // Index out of bounds
 					}
-					if (opcode == 47) {
+					if (opcode == PUSH_VARC_STRING) {
 						value = VarcDomain.varcstrs[intOperands[pc]];
 						if (value == null) {
 							value = VarpDomain.NULL;
@@ -987,16 +993,16 @@ public final class ClientScriptRunner {
 						scriptStringValues[ssp++] = value;
 						continue;
 					}
-					if (opcode == 48) {
+					if (opcode == POP_VARC_STRING) {
 						id = intOperands[pc];
 						ssp--;
 						VarcDomain.varcstrs[id] = scriptStringValues[ssp];
-						DelayedStateChange.setVarcstrClient(id);
+						ClientServerStateSync.setVarcstrClient(id);
 						continue;
 					}
-					if (opcode == 51) {
+					if (opcode == SWITCH) {
 						@Pc(992) HashTable table = clientScript.switchTables[intOperands[pc]];
-						isp--;
+						isp--; // Decrement then read
 						@Pc(1002) IntWrapper node = (IntWrapper) table.get((long) scriptIntValues[isp]);
 						if (node != null) {
 							pc += node.value;
@@ -1019,7 +1025,7 @@ public final class ClientScriptRunner {
 				@Pc(1087) int childId;
 				@Pc(1256) Component foundComponent;
 				if (opcode < 300) {
-					if (opcode == 100) {
+					if (opcode == CC_CREATE) {
 						// cc_create
 						isp -= 3;
 						tempInt2 = scriptIntValues[isp];
@@ -1057,7 +1063,7 @@ public final class ClientScriptRunner {
 						throw new RuntimeException();
 					}
 					@Pc(1204) Component parentComponent;
-					if (opcode == 101) {
+					if (opcode == CC_DELETE) {
 						// cc_delete
 						createdComponent = secondary ? secondaryActiveComponent : primaryActiveComponent;
 						if (createdComponent.createdComponentId == -1) {
@@ -1071,15 +1077,15 @@ public final class ClientScriptRunner {
 						ComponentList.redraw(parentComponent);
 						continue;
 					}
-					if (opcode == 102) {
+					if (opcode == CC_DELETEALL) {
 						// cc_deleteall
-						isp--;
+						isp--; // Decrement then read
 						createdComponent = ComponentList.getComponent(scriptIntValues[isp]);
 						createdComponent.createdComponents = null;
 						ComponentList.redraw(createdComponent);
 						continue;
 					}
-					if (opcode == 200) {
+					if (opcode == CC_FIND) {
 						isp -= 2;
 						tempInt2 = scriptIntValues[isp];
 						tempInt1 = scriptIntValues[isp + 1];
@@ -1096,8 +1102,8 @@ public final class ClientScriptRunner {
 						scriptIntValues[isp++] = 0;
 						continue;
 					}
-					if (opcode == 201) {
-						isp--;
+					if (opcode == IF_FIND) {
+						isp--; // Decrement then read
 						tempInt2 = scriptIntValues[isp];
 						parentComponent = ComponentList.getComponent(tempInt2);
 						if (parentComponent == null) {
@@ -1115,7 +1121,7 @@ public final class ClientScriptRunner {
 				} else {
 					@Pc(12388) boolean isFemale;
 					if (opcode < 500) {
-						if (opcode == 403) {
+						if (opcode == SETIDKIT) {
 							isp -= 2;
 							tempInt1 = scriptIntValues[isp + 1];
 							tempInt2 = scriptIntValues[isp];
@@ -1137,15 +1143,15 @@ public final class ClientScriptRunner {
 								j++;
 							}
 						}
-						if (opcode == 404) {
+						if (opcode == SETCOLOR) {
 							isp -= 2;
 							tempInt2 = scriptIntValues[isp];
 							tempInt1 = scriptIntValues[isp + 1];
 							PlayerList.self.appearance.setColor(tempInt2, tempInt1);
 							continue;
 						}
-						if (opcode == 410) {
-							isp--;
+						if (opcode == SETGENDER) {
+							isp--; // Decrement then read
 							isFemale = scriptIntValues[isp] != 0;
 							PlayerList.self.appearance.setGender(isFemale);
 							continue;
@@ -1164,10 +1170,10 @@ public final class ClientScriptRunner {
 								} else {
                                     // if_ commands,  pop component ID from stack
 									opcode -= 1000; // Adjust opcode to match cc_ version
-									isp--;
+									isp--; // Decrement then read
 									createdComponent = ComponentList.getComponent(scriptIntValues[isp]);
 								}
-								if (opcode == 1100) {
+								if (opcode == CC_SETSCROLLPOS) {
 									// setscrollpos
 									isp -= 2;
 									createdComponent.scrollX = scriptIntValues[isp];
@@ -1186,73 +1192,73 @@ public final class ClientScriptRunner {
 									}
 									ComponentList.redraw(createdComponent);
 									if (createdComponent.createdComponentId == -1) {
-										DelayedStateChange.setComponentScrollPositionClient(createdComponent.id);
+										ClientServerStateSync.setComponentScrollPositionClient(createdComponent.id);
 									}
 									continue;
 								}
-								if (opcode == 1101) {
+								if (opcode == CC_SETCOLOR) {
 									// setcolor
-									isp--;
+									isp--; // Decrement then read
 									createdComponent.color = scriptIntValues[isp];
 									ComponentList.redraw(createdComponent);
 									if (createdComponent.createdComponentId == -1) {
-										DelayedStateChange.setComponentColorClient(createdComponent.id);
+										ClientServerStateSync.setComponentColorClient(createdComponent.id);
 									}
 									continue;
 								}
-								if (opcode == 1102) {
+								if (opcode == CC_SETFILL) {
 									// setfill
-									isp--;
+									isp--; // Decrement then read
 									createdComponent.filled = scriptIntValues[isp] == 1;
 									ComponentList.redraw(createdComponent);
 									continue;
 								}
-								if (opcode == 1103) {
+								if (opcode == CC_SETTRANS) {
 									// settrans
-									isp--;
+									isp--; // Decrement then read
 									createdComponent.alpha = scriptIntValues[isp];
 									ComponentList.redraw(createdComponent);
 									continue;
 								}
-								if (opcode == 1104) {
+								if (opcode == CC_SETLINEWID) {
 									// setlinewid
-									isp--;
+									isp--; // Decrement then read
 									createdComponent.lineWidth = scriptIntValues[isp];
 									ComponentList.redraw(createdComponent);
 									continue;
 								}
-								if (opcode == 1105) {
+								if (opcode == CC_SETGRAPHIC) {
 									// setgraphic
-									isp--;
+									isp--; // Decrement then read
 									createdComponent.spriteId = scriptIntValues[isp];
 									ComponentList.redraw(createdComponent);
 									continue;
 								}
-								if (opcode == 1106) {
-									isp--;
+								if (opcode == CC_SETANGLE) {
+									isp--; // Decrement then read
 									createdComponent.angle2d = scriptIntValues[isp];
 									ComponentList.redraw(createdComponent);
 									continue;
 								}
-								if (opcode == 1107) {
+								if (opcode == CC_SETTILING) {
 									// settiling
-									isp--;
+									isp--; // Decrement then read
 									createdComponent.spriteTiling = scriptIntValues[isp] == 1;
 									ComponentList.redraw(createdComponent);
 									continue;
 								}
-								if (opcode == 1108) {
+								if (opcode == CC_SETMODEL) {
 									// setmodel
 									createdComponent.modelType = 1;
-									isp--;
+									isp--; // Decrement then read
 									createdComponent.modelId = scriptIntValues[isp];
 									ComponentList.redraw(createdComponent);
 									if (createdComponent.createdComponentId == -1) {
-										DelayedStateChange.setComponentModelClient(createdComponent.id);
+										ClientServerStateSync.setComponentModelClient(createdComponent.id);
 									}
 									continue;
 								}
-								if (opcode == 1109) {
+								if (opcode == CC_SETMODELANGLE) {
 									// setmodelangle
 									isp -= 6;
 									createdComponent.modelXOffset = scriptIntValues[isp];
@@ -1263,14 +1269,14 @@ public final class ClientScriptRunner {
 									createdComponent.modelZoom = scriptIntValues[isp + 5];
 									ComponentList.redraw(createdComponent);
 									if (createdComponent.createdComponentId == -1) {
-										DelayedStateChange.setComponentModelAngleClient(createdComponent.id);
-										DelayedStateChange.setComponentModelOffsetClient(createdComponent.id);
+										ClientServerStateSync.setComponentModelAngleClient(createdComponent.id);
+										ClientServerStateSync.setComponentModelOffsetClient(createdComponent.id);
 									}
 									continue;
 								}
-								if (opcode == 1110) {
+								if (opcode == CC_SETMODELANIM) {
 									// setmodelanim
-									isp--;
+									isp--; // Decrement then read
 									tempInt1 = scriptIntValues[isp];
 									if (createdComponent.modelSeqId != tempInt1) {
 										createdComponent.modelSeqId = tempInt1;
@@ -1280,18 +1286,18 @@ public final class ClientScriptRunner {
 										ComponentList.redraw(createdComponent);
 									}
 									if (createdComponent.createdComponentId == -1) {
-										DelayedStateChange.setComponentModelAnimClient(createdComponent.id);
+										ClientServerStateSync.setComponentModelAnimClient(createdComponent.id);
 									}
 									continue;
 								}
-								if (opcode == 1111) {
+								if (opcode == CC_SETMODELORTHOG) {
 									// setmodelorthog
-									isp--;
+									isp--; // Decrement then read
 									createdComponent.modelOrtho = scriptIntValues[isp] == 1;
 									ComponentList.redraw(createdComponent);
 									continue;
 								}
-								if (opcode == 1112) {
+								if (opcode == CC_SETTEXT) {
 									// settext
 									ssp--;
 									chatTypedLowercase = scriptStringValues[ssp];
@@ -1300,18 +1306,18 @@ public final class ClientScriptRunner {
 										ComponentList.redraw(createdComponent);
 									}
 									if (createdComponent.createdComponentId == -1) {
-										DelayedStateChange.setComponentTextClient(createdComponent.id);
+										ClientServerStateSync.setComponentTextClient(createdComponent.id);
 									}
 									continue;
 								}
-								if (opcode == 1113) {
+								if (opcode == CC_SETTEXTFONT) {
 									// settextfont
-									isp--;
+									isp--; // Decrement then read
 									createdComponent.fontId = scriptIntValues[isp];
 									ComponentList.redraw(createdComponent);
 									continue;
 								}
-								if (opcode == 1114) {
+								if (opcode == CC_SETTEXTALIGN) {
 									// settextalign
 									isp -= 3;
 									createdComponent.halign = scriptIntValues[isp];
@@ -1320,38 +1326,38 @@ public final class ClientScriptRunner {
 									ComponentList.redraw(createdComponent);
 									continue;
 								}
-								if (opcode == 1115) {
+								if (opcode == CC_SETTEXTSHADOW) {
 									// settextshadow
-									isp--;
+									isp--; // Decrement then read
 									createdComponent.shadowed = scriptIntValues[isp] == 1;
 									ComponentList.redraw(createdComponent);
 									continue;
 								}
-								if (opcode == 1116) {
-									isp--;
+								if (opcode == CC_SETOUTLINE) {
+									isp--; // Decrement then read
 									createdComponent.outlineThickness = scriptIntValues[isp];
 									ComponentList.redraw(createdComponent);
 									continue;
 								}
-								if (opcode == 1117) {
-									isp--;
+								if (opcode == CC_SETSHADOWCOLOR) {
+									isp--; // Decrement then read
 									createdComponent.shadowColor = scriptIntValues[isp];
 									ComponentList.redraw(createdComponent);
 									continue;
 								}
-								if (opcode == 1118) {
-									isp--;
+								if (opcode == CC_SETVFLIP) {
+									isp--; // Decrement then read
 									createdComponent.vFlip = scriptIntValues[isp] == 1;
 									ComponentList.redraw(createdComponent);
 									continue;
 								}
-								if (opcode == 1119) {
-									isp--;
+								if (opcode == CC_SETHFLIP) {
+									isp--; // Decrement then read
 									createdComponent.hFlip = scriptIntValues[isp] == 1;
 									ComponentList.redraw(createdComponent);
 									continue;
 								}
-								if (opcode == 1120) {
+								if (opcode == CC_SETSCROLLSIZE) {
 									isp -= 2;
 									createdComponent.scrollMaxH = scriptIntValues[isp];
 									createdComponent.scrollMaxV = scriptIntValues[isp + 1];
@@ -1361,25 +1367,25 @@ public final class ClientScriptRunner {
 									}
 									continue;
 								}
-								if (opcode == 1121) {
+								if (opcode == CC_SETCOMPONENTSHORTS) {
 									isp -= 2;
 									createdComponent.aShort11 = (short) scriptIntValues[isp];
 									createdComponent.aShort10 = (short) scriptIntValues[isp + 1];
 									ComponentList.redraw(createdComponent);
 									continue;
 								}
-								if (opcode == 1122) {
-									isp--;
+								if (opcode == CC_SETHASALPHA) {
+									isp--; // Decrement then read
 									createdComponent.hasAlpha = scriptIntValues[isp] == 1;
 									ComponentList.redraw(createdComponent);
 									continue;
 								}
-								if (opcode == 1123) {
-									isp--;
+								if (opcode == CC_SETZOOM) {
+									isp--; // Decrement then read
 									createdComponent.modelZoom = scriptIntValues[isp];
 									ComponentList.redraw(createdComponent);
 									if (createdComponent.createdComponentId == -1) {
-										DelayedStateChange.setComponentModelAngleClient(createdComponent.id);
+										ClientServerStateSync.setComponentModelAngleClient(createdComponent.id);
 									}
 									continue;
 								}
@@ -1387,12 +1393,12 @@ public final class ClientScriptRunner {
 								if (opcode < 2000) {
 									createdComponent = secondary ? secondaryActiveComponent : primaryActiveComponent;
 								} else {
-									isp--;
+									isp--; // Decrement then read
 									createdComponent = ComponentList.getComponent(scriptIntValues[isp]);
 									opcode -= 1000;
 								}
 								ComponentList.redraw(createdComponent);
-								if (opcode == 1200 || opcode == 1205) {
+								if (opcode == CC_SETOBJECT || opcode == CC_SETOBJECT_NONUM) {
                                     // setobject / setobject_nonum - Display item model on component
                                     // 1200 shows stack count, 1205 hides it
 									isp -= 2;
@@ -1400,9 +1406,9 @@ public final class ClientScriptRunner {
 									tempInt1 = scriptIntValues[isp]; // Object type ID
 									if (createdComponent.createdComponentId == -1) {
                                         // For static components, notify server of changes
-										DelayedStateChange.setComponentObjClient(createdComponent.id);
-										DelayedStateChange.setComponentModelAngleClient(createdComponent.id);
-										DelayedStateChange.setComponentModelOffsetClient(createdComponent.id);
+										ClientServerStateSync.setComponentObjClient(createdComponent.id);
+										ClientServerStateSync.setComponentModelAngleClient(createdComponent.id);
+										ClientServerStateSync.setComponentModelOffsetClient(createdComponent.id);
 									}
 									if (tempInt1 == -1) {
                                         // Clear the object
@@ -1424,8 +1430,8 @@ public final class ClientScriptRunner {
 										createdComponent.modelZoom = objType.zoom2d; // Zoom level
 
                                         // Scale zoom to fit component size
-										if (createdComponent.anInt451 > 0) {
-											createdComponent.modelZoom = createdComponent.modelZoom * 32 / createdComponent.anInt451;
+										if (createdComponent.maxModelSize > 0) {
+											createdComponent.modelZoom = createdComponent.modelZoom * 32 / createdComponent.maxModelSize;
 										} else if (createdComponent.baseWidth > 0) {
 											createdComponent.modelZoom = createdComponent.modelZoom * 32 / createdComponent.baseWidth;
 										}
@@ -1438,59 +1444,59 @@ public final class ClientScriptRunner {
 									}
 									continue;
 								}
-								if (opcode == 1201) {
+								if (opcode == CC_SETNPCHEAD) {
 									// setnpchead
                                     // Display NPC chathead model
 									createdComponent.modelType = 2; // Model type 2 = NPC head
-									isp--;
+									isp--; // Decrement then read
 									createdComponent.modelId = scriptIntValues[isp];  // NPC type ID
 									if (createdComponent.createdComponentId == -1) {
-										DelayedStateChange.setComponentModelClient(createdComponent.id);
+										ClientServerStateSync.setComponentModelClient(createdComponent.id);
 									}
 									continue;
 								}
-								if (opcode == 1202) {
+								if (opcode == CC_SETPLAYERHEAD_SELF) {
 									// setplayerhead_self
                                     // Display players chathead
 									createdComponent.modelType = 3; // Model type 3 = player head
 									createdComponent.modelId = PlayerList.self.appearance.getHeadModelId();
 									if (createdComponent.createdComponentId == -1) {
-										DelayedStateChange.setComponentModelClient(createdComponent.id);
+										ClientServerStateSync.setComponentModelClient(createdComponent.id);
 									}
 									continue;
 								}
-								if (opcode == 1203) {
+								if (opcode == CC_SETNPCMODEL) {
 									// setnpcmodel
                                     // Display full NPC model
 									createdComponent.modelType = 6; // Model type 6 = NPC body
-									isp--;
+									isp--; // Decrement then read
 									createdComponent.modelId = scriptIntValues[isp];
 									if (createdComponent.createdComponentId == -1) {
-										DelayedStateChange.setComponentModelClient(createdComponent.id);
+										ClientServerStateSync.setComponentModelClient(createdComponent.id);
 									}
 									continue;
 								}
-								if (opcode == 1204) {
+								if (opcode == CC_SETPLAYERMODEL) {
 									createdComponent.modelType = 5;
-									isp--;
+									isp--; // Decrement then read
 									createdComponent.modelId = scriptIntValues[isp];
 									if (createdComponent.createdComponentId == -1) {
-										DelayedStateChange.setComponentModelClient(createdComponent.id);
+										ClientServerStateSync.setComponentModelClient(createdComponent.id);
 									}
 									continue;
 								}
 							} else if (opcode >= 1300 && opcode < 1400 || opcode >= 2300 && opcode < 2400) {
 								if (opcode >= 2000) {
 									// if_
-									isp--;
+									isp--; // Decrement then read
 									createdComponent = ComponentList.getComponent(scriptIntValues[isp]);
 									opcode -= 1000;
 								} else {
 									// cc_
 									createdComponent = secondary ? secondaryActiveComponent : primaryActiveComponent;
 								}
-								if (opcode == 1300) {
-									isp--;
+								if (opcode == CC_SETOP) {
+									isp--; // Decrement then read
 									tempInt1 = scriptIntValues[isp] - 1;
 									if (tempInt1 >= 0 && tempInt1 <= 9) {
 										ssp--;
@@ -1500,53 +1506,53 @@ public final class ClientScriptRunner {
 									ssp--;
 									continue;
 								}
-								if (opcode == 1301) {
+								if (opcode == CC_SETPARENT) {
 									isp -= 2;
 									j = scriptIntValues[isp + 1];
 									tempInt1 = scriptIntValues[isp];
 									createdComponent.parent = ComponentList.getCreatedComponent(tempInt1, j);
 									continue;
 								}
-								if (opcode == 1302) {
-									isp--;
+								if (opcode == CC_SETDRAGRENDERBEHAVIOR) {
+									isp--; // Decrement then read
 									createdComponent.dragRenderBehavior = scriptIntValues[isp] == 1;
 									continue;
 								}
-								if (opcode == 1303) {
-									isp--;
+								if (opcode == CC_SETDRAGDEADZONE) {
+									isp--; // Decrement then read
 									createdComponent.dragDeadzone = scriptIntValues[isp];
 									continue;
 								}
-								if (opcode == 1304) {
-									isp--;
+								if (opcode == CC_SETDRAGDEADTIME) {
+									isp--; // Decrement then read
 									createdComponent.dragDeadtime = scriptIntValues[isp];
 									continue;
 								}
-								if (opcode == 1305) {
+								if (opcode == CC_SETOPTIONBASE) {
 									ssp--;
 									createdComponent.optionBase = scriptStringValues[ssp];
 									continue;
 								}
-								if (opcode == 1306) {
+								if (opcode == CC_SETOPTIONCIRCUMFIX) {
 									ssp--;
 									createdComponent.optionCircumfix = scriptStringValues[ssp];
 									continue;
 								}
-								if (opcode == 1307) {
+								if (opcode == CC_CLEAROPS) {
 									createdComponent.ops = null;
 									continue;
 								}
-								if (opcode == 1308) {
-									isp--;
+								if (opcode == CC_SETCOMPONENTINTS) {
+									isp--; // Decrement then read
 									createdComponent.anInt484 = scriptIntValues[isp];
-									isp--;
+									isp--; // Decrement then read
 									createdComponent.anInt499 = scriptIntValues[isp];
 									continue;
 								}
-								if (opcode == 1309) {
-									isp--;
+								if (opcode == CC_SETCOMPONENTPROPERTY) {
+									isp--; // Decrement then read
 									tempInt1 = scriptIntValues[isp];
-									isp--;
+									isp--; // Decrement then read
 									j = scriptIntValues[isp];
 									if (j >= 1 && j <= 10) {
 										createdComponent.method477(j - 1, tempInt1);
@@ -1562,19 +1568,19 @@ public final class ClientScriptRunner {
 									} else {
 										// cc_
 										opcode -= 1000;
-										isp--;
+										isp--; // Decrement then read
 										createdComponent = ComponentList.getComponent(scriptIntValues[isp]);
 									}
 									@Pc(12937) int[] triggerArray = null;
 									ssp--;
 									chatTypedLowercase = scriptStringValues[ssp];
 									if (chatTypedLowercase.length() > 0 && chatTypedLowercase.charAt(chatTypedLowercase.length() - 1) == 89) {
-										isp--;
+										isp--; // Decrement then read
 										i = scriptIntValues[isp];
 										if (i > 0) {
 											triggerArray = new int[i];
 											while (i-- > 0) {
-												isp--;
+												isp--; // Decrement then read
 												triggerArray[i] = scriptIntValues[isp];
 											}
 										}
@@ -1586,11 +1592,11 @@ public final class ClientScriptRunner {
 											ssp--;
 											arguments[start] = scriptStringValues[ssp];
 										} else {
-											isp--;
+											isp--; // Decrement then read
 											arguments[start] = Integer.valueOf(scriptIntValues[isp]);
 										}
 									}
-									isp--;
+									isp--; // Decrement then read
 									start = scriptIntValues[isp];
 									if (start == -1) {
 										arguments = null;
@@ -1598,67 +1604,67 @@ public final class ClientScriptRunner {
 										arguments[0] = Integer.valueOf(start);
 									}
 									createdComponent.interactive = true;
-									if (opcode == 1400) {
+									if (opcode == CC_SETONCLICKREPEAT) {
 										createdComponent.onClickRepeat = arguments;
-									} else if (opcode == 1401) {
+									} else if (opcode == CC_SETONHOLD) {
 										createdComponent.onHold = arguments;
-									} else if (opcode == 1402) {
+									} else if (opcode == CC_SETONRELEASE) {
 										createdComponent.onRelease = arguments;
-									} else if (opcode == 1403) {
+									} else if (opcode == CC_SETONMOUSEOVER) {
 										createdComponent.onMouseOver = arguments;
-									} else if (opcode == 1404) {
+									} else if (opcode == CC_SETONMOUSELEAVE) {
 										createdComponent.onMouseLeave = arguments;
-									} else if (opcode == 1405) {
+									} else if (opcode == CC_SETONDRAGSTART) {
 										createdComponent.onDragStart = arguments;
-									} else if (opcode == 1406) {
+									} else if (opcode == CC_SETONUSEWITH) {
 										createdComponent.onUseWith = arguments;
-									} else if (opcode == 1407) {
+									} else if (opcode == CC_SETONVARPTRANSMIT) {
 										createdComponent.varpTriggers = triggerArray;
 										createdComponent.onVarpTransmit = arguments;
-									} else if (opcode == 1408) {
+									} else if (opcode == CC_SETONTIMER) {
 										createdComponent.onTimer = arguments;
-									} else if (opcode == 1409) {
+									} else if (opcode == CC_SETONOPTIONCLICK) {
 										createdComponent.onOptionClick = arguments;
-									} else if (opcode == 1410) {
+									} else if (opcode == CC_SETONDRAGRELEASE) {
 										createdComponent.onDragRelease = arguments;
-									} else if (opcode == 1411) {
+									} else if (opcode == CC_SETONDRAG) {
 										createdComponent.onDrag = arguments;
-									} else if (opcode == 1412) {
+									} else if (opcode == CC_SETONMOUSEREPEAT) {
 										createdComponent.onMouseRepeat = arguments;
-									} else if (opcode == 1414) {
+									} else if (opcode == CC_SETONINVTRANSMIT) {
 										createdComponent.inventoryTriggers = triggerArray;
 										createdComponent.onInvTransmit = arguments;
-									} else if (opcode == 1415) {
+									} else if (opcode == CC_SETONSTATTRANSMIT) {
 										createdComponent.statTriggers = triggerArray;
 										createdComponent.onStatTransmit = arguments;
-									} else if (opcode == 1416) {
+									} else if (opcode == CC_SETONUSE) {
 										createdComponent.onUse = arguments;
-									} else if (opcode == 1417) {
+									} else if (opcode == CC_SETONSCROLL) {
 										createdComponent.onScroll = arguments;
-									} else if (opcode == 1418) {
+									} else if (opcode == CC_SETONMSG) {
 										createdComponent.onMsg = arguments;
-									} else if (opcode == 1419) {
+									} else if (opcode == CC_SETONKEY) {
 										createdComponent.onKey = arguments;
-									} else if (opcode == 1420) {
+									} else if (opcode == CC_SETONFRIENDTRANSMIT) {
 										createdComponent.onFriendTransmit = arguments;
-									} else if (opcode == 1421) {
+									} else if (opcode == CC_SETONCLANTRANSMIT) {
 										createdComponent.onClanTransmit = arguments;
-									} else if (opcode == 1422) {
+									} else if (opcode == CC_SETONMISCTRANSMIT) {
 										createdComponent.onMiscTransmit = arguments;
-									} else if (opcode == 1423) {
+									} else if (opcode == CC_SETONDIALOGABORT) {
 										createdComponent.onDialogAbort = arguments;
-									} else if (opcode == 1424) {
+									} else if (opcode == CC_SETONCOMPONENTSOPENCLOSE) {
 										createdComponent.onComponentsOpenClose = arguments;
-									} else if (opcode == 1425) {
+									} else if (opcode == CC_SETONSTOCKTRANSMIT) {
 										createdComponent.onStockTransmit = arguments;
-									} else if (opcode == 1426) {
+									} else if (opcode == CC_SETONMINIMAPUNLOCK) {
 										createdComponent.onMinimapUnlock = arguments;
-									} else if (opcode == 1427) {
+									} else if (opcode == CC_SETONRESIZE) {
 										createdComponent.onResize = arguments;
-									} else if (opcode == 1428) {
+									} else if (opcode == CC_SETONVARCTRANSMIT) {
 										createdComponent.onVarcTransmit = arguments;
 										createdComponent.varcTriggers = triggerArray;
-									} else if (opcode == 1429) {
+									} else if (opcode == CC_SETONVARCSTRTRANSMIT) {
 										createdComponent.varcstrTriggers = triggerArray;
 										createdComponent.onVarcstrTransmit = arguments;
 									}
@@ -1666,99 +1672,99 @@ public final class ClientScriptRunner {
 								}
 								if (opcode < 1600) {
 									createdComponent = secondary ? secondaryActiveComponent : primaryActiveComponent;
-									if (opcode == 1500) {
+									if (opcode == CC_GETX) {
 										// cc_getx
 										scriptIntValues[isp++] = createdComponent.x;
 										continue;
 									}
-									if (opcode == 1501) {
+									if (opcode == CC_GETY) {
 										// cc_gety
 										scriptIntValues[isp++] = createdComponent.y;
 										continue;
 									}
-									if (opcode == 1502) {
+									if (opcode == CC_GETWIDTH) {
 										// cc_getwidth
 										scriptIntValues[isp++] = createdComponent.width;
 										continue;
 									}
-									if (opcode == 1503) {
+									if (opcode == CC_GETHEIGHT) {
 										// cc_getheight
 										scriptIntValues[isp++] = createdComponent.height;
 										continue;
 									}
-									if (opcode == 1504) {
+									if (opcode == CC_GETHIDE) {
 										// cc_gethide
 										scriptIntValues[isp++] = createdComponent.hidden ? 1 : 0;
 										continue;
 									}
-									if (opcode == 1505) {
+									if (opcode == CC_GETLAYER) {
 										// set_getlayer
 										scriptIntValues[isp++] = createdComponent.overlayer;
 										continue;
 									}
 								} else if (opcode < 1700) {
 									createdComponent = secondary ? secondaryActiveComponent : primaryActiveComponent;
-									if (opcode == 1600) {
+									if (opcode == CC_GETSCROLLX) {
 										// cc_getscrollx
 										scriptIntValues[isp++] = createdComponent.scrollX;
 										continue;
 									}
-									if (opcode == 1601) {
+									if (opcode == CC_GETSCROLLY) {
 										// cc_getscrolly
 										scriptIntValues[isp++] = createdComponent.scrollY;
 										continue;
 									}
-									if (opcode == 1602) {
+									if (opcode == CC_GETTEXT) {
 										scriptStringValues[ssp++] = createdComponent.text;
 										continue;
 									}
-									if (opcode == 1603) {
+									if (opcode == CC_GETSCROLLWIDTH) {
 										scriptIntValues[isp++] = createdComponent.scrollMaxH;
 										continue;
 									}
-									if (opcode == 1604) {
+									if (opcode == CC_GETSCROLLHEIGHT) {
 										scriptIntValues[isp++] = createdComponent.scrollMaxV;
 										continue;
 									}
-									if (opcode == 1605) {
+									if (opcode == CC_GETZOOM) {
 										scriptIntValues[isp++] = createdComponent.modelZoom;
 										continue;
 									}
-									if (opcode == 1606) {
+									if (opcode == CC_GETMODELXANGLE) {
 										scriptIntValues[isp++] = createdComponent.modelXAngle;
 										continue;
 									}
-									if (opcode == 1607) {
+									if (opcode == CC_GETMODELYOFFSET) {
 										scriptIntValues[isp++] = createdComponent.modelYOffset;
 										continue;
 									}
-									if (opcode == 1608) {
+									if (opcode == CC_GETMODELYANGLE) {
 										scriptIntValues[isp++] = createdComponent.modelYAngle;
 										continue;
 									}
-									if (opcode == 1609) {
+									if (opcode == CC_GETTRANS) {
 										scriptIntValues[isp++] = createdComponent.alpha;
 										continue;
 									}
-									if (opcode == 1610) {
+									if (opcode == CC_GETMODELXOFFSET) {
 										scriptIntValues[isp++] = createdComponent.modelXOffset;
 										continue;
 									}
-									if (opcode == 1611) {
+									if (opcode == CC_GETMODELZOFFSET) {
 										scriptIntValues[isp++] = createdComponent.modelZOffset;
 										continue;
 									}
-									if (opcode == 1612) {
+									if (opcode == CC_GETGRAPHIC) {
 										scriptIntValues[isp++] = createdComponent.spriteId;
 										continue;
 									}
 								} else if (opcode < 1800) {
 									createdComponent = secondary ? secondaryActiveComponent : primaryActiveComponent;
-									if (opcode == 1700) {
+									if (opcode == CC_GETINVOBJECT) {
 										scriptIntValues[isp++] = createdComponent.objId;
 										continue;
 									}
-									if (opcode == 1701) {
+									if (opcode == CC_GETINVCOUNT) {
 										if (createdComponent.objId == -1) {
 											scriptIntValues[isp++] = 0;
 										} else {
@@ -1766,18 +1772,18 @@ public final class ClientScriptRunner {
 										}
 										continue;
 									}
-									if (opcode == 1702) {
+									if (opcode == CC_GETID) {
 										scriptIntValues[isp++] = createdComponent.createdComponentId;
 										continue;
 									}
 								} else if (opcode < 1900) {
 									createdComponent = secondary ? secondaryActiveComponent : primaryActiveComponent;
-									if (opcode == 1800) {
+									if (opcode == CC_GETTARGETMASK) {
 										scriptIntValues[isp++] = ComponentList.getServerActiveProperties(createdComponent).getTargetMask();
 										continue;
 									}
-									if (opcode == 1801) {
-										isp--;
+									if (opcode == CC_GETOP) {
+										isp--; // Decrement then read
 										tempInt1 = scriptIntValues[isp];
 										tempInt1--;
 										if (createdComponent.ops != null && tempInt1 < createdComponent.ops.length && createdComponent.ops[tempInt1] != null) {
@@ -1787,7 +1793,7 @@ public final class ClientScriptRunner {
 										scriptStringValues[ssp++] = EMPTY_STRING;
 										continue;
 									}
-									if (opcode == 1802) {
+									if (opcode == CC_GETOPBASE) {
 										if (createdComponent.optionBase == null) {
 											scriptStringValues[ssp++] = EMPTY_STRING;
 										} else {
@@ -1796,104 +1802,104 @@ public final class ClientScriptRunner {
 										continue;
 									}
 								} else if (opcode < 2600) {
-									isp--;
+									isp--; // Decrement then read
 									createdComponent = ComponentList.getComponent(scriptIntValues[isp]);
-									if (opcode == 2500) {
+									if (opcode == IF_GETX) {
 										// if_getx
 										scriptIntValues[isp++] = createdComponent.x;
 										continue;
 									}
-									if (opcode == 2501) {
+									if (opcode == IF_GETY) {
 										// if_gety
 										scriptIntValues[isp++] = createdComponent.y;
 										continue;
 									}
-									if (opcode == 2502) {
+									if (opcode == IF_GETWIDTH) {
 										// if_getwidth
 										scriptIntValues[isp++] = createdComponent.width;
 										continue;
 									}
-									if (opcode == 2503) {
+									if (opcode == IF_GETHEIGHT) {
 										// if_getheight
 										scriptIntValues[isp++] = createdComponent.height;
 										continue;
 									}
-									if (opcode == 2504) {
+									if (opcode == IF_GETHIDE) {
 										// if_gethide
 										scriptIntValues[isp++] = createdComponent.hidden ? 1 : 0;
 										continue;
 									}
-									if (opcode == 2505) {
+									if (opcode == IF_GETLAYER) {
 										// if_getlayer
 										scriptIntValues[isp++] = createdComponent.overlayer;
 										continue;
 									}
 								} else if (opcode < 2700) {
-									isp--;
+									isp--; // Decrement then read
 									createdComponent = ComponentList.getComponent(scriptIntValues[isp]);
-									if (opcode == 2600) {
+									if (opcode == IF_GETSCROLLX) {
 										// if_getscrollx
 										scriptIntValues[isp++] = createdComponent.scrollX;
 										continue;
 									}
-									if (opcode == 2601) {
+									if (opcode == IF_GETSCROLLY) {
 										// if_getscrolly
 										scriptIntValues[isp++] = createdComponent.scrollY;
 										continue;
 									}
-									if (opcode == 2602) {
+									if (opcode == IF_GETTEXT) {
 										scriptStringValues[ssp++] = createdComponent.text;
 										continue;
 									}
-									if (opcode == 2603) {
+									if (opcode == IF_GETSCROLLWIDTH) {
 										scriptIntValues[isp++] = createdComponent.scrollMaxH;
 										continue;
 									}
-									if (opcode == 2604) {
+									if (opcode == IF_GETSCROLLHEIGHT) {
 										scriptIntValues[isp++] = createdComponent.scrollMaxV;
 										continue;
 									}
-									if (opcode == 2605) {
+									if (opcode == IF_GETZOOM) {
 										scriptIntValues[isp++] = createdComponent.modelZoom;
 										continue;
 									}
-									if (opcode == 2606) {
+									if (opcode == IF_GETMODELXANGLE) {
 										scriptIntValues[isp++] = createdComponent.modelXAngle;
 										continue;
 									}
-									if (opcode == 2607) {
+									if (opcode == IF_GETMODELYOFFSET) {
 										scriptIntValues[isp++] = createdComponent.modelYOffset;
 										continue;
 									}
-									if (opcode == 2608) {
+									if (opcode == IF_GETMODELYANGLE) {
 										scriptIntValues[isp++] = createdComponent.modelYAngle;
 										continue;
 									}
-									if (opcode == 2609) {
+									if (opcode == IF_GETTRANS) {
 										scriptIntValues[isp++] = createdComponent.alpha;
 										continue;
 									}
-									if (opcode == 2610) {
+									if (opcode == IF_GETMODELXOFFSET) {
 										scriptIntValues[isp++] = createdComponent.modelXOffset;
 										continue;
 									}
-									if (opcode == 2611) {
+									if (opcode == IF_GETMODELZOFFSET) {
 										scriptIntValues[isp++] = createdComponent.modelZOffset;
 										continue;
 									}
-									if (opcode == 2612) {
+									if (opcode == IF_GETGRAPHIC) {
 										scriptIntValues[isp++] = createdComponent.spriteId;
 										continue;
 									}
 								} else if (opcode < 2800) {
-									if (opcode == 2700) {
-										isp--;
+									if (opcode == IF_GETINVOBJECT) {
+										isp--; // Decrement then read
 										createdComponent = ComponentList.getComponent(scriptIntValues[isp]);
 										scriptIntValues[isp++] = createdComponent.objId;
 										continue;
 									}
-									if (opcode == 2701) {
-										isp--;
+									if (opcode == IF_GETINVCOUNT) {
+										isp--; // Decrement then read
 										createdComponent = ComponentList.getComponent(scriptIntValues[isp]);
 										if (createdComponent.objId == -1) {
 											scriptIntValues[isp++] = 0;
@@ -1902,8 +1908,8 @@ public final class ClientScriptRunner {
 										}
 										continue;
 									}
-									if (opcode == 2702) {
-										isp--;
+									if (opcode == IF_HASSUB) {
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										@Pc(12566) SubInterface openSubInterface = (SubInterface) ComponentList.openInterfaces.get((long) tempInt2);
 										if (openSubInterface == null) {
@@ -1913,8 +1919,8 @@ public final class ClientScriptRunner {
 										}
 										continue;
 									}
-									if (opcode == 2703) {
-										isp--;
+									if (opcode == IF_GETTOTALSUBCOMPONENTS) {
+										isp--; // Decrement then read
 										createdComponent = ComponentList.getComponent(scriptIntValues[isp]);
 										if (createdComponent.createdComponents == null) {
 											scriptIntValues[isp++] = 0;
@@ -1943,14 +1949,14 @@ public final class ClientScriptRunner {
 										continue;
 									}
 								} else if (opcode < 2900) {
-									isp--;
+									isp--; // Decrement then read
 									createdComponent = ComponentList.getComponent(scriptIntValues[isp]);
-									if (opcode == 2800) {
+									if (opcode == IF_GETTARGETMASK) {
 										scriptIntValues[isp++] = ComponentList.getServerActiveProperties(createdComponent).getTargetMask();
 										continue;
 									}
-									if (opcode == 2801) {
-										isp--;
+									if (opcode == IF_GETOP) {
+										isp--; // Decrement then read
 										tempInt1 = scriptIntValues[isp];
 										tempInt1--;
 										if (createdComponent.ops != null && createdComponent.ops.length > tempInt1 && createdComponent.ops[tempInt1] != null) {
@@ -1960,7 +1966,7 @@ public final class ClientScriptRunner {
 										scriptStringValues[ssp++] = EMPTY_STRING;
 										continue;
 									}
-									if (opcode == 2802) {
+									if (opcode == IF_GETOPBASE) {
 										if (createdComponent.optionBase == null) {
 											scriptStringValues[ssp++] = EMPTY_STRING;
 										} else {
@@ -1969,58 +1975,58 @@ public final class ClientScriptRunner {
 										continue;
 									}
 								} else if (opcode < 3200) {
-									if (opcode == 3100) {
+									if (opcode == MESSAGE) {
 										// mes
 										ssp--;
 										tempString1 = scriptStringValues[ssp];
 										Chat.addMessage(EMPTY_STRING, 0, tempString1);
 										continue;
 									}
-									if (opcode == 3101) {
+									if (opcode == ANIM) {
 										// anim
 										isp -= 2;
 										Player.animate(scriptIntValues[isp + 1], scriptIntValues[isp], PlayerList.self);
 										continue;
 									}
-									if (opcode == 3103) {
+									if (opcode == IF_CLOSE) {
 										ComponentList.closeModal();
 										continue;
 									}
-									if (opcode == 3104) {
+									if (opcode == IF_ON_COMPONENT) {
 										ssp--;
 										tempString1 = scriptStringValues[ssp];
 										tempInt1 = 0;
 										if (tempString1.isInt()) {
 											tempInt1 = tempString1.parseInt();
 										}
-										Protocol.outboundBuffer.pIsaac1(23);
+										Protocol.outboundBuffer.pIsaac1(ClientProt.IF_ON_COMPONENT);
 										Protocol.outboundBuffer.p4(tempInt1);
 										continue;
 									}
-									if (opcode == 3105) {
+									if (opcode == IF_ON_COMPONENT2) {
 										ssp--;
 										tempString1 = scriptStringValues[ssp];
-										Protocol.outboundBuffer.pIsaac1(244);
+										Protocol.outboundBuffer.pIsaac1(ClientProt.IF_ON_COMPONENT2);
 										Protocol.outboundBuffer.p8(tempString1.encode37());
 										continue;
 									}
-									if (opcode == 3106) {
+									if (opcode == IF_ON_COMPONENT3) {
 										ssp--;
 										tempString1 = scriptStringValues[ssp];
-										Protocol.outboundBuffer.pIsaac1(65);
+										Protocol.outboundBuffer.pIsaac1(ClientProt.IF_ON_COMPONENT3);
 										Protocol.outboundBuffer.p1(tempString1.length() + 1);
 										Protocol.outboundBuffer.pjstr(tempString1);
 										continue;
 									}
-									if (opcode == 3107) {
-										isp--;
+									if (opcode == CLICK_PLAYER_OPTION) {
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										ssp--;
 										chatTypedLowercase = scriptStringValues[ssp];
 										ClientProt.clickPlayerOption(tempInt2, chatTypedLowercase);
 										continue;
 									}
-									if (opcode == 3108) {
+									if (opcode == STARTDRAG) {
 										isp -= 3;
 										tempInt1 = scriptIntValues[isp + 1];
 										tempInt2 = scriptIntValues[isp];
@@ -2029,7 +2035,7 @@ public final class ClientScriptRunner {
 										startComponentDrag(tempInt1, tempInt2, component);
 										continue;
 									}
-									if (opcode == 3109) {
+									if (opcode == STARTUSINGDRAG) {
 										isp -= 2;
 										tempInt2 = scriptIntValues[isp];
 										foundComponent = secondary ? secondaryActiveComponent : primaryActiveComponent;
@@ -2037,116 +2043,113 @@ public final class ClientScriptRunner {
 										startComponentDrag(tempInt1, tempInt2, foundComponent);
 										continue;
 									}
-									if (opcode == 3110) {
-										isp--;
+									if (opcode == IF_ON_COMPONENT4) {
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
-										Protocol.outboundBuffer.pIsaac1(111);
+										Protocol.outboundBuffer.pIsaac1(ClientProt.IF_ON_COMPONENT4);
 										Protocol.outboundBuffer.p2(tempInt2);
 										continue;
 									}
 								} else if (opcode < 3300) {
-									if (opcode == 3200) {
+									if (opcode == SOUND_SYNTH) {
 										// sound_synth
 										isp -= 3;
 										SoundPlayer.play(scriptIntValues[isp + 1], scriptIntValues[isp], scriptIntValues[isp + 2]);
 										continue;
 									}
-									if (opcode == 3201) {
+									if (opcode == SOUND_SONG) {
 										// sound_song
-										isp--;
+										isp--; // Decrement then read
 										MusicPlayer.playSong(scriptIntValues[isp]);
 										continue;
 									}
-									if (opcode == 3202) {
+									if (opcode == SOUND_JINGLE) {
 										// sound_jingle
 										isp -= 2;
 										MusicPlayer.playJingle(scriptIntValues[isp + 1], scriptIntValues[isp]);
 										continue;
 									}
 								} else if (opcode < 3400) {
-									if (opcode == 3300) {
+									if (opcode == CLIENTCLOCK) {
 										// clientclock
 										scriptIntValues[isp++] = Client.loop;
 										continue;
 									}
-									if (opcode == 3301) {
+									if (opcode == INV_GETOBJ) {
 										isp -= 2;
 										tempInt2 = scriptIntValues[isp];
 										tempInt1 = scriptIntValues[isp + 1];
 										scriptIntValues[isp++] = Inv.getItemType(tempInt2, tempInt1);
 										continue;
 									}
-									if (opcode == 3302) {
+									if (opcode == INV_GETNUM) {
 										isp -= 2;
 										tempInt1 = scriptIntValues[isp + 1];
 										tempInt2 = scriptIntValues[isp];
 										scriptIntValues[isp++] = Inv.getItemCount(tempInt2, tempInt1);
 										continue;
 									}
-									if (opcode == 3303) {
+									if (opcode == INV_TOTAL) {
 										isp -= 2;
 										tempInt1 = scriptIntValues[isp + 1];
 										tempInt2 = scriptIntValues[isp];
 										scriptIntValues[isp++] = Inv.getSlotTotal(tempInt2, tempInt1);
 										continue;
 									}
-									if (opcode == 3304) {
-										isp--;
+									if (opcode == INV_SIZE) {
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										scriptIntValues[isp++] = InvTypeList.get(tempInt2).size;
 										continue;
 									}
-									if (opcode == 3305) {
-										isp--;
+									if (opcode == STAT) {
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										scriptIntValues[isp++] = PlayerSkillXpTable.boostedLevels[tempInt2];
 										continue;
 									}
-									if (opcode == 3306) {
-										isp--;
+									if (opcode == STAT_BASE) {
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										scriptIntValues[isp++] = PlayerSkillXpTable.baseLevels[tempInt2];
 										continue;
 									}
-									if (opcode == 3307) {
-										isp--;
+									if (opcode == STAT_XP) {
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										scriptIntValues[isp++] = PlayerSkillXpTable.experience[tempInt2];
 										continue;
 									}
-									if (opcode == 3308) {
-                                        // Extract X coordinate from packed coord
-										tempInt2 = Player.currentLevel;
+									if (opcode == COORD) {
+                                        tempInt2 = Player.currentLevel;
 										tempInt1 = Camera.sceneBaseTileX + (PlayerList.self.xFine >> 7); // Convert fine coords to tiles
 										j = (PlayerList.self.zFine >> 7) + Camera.sceneBaseTileZ;
 										scriptIntValues[isp++] = (tempInt2 << 28) - (-(tempInt1 << 14) - j);
 										continue;
 									}
-									if (opcode == 3309) {
-                                        // Extract level/height from packed coord
-										isp--;
+									if (opcode == COORDX) {
+                                        isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										scriptIntValues[isp++] = tempInt2 >> 14 & 0x3FFF;
 										continue;
 									}
-									if (opcode == 3310) {
-                                        // Extract Z coordinate from packed coord
-										isp--;
+									if (opcode == COORDY) {
+                                        isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										scriptIntValues[isp++] = tempInt2 >> 28;
 										continue;
 									}
-									if (opcode == 3311) {
-										isp--;
+									if (opcode == COORDZ) {
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										scriptIntValues[isp++] = tempInt2 & 0x3FFF;
 										continue;
 									}
-									if (opcode == 3312) {
+									if (opcode == ISMEMBER) {
 										scriptIntValues[isp++] = LoginManager.membersWorld ? 1 : 0;
 										continue;
 									}
-									if (opcode == 3313) {
+									if (opcode == INV_GETOBJ_OFFSET) {
                                         // inv_getobj
 										isp -= 2;
 										tempInt2 = scriptIntValues[isp] + 32768; // Add 32768 for bank inventory offset
@@ -2154,7 +2157,7 @@ public final class ClientScriptRunner {
 										scriptIntValues[isp++] = Inv.getItemType(tempInt2, tempInt1);
 										continue;
 									}
-									if (opcode == 3314) {
+									if (opcode == INV_GETNUM_OFFSET) {
                                         // inv_getnum
 										isp -= 2;
 										tempInt2 = scriptIntValues[isp] + 32768; // Add 32768 for bank inventory offset
@@ -2162,7 +2165,7 @@ public final class ClientScriptRunner {
 										scriptIntValues[isp++] = Inv.getItemCount(tempInt2, tempInt1);
 										continue;
 									}
-									if (opcode == 3315) {
+									if (opcode == INV_TOTAL_OFFSET) {
                                         // inv_total
 										isp -= 2;
 										tempInt2 = scriptIntValues[isp] + 32768; // Add 32768 for bank inventory offset
@@ -2170,7 +2173,7 @@ public final class ClientScriptRunner {
 										scriptIntValues[isp++] = Inv.getSlotTotal(tempInt2, tempInt1);
 										continue;
 									}
-									if (opcode == 3316) {
+									if (opcode == MODLEVEL) {
                                         // modlevel
 										if (LoginManager.staffModLevel < 2) {
 											scriptIntValues[isp++] = 0; // Hide non-staff mod levels
@@ -2179,23 +2182,23 @@ public final class ClientScriptRunner {
 										}
 										continue;
 									}
-									if (opcode == 3317) {
+									if (opcode == RUNTIMER) {
 										scriptIntValues[isp++] = Player.systemUpdateTimer;
 										continue;
 									}
-									if (opcode == 3318) {
+									if (opcode == WORLD) {
 										scriptIntValues[isp++] = Player.worldId;
 										continue;
 									}
-									if (opcode == 3321) {
+									if (opcode == ENERGYSTAT) {
 										scriptIntValues[isp++] = Player.runEnergy;
 										continue;
 									}
-									if (opcode == 3322) {
+									if (opcode == WEIGHT) {
 										scriptIntValues[isp++] = Player.weightCarried;
 										continue;
 									}
-									if (opcode == 3323) {
+									if (opcode == PLAYERMOD) {
                                         // playermod
                                         // Returns 1 if PMod
 										if (LoginManager.playerModLevel >= 5 && LoginManager.playerModLevel <= 9) {
@@ -2205,7 +2208,7 @@ public final class ClientScriptRunner {
 										scriptIntValues[isp++] = 0;
 										continue;
 									}
-									if (opcode == 3324) {
+									if (opcode == PLAYERMODLEVEL) {
                                         // playermodlevel
                                         // Range 5-9 for different PMod tiers
 										if (LoginManager.playerModLevel >= 5 && LoginManager.playerModLevel <= 9) {
@@ -2215,55 +2218,55 @@ public final class ClientScriptRunner {
 										scriptIntValues[isp++] = 0;
 										continue;
 									}
-									if (opcode == 3325) {
+									if (opcode == PLAYERMEMBER) {
 										scriptIntValues[isp++] = LoginManager.playerMember ? 1 : 0;
 										continue;
 									}
-									if (opcode == 3326) {
+									if (opcode == COMBATLEVEL) {
 										scriptIntValues[isp++] = PlayerList.self.combatLevel;
 										continue;
 									}
-									if (opcode == 3327) {
+									if (opcode == GENDER) {
 										scriptIntValues[isp++] = PlayerList.self.appearance.gender ? 1 : 0;
 										continue;
 									}
-									if (opcode == 3328) {
+									if (opcode == PLAYERUNDERAGECHAT) {
 										scriptIntValues[isp++] = LoginManager.playerUnderage && !LoginManager.parentalChatConsent ? 1 : 0;
 										continue;
 									}
-									if (opcode == 3329) {
+									if (opcode == QUICKCHATWORLD) {
 										scriptIntValues[isp++] = LoginManager.worldQuickChat ? 1 : 0;
 										continue;
 									}
-									if (opcode == 3330) {
-										isp--;
+									if (opcode == INV_FREESPACE) {
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										scriptIntValues[isp++] = Inv.getFreeSpace(tempInt2);
 										continue;
 									}
-									if (opcode == 3331) {
+									if (opcode == INV_TOTALPARAM) {
 										isp -= 2;
 										tempInt1 = scriptIntValues[isp + 1];
 										tempInt2 = scriptIntValues[isp];
 										scriptIntValues[isp++] = Inv.getTotalParam(false, tempInt2, tempInt1);
 										continue;
 									}
-									if (opcode == 3332) {
+									if (opcode == INV_TOTALPARAM_BANKING) {
 										isp -= 2;
 										tempInt2 = scriptIntValues[isp];
 										tempInt1 = scriptIntValues[isp + 1];
 										scriptIntValues[isp++] = Inv.getTotalParam(true, tempInt2, tempInt1);
 										continue;
 									}
-									if (opcode == 3333) {
+									if (opcode == UNKNOWN_INT_GETTER) {
 										scriptIntValues[isp++] = LoginManager.anInt39;
 										continue;
 									}
-									if (opcode == 3335) {
+									if (opcode == LANGUAGE) {
 										scriptIntValues[isp++] = Client.language;
 										continue;
 									}
-									if (opcode == 3336) {
+									if (opcode == BUILDCOORD) {
 										isp -= 4;
 										tempInt1 = scriptIntValues[isp + 1]; // X tile coordinate
 										tempInt2 = scriptIntValues[isp]; // Z tile coordinate
@@ -2275,13 +2278,13 @@ public final class ClientScriptRunner {
 										scriptIntValues[isp++] = tempInt2;
 										continue;
 									}
-									if (opcode == 3337) {
+									if (opcode == AFFILIATE) {
 										scriptIntValues[isp++] = Client.affiliate;
 										continue;
 									}
 								} else if (opcode < 3500) {
 									@Pc(3422) EnumType type;
-									if (opcode == 3400) {
+									if (opcode == ENUM) {
 										isp -= 2;
 										tempInt2 = scriptIntValues[isp];
 										tempInt1 = scriptIntValues[isp + 1];
@@ -2291,7 +2294,7 @@ public final class ClientScriptRunner {
 										scriptStringValues[ssp++] = type.getValueString(tempInt1);
 										continue;
 									}
-									if (opcode == 3408) {
+									if (opcode == ENUM_GETOUTPUTCOUNT) {
 										isp -= 4;
 										tempInt2 = scriptIntValues[isp];
 										tempInt1 = scriptIntValues[isp + 1];
@@ -2308,7 +2311,7 @@ public final class ClientScriptRunner {
 										}
 										throw new RuntimeException("C3408-1");
 									}
-									if (opcode == 3409) {
+									if (opcode == ENUM_HASOUTPUT) {
 										isp -= 3;
 										tempInt1 = scriptIntValues[isp + 1];
 										j = scriptIntValues[isp + 2];
@@ -2323,8 +2326,8 @@ public final class ClientScriptRunner {
 										scriptIntValues[isp++] = valueEnumType.containsValue(j) ? 1 : 0;
 										continue;
 									}
-									if (opcode == 3410) {
-										isp--;
+									if (opcode == ENUM_HASOUTPUTSTRING) {
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										ssp--;
 										chatTypedLowercase = scriptStringValues[ssp];
@@ -2338,15 +2341,15 @@ public final class ClientScriptRunner {
 										scriptIntValues[isp++] = type.method3086(chatTypedLowercase) ? 1 : 0;
 										continue;
 									}
-									if (opcode == 3411) {
-										isp--;
+									if (opcode == ENUM_GETSIZE) {
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										@Pc(3645) EnumType outputEnumType = EnumTypeList.get(tempInt2);
 										scriptIntValues[isp++] = outputEnumType.table.length();
 										continue;
 									}
 								} else if (opcode < 3700) {
-									if (opcode == 3600) {
+									if (opcode == FRIENDCOUNT) {
 										if (FriendList.state == 0) {
 											scriptIntValues[isp++] = -2;
 										} else if (FriendList.state == 1) {
@@ -2356,8 +2359,8 @@ public final class ClientScriptRunner {
 										}
 										continue;
 									}
-									if (opcode == 3601) {
-										isp--;
+									if (opcode == FRIENDGETNAME) {
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										if (FriendList.state == 2 && tempInt2 < FriendList.friendCount) {
 											scriptStringValues[ssp++] = FriendList.friendUsernames[tempInt2];
@@ -2366,8 +2369,8 @@ public final class ClientScriptRunner {
 										scriptStringValues[ssp++] = EMPTY_STRING;
 										continue;
 									}
-									if (opcode == 3602) {
-										isp--;
+									if (opcode == FRIENDGETWORLD) {
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										if (FriendList.state == 2 && FriendList.friendCount > tempInt2) {
 											scriptIntValues[isp++] = FriendList.friendWorlds[tempInt2];
@@ -2376,8 +2379,8 @@ public final class ClientScriptRunner {
 										scriptIntValues[isp++] = 0;
 										continue;
 									}
-									if (opcode == 3603) {
-										isp--;
+									if (opcode == FRIENDGETRANK) {
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										if (FriendList.state == 2 && FriendList.friendCount > tempInt2) {
 											scriptIntValues[isp++] = FriendList.ranks[tempInt2];
@@ -2386,49 +2389,49 @@ public final class ClientScriptRunner {
 										scriptIntValues[isp++] = 0;
 										continue;
 									}
-									if (opcode == 3604) {
-										isp--;
+									if (opcode == FRIENDSETRANK) {
+										isp--; // Decrement then read
 										tempInt1 = scriptIntValues[isp];
 										ssp--;
 										tempString1 = scriptStringValues[ssp];
 										FriendList.setRank(tempString1, tempInt1);
 										continue;
 									}
-									if (opcode == 3605) {
+									if (opcode == FRIENDADD) {
 										ssp--;
 										tempString1 = scriptStringValues[ssp];
 										FriendList.addFriend(tempString1.encode37());
 										continue;
 									}
-									if (opcode == 3606) {
+									if (opcode == FRIENDDEL) {
 										ssp--;
 										tempString1 = scriptStringValues[ssp];
 										FriendList.removeFriend(tempString1.encode37());
 										continue;
 									}
-									if (opcode == 3607) {
+									if (opcode == IGNOREAD) {
 										ssp--;
 										tempString1 = scriptStringValues[ssp];
 										IgnoreList.addIgnore(tempString1.encode37());
 										continue;
 									}
-									if (opcode == 3608) {
+									if (opcode == IGNOREDEL) {
 										ssp--;
 										tempString1 = scriptStringValues[ssp];
 										IgnoreList.remove(tempString1.encode37());
 										continue;
 									}
-									if (opcode == 3609) {
+									if (opcode == FRIENDTEST) {
 										ssp--;
 										tempString1 = scriptStringValues[ssp];
-										if (tempString1.startsWith(aClass100_446) || tempString1.startsWith(aClass100_537)) {
+										if (tempString1.startsWith(SPRITE_TAG_0) || tempString1.startsWith(SPRITE_TAG_1)) {
 											tempString1 = tempString1.substring(7);
 										}
 										scriptIntValues[isp++] = FriendList.contains(tempString1) ? 1 : 0;
 										continue;
 									}
-									if (opcode == 3610) {
-										isp--;
+									if (opcode == FRIENDGETWORLDNAME) {
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										if (FriendList.state == 2 && FriendList.friendCount > tempInt2) {
 											scriptStringValues[ssp++] = FriendList.worldNames[tempInt2];
@@ -2437,7 +2440,7 @@ public final class ClientScriptRunner {
 										scriptStringValues[ssp++] = EMPTY_STRING;
 										continue;
 									}
-									if (opcode == 3611) {
+									if (opcode == CLANCHATGETNAME) {
 										if (ClanChat.name == null) {
 											scriptStringValues[ssp++] = EMPTY_STRING;
 										} else {
@@ -2445,7 +2448,7 @@ public final class ClientScriptRunner {
 										}
 										continue;
 									}
-									if (opcode == 3612) {
+									if (opcode == CLANCHATGETSIZE) {
 										if (ClanChat.name == null) {
 											scriptIntValues[isp++] = 0;
 										} else {
@@ -2453,8 +2456,8 @@ public final class ClientScriptRunner {
 										}
 										continue;
 									}
-									if (opcode == 3613) {
-										isp--;
+									if (opcode == CLANCHATGETUSERNAME) {
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										if (ClanChat.name != null && ClanChat.size > tempInt2) {
 											scriptStringValues[ssp++] = ClanChat.members[tempInt2].username.toTitleCase();
@@ -2463,8 +2466,8 @@ public final class ClientScriptRunner {
 										scriptStringValues[ssp++] = EMPTY_STRING;
 										continue;
 									}
-									if (opcode == 3614) {
-										isp--;
+									if (opcode == CLANCHATGETUSERWORLD) {
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										if (ClanChat.name != null && tempInt2 < ClanChat.size) {
 											scriptIntValues[isp++] = ClanChat.members[tempInt2].world;
@@ -2473,8 +2476,8 @@ public final class ClientScriptRunner {
 										scriptIntValues[isp++] = 0;
 										continue;
 									}
-									if (opcode == 3615) {
-										isp--;
+									if (opcode == CLANCHATGETUSERRANK) {
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										if (ClanChat.name != null && ClanChat.size > tempInt2) {
 											scriptIntValues[isp++] = ClanChat.members[tempInt2].rank;
@@ -2483,31 +2486,31 @@ public final class ClientScriptRunner {
 										scriptIntValues[isp++] = 0;
 										continue;
 									}
-									if (opcode == 3616) {
+									if (opcode == CLANCHATMINKICK) {
 										scriptIntValues[isp++] = ClanChat.minKick;
 										continue;
 									}
-									if (opcode == 3617) {
+									if (opcode == CLANCHATKICK) {
 										ssp--;
 										tempString1 = scriptStringValues[ssp];
 										ClanChat.kick(tempString1);
 										continue;
 									}
-									if (opcode == 3618) {
+									if (opcode == CLANCHATRANK) {
 										scriptIntValues[isp++] = ClanChat.rank;
 										continue;
 									}
-									if (opcode == 3619) {
+									if (opcode == CLANCHATJOIN) {
 										ssp--;
 										tempString1 = scriptStringValues[ssp];
 										ClanChat.join(tempString1.encode37());
 										continue;
 									}
-									if (opcode == 3620) {
+									if (opcode == CLANCHATLEAVE) {
 										ClanChat.leave();
 										continue;
 									}
-									if (opcode == 3621) {
+									if (opcode == IGNORECOUNT) {
 										if (FriendList.state == 0) {
 											scriptIntValues[isp++] = -1;
 										} else {
@@ -2515,8 +2518,8 @@ public final class ClientScriptRunner {
 										}
 										continue;
 									}
-									if (opcode == 3622) {
-										isp--;
+									if (opcode == IGNOREGETNAME) {
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										if (FriendList.state != 0 && IgnoreList.ignoreCount > tempInt2) {
 											scriptStringValues[ssp++] = Base37.fromBase37(IgnoreList.encodedIgnores[tempInt2]).toTitleCase();
@@ -2525,17 +2528,17 @@ public final class ClientScriptRunner {
 										scriptStringValues[ssp++] = EMPTY_STRING;
 										continue;
 									}
-									if (opcode == 3623) {
+									if (opcode == IGNORETEST) {
 										ssp--;
 										tempString1 = scriptStringValues[ssp];
-										if (tempString1.startsWith(aClass100_446) || tempString1.startsWith(aClass100_537)) {
+										if (tempString1.startsWith(SPRITE_TAG_0) || tempString1.startsWith(SPRITE_TAG_1)) {
 											tempString1 = tempString1.substring(7);
 										}
 										scriptIntValues[isp++] = IgnoreList.contains(tempString1) ? 1 : 0;
 										continue;
 									}
-									if (opcode == 3624) {
-										isp--;
+									if (opcode == CLANCHATISSELFINCHANNEL) {
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										if (ClanChat.members != null && ClanChat.size > tempInt2 && ClanChat.members[tempInt2].username.equalsIgnoreCase(PlayerList.self.username)) {
 											scriptIntValues[isp++] = 1;
@@ -2544,7 +2547,7 @@ public final class ClientScriptRunner {
 										scriptIntValues[isp++] = 0;
 										continue;
 									}
-									if (opcode == 3625) {
+									if (opcode == CLANCHATGETOWNER) {
 										if (ClanChat.owner == null) {
 											scriptStringValues[ssp++] = EMPTY_STRING;
 										} else {
@@ -2552,8 +2555,8 @@ public final class ClientScriptRunner {
 										}
 										continue;
 									}
-									if (opcode == 3626) {
-										isp--;
+									if (opcode == CLANCHATGETWORLDNAME) {
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										if (ClanChat.name != null && ClanChat.size > tempInt2) {
 											scriptStringValues[ssp++] = ClanChat.members[tempInt2].worldName;
@@ -2562,8 +2565,8 @@ public final class ClientScriptRunner {
 										scriptStringValues[ssp++] = EMPTY_STRING;
 										continue;
 									}
-									if (opcode == 3627) {
-										isp--;
+									if (opcode == FRIENDGETGAME) {
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										if (FriendList.state == 2 && tempInt2 >= 0 && tempInt2 < FriendList.friendCount) {
 											scriptIntValues[isp++] = FriendList.friendGame[tempInt2] ? 1 : 0;
@@ -2572,86 +2575,86 @@ public final class ClientScriptRunner {
 										scriptIntValues[isp++] = 0;
 										continue;
 									}
-									if (opcode == 3628) {
+									if (opcode == FRIENDGETINDEX) {
 										ssp--;
 										tempString1 = scriptStringValues[ssp];
-										if (tempString1.startsWith(aClass100_446) || tempString1.startsWith(aClass100_537)) {
+										if (tempString1.startsWith(SPRITE_TAG_0) || tempString1.startsWith(SPRITE_TAG_1)) {
 											tempString1 = tempString1.substring(7);
 										}
 										scriptIntValues[isp++] = FriendList.indexOf(tempString1);
 										continue;
 									}
-									if (opcode == 3629) {
+									if (opcode == COUNTRY) {
 										scriptIntValues[isp++] = Client.country;
 										continue;
 									}
 								} else if (opcode < 4000) {
-									if (opcode == 3903) {
-										isp--;
+									if (opcode == STOCKMARKET_GETOFFERTYPE) {
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										scriptIntValues[isp++] = StockMarketManager.offers[tempInt2].getType();
 										continue;
 									}
-									if (opcode == 3904) {
-										isp--;
+									if (opcode == STOCKMARKET_GETOFFERITEM) {
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										scriptIntValues[isp++] = StockMarketManager.offers[tempInt2].item;
 										continue;
 									}
-									if (opcode == 3905) {
-										isp--;
+									if (opcode == STOCKMARKET_GETOFFERPRICE) {
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										scriptIntValues[isp++] = StockMarketManager.offers[tempInt2].price;
 										continue;
 									}
-									if (opcode == 3906) {
-										isp--;
+									if (opcode == STOCKMARKET_GETOFFERCOUNT) {
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										scriptIntValues[isp++] = StockMarketManager.offers[tempInt2].count;
 										continue;
 									}
-									if (opcode == 3907) {
-										isp--;
+									if (opcode == STOCKMARKET_GETOFFERCOMPLETEDCOUNT) {
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										scriptIntValues[isp++] = StockMarketManager.offers[tempInt2].completedCount;
 										continue;
 									}
-									if (opcode == 3908) {
-										isp--;
+									if (opcode == STOCKMARKET_GETOFFERCOMPLETEDGOLD) {
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										scriptIntValues[isp++] = StockMarketManager.offers[tempInt2].completedGold;
 										continue;
 									}
-									if (opcode == 3910) {
-										isp--;
+									if (opcode == STOCKMARKET_ISOFFEREMPTY) {
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										tempInt1 = StockMarketManager.offers[tempInt2].getStatus();
 										scriptIntValues[isp++] = tempInt1 == 0 ? 1 : 0;
 										continue;
 									}
-									if (opcode == 3911) {
-										isp--;
+									if (opcode == STOCKMARKET_ISOFFERCOMPLETING) {
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										tempInt1 = StockMarketManager.offers[tempInt2].getStatus();
 										scriptIntValues[isp++] = tempInt1 == 2 ? 1 : 0;
 										continue;
 									}
-									if (opcode == 3912) {
-										isp--;
+									if (opcode == STOCKMARKET_ISOFFERFINISHED) {
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										tempInt1 = StockMarketManager.offers[tempInt2].getStatus();
 										scriptIntValues[isp++] = tempInt1 == 5 ? 1 : 0;
 										continue;
 									}
-									if (opcode == 3913) {
-										isp--;
+									if (opcode == STOCKMARKET_ISOFFERACTIVE) {
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										tempInt1 = StockMarketManager.offers[tempInt2].getStatus();
 										scriptIntValues[isp++] = tempInt1 == 1 ? 1 : 0;
 										continue;
 									}
 								} else if (opcode < 4100) {
-									if (opcode == 4000) {
+									if (opcode == ADD) {
 										// add
 										isp -= 2;
 										tempInt2 = scriptIntValues[isp];
@@ -2659,7 +2662,7 @@ public final class ClientScriptRunner {
 										scriptIntValues[isp++] = tempInt1 + tempInt2;
 										continue;
 									}
-									if (opcode == 4001) {
+									if (opcode == SUB) {
 										// sub
 										isp -= 2;
 										tempInt2 = scriptIntValues[isp];
@@ -2667,7 +2670,7 @@ public final class ClientScriptRunner {
 										scriptIntValues[isp++] = tempInt2 - tempInt1;
 										continue;
 									}
-									if (opcode == 4002) {
+									if (opcode == MULTIPLY) {
 										// multiply
 										isp -= 2;
 										tempInt2 = scriptIntValues[isp];
@@ -2675,7 +2678,7 @@ public final class ClientScriptRunner {
 										scriptIntValues[isp++] = tempInt1 * tempInt2;
 										continue;
 									}
-									if (opcode == 4003) {
+									if (opcode == DIVIDE) {
 										// divide
 										isp -= 2;
 										tempInt2 = scriptIntValues[isp];
@@ -2683,21 +2686,21 @@ public final class ClientScriptRunner {
 										scriptIntValues[isp++] = tempInt2 / tempInt1;
 										continue;
 									}
-									if (opcode == 4004) {
+									if (opcode == RANDOM) {
 										// random
-										isp--;
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										scriptIntValues[isp++] = (int) ((double) tempInt2 * Math.random());
 										continue;
 									}
-									if (opcode == 4005) {
+									if (opcode == RANDOMINC) {
 										// randominc
-										isp--;
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										scriptIntValues[isp++] = (int) (Math.random() * (double) (tempInt2 + 1));
 										continue;
 									}
-									if (opcode == 4006) {
+									if (opcode == INTERPOLATE) {
 										// interpolate
 										isp -= 5;
 										tempInt2 = scriptIntValues[isp];
@@ -2710,7 +2713,7 @@ public final class ClientScriptRunner {
 									}
 									@Pc(4899) long local4899; // Something date??
 									@Pc(4892) long local4892; // Something date??
-									if (opcode == 4007) {
+									if (opcode == ADDPERCENT) {
 										// addpercent
 										isp -= 2;
 										local4892 = scriptIntValues[isp];
@@ -2718,7 +2721,7 @@ public final class ClientScriptRunner {
 										scriptIntValues[isp++] = (int) (local4892 * local4899 / 100L + local4892);
 										continue;
 									}
-									if (opcode == 4008) {
+									if (opcode == SETBIT) {
 										// setbit
 										isp -= 2;
 										tempInt2 = scriptIntValues[isp];
@@ -2726,7 +2729,7 @@ public final class ClientScriptRunner {
 										scriptIntValues[isp++] = tempInt2 | 0x1 << tempInt1;
 										continue;
 									}
-									if (opcode == 4009) {
+									if (opcode == CLEARBIT) {
 										// clearbit
 										isp -= 2;
 										tempInt2 = scriptIntValues[isp];
@@ -2734,7 +2737,7 @@ public final class ClientScriptRunner {
 										scriptIntValues[isp++] = -(0x1 << tempInt1) - 1 & tempInt2;
 										continue;
 									}
-									if (opcode == 4010) {
+									if (opcode == TESTBIT) {
 										// testbit
 										isp -= 2;
 										tempInt2 = scriptIntValues[isp]; // The integer to test
@@ -2742,7 +2745,7 @@ public final class ClientScriptRunner {
 										scriptIntValues[isp++] = (tempInt2 & 0x1 << tempInt1) == 0 ? 0 : 1;
 										continue;
 									}
-									if (opcode == 4011) {
+									if (opcode == MODULO) {
 										// modulo
 										isp -= 2;
 										tempInt1 = scriptIntValues[isp + 1];
@@ -2750,7 +2753,7 @@ public final class ClientScriptRunner {
 										scriptIntValues[isp++] = tempInt2 % tempInt1;
 										continue;
 									}
-									if (opcode == 4012) {
+									if (opcode == POW) {
 										// pow
 										isp -= 2;
 										tempInt1 = scriptIntValues[isp + 1];
@@ -2762,7 +2765,7 @@ public final class ClientScriptRunner {
 										}
 										continue;
 									}
-									if (opcode == 4013) {
+									if (opcode == INVPOW) {
 										// invpow
 										isp -= 2;
 										tempInt1 = scriptIntValues[isp + 1];
@@ -2776,7 +2779,7 @@ public final class ClientScriptRunner {
 										}
 										continue;
 									}
-									if (opcode == 4014) {
+									if (opcode == BITWISE_AND) {
                                         // bitwise_and
 										isp -= 2;
 										tempInt1 = scriptIntValues[isp + 1];
@@ -2784,7 +2787,7 @@ public final class ClientScriptRunner {
 										scriptIntValues[isp++] = tempInt1 & tempInt2;
 										continue;
 									}
-									if (opcode == 4015) {
+									if (opcode == BITWISE_OR) {
                                         // bitwise_or
 										isp -= 2;
 										tempInt2 = scriptIntValues[isp];
@@ -2792,7 +2795,7 @@ public final class ClientScriptRunner {
 										scriptIntValues[isp++] = tempInt2 | tempInt1;
 										continue;
 									}
-									if (opcode == 4016) {
+									if (opcode == MIN) {
                                         // min
                                         // Return smaller of two values
 										isp -= 2;
@@ -2801,7 +2804,7 @@ public final class ClientScriptRunner {
 										scriptIntValues[isp++] = tempInt2 < tempInt1 ? tempInt2 : tempInt1;
 										continue;
 									}
-									if (opcode == 4017) {
+									if (opcode == MAX) {
                                         // max
                                         // Return larger of two values
 										isp -= 2;
@@ -2810,7 +2813,7 @@ public final class ClientScriptRunner {
 										scriptIntValues[isp++] = tempInt1 >= tempInt2 ? tempInt1 : tempInt2;
 										continue;
 									}
-									if (opcode == 4018) {
+									if (opcode == SCALE) {
                                         // scale
                                         // Used for percentage calculations without overflow
 										isp -= 3;
@@ -2823,16 +2826,16 @@ public final class ClientScriptRunner {
 								} else if (opcode >= 4200) {
 									@Pc(5294) ParamType paramType;
 									if (opcode < 4300) {
-										if (opcode == 4200) {
+										if (opcode == OC_NAME) {
                                             // oc_name
                                             // Get object/item name
-											isp--;
+											isp--; // Decrement then read
 											tempInt2 = scriptIntValues[isp];
 											scriptStringValues[ssp++] = ObjTypeList.get(tempInt2).name;
 											continue;
 										}
 										@Pc(11269) ObjType invObjType;
-										if (opcode == 4201) {
+										if (opcode == OC_OP) {
                                             // oc_op
                                             // Get ground object right-click option
 											isp -= 2;
@@ -2846,7 +2849,7 @@ public final class ClientScriptRunner {
 											scriptStringValues[ssp++] = EMPTY_STRING; // No option in that slot
                                             continue;
 										}
-										if (opcode == 4202) {
+										if (opcode == OC_IOP) {
                                             // oc_iop
                                             // Get inventory object right-click option
 											isp -= 2;
@@ -2860,28 +2863,28 @@ public final class ClientScriptRunner {
 											scriptStringValues[ssp++] = EMPTY_STRING; // No option in that slot
 											continue;
 										}
-										if (opcode == 4203) {
+										if (opcode == OC_COST) {
                                             // oc_cost
                                             // Get object shop value
-											isp--;
+											isp--; // Decrement then read
 											tempInt2 = scriptIntValues[isp];
 											scriptIntValues[isp++] = ObjTypeList.get(tempInt2).cost;
 											continue;
 										}
-										if (opcode == 4204) {
+										if (opcode == OC_STACKABLE) {
                                             // oc_stackable
                                             // Check if object is stackable
-											isp--;
+											isp--; // Decrement then read
 											tempInt2 = scriptIntValues[isp];
 											scriptIntValues[isp++] = ObjTypeList.get(tempInt2).stackable == 1 ? 1 : 0;
 											continue;
 										}
 										@Pc(11417) ObjType targetObjType;
-										if (opcode == 4205) {
+										if (opcode == OC_CERT) {
                                             // oc_cert
                                             // Get certificate link
                                             // Returns the actual object if this is a certificate
-											isp--;
+											isp--; // Decrement then read
 											tempInt2 = scriptIntValues[isp];
 											targetObjType = ObjTypeList.get(tempInt2);
 											if (targetObjType.certTemplate == -1 && targetObjType.certLink >= 0) {
@@ -2891,11 +2894,11 @@ public final class ClientScriptRunner {
 											scriptIntValues[isp++] = tempInt2;  // Not a cert, return original ID
 											continue;
 										}
-										if (opcode == 4206) {
+										if (opcode == OC_UNCERT) {
                                             // oc_uncert
                                             // Get uncertificate link
                                             // // Returns the certificate version of this object
-											isp--;
+											isp--; // Decrement then read
 											tempInt2 = scriptIntValues[isp];
 											targetObjType = ObjTypeList.get(tempInt2);
 											if (targetObjType.certTemplate >= 0 && targetObjType.certLink >= 0) {
@@ -2905,13 +2908,13 @@ public final class ClientScriptRunner {
 											scriptIntValues[isp++] = tempInt2; // No certificate exists, return original
 											continue;
 										}
-										if (opcode == 4207) {
-											isp--;
+										if (opcode == OC_MEMBERS) {
+											isp--; // Decrement then read
 											tempInt2 = scriptIntValues[isp];
 											scriptIntValues[isp++] = ObjTypeList.get(tempInt2).members ? 1 : 0;
 											continue;
 										}
-										if (opcode == 4208) {
+										if (opcode == OC_PARAM) {
 											isp -= 2;
 											tempInt2 = scriptIntValues[isp];
 											tempInt1 = scriptIntValues[isp + 1];
@@ -2923,18 +2926,18 @@ public final class ClientScriptRunner {
 											}
 											continue;
 										}
-										if (opcode == 4210) {
+										if (opcode == OC_FIND) {
                                             // oc_find
                                             // Search for objects by name
 											ssp--;
 											tempString1 = scriptStringValues[ssp]; // Search string
-											isp--;
+											isp--; // Decrement then read
 											tempInt1 = scriptIntValues[isp]; // Search type (0=exact, 1=contains)
 											Find.search(tempInt1 == 1, tempString1); // Populate Find.results
 											scriptIntValues[isp++] = Find.index; // Return result count
 											continue;
 										}
-										if (opcode == 4211) {
+										if (opcode == OC_FINDNEXT) {
                                             // oc_findnext
                                             // Get next object ID from search results
 											if (Find.results != null && Find.size < Find.index) {
@@ -2944,14 +2947,14 @@ public final class ClientScriptRunner {
 											scriptIntValues[isp++] = -1; // No more results
 											continue;
 										}
-										if (opcode == 4212) {
+										if (opcode == OC_FINDRESET) {
                                             // oc_findreset
                                             // Reset search iterator
 											Find.size = 0;
 											continue;
 										}
 									} else if (opcode < 4400) {
-										if (opcode == 4300) {
+										if (opcode == NC_PARAM) {
 											isp -= 2;
 											tempInt2 = scriptIntValues[isp];
 											tempInt1 = scriptIntValues[isp + 1];
@@ -2966,22 +2969,22 @@ public final class ClientScriptRunner {
 									} else if (opcode >= 4500) {
 										if (opcode >= 4600) {
 											if (opcode < 5100) {
-												if (opcode == 5000) {
+												if (opcode == CHAT_GETFILTER_PUBLIC) {
 													scriptIntValues[isp++] = Chat.publicFilter;
 													continue;
 												}
-												if (opcode == 5001) {
+												if (opcode == CHAT_SETFILTER) {
 													isp -= 3;
 													Chat.publicFilter = scriptIntValues[isp];
 													Chat.privateFilter = scriptIntValues[isp + 1];
 													Chat.tradeFilter = scriptIntValues[isp + 2];
-													Protocol.outboundBuffer.pIsaac1(157);
+													Protocol.outboundBuffer.pIsaac1(ClientProt.CLIENTSCRIPT_TRIGGERED);
 													Protocol.outboundBuffer.p1(Chat.publicFilter);
 													Protocol.outboundBuffer.p1(Chat.privateFilter);
 													Protocol.outboundBuffer.p1(Chat.tradeFilter);
 													continue;
 												}
-												if (opcode == 5002) {
+												if (opcode == REPORTABUSE) {
 													ssp--;
 													tempString1 = scriptStringValues[ssp];
 													isp -= 2;
@@ -2993,9 +2996,9 @@ public final class ClientScriptRunner {
 													Protocol.outboundBuffer.p1(j);
 													continue;
 												}
-												if (opcode == 5003) {
+												if (opcode == CHAT_GETHISTORY_BYTYPEANDLINE) {
 													chatTypedLowercase = null;
-													isp--;
+													isp--; // Decrement then read
 													tempInt2 = scriptIntValues[isp];
 													if (tempInt2 < 100) {
 														chatTypedLowercase = Chat.messages[tempInt2];
@@ -3006,8 +3009,8 @@ public final class ClientScriptRunner {
 													scriptStringValues[ssp++] = chatTypedLowercase;
 													continue;
 												}
-												if (opcode == 5004) {
-													isp--;
+												if (opcode == CHAT_GETHISTORY_BYTYPE) {
+													isp--; // Decrement then read
 													tempInt2 = scriptIntValues[isp];
 													tempInt1 = -1;
 													if (tempInt2 < 100 && Chat.messages[tempInt2] != null) {
@@ -3016,11 +3019,11 @@ public final class ClientScriptRunner {
 													scriptIntValues[isp++] = tempInt1;
 													continue;
 												}
-												if (opcode == 5005) {
+												if (opcode == CHAT_GETFILTER_PRIVATE) {
 													scriptIntValues[isp++] = Chat.privateFilter;
 													continue;
 												}
-												if (opcode == 5008) {
+												if (opcode == CHAT_SENDPUBLIC) {
 													ssp--;
 													tempString1 = scriptStringValues[ssp];
 													if (!tempString1.startsWith(SCOPE_SEPARATOR)) {
@@ -3153,7 +3156,7 @@ public final class ClientScriptRunner {
 													Cheat.execute(tempString1);
 													continue;
 												}
-												if (opcode == 5009) {
+												if (opcode == CHAT_SENDPRIVATE) {
 													ssp -= 2;
 													chatTypedLowercase = scriptStringValues[ssp + 1];
 													tempString1 = scriptStringValues[ssp];
@@ -3167,8 +3170,8 @@ public final class ClientScriptRunner {
 													}
 													continue;
 												}
-												if (opcode == 5010) {
-													isp--;
+												if (opcode == CHAT_GETHISTORY_USERNAME) {
+													isp--; // Decrement then read
 													tempInt2 = scriptIntValues[isp];
 													chatTypedLowercase = null;
 													if (tempInt2 < 100) {
@@ -3180,8 +3183,8 @@ public final class ClientScriptRunner {
 													scriptStringValues[ssp++] = chatTypedLowercase;
 													continue;
 												}
-												if (opcode == 5011) {
-													isp--;
+												if (opcode == CHAT_GETHISTORY_CLAN) {
+													isp--; // Decrement then read
 													tempInt2 = scriptIntValues[isp];
 													chatTypedLowercase = null;
 													if (tempInt2 < 100) {
@@ -3193,8 +3196,8 @@ public final class ClientScriptRunner {
 													scriptStringValues[ssp++] = chatTypedLowercase;
 													continue;
 												}
-												if (opcode == 5012) {
-													isp--;
+												if (opcode == CHAT_GETHISTORY_QUICKCHATID) {
+													isp--; // Decrement then read
 													tempInt2 = scriptIntValues[isp];
 													tempInt1 = -1;
 													if (tempInt2 < 100) {
@@ -3203,7 +3206,7 @@ public final class ClientScriptRunner {
 													scriptIntValues[isp++] = tempInt1;
 													continue;
 												}
-												if (opcode == 5015) {
+												if (opcode == GETPLAYERNAME) {
 													if (PlayerList.self == null || PlayerList.self.username == null) {
 														tempString1 = Player.usernameInput;
 													} else {
@@ -3212,23 +3215,23 @@ public final class ClientScriptRunner {
 													scriptStringValues[ssp++] = tempString1;
 													continue;
 												}
-												if (opcode == 5016) {
+												if (opcode == CHAT_GETFILTER_TRADE) {
 													scriptIntValues[isp++] = Chat.tradeFilter;
 													continue;
 												}
-												if (opcode == 5017) {
+												if (opcode == CHAT_GETHISTORYLENGTH) {
 													scriptIntValues[isp++] = Chat.size;
 													continue;
 												}
-												if (opcode == 5050) {
-													isp--;
+												if (opcode == QUICKCHAT_GETCATEGORYNAME) {
+													isp--; // Decrement then read
 													tempInt2 = scriptIntValues[isp];
 													scriptStringValues[ssp++] = QuickChatCatTypeList.get(tempInt2).description;
 													continue;
 												}
 												@Pc(6378) QuickChatCatType quickChatCategory;
-												if (opcode == 5051) {
-													isp--;
+												if (opcode == QUICKCHAT_GETCATEGORYSIZE) {
+													isp--; // Decrement then read
 													tempInt2 = scriptIntValues[isp];
 													quickChatCategory = QuickChatCatTypeList.get(tempInt2);
 													if (quickChatCategory.subcategories == null) {
@@ -3238,7 +3241,7 @@ public final class ClientScriptRunner {
 													}
 													continue;
 												}
-												if (opcode == 5052) {
+												if (opcode == QUICKCHAT_GETSUBCATEGORY) {
 													isp -= 2;
 													tempInt2 = scriptIntValues[isp];
 													tempInt1 = scriptIntValues[isp + 1];
@@ -3247,8 +3250,8 @@ public final class ClientScriptRunner {
 													scriptIntValues[isp++] = i;
 													continue;
 												}
-												if (opcode == 5053) {
-													isp--;
+												if (opcode == QUICKCHAT_GETCATEGORYPHRASESIZE) {
+													isp--; // Decrement then read
 													tempInt2 = scriptIntValues[isp];
 													quickChatCategory = QuickChatCatTypeList.get(tempInt2);
 													if (quickChatCategory.phrases == null) {
@@ -3258,21 +3261,21 @@ public final class ClientScriptRunner {
 													}
 													continue;
 												}
-												if (opcode == 5054) {
+												if (opcode == QUICKCHAT_GETCATEGORYPHRASE) {
 													isp -= 2;
 													tempInt1 = scriptIntValues[isp + 1];
 													tempInt2 = scriptIntValues[isp];
 													scriptIntValues[isp++] = QuickChatCatTypeList.get(tempInt2).phrases[tempInt1];
 													continue;
 												}
-												if (opcode == 5055) {
-													isp--;
+												if (opcode == QUICKCHAT_GETPHRASETRING) {
+													isp--; // Decrement then read
 													tempInt2 = scriptIntValues[isp];
 													scriptStringValues[ssp++] = QuickChatPhraseTypeList.get(tempInt2).getText();
 													continue;
 												}
-												if (opcode == 5056) {
-													isp--;
+												if (opcode == QUICKCHAT_GETPHRASEDYNAMICCOMMANDCOUNT) {
+													isp--; // Decrement then read
 													tempInt2 = scriptIntValues[isp];
 													@Pc(6527) QuickChatPhraseType quickChatPhrase = QuickChatPhraseTypeList.get(tempInt2);
 													if (quickChatPhrase.autoResponses == null) {
@@ -3282,23 +3285,23 @@ public final class ClientScriptRunner {
 													}
 													continue;
 												}
-												if (opcode == 5057) {
+												if (opcode == QUICKCHAT_GETPHRASEDYNAMICCOMMAND) {
 													isp -= 2;
 													tempInt1 = scriptIntValues[isp + 1];
 													tempInt2 = scriptIntValues[isp];
 													scriptIntValues[isp++] = QuickChatPhraseTypeList.get(tempInt2).autoResponses[tempInt1];
 													continue;
 												}
-												if (opcode == 5058) {
+												if (opcode == QUICKCHAT_INIT) {
 													activePhrase = new QuickChatPhrase();
-													isp--;
+													isp--; // Decrement then read
 													activePhrase.id = scriptIntValues[isp];
 													activePhrase.type = QuickChatPhraseTypeList.get(activePhrase.id);
 													activePhrase.values = new int[activePhrase.type.getDynamicCommandCount()];
 													continue;
 												}
-												if (opcode == 5059) {
-													Protocol.outboundBuffer.pIsaac1(167);
+												if (opcode == QUICKCHAT_SENDPUBLIC) {
+													Protocol.outboundBuffer.pIsaac1(ClientProt.CLIENTSCRIPT_167);
 													Protocol.outboundBuffer.p1(0);
 													tempInt2 = Protocol.outboundBuffer.offset;
 													Protocol.outboundBuffer.p1(0);
@@ -3307,10 +3310,10 @@ public final class ClientScriptRunner {
 													Protocol.outboundBuffer.p1len(Protocol.outboundBuffer.offset - tempInt2);
 													continue;
 												}
-												if (opcode == 5060) {
+												if (opcode == QUICKCHAT_SENDPRIVATE) {
 													ssp--;
 													tempString1 = scriptStringValues[ssp];
-													Protocol.outboundBuffer.pIsaac1(178);
+													Protocol.outboundBuffer.pIsaac1(ClientProt.CLIENTSCRIPT_178);
 													Protocol.outboundBuffer.p1(0);
 													tempInt1 = Protocol.outboundBuffer.offset;
 													Protocol.outboundBuffer.p8(tempString1.encode37());
@@ -3319,8 +3322,8 @@ public final class ClientScriptRunner {
 													Protocol.outboundBuffer.p1len(Protocol.outboundBuffer.offset - tempInt1);
 													continue;
 												}
-												if (opcode == 5061) {
-													Protocol.outboundBuffer.pIsaac1(167);
+												if (opcode == QUICKCHAT_SENDCLAN) {
+													Protocol.outboundBuffer.pIsaac1(ClientProt.CLIENTSCRIPT_167);
 													Protocol.outboundBuffer.p1(0);
 													tempInt2 = Protocol.outboundBuffer.offset;
 													Protocol.outboundBuffer.p1(1);
@@ -3329,21 +3332,21 @@ public final class ClientScriptRunner {
 													Protocol.outboundBuffer.p1len(Protocol.outboundBuffer.offset - tempInt2);
 													continue;
 												}
-												if (opcode == 5062) {
+												if (opcode == QUICKCHAT_GETSUBCATEGORYSHORTCUT) {
 													isp -= 2;
 													tempInt1 = scriptIntValues[isp + 1];
 													tempInt2 = scriptIntValues[isp];
 													scriptIntValues[isp++] = QuickChatCatTypeList.get(tempInt2).subcategoryShortcuts[tempInt1];
 													continue;
 												}
-												if (opcode == 5063) {
+												if (opcode == QUICKCHAT_GETPHRASESHORTCUT) {
 													isp -= 2;
 													tempInt1 = scriptIntValues[isp + 1];
 													tempInt2 = scriptIntValues[isp];
 													scriptIntValues[isp++] = QuickChatCatTypeList.get(tempInt2).phraseShortcuts[tempInt1];
 													continue;
 												}
-												if (opcode == 5064) {
+												if (opcode == QUICKCHAT_GETSUBCATEGORYINDEX) {
 													isp -= 2;
 													tempInt1 = scriptIntValues[isp + 1];
 													tempInt2 = scriptIntValues[isp];
@@ -3354,7 +3357,7 @@ public final class ClientScriptRunner {
 													}
 													continue;
 												}
-												if (opcode == 5065) {
+												if (opcode == QUICKCHAT_GETPHRASEINDEX) {
 													isp -= 2;
 													tempInt2 = scriptIntValues[isp];
 													tempInt1 = scriptIntValues[isp + 1];
@@ -3365,13 +3368,13 @@ public final class ClientScriptRunner {
 													}
 													continue;
 												}
-												if (opcode == 5066) {
-													isp--;
+												if (opcode == QUICKCHAT_GETPHRASEDYNAMICCOUNT) {
+													isp--; // Decrement then read
 													tempInt2 = scriptIntValues[isp];
 													scriptIntValues[isp++] = QuickChatPhraseTypeList.get(tempInt2).getDynamicCommandCount();
 													continue;
 												}
-												if (opcode == 5067) {
+												if (opcode == QUICKCHAT_GETPHRASEDYNAMIC) {
 													isp -= 2;
 													tempInt1 = scriptIntValues[isp + 1];
 													tempInt2 = scriptIntValues[isp];
@@ -3379,21 +3382,21 @@ public final class ClientScriptRunner {
 													scriptIntValues[isp++] = j;
 													continue;
 												}
-												if (opcode == 5068) {
+												if (opcode == QUICKCHAT_SETDYNAMIC) {
 													isp -= 2;
 													tempInt2 = scriptIntValues[isp];
 													tempInt1 = scriptIntValues[isp + 1];
 													activePhrase.values[tempInt2] = tempInt1;
 													continue;
 												}
-												if (opcode == 5069) {
+												if (opcode == QUICKCHAT_SETDYNAMIC_ALT) {
 													isp -= 2;
 													tempInt2 = scriptIntValues[isp];
 													tempInt1 = scriptIntValues[isp + 1];
 													activePhrase.values[tempInt2] = tempInt1;
 													continue;
 												}
-												if (opcode == 5070) {
+												if (opcode == QUICKCHAT_GETPHRASEPARAM) {
 													isp -= 3;
 													tempInt2 = scriptIntValues[isp];
 													j = scriptIntValues[isp + 2];
@@ -3405,16 +3408,16 @@ public final class ClientScriptRunner {
 													scriptIntValues[isp++] = autoResponsePhrase.getDynamicCommandParam(j, tempInt1);
 													continue;
 												}
-												if (opcode == 5071) {
+												if (opcode == QUICKCHAT_FINDPHRASE) {
 													ssp--;
 													tempString1 = scriptStringValues[ssp];
-													isp--;
+													isp--; // Decrement then read
 													local1552 = scriptIntValues[isp] == 1;
 													Find.findQuickChatPhrases(local1552, tempString1);
 													scriptIntValues[isp++] = Find.index;
 													continue;
 												}
-												if (opcode == 5072) {
+												if (opcode == QUICKCHAT_FINDNEXT) {
 													if (Find.results != null && Find.size < Find.index) {
 														scriptIntValues[isp++] = Find.results[Find.size++] & 0xFFFF;
 														continue;
@@ -3422,12 +3425,12 @@ public final class ClientScriptRunner {
 													scriptIntValues[isp++] = -1;
 													continue;
 												}
-												if (opcode == 5073) {
+												if (opcode == QUICKCHAT_FINDRESET) {
 													Find.size = 0;
 													continue;
 												}
 											} else if (opcode < 5200) {
-												if (opcode == 5100) {
+												if (opcode == KEY_HELD_V) {
 													if (Keyboard.pressedKeys[86]) {
 														scriptIntValues[isp++] = 1;
 													} else {
@@ -3435,7 +3438,7 @@ public final class ClientScriptRunner {
 													}
 													continue;
 												}
-												if (opcode == 5101) {
+												if (opcode == KEY_HELD_R) {
 													if (Keyboard.pressedKeys[82]) {
 														scriptIntValues[isp++] = 1;
 													} else {
@@ -3443,7 +3446,7 @@ public final class ClientScriptRunner {
 													}
 													continue;
 												}
-												if (opcode == 5102) {
+												if (opcode == KEY_HELD_Q) {
 													if (Keyboard.pressedKeys[81]) {
 														scriptIntValues[isp++] = 1;
 													} else {
@@ -3454,36 +3457,36 @@ public final class ClientScriptRunner {
 											} else {
 												@Pc(7566) boolean local7566;
 												if (opcode < 5300) {
-													if (opcode == 5200) {
-														isp--;
+													if (opcode == WORLDMAP_SETZOOM) {
+														isp--; // Decrement then read
 														WorldMap.setTargetZoom(scriptIntValues[isp]);
 														continue;
 													}
-													if (opcode == 5201) {
+													if (opcode == WORLDMAP_GETZOOM) {
 														scriptIntValues[isp++] = WorldMap.getTargetZoom();
 														continue;
 													}
-													if (opcode == 5202) {
-														isp--;
+													if (opcode == WORLDMAP_METHOD4444) {
+														isp--; // Decrement then read
 														WorldMap.method4444(scriptIntValues[isp]);
 														continue;
 													}
-													if (opcode == 5203) {
+													if (opcode == WORLDMAP_METHOD4656) {
 														ssp--;
 														WorldMap.method4656(scriptStringValues[ssp]);
 														continue;
 													}
-													if (opcode == 5204) {
+													if (opcode == WORLDMAP_METHOD923) {
 														scriptStringValues[ssp - 1] = WorldMap.method923(scriptStringValues[ssp - 1]);
 														continue;
 													}
-													if (opcode == 5205) {
+													if (opcode == WORLDMAP_METHOD1853) {
 														ssp--;
 														WorldMap.method1853(scriptStringValues[ssp]);
 														continue;
 													}
-													if (opcode == 5206) {
-														isp--;
+													if (opcode == WORLDMAP_GETMAPNAME) {
+														isp--; // Decrement then read
 														tempInt2 = scriptIntValues[isp];
 														@Pc(7264) Map sourceMap = MapList.getContainingSource(tempInt2 >> 14 & 0x3FFF, tempInt2 & 0x3FFF);
 														if (sourceMap == null) {
@@ -3494,7 +3497,7 @@ public final class ClientScriptRunner {
 														continue;
 													}
 													@Pc(7293) Map worldMap;
-													if (opcode == 5207) {
+													if (opcode == WORLDMAP_GETDISPLAYNAME) {
 														ssp--;
 														worldMap = MapList.get(scriptStringValues[ssp]);
 														if (worldMap != null && worldMap.name != null) {
@@ -3504,17 +3507,17 @@ public final class ClientScriptRunner {
 														scriptStringValues[ssp++] = EMPTY_STRING;
 														continue;
 													}
-													if (opcode == 5208) {
+													if (opcode == WORLDMAP_GETCURRENTPOS) {
 														scriptIntValues[isp++] = WorldMap.anInt2387;
 														scriptIntValues[isp++] = WorldMap.anInt1176;
 														continue;
 													}
-													if (opcode == 5209) {
+													if (opcode == WORLDMAP_GETDISPLAYBOUNDS) {
 														scriptIntValues[isp++] = WorldMap.originX + WorldMap.anInt435;
 														scriptIntValues[isp++] = WorldMap.originZ + WorldMap.length - WorldMap.anInt919 - 1;
 														continue;
 													}
-													if (opcode == 5210) {
+													if (opcode == WORLDMAP_GETCURRENTMAPORIGIN) {
 														worldMap = WorldMap.getCurrentMap();
 														if (worldMap == null) {
 															scriptIntValues[isp++] = 0;
@@ -3525,7 +3528,7 @@ public final class ClientScriptRunner {
 														}
 														continue;
 													}
-													if (opcode == 5211) {
+													if (opcode == WORLDMAP_GETCURRENTMAPSIZE) {
 														worldMap = WorldMap.getCurrentMap();
 														if (worldMap == null) {
 															scriptIntValues[isp++] = 0;
@@ -3536,7 +3539,7 @@ public final class ClientScriptRunner {
 														}
 														continue;
 													}
-													if (opcode == 5212) {
+													if (opcode == WORLDMAP_GETHOVEREDLABEL) {
 														tempInt2 = WorldMap.method2352();
 														j = 0;
 														if (tempInt2 == -1) {
@@ -3545,12 +3548,12 @@ public final class ClientScriptRunner {
 															chatTypedLowercase = WorldMap.labels.text[tempInt2];
 															j = WorldMap.labels.getLowerTwoBits(tempInt2);
 														}
-														chatTypedLowercase = chatTypedLowercase.method3140(SPACE_STRING, aClass100_10);
+														chatTypedLowercase = chatTypedLowercase.method3140(SPACE_STRING, HTML_LINE_BREAK);
 														scriptStringValues[ssp++] = chatTypedLowercase;
 														scriptIntValues[isp++] = j;
 														continue;
 													}
-													if (opcode == 5213) {
+													if (opcode == WORLDMAP_GETCLICKEDLABEL) {
 														j = 0;
 														tempInt2 = WorldMap.method2385();
 														if (tempInt2 == -1) {
@@ -3559,19 +3562,19 @@ public final class ClientScriptRunner {
 															chatTypedLowercase = WorldMap.labels.text[tempInt2];
 															j = WorldMap.labels.getLowerTwoBits(tempInt2);
 														}
-														chatTypedLowercase = chatTypedLowercase.method3140(SPACE_STRING, aClass100_10);
+														chatTypedLowercase = chatTypedLowercase.method3140(SPACE_STRING, HTML_LINE_BREAK);
 														scriptStringValues[ssp++] = chatTypedLowercase;
 														scriptIntValues[isp++] = j;
 														continue;
 													}
-													if (opcode == 5214) {
-														isp--;
+													if (opcode == WORLDMAP_JUMPTODISPLAYCOORD) {
+														isp--; // Decrement then read
 														tempInt2 = scriptIntValues[isp];
 														WorldMap.method3616(tempInt2 >> 14 & 0x3FFF, tempInt2 & 0x3FFF);
 														continue;
 													}
-													if (opcode == 5215) {
-														isp--;
+													if (opcode == WORLDMAP_COORDHASMAP) {
+														isp--; // Decrement then read
 														tempInt2 = scriptIntValues[isp];
 														ssp--;
 														chatTypedLowercase = scriptStringValues[ssp];
@@ -3590,14 +3593,14 @@ public final class ClientScriptRunner {
 														}
 														continue;
 													}
-													if (opcode == 5216) {
-														isp--;
+													if (opcode == WORLDMAP_FLASHELEMENT) {
+														isp--; // Decrement then read
 														tempInt2 = scriptIntValues[isp];
 														MapList.method4332(tempInt2);
 														continue;
 													}
-													if (opcode == 5217) {
-														isp--;
+													if (opcode == WORLDMAP_ISELEMENTFLASHING) {
+														isp--; // Decrement then read
 														tempInt2 = scriptIntValues[isp];
 														if (MapList.method1855(tempInt2)) {
 															scriptIntValues[isp++] = 1;
@@ -3606,7 +3609,7 @@ public final class ClientScriptRunner {
 														}
 														continue;
 													}
-													if (opcode == 5218) {
+													if (opcode == WORLDMAP_GETCURRENTMAPDEFAULTZOOM) {
 														worldMap = WorldMap.getCurrentMap();
 														if (worldMap == null) {
 															scriptIntValues[isp++] = -1;
@@ -3615,17 +3618,17 @@ public final class ClientScriptRunner {
 														}
 														continue;
 													}
-													if (opcode == 5219) {
+													if (opcode == WORLDMAP_METHOD1149) {
 														ssp--;
 														WorldMap.method1149(scriptStringValues[ssp]);
 														continue;
 													}
-													if (opcode == 5220) {
+													if (opcode == WORLDMAP_ISLOADED) {
 														scriptIntValues[isp++] = WorldMap.loadPercentage == 100 ? 1 : 0;
 														continue;
 													}
 												} else if (opcode < 5400) {
-													if (opcode == 5300) {
+													if (opcode == SETFULLSCREEN) {
 														isp -= 2;
 														tempInt1 = scriptIntValues[isp + 1];
 														tempInt2 = scriptIntValues[isp];
@@ -3633,26 +3636,26 @@ public final class ClientScriptRunner {
 														scriptIntValues[isp++] = GameShell.fullScreenFrame == null ? 0 : 1;
 														continue;
 													}
-													if (opcode == 5301) {
+													if (opcode == EXITFULLSCREEN) {
 														if (GameShell.fullScreenFrame != null) {
 															DisplayMode.setWindowMode(false, Preferences.favoriteWorlds, -1, -1);
 														}
 														continue;
 													}
-													if (opcode == 5302) {
+													if (opcode == GETDISPLAYMODECOUNT) {
 														@Pc(7780) DisplayMode[] availableModes = DisplayMode.getModes();
 														scriptIntValues[isp++] = availableModes.length;
 														continue;
 													}
-													if (opcode == 5303) {
-														isp--;
+													if (opcode == GETDISPLAYMODESIZE) {
+														isp--; // Decrement then read
 														tempInt2 = scriptIntValues[isp];
 														@Pc(7800) DisplayMode[] availableModes = DisplayMode.getModes();
 														scriptIntValues[isp++] = availableModes[tempInt2].width;
 														scriptIntValues[isp++] = availableModes[tempInt2].height;
 														continue;
 													}
-													if (opcode == 5305) {
+													if (opcode == GETDISPLAYMODEINDEX) {
 														tempInt1 = Preferences.fullScreenHeight;
 														tempInt2 = Preferences.fullScreenWidth;
 														j = -1;
@@ -3667,12 +3670,12 @@ public final class ClientScriptRunner {
 														scriptIntValues[isp++] = j;
 														continue;
 													}
-													if (opcode == 5306) {
+													if (opcode == GETWINDOWMODE) {
 														scriptIntValues[isp++] = DisplayMode.getWindowMode();
 														continue;
 													}
-													if (opcode == 5307) {
-														isp--;
+													if (opcode == SETWINDOWMODE) {
+														isp--; // Decrement then read
 														tempInt2 = scriptIntValues[isp];
 														if (tempInt2 < 0 || tempInt2 > 2) {
 															tempInt2 = 0;
@@ -3680,12 +3683,12 @@ public final class ClientScriptRunner {
 														DisplayMode.setWindowMode(false, tempInt2, -1, -1);
 														continue;
 													}
-													if (opcode == 5308) {
+													if (opcode == GETDEFAULTWINDOWMODE) {
 														scriptIntValues[isp++] = Preferences.favoriteWorlds;
 														continue;
 													}
-													if (opcode == 5309) {
-														isp--;
+													if (opcode == SETDEFAULTWINDOWMODE) {
+														isp--; // Decrement then read
 														tempInt2 = scriptIntValues[isp];
 														if (tempInt2 < 0 || tempInt2 > 2) {
 															tempInt2 = 0;
@@ -3695,20 +3698,20 @@ public final class ClientScriptRunner {
 														continue;
 													}
 												} else if (opcode < 5500) {
-													if (opcode == 5400) {
+													if (opcode == CLIENTSCRIPT_117) {
 														ssp -= 2;
 														tempString1 = scriptStringValues[ssp];
 														chatTypedLowercase = scriptStringValues[ssp + 1];
-														isp--;
+														isp--; // Decrement then read
 														j = scriptIntValues[isp];
-														Protocol.outboundBuffer.pIsaac1(117);
+														Protocol.outboundBuffer.pIsaac1(ClientProt.CLIENTSCRIPT_117);
 														Protocol.outboundBuffer.p1(Packet.gjstrlen(tempString1) + Packet.gjstrlen(chatTypedLowercase) + 1);
 														Protocol.outboundBuffer.pjstr(tempString1);
 														Protocol.outboundBuffer.pjstr(chatTypedLowercase);
 														Protocol.outboundBuffer.p1(j);
 														continue;
 													}
-													if (opcode == 5401) {
+													if (opcode == SETCOLOROVERRIDE) {
 														isp -= 2;
 														Client.aShortArray88[scriptIntValues[isp]] = (short) ColorUtils.rgbToHsl(scriptIntValues[isp + 1]);
 														ObjTypeList.clearModels();
@@ -3718,7 +3721,7 @@ public final class ClientScriptRunner {
 														method1807();
 														continue;
 													}
-													if (opcode == 5405) {
+													if (opcode == CAM_SPLINE_INIT) {
 														isp -= 2;
 														tempInt2 = scriptIntValues[isp];
 														tempInt1 = scriptIntValues[isp + 1];
@@ -3727,7 +3730,7 @@ public final class ClientScriptRunner {
 														}
 														continue;
 													}
-													if (opcode == 5406) {
+													if (opcode == CAM_SPLINE_ADDPOINT) {
 														isp -= 7;
 														tempInt2 = scriptIntValues[isp];
 														tempInt1 = scriptIntValues[isp + 1] << 1;
@@ -3742,13 +3745,13 @@ public final class ClientScriptRunner {
 														}
 														continue;
 													}
-													if (opcode == 5407) {
-														isp--;
+													if (opcode == CAM_SPLINE_LENGTH) {
+														isp--; // Decrement then read
 														tempInt2 = Camera.cameraSplines[scriptIntValues[isp]].length >> 1;
 														scriptIntValues[isp++] = tempInt2;
 														continue;
 													}
-													if (opcode == 5411) {
+													if (opcode == QUIT_TO_SETTINGS) {
 														if (GameShell.fullScreenFrame != null) {
 															DisplayMode.setWindowMode(false, Preferences.favoriteWorlds, -1, -1);
 														}
@@ -3759,7 +3762,7 @@ public final class ClientScriptRunner {
 														}
 														continue;
 													}
-													if (opcode == 5419) {
+													if (opcode == GETLASTLOGINADDRESS) {
 														tempString1 = EMPTY_STRING;
 														if (Player.lastLogAddress != null) {
 															tempString1 = JString.formatIp(Player.lastLogAddress.intArg2);
@@ -3774,15 +3777,15 @@ public final class ClientScriptRunner {
 														scriptStringValues[ssp++] = tempString1;
 														continue;
 													}
-													if (opcode == 5420) {
+													if (opcode == ISAPPLET) {
 														scriptIntValues[isp++] = SignLink.anInt5928 == 3 ? 1 : 0;
 														continue;
 													}
-													if (opcode == 5421) {
+													if (opcode == OPENURL) {
 														if (GameShell.fullScreenFrame != null) {
 															DisplayMode.setWindowMode(false, Preferences.favoriteWorlds, -1, -1);
 														}
-														isp--;
+														isp--; // Decrement then read
 														local1552 = scriptIntValues[isp] == 1;
 														ssp--;
 														tempString1 = scriptStringValues[ssp];
@@ -3796,8 +3799,8 @@ public final class ClientScriptRunner {
 														openUrl(fullUrl, local1552);
 														continue;
 													}
-													if (opcode == 5422) {
-														isp--;
+													if (opcode == SETPLAYERNAME) {
+														isp--; // Decrement then read
 														j = scriptIntValues[isp];
 														ssp -= 2;
 														chatTypedLowercase = scriptStringValues[ssp + 1];
@@ -3816,12 +3819,12 @@ public final class ClientScriptRunner {
 														}
 														continue;
 													}
-													if (opcode == 5423) {
+													if (opcode == PRINTTOCONSOLE) {
 														ssp--;
 														scriptStringValues[ssp].printToConsole();
 														continue;
 													}
-													if (opcode == 5424) {
+													if (opcode == LOGIN_UI_SETSPRITES) {
 														isp -= 11;
 														LoginManager.anInt1275 = scriptIntValues[isp];
 														LoginManager.anInt2910 = scriptIntValues[isp + 1];
@@ -3842,24 +3845,24 @@ public final class ClientScriptRunner {
 														ComponentList.hasScrollbar = true;
 														continue;
 													}
-													if (opcode == 5425) {
+													if (opcode == LOGIN_UI_CLEAR) {
 														LoginManager.method4637();
 														ComponentList.hasScrollbar = false;
 														continue;
 													}
-													if (opcode == 5426) {
-														isp--;
+													if (opcode == SET_ANINT5794) {
+														isp--; // Decrement then read
 														anInt5794 = scriptIntValues[isp];
 														continue;
 													}
-													if (opcode == 5427) {
+													if (opcode == MINIMAP_SETINTS) {
 														isp -= 2;
 														MiniMap.anInt4075 = scriptIntValues[isp];
 														MiniMap.anInt5073 = scriptIntValues[isp + 1];
 														continue;
 													}
 												} else if (opcode < 5600) {
-													if (opcode == 5500) {
+													if (opcode == CAM_MOVETO) {
 														isp -= 4;
 														tempInt2 = scriptIntValues[isp];
 														i = scriptIntValues[isp + 3];
@@ -3868,7 +3871,7 @@ public final class ClientScriptRunner {
 														Camera.setCameraTargetPosition(false, j, tempInt1, i, (tempInt2 & 0x3FFF) - Camera.sceneBaseTileZ, (tempInt2 >> 14 & 0x3FFF) - Camera.sceneBaseTileX);
 														continue;
 													}
-													if (opcode == 5501) {
+													if (opcode == CAM_LOOKAT) {
                                                         // cam_lookat
                                                         // Point camera at a coordinate
 														isp -= 4;
@@ -3881,7 +3884,7 @@ public final class ClientScriptRunner {
 														Camera.setCameraLookAtTarget(tempInt1, (tempInt2 & 0x3FFF) - Camera.sceneBaseTileZ, j, (tempInt2 >> 14 & 0x3FFF) - Camera.sceneBaseTileX, i);
 														continue;
 													}
-													if (opcode == 5502) {
+													if (opcode == CAM_MOVETO_SPLINE) {
                                                         // cam_moveto_spline
                                                         // Move camera along predefined spline path
 														isp -= 6;
@@ -3913,11 +3916,11 @@ public final class ClientScriptRunner {
 														Camera.cameraType = 3; // Spline camera mode
 														continue;
 													}
-													if (opcode == 5503) {
+													if (opcode == CAM_RESET) {
 														Camera.resetCameraEffects();
 														continue;
 													}
-													if (opcode == 5504) {
+													if (opcode == CAM_SETANGLE) {
                                                         // cam_setangle
                                                         // Set manual camera pitch and yaw
 														isp -= 2;
@@ -3931,51 +3934,51 @@ public final class ClientScriptRunner {
 														SceneCamera.clampCameraAngle(); // Prevent gimbal lock
 														continue;
 													}
-													if (opcode == 5505) {
+													if (opcode == CAM_GETPITCH) {
 														scriptIntValues[isp++] = Camera.orbitCameraPitch;
 														continue;
 													}
-													if (opcode == 5506) {
+													if (opcode == CAM_GETYAW) {
 														scriptIntValues[isp++] = Camera.orbitCameraYaw;
 														continue;
 													}
 												} else if (opcode < 5700) {
-													if (opcode == 5600) {
+													if (opcode == LOGIN) {
 														ssp -= 2;
 														tempString1 = scriptStringValues[ssp];
 														chatTypedLowercase = scriptStringValues[ssp + 1];
-														isp--;
+														isp--; // Decrement then read
 														j = scriptIntValues[isp];
 														if (Client.gameState == 10 && LoginManager.autoStep == 0 && LoginManager.step == 0 && CreateManager.step == 0 && WorldList.step == 0) {
 															LoginManager.login(tempString1, chatTypedLowercase, j);
 														}
 														continue;
 													}
-													if (opcode == 5601) {
+													if (opcode == LOGIN_ADVANCE) {
 														LoginManager.advanceLoginStep();
 														continue;
 													}
-													if (opcode == 5602) {
+													if (opcode == LOGIN_ABORT) {
 														if (LoginManager.step == 0) {
 															LoginManager.reply = -2;
 														}
 														continue;
 													}
-													if (opcode == 5603) {
+													if (opcode == CREATEACCOUNT_CHECKINFO) {
 														isp -= 4;
 														if (Client.gameState == 10 && LoginManager.autoStep == 0 && LoginManager.step == 0 && CreateManager.step == 0 && WorldList.step == 0) {
 															CreateManager.checkInfo(scriptIntValues[isp + 2], scriptIntValues[isp + 3], scriptIntValues[isp], scriptIntValues[isp + 1]);
 														}
 														continue;
 													}
-													if (opcode == 5604) {
+													if (opcode == CREATEACCOUNT_CHECKNAME) {
 														ssp--;
 														if (Client.gameState == 10 && LoginManager.autoStep == 0 && LoginManager.step == 0 && CreateManager.step == 0 && WorldList.step == 0) {
 															CreateManager.checkName(scriptStringValues[ssp].encode37());
 														}
 														continue;
 													}
-													if (opcode == 5605) {
+													if (opcode == CREATEACCOUNT_CREATE) {
 														isp -= 4;
 														ssp -= 2;
 														if (Client.gameState == 10 && LoginManager.autoStep == 0 && LoginManager.step == 0 && CreateManager.step == 0 && WorldList.step == 0) {
@@ -3983,40 +3986,40 @@ public final class ClientScriptRunner {
 														}
 														continue;
 													}
-													if (opcode == 5606) {
+													if (opcode == CREATEACCOUNT_ABORT) {
 														if (CreateManager.step == 0) {
 															CreateManager.reply = -2;
 														}
 														continue;
 													}
-													if (opcode == 5607) {
+													if (opcode == LOGIN_GETREPLY) {
 														scriptIntValues[isp++] = LoginManager.reply;
 														continue;
 													}
-													if (opcode == 5608) {
+													if (opcode == LOGIN_GETHOPTIME) {
 														scriptIntValues[isp++] = LoginManager.hopTime;
 														continue;
 													}
-													if (opcode == 5609) {
+													if (opcode == CREATEACCOUNT_GETREPLY) {
 														scriptIntValues[isp++] = CreateManager.reply;
 														continue;
 													}
-													if (opcode == 5610) {
+													if (opcode == CREATEACCOUNT_GETSUGGESTEDNAMES) {
 														for (tempInt2 = 0; tempInt2 < 5; tempInt2++) {
 															scriptStringValues[ssp++] = CreateManager.suggestedNames.length > tempInt2 ? CreateManager.suggestedNames[tempInt2].toTitleCase() : EMPTY_STRING;
 														}
 														CreateManager.suggestedNames = null;
 														continue;
 													}
-													if (opcode == 5611) {
+													if (opcode == LOGIN_GETDISALLOWRESULT) {
 														scriptIntValues[isp++] = LoginManager.disallowResult;
 														continue;
 													}
 												} else if (opcode < 6100) {
-													if (opcode == 6001) {
+													if (opcode == SETBRIGHTNESS) {
                                                         // setbrightness
                                                         // Set display brightness
-														isp--;
+														isp--; // Decrement then read
 														int brightness = scriptIntValues[isp];
 
                                                         // Clamp to valid range
@@ -4060,8 +4063,8 @@ public final class ClientScriptRunner {
 														Preferences.sentToServer = false;
 														continue;
 													}
-													if (opcode == 6002) {
-														isp--;
+													if (opcode == SETLOWMEM) {
+														isp--; // Decrement then read
 														Preferences.setLowmem(scriptIntValues[isp] == 1);
 														LocTypeList.clear();
 														method2742();
@@ -4070,60 +4073,60 @@ public final class ClientScriptRunner {
 														Preferences.sentToServer = false;
 														continue;
 													}
-													if (opcode == 6003) {
-														isp--;
+													if (opcode == SETROOFSVISIBLE) {
+														isp--; // Decrement then read
 														Preferences.roofsVisible = scriptIntValues[isp] == 1;
 														method2218();
 														Preferences.write(GameShell.signLink);
 														Preferences.sentToServer = false;
 														continue;
 													}
-													if (opcode == 6005) {
-														isp--;
+													if (opcode == SETGROUNDDECOR) {
+														isp--; // Decrement then read
 														Preferences.showGroundDecorations = scriptIntValues[isp] == 1;
 														method2742();
 														Preferences.write(GameShell.signLink);
 														Preferences.sentToServer = false;
 														continue;
 													}
-													if (opcode == 6006) {
-														isp--;
+													if (opcode == SETHIGHTEXTURES) {
+														isp--; // Decrement then read
 														Preferences.highDetailTextures = scriptIntValues[isp] == 1;
 														((Js5TextureProvider) Rasterizer.textureProvider).method3245(!Preferences.highDetailTextures);
 														Preferences.write(GameShell.signLink);
 														Preferences.sentToServer = false;
 														continue;
 													}
-													if (opcode == 6007) {
-														isp--;
+													if (opcode == SETMANYIDLEANIMS) {
+														isp--; // Decrement then read
 														Preferences.manyIdleAnimations = scriptIntValues[isp] == 1;
 														Preferences.write(GameShell.signLink);
 														Preferences.sentToServer = false;
 														continue;
 													}
-													if (opcode == 6008) {
-														isp--;
+													if (opcode == SETFLICKERINGEFFECTS) {
+														isp--; // Decrement then read
 														Preferences.flickeringEffectsOn = scriptIntValues[isp] == 1;
 														Preferences.write(GameShell.signLink);
 														Preferences.sentToServer = false;
 														continue;
 													}
-													if (opcode == 6009) {
-														isp--;
+													if (opcode == SETMANYGROUNDTEXTURES) {
+														isp--; // Decrement then read
 														Preferences.manyGroundTextures = scriptIntValues[isp] == 1;
 														Preferences.write(GameShell.signLink);
 														Preferences.sentToServer = false;
 														continue;
 													}
-													if (opcode == 6010) {
-														isp--;
+													if (opcode == SETCHARACTERSHADOWS) {
+														isp--; // Decrement then read
 														Preferences.characterShadowsOn = scriptIntValues[isp] == 1;
 														Preferences.write(GameShell.signLink);
 														Preferences.sentToServer = false;
 														continue;
 													}
-													if (opcode == 6011) {
-														isp--;
+													if (opcode == SETSCENERYSHADOWS) {
+														isp--; // Decrement then read
 														tempInt2 = scriptIntValues[isp];
 														if (tempInt2 < 0 || tempInt2 > 2) {
 															tempInt2 = 0;
@@ -4133,11 +4136,11 @@ public final class ClientScriptRunner {
 														Preferences.sentToServer = false;
 														continue;
 													}
-													if (opcode == 6012) {
+													if (opcode == SETHIGHLIGHTING) {
 														if (GlRenderer.enabled) {
 															MaterialManager.setMaterial(0, 0);
 														}
-														isp--;
+														isp--; // Decrement then read
 														Preferences.highDetailLighting = scriptIntValues[isp] == 1;
 														if (GlRenderer.enabled && Preferences.highDetailLighting) {
 															Rasterizer.setBrightness(0.7F);
@@ -4160,8 +4163,8 @@ public final class ClientScriptRunner {
 														Preferences.sentToServer = false;
 														continue;
 													}
-													if (opcode == 6014) {
-														isp--;
+													if (opcode == SETHIGHWATER) {
+														isp--; // Decrement then read
 														Preferences.highWaterDetail = scriptIntValues[isp] == 1;
 														if (GlRenderer.enabled) {
 															method2742();
@@ -4170,8 +4173,8 @@ public final class ClientScriptRunner {
 														Preferences.sentToServer = false;
 														continue;
 													}
-													if (opcode == 6015) {
-														isp--;
+													if (opcode == SETFOG) {
+														isp--; // Decrement then read
 														Preferences.fogEnabled = scriptIntValues[isp] == 1;
 														if (GlRenderer.enabled) {
 															FogManager.setInstantFade();
@@ -4180,8 +4183,8 @@ public final class ClientScriptRunner {
 														Preferences.sentToServer = false;
 														continue;
 													}
-													if (opcode == 6016) {
-														isp--;
+													if (opcode == SETANTIALIASING) {
+														isp--; // Decrement then read
 														tempInt2 = scriptIntValues[isp];
 														if (GlRenderer.enabled) {
 															GameShell.canvasReplaceRecommended = true;
@@ -4192,16 +4195,16 @@ public final class ClientScriptRunner {
 														Preferences.antiAliasingMode = tempInt2;
 														continue;
 													}
-													if (opcode == 6017) {
-														isp--;
+													if (opcode == SETSTEREO) {
+														isp--; // Decrement then read
 														Preferences.stereo = scriptIntValues[isp] == 1;
 														Client.method930();
 														Preferences.write(GameShell.signLink);
 														Preferences.sentToServer = false;
 														continue;
 													}
-													if (opcode == 6018) {
-														isp--;
+													if (opcode == SETSOUNDVOLUME) {
+														isp--; // Decrement then read
 														tempInt2 = scriptIntValues[isp];
 														if (tempInt2 < 0) {
 															tempInt2 = 0;
@@ -4214,8 +4217,8 @@ public final class ClientScriptRunner {
 														Preferences.sentToServer = false;
 														continue;
 													}
-													if (opcode == 6019) {
-														isp--;
+													if (opcode == SETMUSICVOLUME) {
+														isp--; // Decrement then read
 														tempInt2 = scriptIntValues[isp];
 														if (tempInt2 < 0) {
 															tempInt2 = 0;
@@ -4239,8 +4242,8 @@ public final class ClientScriptRunner {
 														Preferences.sentToServer = false;
 														continue;
 													}
-													if (opcode == 6020) {
-														isp--;
+													if (opcode == SETAMBIENTSOUNDSVOLUME) {
+														isp--; // Decrement then read
 														tempInt2 = scriptIntValues[isp];
 														if (tempInt2 < 0) {
 															tempInt2 = 0;
@@ -4253,14 +4256,14 @@ public final class ClientScriptRunner {
 														Preferences.sentToServer = false;
 														continue;
 													}
-													if (opcode == 6021) {
-														isp--;
+													if (opcode == SETNEVERREMOVINGROOFS) {
+														isp--; // Decrement then read
 														neverRemoveRoofs = scriptIntValues[isp] == 1;
 														method2218();
 														continue;
 													}
-													if (opcode == 6023) {
-														isp--;
+													if (opcode == SETPARTICLES) {
+														isp--; // Decrement then read
 														tempInt2 = scriptIntValues[isp];
 														if (tempInt2 < 0) {
 															tempInt2 = 0;
@@ -4279,8 +4282,8 @@ public final class ClientScriptRunner {
 														scriptIntValues[isp++] = local1552 ? 0 : 1;
 														continue;
 													}
-													if (opcode == 6024) {
-														isp--;
+													if (opcode == SETWINDOWMODE_PREF) {
+														isp--; // Decrement then read
 														tempInt2 = scriptIntValues[isp];
 														if (tempInt2 < 0 || tempInt2 > 2) {
 															tempInt2 = 0;
@@ -4289,86 +4292,86 @@ public final class ClientScriptRunner {
 														Preferences.write(GameShell.signLink);
 														continue;
 													}
-													if (opcode == 6028) {
-														isp--;
+													if (opcode == SETCURSORS) {
+														isp--; // Decrement then read
 														Preferences.cursorsEnabled = scriptIntValues[isp] != 0;
 														Preferences.write(GameShell.signLink);
 														continue;
 													}
 												} else if (opcode < 6200) {
-													if (opcode == 6101) {
+													if (opcode == GETBRIGHTNESS) {
 														scriptIntValues[isp++] = Preferences.brightness;
 														continue;
 													}
-													if (opcode == 6102) {
+													if (opcode == GETLOWMEM) {
 														scriptIntValues[isp++] = SceneGraph.allLevelsAreVisible() ? 1 : 0;
 														continue;
 													}
-													if (opcode == 6103) {
+													if (opcode == GETROOFSVISIBLE) {
 														scriptIntValues[isp++] = Preferences.roofsVisible ? 1 : 0;
 														continue;
 													}
-													if (opcode == 6105) {
+													if (opcode == GETGROUNDDECOR) {
 														scriptIntValues[isp++] = Preferences.showGroundDecorations ? 1 : 0;
 														continue;
 													}
-													if (opcode == 6106) {
+													if (opcode == GETHIGHTEXTURES) {
 														scriptIntValues[isp++] = Preferences.highDetailTextures ? 1 : 0;
 														continue;
 													}
-													if (opcode == 6107) {
+													if (opcode == GETMANYIDLEANIMS) {
 														scriptIntValues[isp++] = Preferences.manyIdleAnimations ? 1 : 0;
 														continue;
 													}
-													if (opcode == 6108) {
+													if (opcode == GETFLICKERINGEFFECTS) {
 														scriptIntValues[isp++] = Preferences.flickeringEffectsOn ? 1 : 0;
 														continue;
 													}
-													if (opcode == 6109) {
+													if (opcode == GETMANYGROUNDTEXTURES) {
 														scriptIntValues[isp++] = Preferences.manyGroundTextures ? 1 : 0;
 														continue;
 													}
-													if (opcode == 6110) {
+													if (opcode == GETCHARACTERSHADOWS) {
 														scriptIntValues[isp++] = Preferences.characterShadowsOn ? 1 : 0;
 														continue;
 													}
-													if (opcode == 6111) {
+													if (opcode == GETSCENERYSHADOWS) {
 														scriptIntValues[isp++] = Preferences.sceneryShadowsType;
 														continue;
 													}
-													if (opcode == 6112) {
+													if (opcode == GETHIGHLIGHTING) {
 														scriptIntValues[isp++] = Preferences.highDetailLighting ? 1 : 0;
 														continue;
 													}
-													if (opcode == 6114) {
+													if (opcode == GETHIGHWATER) {
 														scriptIntValues[isp++] = Preferences.highWaterDetail ? 1 : 0;
 														continue;
 													}
-													if (opcode == 6115) {
+													if (opcode == GETFOG) {
 														scriptIntValues[isp++] = Preferences.fogEnabled ? 1 : 0;
 														continue;
 													}
-													if (opcode == 6116) {
+													if (opcode == GETANTIALIASING) {
 														scriptIntValues[isp++] = Preferences.antiAliasingMode;
 														continue;
 													}
-													if (opcode == 6117) {
+													if (opcode == GETSTEREO) {
 														scriptIntValues[isp++] = Preferences.stereo ? 1 : 0;
 														continue;
 													}
-													if (opcode == 6118) {
+													if (opcode == GETSOUNDVOLUME) {
 														scriptIntValues[isp++] = Preferences.soundEffectVolume;
 														continue;
 													}
-													if (opcode == 6119) {
+													if (opcode == GETMUSICVOLUME) {
 														scriptIntValues[isp++] = Preferences.musicVolume;
 														continue;
 													}
-													if (opcode == 6120) {
+													if (opcode == GETAMBIENTSOUNDSVOLUME) {
 														scriptIntValues[isp++] = Preferences.ambientSoundsVolume;
 														continue;
 													}
-													if (opcode == 6121) {
+													if (opcode == GETANTIALIASINGAVAILABLE) {
 														if (GlRenderer.enabled) {
 															scriptIntValues[isp++] = GlRenderer.arbMultisampleSupported ? 1 : 0;
 														} else {
@@ -4376,115 +4379,115 @@ public final class ClientScriptRunner {
 														}
 														continue;
 													}
-													if (opcode == 6123) {
+													if (opcode == GETPARTICLES) {
 														scriptIntValues[isp++] = Preferences.getParticleSetting();
 														continue;
 													}
-													if (opcode == 6124) {
+													if (opcode == GETWINDOWMODE_PREF) {
 														scriptIntValues[isp++] = Preferences.windowMode;
 														continue;
 													}
-													if (opcode == 6128) {
+													if (opcode == GETCURSORS) {
 														scriptIntValues[isp++] = Preferences.cursorsEnabled ? 1 : 0;
 														continue;
 													}
 												} else if (opcode < 6300) {
-													if (opcode == 6200) {
+													if (opcode == CAM_SETZOOMSCALE) {
 														isp -= 2;
-														aShort25 = (short) scriptIntValues[isp];
-														if (aShort25 <= 0) {
-															aShort25 = 256;
+														minZoomScale = (short) scriptIntValues[isp];
+														if (minZoomScale <= 0) {
+															minZoomScale = 256;
 														}
-														aShort9 = (short) scriptIntValues[isp + 1];
-														if (aShort9 <= 0) {
-															aShort9 = 205;
+														maxZoomScale = (short) scriptIntValues[isp + 1];
+														if (maxZoomScale <= 0) {
+															maxZoomScale = 205;
 														}
 														continue;
 													}
-													if (opcode == 6201) {
+													if (opcode == CAM_SETDISTSCALE) {
 														isp -= 2;
-														aShort30 = (short) scriptIntValues[isp];
-														if (aShort30 <= 0) {
-															aShort30 = 256;
+														minDistanceScale = (short) scriptIntValues[isp];
+														if (minDistanceScale <= 0) {
+															minDistanceScale = 256;
 														}
-														aShort27 = (short) scriptIntValues[isp + 1];
-														if (aShort27 <= 0) {
-															aShort27 = 320;
+														maxDistanceScale = (short) scriptIntValues[isp + 1];
+														if (maxDistanceScale <= 0) {
+															maxDistanceScale = 320;
 														}
 														continue;
 													}
-													if (opcode == 6202) {
+													if (opcode == CAM_SETCONSTRAINTS) {
 														isp -= 4;
-														aShort22 = (short) scriptIntValues[isp];
-														if (aShort22 <= 0) {
-															aShort22 = 1;
+														minZoomConstraint = (short) scriptIntValues[isp];
+														if (minZoomConstraint <= 0) {
+															minZoomConstraint = 1;
 														}
-														aShort1 = (short) scriptIntValues[isp + 1];
-														if (aShort1 <= 0) {
-															aShort1 = 32767;
-														} else if (aShort22 > aShort1) {
-															aShort1 = aShort22;
+														maxZoomConstraint = (short) scriptIntValues[isp + 1];
+														if (maxZoomConstraint <= 0) {
+															maxZoomConstraint = 32767;
+														} else if (minZoomConstraint > maxZoomConstraint) {
+															maxZoomConstraint = minZoomConstraint;
 														}
-														aShort12 = (short) scriptIntValues[isp + 2];
-														if (aShort12 <= 0) {
-															aShort12 = 1;
+														minAspectRatio = (short) scriptIntValues[isp + 2];
+														if (minAspectRatio <= 0) {
+															minAspectRatio = 1;
 														}
-														aShort21 = (short) scriptIntValues[isp + 3];
-														if (aShort21 <= 0) {
-															aShort21 = 32767;
-														} else if (aShort21 < aShort12) {
-															aShort21 = aShort12;
+														maxAspectRatio = (short) scriptIntValues[isp + 3];
+														if (maxAspectRatio <= 0) {
+															maxAspectRatio = 32767;
+														} else if (maxAspectRatio < minAspectRatio) {
+															maxAspectRatio = minAspectRatio;
 														}
 														continue;
 													}
-													if (opcode == 6203) {
+													if (opcode == CAM_GETVIEWPORTSIZE) {
 														method2314(ComponentList.specialComponent.width, 0, ComponentList.specialComponent.height, 0, false);
-														scriptIntValues[isp++] = anInt4055;
-														scriptIntValues[isp++] = anInt5377;
+														scriptIntValues[isp++] = calculatedViewportWidth;
+														scriptIntValues[isp++] = calculatedViewportHeight;
 														continue;
 													}
-													if (opcode == 6204) {
-														scriptIntValues[isp++] = aShort30;
-														scriptIntValues[isp++] = aShort27;
+													if (opcode == CAM_GETDISTSCALE) {
+														scriptIntValues[isp++] = minDistanceScale;
+														scriptIntValues[isp++] = maxDistanceScale;
 														continue;
 													}
-													if (opcode == 6205) {
-														scriptIntValues[isp++] = aShort25;
-														scriptIntValues[isp++] = aShort9;
+													if (opcode == CAM_GETZOOMSCALE) {
+														scriptIntValues[isp++] = minZoomScale;
+														scriptIntValues[isp++] = maxZoomScale;
 														continue;
 													}
 												} else if (opcode < 6400) {
-													if (opcode == 6300) {
+													if (opcode == CALC_TIME_MINUTES) {
                                                         // calc_time_minutes
 														scriptIntValues[isp++] = (int) (MonotonicTime.currentTimeMillis() / 60000L);
 														continue;
 													}
-													if (opcode == 6301) {
+													if (opcode == CALC_TIME_DAYS) {
                                                         // calc_time_days
 														scriptIntValues[isp++] = (int) (MonotonicTime.currentTimeMillis() / 86400000L) - 11745;
 														continue;
 													}
-													if (opcode == 6302) {
+													if (opcode == CALC_DATE) {
                                                         // calc_date
 														isp -= 3;
 														j = scriptIntValues[isp + 2];
 														tempInt1 = scriptIntValues[isp + 1];
 														tempInt2 = scriptIntValues[isp];
-														aCalendar2.clear();
-														aCalendar2.set(11, 12);
-														aCalendar2.set(j, tempInt1, tempInt2);
-														scriptIntValues[isp++] = (int) (aCalendar2.getTime().getTime() / 86400000L) - 11745;
+														calendar.clear();
+														calendar.set(11, 12);
+														calendar.set(j, tempInt1, tempInt2);
+														scriptIntValues[isp++] = (int) (calendar.getTime().getTime() / 86400000L) - 11745;
 														continue;
 													}
-													if (opcode == 6303) {
-														aCalendar2.clear();
-														aCalendar2.setTime(new Date(MonotonicTime.currentTimeMillis()));
-														scriptIntValues[isp++] = aCalendar2.get(1);
+													if (opcode == CALC_YEAR) {
+														calendar.clear();
+														calendar.setTime(new Date(MonotonicTime.currentTimeMillis()));
+														scriptIntValues[isp++] = calendar.get(1);
 														continue;
 													}
-													if (opcode == 6304) {
+													if (opcode == CALC_ISLEAPYEAR) {
 														local1552 = true;
-														isp--;
+														isp--; // Decrement then read
 														tempInt2 = scriptIntValues[isp];
 														if (tempInt2 < 0) {
 															local1552 = (tempInt2 + 1) % 4 == 0;
@@ -4501,18 +4504,18 @@ public final class ClientScriptRunner {
 														continue;
 													}
 												} else if (opcode < 6500) {
-													if (opcode == 6405) {
+													if (opcode == SHOWVIDEOAD) {
 														// scriptIntValues[isp++] = client.showVideoAd() ? 1 : 0;
 														scriptIntValues[isp++] = 0;
 														continue;
 													}
-													if (opcode == 6406) {
+													if (opcode == ISSHOWINGVIDEOAD) {
 														// scriptIntValues[isp++] = isShowingVideoAd() ? 1 : 0;
 														scriptIntValues[isp++] = 0;
 														continue;
 													}
 												} else if (opcode < 6600) {
-													if (opcode == 6500) {
+													if (opcode == WORLDLIST_FETCH) {
 														if (Client.gameState == 10 && LoginManager.autoStep == 0 && LoginManager.step == 0 && CreateManager.step == 0) {
 															scriptIntValues[isp++] = WorldList.fetch() == -1 ? 0 : 1;
 															continue;
@@ -4522,7 +4525,7 @@ public final class ClientScriptRunner {
 													}
 													@Pc(10247) WorldInfo worldInfo;
 													@Pc(10191) World world;
-													if (opcode == 6501) {
+													if (opcode == WORLDLIST_START) {
 														world = WorldList.getFirstWorld();
 														if (world == null) {
 															scriptIntValues[isp++] = -1;
@@ -4542,7 +4545,7 @@ public final class ClientScriptRunner {
 														}
 														continue;
 													}
-													if (opcode == 6502) {
+													if (opcode == WORLDLIST_NEXT) {
 														world = WorldList.getNextWorld();
 														if (world == null) {
 															scriptIntValues[isp++] = -1;
@@ -4562,8 +4565,8 @@ public final class ClientScriptRunner {
 														}
 														continue;
 													}
-													if (opcode == 6503) {
-														isp--;
+													if (opcode == WORLDLIST_HOPWORLD) {
+														isp--; // Decrement then read
 														tempInt2 = scriptIntValues[isp];
 														if (Client.gameState == 10 && LoginManager.autoStep == 0 && LoginManager.step == 0 && CreateManager.step == 0) {
 															scriptIntValues[isp++] = WorldList.hopWorld(tempInt2) ? 1 : 0;
@@ -4572,18 +4575,18 @@ public final class ClientScriptRunner {
 														scriptIntValues[isp++] = 0;
 														continue;
 													}
-													if (opcode == 6504) {
-														isp--;
+													if (opcode == WORLDLIST_SETLAST) {
+														isp--; // Decrement then read
 														Preferences.lastWorldId = scriptIntValues[isp];
 														Preferences.write(GameShell.signLink);
 														continue;
 													}
-													if (opcode == 6505) {
+													if (opcode == WORLDLIST_GETLAST) {
 														scriptIntValues[isp++] = Preferences.lastWorldId;
 														continue;
 													}
-													if (opcode == 6506) {
-														isp--;
+													if (opcode == WORLDLIST_GETBYID) {
+														isp--; // Decrement then read
 														tempInt2 = scriptIntValues[isp];
 														@Pc(10440) World targetWorld = getWorld(tempInt2);
 														if (targetWorld == null) {
@@ -4602,7 +4605,7 @@ public final class ClientScriptRunner {
 														}
 														continue;
 													}
-													if (opcode == 6507) {
+													if (opcode == WORLDLIST_SORT) {
 														isp -= 4;
 														j = scriptIntValues[isp + 2];
 														tempInt2 = scriptIntValues[isp];
@@ -4612,19 +4615,19 @@ public final class ClientScriptRunner {
 														continue;
 													}
 												} else if (opcode < 6700) {
-													if (opcode == 6600) {
-														isp--;
-														Preferences.aBoolean63 = scriptIntValues[isp] == 1;
+													if (opcode == SET_KEYBOARDCAMERA) {
+														isp--; // Decrement then read
+														Preferences.keyboardCameraEnabled = scriptIntValues[isp] == 1;
 														Preferences.write(GameShell.signLink);
 														continue;
 													}
-													if (opcode == 6601) {
-														scriptIntValues[isp++] = Preferences.aBoolean63 ? 1 : 0;
+													if (opcode == GET_KEYBOARDCAMERA) {
+														scriptIntValues[isp++] = Preferences.keyboardCameraEnabled ? 1 : 0;
 														continue;
 													}
 												}
 											}
-										} else if (opcode == 4500) {
+										} else if (opcode == STRUCT_PARAM) {
 											isp -= 2;
 											tempInt2 = scriptIntValues[isp];
 											tempInt1 = scriptIntValues[isp + 1];
@@ -4636,7 +4639,7 @@ public final class ClientScriptRunner {
 											}
 											continue;
 										}
-									} else if (opcode == 4400) {
+									} else if (opcode == LOC_PARAM) {
 										isp -= 2;
 										tempInt1 = scriptIntValues[isp + 1];
 										tempInt2 = scriptIntValues[isp];
@@ -4649,17 +4652,17 @@ public final class ClientScriptRunner {
 										continue;
 									}
 								} else {
-									if (opcode == 4100) {
+									if (opcode == APPEND_NUM) {
 										// append_num
                                         // Append integer to string
 										ssp--;
 										tempString1 = scriptStringValues[ssp]; // Base string
-										isp--;
+										isp--; // Decrement then read
 										tempInt1 = scriptIntValues[isp]; // Number to append
 										scriptStringValues[ssp++] = JString.concatenate(new JString[] { tempString1, JString.parseInt(tempInt1) });
 										continue;
 									}
-									if (opcode == 4101) {
+									if (opcode == APPEND) {
 										// append
 										ssp -= 2;
 										chatTypedLowercase = scriptStringValues[ssp + 1];
@@ -4667,44 +4670,44 @@ public final class ClientScriptRunner {
 										scriptStringValues[ssp++] = JString.concatenate(new JString[] { tempString1, chatTypedLowercase });
 										continue;
 									}
-									if (opcode == 4102) {
+									if (opcode == APPEND_SIGNNUM) {
 										// append_signnum
                                         // Append signed integer
 										ssp--;
 										tempString1 = scriptStringValues[ssp];
-										isp--;
+										isp--; // Decrement then read
 										tempInt1 = scriptIntValues[isp];
 										scriptStringValues[ssp++] = JString.concatenate(new JString[] { tempString1, JString.parseIntTrue(tempInt1) });
 										continue;
 									}
-									if (opcode == 4103) {
+									if (opcode == LOWERCASE) {
 										// lowercase
 										ssp--;
 										tempString1 = scriptStringValues[ssp];
 										scriptStringValues[ssp++] = tempString1.toLowerCase();
 										continue;
 									}
-									if (opcode == 4104) {
+									if (opcode == FROMDATE) {
 										// fromdate
                                         // Convert day count to formatted date string (dd-MMM-yyyy)
-										isp--;
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp]; // Days since reference date (Jan 1, 2002)
 										@Pc(11770) long calculatedDate = (long) tempInt2 * 86400000L + 1014768000000L; // Convert to epoch millis
-										aCalendar2.setTime(new Date(calculatedDate));
-										i = aCalendar2.get(5); // Day of month
-										start = aCalendar2.get(2); // Month (0-11)
-										childId = aCalendar2.get(1); // Year
+										calendar.setTime(new Date(calculatedDate));
+										i = calendar.get(5); // Day of month
+										start = calendar.get(2); // Month (0-11)
+										childId = calendar.get(1); // Year
                                         // Format: "dd-MMM-yyyy" (e.g., "15-Jan-2009")
 										scriptStringValues[ssp++] = JString.concatenate(new JString[] {
                                                 JString.parseInt(i),
-                                                aClass100_767, // "-"
+												ESCAPE_CHAR, // "-"
                                                 DateUtil.aClass100Array40[start], // Month name
-                                                aClass100_767, // "-"
+												ESCAPE_CHAR, // "-"
                                                 JString.parseInt(childId)
                                         });
 										continue;
 									}
-									if (opcode == 4105) {
+									if (opcode == TEXT_GENDER) {
 										// text_gender
                                         // Select string based on player gender
 										ssp -= 2;
@@ -4717,21 +4720,21 @@ public final class ClientScriptRunner {
 										scriptStringValues[ssp++] = tempString1; // Player is male
 										continue;
 									}
-									if (opcode == 4106) {
+									if (opcode == TOSTRING) {
 										// tostring
-										isp--;
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										scriptStringValues[ssp++] = JString.parseInt(tempInt2);
 										continue;
 									}
-									if (opcode == 4107) {
+									if (opcode == COMPARE) {
 										// compare
                                         // String comparison
 										ssp -= 2;
 										scriptIntValues[isp++] = scriptStringValues[ssp].compare(scriptStringValues[ssp + 1]);
 										continue;
 									}
-									if (opcode == 4108) {
+									if (opcode == PARAHEIGHT) {
                                         // paraheight
                                         // Calculate paragraph height in pixels
 										ssp--;
@@ -4742,7 +4745,7 @@ public final class ClientScriptRunner {
 										scriptIntValues[isp++] = FontMetricsList.get(j).getParagraphLineCount(tempString1, tempInt1);
 										continue;
 									}
-									if (opcode == 4109) {
+									if (opcode == PARAWIDTH) {
                                         // parawidth
                                         // Calculate maximum line width in paragraph
 										isp -= 2;
@@ -4753,13 +4756,13 @@ public final class ClientScriptRunner {
 										scriptIntValues[isp++] = FontMetricsList.get(j).getMaxLineWidth(tempString1, tempInt1);
 										continue;
 									}
-									if (opcode == 4110) {
+									if (opcode == TEXT_SWITCH) {
                                         // text_switch
                                         // Conditional string selection
 										ssp -= 2;
 										tempString1 = scriptStringValues[ssp];
 										chatTypedLowercase = scriptStringValues[ssp + 1];
-										isp--;
+										isp--; // Decrement then read
 										if (scriptIntValues[isp] == 1) {
 											scriptStringValues[ssp++] = tempString1;
 										} else {
@@ -4767,7 +4770,7 @@ public final class ClientScriptRunner {
 										}
 										continue;
 									}
-									if (opcode == 4111) {
+									if (opcode == ESCAPE) {
                                         // escape
                                         // Escape special characters for display
 										ssp--;
@@ -4775,12 +4778,12 @@ public final class ClientScriptRunner {
 										scriptStringValues[ssp++] = Font.escape(tempString1);
 										continue;
 									}
-									if (opcode == 4112) {
+									if (opcode == APPEND_CHAR) {
                                         // append_char
                                         // Append character to string
 										ssp--;
 										tempString1 = scriptStringValues[ssp];
-										isp--;
+										isp--; // Decrement then read
 										tempInt1 = scriptIntValues[isp]; // Character code
 										if (tempInt1 == -1) {
 											throw new RuntimeException("null char"); // Invalid character
@@ -4788,37 +4791,37 @@ public final class ClientScriptRunner {
 										scriptStringValues[ssp++] = tempString1.concatChar(tempInt1);
 										continue;
 									}
-									if (opcode == 4113) {
+									if (opcode == CHAR_ISVALID) {
                                         // char_isvalid
                                         // Check if character code is valid
-										isp--;
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										scriptIntValues[isp++] = CharUtils.isValidChar(tempInt2) ? 1 : 0;
 										continue;
 									}
-									if (opcode == 4114) {
-										isp--;
+									if (opcode == CHAR_ISOTHER) {
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										scriptIntValues[isp++] = CharUtils.method433(tempInt2) ? 1 : 0;
 										continue;
 									}
-									if (opcode == 4115) {
+									if (opcode == CHAR_ISLETTER) {
                                         // char_isletter
                                         // Check if character is a letter
-										isp--;
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										scriptIntValues[isp++] = CharUtils.isLetter(tempInt2) ? 1 : 0;
 										continue;
 									}
-									if (opcode == 4116) {
+									if (opcode == CHAR_ISDIGIT) {
                                         // char_isdigit
                                         // Check if character is a digit
-										isp--;
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										scriptIntValues[isp++] = CharUtils.isDigit(tempInt2) ? 1 : 0;
 										continue;
 									}
-									if (opcode == 4117) {
+									if (opcode == STRING_LENGTH) {
 										ssp--;
 										tempString1 = scriptStringValues[ssp];
 										if (tempString1 == null) {
@@ -4828,7 +4831,7 @@ public final class ClientScriptRunner {
 										}
 										continue;
 									}
-									if (opcode == 4118) {
+									if (opcode == SUBSTRING) {
 										isp -= 2;
 										ssp--;
 										tempString1 = scriptStringValues[ssp];
@@ -4837,7 +4840,7 @@ public final class ClientScriptRunner {
 										scriptStringValues[ssp++] = tempString1.substring(j, tempInt1);
 										continue;
 									}
-									if (opcode == 4119) {
+									if (opcode == REMOVETAGS) {
 										ssp--;
 										tempString1 = scriptStringValues[ssp];
 										chatTypedLowercase = JString.allocate(tempString1.length());
@@ -4856,7 +4859,7 @@ public final class ClientScriptRunner {
 										scriptStringValues[ssp++] = chatTypedLowercase;
 										continue;
 									}
-									if (opcode == 4120) {
+									if (opcode == STRING_INDEXOF_CHAR) {
 										isp -= 2;
 										ssp--;
 										tempString1 = scriptStringValues[ssp];
@@ -4865,31 +4868,31 @@ public final class ClientScriptRunner {
 										scriptIntValues[isp++] = tempString1.indexOf(tempInt1, j);
 										continue;
 									}
-									if (opcode == 4121) {
+									if (opcode == STRING_INDEXOF_STRING) {
 										ssp -= 2;
 										tempString1 = scriptStringValues[ssp];
 										chatTypedLowercase = scriptStringValues[ssp + 1];
-										isp--;
+										isp--; // Decrement then read
 										j = scriptIntValues[isp];
 										scriptIntValues[isp++] = tempString1.indexOf(chatTypedLowercase, j);
 										continue;
 									}
-									if (opcode == 4122) {
-										isp--;
+									if (opcode == CHAR_TOLOWERCASE) {
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										scriptIntValues[isp++] = CharUtils.toLowerCase(tempInt2);
 										continue;
 									}
-									if (opcode == 4123) {
-										isp--;
+									if (opcode == CHAR_TOUPPERCASE) {
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										scriptIntValues[isp++] = CharUtils.toUpperCase(tempInt2);
 										continue;
 									}
-									if (opcode == 4124) {
-										isp--;
+									if (opcode == FORMATNUMBER) {
+										isp--; // Decrement then read
 										isFemale = scriptIntValues[isp] != 0;
-										isp--;
+										isp--; // Decrement then read
 										tempInt1 = scriptIntValues[isp];
 										scriptStringValues[ssp++] = StringUtils.formatNumber(Client.language, isFemale, 0, (long) tempInt1);
 										continue;
@@ -4900,11 +4903,11 @@ public final class ClientScriptRunner {
 							if (opcode < 2000) {
 								createdComponent = secondary ? secondaryActiveComponent : primaryActiveComponent;
 							} else {
-								isp--;
+								isp--; // Decrement then read
 								createdComponent = ComponentList.getComponent(scriptIntValues[isp]);
 								opcode -= 1000;
 							}
-							if (opcode == 1000) {
+							if (opcode == CC_SETPOSITION) {
 								// setposition
 								isp -= 4;
 								createdComponent.baseX = scriptIntValues[isp];
@@ -4926,16 +4929,16 @@ public final class ClientScriptRunner {
 								ComponentList.redraw(createdComponent);
 								ComponentList.update(createdComponent);
 								if (createdComponent.createdComponentId == -1) {
-									DelayedStateChange.setComponentPositionClient(createdComponent.id);
+									ClientServerStateSync.setComponentPositionClient(createdComponent.id);
 								}
 								continue;
 							}
-							if (opcode == 1001) {
+							if (opcode == CC_SETSIZE) {
 								// setsize
 								isp -= 4;
 								createdComponent.baseWidth = scriptIntValues[isp];
 								createdComponent.baseHeight = scriptIntValues[isp + 1];
-								createdComponent.anInt451 = 0;
+								createdComponent.maxModelSize = 0;
 								createdComponent.anInt526 = 0;
 								tempInt1 = scriptIntValues[isp + 2];
 								j = scriptIntValues[isp + 3];
@@ -4958,20 +4961,20 @@ public final class ClientScriptRunner {
 								}
 								continue;
 							}
-							if (opcode == 1003) {
+							if (opcode == CC_SETHIDE) {
 								// sethide
-								isp--;
+								isp--; // Decrement then read
 								local1552 = scriptIntValues[isp] == 1;
 								if (local1552 != createdComponent.hidden) {
 									createdComponent.hidden = local1552;
 									ComponentList.redraw(createdComponent);
 								}
 								if (createdComponent.createdComponentId == -1) {
-									DelayedStateChange.setComponentHiddenClient(createdComponent.id);
+									ClientServerStateSync.setComponentHiddenClient(createdComponent.id);
 								}
 								continue;
 							}
-							if (opcode == 1004) {
+							if (opcode == CC_SETASPECT) {
 								// setaspect
 								isp -= 2;
 								createdComponent.aspectWidth = scriptIntValues[isp];
@@ -4983,8 +4986,8 @@ public final class ClientScriptRunner {
 								}
 								continue;
 							}
-							if (opcode == 1005) {
-								isp--;
+							if (opcode == CC_SETNOCLICK) {
+								isp--; // Decrement then read
 								createdComponent.noClickThrough = scriptIntValues[isp] == 1;
 								continue;
 							}
@@ -5102,21 +5105,21 @@ public final class ClientScriptRunner {
 			} else if (local25 > 100) {
 				local25 = 100;
 			}
-			@Pc(51) int local51 = local25 * (aShort9 - aShort25) / 100 + aShort25;
-			if (aShort22 > local51) {
-				local51 = aShort22;
-			} else if (aShort1 < local51) {
-				local51 = aShort1;
+			@Pc(51) int local51 = local25 * (maxZoomScale - minZoomScale) / 100 + minZoomScale;
+			if (minZoomConstraint > local51) {
+				local51 = minZoomConstraint;
+			} else if (maxZoomConstraint < local51) {
+				local51 = maxZoomConstraint;
 			}
 			@Pc(73) int local73 = local51 * arg2 * 512 / (arg0 * 334);
 			@Pc(115) int local115;
 			@Pc(122) int local122;
 			@Pc(86) short local86;
-			if (local73 < aShort12) {
-				local86 = aShort12;
+			if (local73 < minAspectRatio) {
+				local86 = minAspectRatio;
 				local51 = arg0 * 334 * local86 / (arg2 * 512);
-				if (aShort1 < local51) {
-					local51 = aShort1;
+				if (maxZoomConstraint < local51) {
+					local51 = maxZoomConstraint;
 					local115 = arg2 * 512 * local51 / (local86 * 334);
 					local122 = (arg0 - local115) / 2;
 					if (arg4) {
@@ -5127,11 +5130,11 @@ public final class ClientScriptRunner {
 					arg3 += local122;
 					arg0 -= local122 * 2;
 				}
-			} else if (aShort21 < local73) {
-				local86 = aShort21;
+			} else if (maxAspectRatio < local73) {
+				local86 = maxAspectRatio;
 				local51 = local86 * arg0 * 334 / (arg2 * 512);
-				if (aShort22 > local51) {
-					local51 = aShort22;
+				if (minZoomConstraint > local51) {
+					local51 = minZoomConstraint;
 					local115 = local86 * arg0 * 334 / (local51 * 512);
 					local122 = (arg2 - local115) / 2;
 					if (arg4) {
@@ -5145,8 +5148,8 @@ public final class ClientScriptRunner {
 			}
 			anInt5029 = local51 * arg2 / 334;
 		}
-		anInt4055 = (short) arg0;
-		anInt5377 = (short) arg2;
+		calculatedViewportWidth = (short) arg0;
+		calculatedViewportHeight = (short) arg2;
 		anInt773 = arg1;
 		anInt983 = arg3;
 	}

@@ -382,7 +382,7 @@ public final class Component {
 	public boolean hasAlpha = false;
 
 	@OriginalMember(owner = "client!be", name = "F", descriptor = "I")
-	public int anInt451 = 0;
+	public int maxModelSize = 0;
 
 	@OriginalMember(owner = "client!be", name = "wb", descriptor = "I")
 	public int alpha = 0;
@@ -403,7 +403,7 @@ public final class Component {
 	public int outlineThickness = 0;
 
 	@OriginalMember(owner = "client!be", name = "oc", descriptor = "I")
-	public int anInt498 = -1;
+	public int zoom = -1;
 
 	@OriginalMember(owner = "client!be", name = "Rb", descriptor = "I")
 	public int updatedVarcstrsReaderIndex = 0;
@@ -963,7 +963,7 @@ public final class Component {
 			} else {
 				@Pc(227) int local227 = this.modelId >>> 16;
 				@Pc(232) int local232 = this.modelId & 0xFFFF;
-				@Pc(235) int local235 = this.anInt498;
+				@Pc(235) int local235 = this.zoom;
 				@Pc(246) Model local246 = arg5.createHeadModel(arg0, local235, local227, arg3, arg1, arg2, local232);
 				if (local246 == null) {
 					aBoolean72 = true;
@@ -1095,7 +1095,7 @@ public final class Component {
 			this.aShort10 = (short) packet.g2();
 			this.aBoolean34 = packet.g1() == 1;
 			if (this.dynamicWidthValue != 0) {
-				this.anInt451 = packet.g2();
+				this.maxModelSize = packet.g2();
 			}
 			if (this.dynamicHeightValue != 0) {
 				this.anInt526 = packet.g2();

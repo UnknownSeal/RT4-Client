@@ -104,17 +104,17 @@ public class WorldList {
                 Protocol.outboundBuffer.p4(checksum);
                 Protocol.gameServerSocket.write(Protocol.outboundBuffer.offset, Protocol.outboundBuffer.data);
                 if (Client.musicChannel != null) {
-                    Client.musicChannel.method3571();
+                    Client.musicChannel.skipConsumptionCheck();
                 }
                 if (Client.soundChannel != null) {
-                    Client.soundChannel.method3571();
+                    Client.soundChannel.skipConsumptionCheck();
                 }
                 i = Protocol.gameServerSocket.read();
                 if (Client.musicChannel != null) {
-                    Client.musicChannel.method3571();
+                    Client.musicChannel.skipConsumptionCheck();
                 }
                 if (Client.soundChannel != null) {
-                    Client.soundChannel.method3571();
+                    Client.soundChannel.skipConsumptionCheck();
                 }
                 if (i != 0) {
                     return close(i);

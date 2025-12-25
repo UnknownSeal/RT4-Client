@@ -107,7 +107,7 @@ public class LoginManager {
     public static int staffModLevel = 0;
 
     @OriginalMember(owner = "runetek4.client!sd", name = "X", descriptor = "Z")
-    public static boolean aBoolean247 = false;
+    public static boolean shouldReconnect = false;
 
     @OriginalMember(owner = "runetek4.client!qf", name = "X", descriptor = "Lclient!be;")
     public static Component hoveredComponent = null;
@@ -254,8 +254,8 @@ public class LoginManager {
             componentIndex = ClientScriptRunner.anInt5794;
         }
         ComponentList.setCursor(componentIndex);
-        if (MiniMenu.anInt3096 == 1) {
-            MiniMenu.anInt3096 = 2;
+        if (MiniMenu.useItemOnTileMode == 1) {
+            MiniMenu.useItemOnTileMode = 2;
         }
         if (Protocol.walkRequestState == 1) {
             Protocol.walkRequestState = 2;
@@ -366,7 +366,7 @@ public class LoginManager {
 
     @OriginalMember(owner = "client!dm", name = "d", descriptor = "(I)V")
     public static void clear() {
-        aBoolean247 = false;
+        shouldReconnect = false;
         hopTime = 0;
         reply = -3;
         loops = 0;
@@ -416,17 +416,17 @@ public class LoginManager {
                 Protocol.socketRequest = null;
                 Protocol.gameServerSocket.write(Protocol.outboundBuffer.offset, Protocol.outboundBuffer.data);
                 if (Client.musicChannel != null) {
-                    Client.musicChannel.method3571();
+                    Client.musicChannel.skipConsumptionCheck();
                 }
                 if (Client.soundChannel != null) {
-                    Client.soundChannel.method3571();
+                    Client.soundChannel.skipConsumptionCheck();
                 }
                 local126 = Protocol.gameServerSocket.read();
                 if (Client.musicChannel != null) {
-                    Client.musicChannel.method3571();
+                    Client.musicChannel.skipConsumptionCheck();
                 }
                 if (Client.soundChannel != null) {
-                    Client.soundChannel.method3571();
+                    Client.soundChannel.skipConsumptionCheck();
                 }
                 if (local126 != 101) {
                     reply = local126;
@@ -521,17 +521,17 @@ public class LoginManager {
                 Protocol.outboundBuffer.p1(local120);
                 Protocol.gameServerSocket.write(2, Protocol.outboundBuffer.data);
                 if (Client.musicChannel != null) {
-                    Client.musicChannel.method3571();
+                    Client.musicChannel.skipConsumptionCheck();
                 }
                 if (Client.soundChannel != null) {
-                    Client.soundChannel.method3571();
+                    Client.soundChannel.skipConsumptionCheck();
                 }
                 @Pc(150) int local150 = Protocol.gameServerSocket.read();
                 if (Client.musicChannel != null) {
-                    Client.musicChannel.method3571();
+                    Client.musicChannel.skipConsumptionCheck();
                 }
                 if (Client.soundChannel != null) {
-                    Client.soundChannel.method3571();
+                    Client.soundChannel.skipConsumptionCheck();
                 }
                 if (local150 != 0) {
                     reply = local150;
@@ -658,7 +658,7 @@ public class LoginManager {
             }
             if (step == 6) {
                 Protocol.outboundBuffer.offset = 0;
-                Protocol.outboundBuffer.pIsaac1(17);
+                Protocol.outboundBuffer.pIsaac1(ClientProt.LOGIN_TIMINGS);
                 Protocol.gameServerSocket.write(Protocol.outboundBuffer.offset, Protocol.outboundBuffer.data);
                 step = 4;
                 return;

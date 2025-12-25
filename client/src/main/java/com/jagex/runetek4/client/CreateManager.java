@@ -29,7 +29,7 @@ public class CreateManager {
     public static int errors = 0;
 
     @OriginalMember(owner = "client!da", name = "a", descriptor = "(IIIILclient!na;JI)V")
-    public static void createAccount(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) JString password, @OriginalArg(5) long name, @OriginalArg(6) int arg5) {
+    public static void createAccount(@OriginalArg(0) int dobDay, @OriginalArg(2) int dobYear, @OriginalArg(3) int dobMonth, @OriginalArg(4) JString password, @OriginalArg(5) long name, @OriginalArg(6) int arg5) {
         @Pc(8) Packet packet = new Packet(128);
         packet.p1(10);
         packet.p2((int) (Math.random() * 99999.0D));
@@ -39,11 +39,11 @@ public class CreateManager {
         packet.pjstr(password);
         packet.p4((int) (Math.random() * 9.9999999E7D));
         packet.p2(Client.affiliate);
-        packet.p1(arg0);
-        packet.p1(arg2);
+        packet.p1(dobDay);
+        packet.p1(dobMonth);
         packet.p4((int) (Math.random() * 9.9999999E7D));
         packet.p2(arg5);
-        packet.p2(arg1);
+        packet.p2(dobYear);
         packet.p4((int) (Math.random() * 9.9999999E7D));
         packet.rsaenc(LoginManager.RSA_EXPONENT, LoginManager.RSA_MODULUS);
         Protocol.outboundBuffer.offset = 0;
@@ -110,7 +110,7 @@ public class CreateManager {
                 Protocol.socketRequest = GameShell.signLink.openSocket(Client.hostname, Client.port);
                 step = 2;
             }
-            @Pc(120) int local120;
+            @Pc(120) int serverResponse;
             if (step == 2) {
                 if (Protocol.socketRequest.status == 2) {
                     throw new IOException();
@@ -122,20 +122,20 @@ public class CreateManager {
                 Protocol.socketRequest = null;
                 Protocol.gameServerSocket.write(Protocol.outboundBuffer.offset, Protocol.outboundBuffer.data);
                 if (Client.musicChannel != null) {
-                    Client.musicChannel.method3571();
+                    Client.musicChannel.skipConsumptionCheck();
                 }
                 if (Client.soundChannel != null) {
-                    Client.soundChannel.method3571();
+                    Client.soundChannel.skipConsumptionCheck();
                 }
-                local120 = Protocol.gameServerSocket.read();
+                serverResponse = Protocol.gameServerSocket.read();
                 if (Client.musicChannel != null) {
-                    Client.musicChannel.method3571();
+                    Client.musicChannel.skipConsumptionCheck();
                 }
                 if (Client.soundChannel != null) {
-                    Client.soundChannel.method3571();
+                    Client.soundChannel.skipConsumptionCheck();
                 }
-                if (local120 != 21) {
-                    reply = local120;
+                if (serverResponse != 21) {
+                    reply = serverResponse;
                     step = 0;
                     Protocol.gameServerSocket.closeGracefully();
                     Protocol.gameServerSocket = null;
@@ -156,8 +156,8 @@ public class CreateManager {
                 }
                 Protocol.inboundBuffer.offset = 0;
                 Protocol.gameServerSocket.read(0, suggestedNames.length * 8, Protocol.inboundBuffer.data);
-                for (local120 = 0; local120 < suggestedNames.length; local120++) {
-                    suggestedNames[local120] = Base37.fromBase37(Protocol.inboundBuffer.g8());
+                for (serverResponse = 0; serverResponse < suggestedNames.length; serverResponse++) {
+                    suggestedNames[serverResponse] = Base37.fromBase37(Protocol.inboundBuffer.g8());
                 }
                 reply = 21;
                 step = 0;

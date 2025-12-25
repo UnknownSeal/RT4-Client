@@ -321,22 +321,22 @@ public final class JString implements ComponentString {
             return string;
         }
         while (true) {
-            @Pc(14) int pos = string.indexOf(ClientScriptRunner.U1);
+            @Pc(14) int pos = string.indexOf(ClientScriptRunner.TYPE_SIG_U1);
             if (pos == -1) {
                 while (true) {
-                    pos = string.indexOf(ClientScriptRunner.U2);
+                    pos = string.indexOf(ClientScriptRunner.TYPE_SIG_U2);
                     if (pos == -1) {
                         while (true) {
-                            pos = string.indexOf(ClientScriptRunner.U3);
+                            pos = string.indexOf(ClientScriptRunner.TYPE_SIG_U3);
                             if (pos == -1) {
                                 while (true) {
-                                    pos = string.indexOf(ClientScriptRunner.U4);
+                                    pos = string.indexOf(ClientScriptRunner.TYPE_SIG_U4);
                                     if (pos == -1) {
                                         while (true) {
-                                            pos = string.indexOf(ClientScriptRunner.U5);
+                                            pos = string.indexOf(ClientScriptRunner.TYPE_SIG_U5);
                                             if (pos == -1) {
                                                 while (true) {
-                                                    pos = string.indexOf(ClientScriptRunner.Udns);
+                                                    pos = string.indexOf(ClientScriptRunner.TYPE_SIG_DNS);
                                                     if (pos == -1) {
                                                         return string;
                                                     }

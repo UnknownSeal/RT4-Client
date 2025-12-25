@@ -1,5 +1,6 @@
 package com.jagex.runetek4.ui.chat;
 
+import com.jagex.runetek4.network.ClientProt;
 import com.jagex.runetek4.ui.social.ClanMember;
 import com.jagex.runetek4.util.string.JString;
 import com.jagex.runetek4.network.Protocol;
@@ -31,14 +32,14 @@ public class ClanChat {
 
     @OriginalMember(owner = "client!kh", name = "b", descriptor = "(I)V")
     public static void leave() {
-        Protocol.outboundBuffer.pIsaac1(104);
+        Protocol.outboundBuffer.pIsaac1(ClientProt.CLANCHAT_JOINCHANNEL);
         Protocol.outboundBuffer.p8(0L);
     }
 
     @OriginalMember(owner = "client!mf", name = "a", descriptor = "(JI)V")
     public static void join(@OriginalArg(0) long clanName) {
         if ((long) 0 != clanName) {
-            Protocol.outboundBuffer.pIsaac1(104);
+            Protocol.outboundBuffer.pIsaac1(ClientProt.CLANCHAT_JOINCHANNEL);
             Protocol.outboundBuffer.p8(clanName);
         }
     }
@@ -57,7 +58,7 @@ public class ClanChat {
             i++;
         }
         if (i < members.length && members[i] != null) {
-            Protocol.outboundBuffer.pIsaac1(162);
+            Protocol.outboundBuffer.pIsaac1(ClientProt.CLANCHAT_LEAVECHANNEL);
             Protocol.outboundBuffer.p8(members[i].nodeId);
         }
     }

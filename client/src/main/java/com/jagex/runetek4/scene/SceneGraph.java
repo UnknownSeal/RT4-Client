@@ -5661,8 +5661,8 @@ public class SceneGraph {
             ClientScriptRunner.method2314(width, y, height, x, true);
             x = ClientScriptRunner.anInt983;
             y = ClientScriptRunner.anInt773;
-            width = ClientScriptRunner.anInt4055;
-            height = ClientScriptRunner.anInt5377;
+            width = ClientScriptRunner.calculatedViewportWidth;
+            height = ClientScriptRunner.calculatedViewportHeight;
         }
         @Pc(59) int pitch;
         @Pc(57) int cameraY;

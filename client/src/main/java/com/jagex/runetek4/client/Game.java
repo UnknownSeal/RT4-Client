@@ -6,6 +6,7 @@ import com.jagex.runetek4.audio.spatial.AreaSoundManager;
 import com.jagex.runetek4.audio.streaming.MusicPlayer;
 import com.jagex.runetek4.data.cache.media.component.Component;
 import com.jagex.runetek4.entity.entity.PlayerList;
+import com.jagex.runetek4.network.ClientProt;
 import com.jagex.runetek4.scene.Camera;
 import com.jagex.runetek4.ui.chat.OverHeadChat;
 import com.jagex.runetek4.game.logic.PathFinder;
@@ -21,7 +22,7 @@ import com.jagex.runetek4.ui.component.MiniMap;
 import com.jagex.runetek4.input.Keyboard;
 import com.jagex.runetek4.input.MouseCapturer;
 import com.jagex.runetek4.entity.entity.Player;
-import com.jagex.runetek4.clientscript.DelayedStateChange;
+import com.jagex.runetek4.clientscript.ClientServerStateSync;
 import com.jagex.runetek4.entity.entity.NpcList;
 import com.jagex.runetek4.input.Mouse;
 import com.jagex.runetek4.input.MouseWheel;
@@ -51,8 +52,8 @@ public class Game {
             Player.systemUpdateTimer--;
             ComponentList.miscTransmitAt = ComponentList.transmitTimer;
         }
-        if (LoginManager.aBoolean247) {
-            LoginManager.aBoolean247 = false;
+        if (LoginManager.shouldReconnect) {
+            LoginManager.shouldReconnect = false;
             tryReconnect();
             return;
         }
@@ -63,24 +64,25 @@ public class Game {
             return;
         }
         ReflectionCheck.createClientScriptCheckPacket(Protocol.outboundBuffer); // runetek4.ReflectionCheck
-        @Pc(60) Object mouseRecorder = MouseCapturer.instance.lock;
-        @Pc(86) int offset;
-        @Pc(79) int samples;
+        @Pc(60) Object mouseRecorderLock = MouseCapturer.instance.lock;
+        @Pc(86) int packetStartOffset;
+        @Pc(79) int mouseSampleCount;
         @Pc(88) int i;
         @Pc(106) int y;
         @Pc(111) int x;
         @Pc(182) int dx;
         @Pc(189) int dy;
-        synchronized (mouseRecorder) {
+        synchronized (mouseRecorderLock) {
             if (!MouseCapturer.enabled) {
                 MouseCapturer.instance.samples = 0;
             } else if (Mouse.clickButton != 0 || MouseCapturer.instance.samples >= 40) {
+                // Encode and send mouse movement data to server
                 Protocol.outboundBuffer.pIsaac1(EVENT_MOUSE_MOVE);
-                samples = 0;
+                mouseSampleCount = 0;
                 Protocol.outboundBuffer.p1(0);
-                offset = Protocol.outboundBuffer.offset;
-                for (i = 0; MouseCapturer.instance.samples > i && Protocol.outboundBuffer.offset - offset < 240; i++) {
-                    samples++;
+                packetStartOffset = Protocol.outboundBuffer.offset;
+                for (i = 0; MouseCapturer.instance.samples > i && Protocol.outboundBuffer.offset - packetStartOffset < 240; i++) {
+                    mouseSampleCount++;
                     y = MouseCapturer.instance.y[i];
                     x = MouseCapturer.instance.x[i];
                     if (y < 0) {
@@ -93,6 +95,8 @@ public class Game {
                     } else if (x > 65534) {
                         x = 65534;
                     }
+
+                    // Check if mouse left the game window
                     @Pc(142) boolean outsideWindow = false;
                     if (MouseCapturer.instance.y[i] == -1 && MouseCapturer.instance.x[i] == -1) {
                         outsideWindow = true;
@@ -133,15 +137,16 @@ public class Game {
                             Protocol.mouseIdleFrameCount = 0;
                         }
                     } else if (Protocol.mouseIdleFrameCount < 2047) {
+                        // Position unchanged, increment idle frame counter
                         Protocol.mouseIdleFrameCount++;
                     }
                 }
-                Protocol.outboundBuffer.p1len(Protocol.outboundBuffer.offset - offset);
-                if (MouseCapturer.instance.samples > samples) {
-                    MouseCapturer.instance.samples -= samples;
+                Protocol.outboundBuffer.p1len(Protocol.outboundBuffer.offset - packetStartOffset);
+                if (MouseCapturer.instance.samples > mouseSampleCount) {
+                    MouseCapturer.instance.samples -= mouseSampleCount;
                     for (i = 0; i < MouseCapturer.instance.samples; i++) {
-                        MouseCapturer.instance.x[i] = MouseCapturer.instance.x[samples + i];
-                        MouseCapturer.instance.y[i] = MouseCapturer.instance.y[samples + i];
+                        MouseCapturer.instance.x[i] = MouseCapturer.instance.x[mouseSampleCount + i];
+                        MouseCapturer.instance.y[i] = MouseCapturer.instance.y[mouseSampleCount + i];
                     }
                 } else {
                     MouseCapturer.instance.samples = 0;
@@ -149,15 +154,15 @@ public class Game {
             }
         }
         if (Mouse.clickButton != 0) {
-            @Pc(411) long loops = (Mouse.clickTime - Mouse.prevClickTime) / 50L;
-            samples = Mouse.mouseClickY;
-            if (samples < 0) {
-                samples = 0;
-            } else if (samples > 65535) {
-                samples = 65535;
+            @Pc(411) long timeSinceLastClick = (Mouse.clickTime - Mouse.prevClickTime) / 50L;
+            mouseSampleCount = Mouse.mouseClickY;
+            if (mouseSampleCount < 0) {
+                mouseSampleCount = 0;
+            } else if (mouseSampleCount > 65535) {
+                mouseSampleCount = 65535;
             }
-            if (loops > 32767L) {
-                loops = 32767L;
+            if (timeSinceLastClick > 32767L) {
+                timeSinceLastClick = 32767L;
             }
             i = Mouse.mouseClickX;
             Mouse.prevClickTime = Mouse.clickTime;
@@ -167,21 +172,21 @@ public class Game {
             } else if (i > 65535) {
                 i = 65535;
             }
-            x = (int) loops;
+            x = (int) timeSinceLastClick;
             if (Mouse.clickButton == 2) {
                 button = 1;
             }
             Protocol.outboundBuffer.pIsaac1(EVENT_MOUSE_CLICK);
             Protocol.outboundBuffer.p2_alt3(button << 15 | x);
-            Protocol.outboundBuffer.p4_alt3(i | samples << 16);
+            Protocol.outboundBuffer.p4_alt3(i | mouseSampleCount << 16);
         }
         if (Protocol.cameraPositionUpdateCooldown > 0) {
             Protocol.cameraPositionUpdateCooldown--;
         }
-        if (Preferences.aBoolean63) {
+        if (Preferences.keyboardCameraEnabled) {
             for (i = 0; i < ComponentList.keyQueueSize; i++) {
-                offset = ComponentList.keyCodes[i];
-                if (offset == 98 || offset == 99 || offset == 96 || offset == 97) {
+                packetStartOffset = ComponentList.keyCodes[i];
+                if (packetStartOffset == 98 || packetStartOffset == 99 || packetStartOffset == 96 || packetStartOffset == 97) {
                     Protocol.shouldSendCameraPosition = true;
                     break;
                 }
@@ -207,7 +212,7 @@ public class Game {
             Protocol.outboundBuffer.p1(0);
         }
         if (!Preferences.sentToServer) {
-            Protocol.outboundBuffer.pIsaac1(98);
+            Protocol.outboundBuffer.pIsaac1(ClientProt.IDLE_LOGOUT);
             Protocol.outboundBuffer.p4(Preferences.toInt());
             Preferences.sentToServer = true;
         }
@@ -227,44 +232,52 @@ public class Game {
         NpcList.updateNpcs();
         OverHeadChat.tickChatTimers(); // OverheadChat
         if (WorldMap.component != null) {
-            WorldMap.method447();
+            WorldMap.update();
         }
         // VarpDomain
+
+        // Process VarP updates from server
         for (i = VarpDomain.poll(true); i != -1; i = VarpDomain.poll(false)) {
             VarpDomain.refreshMagicVarp(i);
             VarpDomain.updatedVarps[VarpDomain.updatedVarpsWriterIndex++ & 0x1F] = i;
         }
-        @Pc(782) int rand;
+        @Pc(782) int anticheatRandom;
 
-        for (@Pc(709) DelayedStateChange change = DelayedStateChange.poll(); change != null; change = DelayedStateChange.poll()) {
-            samples = change.getType();
+        // Process client server sync queue
+        for (@Pc(709) ClientServerStateSync change = ClientServerStateSync.poll(); change != null; change = ClientServerStateSync.poll()) {
+            mouseSampleCount = change.getType();
             i = change.getId();
-            if (samples == 1) {
+
+            // Handle different change types
+            if (mouseSampleCount == 1) {
+                // VarC update
                 VarcDomain.varcs[i] = change.intArg1;
                 VarcDomain.updatedVarcs[VarcDomain.updatedVarcsWriterIndex++ & 0x1F] = i;
-            } else if (samples == 2) {
+            } else if (mouseSampleCount == 2) {
+                // VarC string update
                 VarcDomain.varcstrs[i] = change.stringArg;
                 VarcDomain.updatedVarcstrs[VarcDomain.updatedVarcstrsWriterIndex++ & 0x1F] = i;
             } else {
                 @Pc(773) Component component;
-                if (samples == 3) {
+                if (mouseSampleCount == 3) {
+                    // Component text update
                     component = ComponentList.getComponent(i);
                     if (!change.stringArg.strEquals(component.text)) {
                         component.text = change.stringArg;
                         ComponentList.redraw(component);
                     }
-                } else if (samples == 4) {
+                } else if (mouseSampleCount == 4) {
                     component = ComponentList.getComponent(i);
                     x = change.intArg1;
                     dx = change.intArg2;
-                    rand = change.intArg3;
-                    if (component.modelType != x || component.modelId != rand || dx != component.anInt498) {
-                        component.modelId = rand;
-                        component.anInt498 = dx;
+                    anticheatRandom = change.intArg3;
+                    if (component.modelType != x || component.modelId != anticheatRandom || dx != component.zoom) {
+                        component.modelId = anticheatRandom;
+                        component.zoom = dx;
                         component.modelType = x;
                         ComponentList.redraw(component);
                     }
-                } else if (samples == 5) {
+                } else if (mouseSampleCount == 5) {
                     component = ComponentList.getComponent(i);
                     if (component.modelSeqId != change.intArg1 || change.intArg1 == -1) {
                         component.animationFrame = 1;
@@ -273,18 +286,18 @@ public class Game {
                         component.animationId = 0;
                         ComponentList.redraw(component);
                     }
-                } else if (samples == 6) {
+                } else if (mouseSampleCount == 6) {
                     y = change.intArg1;
                     x = y >> 10 & 0x1F;
                     dx = y & 0x1F;
-                    rand = y >> 5 & 0x1F;
+                    anticheatRandom = y >> 5 & 0x1F;
                     @Pc(1189) Component local1189 = ComponentList.getComponent(i);
-                    dy = (dx << 3) + (rand << 11) + (x << 19);
+                    dy = (dx << 3) + (anticheatRandom << 11) + (x << 19);
                     if (dy != local1189.color) {
                         local1189.color = dy;
                         ComponentList.redraw(local1189);
                     }
-                } else if (samples == 7) {
+                } else if (mouseSampleCount == 7) {
                     component = ComponentList.getComponent(i);
                     // todo: this should not be necessary, data/server-related?
                     if (component != null) {
@@ -294,29 +307,29 @@ public class Game {
                             ComponentList.redraw(component);
                         }
                     }
-                } else if (samples == 8) {
+                } else if (mouseSampleCount == 8) {
                     component = ComponentList.getComponent(i);
                     if (change.intArg1 != component.modelXAngle || component.modelYAngle != change.intArg3 || change.intArg2 != component.modelZoom) {
                         component.modelXAngle = change.intArg1;
                         component.modelZoom = change.intArg2;
                         component.modelYAngle = change.intArg3;
                         if (component.objId != -1) {
-                            if (component.anInt451 > 0) {
-                                component.modelZoom = component.modelZoom * 32 / component.anInt451;
+                            if (component.maxModelSize > 0) {
+                                component.modelZoom = component.modelZoom * 32 / component.maxModelSize;
                             } else if (component.baseWidth > 0) {
                                 component.modelZoom = component.modelZoom * 32 / component.baseWidth;
                             }
                         }
                         ComponentList.redraw(component);
                     }
-                } else if (samples == 9) {
+                } else if (mouseSampleCount == 9) {
                     component = ComponentList.getComponent(i);
                     if (change.intArg1 != component.objId || component.objCount != change.intArg3) {
                         component.objId = change.intArg1;
                         component.objCount = change.intArg3;
                         ComponentList.redraw(component);
                     }
-                } else if (samples == 10) {
+                } else if (mouseSampleCount == 10) {
                     component = ComponentList.getComponent(i);
                     if (component.modelXOffset != change.intArg1 || change.intArg3 != component.modelZOffset || component.modelYOffset != change.intArg2) {
                         component.modelZOffset = change.intArg3;
@@ -324,14 +337,14 @@ public class Game {
                         component.modelXOffset = change.intArg1;
                         ComponentList.redraw(component);
                     }
-                } else if (samples == 11) {
+                } else if (mouseSampleCount == 11) {
                     component = ComponentList.getComponent(i);
                     component.x = component.baseX = change.intArg1;
                     component.yMode = 0;
                     component.xMode = 0;
                     component.y = component.baseY = change.intArg3;
                     ComponentList.redraw(component);
-                } else if (samples == 12) {
+                } else if (mouseSampleCount == 12) {
                     component = ComponentList.getComponent(i);
                     x = change.intArg1;
                     if (component != null && component.type == 0) {
@@ -346,7 +359,7 @@ public class Game {
                             ComponentList.redraw(component);
                         }
                     }
-                } else if (samples == 13) {
+                } else if (mouseSampleCount == 13) {
                     component = ComponentList.getComponent(i);
                     component.modelRotationSpeed = change.intArg1;
                 }
@@ -361,8 +374,8 @@ public class Game {
         }
         Protocol.sceneDelta++;
         if (MiniMenu.pressedInventoryComponent != null) {
-            MiniMenu.anInt2043++;
-            if (MiniMenu.anInt2043 >= 15) {
+            MiniMenu.inventoryPressTimer++;
+            if (MiniMenu.inventoryPressTimer >= 15) {
                 ComponentList.redraw(MiniMenu.pressedInventoryComponent);
                 MiniMenu.pressedInventoryComponent = null;
             }
@@ -370,29 +383,39 @@ public class Game {
         @Pc(1361) Component component;
         if (ComponentList.clickedInventoryComponent != null) {
             ComponentList.redraw(ComponentList.clickedInventoryComponent);
+
+            // Check if mouse moved far enough from when clicked to trigger dragging
             if (ComponentList.clickedInventoryComponentX + 5 < Mouse.lastMouseX || Mouse.lastMouseX < ComponentList.clickedInventoryComponentX - 5 || ComponentList.clickedInventoryComponentY + 5 < Mouse.lastMouseY || ComponentList.clickedInventoryComponentY - 5 > Mouse.lastMouseY) {
                 ComponentList.draggingClickedInventoryObject = true;
             }
             ComponentList.lastItemDragTime++;
-            if (Mouse.pressedButton == 0) {
+            if (Mouse.pressedButton == 0) { // Mouse released
                 if (ComponentList.draggingClickedInventoryObject && ComponentList.lastItemDragTime >= 5) {
+                    // Dragged item to different slot
                     if (ComponentList.clickedInventoryComponent == ComponentList.mouseOverInventoryComponent && ComponentList.selectedInventorySlot != MiniMenu.mouseInvInterfaceIndex) {
                         component = ComponentList.clickedInventoryComponent;
-                        @Pc(1363) byte moveItemInsertionMode = 0;
+                        @Pc(1363) byte insertMode = 0;
+
+                        // Check if bank insert mode is enabled
                         if (VarpDomain.bankInsertMode == 1 && component.contentType == 206) {
-                            moveItemInsertionMode = 1;
+                            insertMode = 1;
                         }
+
+                        // Cant insert into empty slot
                         if (component.invSlotObjId[MiniMenu.mouseInvInterfaceIndex] <= 0) {
-                            moveItemInsertionMode = 0;
+                            insertMode = 0;
                         }
+
                         if (ComponentList.getServerActiveProperties(component).isObjReplaceEnabled()) {
+                            // Mode 0: swap items
                             y = ComponentList.selectedInventorySlot;
                             x = MiniMenu.mouseInvInterfaceIndex;
                             component.invSlotObjId[x] = component.invSlotObjId[y];
                             component.invSlotObjCount[x] = component.invSlotObjCount[y];
                             component.invSlotObjId[y] = -1;
                             component.invSlotObjCount[y] = 0;
-                        } else if (moveItemInsertionMode == 1) {
+                        } else if (insertMode == 1) {
+                            // Mode 1: Insert (Shift items between source and destination)
                             x = MiniMenu.mouseInvInterfaceIndex;
                             y = ComponentList.selectedInventorySlot;
                             while (x != y) {
@@ -405,21 +428,26 @@ public class Game {
                                 }
                             }
                         } else {
+                            // Simple swap
                             component.swapObjs(MiniMenu.mouseInvInterfaceIndex, ComponentList.selectedInventorySlot);
                         }
-                        Protocol.outboundBuffer.pIsaac1(231);
+
+                        // Send Move item packet to server
+                        Protocol.outboundBuffer.pIsaac1(ClientProt.MOVE_ITEM);
                         Protocol.outboundBuffer.p2(ComponentList.selectedInventorySlot);
                         Protocol.outboundBuffer.p4_alt1(ComponentList.clickedInventoryComponent.id);
                         Protocol.outboundBuffer.p2_alt2(MiniMenu.mouseInvInterfaceIndex);
-                        Protocol.outboundBuffer.p1b_alt3(moveItemInsertionMode);
+                        Protocol.outboundBuffer.p1b_alt3(insertMode);
                     }
                 } else if ((VarpDomain.oneMouseButton == 1 || MiniMenu.isComponentAction(MiniMenu.menuActionRow - 1)) && MiniMenu.menuActionRow > 2) {
+                    // Show right click menu
                     ClientScriptRunner.determineMenuSize();
                 } else if (MiniMenu.menuActionRow > 0) {
+                    // Process single action
                     MiniMenu.processMenuActions();
                 }
                 Mouse.clickButton = 0;
-                MiniMenu.anInt2043 = 10;
+                MiniMenu.inventoryPressTimer = 10;
                 ComponentList.clickedInventoryComponent = null;
             }
         }
@@ -427,10 +455,10 @@ public class Game {
         ComponentList.targetComponent = null;
         ComponentList.canDrag = false;
         ComponentList.keyQueueSize = 0;
-        component = ComponentList.aClass13_22;
-        ComponentList.aClass13_22 = null;
-        @Pc(1508) Component local1508 = Protocol.aClass13_11;
-        Protocol.aClass13_11 = null;
+        component = ComponentList.previousMouseOverComponent;
+        ComponentList.previousMouseOverComponent = null;
+        @Pc(1508) Component local1508 = Protocol.dragHoverComponent;
+        Protocol.dragHoverComponent = null;
         while (Keyboard.nextKey() && ComponentList.keyQueueSize < 128) {
             ComponentList.keyCodes[ComponentList.keyQueueSize] = Keyboard.keyCode;
             ComponentList.keyChars[ComponentList.keyQueueSize] = Keyboard.keyChar;
@@ -459,7 +487,7 @@ public class Game {
                                         highPriorityRequest = (ComponentEvent) ComponentList.lowPriorityRequests.removeHead();
                                         if (highPriorityRequest == null) {
                                             if (WorldMap.component == null) {
-                                                ComponentList.anInt3337 = 0;
+                                                ComponentList.worldMapState = 0;
                                             }
                                             if (ClientScriptRunner.dragComponent != null) {
                                                 ClientScriptRunner.handleComponentDrag();
@@ -479,10 +507,10 @@ public class Game {
                                                     Cheat.teleport(Camera.sceneBaseTileX + MiniMenu.clickTileX, Camera.sceneBaseTileZ + MiniMenu.clickTileZ, Player.currentLevel);
                                                 }
                                                 Protocol.walkRequestState = 0;
-                                                MiniMenu.anInt3096 = 0;
-                                            } else if (MiniMenu.anInt3096 == 2) {
+                                                MiniMenu.useItemOnTileMode = 0;
+                                            } else if (MiniMenu.useItemOnTileMode == 2) {
                                                 if (MiniMenu.clickTileX != -1) {
-                                                    Protocol.outboundBuffer.pIsaac1(131);
+                                                    Protocol.outboundBuffer.pIsaac1(ClientProt.OPOBJT);
                                                     Protocol.outboundBuffer.p4_alt3(MiniMenu.useWithComponentId);
                                                     Protocol.outboundBuffer.p2_alt2(Camera.sceneBaseTileX + MiniMenu.clickTileX);
                                                     Protocol.outboundBuffer.p2_alt3(MiniMenu.useWithSlot);
@@ -492,10 +520,10 @@ public class Game {
                                                     Crosshair.y = Mouse.mouseClickY;
                                                     Crosshair.x = Mouse.mouseClickX;
                                                 }
-                                                MiniMenu.anInt3096 = 0;
+                                                MiniMenu.useItemOnTileMode = 0;
                                             } else if (Protocol.walkRequestState == 2) {
                                                 if (MiniMenu.clickTileX != -1) {
-                                                    Protocol.outboundBuffer.pIsaac1(179);
+                                                    Protocol.outboundBuffer.pIsaac1(ClientProt.MOVE_CLICK_ALT);
                                                     Protocol.outboundBuffer.p2(Camera.sceneBaseTileZ + MiniMenu.clickTileZ);
                                                     Protocol.outboundBuffer.p2(MiniMenu.clickTileX + Camera.sceneBaseTileX);
                                                     Crosshair.CrosshairCycle = 0;
@@ -504,7 +532,7 @@ public class Game {
                                                     Crosshair.y = Mouse.mouseClickY;
                                                 }
                                                 Protocol.walkRequestState = 0;
-                                            } else if (MiniMenu.clickTileX != -1 && MiniMenu.anInt3096 == 0 && Protocol.walkRequestState == 0) {
+                                            } else if (MiniMenu.clickTileX != -1 && MiniMenu.useItemOnTileMode == 0 && Protocol.walkRequestState == 0) {
                                                 @Pc(1871) boolean success = PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 0, true, 0, MiniMenu.clickTileX, 0, 0, 0, MiniMenu.clickTileZ, PlayerList.self.movementQueueX[0]);
                                                 if (success) {
                                                     Crosshair.y = Mouse.mouseClickY;
@@ -514,31 +542,31 @@ public class Game {
                                                 }
                                             }
                                             MiniMenu.clickTileX = -1;
-                                            Protocol.method843();
-                                            if (ComponentList.aClass13_22 != component) {
+                                            Protocol.handleMenuClick();
+                                            if (ComponentList.previousMouseOverComponent != component) {
                                                 if (component != null) {
                                                     ComponentList.redraw(component);
                                                 }
-                                                if (ComponentList.aClass13_22 != null) {
-                                                    ComponentList.redraw(ComponentList.aClass13_22);
+                                                if (ComponentList.previousMouseOverComponent != null) {
+                                                    ComponentList.redraw(ComponentList.previousMouseOverComponent);
                                                 }
                                             }
-                                            if (local1508 != Protocol.aClass13_11 && ClientScriptRunner.anInt4504 == Protocol.componentDragAnimationStep) {
+                                            if (local1508 != Protocol.dragHoverComponent && ClientScriptRunner.MAX_CALL_STACK_DEPTH == Protocol.dragHoverAnimationProgress) {
                                                 if (local1508 != null) {
                                                     ComponentList.redraw(local1508);
                                                 }
-                                                if (Protocol.aClass13_11 != null) {
-                                                    ComponentList.redraw(Protocol.aClass13_11);
+                                                if (Protocol.dragHoverComponent != null) {
+                                                    ComponentList.redraw(Protocol.dragHoverComponent);
                                                 }
                                             }
-                                            if (Protocol.aClass13_11 == null) {
-                                                if (Protocol.componentDragAnimationStep > 0) {
-                                                    Protocol.componentDragAnimationStep--;
+                                            if (Protocol.dragHoverComponent == null) {
+                                                if (Protocol.dragHoverAnimationProgress > 0) {
+                                                    Protocol.dragHoverAnimationProgress--;
                                                 }
-                                            } else if (Protocol.componentDragAnimationStep < ClientScriptRunner.anInt4504) {
-                                                Protocol.componentDragAnimationStep++;
-                                                if (ClientScriptRunner.anInt4504 == Protocol.componentDragAnimationStep) {
-                                                    ComponentList.redraw(Protocol.aClass13_11);
+                                            } else if (Protocol.dragHoverAnimationProgress < ClientScriptRunner.MAX_CALL_STACK_DEPTH) {
+                                                Protocol.dragHoverAnimationProgress++;
+                                                if (ClientScriptRunner.MAX_CALL_STACK_DEPTH == Protocol.dragHoverAnimationProgress) {
+                                                    ComponentList.redraw(Protocol.dragHoverComponent);
                                                 }
                                             }
                                             if (Camera.cameraType == 1) {
@@ -556,7 +584,7 @@ public class Game {
                                             if (y > 15000 && x > 15000) {
                                                 Protocol.idleTimeout = 250;
                                                 Mouse.setIdleLoops(14500);
-                                                Protocol.outboundBuffer.pIsaac1(245);
+                                                Protocol.outboundBuffer.pIsaac1(ClientProt.EVENT_IDLE);
                                             }
                                             if (Protocol.openUrlRequest != null && Protocol.openUrlRequest.status == 1) {
                                                 if (Protocol.openUrlRequest.result != null) {
@@ -569,29 +597,37 @@ public class Game {
                                             Protocol.noTimeoutCycle++;
                                             MiniMap.minimapOffsetCycle++;
                                             Protocol.cameraOffsetCycle++;
+
+                                            // Anticheat
+                                            // Every 500 ticks, apply random jitter to camera position
                                             if (Protocol.cameraOffsetCycle > 500) {
                                                 Protocol.cameraOffsetCycle = 0;
-                                                rand = (int) (Math.random() * 8.0D);
-                                                if ((rand & 0x4) == 4) {
+                                                anticheatRandom = (int) (Math.random() * 8.0D);
+                                                if ((anticheatRandom & 0x4) == 4) {
                                                     Camera.cameraAnticheatAngle += Protocol.cameraOffsetYawModifier;
                                                 }
-                                                if ((rand & 0x2) == 2) {
+                                                if ((anticheatRandom & 0x2) == 2) {
                                                     Camera.cameraAnticheatOffsetZ += Protocol.cameraOffsetZModifier;
                                                 }
-                                                if ((rand & 0x1) == 1) {
+                                                if ((anticheatRandom & 0x1) == 1) {
                                                     Camera.cameraAnticheatOffsetX += Camera.cameraOffsetXModifier;
                                                 }
                                             }
+
+                                            // Anticheat
+                                            // Every 500 ticks, apply random jitter to minimap
                                             if (MiniMap.minimapOffsetCycle > 500) {
                                                 MiniMap.minimapOffsetCycle = 0;
-                                                rand = (int) (Math.random() * 8.0D);
-                                                if ((rand & 0x1) == 1) {
+                                                anticheatRandom = (int) (Math.random() * 8.0D);
+                                                if ((anticheatRandom & 0x1) == 1) {
                                                     MiniMap.minimapAnticheatAngle += MiniMap.minimapAngleModifier;
                                                 }
-                                                if ((rand & 0x2) == 2) {
+                                                if ((anticheatRandom & 0x2) == 2) {
                                                     MiniMap.minimapZoom += MiniMap.minimapZoomModifier;
                                                 }
                                             }
+
+                                            // Revser direction when bounds are reached
                                             if (Camera.cameraAnticheatOffsetX < -50) {
                                                 Camera.cameraOffsetXModifier = 2;
                                             }
@@ -622,6 +658,7 @@ public class Game {
                                             if (MiniMap.minimapAnticheatAngle > 60) {
                                                 MiniMap.minimapAngleModifier = -2;
                                             }
+
                                             if (Protocol.noTimeoutCycle > 50) {
                                                 Protocol.outboundBuffer.pIsaac1(NO_TIMEOUT);
                                             }
@@ -629,6 +666,7 @@ public class Game {
                                                 Protocol.transmitVerifyId();
                                                 Protocol.verifyIdChanged = false;
                                             }
+
                                             try {
                                                 if (Protocol.gameServerSocket != null && Protocol.outboundBuffer.offset > 0) {
                                                     Protocol.gameServerSocket.write(Protocol.outboundBuffer.offset, Protocol.outboundBuffer.data);
@@ -728,7 +766,7 @@ public class Game {
         if (Protocol.idleTimeout > 0) {
             processLogout();
         } else {
-            Protocol.aClass95_4 = Protocol.gameServerSocket;
+            Protocol.previousSocket = Protocol.gameServerSocket;
             Protocol.gameServerSocket = null;
             Client.processGameStatus(40);
         }

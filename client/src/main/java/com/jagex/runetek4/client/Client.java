@@ -82,7 +82,7 @@ import com.jagex.runetek4.game.stockmarket.StockMarketManager;
 import com.jagex.runetek4.game.stockmarket.StockMarketOffer;
 import com.jagex.runetek4.ui.component.MiniMap;
 import com.jagex.runetek4.game.inventory.Inv;
-import com.jagex.runetek4.clientscript.DelayedStateChange;
+import com.jagex.runetek4.clientscript.ClientServerStateSync;
 import com.jagex.runetek4.config.types.bas.BasTypeList;
 import com.jagex.runetek4.data.cache.media.component.Component;
 import com.jagex.runetek4.config.types.flo.FloTypeList;
@@ -684,7 +684,7 @@ public final class Client extends GameShell {
 		FriendList.state = 0;
 		FriendList.friendCount = 0;
 		VarpDomain.resetVarBits();
-		DelayedStateChange.clear();
+		ClientServerStateSync.clear();
 		Camera.minAngleStep = 0;
 		Camera.angleInterpolationSpeed = 0;
 		Camera.lookAtTileX = 0;
@@ -827,9 +827,9 @@ public final class Client extends GameShell {
 			LoginManager.clear();
 		}
 		@Pc(37) boolean local37 = statusCode == 5 || statusCode == 10 || statusCode == 28;
-		if (statusCode != 40 && Protocol.aClass95_4 != null) {
-			Protocol.aClass95_4.closeGracefully();
-			Protocol.aClass95_4 = null;
+		if (statusCode != 40 && Protocol.previousSocket != null) {
+			Protocol.previousSocket.closeGracefully();
+			Protocol.previousSocket = null;
 		}
 		if (statusCode == 25 || statusCode == 28) {
 			WorldLoader.locLoadFailures = 0;
@@ -930,13 +930,13 @@ public final class Client extends GameShell {
 					anInt5150 = WorldLoader.mapFilesMissingCount;
 				}
 				local80 = (anInt5150 - WorldLoader.mapFilesMissingCount) * 50 / anInt5150;
-				Fonts.drawTextOnScreen(false, JString.concatenate(new JString[] { LocalizedText.LOADING, aClass100_974, JString.parseInt(local80), ClientScriptRunner.aClass100_80 }));
+				Fonts.drawTextOnScreen(false, JString.concatenate(new JString[] { LocalizedText.LOADING, aClass100_974, JString.parseInt(local80), ClientScriptRunner.TYPE_SIG_UNION_Y}));
 			} else if (WorldLoader.loadingScreenState == 2) {
 				if (anInt1196 < WorldLoader.locLoadFailures) {
 					anInt1196 = WorldLoader.locLoadFailures;
 				}
 				local80 = (anInt1196 - WorldLoader.locLoadFailures) * 50 / anInt1196 + 50;
-				Fonts.drawTextOnScreen(false, JString.concatenate(new JString[] { LocalizedText.LOADING, aClass100_974, JString.parseInt(local80), ClientScriptRunner.aClass100_80 }));
+				Fonts.drawTextOnScreen(false, JString.concatenate(new JString[] { LocalizedText.LOADING, aClass100_974, JString.parseInt(local80), ClientScriptRunner.TYPE_SIG_UNION_Y}));
 			} else {
 				Fonts.drawTextOnScreen(false, LocalizedText.LOADING);
 			}

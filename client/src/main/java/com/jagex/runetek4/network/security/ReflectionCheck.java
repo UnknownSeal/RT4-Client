@@ -17,14 +17,19 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+/**
+ * Anti botting system
+ * Allows the server to inspect client code using reflection
+ */
+
 @OriginalClass("runetek4.client!ed")
 public final class ReflectionCheck extends Node {
 
 	@OriginalMember(owner = "runetek4.client!qi", name = "u", descriptor = "Lclient!ih;")
-	public static LinkList queue = new LinkList();
+	public static LinkList queue = new LinkList(); // Queue of pending reflection check requests from the server
 
 	@OriginalMember(owner = "runetek4.client!ed", name = "p", descriptor = "I")
-	public int size;
+	public int size; // Number of reflection operations in this check batch
 
 	@OriginalMember(owner = "runetek4.client!ed", name = "u", descriptor = "[Lsignlink!im;")
 	public PrivilegedRequest[] functionNodes;
@@ -35,8 +40,28 @@ public final class ReflectionCheck extends Node {
 	@OriginalMember(owner = "runetek4.client!ed", name = "w", descriptor = "[I")
 	public int[] errorCodes;
 
+	/**
+	 * Error codes for each reflection operation
+	 * 0 = success
+	 * -1 = ClassNotFoundException
+	 * -2 = SecurityException
+	 * -3 = NullPointerException
+	 * -4 = Generic exception
+	 * -5 = Throwable / Request failed
+	 * -6 = Request error
+	 * -10 to -21 = various exceptions during execution
+	 */
+
 	@OriginalMember(owner = "runetek4.client!ed", name = "y", descriptor = "[I")
 	public int[] types;
+
+	/**
+	 * 0 = Get static field value
+	 * 1 = Set static field value
+	 * 2 = Get field modifiers
+	 * 3 = Invoke static method
+	 * 4 = Get method modifiers
+	 */
 
 	@OriginalMember(owner = "runetek4.client!ed", name = "B", descriptor = "[[[B")
 	public byte[][][] methodArguments;
@@ -45,7 +70,7 @@ public final class ReflectionCheck extends Node {
 	public PrivilegedRequest[] fieldRequests;
 
 	@OriginalMember(owner = "runetek4.client!ed", name = "F", descriptor = "I")
-	public int id;
+	public int id; // Unique ID for this reflection check batch
 
     @OriginalMember(owner = "runetek4.client!j", name = "c", descriptor = "(I)V")
     public static void clear() {
@@ -59,32 +84,32 @@ public final class ReflectionCheck extends Node {
 			if (reflectionCheck == null) {
 				return;
 			}
-			@Pc(23) boolean bool = false;
-			@Pc(25) int i;
-			for (i = 0; i < reflectionCheck.size; i++) {
-				if (reflectionCheck.fieldRequests[i] != null) {
-					if (reflectionCheck.fieldRequests[i].status == 2) {
-						reflectionCheck.errorCodes[i] = -5;
+			@Pc(23) boolean hasPendingRequests = false;
+			@Pc(25) int checkIndex;
+			for (checkIndex = 0; checkIndex < reflectionCheck.size; checkIndex++) {
+				if (reflectionCheck.fieldRequests[checkIndex] != null) {
+					if (reflectionCheck.fieldRequests[checkIndex].status == 2) {
+						reflectionCheck.errorCodes[checkIndex] = -5;
 					}
-					if (reflectionCheck.fieldRequests[i].status == 0) {
-						bool = true;
+					if (reflectionCheck.fieldRequests[checkIndex].status == 0) {
+						hasPendingRequests = true;
 					}
 				}
-				if (reflectionCheck.functionNodes[i] != null) {
-					if (reflectionCheck.functionNodes[i].status == 2) {
-						reflectionCheck.errorCodes[i] = -6;
+				if (reflectionCheck.functionNodes[checkIndex] != null) {
+					if (reflectionCheck.functionNodes[checkIndex].status == 2) {
+						reflectionCheck.errorCodes[checkIndex] = -6;
 					}
-					if (reflectionCheck.functionNodes[i].status == 0) {
-						bool = true;
+					if (reflectionCheck.functionNodes[checkIndex].status == 0) {
+						hasPendingRequests = true;
 					}
 				}
 			}
-			if (bool) {
+			if (hasPendingRequests) {
 				return;
 			}
-			buffer.pIsaac1(163);
+			buffer.pIsaac1(163); // Packet opcode for reflection check response
 			buffer.p1(0);
-			i = buffer.offset;
+			checkIndex = buffer.offset;
 			buffer.p4(reflectionCheck.id);
 			for (@Pc(121) int j = 0; j < reflectionCheck.size; j++) {
 				if (reflectionCheck.errorCodes[j] == 0) {
@@ -163,74 +188,74 @@ public final class ReflectionCheck extends Node {
 					buffer.p1(reflectionCheck.errorCodes[j]);
 				}
 			}
-			buffer.pCrc32(i);
-			buffer.p1len(buffer.offset - i);
+			buffer.pCrc32(checkIndex);
+			buffer.p1len(buffer.offset - checkIndex);
 			reflectionCheck.unlink();
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!qg", name = "a", descriptor = "(Lsignlink!ll;Lclient!wa;IB)V")
-	public static void push(@OriginalArg(0) SignLink arg0, @OriginalArg(1) Packet arg1, @OriginalArg(2) int arg2) {
+	public static void push(@OriginalArg(0) SignLink arg0, @OriginalArg(1) Packet packet, @OriginalArg(2) int arg2) {
 		@Pc(17) ReflectionCheck check = new ReflectionCheck();
-		check.size = arg1.g1();
-		check.id = arg1.g4();
+		check.size = packet.g1();
+		check.id = packet.g4();
 		check.functionNodes = new PrivilegedRequest[check.size];
 		check.errorCodes = new int[check.size];
 		check.methodArguments = new byte[check.size][][];
 		check.fieldRequests = new PrivilegedRequest[check.size];
 		check.types = new int[check.size];
 		check.fieldValues = new int[check.size];
-		for (@Pc(59) int local59 = 0; local59 < check.size; local59++) {
+		for (@Pc(59) int i = 0; i < check.size; i++) {
 			try {
-				@Pc(71) int local71 = arg1.g1();
-				@Pc(93) String local93;
-				@Pc(104) String local104;
-				@Pc(95) int local95;
-				if (local71 == 0 || local71 == 1 || local71 == 2) {
-					local93 = new String(arg1.gjstr().method3148());
-					local95 = 0;
-					local104 = new String(arg1.gjstr().method3148());
-					if (local71 == 1) {
-						local95 = arg1.g4();
+				@Pc(71) int opcode = packet.g1();
+				@Pc(93) String className;
+				@Pc(104) String memberName;
+				@Pc(95) int valueOrArgCount;
+				if (opcode == 0 || opcode == 1 || opcode == 2) {
+					className = new String(packet.gjstr().method3148());
+					valueOrArgCount = 0;
+					memberName = new String(packet.gjstr().method3148());
+					if (opcode == 1) {
+						valueOrArgCount = packet.g4();
 					}
-					check.types[local59] = local71;
-					check.fieldValues[local59] = local95;
-					check.fieldRequests[local59] = arg0.getDeclaredField(local104, classForName(local93));
-				} else if (local71 == 3 || local71 == 4) {
-					local93 = new String(arg1.gjstr().method3148());
-					local104 = new String(arg1.gjstr().method3148());
-					local95 = arg1.g1();
-					@Pc(171) String[] local171 = new String[local95];
-					for (@Pc(173) int local173 = 0; local173 < local95; local173++) {
-						local171[local173] = new String(arg1.gjstr().method3148());
+					check.types[i] = opcode;
+					check.fieldValues[i] = valueOrArgCount;
+					check.fieldRequests[i] = arg0.getDeclaredField(memberName, classForName(className));
+				} else if (opcode == 3 || opcode == 4) {
+					className = new String(packet.gjstr().method3148());
+					memberName = new String(packet.gjstr().method3148());
+					valueOrArgCount = packet.g1();
+					@Pc(171) String[] parameterTypeNames = new String[valueOrArgCount];
+					for (@Pc(173) int local173 = 0; local173 < valueOrArgCount; local173++) {
+						parameterTypeNames[local173] = new String(packet.gjstr().method3148());
 					}
-					@Pc(193) byte[][] local193 = new byte[local95][];
-					@Pc(210) int local210;
-					if (local71 == 3) {
-						for (@Pc(199) int local199 = 0; local199 < local95; local199++) {
-							local210 = arg1.g4();
-							local193[local199] = new byte[local210];
-							arg1.gdata(local210, local193[local199]);
+					@Pc(193) byte[][] argumentData = new byte[valueOrArgCount][];
+					@Pc(210) int dataLength;
+					if (opcode == 3) {
+						for (@Pc(199) int argIndex = 0; argIndex < valueOrArgCount; argIndex++) {
+							dataLength = packet.g4();
+							argumentData[argIndex] = new byte[dataLength];
+							packet.gdata(dataLength, argumentData[argIndex]);
 						}
 					}
-					check.types[local59] = local71;
-					@Pc(234) Class[] local234 = new Class[local95];
-					for (local210 = 0; local210 < local95; local210++) {
-						local234[local210] = classForName(local171[local210]);
+					check.types[i] = opcode;
+					@Pc(234) Class[] local234 = new Class[valueOrArgCount];
+					for (dataLength = 0; dataLength < valueOrArgCount; dataLength++) {
+						local234[dataLength] = classForName(parameterTypeNames[dataLength]);
 					}
-					check.functionNodes[local59] = arg0.getDeclaredMethod(classForName(local93), local234, local104);
-					check.methodArguments[local59] = local193;
+					check.functionNodes[i] = arg0.getDeclaredMethod(classForName(className), local234, memberName);
+					check.methodArguments[i] = argumentData;
 				}
 			} catch (@Pc(269) ClassNotFoundException local269) {
-				check.errorCodes[local59] = -1;
+				check.errorCodes[i] = -1;
 			} catch (@Pc(276) SecurityException local276) {
-				check.errorCodes[local59] = -2;
+				check.errorCodes[i] = -2;
 			} catch (@Pc(283) NullPointerException local283) {
-				check.errorCodes[local59] = -3;
+				check.errorCodes[i] = -3;
 			} catch (@Pc(290) Exception local290) {
-				check.errorCodes[local59] = -4;
+				check.errorCodes[i] = -4;
 			} catch (@Pc(297) Throwable local297) {
-				check.errorCodes[local59] = -5;
+				check.errorCodes[i] = -5;
 			}
 		}
 		queue.push(check);

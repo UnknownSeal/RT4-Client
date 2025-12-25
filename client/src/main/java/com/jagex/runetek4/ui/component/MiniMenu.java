@@ -47,8 +47,6 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-import static com.jagex.runetek4.network.ClientProt.OPLOC6;
-
 public class MiniMenu {
     @OriginalMember(owner = "runetek4.client!se", name = "m", descriptor = "Lclient!na;")
     public static final JString aClass100_961 = JString.parse(" )2>");
@@ -97,9 +95,9 @@ public class MiniMenu {
     @OriginalMember(owner = "client!cb", name = "fb", descriptor = "Lclient!na;")
     public static final JString COLON_SEPARATOR = JString.parse(": ");
     @OriginalMember(owner = "runetek4.client!qf", name = "Q", descriptor = "Lclient!na;")
-	public static final JString aClass100_407 = JString.parse(" )2> <col=ffff00>");
+	public static final JString YELLOW_ARROW = JString.parse(" )2> <col=ffff00>");
     @OriginalMember(owner = "runetek4.client!qf", name = "R", descriptor = "Lclient!na;")
-    public static final JString aClass100_408 = JString.parse(" )2> ");
+    public static final JString ARROW_SEPARATOR = JString.parse(" )2> ");
     @OriginalMember(owner = "client!fl", name = "V", descriptor = "Lclient!na;")
     public static final JString CLOSE_PARENTHESIS = JString.parse("(Y");
     @OriginalMember(owner = "client!gd", name = "c", descriptor = "Lclient!na;")
@@ -109,15 +107,15 @@ public class MiniMenu {
     @OriginalMember(owner = "runetek4.client!qi", name = "B", descriptor = "Lclient!na;")
 	public static final JString WHITE = JString.parse("<col=ffffff>");
     @OriginalMember(owner = "client!cb", name = "ab", descriptor = "Lclient!na;")
-    public static final JString aClass100_164 = JString.parse(" )2> <col=00ffff>");
+    public static final JString CYAN_ARROW = JString.parse(" )2> <col=00ffff>");
     @OriginalMember(owner = "runetek4.client!ud", name = "Q", descriptor = "Lclient!na;")
-    public static final JString aClass100_1039 = JString.parse(" x ");
+    public static final JString MULTIPLY_SYMBOL = JString.parse(" x ");
     @OriginalMember(owner = "runetek4.client!ib", name = "k", descriptor = "Lclient!na;")
-    public static final JString aClass100_561 = JString.parse(" )2> <col=ffffff>");
+    public static final JString WHITE_ARROW = JString.parse(" )2> <col=ffffff>");
     @OriginalMember(owner = "runetek4.client!tg", name = "e", descriptor = "Lclient!na;")
-    public static final JString aClass100_1008 = JString.parse("<col=00ffff>");
+    public static final JString CYAN = JString.parse("<col=00ffff>");
     @OriginalMember(owner = "runetek4.client!uf", name = "q", descriptor = "Lclient!na;")
-    public static final JString aClass100_1042 = JString.parse("Null");
+    public static final JString NULL_TEXT = JString.parse("Null");
     @OriginalMember(owner = "client!e", name = "pc", descriptor = "[I")
     public static final int[] textBounds = new int[4];
     @OriginalMember(owner = "runetek4.client!af", name = "l", descriptor = "[S")
@@ -153,7 +151,7 @@ public class MiniMenu {
     @OriginalMember(owner = "runetek4.client!cl", name = "Y", descriptor = "I")
     public static int defaultCursor = -1;
     @OriginalMember(owner = "runetek4.client!jl", name = "v", descriptor = "I")
-    public static int anInt3096 = 0;
+    public static int useItemOnTileMode = 0;
     @OriginalMember(owner = "client!ck", name = "D", descriptor = "Lclient!na;")
     public static JString aClass100_203 = null;
     @OriginalMember(owner = "client!gd", name = "i", descriptor = "Lclient!na;")
@@ -163,7 +161,7 @@ public class MiniMenu {
     @OriginalMember(owner = "runetek4.client!wf", name = "d", descriptor = "I")
     public static int anInt4997;
     @OriginalMember(owner = "client!fl", name = "P", descriptor = "I")
-    public static int anInt2043 = 0;
+    public static int inventoryPressTimer = 0;
     @OriginalMember(owner = "runetek4.client!ml", name = "Q", descriptor = "I")
     public static int menuState = 0;
     @OriginalMember(owner = "client!bh", name = "t", descriptor = "I")
@@ -225,21 +223,36 @@ public class MiniMenu {
     /* Unknown/Unidentified */
     public static final int UNKNOWN_13 = 13;
     public static final int UNKNOWN_22 = 22;
-    public static final int UNKNOWN_48 = 48;
-    public static final int UNKNOWN_12 = 12;
+    public static final int RESUME_STRINGDIALOG = 48;
+    public static final int RESUME_OBJDIALOG = 12;
     public static final int UNKNOWN_36 = 36;
     public static final int UNKNOWN_6 = 6;
     public static final int UNKNOWN_24 = 24;
-    public static final int UNKNOWN_7 = 7;
-    public static final int UNKNOWN_8 = 8;
-    public static final int UNKNOWN_11 = 11;
-    public static final int UNKNOWN_32 = 32;
-    public static final int UNKNOWN_21 = 21;
+    public static final int OBJ_ACTION_3 = 7;
+    public static final int LOGOUT_3 = 8;
+    public static final int COMPONENT_ACTION = 11;
+    public static final int PLAYER_ACTION_4 = 32;
+    public static final int OBJ_ACTION_2 = 21;
     public static final int UNKNOWN_9 = 9;
     public static final int UNKNOWN_1003 = 1003;
     public static final int UNKNOWN_41 = 41;
-    public static final int UNKNOWN_10 = 10;
+    public static final int PLAYER_ACTION_3 = 10;
     public static final int UNKNOWN_44 = 44;
+
+    public static final int ACTION_PRIORITY_OFFSET = 2000;
+    public static final int EXAMINE_ACTION_THRESHOLD = 1000;
+    private static final int MAX_MENU_ACTIONS = 400;
+    private static final int MENU_ACTION_BUFFER_SIZE = 500;
+    private static final int COLOR_WHITE = 16777215;
+    private static final int COLOR_YELLOW = 16776960;
+    private static final int TARGET_MASK_OBJSTACK = 0x1;
+    private static final int TARGET_MASK_NPC = 0x2;
+    private static final int TARGET_MASK_LOC = 0x4;
+    private static final int TARGET_MASK_PLAYER = 0x8;
+    private static final int TARGET_MASK_OBJ = 0x10;
+    private static final int TARGET_MASK_COMPONENT = 0x20;
+    private static final int TARGET_MASK_TILE = 0x40;
+
     @OriginalMember(owner = "client!ef", name = "g", descriptor = "I")
     public static int clickTileX = -1;
     @OriginalMember(owner = "runetek4.client!ha", name = "q", descriptor = "I")
@@ -284,7 +297,7 @@ public class MiniMenu {
 
     @OriginalMember(owner = "runetek4.client!hj", name = "a", descriptor = "(IJBLclient!na;ISLclient!na;I)V")
     public static void addActionRow(@OriginalArg(0) int cursor, @OriginalArg(1) long key, @OriginalArg(3) JString opBase, @OriginalArg(4) int param1, @OriginalArg(5) short action, @OriginalArg(6) JString op, @OriginalArg(7) int param2) {
-        if (ClientScriptRunner.menuVisible || menuActionRow >= 500) {
+        if (ClientScriptRunner.menuVisible || menuActionRow >= MENU_ACTION_BUFFER_SIZE) {
             return;
         }
         ops[menuActionRow] = op;
@@ -302,11 +315,11 @@ public class MiniMenu {
         if (component.buttonType == 1) {
             addActionRow(-1, 0L, JString.EMPTY, 0, (short) 8, component.option, component.id);
         }
-        @Pc(47) JString ops;
+        @Pc(47) JString targetVerb;
         if (component.buttonType == 2 && !useWithActive) {
-            ops = MiniMap.getTargetVerb(component);
-            if (ops != null) {
-                addActionRow(-1, 0L, JString.concatenate(new JString[] { GREEN, component.optionSuffix}), -1, (short) 32, ops, component.id);
+            targetVerb = MiniMap.getTargetVerb(component);
+            if (targetVerb != null) {
+                addActionRow(-1, 0L, JString.concatenate(new JString[] { GREEN, component.optionSuffix}), -1, (short) 32, targetVerb, component.id);
             }
         }
         if (component.buttonType == 3) {
@@ -344,8 +357,8 @@ public class MiniMenu {
                                     addActionRow(-1, (long) objType.id, JString.concatenate(new JString[] { aClass100_203, aClass100_947, objType.name}), slotIndex, (short) 40, LocalizedText.USE, component.id);
                                 }
                             } else if (useWithActive && serverProps.isObjOpsEnabled()) {
-                                @Pc(596) ParamType local596 = useWithParam == -1 ? null : ParamTypeList.get(useWithParam);
-                                if ((useWithMask & 0x10) != 0 && (local596 == null || objType.getParam(local596.defaultInt, useWithParam) != local596.defaultInt)) {
+                                @Pc(596) ParamType paramType = useWithParam == -1 ? null : ParamTypeList.get(useWithParam);
+                                if ((useWithMask & TARGET_MASK_OBJ) != 0 && (paramType == null || objType.getParam(paramType.defaultInt, useWithParam) != paramType.defaultInt)) {
                                     addActionRow(useWithCursor, (long) objType.id, JString.concatenate(new JString[] { aClass100_466, aClass100_947, objType.name}), slotIndex, (short) 3, aClass100_545, component.id);
                                 }
                             } else {
@@ -427,26 +440,26 @@ public class MiniMenu {
         }
         if (!useWithActive) {
             for (slotIndex = 9; slotIndex >= 5; slotIndex--) {
-                @Pc(765) JString local765 = ComponentList.getOp(component, slotIndex);
-                if (local765 != null) {
-                    addActionRow(getOpCursor(slotIndex, component), (long) (slotIndex + 1), component.optionBase, component.createdComponentId, (short) 1003, local765, component.id);
+                @Pc(765) JString componentOp = ComponentList.getOp(component, slotIndex);
+                if (componentOp != null) {
+                    addActionRow(getOpCursor(slotIndex, component), (long) (slotIndex + 1), component.optionBase, component.createdComponentId, (short) 1003, componentOp, component.id);
                 }
             }
-            ops = MiniMap.getTargetVerb(component);
-            if (ops != null) {
-                addActionRow(-1, 0L, component.optionBase, component.createdComponentId, (short) 32, ops, component.id);
+            targetVerb = MiniMap.getTargetVerb(component);
+            if (targetVerb != null) {
+                addActionRow(-1, 0L, component.optionBase, component.createdComponentId, (short) 32, targetVerb, component.id);
             }
             for (row = 4; row >= 0; row--) {
-                @Pc(828) JString local828 = ComponentList.getOp(component, row);
-                if (local828 != null) {
-                    addActionRow(getOpCursor(row, component), (long) (row + 1), component.optionBase, component.createdComponentId, (short) 9, local828, component.id);
+                @Pc(828) JString componentOp = ComponentList.getOp(component, row);
+                if (componentOp != null) {
+                    addActionRow(getOpCursor(row, component), (long) (row + 1), component.optionBase, component.createdComponentId, (short) 9, componentOp, component.id);
                 }
             }
             if (ComponentList.getServerActiveProperties(component).isResumePauseButtonEnabled()) {
                 addActionRow(-1, 0L, JString.EMPTY, component.createdComponentId, (short) 41, LocalizedText.CONTINUE, component.id);
             }
-        } else if (ComponentList.getServerActiveProperties(component).isUseTarget() && (useWithMask & 0x20) != 0) {
-            addActionRow(useWithCursor, 0L, JString.concatenate(new JString[] { aClass100_466, aClass100_408, component.optionBase}), component.createdComponentId, (short) 12, aClass100_545, component.id);
+        } else if (ComponentList.getServerActiveProperties(component).isUseTarget() && (useWithMask & TARGET_MASK_COMPONENT) != 0) {
+            addActionRow(useWithCursor, 0L, JString.concatenate(new JString[] { aClass100_466, ARROW_SEPARATOR, component.optionBase}), component.createdComponentId, (short) 12, aClass100_545, component.id);
         }
     }
 
@@ -471,7 +484,7 @@ public class MiniMenu {
         while (!hasSwapped) {
             hasSwapped = true;
             for (@Pc(13) int index = 0; index < menuActionRow - 1; index++) {
-                if (actions[index] < 1000 && actions[index + 1] > 1000) {
+                if (actions[index] < EXAMINE_ACTION_THRESHOLD && actions[index + 1] > EXAMINE_ACTION_THRESHOLD) {
                     @Pc(41) JString tempOpBase = opBases[index];
                     hasSwapped = false;
                     opBases[index] = opBases[index + 1];
@@ -624,9 +637,9 @@ public class MiniMenu {
         @Pc(98) int mouseX = Mouse.lastMouseX;
         for (@Pc(107) int rowIndex = 0; rowIndex < menuActionRow; rowIndex++) {
             @Pc(127) int rowY = (menuActionRow - rowIndex - 1) * 15 + menuY + 31;
-            @Pc(129) int textColor = 16777215; //WHITE
+            @Pc(129) int textColor = COLOR_WHITE; //WHITE
             if (menuX < mouseX && mouseX < menuX + menuWidth && rowY - 13 < mouseY && mouseY < rowY + 3) {
-                textColor = 16776960; //YELLOW
+                textColor = COLOR_YELLOW; //YELLOW
             }
             Fonts.b12Full.renderLeft(getOp(rowIndex), menuX + 3, rowY, textColor, 0);
         }
@@ -685,11 +698,11 @@ public class MiniMenu {
         if (menuIndex < 0) {
             return;
         }
-        @Pc(15) int param1 = intArgs1[menuIndex];
-        @Pc(19) int param2 = intArgs2[menuIndex];
+        @Pc(15) int param1 = intArgs1[menuIndex]; // re-used variable. Slot, Xcoord, component id
+        @Pc(19) int param2 = intArgs2[menuIndex]; // re-used variable. Widget ID, Z coord
         @Pc(23) int actionCode = actions[menuIndex];
-        if (actionCode >= 2000) {
-            actionCode -= 2000;
+        if (actionCode >= ACTION_PRIORITY_OFFSET) {
+            actionCode -= ACTION_PRIORITY_OFFSET;
         }
         @Pc(31) long key = keys[menuIndex];
         @Pc(36) int keyInt = (int) keys[menuIndex];
@@ -702,26 +715,26 @@ public class MiniMenu {
                 Crosshair.CrosshairCycle = 0;
                 Crosshair.x = Mouse.mouseClickX;
                 Crosshair.y = Mouse.mouseClickY;
-                Protocol.outboundBuffer.pIsaac1(71);
+                Protocol.outboundBuffer.pIsaac1(ClientProt.OPPLAYER6);
                 Protocol.outboundBuffer.p2_alt3(keyInt);
             }
         }
         if (actionCode == LOC_ACTION_4) {
             PathFinder.findPathToLoc(key, param2, param1);
-            Protocol.outboundBuffer.pIsaac1(247);
+            Protocol.outboundBuffer.pIsaac1(ClientProt.OPLOC4);
             Protocol.outboundBuffer.p2_alt1(Camera.sceneBaseTileZ + param2);
             Protocol.outboundBuffer.p2_alt3(param1 + Camera.sceneBaseTileX);
             Protocol.outboundBuffer.p2(Integer.MAX_VALUE & (int) (key >>> 32));
         }
         if (actionCode == OBJ_OBJ_ACTION) {
-            Protocol.outboundBuffer.pIsaac1(27);
+            Protocol.outboundBuffer.pIsaac1(ClientProt.OPOBJ_ON_OBJ);
             Protocol.outboundBuffer.p2(anInt4370);
             Protocol.outboundBuffer.p4_alt1(param2);
             Protocol.outboundBuffer.p2_alt1(param1);
             Protocol.outboundBuffer.p4_alt1(MiniMap.anInt5062);
             Protocol.outboundBuffer.p2_alt3(anInt4997);
             Protocol.outboundBuffer.p2_alt3(keyInt);
-            anInt2043 = 0;
+            inventoryPressTimer = 0;
             pressedInventoryComponent = ComponentList.getComponent(param2);
             anInt5444 = param1;
         }
@@ -734,7 +747,7 @@ public class MiniMenu {
                 Crosshair.CrosshairMode = 2;
                 Crosshair.CrosshairCycle = 0;
                 Crosshair.y = Mouse.mouseClickY;
-                Protocol.outboundBuffer.pIsaac1(30);
+                Protocol.outboundBuffer.pIsaac1(ClientProt.OPNPC4);
                 Protocol.outboundBuffer.p2(keyInt);
             }
         }
@@ -746,7 +759,7 @@ public class MiniMenu {
                 Crosshair.CrosshairCycle = 0;
                 Crosshair.CrosshairMode = 2;
                 Crosshair.y = Mouse.mouseClickY;
-                Protocol.outboundBuffer.pIsaac1(78);
+                Protocol.outboundBuffer.pIsaac1(ClientProt.OPNPC1);
                 Protocol.outboundBuffer.p2_alt1(keyInt);
             }
         }
@@ -758,22 +771,22 @@ public class MiniMenu {
                 Crosshair.CrosshairMode = 2;
                 Crosshair.y = Mouse.mouseClickY;
                 Crosshair.CrosshairCycle = 0;
-                Protocol.outboundBuffer.pIsaac1(133);
+                Protocol.outboundBuffer.pIsaac1(ClientProt.OPPLAYER4);
                 Protocol.outboundBuffer.p2_alt1(keyInt);
             }
         }
         if (actionCode == OBJ_ACTION_5) {
-            Protocol.outboundBuffer.pIsaac1(135);
+            Protocol.outboundBuffer.pIsaac1(ClientProt.OPOBJ5);
             Protocol.outboundBuffer.p2_alt2(keyInt);
             Protocol.outboundBuffer.p2_alt2(param1);
             Protocol.outboundBuffer.p4_alt3(param2);
-            anInt2043 = 0;
+            inventoryPressTimer = 0;
             pressedInventoryComponent = ComponentList.getComponent(param2);
             anInt5444 = param1;
         }
         if (actionCode == LOC_ACTION_1) {
             PathFinder.findPathToLoc(key, param2, param1);
-            Protocol.outboundBuffer.pIsaac1(254);
+            Protocol.outboundBuffer.pIsaac1(ClientProt.OPLOC1);
             Protocol.outboundBuffer.p2_alt1(param1 + Camera.sceneBaseTileX);
             Protocol.outboundBuffer.p2_alt2((int) (key >>> 32) & Integer.MAX_VALUE);
             Protocol.outboundBuffer.p2(param2 + Camera.sceneBaseTileZ);
@@ -791,7 +804,7 @@ public class MiniMenu {
                 Crosshair.CrosshairMode = 2;
                 Crosshair.CrosshairCycle = 0;
                 Crosshair.y = Mouse.mouseClickY;
-                Protocol.outboundBuffer.pIsaac1(239);
+                Protocol.outboundBuffer.pIsaac1(ClientProt.OPNPCT);
                 Protocol.outboundBuffer.p4_alt1(useWithComponentId);
                 Protocol.outboundBuffer.p2_alt2(useWithSlot);
                 Protocol.outboundBuffer.p2_alt3(keyInt);
@@ -812,14 +825,14 @@ public class MiniMenu {
             Crosshair.CrosshairCycle = 0;
             Crosshair.CrosshairMode = 2;
             Crosshair.y = Mouse.mouseClickY;
-            Protocol.outboundBuffer.pIsaac1(66);
+            Protocol.outboundBuffer.pIsaac1(ClientProt.OPOBJSTACK1);
             Protocol.outboundBuffer.p2_alt1(Camera.sceneBaseTileX + param1);
             Protocol.outboundBuffer.p2(keyInt);
             Protocol.outboundBuffer.p2_alt3(param2 + Camera.sceneBaseTileZ);
         }
         if (actionCode == LOC_ACTION_5) {
             PathFinder.findPathToLoc(key, param2, param1);
-            Protocol.outboundBuffer.pIsaac1(170);
+            Protocol.outboundBuffer.pIsaac1(ClientProt.OPLOC5);
             Protocol.outboundBuffer.p2_alt3(Integer.MAX_VALUE & (int) (key >>> 32));
             Protocol.outboundBuffer.p2_alt3(param1 + Camera.sceneBaseTileX);
             Protocol.outboundBuffer.p2_alt3(param2 + Camera.sceneBaseTileZ);
@@ -829,19 +842,19 @@ public class MiniMenu {
             Crosshair.x = Mouse.mouseClickX;
             Crosshair.y = Mouse.mouseClickY;
             Crosshair.CrosshairCycle = 0;
-            Protocol.outboundBuffer.pIsaac1(92);
+            Protocol.outboundBuffer.pIsaac1(ClientProt.OPOBJ_EXAMINE);
             Protocol.outboundBuffer.p2_alt3(keyInt);
         }
         @Pc(693) Component component;
         if (actionCode == OBJ_EXAMINE_IN_COMPONENT) {
             component = ComponentList.getComponent(param2);
             if (component == null || component.invSlotObjCount[param1] < 100000) {
-                Protocol.outboundBuffer.pIsaac1(92);
+                Protocol.outboundBuffer.pIsaac1(ClientProt.OPOBJ_EXAMINE);
                 Protocol.outboundBuffer.p2_alt3(keyInt);
             } else {
-                Chat.addMessage(JString.EMPTY, 0, JString.concatenate(new JString[] { JString.parseInt(component.invSlotObjCount[param1]), aClass100_1039, ObjTypeList.get(keyInt).name}));
+                Chat.addMessage(JString.EMPTY, 0, JString.concatenate(new JString[] { JString.parseInt(component.invSlotObjCount[param1]), MULTIPLY_SYMBOL, ObjTypeList.get(keyInt).name}));
             }
-            anInt2043 = 0;
+            inventoryPressTimer = 0;
             pressedInventoryComponent = ComponentList.getComponent(param2);
             anInt5444 = param1;
         }
@@ -873,37 +886,37 @@ public class MiniMenu {
             Crosshair.x = Mouse.mouseClickX;
             npc = NpcList.npcs[keyInt];
             if (npc != null) {
-                @Pc(884) NpcType local884 = npc.type;
-                if (local884.multinpc != null) {
-                    local884 = local884.getMultiNPC();
+                @Pc(884) NpcType npcType = npc.type;
+                if (npcType.multinpc != null) {
+                    npcType = npcType.getMultiNPC();
                 }
-                if (local884 != null) {
-                    Protocol.outboundBuffer.pIsaac1(72);
-                    Protocol.outboundBuffer.p2(local884.id);
+                if (npcType != null) {
+                    Protocol.outboundBuffer.pIsaac1(ClientProt.OPOBJ1);
+                    Protocol.outboundBuffer.p2(npcType.id);
                 }
             }
         }
         if (actionCode == OBJ_ACTION_1) {
-            Protocol.outboundBuffer.pIsaac1(156);
+            Protocol.outboundBuffer.pIsaac1(ClientProt.OPNPC2);
             Protocol.outboundBuffer.p2_alt3(param1);
             Protocol.outboundBuffer.p2_alt2(keyInt);
             Protocol.outboundBuffer.p4_alt1(param2);
-            anInt2043 = 0;
+            inventoryPressTimer = 0;
             pressedInventoryComponent = ComponentList.getComponent(param2);
             anInt5444 = param1;
         }
         if (actionCode == COMPONENT_OBJ_ACTION) {
-            Protocol.outboundBuffer.pIsaac1(253);
+            Protocol.outboundBuffer.pIsaac1(ClientProt.OPNPC5);
             Protocol.outboundBuffer.p4_alt1(useWithComponentId);
             Protocol.outboundBuffer.p2_alt3(param1);
             Protocol.outboundBuffer.p4_alt1(param2);
             Protocol.outboundBuffer.p2_alt2(keyInt);
             Protocol.outboundBuffer.p2_alt1(useWithSlot);
-            anInt2043 = 0;
+            inventoryPressTimer = 0;
             pressedInventoryComponent = ComponentList.getComponent(param2);
             anInt5444 = param1;
         }
-        if (actionCode == UNKNOWN_10) {
+        if (actionCode == PLAYER_ACTION_3) {
             player = PlayerList.players[keyInt];
             if (player != null) {
                 PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, player.movementQueueX[0], 1, 0, 2, player.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
@@ -911,7 +924,7 @@ public class MiniMenu {
                 Crosshair.y = Mouse.mouseClickY;
                 Crosshair.x = Mouse.mouseClickX;
                 Crosshair.CrosshairCycle = 0;
-                Protocol.outboundBuffer.pIsaac1(4);
+                Protocol.outboundBuffer.pIsaac1(ClientProt.OPPLAYER3);
                 Protocol.outboundBuffer.p2_alt1(keyInt);
             }
         }
@@ -922,22 +935,22 @@ public class MiniMenu {
         }
         if (actionCode == LOC_ACTION_3) {
             PathFinder.findPathToLoc(key, param2, param1);
-            Protocol.outboundBuffer.pIsaac1(84);
+            Protocol.outboundBuffer.pIsaac1(ClientProt.OPLOC3);
             Protocol.outboundBuffer.p2_alt3(Integer.MAX_VALUE & (int) (key >>> 32));
             Protocol.outboundBuffer.p2_alt3(Camera.sceneBaseTileZ + param2);
             Protocol.outboundBuffer.p2_alt1(param1 + Camera.sceneBaseTileX);
         }
         if (actionCode == OBJ_OPERATE_ACTION) {
-            Protocol.outboundBuffer.pIsaac1(206);
+            Protocol.outboundBuffer.pIsaac1(ClientProt.OPOBJ_ON_GROUND);
             Protocol.outboundBuffer.p2_alt2(keyInt);
             Protocol.outboundBuffer.p2_alt1(param1);
             Protocol.outboundBuffer.p4_alt1(param2);
-            anInt2043 = 0;
+            inventoryPressTimer = 0;
             pressedInventoryComponent = ComponentList.getComponent(param2);
             anInt5444 = param1;
         }
         if (actionCode == OBJ_LOC_ACTION && PathFinder.findPathToLoc(key, param2, param1)) {
-            Protocol.outboundBuffer.pIsaac1(134);
+            Protocol.outboundBuffer.pIsaac1(ClientProt.OPLOC2);
             Protocol.outboundBuffer.p2_alt2(Camera.sceneBaseTileX + param1);
             Protocol.outboundBuffer.p2(anInt4997);
             Protocol.outboundBuffer.p2_alt1(param2 + Camera.sceneBaseTileZ);
@@ -953,7 +966,7 @@ public class MiniMenu {
                 Crosshair.CrosshairMode = 2;
                 Crosshair.y = Mouse.mouseClickY;
                 Crosshair.x = Mouse.mouseClickX;
-                Protocol.outboundBuffer.pIsaac1(114);
+                Protocol.outboundBuffer.pIsaac1(ClientProt.OPPLAYER7);
                 Protocol.outboundBuffer.p2_alt3(keyInt);
             }
         }
@@ -961,15 +974,15 @@ public class MiniMenu {
             ClientProt.method4512(opBases[menuIndex], param1, keyInt, param2);
         }
         if (actionCode == OBJ_EQUIP_ACTION) {
-            Protocol.outboundBuffer.pIsaac1(55);
+            Protocol.outboundBuffer.pIsaac1(ClientProt.OPOBJ_EQUIP);
             Protocol.outboundBuffer.p2_alt1(keyInt);
             Protocol.outboundBuffer.p2_alt2(param1);
             Protocol.outboundBuffer.p4rme(param2);
-            anInt2043 = 0;
+            inventoryPressTimer = 0;
             pressedInventoryComponent = ComponentList.getComponent(param2);
             anInt5444 = param1;
         }
-        if (actionCode == UNKNOWN_21) {
+        if (actionCode == OBJ_ACTION_2) {
             if (Client.game == 1) {
                 PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, param1, 1, 0, 2, param2, PlayerList.self.movementQueueX[0]);
             } else {
@@ -982,7 +995,7 @@ public class MiniMenu {
             Crosshair.x = Mouse.mouseClickX;
             Crosshair.CrosshairCycle = 0;
             Crosshair.y = Mouse.mouseClickY;
-            Protocol.outboundBuffer.pIsaac1(228);
+            Protocol.outboundBuffer.pIsaac1(ClientProt.OPOBJ2);
             Protocol.outboundBuffer.p2(keyInt);
             Protocol.outboundBuffer.p2_alt1(Camera.sceneBaseTileX + param1);
             Protocol.outboundBuffer.p2_alt3(Camera.sceneBaseTileZ + param2);
@@ -995,11 +1008,11 @@ public class MiniMenu {
                 Crosshair.CrosshairCycle = 0;
                 Crosshair.y = Mouse.mouseClickY;
                 Crosshair.x = Mouse.mouseClickX;
-                Protocol.outboundBuffer.pIsaac1(148);
+                Protocol.outboundBuffer.pIsaac1(ClientProt.OPPLAYERT);
                 Protocol.outboundBuffer.p2_alt2(keyInt);
             }
         }
-        if (actionCode == UNKNOWN_32) {
+        if (actionCode == PLAYER_ACTION_4) {
             component = ComponentList.getCreatedComponent(param2, param1);
             if (component != null) {
                 handleUseWith();
@@ -1008,7 +1021,7 @@ public class MiniMenu {
                 anInt5014 = 0;
                 aClass100_545 = MiniMap.getTargetVerb(component);
                 if (aClass100_545 == null) {
-                    aClass100_545 = aClass100_1042;
+                    aClass100_545 = NULL_TEXT;
                 }
                 if (component.if3) {
                     aClass100_466 = JString.concatenate(new JString[] { component.optionBase, WHITE});
@@ -1026,16 +1039,16 @@ public class MiniMenu {
                 Crosshair.CrosshairCycle = 0;
                 Crosshair.CrosshairMode = 2;
                 Crosshair.x = Mouse.mouseClickX;
-                Protocol.outboundBuffer.pIsaac1(180);
+                Protocol.outboundBuffer.pIsaac1(ClientProt.OPPLAYER2);
                 Protocol.outboundBuffer.p2_alt3(keyInt);
             }
         }
         if (actionCode == OBJ_ACTION_4) {
-            Protocol.outboundBuffer.pIsaac1(161);
+            Protocol.outboundBuffer.pIsaac1(ClientProt.OPOBJ4);
             Protocol.outboundBuffer.p4_alt1(param2);
             Protocol.outboundBuffer.p2_alt3(keyInt);
             Protocol.outboundBuffer.p2_alt3(param1);
-            anInt2043 = 0;
+            inventoryPressTimer = 0;
             pressedInventoryComponent = ComponentList.getComponent(param2);
             anInt5444 = param1;
         }
@@ -1047,7 +1060,7 @@ public class MiniMenu {
                 Crosshair.CrosshairMode = 2;
                 Crosshair.x = Mouse.mouseClickX;
                 Crosshair.y = Mouse.mouseClickY;
-                Protocol.outboundBuffer.pIsaac1(195);
+                Protocol.outboundBuffer.pIsaac1(ClientProt.OPOBJSTACK5);
                 Protocol.outboundBuffer.p2_alt2(useWithSlot);
                 Protocol.outboundBuffer.p4_alt1(useWithComponentId);
                 Protocol.outboundBuffer.p2_alt3(keyInt);
@@ -1066,17 +1079,17 @@ public class MiniMenu {
             Crosshair.CrosshairMode = 2;
             Crosshair.y = Mouse.mouseClickY;
             Crosshair.CrosshairCycle = 0;
-            Protocol.outboundBuffer.pIsaac1(109);
+            Protocol.outboundBuffer.pIsaac1(ClientProt.OPOBJSTACK3);
             Protocol.outboundBuffer.p2_alt1(param2 + Camera.sceneBaseTileZ);
             Protocol.outboundBuffer.p2(param1 + Camera.sceneBaseTileX);
             Protocol.outboundBuffer.p2_alt3(keyInt);
         }
         if (actionCode == OBJ_IN_COMPONENT_ACTION_1) {
-            Protocol.outboundBuffer.pIsaac1(81);
+            Protocol.outboundBuffer.pIsaac1(ClientProt.OPOBJ1);
             Protocol.outboundBuffer.p2_alt2(param1);
             Protocol.outboundBuffer.p2(keyInt);
             Protocol.outboundBuffer.p4rme(param2);
-            anInt2043 = 0;
+            inventoryPressTimer = 0;
             pressedInventoryComponent = ComponentList.getComponent(param2);
             anInt5444 = param1;
         }
@@ -1088,20 +1101,20 @@ public class MiniMenu {
                 Crosshair.CrosshairMode = 2;
                 Crosshair.x = Mouse.mouseClickX;
                 Crosshair.CrosshairCycle = 0;
-                Protocol.outboundBuffer.pIsaac1(218);
+                Protocol.outboundBuffer.pIsaac1(ClientProt.OPOBJSTACKT);
                 Protocol.outboundBuffer.p2_alt1(keyInt);
             }
         }
-        @Pc(1955) int varp;
+        @Pc(1955) int varpId;
         if (actionCode == LOGOUT_ACTION) {
-            Protocol.outboundBuffer.pIsaac1(10);
+            Protocol.outboundBuffer.pIsaac1(ClientProt.LOGOUT);
             Protocol.outboundBuffer.p4(param2);
             component = ComponentList.getComponent(param2);
             if (component.scripts != null && component.scripts[0][0] == 5) {
-                varp = component.scripts[0][1];
-                if (VarpDomain.activeVarps[varp] != component.scriptOperand[0]) {
-                    VarpDomain.activeVarps[varp] = component.scriptOperand[0];
-                    VarpDomain.refreshMagicVarp(varp);
+                varpId = component.scripts[0][1];
+                if (VarpDomain.activeVarps[varpId] != component.scriptOperand[0]) {
+                    VarpDomain.activeVarps[varpId] = component.scriptOperand[0];
+                    VarpDomain.refreshMagicVarp(varpId);
                 }
             }
         }
@@ -1113,7 +1126,7 @@ public class MiniMenu {
                 Crosshair.CrosshairCycle = 0;
                 Crosshair.y = Mouse.mouseClickY;
                 Crosshair.x = Mouse.mouseClickX;
-                Protocol.outboundBuffer.pIsaac1(115);
+                Protocol.outboundBuffer.pIsaac1(ClientProt.RESUME_PAUSEBUTTON);
                 Protocol.outboundBuffer.p4_alt3(MiniMap.anInt5062);
                 Protocol.outboundBuffer.p2_alt1(anInt4370);
                 Protocol.outboundBuffer.p2_alt1(keyInt);
@@ -1121,13 +1134,13 @@ public class MiniMenu {
             }
         }
         if (actionCode == LOGOUT_ACTION_2) {
-            Protocol.outboundBuffer.pIsaac1(10);
+            Protocol.outboundBuffer.pIsaac1(ClientProt.LOGOUT);
             Protocol.outboundBuffer.p4(param2);
             component = ComponentList.getComponent(param2);
             if (component.scripts != null && component.scripts[0][0] == 5) {
-                varp = component.scripts[0][1];
-                VarpDomain.activeVarps[varp] = 1 - VarpDomain.activeVarps[varp];
-                VarpDomain.refreshMagicVarp(varp);
+                varpId = component.scripts[0][1];
+                VarpDomain.activeVarps[varpId] = 1 - VarpDomain.activeVarps[varpId];
+                VarpDomain.refreshMagicVarp(varpId);
             }
         }
         if (actionCode == OBJ_OBJSTACK_ACTION) {
@@ -1139,7 +1152,7 @@ public class MiniMenu {
             Crosshair.CrosshairCycle = 0;
             Crosshair.y = Mouse.mouseClickY;
             Crosshair.CrosshairMode = 2;
-            Protocol.outboundBuffer.pIsaac1(101);
+            Protocol.outboundBuffer.pIsaac1(ClientProt.OPOBJSTACK4);
             Protocol.outboundBuffer.p2_alt3(param1 + Camera.sceneBaseTileX);
             Protocol.outboundBuffer.p2_alt1(anInt4370);
             Protocol.outboundBuffer.p2_alt1(anInt4997);
@@ -1152,29 +1165,29 @@ public class MiniMenu {
             Crosshair.x = Mouse.mouseClickX;
             Crosshair.CrosshairMode = 2;
             Crosshair.y = Mouse.mouseClickY;
-            Protocol.outboundBuffer.pIsaac1(OPLOC6);
+            Protocol.outboundBuffer.pIsaac1(ClientProt.OPLOC6);
             Protocol.outboundBuffer.p2_alt3(keyInt);
         }
-        if (actionCode == UNKNOWN_11) {
+        if (actionCode == COMPONENT_ACTION) {
             if (keyInt == 0) {
-                anInt3096 = 1;
+                useItemOnTileMode = 1;
                 setWalkTarget(Player.currentLevel, param1, param2);
             } else if (keyInt == 1) {
-                Protocol.outboundBuffer.pIsaac1(131);
+                Protocol.outboundBuffer.pIsaac1(ClientProt.OPOBJT);
                 Protocol.outboundBuffer.p4_alt3(useWithComponentId);
                 Protocol.outboundBuffer.p2_alt2(Camera.sceneBaseTileX + param1);
                 Protocol.outboundBuffer.p2_alt3(useWithSlot);
                 Protocol.outboundBuffer.p2_alt2(param2 + Camera.sceneBaseTileZ);
             }
         }
-        if (actionCode == UNKNOWN_8) {
+        if (actionCode == LOGOUT_3) {
             component = ComponentList.getComponent(param2);
             @Pc(2287) boolean shouldProcess = true;
             if (component.contentType > 0) {
                 shouldProcess = shouldTriggerIdleTimeout(component);
             }
             if (shouldProcess) {
-                Protocol.outboundBuffer.pIsaac1(10);
+                Protocol.outboundBuffer.pIsaac1(ClientProt.LOGOUT);
                 Protocol.outboundBuffer.p4(param2);
             }
         }
@@ -1186,19 +1199,19 @@ public class MiniMenu {
                 Crosshair.y = Mouse.mouseClickY;
                 Crosshair.CrosshairMode = 2;
                 Crosshair.x = Mouse.mouseClickX;
-                Protocol.outboundBuffer.pIsaac1(248);
+                Protocol.outboundBuffer.pIsaac1(ClientProt.TELEPORT);
                 Protocol.outboundBuffer.p2_alt3(keyInt);
                 Protocol.outboundBuffer.p2(anInt4997);
                 Protocol.outboundBuffer.p2(anInt4370);
                 Protocol.outboundBuffer.p4_alt3(MiniMap.anInt5062);
             }
         }
-        if (actionCode == UNKNOWN_7) {
-            Protocol.outboundBuffer.pIsaac1(85);
+        if (actionCode == OBJ_ACTION_3) {
+            Protocol.outboundBuffer.pIsaac1(ClientProt.OPOBJ3);
             Protocol.outboundBuffer.p4rme(param2);
             Protocol.outboundBuffer.p2(param1);
             Protocol.outboundBuffer.p2_alt2(keyInt);
-            anInt2043 = 0;
+            inventoryPressTimer = 0;
             pressedInventoryComponent = ComponentList.getComponent(param2);
             anInt5444 = param1;
         }
@@ -1215,13 +1228,13 @@ public class MiniMenu {
             Crosshair.y = Mouse.mouseClickY;
             Crosshair.x = Mouse.mouseClickX;
             Crosshair.CrosshairCycle = 0;
-            Protocol.outboundBuffer.pIsaac1(48);
+            Protocol.outboundBuffer.pIsaac1(ClientProt.OPOBJSTACK2);
             Protocol.outboundBuffer.p2_alt2(param1 + Camera.sceneBaseTileX);
             Protocol.outboundBuffer.p2_alt3(keyInt);
             Protocol.outboundBuffer.p2_alt1(Camera.sceneBaseTileZ + param2);
         }
         if (actionCode == COMPONENT_LOC_ACTION && PathFinder.findPathToLoc(key, param2, param1)) {
-            Protocol.outboundBuffer.pIsaac1(233);
+            Protocol.outboundBuffer.pIsaac1(ClientProt.OPLOCT);
             Protocol.outboundBuffer.p2_alt3(param2 + Camera.sceneBaseTileZ);
             Protocol.outboundBuffer.p2_alt2(Camera.sceneBaseTileX + param1);
             Protocol.outboundBuffer.p2_alt3(useWithSlot);
@@ -1229,11 +1242,11 @@ public class MiniMenu {
             Protocol.outboundBuffer.p2_alt2((int) (key >>> 32) & Integer.MAX_VALUE);
         }
         if (actionCode == UNKNOWN_13) {
-            Protocol.outboundBuffer.pIsaac1(6);
+            Protocol.outboundBuffer.pIsaac1(ClientProt.IF_ON_COMPONENT5);
             Protocol.outboundBuffer.p4(param2);
             Protocol.outboundBuffer.p2_alt2(param1);
             Protocol.outboundBuffer.p2_alt1(keyInt);
-            anInt2043 = 0;
+            inventoryPressTimer = 0;
             pressedInventoryComponent = ComponentList.getComponent(param2);
             anInt5444 = param1;
         }
@@ -1245,7 +1258,7 @@ public class MiniMenu {
                 Crosshair.y = Mouse.mouseClickY;
                 Crosshair.x = Mouse.mouseClickX;
                 Crosshair.CrosshairCycle = 0;
-                Protocol.outboundBuffer.pIsaac1(175);
+                Protocol.outboundBuffer.pIsaac1(ClientProt.OPPLAYER5);
                 Protocol.outboundBuffer.p2_alt2(keyInt);
             }
         }
@@ -1265,17 +1278,17 @@ public class MiniMenu {
         }
         if (actionCode == LOC_ACTION_2) {
             PathFinder.findPathToLoc(key, param2, param1);
-            Protocol.outboundBuffer.pIsaac1(194);
+            Protocol.outboundBuffer.pIsaac1(ClientProt.RESUME_NAMEDIALOG);
             Protocol.outboundBuffer.p2_alt3(param2 + Camera.sceneBaseTileZ);
             Protocol.outboundBuffer.p2_alt1(Camera.sceneBaseTileX + param1);
             Protocol.outboundBuffer.p2((int) (key >>> 32) & Integer.MAX_VALUE);
         }
-        if (actionCode == UNKNOWN_48) {
-            Protocol.outboundBuffer.pIsaac1(154);
+        if (actionCode == RESUME_STRINGDIALOG) {
+            Protocol.outboundBuffer.pIsaac1(ClientProt.RESUME_STRINGDIALOG);
             Protocol.outboundBuffer.p2_alt1(param1);
             Protocol.outboundBuffer.p4rme(param2);
             Protocol.outboundBuffer.p2_alt3(keyInt);
-            anInt2043 = 0;
+            inventoryPressTimer = 0;
             pressedInventoryComponent = ComponentList.getComponent(param2);
             anInt5444 = param1;
         }
@@ -1287,16 +1300,16 @@ public class MiniMenu {
                 Crosshair.x = Mouse.mouseClickX;
                 Crosshair.y = Mouse.mouseClickY;
                 Crosshair.CrosshairMode = 2;
-                Protocol.outboundBuffer.pIsaac1(68);
+                Protocol.outboundBuffer.pIsaac1(ClientProt.OPPLAYER1);
                 Protocol.outboundBuffer.p2_alt3(keyInt);
             }
         }
         if (actionCode == OBJ_IN_COMPONENT_ACTION_4) {
-            Protocol.outboundBuffer.pIsaac1(153);
+            Protocol.outboundBuffer.pIsaac1(ClientProt.RESUME_P_COUNTDIALOG);
             Protocol.outboundBuffer.p4_alt1(param2);
             Protocol.outboundBuffer.p2_alt1(param1);
             Protocol.outboundBuffer.p2_alt1(keyInt);
-            anInt2043 = 0;
+            inventoryPressTimer = 0;
             pressedInventoryComponent = ComponentList.getComponent(param2);
             anInt5444 = param1;
         }
@@ -1309,15 +1322,15 @@ public class MiniMenu {
             Crosshair.x = Mouse.mouseClickX;
             Crosshair.CrosshairMode = 2;
             Crosshair.CrosshairCycle = 0;
-            Protocol.outboundBuffer.pIsaac1(73);
+            Protocol.outboundBuffer.pIsaac1(ClientProt.RESUME_COUNTDIALOG);
             Protocol.outboundBuffer.p4rme(useWithComponentId);
             Protocol.outboundBuffer.p2(Camera.sceneBaseTileZ + param2);
             Protocol.outboundBuffer.p2_alt3(keyInt);
             Protocol.outboundBuffer.p2_alt3(param1 + Camera.sceneBaseTileX);
             Protocol.outboundBuffer.p2_alt1(useWithSlot);
         }
-        if (actionCode == UNKNOWN_12) {
-            Protocol.outboundBuffer.pIsaac1(82);
+        if (actionCode == RESUME_OBJDIALOG) {
+            Protocol.outboundBuffer.pIsaac1(ClientProt.RESUME_OBJDIALOG);
             Protocol.outboundBuffer.p2(useWithSlot);
             Protocol.outboundBuffer.p4rme(param2);
             Protocol.outboundBuffer.p4(useWithComponentId);
@@ -1330,7 +1343,7 @@ public class MiniMenu {
             } else if (LoginManager.staffModLevel > 0 && Keyboard.pressedKeys[82] && Keyboard.pressedKeys[81]) {
                 Cheat.teleport(param1 + Camera.sceneBaseTileX, Camera.sceneBaseTileZ - -param2, Player.currentLevel);
             } else {
-                Protocol.outboundBuffer.pIsaac1(179);
+                Protocol.outboundBuffer.pIsaac1(ClientProt.MOVE_CLICK_ALT);
                 Protocol.outboundBuffer.p2(param2 + Camera.sceneBaseTileZ);
                 Protocol.outboundBuffer.p2(param1 + Camera.sceneBaseTileX);
             }
@@ -1343,7 +1356,7 @@ public class MiniMenu {
                 Crosshair.CrosshairCycle = 0;
                 Crosshair.CrosshairMode = 2;
                 Crosshair.x = Mouse.mouseClickX;
-                Protocol.outboundBuffer.pIsaac1(106);
+                Protocol.outboundBuffer.pIsaac1(ClientProt.OPPLAYER_ACTION_ALT);
                 Protocol.outboundBuffer.p2(keyInt);
             }
         }
@@ -1360,7 +1373,7 @@ public class MiniMenu {
             Crosshair.CrosshairCycle = 0;
             Crosshair.x = Mouse.mouseClickX;
             Crosshair.CrosshairMode = 2;
-            Protocol.outboundBuffer.pIsaac1(33);
+            Protocol.outboundBuffer.pIsaac1(ClientProt.OPOBJSTACK_ACTION2_ALT);
             Protocol.outboundBuffer.p2(keyInt);
             Protocol.outboundBuffer.p2(Camera.sceneBaseTileX + param1);
             Protocol.outboundBuffer.p2_alt1(Camera.sceneBaseTileZ + param2);
@@ -1373,7 +1386,7 @@ public class MiniMenu {
                 Crosshair.CrosshairCycle = 0;
                 Crosshair.y = Mouse.mouseClickY;
                 Crosshair.CrosshairMode = 2;
-                Protocol.outboundBuffer.pIsaac1(3);
+                Protocol.outboundBuffer.pIsaac1(ClientProt.OPNPC_ACTION2_ALT);
                 Protocol.outboundBuffer.p2_alt3(keyInt);
             }
         }
@@ -1384,7 +1397,7 @@ public class MiniMenu {
         if (useWithActive) {
             handleUseWith();
         }
-        if (pressedInventoryComponent != null && anInt2043 == 0) {
+        if (pressedInventoryComponent != null && inventoryPressTimer == 0) {
             ComponentList.redraw(pressedInventoryComponent);
         }
     }
@@ -1422,7 +1435,7 @@ public class MiniMenu {
             @Pc(19) int screenMaxX = Rasterizer.screenLowerX;
             @Pc(33) int worldX = (endX - startX) * (screenMinX - screenMaxX) / width + screenMaxX;
             worldY = screenMaxY + (screenMinY - screenMaxY) * (endY - startY) / height;
-            if (useWithActive && (useWithMask & 0x40) != 0) {
+            if (useWithActive && (useWithMask & TARGET_MASK_TILE) != 0) {
                 @Pc(61) Component component = ComponentList.getCreatedComponent(useWithComponentId, useWithSlot);
                 if (component == null) {
                     handleUseWith();
@@ -1455,11 +1468,11 @@ public class MiniMenu {
                         continue;
                     }
                     if (anInt5014 == 1) {
-                        addActionRow(MiniMap.anInt4075, key, JString.concatenate(new JString[] {aClass100_203, aClass100_164, locType.name}), worldY, (short) 14, LocalizedText.USE, localZ);
+                        addActionRow(MiniMap.anInt4075, key, JString.concatenate(new JString[] {aClass100_203, CYAN_ARROW, locType.name}), worldY, (short) 14, LocalizedText.USE, localZ);
                     } else if (useWithActive) {
                         @Pc(363) ParamType paramType = useWithParam == -1 ? null : ParamTypeList.get(useWithParam);
-                        if ((useWithMask & 0x4) != 0 && (paramType == null || locType.getParam(paramType.defaultInt, useWithParam) != paramType.defaultInt)) {
-                            addActionRow(useWithCursor, key, JString.concatenate(new JString[] {aClass100_466, aClass100_164, locType.name}), worldY, (short) 38, aClass100_545, localZ);
+                        if ((useWithMask & TARGET_MASK_LOC) != 0 && (paramType == null || locType.getParam(paramType.defaultInt, useWithParam) != paramType.defaultInt)) {
+                            addActionRow(useWithCursor, key, JString.concatenate(new JString[] {aClass100_466, CYAN_ARROW, locType.name}), worldY, (short) 38, aClass100_545, localZ);
                         }
                     } else {
                         @Pc(228) JString[] locOps = locType.op;
@@ -1492,11 +1505,11 @@ public class MiniMenu {
                                     if (opIndex == 4) {
                                         actionId = 1001;
                                     }
-                                    addActionRow(cursor, key, JString.concatenate(new JString[] {aClass100_1008, locType.name}), worldY, actionId, locOps[opIndex], localZ);
+                                    addActionRow(cursor, key, JString.concatenate(new JString[] {CYAN, locType.name}), worldY, actionId, locOps[opIndex], localZ);
                                 }
                             }
                         }
-                        addActionRow(MiniMap.anInt5073, (long) locType.id, JString.concatenate(new JString[] {aClass100_1008, locType.name}), worldY, (short) 1004, LocalizedText.EXAMINE, localZ);
+                        addActionRow(MiniMap.anInt5073, (long) locType.id, JString.concatenate(new JString[] {CYAN, locType.name}), worldY, (short) 1004, LocalizedText.EXAMINE, localZ);
                     }
                 }
                 @Pc(514) int otherEntityX;
@@ -1563,7 +1576,7 @@ public class MiniMenu {
                                 addActionRow(MiniMap.anInt4075, (long) opIndex, JString.concatenate(new JString[] {aClass100_203, aClass100_947, objType.name}), worldY, (short) 33, LocalizedText.USE, localZ);
                             } else if (useWithActive) {
                                 @Pc(1142) ParamType paramType = useWithParam == -1 ? null : ParamTypeList.get(useWithParam);
-                                if ((useWithMask & 0x1) != 0 && (paramType == null || objType.getParam(paramType.defaultInt, useWithParam) != paramType.defaultInt)) {
+                                if ((useWithMask & TARGET_MASK_OBJSTACK) != 0 && (paramType == null || objType.getParam(paramType.defaultInt, useWithParam) != paramType.defaultInt)) {
                                     addActionRow(useWithCursor, (long) opIndex, JString.concatenate(new JString[] {aClass100_466, aClass100_947, objType.name}), worldY, (short) 39, aClass100_545, localZ);
                                 }
                             } else {
@@ -1610,7 +1623,7 @@ public class MiniMenu {
 
     @OriginalMember(owner = "runetek4.client!u", name = "a", descriptor = "(Lclient!me;IIII)V")
     public static void addNpcEntries(@OriginalArg(0) NpcType npc, @OriginalArg(1) int localX, @OriginalArg(3) int npcId, @OriginalArg(4) int localZ) {
-        if (menuActionRow >= 400) {
+        if (menuActionRow >= MAX_MENU_ACTIONS) {
             return;
         }
         if (npc.multinpc != null) {
@@ -1625,11 +1638,11 @@ public class MiniMenu {
             tooltip = JString.concatenate(new JString[] { tooltip, getCombatLevelColorTag(npc.vislevel, PlayerList.self.combatLevel), OPEN_PARENTHESIS, levelText, JString.parseInt(npc.vislevel), CLOSE_PARENTHESIS});
         }
         if (anInt5014 == 1) {
-            addActionRow(MiniMap.anInt4075, (long) npcId, JString.concatenate(new JString[] {aClass100_203, aClass100_407, tooltip }), localX, (short) 26, LocalizedText.USE, localZ);
+            addActionRow(MiniMap.anInt4075, (long) npcId, JString.concatenate(new JString[] {aClass100_203, YELLOW_ARROW, tooltip }), localX, (short) 26, LocalizedText.USE, localZ);
         } else if (useWithActive) {
             @Pc(378) ParamType paramType = useWithParam == -1 ? null : ParamTypeList.get(useWithParam);
-            if ((useWithMask & 0x2) != 0 && (paramType == null || npc.getParam(useWithParam, paramType.defaultInt) != paramType.defaultInt)) {
-                addActionRow(useWithCursor, (long) npcId, JString.concatenate(new JString[] {aClass100_466, aClass100_407, tooltip }), localX, (short) 45, aClass100_545, localZ);
+            if ((useWithMask & TARGET_MASK_NPC) != 0 && (paramType == null || npc.getParam(useWithParam, paramType.defaultInt) != paramType.defaultInt)) {
+                addActionRow(useWithCursor, (long) npcId, JString.concatenate(new JString[] {aClass100_466, YELLOW_ARROW, tooltip }), localX, (short) 45, aClass100_545, localZ);
             }
         } else {
             @Pc(129) JString[] npcOps = npc.op;
@@ -1708,36 +1721,36 @@ public class MiniMenu {
         }
         @Pc(158) JString tooltip;
         if (other.skill == 0) {
-            @Pc(22) boolean markCombatDifference = true;
+            @Pc(22) boolean shouldColorByLevel = true;
             if (PlayerList.self.combatRange != -1 && other.combatRange != -1) {
                 @Pc(43) int highestCombatLevel = other.combatLevel < PlayerList.self.combatLevel ? PlayerList.self.combatLevel : other.combatLevel;
                 @Pc(58) int highestCombatRange = PlayerList.self.combatRange < other.combatRange ? PlayerList.self.combatRange : other.combatRange;
-                @Pc(69) int calc = highestCombatLevel * 10 / 100 + highestCombatRange + 5;
+                @Pc(69) int combatRangeThreshold = highestCombatLevel * 10 / 100 + highestCombatRange + 5;
                 @Pc(76) int combatDelta = PlayerList.self.combatLevel - other.combatLevel;
                 if (combatDelta < 0) {
                     combatDelta = -combatDelta;
                 }
-                if (calc < combatDelta) {
-                    markCombatDifference = false;
+                if (combatRangeThreshold < combatDelta) {
+                    shouldColorByLevel = false;
                 }
             }
             @Pc(95) JString levelText = Client.game == 1 ? LocalizedText.RATING : LocalizedText.LEVEL;
             if (other.combatLevel < other.combatLevelWithSummoning) {
-                tooltip = JString.concatenate(new JString[] { other.getUsername(), markCombatDifference ? getCombatLevelColorTag(other.combatLevel, PlayerList.self.combatLevel) : WHITE, OPEN_PARENTHESIS, levelText, JString.parseInt(other.combatLevel), PLUS, JString.parseInt(other.combatLevelWithSummoning - other.combatLevel), CLOSE_PARENTHESIS});
+                tooltip = JString.concatenate(new JString[] { other.getUsername(), shouldColorByLevel ? getCombatLevelColorTag(other.combatLevel, PlayerList.self.combatLevel) : WHITE, OPEN_PARENTHESIS, levelText, JString.parseInt(other.combatLevel), PLUS, JString.parseInt(other.combatLevelWithSummoning - other.combatLevel), CLOSE_PARENTHESIS});
             } else {
-                tooltip = JString.concatenate(new JString[] { other.getUsername(), markCombatDifference ? getCombatLevelColorTag(other.combatLevel, PlayerList.self.combatLevel) : WHITE, OPEN_PARENTHESIS, levelText, JString.parseInt(other.combatLevel), CLOSE_PARENTHESIS});
+                tooltip = JString.concatenate(new JString[] { other.getUsername(), shouldColorByLevel ? getCombatLevelColorTag(other.combatLevel, PlayerList.self.combatLevel) : WHITE, OPEN_PARENTHESIS, levelText, JString.parseInt(other.combatLevel), CLOSE_PARENTHESIS});
             }
         } else {
             tooltip = JString.concatenate(new JString[] { other.getUsername(), OPEN_PARENTHESIS, LocalizedText.SKILL, JString.parseInt(other.skill), CLOSE_PARENTHESIS});
         }
-        @Pc(275) int local275;
+        @Pc(275) int playerOptionIndex;
         if (anInt5014 == 1) {
-            addActionRow(MiniMap.anInt4075, (long) playerId, JString.concatenate(new JString[] {aClass100_203, aClass100_561, tooltip }), localX, (short) 1, LocalizedText.USE, localZ);
+            addActionRow(MiniMap.anInt4075, (long) playerId, JString.concatenate(new JString[] {aClass100_203, WHITE_ARROW, tooltip }), localX, (short) 1, LocalizedText.USE, localZ);
         } else if (!useWithActive) {
-            for (local275 = 7; local275 >= 0; local275--) {
-                if (Player.options[local275] != null) {
+            for (playerOptionIndex = 7; playerOptionIndex >= 0; playerOptionIndex--) {
+                if (Player.options[playerOptionIndex] != null) {
                     @Pc(291) short priorityModifier = 0;
-                    if (Client.game == 0 && Player.options[local275].equalsIgnoreCase(LocalizedText.ATTACK)) {
+                    if (Client.game == 0 && Player.options[playerOptionIndex].equalsIgnoreCase(LocalizedText.ATTACK)) {
                         if (other.combatLevel > PlayerList.self.combatLevel) {
                             priorityModifier = 2000;
                         }
@@ -1748,20 +1761,20 @@ public class MiniMenu {
                                 priorityModifier = 0;
                             }
                         }
-                    } else if (Player.secondaryOptions[local275]) {
+                    } else if (Player.secondaryOptions[playerOptionIndex]) {
                         priorityModifier = 2000;
                     }
-                    @Pc(353) short baseActionId = PLAYER_ACTION_IDS[local275];
+                    @Pc(353) short baseActionId = PLAYER_ACTION_IDS[playerOptionIndex];
                     @Pc(358) short finalActionId = (short) (baseActionId + priorityModifier);
-                    addActionRow(Player.cursors[local275], (long) playerId, JString.concatenate(new JString[] {WHITE, tooltip }), localX, finalActionId, Player.options[local275], localZ);
+                    addActionRow(Player.cursors[playerOptionIndex], (long) playerId, JString.concatenate(new JString[] {WHITE, tooltip }), localX, finalActionId, Player.options[playerOptionIndex], localZ);
                 }
             }
-        } else if ((useWithMask & 0x8) != 0) {
-            addActionRow(useWithCursor, (long) playerId, JString.concatenate(new JString[] {aClass100_466, aClass100_561, tooltip }), localX, (short) 15, aClass100_545, localZ);
+        } else if ((useWithMask & TARGET_MASK_PLAYER) != 0) {
+            addActionRow(useWithCursor, (long) playerId, JString.concatenate(new JString[] {aClass100_466, WHITE_ARROW, tooltip }), localX, (short) 15, aClass100_545, localZ);
         }
-        for (local275 = 0; local275 < menuActionRow; local275++) {
-            if (actions[local275] == 60) {
-                opBases[local275] = JString.concatenate(new JString[] {WHITE, tooltip });
+        for (playerOptionIndex = 0; playerOptionIndex < menuActionRow; playerOptionIndex++) {
+            if (actions[playerOptionIndex] == 60) {
+                opBases[playerOptionIndex] = JString.concatenate(new JString[] {WHITE, tooltip });
                 break;
             }
         }
@@ -1808,7 +1821,7 @@ public class MiniMenu {
     }
 
     @OriginalMember(owner = "runetek4.client!ub", name = "b", descriptor = "(IIIIIII)V")
-    public static void startUseWith(@OriginalArg(0) int componentId, @OriginalArg(1) int slot, @OriginalArg(2) int targetMask, @OriginalArg(3) int param, @OriginalArg(4) int cursor, @OriginalArg(6) int defaultCursordefaultCursor) {
+    public static void startUseWith(@OriginalArg(0) int componentId, @OriginalArg(1) int slot, @OriginalArg(2) int targetMask, @OriginalArg(3) int param, @OriginalArg(4) int cursor, @OriginalArg(6) int defaultCursorValue) {
         @Pc(8) Component component = ComponentList.getCreatedComponent(componentId, slot);
         if (component != null && component.onUse != null) {
             @Pc(19) ComponentEvent event = new ComponentEvent();
@@ -1822,7 +1835,7 @@ public class MiniMenu {
         useWithMask = targetMask;
         useWithActive = true;
         useWithCursor = cursor;
-        defaultCursor = defaultCursordefaultCursor;
+        defaultCursor = defaultCursorValue;
         ComponentList.redraw(component);
     }
 

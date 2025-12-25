@@ -27,7 +27,7 @@ public class Preferences {
     public static int ambientSoundsVolume = 127;
 
     @OriginalMember(owner = "runetek4.client!cj", name = "h", descriptor = "Z")
-    public static boolean aBoolean63;
+    public static boolean keyboardCameraEnabled;
 
     @OriginalMember(owner = "client!bh", name = "z", descriptor = "Z")
     public static boolean sentToServer = true;
@@ -105,23 +105,23 @@ public class Preferences {
     private static int particles = 2;
 
     @OriginalMember(owner = "runetek4.client!qh", name = "a", descriptor = "(Lsignlink!ll;B)V")
-    public static void write(@OriginalArg(0) SignLink arg0) {
-        @Pc(11) FileOnDisk local11 = null;
+    public static void write(@OriginalArg(0) SignLink signLink) {
+        @Pc(11) FileOnDisk preferencesFile = null;
         try {
-            @Pc(16) PrivilegedRequest local16 = arg0.openPreferences("runescape");
-            while (local16.status == 0) {
+            @Pc(16) PrivilegedRequest openRequest = signLink.openPreferences("runescape");
+            while (openRequest.status == 0) {
                 ThreadUtils.sleep(1L);
             }
-            if (local16.status == 1) {
-                local11 = (FileOnDisk) local16.result;
-                @Pc(39) Packet local39 = encode();
-                local11.write(local39.data, local39.offset, 0);
+            if (openRequest.status == 1) {
+                preferencesFile = (FileOnDisk) openRequest.result;
+                @Pc(39) Packet encodedData = encode();
+                preferencesFile.write(encodedData.data, encodedData.offset, 0);
             }
         } catch (@Pc(49) Exception ignored) {
         }
         try {
-            if (local11 != null) {
-                local11.close();
+            if (preferencesFile != null) {
+                preferencesFile.close();
             }
         } catch (@Pc(56) Exception ignored) {
         }
@@ -133,12 +133,12 @@ public class Preferences {
     }
 
     @OriginalMember(owner = "runetek4.client!ga", name = "b", descriptor = "(I)V")
-    public static void setParticles(@OriginalArg(0) int arg0) {
-        particles = arg0;
+    public static void setParticles(@OriginalArg(0) int particleSetting) {
+        particles = particleSetting;
     }
 
     @OriginalMember(owner = "runetek4.client!gf", name = "a", descriptor = "(Lsignlink!ll;I)V")
-    public static void read(@OriginalArg(0) SignLink arg0) {
+    public static void read(@OriginalArg(0) SignLink signLink) {
         brightness = 3;
         setLowmem(true);
         roofsVisible = true;
@@ -159,7 +159,7 @@ public class Preferences {
         musicVolume = 255;
         highDetailTextures = true;
         antiAliasingMode = 0;
-        @Pc(48) FileOnDisk local48 = null;
+        @Pc(48) FileOnDisk preferencesFile = null;
         soundEffectVolume = 127;
         if (GameShell.maxMemory >= 96) {
             setParticles(2);
@@ -168,77 +168,77 @@ public class Preferences {
         }
         lastWorldId = 0;
         buildArea = 0;
-        aBoolean63 = false;
+        keyboardCameraEnabled = false;
         cursorsEnabled = true;
         safeMode = false;
         hdr = false;
         favoriteWorlds = 0;
         try {
-            @Pc(78) PrivilegedRequest local78 = arg0.openPreferences("runescape");
-            while (local78.status == 0) {
+            @Pc(78) PrivilegedRequest openRequest = signLink.openPreferences("runescape");
+            while (openRequest.status == 0) {
                 ThreadUtils.sleep(1L);
             }
-            if (local78.status == 1) {
-                local48 = (FileOnDisk) local78.result;
-                @Pc(106) byte[] local106 = new byte[(int) local48.length()];
-                @Pc(128) int local128;
-                for (@Pc(108) int local108 = 0; local108 < local106.length; local108 += local128) {
-                    local128 = local48.read(local108, local106.length - local108, local106);
-                    if (local128 == -1) {
+            if (openRequest.status == 1) {
+                preferencesFile = (FileOnDisk) openRequest.result;
+                @Pc(106) byte[] preferencesData = new byte[(int) preferencesFile.length()];
+                @Pc(128) int bytesRead;
+                for (@Pc(108) int offset = 0; offset < preferencesData.length; offset += bytesRead) {
+                    bytesRead = preferencesFile.read(offset, preferencesData.length - offset, preferencesData);
+                    if (bytesRead == -1) {
                         throw new IOException("EOF");
                     }
                 }
-                decode(new Packet(local106));
+                decode(new Packet(preferencesData));
             }
         } catch (@Pc(151) Exception ignored) {
         }
         try {
-            if (local48 != null) {
-                local48.close();
+            if (preferencesFile != null) {
+                preferencesFile.close();
             }
         } catch (@Pc(158) Exception ignored) {
         }
     }
 
     @OriginalMember(owner = "runetek4.client!ec", name = "a", descriptor = "(IZ)V")
-    public static void setLowmem(@OriginalArg(1) boolean arg0) {
-        lowmem = arg0;
+    public static void setLowmem(@OriginalArg(1) boolean lowMemEnabled) {
+        lowmem = lowMemEnabled;
         SceneGraph.hdLighting = !SceneGraph.allLevelsAreVisible();
     }
 
     @OriginalMember(owner = "client!dl", name = "a", descriptor = "(B)Lclient!wa;")
     public static Packet encode() {
-        @Pc(4) Packet local4 = new Packet(34);
-        local4.p1(11);
-        local4.p1(brightness);
-        local4.p1(lowmem ? 1 : 0);
-        local4.p1(roofsVisible ? 1 : 0);
-        local4.p1(showGroundDecorations ? 1 : 0);
-        local4.p1(highDetailTextures ? 1 : 0);
-        local4.p1(manyIdleAnimations ? 1 : 0);
-        local4.p1(flickeringEffectsOn ? 1 : 0);
-        local4.p1(manyGroundTextures ? 1 : 0);
-        local4.p1(characterShadowsOn ? 1 : 0);
-        local4.p1(sceneryShadowsType);
-        local4.p1(highDetailLighting ? 1 : 0);
-        local4.p1(highWaterDetail ? 1 : 0);
-        local4.p1(fogEnabled ? 1 : 0);
-        local4.p1(windowMode);
-        local4.p1(stereo ? 1 : 0);
-        local4.p1(soundEffectVolume);
-        local4.p1(musicVolume);
-        local4.p1(ambientSoundsVolume);
-        local4.p2(fullScreenWidth);
-        local4.p2(fullScreenHeight);
-        local4.p1(getParticleSetting());
-        local4.p4(lastWorldId);
-        local4.p1(favoriteWorlds);
-        local4.p1(safeMode ? 1 : 0);
-        local4.p1(aBoolean63 ? 1 : 0);
-        local4.p1(buildArea);
-        local4.p1(hdr ? 1 : 0);
-        local4.p1(cursorsEnabled ? 1 : 0);
-        return local4;
+        @Pc(4) Packet packet = new Packet(34);
+        packet.p1(11);
+        packet.p1(brightness);
+        packet.p1(lowmem ? 1 : 0);
+        packet.p1(roofsVisible ? 1 : 0);
+        packet.p1(showGroundDecorations ? 1 : 0);
+        packet.p1(highDetailTextures ? 1 : 0);
+        packet.p1(manyIdleAnimations ? 1 : 0);
+        packet.p1(flickeringEffectsOn ? 1 : 0);
+        packet.p1(manyGroundTextures ? 1 : 0);
+        packet.p1(characterShadowsOn ? 1 : 0);
+        packet.p1(sceneryShadowsType);
+        packet.p1(highDetailLighting ? 1 : 0);
+        packet.p1(highWaterDetail ? 1 : 0);
+        packet.p1(fogEnabled ? 1 : 0);
+        packet.p1(windowMode);
+        packet.p1(stereo ? 1 : 0);
+        packet.p1(soundEffectVolume);
+        packet.p1(musicVolume);
+        packet.p1(ambientSoundsVolume);
+        packet.p2(fullScreenWidth);
+        packet.p2(fullScreenHeight);
+        packet.p1(getParticleSetting());
+        packet.p4(lastWorldId);
+        packet.p1(favoriteWorlds);
+        packet.p1(safeMode ? 1 : 0);
+        packet.p1(keyboardCameraEnabled ? 1 : 0);
+        packet.p1(buildArea);
+        packet.p1(hdr ? 1 : 0);
+        packet.p1(cursorsEnabled ? 1 : 0);
+        return packet;
     }
 
     @OriginalMember(owner = "runetek4.client!kk", name = "b", descriptor = "(Lclient!wa;I)V")
@@ -344,7 +344,7 @@ public class Preferences {
             safeMode = packet.g1() == 1;
         }
         if (version >= 8) {
-            aBoolean63 = packet.g1() == 1;
+            keyboardCameraEnabled = packet.g1() == 1;
         }
         if (version >= 9) {
             buildArea = packet.g1();
