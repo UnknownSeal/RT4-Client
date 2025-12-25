@@ -1,6 +1,7 @@
-package com.jagex.runetek4.entity.entity;
+package com.jagex.runetek4.entity.player;
 
 import com.jagex.runetek4.core.io.Packet;
+import com.jagex.runetek4.entity.npc.NpcList;
 import com.jagex.runetek4.util.string.JString;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;

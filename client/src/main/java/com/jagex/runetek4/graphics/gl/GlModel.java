@@ -5,7 +5,7 @@ import java.nio.ByteBuffer;
 import com.jagex.runetek4.client.Preferences;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.graphics.effects.ParticleSystem;
-import com.jagex.runetek4.entity.entity.Entity;
+import com.jagex.runetek4.entity.Entity;
 import com.jagex.runetek4.graphics.geometry.TriangleNormal;
 import com.jagex.runetek4.graphics.geometry.VertexNormal;
 import com.jagex.runetek4.graphics.lighting.FogManager;

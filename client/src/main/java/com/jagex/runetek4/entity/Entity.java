@@ -1,4 +1,4 @@
-package com.jagex.runetek4.entity.entity;
+package com.jagex.runetek4.entity;
 
 import com.jagex.runetek4.graphics.effects.ParticleSystem;
 import org.openrs2.deob.annotation.OriginalArg;

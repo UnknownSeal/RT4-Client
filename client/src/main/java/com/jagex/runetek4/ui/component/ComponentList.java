@@ -4,9 +4,9 @@ import com.jagex.runetek4.config.types.obj.ObjType;
 import com.jagex.runetek4.config.types.obj.ObjTypeList;
 import com.jagex.runetek4.data.cache.CacheArchive;
 import com.jagex.runetek4.data.cache.media.Font;
-import com.jagex.runetek4.entity.entity.PlayerAppearance;
-import com.jagex.runetek4.entity.entity.PlayerList;
-import com.jagex.runetek4.entity.entity.PlayerSkillXpTable;
+import com.jagex.runetek4.entity.player.PlayerAppearance;
+import com.jagex.runetek4.entity.player.PlayerList;
+import com.jagex.runetek4.entity.player.PlayerSkillXpTable;
 import com.jagex.runetek4.graphics.effects.Flames;
 import com.jagex.runetek4.graphics.gl.GlCleaner;
 import com.jagex.runetek4.graphics.model.Model;
@@ -16,10 +16,9 @@ import com.jagex.runetek4.scene.Camera;
 import com.jagex.runetek4.scene.SceneGraph;
 import com.jagex.runetek4.ui.chat.Chat;
 import com.jagex.runetek4.ui.chat.ClanChat;
-import com.jagex.runetek4.client.LoginManager;
+import com.jagex.runetek4.client.auth.LoginManager;
 import com.jagex.runetek4.config.types.seq.SeqType;
 import com.jagex.runetek4.data.cache.media.SoftwareSprite;
-import com.jagex.runetek4.data.cache.media.component.Component;
 import com.jagex.runetek4.client.GameShell;
 import com.jagex.runetek4.client.Preferences;
 import com.jagex.runetek4.client.Client;
@@ -30,7 +29,7 @@ import com.jagex.runetek4.core.datastruct.HashTableIterator;
 import com.jagex.runetek4.core.datastruct.LinkList;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.config.types.cursor.CursorType;
-import com.jagex.runetek4.entity.entity.Player;
+import com.jagex.runetek4.entity.player.Player;
 import com.jagex.runetek4.game.inventory.Inv;
 import com.jagex.runetek4.game.state.VarcDomain;
 import com.jagex.runetek4.game.state.VarpDomain;
@@ -419,7 +418,7 @@ public class ComponentList {
 
     @OriginalMember(owner = "runetek4.client!rb", name = "a", descriptor = "(ZB)V")
     public static void updateInterfaceLayout(@OriginalArg(0) boolean fullUpdate) {
-        updateInterfaceLayoutImpl(GameShell.canvasHeigth, fullUpdate, topLevelInterface, GameShell.canvasWidth);
+        updateInterfaceLayoutImpl(GameShell.canvasHeight, fullUpdate, topLevelInterface, GameShell.canvasWidth);
     }
 
     @OriginalMember(owner = "runetek4.client!ab", name = "a", descriptor = "(ZLclient!ve;Lclient!ve;Lclient!ve;Lclient!ve;)V")
@@ -735,7 +734,7 @@ public class ComponentList {
         @Pc(19) int availableWidth;
         @Pc(17) int availableHeight;
         if (parentComponent == null) {
-            availableHeight = GameShell.canvasHeigth;
+            availableHeight = GameShell.canvasHeight;
             availableWidth = GameShell.canvasWidth;
         } else {
             availableHeight = parentComponent.height;

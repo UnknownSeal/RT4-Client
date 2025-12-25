@@ -5,6 +5,16 @@ import java.util.Calendar;
 import java.util.Date;
 
 import com.jagex.runetek4.*;
+import com.jagex.runetek4.client.auth.CreateManager;
+import com.jagex.runetek4.client.auth.LoginManager;
+import com.jagex.runetek4.entity.Entity;
+import com.jagex.runetek4.entity.PathingEntity;
+import com.jagex.runetek4.entity.npc.Npc;
+import com.jagex.runetek4.entity.npc.NpcList;
+import com.jagex.runetek4.entity.player.Player;
+import com.jagex.runetek4.entity.player.PlayerAppearance;
+import com.jagex.runetek4.entity.player.PlayerList;
+import com.jagex.runetek4.entity.player.PlayerSkillXpTable;
 import com.jagex.runetek4.graphics.animation.ProjAnimNode;
 import com.jagex.runetek4.graphics.animation.ProjectileAnimation;
 import com.jagex.runetek4.graphics.animation.SpotAnim;
@@ -22,7 +32,7 @@ import com.jagex.runetek4.client.*;
 import com.jagex.runetek4.config.types.npc.NpcType;
 import com.jagex.runetek4.config.types.obj.ObjType;
 import com.jagex.runetek4.data.cache.media.Font;
-import com.jagex.runetek4.data.cache.media.component.Component;
+import com.jagex.runetek4.ui.component.Component;
 import com.jagex.runetek4.config.types.enums.EnumTypeList;
 import com.jagex.runetek4.config.types.idk.IDKTypeList;
 import com.jagex.runetek4.config.types.inv.InvTypeList;
@@ -41,7 +51,6 @@ import com.jagex.runetek4.core.exceptions.TracingException;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.config.types.enums.EnumType;
 import com.jagex.runetek4.config.types.quickchat.QuickChatPhraseType;
-import com.jagex.runetek4.entity.entity.*;
 import com.jagex.runetek4.game.logic.Find;
 import com.jagex.runetek4.game.logic.PathFinder;
 import com.jagex.runetek4.game.combat.HitBarList;
@@ -6204,8 +6213,8 @@ public final class ClientScriptRunner {
 		@Pc(43) int menuY = scriptMouseY;
 		maxWidth += 8;
 		local27 = scriptMouseX - maxWidth / 2;
-		if (menuY + menuHeight > GameShell.canvasHeigth) {
-			menuY = GameShell.canvasHeigth - menuHeight;
+		if (menuY + menuHeight > GameShell.canvasHeight) {
+			menuY = GameShell.canvasHeight - menuHeight;
 		}
 		if (GameShell.canvasWidth < local27 + maxWidth) {
 			local27 = GameShell.canvasWidth - maxWidth;

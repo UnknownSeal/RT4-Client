@@ -1,8 +1,8 @@
 package com.jagex.runetek4.scene;
 
 import com.jagex.runetek4.client.Preferences;
-import com.jagex.runetek4.entity.entity.Player;
-import com.jagex.runetek4.entity.entity.PlayerList;
+import com.jagex.runetek4.entity.player.Player;
+import com.jagex.runetek4.entity.player.PlayerList;
 import com.jagex.runetek4.graphics.gl.GlRenderer;
 import com.jagex.runetek4.input.Keyboard;
 import com.jagex.runetek4.clientscript.ClientScriptRunner;

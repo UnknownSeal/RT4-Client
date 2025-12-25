@@ -1,4 +1,4 @@
-package com.jagex.runetek4.entity.entity;
+package com.jagex.runetek4.entity.player;
 
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.audio.core.SoundPlayer;
@@ -13,6 +13,10 @@ import com.jagex.runetek4.config.types.seq.SeqTypeList;
 import com.jagex.runetek4.config.types.spotanim.SpotAnimTypeList;
 import com.jagex.runetek4.config.types.bas.BasType;
 import com.jagex.runetek4.config.types.seq.SeqType;
+import com.jagex.runetek4.entity.PathingEntity;
+import com.jagex.runetek4.entity.PathingEntityAnimation;
+import com.jagex.runetek4.entity.npc.Npc;
+import com.jagex.runetek4.entity.npc.NpcList;
 import com.jagex.runetek4.graphics.effects.ParticleSystem;
 import com.jagex.runetek4.game.logic.HintArrowManager;
 import com.jagex.runetek4.game.inventory.Equipment;

@@ -1,14 +1,14 @@
 package com.jagex.runetek4.network;
 
-import com.jagex.runetek4.data.cache.media.component.Component;
-import com.jagex.runetek4.entity.entity.PlayerList;
+import com.jagex.runetek4.ui.component.Component;
+import com.jagex.runetek4.entity.player.PlayerList;
 import com.jagex.runetek4.scene.Camera;
 import com.jagex.runetek4.ui.chat.Chat;
 import com.jagex.runetek4.client.GameShell;
-import com.jagex.runetek4.client.LoginManager;
+import com.jagex.runetek4.client.auth.LoginManager;
 import com.jagex.runetek4.client.Preferences;
 import com.jagex.runetek4.client.Client;
-import com.jagex.runetek4.entity.entity.Player;
+import com.jagex.runetek4.entity.player.Player;
 import com.jagex.runetek4.game.logic.PathFinder;
 import com.jagex.runetek4.graphics.core.DisplayMode;
 import com.jagex.runetek4.input.Keyboard;
@@ -164,7 +164,7 @@ public class ClientProt {
         Protocol.outboundBuffer.pIsaac1(WINDOW_STATUS);
         Protocol.outboundBuffer.p1(DisplayMode.getWindowMode());
         Protocol.outboundBuffer.p2(GameShell.canvasWidth);
-        Protocol.outboundBuffer.p2(GameShell.canvasHeigth);
+        Protocol.outboundBuffer.p2(GameShell.canvasHeight);
         Protocol.outboundBuffer.p1(Preferences.antiAliasingMode);
     }
 

@@ -1,5 +1,7 @@
-package com.jagex.runetek4.client;
+package com.jagex.runetek4.client.ui;
 
+import com.jagex.runetek4.client.Client;
+import com.jagex.runetek4.client.GameShell;
 import com.jagex.runetek4.util.string.JString;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -27,7 +29,7 @@ public class LoadingBarAwt {
             }
             if (redraw) {
                 graphics.setColor(Color.black);
-                graphics.fillRect(0, 0, GameShell.canvasWidth, GameShell.canvasHeigth);
+                graphics.fillRect(0, 0, GameShell.canvasWidth, GameShell.canvasHeight);
             }
             if (color == null) {
                 color = new Color(140, 17, 17);
@@ -46,10 +48,10 @@ public class LoadingBarAwt {
                 loadingBarGraphics.setFont(font);
                 loadingBarGraphics.setColor(Color.white);
                 text.drawString(22, (304 - text.stringWidth(fontMetrics)) / 2, loadingBarGraphics);
-                graphics.drawImage(loadingBar, GameShell.canvasWidth / 2 - 152, GameShell.canvasHeigth / 2 - 18, null);
+                graphics.drawImage(loadingBar, GameShell.canvasWidth / 2 - 152, GameShell.canvasHeight / 2 - 18, null);
             } catch (@Pc(134) Exception exception) {
                 @Pc(140) int x = GameShell.canvasWidth / 2 - 152;
-                @Pc(146) int y = GameShell.canvasHeigth / 2 - 18;
+                @Pc(146) int y = GameShell.canvasHeight / 2 - 18;
                 graphics.setColor(color);
                 graphics.drawRect(x, y, 303, 33);
                 graphics.fillRect(x + 2, y + 2, loadingBarPercentage * 3, 30);
@@ -63,7 +65,7 @@ public class LoadingBarAwt {
             if (Client.mainLoadPrimaryText != null) {
                 graphics.setFont(font);
                 graphics.setColor(Color.white);
-                Client.mainLoadPrimaryText.drawString(GameShell.canvasHeigth / 2 - 26, GameShell.canvasWidth / 2 - Client.mainLoadPrimaryText.stringWidth(fontMetrics) / 2, graphics);
+                Client.mainLoadPrimaryText.drawString(GameShell.canvasHeight / 2 - 26, GameShell.canvasWidth / 2 - Client.mainLoadPrimaryText.stringWidth(fontMetrics) / 2, graphics);
             }
         } catch (@Pc(252) Exception exception) {
             GameShell.canvas.repaint();

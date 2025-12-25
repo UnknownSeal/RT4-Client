@@ -8,7 +8,7 @@ import com.jagex.runetek4.config.types.loc.LocTypeList;
 import com.jagex.runetek4.config.types.seq.SeqTypeList;
 import com.jagex.runetek4.config.types.loc.LocType;
 import com.jagex.runetek4.config.types.seq.SeqType;
-import com.jagex.runetek4.entity.entity.Entity;
+import com.jagex.runetek4.entity.Entity;
 import com.jagex.runetek4.graphics.gl.GlRenderer;
 import com.jagex.runetek4.graphics.lighting.ShadowManager;
 import com.jagex.runetek4.scene.SceneGraph;

@@ -1,5 +1,7 @@
-package com.jagex.runetek4.client;
+package com.jagex.runetek4.client.auth;
 
+import com.jagex.runetek4.client.Client;
+import com.jagex.runetek4.client.GameShell;
 import com.jagex.runetek4.util.data.Base37;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.util.string.JString;

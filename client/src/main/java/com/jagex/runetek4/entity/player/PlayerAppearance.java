@@ -1,5 +1,6 @@
-package com.jagex.runetek4.entity.entity;
+package com.jagex.runetek4.entity.player;
 
+import com.jagex.runetek4.entity.PathingEntityAnimation;
 import com.jagex.runetek4.graphics.animation.AnimFrameset;
 import com.jagex.runetek4.config.types.idk.IDKTypeList;
 import com.jagex.runetek4.config.types.npc.NpcTypeList;

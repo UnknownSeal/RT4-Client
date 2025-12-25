@@ -4,7 +4,7 @@ import com.jagex.runetek4.graphics.animation.AnimBase;
 import com.jagex.runetek4.graphics.animation.AnimFrame;
 import com.jagex.runetek4.graphics.animation.AnimFrameset;
 import com.jagex.runetek4.graphics.effects.ParticleSystem;
-import com.jagex.runetek4.entity.entity.Entity;
+import com.jagex.runetek4.entity.Entity;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;

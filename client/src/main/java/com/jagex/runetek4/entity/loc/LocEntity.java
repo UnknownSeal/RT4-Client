@@ -1,6 +1,6 @@
 package com.jagex.runetek4.entity.loc;
 
-import com.jagex.runetek4.entity.entity.Entity;
+import com.jagex.runetek4.entity.Entity;
 import com.jagex.runetek4.ui.sprite.SoftwareIndexedSprite;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;

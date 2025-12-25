@@ -4,8 +4,9 @@ import com.jagex.runetek4.audio.core.SoundPlayer;
 import com.jagex.runetek4.audio.midi.MidiPlayer;
 import com.jagex.runetek4.audio.spatial.AreaSoundManager;
 import com.jagex.runetek4.audio.streaming.MusicPlayer;
-import com.jagex.runetek4.data.cache.media.component.Component;
-import com.jagex.runetek4.entity.entity.PlayerList;
+import com.jagex.runetek4.client.auth.LoginManager;
+import com.jagex.runetek4.ui.component.Component;
+import com.jagex.runetek4.entity.player.PlayerList;
 import com.jagex.runetek4.network.ClientProt;
 import com.jagex.runetek4.scene.Camera;
 import com.jagex.runetek4.ui.chat.OverHeadChat;
@@ -21,9 +22,9 @@ import com.jagex.runetek4.clientscript.ClientScriptRunner;
 import com.jagex.runetek4.ui.component.MiniMap;
 import com.jagex.runetek4.input.Keyboard;
 import com.jagex.runetek4.input.MouseCapturer;
-import com.jagex.runetek4.entity.entity.Player;
+import com.jagex.runetek4.entity.player.Player;
 import com.jagex.runetek4.clientscript.ClientServerStateSync;
-import com.jagex.runetek4.entity.entity.NpcList;
+import com.jagex.runetek4.entity.npc.NpcList;
 import com.jagex.runetek4.input.Mouse;
 import com.jagex.runetek4.input.MouseWheel;
 import com.jagex.runetek4.ui.component.ComponentList;
@@ -467,7 +468,7 @@ public class Game {
         // WorldMap.component
         WorldMap.component = null;
         if (ComponentList.topLevelInterface != -1) {
-            ComponentList.renderInterface(0, 0, 0, GameShell.canvasWidth, ComponentList.topLevelInterface, 0, GameShell.canvasHeigth);
+            ComponentList.renderInterface(0, 0, 0, GameShell.canvasWidth, ComponentList.topLevelInterface, 0, GameShell.canvasHeight);
         }
         ComponentList.transmitTimer++;
         while (true) {

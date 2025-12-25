@@ -1,10 +1,10 @@
 package com.jagex.runetek4.game.logic;
 
 import com.jagex.runetek4.ui.component.Crosshair;
-import com.jagex.runetek4.entity.entity.PlayerList;
+import com.jagex.runetek4.entity.player.PlayerList;
 import com.jagex.runetek4.config.types.loc.LocTypeList;
 import com.jagex.runetek4.config.types.loc.LocType;
-import com.jagex.runetek4.entity.entity.Player;
+import com.jagex.runetek4.entity.player.Player;
 import com.jagex.runetek4.input.Mouse;
 import com.jagex.runetek4.network.ClientProt;
 import org.openrs2.deob.annotation.OriginalArg;

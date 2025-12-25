@@ -11,8 +11,8 @@ import com.jagex.runetek4.config.types.npc.NpcType;
 import com.jagex.runetek4.config.types.bas.BasType;
 
 import com.jagex.runetek4.core.datastruct.LinkList;
-import com.jagex.runetek4.entity.entity.Npc;
-import com.jagex.runetek4.entity.entity.Player;
+import com.jagex.runetek4.entity.npc.Npc;
+import com.jagex.runetek4.entity.player.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;

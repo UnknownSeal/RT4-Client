@@ -10,11 +10,21 @@ import com.jagex.runetek4.*;
 import com.jagex.runetek4.audio.core.MixerPcmStream;
 import com.jagex.runetek4.audio.core.SoundPlayer;
 import com.jagex.runetek4.audio.streaming.MusicPlayer;
+import com.jagex.runetek4.client.auth.CreateManager;
+import com.jagex.runetek4.client.auth.LoginManager;
+import com.jagex.runetek4.client.ui.LoadingBar;
+import com.jagex.runetek4.client.ui.LoadingBarAwt;
+import com.jagex.runetek4.client.ui.TitleScreen;
 import com.jagex.runetek4.core.datastruct.LruHashTable;
 import com.jagex.runetek4.core.exceptions.TracingException;
 import com.jagex.runetek4.data.compression.HuffmanCodec;
 import com.jagex.runetek4.data.js5.*;
-import com.jagex.runetek4.entity.entity.*;
+import com.jagex.runetek4.entity.npc.Npc;
+import com.jagex.runetek4.entity.npc.NpcList;
+import com.jagex.runetek4.entity.player.Player;
+import com.jagex.runetek4.entity.player.PlayerAppearance;
+import com.jagex.runetek4.entity.player.PlayerList;
+import com.jagex.runetek4.entity.player.PlayerSkillXpTable;
 import com.jagex.runetek4.game.world.WorldLoader;
 import com.jagex.runetek4.graphics.effects.Flames;
 import com.jagex.runetek4.graphics.effects.ParticleSystem;
@@ -84,7 +94,7 @@ import com.jagex.runetek4.ui.component.MiniMap;
 import com.jagex.runetek4.game.inventory.Inv;
 import com.jagex.runetek4.clientscript.ClientServerStateSync;
 import com.jagex.runetek4.config.types.bas.BasTypeList;
-import com.jagex.runetek4.data.cache.media.component.Component;
+import com.jagex.runetek4.ui.component.Component;
 import com.jagex.runetek4.config.types.flo.FloTypeList;
 import com.jagex.runetek4.input.Keyboard;
 import com.jagex.runetek4.input.MouseCapturer;
@@ -898,7 +908,7 @@ public final class Client extends GameShell {
 				local84 -= local90.top + local90.bottom;
 			}
 			if (local80 != GameShell.frameWidth || local84 != GameShell.frameHeight) {
-				GameShell.method3662();
+				GameShell.updateCanvasLayout();
 				DisplayMode.aLong89 = MonotonicTime.currentTimeMillis() + 500L;
 			}
 		}
@@ -911,7 +921,7 @@ public final class Client extends GameShell {
 			GameShell.fullredraw = false;
 		}
 		if (local158) {
-			GameShell.method2704();
+			GameShell.fillBlackBorders();
 		}
 		if (GlRenderer.enabled) {
 			for (local80 = 0; local80 < 100; local80++) {
@@ -1118,7 +1128,7 @@ public final class Client extends GameShell {
 	@OriginalMember(owner = "client!client", name = "g", descriptor = "(I)V")
 	@Override
 	protected void mainInit() {
-		GameShell.method3662();
+		GameShell.updateCanvasLayout();
 		js5CacheQueue = new Js5CacheQueue();
 		js5NetQueue = new Js5NetQueue();
 
@@ -1220,7 +1230,7 @@ public final class Client extends GameShell {
 		}
 		Protocol.sceneDelta++;
 		if (ComponentList.topLevelInterface != -1) {
-			ComponentList.renderInterface(0, 0, 0, GameShell.canvasWidth, ComponentList.topLevelInterface, 0, GameShell.canvasHeigth);
+			ComponentList.renderInterface(0, 0, 0, GameShell.canvasWidth, ComponentList.topLevelInterface, 0, GameShell.canvasHeight);
 		}
 		ComponentList.transmitTimer++;
 		if (GlRenderer.enabled) {

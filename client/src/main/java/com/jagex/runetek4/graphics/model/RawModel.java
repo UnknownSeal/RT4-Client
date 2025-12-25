@@ -4,7 +4,7 @@ import com.jagex.runetek4.graphics.effects.ParticleSystem;
 import com.jagex.runetek4.graphics.geometry.TriangleNormal;
 import com.jagex.runetek4.graphics.geometry.VertexNormal;
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.entity.entity.Entity;
+import com.jagex.runetek4.entity.Entity;
 import com.jagex.runetek4.graphics.gl.GlModel;
 import com.jagex.runetek4.graphics.gl.GlRenderer;
 import com.jagex.runetek4.data.js5.Js5;

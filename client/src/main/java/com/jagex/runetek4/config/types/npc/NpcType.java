@@ -9,7 +9,7 @@ import com.jagex.runetek4.config.types.bas.BasTypeList;
 import com.jagex.runetek4.game.state.VarpDomain;
 import com.jagex.runetek4.graphics.model.Model;
 import com.jagex.runetek4.graphics.model.RawModel;
-import com.jagex.runetek4.entity.entity.PathingEntityAnimation;
+import com.jagex.runetek4.entity.PathingEntityAnimation;
 import com.jagex.runetek4.graphics.gl.GlModel;
 import com.jagex.runetek4.graphics.gl.GlRenderer;
 import com.jagex.runetek4.util.string.JString;

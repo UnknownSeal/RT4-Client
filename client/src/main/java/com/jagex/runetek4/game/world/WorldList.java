@@ -5,7 +5,7 @@ import com.jagex.runetek4.MonotonicTime;
 import com.jagex.runetek4.client.GameShell;
 import com.jagex.runetek4.client.Client;
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.entity.entity.Player;
+import com.jagex.runetek4.entity.player.Player;
 import com.jagex.runetek4.util.string.JString;
 import com.jagex.runetek4.network.BufferedSocket;
 import com.jagex.runetek4.network.Protocol;

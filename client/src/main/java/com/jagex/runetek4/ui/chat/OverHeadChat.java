@@ -1,9 +1,9 @@
 package com.jagex.runetek4.ui.chat;
 
-import com.jagex.runetek4.entity.entity.PlayerList;
-import com.jagex.runetek4.entity.entity.Npc;
-import com.jagex.runetek4.entity.entity.NpcList;
-import com.jagex.runetek4.entity.entity.Player;
+import com.jagex.runetek4.entity.player.PlayerList;
+import com.jagex.runetek4.entity.npc.Npc;
+import com.jagex.runetek4.entity.npc.NpcList;
+import com.jagex.runetek4.entity.player.Player;
 import com.jagex.runetek4.util.string.JString;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;

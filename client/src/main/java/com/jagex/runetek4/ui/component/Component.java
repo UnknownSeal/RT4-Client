@@ -1,4 +1,4 @@
-package com.jagex.runetek4.data.cache.media.component;
+package com.jagex.runetek4.ui.component;
 
 import com.jagex.runetek4.data.cache.media.Font;
 import com.jagex.runetek4.config.types.obj.ObjType;
@@ -7,8 +7,7 @@ import com.jagex.runetek4.config.types.seq.SeqType;
 import com.jagex.runetek4.config.types.npc.NpcTypeList;
 import com.jagex.runetek4.config.types.obj.ObjTypeList;
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.ui.component.ServerActiveProperties;
-import com.jagex.runetek4.entity.entity.PlayerAppearance;
+import com.jagex.runetek4.entity.player.PlayerAppearance;
 import com.jagex.runetek4.graphics.model.Model;
 import com.jagex.runetek4.graphics.model.RawModel;
 import com.jagex.runetek4.graphics.gl.GlAlphaSprite;
@@ -18,7 +17,6 @@ import com.jagex.runetek4.ui.sprite.*;
 import com.jagex.runetek4.util.string.JString;
 import com.jagex.runetek4.util.string.LocalizedText;
 import com.jagex.runetek4.core.node.SoftLruHashTable;
-import com.jagex.runetek4.ui.component.ComponentList;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;

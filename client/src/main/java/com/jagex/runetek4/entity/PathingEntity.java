@@ -1,8 +1,10 @@
-package com.jagex.runetek4.entity.entity;
+package com.jagex.runetek4.entity;
 
 import com.jagex.runetek4.config.types.seq.SeqTypeList;
 import com.jagex.runetek4.config.types.bas.BasType;
 import com.jagex.runetek4.config.types.bas.BasTypeList;
+import com.jagex.runetek4.entity.player.Player;
+import com.jagex.runetek4.entity.player.PlayerList;
 import com.jagex.runetek4.graphics.effects.ParticleSystem;
 import com.jagex.runetek4.graphics.gl.GlRenderer;
 import com.jagex.runetek4.util.string.JString;

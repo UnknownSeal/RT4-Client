@@ -5,7 +5,7 @@ import com.jagex.runetek4.config.types.seq.SeqType;
 import com.jagex.runetek4.game.state.VarpDomain;
 import com.jagex.runetek4.entity.loc.LocEntity;
 import com.jagex.runetek4.graphics.model.RawModel;
-import com.jagex.runetek4.entity.entity.Entity;
+import com.jagex.runetek4.entity.Entity;
 import com.jagex.runetek4.graphics.gl.GlModel;
 import com.jagex.runetek4.graphics.gl.GlRenderer;
 import com.jagex.runetek4.util.string.JString;

@@ -40,7 +40,7 @@ public abstract class GameShell extends Canvas implements Runnable, FocusListene
 	@OriginalMember(owner = "client!dl", name = "d", descriptor = "I")
 	public static int canvasWidth;
 	@OriginalMember(owner = "client!uj", name = "B", descriptor = "I")
-	public static int canvasHeigth;
+	public static int canvasHeight;
 	@OriginalMember(owner = "client!lf", name = "f", descriptor = "I")
 	public static int leftMargin = 0;
 	@OriginalMember(owner = "client!od", name = "e", descriptor = "I")
@@ -99,7 +99,7 @@ public abstract class GameShell extends Canvas implements Runnable, FocusListene
 		if (signLink.eventQueue == null) {
 			return;
 		}
-		for (@Pc(19) int local19 = 0; local19 < 50 && signLink.eventQueue.peekEvent() != null; local19++) {
+		for (@Pc(19) int i = 0; i < 50 && signLink.eventQueue.peekEvent() != null; i++) {
 			ThreadUtils.sleep(1L);
 		}
 		if (source != null) {
@@ -115,12 +115,12 @@ public abstract class GameShell extends Canvas implements Runnable, FocusListene
     @OriginalMember(owner = "client!ta", name = "a", descriptor = "(Z)V")
     public static void resetTimer() {
         timer.reset();
-        @Pc(10) int local10;
-        for (local10 = 0; local10 < 32; local10++) {
-            redrawTimes[local10] = 0L;
+        @Pc(10) int i;
+        for (i = 0; i < 32; i++) {
+            redrawTimes[i] = 0L;
         }
-        for (local10 = 0; local10 < 32; local10++) {
-            logicTimes[local10] = 0L;
+        for (i = 0; i < 32; i++) {
+            logicTimes[i] = 0L;
         }
         logicCycles = 0;
     }
@@ -131,84 +131,84 @@ public abstract class GameShell extends Canvas implements Runnable, FocusListene
 	}
 
 	@OriginalMember(owner = "runetek4.client!qh", name = "a", descriptor = "(Z)V")
-	public static void method3662() {
-		@Pc(8) Container local8;
+	public static void updateCanvasLayout() {
+		@Pc(8) Container activeContainer;
 		if (fullScreenFrame != null) {
-			local8 = fullScreenFrame;
+			activeContainer = fullScreenFrame;
 		} else {
-			local8 = frame;
+			activeContainer = frame;
 		}
-		frameWidth = local8.getSize().width;
-		frameHeight = local8.getSize().height;
-		@Pc(35) Insets local35;
-		if (local8 == frame) {
-			local35 = frame.getInsets();
-			frameHeight -= local35.bottom + local35.top;
-			frameWidth -= local35.right + local35.left;
+		frameWidth = activeContainer.getSize().width;
+		frameHeight = activeContainer.getSize().height;
+		@Pc(35) Insets insets;
+		if (activeContainer == frame) {
+			insets = frame.getInsets();
+			frameHeight -= insets.bottom + insets.top;
+			frameWidth -= insets.right + insets.left;
 		}
 		if (DisplayMode.getWindowMode() >= 2) {
 			canvasWidth = frameWidth;
 			leftMargin = 0;
 			topMargin = 0;
-			canvasHeigth = frameHeight;
+			canvasHeight = frameHeight;
 		} else {
 			topMargin = 0;
 			leftMargin = (frameWidth - 765) / 2;
-			canvasHeigth = 503;
+			canvasHeight = 503;
 			canvasWidth = 765;
 		}
 		if (GlRenderer.enabled) {
-			GlRenderer.setCanvasSize(canvasWidth, canvasHeigth);
+			GlRenderer.setCanvasSize(canvasWidth, canvasHeight);
 		}
-		canvas.setSize(canvasWidth, canvasHeigth);
-		if (local8 == frame) {
-			local35 = frame.getInsets();
-			canvas.setLocation(local35.left + leftMargin, topMargin + local35.top);
+		canvas.setSize(canvasWidth, canvasHeight);
+		if (activeContainer == frame) {
+			insets = frame.getInsets();
+			canvas.setLocation(insets.left + leftMargin, topMargin + insets.top);
 		} else {
 			canvas.setLocation(leftMargin, topMargin);
 		}
 		if (ComponentList.topLevelInterface != -1) {
 			ComponentList.updateInterfaceLayout(true);
 		}
-		method2704();
+		fillBlackBorders();
 	}
 
 	@OriginalMember(owner = "runetek4.client!l", name = "b", descriptor = "(I)V")
-	public static void method2704() {
-		@Pc(7) int local7 = topMargin;
-		@Pc(9) int local9 = leftMargin;
-		@Pc(16) int local16 = frameHeight - canvasHeigth - local7;
-		@Pc(23) int local23 = frameWidth - local9 - canvasWidth;
-		if (local9 <= 0 && local23 <= 0 && local7 <= 0 && local16 <= 0) {
+	public static void fillBlackBorders() {
+		@Pc(7) int currentTopMargin = topMargin;
+		@Pc(9) int currentLeftMargin = leftMargin;
+		@Pc(16) int bottomBorderHeight = frameHeight - canvasHeight - currentTopMargin;
+		@Pc(23) int rightBorderWidth = frameWidth - currentLeftMargin - canvasWidth;
+		if (currentLeftMargin <= 0 && rightBorderWidth <= 0 && currentTopMargin <= 0 && bottomBorderHeight <= 0) {
 			return;
 		}
 		try {
-			@Pc(46) Container local46;
+			@Pc(46) Container activeContainer;
 			if (fullScreenFrame != null) {
-				local46 = fullScreenFrame;
+				activeContainer = fullScreenFrame;
 			} else {
-				local46 = frame;
+				activeContainer = frame;
 			}
-			@Pc(59) int local59 = 0;
-			@Pc(61) int local61 = 0;
-			if (frame == local46) {
-				@Pc(68) Insets local68 = frame.getInsets();
-				local61 = local68.left;
-				local59 = local68.top;
+			@Pc(59) int insetsTop = 0;
+			@Pc(61) int insetsLeft = 0;
+			if (frame == activeContainer) {
+				@Pc(68) Insets insets = frame.getInsets();
+				insetsLeft = insets.left;
+				insetsTop = insets.top;
 			}
-			@Pc(77) Graphics local77 = local46.getGraphics();
-			local77.setColor(Color.black);
-			if (local9 > 0) {
-				local77.fillRect(local61, local59, local9, frameHeight);
+			@Pc(77) Graphics graphics = activeContainer.getGraphics();
+			graphics.setColor(Color.black);
+			if (currentLeftMargin > 0) {
+				graphics.fillRect(insetsLeft, insetsTop, currentLeftMargin, frameHeight);
 			}
-			if (local7 > 0) {
-				local77.fillRect(local61, local59, frameWidth, local7);
+			if (currentTopMargin > 0) {
+				graphics.fillRect(insetsLeft, insetsTop, frameWidth, currentTopMargin);
 			}
-			if (local23 > 0) {
-				local77.fillRect(local61 + frameWidth - local23, local59, local23, frameHeight);
+			if (rightBorderWidth > 0) {
+				graphics.fillRect(insetsLeft + frameWidth - rightBorderWidth, insetsTop, rightBorderWidth, frameHeight);
 			}
-			if (local16 > 0) {
-				local77.fillRect(local61, local59 + frameHeight - local16, frameWidth, local16);
+			if (bottomBorderHeight > 0) {
+				graphics.fillRect(insetsLeft, insetsTop + frameHeight - bottomBorderHeight, frameWidth, bottomBorderHeight);
 			}
 		} catch (@Pc(132) Exception ignored) {
 		}
@@ -266,7 +266,7 @@ public abstract class GameShell extends Canvas implements Runnable, FocusListene
 		container.setLayout(null);
 		canvas = new GameCanvas(this);
 		container.add(canvas);
-		canvas.setSize(canvasWidth, canvasHeigth);
+		canvas.setSize(canvasWidth, canvasHeight);
 		canvas.setVisible(true);
 		if (container == frame) {
 			@Pc(66) Insets insets = frame.getInsets();
@@ -376,15 +376,15 @@ public abstract class GameShell extends Canvas implements Runnable, FocusListene
 
 	@OriginalMember(owner = "client!rc", name = "b", descriptor = "(Z)V")
 	private void mainLoopWrapper() {
-		@Pc(6) long local6 = MonotonicTime.currentTimeMillis();
-		@Pc(10) long local10 = logicTimes[logicTimePointer];
-		logicTimes[logicTimePointer] = local6;
+		@Pc(6) long currentTime = MonotonicTime.currentTimeMillis();
+		@Pc(10) long previousLogicTime = logicTimes[logicTimePointer];
+		logicTimes[logicTimePointer] = currentTime;
 		logicTimePointer = logicTimePointer + 1 & 0x1F;
 		synchronized (this) {
 			focus = focus_in;
 		}
 		this.mainloop();
-		if (local10 != 0L && local6 <= local10) {
+		if (previousLogicTime != 0L && currentTime <= previousLogicTime) {
 			// TODO why is this here?
 		}
 	}
@@ -405,17 +405,17 @@ public abstract class GameShell extends Canvas implements Runnable, FocusListene
 	@OriginalMember(owner = "client!rc", name = "e", descriptor = "(I)V")
 	private void mainRedrawWrapper() {
 		@Pc(2) long now = MonotonicTime.currentTimeMillis();
-		@Pc(6) long local6 = redrawTimes[redrawTimePointer];
+		@Pc(6) long previousRedrawTime = redrawTimes[redrawTimePointer];
 		redrawTimes[redrawTimePointer] = now;
 		redrawTimePointer = redrawTimePointer + 1 & 0x1F;
-		if (local6 != 0L && now > local6) {
-			@Pc(41) int local41 = (int) (now - local6);
-			fps = ((local41 >> 1) + 32000) / local41;
+		if (previousRedrawTime != 0L && now > previousRedrawTime) {
+			@Pc(41) int deltaTime = (int) (now - previousRedrawTime);
+			fps = ((deltaTime >> 1) + 32000) / deltaTime;
 		}
 		if (partialRedraws++ > 50) {
 			fullredraw = true;
 			partialRedraws -= 50;
-			canvas.setSize(canvasWidth, canvasHeigth);
+			canvas.setSize(canvasWidth, canvasHeight);
 			canvas.setVisible(true);
 			canvasScale = getCurrentDevice().getDefaultConfiguration().getDefaultTransform().getScaleX();
 			if (frame != null && fullScreenFrame == null) {
@@ -454,11 +454,11 @@ public abstract class GameShell extends Canvas implements Runnable, FocusListene
 				i = 2;
 				@Pc(78) int minorVersion = 0;
 				while (i < SignLink.javaVersion.length()) {
-					@Pc(90) char c = SignLink.javaVersion.charAt(i);
-					if (c < '0' || c > '9') {
+					@Pc(90) char digit = SignLink.javaVersion.charAt(i);
+					if (digit < '0' || digit > '9') {
 						break;
 					}
-					minorVersion = minorVersion * 10 + c - 48;
+					minorVersion = minorVersion * 10 + digit - 48;
 					i++;
 				}
 				if (minorVersion >= 5) {
@@ -467,7 +467,7 @@ public abstract class GameShell extends Canvas implements Runnable, FocusListene
 			}
 			getMaxMemory();
 			this.addCanvas();
-			SoftwareRenderer.frameBuffer = FrameBuffer.create(canvasHeigth, canvasWidth, canvas);
+			SoftwareRenderer.frameBuffer = FrameBuffer.create(canvasHeight, canvasWidth, canvas);
 			this.mainInit();
 			timer = Timer.create();
 			while (killtime == 0L || killtime > MonotonicTime.currentTimeMillis()) {
@@ -478,8 +478,8 @@ public abstract class GameShell extends Canvas implements Runnable, FocusListene
 				this.mainRedrawWrapper();
 				flush(signLink, canvas);
 			}
-		} catch (@Pc(198) Exception local198) {
-			TracingException.report(null, local198);
+		} catch (@Pc(198) Exception exception) {
+			TracingException.report(null, exception);
 			this.error("crash");
 		}
 		this.shutdown(true);
@@ -491,7 +491,7 @@ public abstract class GameShell extends Canvas implements Runnable, FocusListene
 	@OriginalMember(owner = "client!rc", name = "a", descriptor = "(IIZILjava/lang/String;III)V")
 	protected final void startApplication(@OriginalArg(0) int cacheId, @OriginalArg(4) String cacheSubDir) {
 		try {
-			canvasHeigth = 768;
+			canvasHeight = 768;
 			frameHeight = 768;
 			leftMargin = 0;
 			clientBuild = 530;
@@ -513,8 +513,8 @@ public abstract class GameShell extends Canvas implements Runnable, FocusListene
 				ThreadUtils.sleep(10L);
 			}
 			thread = (Thread) request.result;
-		} catch (@Pc(91) Exception local91) {
-			TracingException.report(null, local91);
+		} catch (@Pc(91) Exception exception) {
+			TracingException.report(null, exception);
 		}
 	}
 

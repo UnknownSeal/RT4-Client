@@ -2,7 +2,7 @@ package com.jagex.runetek4.entity.loc;
 
 import com.jagex.runetek4.graphics.effects.ParticleSystem;
 import com.jagex.runetek4.config.types.obj.ObjTypeList;
-import com.jagex.runetek4.entity.entity.Entity;
+import com.jagex.runetek4.entity.Entity;
 import com.jagex.runetek4.graphics.model.Model;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;

@@ -1,5 +1,7 @@
 package com.jagex.runetek4.graphics.core;
 
+import com.jagex.runetek4.client.auth.LoginManager;
+import com.jagex.runetek4.client.ui.LoadingBar;
 import com.jagex.runetek4.graphics.font.Fonts;
 import com.jagex.runetek4.graphics.effects.ParticleSystem;
 import com.jagex.runetek4.PrivilegedRequest;
@@ -198,14 +200,14 @@ public final class DisplayMode {
 		}
 		if (mode >= 2) {
 			GameShell.canvasWidth = GameShell.frameWidth;
-			GameShell.canvasHeigth = GameShell.frameHeight;
+			GameShell.canvasHeight = GameShell.frameHeight;
 			GameShell.leftMargin = 0;
 			GameShell.topMargin = 0;
 		} else {
 			GameShell.topMargin = 0;
 			GameShell.leftMargin = (GameShell.frameWidth - 765) / 2;
 			GameShell.canvasWidth = 765;
-			GameShell.canvasHeigth = 503;
+			GameShell.canvasHeight = 503;
 		}
 		if (replaceCanvas) {
 			Keyboard.stop(GameShell.canvas);
@@ -221,9 +223,9 @@ public final class DisplayMode {
 			}
 		} else {
 			if (GlRenderer.enabled) {
-				GlRenderer.setCanvasSize(GameShell.canvasWidth, GameShell.canvasHeigth);
+				GlRenderer.setCanvasSize(GameShell.canvasWidth, GameShell.canvasHeight);
 			}
-			GameShell.canvas.setSize(GameShell.canvasWidth, GameShell.canvasHeigth);
+			GameShell.canvas.setSize(GameShell.canvasWidth, GameShell.canvasHeight);
 			if (GameShell.frame == container) {
 				insets = GameShell.frame.getInsets();
 				GameShell.canvas.setLocation(insets.left + GameShell.leftMargin, insets.top + GameShell.topMargin);
@@ -239,7 +241,7 @@ public final class DisplayMode {
 			if (!aBoolean73) {
 				SceneGraph.clear();
 				SoftwareRenderer.frameBuffer = null;
-				SoftwareRenderer.frameBuffer = FrameBuffer.create(GameShell.canvasHeigth, GameShell.canvasWidth, GameShell.canvas);
+				SoftwareRenderer.frameBuffer = FrameBuffer.create(GameShell.canvasHeight, GameShell.canvasWidth, GameShell.canvas);
 				SoftwareRenderer.clearPixelBuffer();
 				if (Client.gameState == 5) {
 					LoadingBar.render(true, Fonts.b12Full);
@@ -251,7 +253,7 @@ public final class DisplayMode {
 					SoftwareRenderer.frameBuffer.draw(graphics);
 				} catch (@Pc(277) Exception ignored) {
 				}
-				GameShell.method2704();
+				GameShell.fillBlackBorders();
 				if (windowMode == 0) {
 					SoftwareRenderer.frameBuffer = FrameBuffer.create(503, 765, GameShell.canvas);
 				} else {

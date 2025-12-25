@@ -1,5 +1,6 @@
-package com.jagex.runetek4.client;
+package com.jagex.runetek4.client.ui;
 
+import com.jagex.runetek4.client.GameShell;
 import com.jagex.runetek4.graphics.gl.GlRaster;
 import com.jagex.runetek4.graphics.gl.GlRenderer;
 import com.jagex.runetek4.data.js5.Js5;
@@ -55,7 +56,7 @@ public class TitleScreen {
             SoftwareRenderer.clearPixelBuffer();
         }
         titleBg = SpriteLoader.loadSpriteAutoDetect(archive, bgId);
-        @Pc(20) int height = GameShell.canvasHeigth;
+        @Pc(20) int height = GameShell.canvasHeight;
         @Pc(26) int width = height * 956 / 503;
         titleBg.renderResized((GameShell.canvasWidth - width) / 2, 0, width, height);
         logo = SpriteLoader.loadIndexedSpriteAutoDetect(logoId, archive);

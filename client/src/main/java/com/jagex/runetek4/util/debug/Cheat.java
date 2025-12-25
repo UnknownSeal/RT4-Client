@@ -1,9 +1,10 @@
 package com.jagex.runetek4.util.debug;
 
+import com.jagex.runetek4.client.auth.LoginManager;
 import com.jagex.runetek4.ui.chat.Chat;
 import com.jagex.runetek4.client.*;
 import com.jagex.runetek4.config.types.seq.SeqType;
-import com.jagex.runetek4.entity.entity.PlayerAppearance;
+import com.jagex.runetek4.entity.player.PlayerAppearance;
 import com.jagex.runetek4.game.logic.PathFinder;
 import com.jagex.runetek4.graphics.gl.GlCleaner;
 import com.jagex.runetek4.graphics.gl.GlRenderer;

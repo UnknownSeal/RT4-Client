@@ -1,4 +1,4 @@
-package com.jagex.runetek4.entity.entity;
+package com.jagex.runetek4.entity.npc;
 
 import com.jagex.runetek4.audio.core.SoundPlayer;
 import com.jagex.runetek4.config.types.seq.SeqType;
@@ -6,6 +6,10 @@ import com.jagex.runetek4.client.Client;
 import com.jagex.runetek4.config.types.seq.SeqTypeList;
 import com.jagex.runetek4.config.types.spotanim.SpotAnimTypeList;
 import com.jagex.runetek4.config.types.bas.BasType;
+import com.jagex.runetek4.entity.PathingEntity;
+import com.jagex.runetek4.entity.PathingEntityAnimation;
+import com.jagex.runetek4.entity.player.Player;
+import com.jagex.runetek4.entity.player.PlayerList;
 import com.jagex.runetek4.scene.Camera;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;

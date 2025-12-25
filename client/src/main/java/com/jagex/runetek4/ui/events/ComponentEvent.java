@@ -2,7 +2,7 @@ package com.jagex.runetek4.ui.events;
 
 import com.jagex.runetek4.util.string.JString;
 import com.jagex.runetek4.core.node.Node;
-import com.jagex.runetek4.data.cache.media.component.Component;
+import com.jagex.runetek4.ui.component.Component;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 

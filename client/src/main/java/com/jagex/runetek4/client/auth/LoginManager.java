@@ -1,15 +1,18 @@
-package com.jagex.runetek4.client;
+package com.jagex.runetek4.client.auth;
 
 import com.jagex.runetek4.audio.spatial.AreaSoundManager;
+import com.jagex.runetek4.client.Client;
+import com.jagex.runetek4.client.GameShell;
+import com.jagex.runetek4.client.Preferences;
 import com.jagex.runetek4.data.cache.CacheArchive;
-import com.jagex.runetek4.data.cache.media.component.Component;
+import com.jagex.runetek4.ui.component.Component;
 import com.jagex.runetek4.config.types.loc.LocTypeList;
 import com.jagex.runetek4.config.types.obj.ObjTypeList;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.core.io.PacketBit;
-import com.jagex.runetek4.entity.entity.NpcList;
-import com.jagex.runetek4.entity.entity.Player;
-import com.jagex.runetek4.entity.entity.PlayerList;
+import com.jagex.runetek4.entity.npc.NpcList;
+import com.jagex.runetek4.entity.player.Player;
+import com.jagex.runetek4.entity.player.PlayerList;
 import com.jagex.runetek4.game.inventory.Inv;
 import com.jagex.runetek4.game.world.WorldLoader;
 import com.jagex.runetek4.graphics.gl.GlRaster;
@@ -577,7 +580,7 @@ public class LoginManager {
                 packet.p1(1);
                 packet.p1(DisplayMode.getWindowMode());
                 packet.p2(GameShell.canvasWidth);
-                packet.p2(GameShell.canvasHeigth);
+                packet.p2(GameShell.canvasHeight);
                 packet.p1(Preferences.antiAliasingMode);
                 Client.writeUid(packet);
                 packet.pjstr(Client.settings);

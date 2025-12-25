@@ -1,7 +1,7 @@
 package com.jagex.runetek4.game.logic;
 
 import com.jagex.runetek4.client.Client;
-import com.jagex.runetek4.entity.entity.Player;
+import com.jagex.runetek4.entity.player.Player;
 import com.jagex.runetek4.graphics.gl.GlModel;
 import com.jagex.runetek4.graphics.gl.GlRenderer;
 import com.jagex.runetek4.graphics.model.Model;

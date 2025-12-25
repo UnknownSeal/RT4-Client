@@ -1,4 +1,4 @@
-package com.jagex.runetek4.entity.entity;
+package com.jagex.runetek4.entity.npc;
 
 import com.jagex.runetek4.config.types.spotanim.SpotAnimType;
 import com.jagex.runetek4.client.Preferences;
@@ -8,6 +8,7 @@ import com.jagex.runetek4.config.types.spotanim.SpotAnimTypeList;
 import com.jagex.runetek4.config.types.bas.BasType;
 import com.jagex.runetek4.config.types.npc.NpcType;
 import com.jagex.runetek4.config.types.seq.SeqType;
+import com.jagex.runetek4.entity.PathingEntity;
 import com.jagex.runetek4.graphics.effects.ParticleSystem;
 import com.jagex.runetek4.graphics.gl.GlRenderer;
 import com.jagex.runetek4.graphics.model.Model;

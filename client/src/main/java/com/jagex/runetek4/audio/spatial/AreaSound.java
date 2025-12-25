@@ -2,8 +2,8 @@ package com.jagex.runetek4.audio.spatial;
 
 import com.jagex.runetek4.audio.core.SoundPcmStream;
 import com.jagex.runetek4.client.Client;
-import com.jagex.runetek4.entity.entity.Npc;
-import com.jagex.runetek4.entity.entity.Player;
+import com.jagex.runetek4.entity.npc.Npc;
+import com.jagex.runetek4.entity.player.Player;
 import com.jagex.runetek4.core.node.Node;
 import com.jagex.runetek4.config.types.loc.LocType;
 import com.jagex.runetek4.config.types.npc.NpcType;

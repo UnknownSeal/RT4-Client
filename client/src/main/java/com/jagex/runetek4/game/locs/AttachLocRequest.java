@@ -1,14 +1,14 @@
 package com.jagex.runetek4.game.locs;
 
-import com.jagex.runetek4.entity.entity.PlayerList;
+import com.jagex.runetek4.entity.player.PlayerList;
 import com.jagex.runetek4.client.Client;
 import com.jagex.runetek4.config.types.loc.LocTypeList;
 import com.jagex.runetek4.config.types.loc.LocType;
 import com.jagex.runetek4.core.datastruct.LinkList;
-import com.jagex.runetek4.entity.entity.Entity;
-import com.jagex.runetek4.entity.entity.NpcList;
-import com.jagex.runetek4.entity.entity.PathingEntity;
-import com.jagex.runetek4.entity.entity.Player;
+import com.jagex.runetek4.entity.Entity;
+import com.jagex.runetek4.entity.npc.NpcList;
+import com.jagex.runetek4.entity.PathingEntity;
+import com.jagex.runetek4.entity.player.Player;
 import com.jagex.runetek4.core.node.Node;
 import com.jagex.runetek4.entity.loc.Loc;
 import com.jagex.runetek4.scene.SceneGraph;

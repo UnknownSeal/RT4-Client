@@ -1,7 +1,7 @@
 package com.jagex.runetek4.audio.core;
 
 import com.jagex.runetek4.audio.streaming.MusicPlayer;
-import com.jagex.runetek4.entity.entity.PlayerList;
+import com.jagex.runetek4.entity.player.PlayerList;
 import com.jagex.runetek4.audio.synthesis.SynthSound;
 import com.jagex.runetek4.audio.midi.MidiPlayer;
 import com.jagex.runetek4.audio.pcm.PcmSound;
