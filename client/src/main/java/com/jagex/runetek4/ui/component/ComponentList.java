@@ -120,7 +120,7 @@ public class ComponentList {
     @OriginalMember(owner = "runetek4.client!rg", name = "s", descriptor = "I")
     public static int anInt5574 = -1;
     @OriginalMember(owner = "runetek4.client!og", name = "e", descriptor = "Lclient!be;")
-    public static Component aClass13_22;
+    public static Component previousMouseOverComponent;
     @OriginalMember(owner = "runetek4.client!gd", name = "j", descriptor = "I")
     public static int lastItemDragTime = 0;
     @OriginalMember(owner = "runetek4.client!qk", name = "f", descriptor = "I")
@@ -166,7 +166,7 @@ public class ComponentList {
     @OriginalMember(owner = "client!bj", name = "s", descriptor = "I")
     public static int lastMouseY = -1;
     @OriginalMember(owner = "runetek4.client!kl", name = "s", descriptor = "I")
-    public static int anInt3337 = 0;
+    public static int worldMapState = 0;
     @OriginalMember(owner = "runetek4.client!jk", name = "p", descriptor = "I")
     public static int lastMouseX = -1;
     @OriginalMember(owner = "client!df", name = "n", descriptor = "I")
@@ -817,7 +817,7 @@ public class ComponentList {
                 }
                 if (!component.if3 || effectiveClipLeft < effectiveClipRight && effectiveClipTop < effectiveClipBottom) {
                     if (component.type == 0) {
-                        if (!component.if3 && isHidden(component) && aClass13_22 != component) {
+                        if (!component.if3 && isHidden(component) && previousMouseOverComponent != component) {
                             continue;
                         }
                         if (component.noClickThrough && Mouse.lastMouseX >= effectiveClipLeft && Mouse.lastMouseY >= effectiveClipTop && Mouse.lastMouseX < effectiveClipRight && Mouse.lastMouseY < effectiveClipBottom) {
@@ -831,7 +831,7 @@ public class ComponentList {
                                 ClientScriptRunner.dragComponent = null;
                                 ClientScriptRunner.containerComponent = null;
                             }
-                            anInt3337 = 0;
+                            worldMapState = 0;
                         }
                     }
                     if (component.if3) {
@@ -895,7 +895,7 @@ public class ComponentList {
                                 request.arguments = component.onScroll;
                                 lowPriorityRequests.push(request);
                             }
-                            if (ClientScriptRunner.dragComponent != null || clickedInventoryComponent != null || ClientScriptRunner.menuVisible || component.contentType != 1400 && anInt3337 > 0) {
+                            if (ClientScriptRunner.dragComponent != null || clickedInventoryComponent != null || ClientScriptRunner.menuVisible || component.contentType != 1400 && worldMapState > 0) {
                                 mouseClicked = false;
                                 mousePressed = false;
                                 mouseOver = false;
@@ -928,24 +928,24 @@ public class ComponentList {
                                             closeModal();
                                             continue;
                                         }
-                                        anInt3337 = 1;
+                                        worldMapState = 1;
                                         ClientScriptRunner.dragStartX = Mouse.lastMouseX;
                                         ClientScriptRunner.dragStartY = Mouse.lastMouseY;
                                         continue;
                                     }
-                                    if (mousePressed && anInt3337 > 0) {
-                                        if (anInt3337 == 1 && (ClientScriptRunner.dragStartX != Mouse.lastMouseX || ClientScriptRunner.dragStartY != Mouse.lastMouseY)) {
+                                    if (mousePressed && worldMapState > 0) {
+                                        if (worldMapState == 1 && (ClientScriptRunner.dragStartX != Mouse.lastMouseX || ClientScriptRunner.dragStartY != Mouse.lastMouseY)) {
                                             anInt4620 = WorldMap.anInt435;
                                             anInt1885 = WorldMap.anInt919;
-                                            anInt3337 = 2;
+                                            worldMapState = 2;
                                         }
-                                        if (anInt3337 == 2) {
+                                        if (worldMapState == 2) {
                                             WorldMap.method1964(anInt4620 + (int) ((double) (ClientScriptRunner.dragStartX - Mouse.lastMouseX) * 2.0D / (double) WorldMap.targetZoom));
                                             WorldMap.method4641(anInt1885 + (int) ((double) (ClientScriptRunner.dragStartY - Mouse.lastMouseY) * 2.0D / (double) WorldMap.targetZoom));
                                         }
                                         continue;
                                     }
-                                    anInt3337 = 0;
+                                    worldMapState = 0;
                                     continue;
                                 }
                                 if (component.contentType == 1401) {
@@ -1205,13 +1205,13 @@ public class ComponentList {
                     if (!component.if3 && ClientScriptRunner.dragComponent == null && clickedInventoryComponent == null && !ClientScriptRunner.menuVisible) {
                         if ((component.anInt470 >= 0 || component.overColor != 0) && Mouse.lastMouseX >= effectiveClipLeft && Mouse.lastMouseY >= effectiveClipTop && Mouse.lastMouseX < effectiveClipRight && Mouse.lastMouseY < effectiveClipBottom) {
                             if (component.anInt470 >= 0) {
-                                aClass13_22 = components[component.anInt470];
+                                previousMouseOverComponent = components[component.anInt470];
                             } else {
-                                aClass13_22 = component;
+                                previousMouseOverComponent = component;
                             }
                         }
                         if (component.type == 8 && Mouse.lastMouseX >= effectiveClipLeft && Mouse.lastMouseY >= effectiveClipTop && Mouse.lastMouseX < effectiveClipRight && Mouse.lastMouseY < effectiveClipBottom) {
-                            Protocol.aClass13_11 = component;
+                            Protocol.dragHoverComponent = component;
                         }
                         if (component.scrollMaxV > component.height) {
                             handleScrollbar(Mouse.lastMouseY, component.height, component, Mouse.lastMouseX, componentX + component.width, componentY, component.scrollMaxV);
@@ -1307,7 +1307,7 @@ public class ComponentList {
             @Pc(15) Component component = components[componentIndex];
             if (component != null && component.overlayer == parentId && (!component.if3 || !isHidden(component))) {
                 if (component.type == 0) {
-                    if (!component.if3 && isHidden(component) && component != aClass13_22) {
+                    if (!component.if3 && isHidden(component) && component != previousMouseOverComponent) {
                         continue;
                     }
                     updateComponentState(component.id, components);
@@ -1638,7 +1638,7 @@ public class ComponentList {
                             }
                         }
                         if (component.type == 0) {
-                            if (!component.if3 && isHidden(component) && aClass13_22 != component) {
+                            if (!component.if3 && isHidden(component) && previousMouseOverComponent != component) {
                                 continue;
                             }
                             if (!component.if3) {
@@ -1772,12 +1772,12 @@ public class ComponentList {
                                 } else if (component.type == 3) {
                                     if (ClientScriptRunner.isTrue(component)) {
                                         clipRight2 = component.activeColor;
-                                        if (aClass13_22 == component && component.anInt475 != 0) {
+                                        if (previousMouseOverComponent == component && component.anInt475 != 0) {
                                             clipRight2 = component.anInt475;
                                         }
                                     } else {
                                         clipRight2 = component.color;
-                                        if (component == aClass13_22 && component.overColor != 0) {
+                                        if (component == previousMouseOverComponent && component.overColor != 0) {
                                             clipRight2 = component.overColor;
                                         }
                                     }
@@ -1812,7 +1812,7 @@ public class ComponentList {
                                             @Pc(1934) JString local1934 = component.text;
                                             if (ClientScriptRunner.isTrue(component)) {
                                                 clipBottom2 = component.activeColor;
-                                                if (aClass13_22 == component && component.anInt475 != 0) {
+                                                if (previousMouseOverComponent == component && component.anInt475 != 0) {
                                                     clipBottom2 = component.anInt475;
                                                 }
                                                 if (component.activeText.length() > 0) {
@@ -1820,7 +1820,7 @@ public class ComponentList {
                                                 }
                                             } else {
                                                 clipBottom2 = component.color;
-                                                if (aClass13_22 == component && component.overColor != 0) {
+                                                if (previousMouseOverComponent == component && component.overColor != 0) {
                                                     clipBottom2 = component.overColor;
                                                 }
                                             }
@@ -1987,8 +1987,8 @@ public class ComponentList {
                                                 }
                                             }
                                             if (local2589 != null) {
-                                                if (component.anInt451 > 0) {
-                                                    colorValue = (component.width << 8) / component.anInt451;
+                                                if (component.maxModelSize > 0) {
+                                                    colorValue = (component.width << 8) / component.maxModelSize;
                                                 } else {
                                                     colorValue = 256;
                                                 }
@@ -2077,7 +2077,7 @@ public class ComponentList {
                                                     }
                                                 }
                                             }
-                                            if (component.type == 8 && Protocol.aClass13_11 == component && Protocol.componentDragAnimationStep == ClientScriptRunner.MAX_CALL_STACK_DEPTH) {
+                                            if (component.type == 8 && Protocol.dragHoverComponent == component && Protocol.dragHoverAnimationProgress == ClientScriptRunner.MAX_CALL_STACK_DEPTH) {
                                                 clipBottom2 = 0;
                                                 clipRight2 = 0;
                                                 @Pc(3297) JString local3297 = component.text;

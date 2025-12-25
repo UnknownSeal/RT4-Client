@@ -183,13 +183,13 @@ public class Protocol {
     public static BufferedSocket gameServerSocket;
 
     @OriginalMember(owner = "runetek4.client!dg", name = "h", descriptor = "Lclient!be;")
-    public static Component aClass13_11;
+    public static Component dragHoverComponent;
 
     @OriginalMember(owner = "runetek4.client!kf", name = "l", descriptor = "I")
-    public static int componentDragAnimationStep = 0;
+    public static int dragHoverAnimationProgress = 0;
 
     @OriginalMember(owner = "runetek4.client!t", name = "l", descriptor = "Lclient!ma;")
-    public static BufferedSocket aClass95_4;
+    public static BufferedSocket previousSocket;
 
     @OriginalMember(owner = "runetek4.client!sc", name = "o", descriptor = "I")
     public static int packetSize = 0;

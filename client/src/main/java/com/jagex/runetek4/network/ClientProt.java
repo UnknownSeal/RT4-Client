@@ -154,7 +154,9 @@ public class ClientProt {
     // Login/Session
     public static int LOGIN_TIMINGS = 17;
     public static int IDLE_LOGOUT = 98;
-    public static int REFLECTION_CHECK_REPLY = 231;
+
+
+    public static int MOVE_ITEM = 231;
 
 
     @OriginalMember(owner = "client!ej", name = "i", descriptor = "(I)V")
@@ -319,13 +321,13 @@ public class ClientProt {
             return;
         }
         Protocol.noTimeoutCycle = 0;
-        if (!LoginManager.aBoolean247 && Protocol.gameServerSocket != null) {
+        if (!LoginManager.shouldReconnect && Protocol.gameServerSocket != null) {
             Protocol.outboundBuffer.pIsaac1(NO_TIMEOUT);
             try {
                 Protocol.gameServerSocket.write(Protocol.outboundBuffer.offset, Protocol.outboundBuffer.data);
                 Protocol.outboundBuffer.offset = 0;
             } catch (@Pc(53) IOException ioException) {
-                LoginManager.aBoolean247 = true;
+                LoginManager.shouldReconnect = true;
             }
         }
         Client.audioLoop();

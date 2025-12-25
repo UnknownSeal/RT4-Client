@@ -1430,8 +1430,8 @@ public final class ClientScriptRunner {
 										createdComponent.modelZoom = objType.zoom2d; // Zoom level
 
                                         // Scale zoom to fit component size
-										if (createdComponent.anInt451 > 0) {
-											createdComponent.modelZoom = createdComponent.modelZoom * 32 / createdComponent.anInt451;
+										if (createdComponent.maxModelSize > 0) {
+											createdComponent.modelZoom = createdComponent.modelZoom * 32 / createdComponent.maxModelSize;
 										} else if (createdComponent.baseWidth > 0) {
 											createdComponent.modelZoom = createdComponent.modelZoom * 32 / createdComponent.baseWidth;
 										}
@@ -4938,7 +4938,7 @@ public final class ClientScriptRunner {
 								isp -= 4;
 								createdComponent.baseWidth = scriptIntValues[isp];
 								createdComponent.baseHeight = scriptIntValues[isp + 1];
-								createdComponent.anInt451 = 0;
+								createdComponent.maxModelSize = 0;
 								createdComponent.anInt526 = 0;
 								tempInt1 = scriptIntValues[isp + 2];
 								j = scriptIntValues[isp + 3];

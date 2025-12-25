@@ -929,7 +929,7 @@ public class WorldMap {
     }
 
     @OriginalMember(owner = "client!bb", name = "a", descriptor = "(I)V")
-    public static void method447() {
+    public static void update() {
         if (zoom < targetZoom) {
             zoom = (float) ((double) zoom + (double) zoom / 30.0D);
             if (targetZoom < zoom) {

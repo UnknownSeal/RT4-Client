@@ -364,7 +364,7 @@ public class AudioChannel {
 	}
 
 	@OriginalMember(owner = "runetek4.client!vh", name = "b", descriptor = "(I)V")
-	public final void method3571() {
+	public final void skipConsumptionCheck() {
 		this.skipConsumptionCheck = true;
 	}
 

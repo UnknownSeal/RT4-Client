@@ -827,9 +827,9 @@ public final class Client extends GameShell {
 			LoginManager.clear();
 		}
 		@Pc(37) boolean local37 = statusCode == 5 || statusCode == 10 || statusCode == 28;
-		if (statusCode != 40 && Protocol.aClass95_4 != null) {
-			Protocol.aClass95_4.closeGracefully();
-			Protocol.aClass95_4 = null;
+		if (statusCode != 40 && Protocol.previousSocket != null) {
+			Protocol.previousSocket.closeGracefully();
+			Protocol.previousSocket = null;
 		}
 		if (statusCode == 25 || statusCode == 28) {
 			WorldLoader.locLoadFailures = 0;

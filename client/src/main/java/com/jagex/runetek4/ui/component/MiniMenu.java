@@ -151,7 +151,7 @@ public class MiniMenu {
     @OriginalMember(owner = "runetek4.client!cl", name = "Y", descriptor = "I")
     public static int defaultCursor = -1;
     @OriginalMember(owner = "runetek4.client!jl", name = "v", descriptor = "I")
-    public static int anInt3096 = 0;
+    public static int useItemOnTileMode = 0;
     @OriginalMember(owner = "client!ck", name = "D", descriptor = "Lclient!na;")
     public static JString aClass100_203 = null;
     @OriginalMember(owner = "client!gd", name = "i", descriptor = "Lclient!na;")
@@ -161,7 +161,7 @@ public class MiniMenu {
     @OriginalMember(owner = "runetek4.client!wf", name = "d", descriptor = "I")
     public static int anInt4997;
     @OriginalMember(owner = "client!fl", name = "P", descriptor = "I")
-    public static int anInt2043 = 0;
+    public static int inventoryPressTimer = 0;
     @OriginalMember(owner = "runetek4.client!ml", name = "Q", descriptor = "I")
     public static int menuState = 0;
     @OriginalMember(owner = "client!bh", name = "t", descriptor = "I")
@@ -734,7 +734,7 @@ public class MiniMenu {
             Protocol.outboundBuffer.p4_alt1(MiniMap.anInt5062);
             Protocol.outboundBuffer.p2_alt3(anInt4997);
             Protocol.outboundBuffer.p2_alt3(keyInt);
-            anInt2043 = 0;
+            inventoryPressTimer = 0;
             pressedInventoryComponent = ComponentList.getComponent(param2);
             anInt5444 = param1;
         }
@@ -780,7 +780,7 @@ public class MiniMenu {
             Protocol.outboundBuffer.p2_alt2(keyInt);
             Protocol.outboundBuffer.p2_alt2(param1);
             Protocol.outboundBuffer.p4_alt3(param2);
-            anInt2043 = 0;
+            inventoryPressTimer = 0;
             pressedInventoryComponent = ComponentList.getComponent(param2);
             anInt5444 = param1;
         }
@@ -854,7 +854,7 @@ public class MiniMenu {
             } else {
                 Chat.addMessage(JString.EMPTY, 0, JString.concatenate(new JString[] { JString.parseInt(component.invSlotObjCount[param1]), MULTIPLY_SYMBOL, ObjTypeList.get(keyInt).name}));
             }
-            anInt2043 = 0;
+            inventoryPressTimer = 0;
             pressedInventoryComponent = ComponentList.getComponent(param2);
             anInt5444 = param1;
         }
@@ -901,7 +901,7 @@ public class MiniMenu {
             Protocol.outboundBuffer.p2_alt3(param1);
             Protocol.outboundBuffer.p2_alt2(keyInt);
             Protocol.outboundBuffer.p4_alt1(param2);
-            anInt2043 = 0;
+            inventoryPressTimer = 0;
             pressedInventoryComponent = ComponentList.getComponent(param2);
             anInt5444 = param1;
         }
@@ -912,7 +912,7 @@ public class MiniMenu {
             Protocol.outboundBuffer.p4_alt1(param2);
             Protocol.outboundBuffer.p2_alt2(keyInt);
             Protocol.outboundBuffer.p2_alt1(useWithSlot);
-            anInt2043 = 0;
+            inventoryPressTimer = 0;
             pressedInventoryComponent = ComponentList.getComponent(param2);
             anInt5444 = param1;
         }
@@ -945,7 +945,7 @@ public class MiniMenu {
             Protocol.outboundBuffer.p2_alt2(keyInt);
             Protocol.outboundBuffer.p2_alt1(param1);
             Protocol.outboundBuffer.p4_alt1(param2);
-            anInt2043 = 0;
+            inventoryPressTimer = 0;
             pressedInventoryComponent = ComponentList.getComponent(param2);
             anInt5444 = param1;
         }
@@ -978,7 +978,7 @@ public class MiniMenu {
             Protocol.outboundBuffer.p2_alt1(keyInt);
             Protocol.outboundBuffer.p2_alt2(param1);
             Protocol.outboundBuffer.p4rme(param2);
-            anInt2043 = 0;
+            inventoryPressTimer = 0;
             pressedInventoryComponent = ComponentList.getComponent(param2);
             anInt5444 = param1;
         }
@@ -1048,7 +1048,7 @@ public class MiniMenu {
             Protocol.outboundBuffer.p4_alt1(param2);
             Protocol.outboundBuffer.p2_alt3(keyInt);
             Protocol.outboundBuffer.p2_alt3(param1);
-            anInt2043 = 0;
+            inventoryPressTimer = 0;
             pressedInventoryComponent = ComponentList.getComponent(param2);
             anInt5444 = param1;
         }
@@ -1089,7 +1089,7 @@ public class MiniMenu {
             Protocol.outboundBuffer.p2_alt2(param1);
             Protocol.outboundBuffer.p2(keyInt);
             Protocol.outboundBuffer.p4rme(param2);
-            anInt2043 = 0;
+            inventoryPressTimer = 0;
             pressedInventoryComponent = ComponentList.getComponent(param2);
             anInt5444 = param1;
         }
@@ -1170,7 +1170,7 @@ public class MiniMenu {
         }
         if (actionCode == COMPONENT_ACTION) {
             if (keyInt == 0) {
-                anInt3096 = 1;
+                useItemOnTileMode = 1;
                 setWalkTarget(Player.currentLevel, param1, param2);
             } else if (keyInt == 1) {
                 Protocol.outboundBuffer.pIsaac1(ClientProt.OPOBJT);
@@ -1211,7 +1211,7 @@ public class MiniMenu {
             Protocol.outboundBuffer.p4rme(param2);
             Protocol.outboundBuffer.p2(param1);
             Protocol.outboundBuffer.p2_alt2(keyInt);
-            anInt2043 = 0;
+            inventoryPressTimer = 0;
             pressedInventoryComponent = ComponentList.getComponent(param2);
             anInt5444 = param1;
         }
@@ -1246,7 +1246,7 @@ public class MiniMenu {
             Protocol.outboundBuffer.p4(param2);
             Protocol.outboundBuffer.p2_alt2(param1);
             Protocol.outboundBuffer.p2_alt1(keyInt);
-            anInt2043 = 0;
+            inventoryPressTimer = 0;
             pressedInventoryComponent = ComponentList.getComponent(param2);
             anInt5444 = param1;
         }
@@ -1288,7 +1288,7 @@ public class MiniMenu {
             Protocol.outboundBuffer.p2_alt1(param1);
             Protocol.outboundBuffer.p4rme(param2);
             Protocol.outboundBuffer.p2_alt3(keyInt);
-            anInt2043 = 0;
+            inventoryPressTimer = 0;
             pressedInventoryComponent = ComponentList.getComponent(param2);
             anInt5444 = param1;
         }
@@ -1309,7 +1309,7 @@ public class MiniMenu {
             Protocol.outboundBuffer.p4_alt1(param2);
             Protocol.outboundBuffer.p2_alt1(param1);
             Protocol.outboundBuffer.p2_alt1(keyInt);
-            anInt2043 = 0;
+            inventoryPressTimer = 0;
             pressedInventoryComponent = ComponentList.getComponent(param2);
             anInt5444 = param1;
         }
@@ -1397,7 +1397,7 @@ public class MiniMenu {
         if (useWithActive) {
             handleUseWith();
         }
-        if (pressedInventoryComponent != null && anInt2043 == 0) {
+        if (pressedInventoryComponent != null && inventoryPressTimer == 0) {
             ComponentList.redraw(pressedInventoryComponent);
         }
     }
