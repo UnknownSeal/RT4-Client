@@ -15,7 +15,7 @@ import com.jagex.runetek4.ui.chat.Chat;
 import com.jagex.runetek4.ui.chat.ClanChat;
 import com.jagex.runetek4.ui.chat.QuickChatPhrase;
 import com.jagex.runetek4.client.*;
-import com.jagex.runetek4.clientscript.DelayedStateChange;
+import com.jagex.runetek4.clientscript.ClientServerStateSync;
 import com.jagex.runetek4.config.types.obj.ObjType;
 import com.jagex.runetek4.data.cache.media.Font;
 import com.jagex.runetek4.config.types.seq.SeqType;
@@ -508,7 +508,7 @@ public class Protocol {
             int verifyID = inboundBuffer.g2_alt2();
             messageText = inboundBuffer.gjstr();
             if (setVerifyID(verifyID)) {
-                DelayedStateChange.method3498(messageText, ii);
+                ClientServerStateSync.setComponentTextServer(messageText, ii);
             }
             currentOpcode = -1;
             return true;
@@ -532,7 +532,7 @@ public class Protocol {
                 param1 = inboundBuffer.g2_al1();
                 int verifyID = inboundBuffer.g2();
                 if (setVerifyID(verifyID)) {
-                    DelayedStateChange.method3938(param1, ii);
+                    ClientServerStateSync.setComponentScrollPositionServer(param1, ii);
                 }
                 currentOpcode = -1;
                 return true;
@@ -665,7 +665,7 @@ public class Protocol {
                 argTypes = inboundBuffer.gjstr();
                 i2 = inboundBuffer.g2_alt3(); // Player option slot
                 if (setVerifyID(verifyID)) {
-                    DelayedStateChange.method3498(argTypes, i2);
+                    ClientServerStateSync.setComponentTextServer(argTypes, i2);
                 }
                 currentOpcode = -1;
                 return true;
@@ -709,7 +709,7 @@ public class Protocol {
                     int verifyID = inboundBuffer.g2();
                     i2 = inboundBuffer.g4me();
                     if (setVerifyID(verifyID)) {
-                        DelayedStateChange.method2905(i2, ii);
+                        ClientServerStateSync.setComponentHiddenServer(i2, ii);
                     }
                     currentOpcode = -1;
                     return true;
@@ -741,7 +741,7 @@ public class Protocol {
                     param1 = inboundBuffer.g4();
                     i2 = inboundBuffer.g2_alt2(); // VarC ID
                     if (setVerifyID(verifyID)) {
-                        DelayedStateChange.updateVarC(i2, param1);
+                        ClientServerStateSync.updateVarC(i2, param1);
                     }
                     currentOpcode = -1;
                     return true;
@@ -783,7 +783,7 @@ public class Protocol {
                     param1 = inboundBuffer.g2les();
                     int verifyID = inboundBuffer.g2_alt2();
                     if (setVerifyID(verifyID)) {
-                        DelayedStateChange.method3893(ii, param1);
+                        ClientServerStateSync.setComponentModelAnimServer(ii, param1);
                     }
                     currentOpcode = -1;
                     return true;
@@ -931,7 +931,7 @@ public class Protocol {
                         i2 = inboundBuffer.g2();
                         slot = inboundBuffer.g2_alt2();
                         if (setVerifyID(verifyID)) {
-                            DelayedStateChange.setComponentModelRotationSpeedServer(slot + (i2 << COMPONENT_UPPER_WORD_SHIFT), ii);
+                            ClientServerStateSync.setComponentModelRotationSpeedServer(slot + (i2 << COMPONENT_UPPER_WORD_SHIFT), ii);
                         }
                         currentOpcode = -1;
                         return true;
@@ -1001,7 +1001,7 @@ public class Protocol {
                         slot = inboundBuffer.g2_alt3();
                         count = inboundBuffer.g4();
                         if (setVerifyID(verifyID)) {
-                            DelayedStateChange.updateView(i2, count, slot, ii);
+                            ClientServerStateSync.updateView(i2, count, slot, ii);
                         }
                         currentOpcode = -1;
                         return true;
@@ -1044,7 +1044,7 @@ public class Protocol {
                             i2 = -1;
                         }
                         if (setVerifyID(verifyID)) {
-                            DelayedStateChange.updateComponentModel(-1, 1, ii, i2);
+                            ClientServerStateSync.updateComponentModel(-1, 1, ii, i2);
                         }
                         currentOpcode = -1;
                         return true;
@@ -1277,7 +1277,7 @@ public class Protocol {
                                 int verifyID = inboundBuffer.g2_alt2();
                                 i2 = inboundBuffer.g2_alt3();
                                 if (setVerifyID(verifyID)) {
-                                    DelayedStateChange.setColor(i2, ii);
+                                    ClientServerStateSync.setColor(i2, ii);
                                 }
                                 currentOpcode = -1;
                                 return true;
@@ -1299,7 +1299,7 @@ public class Protocol {
                                 param1 = inboundBuffer.g1_alt2();
                                 i2 = inboundBuffer.g2_alt3();
                                 if (setVerifyID(verifyID)) {
-                                    DelayedStateChange.updateVarC(i2, param1);
+                                    ClientServerStateSync.updateVarC(i2, param1);
                                 }
                                 currentOpcode = -1;
                                 return true;
@@ -1375,7 +1375,7 @@ public class Protocol {
                                 slot = inboundBuffer.g2_al1();
                                 count = inboundBuffer.g2_alt3();
                                 if (setVerifyID(verifyID)) {
-                                    DelayedStateChange.updateComponentModel(i2, 7, param1, slot << COMPONENT_UPPER_WORD_SHIFT | count);
+                                    ClientServerStateSync.updateComponentModel(i2, 7, param1, slot << COMPONENT_UPPER_WORD_SHIFT | count);
                                 }
                                 currentOpcode = -1;
                                 return true;
@@ -1486,7 +1486,7 @@ public class Protocol {
                                 i2 = inboundBuffer.g2s();
                                 slot = inboundBuffer.g2sadd();
                                 if (setVerifyID(verifyID)) {
-                                    DelayedStateChange.method4666(i2, param1, slot);
+                                    ClientServerStateSync.setComponentPositionServer(i2, param1, slot);
                                 }
                                 currentOpcode = -1;
                                 return true;
@@ -1627,7 +1627,7 @@ public class Protocol {
                                     if (PlayerList.self.appearance != null) {
                                         i2 = PlayerList.self.appearance.getHeadModelId();
                                     }
-                                    DelayedStateChange.updateComponentModel(-1, 3, param1, i2);
+                                    ClientServerStateSync.updateComponentModel(-1, 3, param1, i2);
                                 }
                                 currentOpcode = -1;
                                 return true;
@@ -1637,7 +1637,7 @@ public class Protocol {
                                 argTypes = inboundBuffer.gjstr();
                                 int verifyID = inboundBuffer.g2_alt2();
                                 if (setVerifyID(verifyID)) {
-                                    DelayedStateChange.method3617(argTypes, ii);
+                                    ClientServerStateSync.setComponentTextServer2(argTypes, ii);
                                 }
                                 currentOpcode = -1;
                                 return true;
@@ -1720,7 +1720,7 @@ public class Protocol {
                                     }
                                     int verifyID = inboundBuffer.g2_al1();
                                     if (setVerifyID(verifyID)) {
-                                        DelayedStateChange.updateComponentModel(-1, 2, param1, ii);
+                                        ClientServerStateSync.updateComponentModel(-1, 2, param1, ii);
                                     }
                                     currentOpcode = -1;
                                     return true;
@@ -1848,10 +1848,10 @@ public class Protocol {
                                         @Pc(5603) Component com = ComponentList.getComponent(param1);
                                         @Pc(5615) ObjType obj;
                                         if (com.if3) {
-                                            DelayedStateChange.method3707(param1, ii, i2);
+                                            ClientServerStateSync.setComponentObjectServer(param1, ii, i2);
                                             obj = ObjTypeList.get(i2);
-                                            DelayedStateChange.updateView(obj.zoom2d, param1, obj.yan2d, obj.xan2d);
-                                            DelayedStateChange.method2745(param1, obj.zAngle2D, obj.yof2d, obj.xof2d);
+                                            ClientServerStateSync.updateView(obj.zoom2d, param1, obj.yan2d, obj.xan2d);
+                                            ClientServerStateSync.setComponentModelOffsetServer(param1, obj.zAngle2D, obj.yof2d, obj.xof2d);
                                         } else if (i2 == -1) {
                                             com.modelType = 0;
                                             currentOpcode = -1;

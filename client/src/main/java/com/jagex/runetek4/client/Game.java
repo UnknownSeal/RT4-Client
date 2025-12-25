@@ -22,7 +22,7 @@ import com.jagex.runetek4.ui.component.MiniMap;
 import com.jagex.runetek4.input.Keyboard;
 import com.jagex.runetek4.input.MouseCapturer;
 import com.jagex.runetek4.entity.entity.Player;
-import com.jagex.runetek4.clientscript.DelayedStateChange;
+import com.jagex.runetek4.clientscript.ClientServerStateSync;
 import com.jagex.runetek4.entity.entity.NpcList;
 import com.jagex.runetek4.input.Mouse;
 import com.jagex.runetek4.input.MouseWheel;
@@ -237,7 +237,7 @@ public class Game {
         }
         @Pc(782) int rand;
 
-        for (@Pc(709) DelayedStateChange change = DelayedStateChange.poll(); change != null; change = DelayedStateChange.poll()) {
+        for (@Pc(709) ClientServerStateSync change = ClientServerStateSync.poll(); change != null; change = ClientServerStateSync.poll()) {
             samples = change.getType();
             i = change.getId();
             if (samples == 1) {
@@ -524,7 +524,7 @@ public class Game {
                                                     ComponentList.redraw(ComponentList.aClass13_22);
                                                 }
                                             }
-                                            if (local1508 != Protocol.aClass13_11 && ClientScriptRunner.anInt4504 == Protocol.componentDragAnimationStep) {
+                                            if (local1508 != Protocol.aClass13_11 && ClientScriptRunner.MAX_CALL_STACK_DEPTH == Protocol.componentDragAnimationStep) {
                                                 if (local1508 != null) {
                                                     ComponentList.redraw(local1508);
                                                 }
@@ -536,9 +536,9 @@ public class Game {
                                                 if (Protocol.componentDragAnimationStep > 0) {
                                                     Protocol.componentDragAnimationStep--;
                                                 }
-                                            } else if (Protocol.componentDragAnimationStep < ClientScriptRunner.anInt4504) {
+                                            } else if (Protocol.componentDragAnimationStep < ClientScriptRunner.MAX_CALL_STACK_DEPTH) {
                                                 Protocol.componentDragAnimationStep++;
-                                                if (ClientScriptRunner.anInt4504 == Protocol.componentDragAnimationStep) {
+                                                if (ClientScriptRunner.MAX_CALL_STACK_DEPTH == Protocol.componentDragAnimationStep) {
                                                     ComponentList.redraw(Protocol.aClass13_11);
                                                 }
                                             }

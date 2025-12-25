@@ -108,43 +108,43 @@ import static com.jagex.runetek4.network.ClientProt.*;
 public final class ClientScriptRunner {
 
 	@OriginalMember(owner = "client!bm", name = "p", descriptor = "Lclient!na;")
-	public static final JString U1 = JString.parse("(U1");
+	public static final JString TYPE_SIG_U1 = JString.parse("(U1");
 
 	@OriginalMember(owner = "runetek4.client!wh", name = "u", descriptor = "Lclient!na;")
-	public static final JString U2 = JString.parse("(U2");
+	public static final JString TYPE_SIG_U2 = JString.parse("(U2");
 
 	@OriginalMember(owner = "runetek4.client!mj", name = "g", descriptor = "Lclient!na;")
-	public static final JString U3 = JString.parse("(U3");
+	public static final JString TYPE_SIG_U3 = JString.parse("(U3");
 
 	@OriginalMember(owner = "runetek4.client!hh", name = "a", descriptor = "Lclient!na;")
-	public static final JString U4 = JString.parse("(U4");
+	public static final JString TYPE_SIG_U4 = JString.parse("(U4");
 
 	@OriginalMember(owner = "runetek4.client!tb", name = "P", descriptor = "Lclient!na;")
-	public static final JString U5 = JString.parse("(U5");
+	public static final JString TYPE_SIG_U5 = JString.parse("(U5");
 
 	@OriginalMember(owner = "runetek4.client!jh", name = "g", descriptor = "Lclient!na;")
-	public static final JString Udns = JString.parse("(Udns");
+	public static final JString TYPE_SIG_DNS = JString.parse("(Udns");
 
 	@OriginalMember(owner = "runetek4.client!lh", name = "z", descriptor = "Lclient!na;")
-	public static final JString aClass100_672 = JString.parse("(U (X");
+	public static final JString TYPE_SIG_UNION_X = JString.parse("(U (X");
 
 	@OriginalMember(owner = "client!bd", name = "b", descriptor = "Lclient!na;")
-	public static final JString aClass100_80 = JString.parse("(U(Y");
+	public static final JString TYPE_SIG_UNION_Y = JString.parse("(U(Y");
 
 	@OriginalMember(owner = "runetek4.client!oj", name = "p", descriptor = "I")
-	public static final int anInt4306 = 2301979;
+	public static final int COLOR_LIGHT_BROWN = 2301979;
 
 	@OriginalMember(owner = "runetek4.client!ec", name = "l", descriptor = "I")
-	public static final int anInt1704 = 5063219;
+	public static final int COLOR_ORANGE_BROWN = 5063219;
 
 	@OriginalMember(owner = "runetek4.client!rl", name = "Z", descriptor = "I")
-	public static final int anInt4938 = 7759444;
+	public static final int COLOR_LIGHT_GRAY = 7759444;
 
 	@OriginalMember(owner = "client!bj", name = "V", descriptor = "I")
-	public static final int anInt671 = 3353893;
+	public static final int COLOR_DARK_RED = 3353893;
 
 	@OriginalMember(owner = "runetek4.client!pg", name = "V", descriptor = "I")
-	public static final int anInt4504 = 50;
+	public static final int MAX_CALL_STACK_DEPTH = 50;
 
 	@OriginalMember(owner = "runetek4.client!ab", name = "j", descriptor = "[Lclient!na;")
 	public static final JString[] scriptStringValues = new JString[1000];
@@ -165,16 +165,16 @@ public final class ClientScriptRunner {
 	public static final JString ERROR_VIA = JString.parse("(U0a )2 via: ");
 
 	@OriginalMember(owner = "client!fl", name = "H", descriptor = "Lclient!na;")
-	public static final JString aClass100_446 = JString.parse("<img=0>");
+	public static final JString SPRITE_TAG_0 = JString.parse("<img=0>");
 
 	@OriginalMember(owner = "runetek4.client!nd", name = "b", descriptor = "Lclient!na;")
 	public static final JString ERROR_PREFIX = JString.parse("Clientscript error in: ");
 
 	@OriginalMember(owner = "runetek4.client!hm", name = "R", descriptor = "Lclient!na;")
-	public static final JString aClass100_537 = JString.parse("<img=1>");
+	public static final JString SPRITE_TAG_1 = JString.parse("<img=1>");
 
 	@OriginalMember(owner = "runetek4.client!hn", name = "K", descriptor = "Ljava/util/Calendar;")
-	public static final Calendar aCalendar2 = Calendar.getInstance();
+	public static final Calendar calendar = Calendar.getInstance();
 
 	@OriginalMember(owner = "runetek4.client!kk", name = "m", descriptor = "Lclient!na;")
 	public static final JString CS_ERROR = JString.parse("Clientscript error )2 check log for details");
@@ -183,10 +183,10 @@ public final class ClientScriptRunner {
 	public static final GoSubFrame[] callStack = new GoSubFrame[50];
 
 	@OriginalMember(owner = "client!ee", name = "j", descriptor = "[I")
-	public static final int[] anIntArray140 = new int[5];
+	public static final int[] stackDepthCounters = new int[5];
 
 	@OriginalMember(owner = "runetek4.client!oe", name = "i", descriptor = "[[I")
-	public static final int[][] anIntArrayArray33 = new int[5][5000];
+	public static final int[][] nestedStackValues = new int[5][5000];
 
 	@OriginalMember(owner = "runetek4.client!rl", name = "eb", descriptor = "Lclient!na;")
 	public static final JString ERROR_IN_SCRIPT = JString.parse("(U0a )2 in: ");
@@ -219,13 +219,13 @@ public final class ClientScriptRunner {
 	public static final int[][] entityCountsPerTile = new int[104][104];
 
 	@OriginalMember(owner = "runetek4.client!n", name = "e", descriptor = "Lclient!na;")
-	public static final JString aClass100_767 = JString.parse(")2");
+	public static final JString ESCAPE_CHAR = JString.parse(")2");
 
 	@OriginalMember(owner = "runetek4.client!ob", name = "p", descriptor = "Lclient!na;")
 	public static final JString ERROR_MISSING_GOSUB = JString.parse("(U0a )2 non)2existant gosub script)2num: ");
 
 	@OriginalMember(owner = "runetek4.client!af", name = "m", descriptor = "Lclient!na;")
-	public static final JString aClass100_10 = JString.parse("<br>");
+	public static final JString HTML_LINE_BREAK = JString.parse("<br>");
 
 	@OriginalMember(owner = "runetek4.client!em", name = "z", descriptor = "Z")
 	public static boolean menuVisible = false;
@@ -246,7 +246,7 @@ public final class ClientScriptRunner {
 	public static JString url;
 
 	@OriginalMember(owner = "runetek4.client!th", name = "m", descriptor = "[Lclient!be;")
-	public static Component[] aClass13Array13;
+	public static Component[] tempComponentArray;
 
 	@OriginalMember(owner = "runetek4.client!k", name = "j", descriptor = "I")
 	public static int anInt3126;
@@ -748,7 +748,7 @@ public final class ClientScriptRunner {
 					if (opcode == POP_VARP) {
 						// pop_varp
 						id = intOperands[pc];
-						isp--;
+						isp--; // Decrement then read
 						VarpDomain.setVarpClient(id, scriptIntValues[isp]);
 						continue;
 					}
@@ -817,7 +817,7 @@ public final class ClientScriptRunner {
 					if (opcode == POP_VARBIT) {
 						// pop_varbit
 						id = intOperands[pc];
-						isp--;
+						isp--; // Decrement then read
 						VarpDomain.setVarbitClient(id, scriptIntValues[isp]);
 						continue;
 					}
@@ -846,7 +846,7 @@ public final class ClientScriptRunner {
 					if (opcode == POP_INT_LOCAL) {
 						// pop_int_local
 						localIndex = intOperands[pc];
-						isp--;
+						isp--; // Decrement then read
 						intLocals[localIndex] = scriptIntValues[isp];
 						continue;
 					}
@@ -872,7 +872,7 @@ public final class ClientScriptRunner {
 					}
 					if (opcode == POP_INT_DISCARD) {
 						// pop_int_discard
-						isp--;
+						isp--; // Decrement then read
 						continue;
 					}
 					if (opcode == POP_STRING_DISCARD) {
@@ -930,20 +930,20 @@ public final class ClientScriptRunner {
 					if (opcode == POP_VARC_INT) {
 						// pop_varc_int
 						id = intOperands[pc];
-						isp--;
+						isp--; // Decrement then read
 						VarcDomain.varcs[id] = scriptIntValues[isp];
-						DelayedStateChange.setVarcClient(id);
+						ClientServerStateSync.setVarcClient(id);
 						continue;
 					}
 					if (opcode == DEFINE_ARRAY) {
                         // define_array
                         // Arrays are global and indexed by ID, used for things like NPC lists, item lists etc
 						id = intOperands[pc] >> 16; // Array ID
-						isp--;
+						isp--; // Decrement then read
 						tempInt1 = scriptIntValues[isp]; // New array size
 						tempInt2 = intOperands[pc] & 0xFFFF; // Array type/opcode
 						if (tempInt1 >= 0 && tempInt1 <= 5000) { // Validate size
-							anIntArray140[id] = tempInt1; // Store the array size
+							stackDepthCounters[id] = tempInt1; // Store the array size
 
                             // Determine default value based on array type
 							@Pc(828) byte defaultValue = -1; // Most arrays default to -1
@@ -957,7 +957,7 @@ public final class ClientScriptRunner {
 								if (tempInt1 <= i) {
 									continue nextOp;
 								}
-								anIntArrayArray33[id][i] = defaultValue;
+								nestedStackValues[id][i] = defaultValue;
 								i++;
 							}
 						}
@@ -966,10 +966,10 @@ public final class ClientScriptRunner {
 					if (opcode == ARRAY_GET) {
                         // array_get
 						id = intOperands[pc]; // Array ID
-						isp--;
+						isp--; // Decrement then read
 						tempInt2 = scriptIntValues[isp]; // Array index
-						if (tempInt2 >= 0 && tempInt2 < anIntArray140[id]) { // Bounds check
-							scriptIntValues[isp++] = anIntArrayArray33[id][tempInt2]; // Push value
+						if (tempInt2 >= 0 && tempInt2 < stackDepthCounters[id]) { // Bounds check
+							scriptIntValues[isp++] = nestedStackValues[id][tempInt2]; // Push value
 							continue;
 						}
 						throw new RuntimeException(); // Index out of bounds
@@ -979,8 +979,8 @@ public final class ClientScriptRunner {
 						id = intOperands[pc]; // Array ID
 						isp -= 2;
 						tempInt2 = scriptIntValues[isp]; // Array index
-						if (tempInt2 >= 0 && tempInt2 < anIntArray140[id]) { // Bounds check
-							anIntArrayArray33[id][tempInt2] = scriptIntValues[isp + 1]; // Set value
+						if (tempInt2 >= 0 && tempInt2 < stackDepthCounters[id]) { // Bounds check
+							nestedStackValues[id][tempInt2] = scriptIntValues[isp + 1]; // Set value
 							continue;
 						}
 						throw new RuntimeException(); // Index out of bounds
@@ -997,12 +997,12 @@ public final class ClientScriptRunner {
 						id = intOperands[pc];
 						ssp--;
 						VarcDomain.varcstrs[id] = scriptStringValues[ssp];
-						DelayedStateChange.setVarcstrClient(id);
+						ClientServerStateSync.setVarcstrClient(id);
 						continue;
 					}
 					if (opcode == SWITCH) {
 						@Pc(992) HashTable table = clientScript.switchTables[intOperands[pc]];
-						isp--;
+						isp--; // Decrement then read
 						@Pc(1002) IntWrapper node = (IntWrapper) table.get((long) scriptIntValues[isp]);
 						if (node != null) {
 							pc += node.value;
@@ -1079,7 +1079,7 @@ public final class ClientScriptRunner {
 					}
 					if (opcode == CC_DELETEALL) {
 						// cc_deleteall
-						isp--;
+						isp--; // Decrement then read
 						createdComponent = ComponentList.getComponent(scriptIntValues[isp]);
 						createdComponent.createdComponents = null;
 						ComponentList.redraw(createdComponent);
@@ -1103,7 +1103,7 @@ public final class ClientScriptRunner {
 						continue;
 					}
 					if (opcode == IF_FIND) {
-						isp--;
+						isp--; // Decrement then read
 						tempInt2 = scriptIntValues[isp];
 						parentComponent = ComponentList.getComponent(tempInt2);
 						if (parentComponent == null) {
@@ -1151,7 +1151,7 @@ public final class ClientScriptRunner {
 							continue;
 						}
 						if (opcode == SETGENDER) {
-							isp--;
+							isp--; // Decrement then read
 							isFemale = scriptIntValues[isp] != 0;
 							PlayerList.self.appearance.setGender(isFemale);
 							continue;
@@ -1170,7 +1170,7 @@ public final class ClientScriptRunner {
 								} else {
                                     // if_ commands,  pop component ID from stack
 									opcode -= 1000; // Adjust opcode to match cc_ version
-									isp--;
+									isp--; // Decrement then read
 									createdComponent = ComponentList.getComponent(scriptIntValues[isp]);
 								}
 								if (opcode == CC_SETSCROLLPOS) {
@@ -1192,57 +1192,57 @@ public final class ClientScriptRunner {
 									}
 									ComponentList.redraw(createdComponent);
 									if (createdComponent.createdComponentId == -1) {
-										DelayedStateChange.setComponentScrollPositionClient(createdComponent.id);
+										ClientServerStateSync.setComponentScrollPositionClient(createdComponent.id);
 									}
 									continue;
 								}
 								if (opcode == CC_SETCOLOR) {
 									// setcolor
-									isp--;
+									isp--; // Decrement then read
 									createdComponent.color = scriptIntValues[isp];
 									ComponentList.redraw(createdComponent);
 									if (createdComponent.createdComponentId == -1) {
-										DelayedStateChange.setComponentColorClient(createdComponent.id);
+										ClientServerStateSync.setComponentColorClient(createdComponent.id);
 									}
 									continue;
 								}
 								if (opcode == CC_SETFILL) {
 									// setfill
-									isp--;
+									isp--; // Decrement then read
 									createdComponent.filled = scriptIntValues[isp] == 1;
 									ComponentList.redraw(createdComponent);
 									continue;
 								}
 								if (opcode == CC_SETTRANS) {
 									// settrans
-									isp--;
+									isp--; // Decrement then read
 									createdComponent.alpha = scriptIntValues[isp];
 									ComponentList.redraw(createdComponent);
 									continue;
 								}
 								if (opcode == CC_SETLINEWID) {
 									// setlinewid
-									isp--;
+									isp--; // Decrement then read
 									createdComponent.lineWidth = scriptIntValues[isp];
 									ComponentList.redraw(createdComponent);
 									continue;
 								}
 								if (opcode == CC_SETGRAPHIC) {
 									// setgraphic
-									isp--;
+									isp--; // Decrement then read
 									createdComponent.spriteId = scriptIntValues[isp];
 									ComponentList.redraw(createdComponent);
 									continue;
 								}
 								if (opcode == CC_SETANGLE) {
-									isp--;
+									isp--; // Decrement then read
 									createdComponent.angle2d = scriptIntValues[isp];
 									ComponentList.redraw(createdComponent);
 									continue;
 								}
 								if (opcode == CC_SETTILING) {
 									// settiling
-									isp--;
+									isp--; // Decrement then read
 									createdComponent.spriteTiling = scriptIntValues[isp] == 1;
 									ComponentList.redraw(createdComponent);
 									continue;
@@ -1250,11 +1250,11 @@ public final class ClientScriptRunner {
 								if (opcode == CC_SETMODEL) {
 									// setmodel
 									createdComponent.modelType = 1;
-									isp--;
+									isp--; // Decrement then read
 									createdComponent.modelId = scriptIntValues[isp];
 									ComponentList.redraw(createdComponent);
 									if (createdComponent.createdComponentId == -1) {
-										DelayedStateChange.setComponentModelClient(createdComponent.id);
+										ClientServerStateSync.setComponentModelClient(createdComponent.id);
 									}
 									continue;
 								}
@@ -1269,14 +1269,14 @@ public final class ClientScriptRunner {
 									createdComponent.modelZoom = scriptIntValues[isp + 5];
 									ComponentList.redraw(createdComponent);
 									if (createdComponent.createdComponentId == -1) {
-										DelayedStateChange.setComponentModelAngleClient(createdComponent.id);
-										DelayedStateChange.setComponentModelOffsetClient(createdComponent.id);
+										ClientServerStateSync.setComponentModelAngleClient(createdComponent.id);
+										ClientServerStateSync.setComponentModelOffsetClient(createdComponent.id);
 									}
 									continue;
 								}
 								if (opcode == CC_SETMODELANIM) {
 									// setmodelanim
-									isp--;
+									isp--; // Decrement then read
 									tempInt1 = scriptIntValues[isp];
 									if (createdComponent.modelSeqId != tempInt1) {
 										createdComponent.modelSeqId = tempInt1;
@@ -1286,13 +1286,13 @@ public final class ClientScriptRunner {
 										ComponentList.redraw(createdComponent);
 									}
 									if (createdComponent.createdComponentId == -1) {
-										DelayedStateChange.setComponentModelAnimClient(createdComponent.id);
+										ClientServerStateSync.setComponentModelAnimClient(createdComponent.id);
 									}
 									continue;
 								}
 								if (opcode == CC_SETMODELORTHOG) {
 									// setmodelorthog
-									isp--;
+									isp--; // Decrement then read
 									createdComponent.modelOrtho = scriptIntValues[isp] == 1;
 									ComponentList.redraw(createdComponent);
 									continue;
@@ -1306,13 +1306,13 @@ public final class ClientScriptRunner {
 										ComponentList.redraw(createdComponent);
 									}
 									if (createdComponent.createdComponentId == -1) {
-										DelayedStateChange.setComponentTextClient(createdComponent.id);
+										ClientServerStateSync.setComponentTextClient(createdComponent.id);
 									}
 									continue;
 								}
 								if (opcode == CC_SETTEXTFONT) {
 									// settextfont
-									isp--;
+									isp--; // Decrement then read
 									createdComponent.fontId = scriptIntValues[isp];
 									ComponentList.redraw(createdComponent);
 									continue;
@@ -1328,31 +1328,31 @@ public final class ClientScriptRunner {
 								}
 								if (opcode == CC_SETTEXTSHADOW) {
 									// settextshadow
-									isp--;
+									isp--; // Decrement then read
 									createdComponent.shadowed = scriptIntValues[isp] == 1;
 									ComponentList.redraw(createdComponent);
 									continue;
 								}
 								if (opcode == CC_SETOUTLINE) {
-									isp--;
+									isp--; // Decrement then read
 									createdComponent.outlineThickness = scriptIntValues[isp];
 									ComponentList.redraw(createdComponent);
 									continue;
 								}
 								if (opcode == CC_SETSHADOWCOLOR) {
-									isp--;
+									isp--; // Decrement then read
 									createdComponent.shadowColor = scriptIntValues[isp];
 									ComponentList.redraw(createdComponent);
 									continue;
 								}
 								if (opcode == CC_SETVFLIP) {
-									isp--;
+									isp--; // Decrement then read
 									createdComponent.vFlip = scriptIntValues[isp] == 1;
 									ComponentList.redraw(createdComponent);
 									continue;
 								}
 								if (opcode == CC_SETHFLIP) {
-									isp--;
+									isp--; // Decrement then read
 									createdComponent.hFlip = scriptIntValues[isp] == 1;
 									ComponentList.redraw(createdComponent);
 									continue;
@@ -1375,17 +1375,17 @@ public final class ClientScriptRunner {
 									continue;
 								}
 								if (opcode == CC_SETHASALPHA) {
-									isp--;
+									isp--; // Decrement then read
 									createdComponent.hasAlpha = scriptIntValues[isp] == 1;
 									ComponentList.redraw(createdComponent);
 									continue;
 								}
 								if (opcode == CC_SETZOOM) {
-									isp--;
+									isp--; // Decrement then read
 									createdComponent.modelZoom = scriptIntValues[isp];
 									ComponentList.redraw(createdComponent);
 									if (createdComponent.createdComponentId == -1) {
-										DelayedStateChange.setComponentModelAngleClient(createdComponent.id);
+										ClientServerStateSync.setComponentModelAngleClient(createdComponent.id);
 									}
 									continue;
 								}
@@ -1393,7 +1393,7 @@ public final class ClientScriptRunner {
 								if (opcode < 2000) {
 									createdComponent = secondary ? secondaryActiveComponent : primaryActiveComponent;
 								} else {
-									isp--;
+									isp--; // Decrement then read
 									createdComponent = ComponentList.getComponent(scriptIntValues[isp]);
 									opcode -= 1000;
 								}
@@ -1406,9 +1406,9 @@ public final class ClientScriptRunner {
 									tempInt1 = scriptIntValues[isp]; // Object type ID
 									if (createdComponent.createdComponentId == -1) {
                                         // For static components, notify server of changes
-										DelayedStateChange.setComponentObjClient(createdComponent.id);
-										DelayedStateChange.setComponentModelAngleClient(createdComponent.id);
-										DelayedStateChange.setComponentModelOffsetClient(createdComponent.id);
+										ClientServerStateSync.setComponentObjClient(createdComponent.id);
+										ClientServerStateSync.setComponentModelAngleClient(createdComponent.id);
+										ClientServerStateSync.setComponentModelOffsetClient(createdComponent.id);
 									}
 									if (tempInt1 == -1) {
                                         // Clear the object
@@ -1448,10 +1448,10 @@ public final class ClientScriptRunner {
 									// setnpchead
                                     // Display NPC chathead model
 									createdComponent.modelType = 2; // Model type 2 = NPC head
-									isp--;
+									isp--; // Decrement then read
 									createdComponent.modelId = scriptIntValues[isp];  // NPC type ID
 									if (createdComponent.createdComponentId == -1) {
-										DelayedStateChange.setComponentModelClient(createdComponent.id);
+										ClientServerStateSync.setComponentModelClient(createdComponent.id);
 									}
 									continue;
 								}
@@ -1461,7 +1461,7 @@ public final class ClientScriptRunner {
 									createdComponent.modelType = 3; // Model type 3 = player head
 									createdComponent.modelId = PlayerList.self.appearance.getHeadModelId();
 									if (createdComponent.createdComponentId == -1) {
-										DelayedStateChange.setComponentModelClient(createdComponent.id);
+										ClientServerStateSync.setComponentModelClient(createdComponent.id);
 									}
 									continue;
 								}
@@ -1469,26 +1469,26 @@ public final class ClientScriptRunner {
 									// setnpcmodel
                                     // Display full NPC model
 									createdComponent.modelType = 6; // Model type 6 = NPC body
-									isp--;
+									isp--; // Decrement then read
 									createdComponent.modelId = scriptIntValues[isp];
 									if (createdComponent.createdComponentId == -1) {
-										DelayedStateChange.setComponentModelClient(createdComponent.id);
+										ClientServerStateSync.setComponentModelClient(createdComponent.id);
 									}
 									continue;
 								}
 								if (opcode == CC_SETPLAYERMODEL) {
 									createdComponent.modelType = 5;
-									isp--;
+									isp--; // Decrement then read
 									createdComponent.modelId = scriptIntValues[isp];
 									if (createdComponent.createdComponentId == -1) {
-										DelayedStateChange.setComponentModelClient(createdComponent.id);
+										ClientServerStateSync.setComponentModelClient(createdComponent.id);
 									}
 									continue;
 								}
 							} else if (opcode >= 1300 && opcode < 1400 || opcode >= 2300 && opcode < 2400) {
 								if (opcode >= 2000) {
 									// if_
-									isp--;
+									isp--; // Decrement then read
 									createdComponent = ComponentList.getComponent(scriptIntValues[isp]);
 									opcode -= 1000;
 								} else {
@@ -1496,7 +1496,7 @@ public final class ClientScriptRunner {
 									createdComponent = secondary ? secondaryActiveComponent : primaryActiveComponent;
 								}
 								if (opcode == CC_SETOP) {
-									isp--;
+									isp--; // Decrement then read
 									tempInt1 = scriptIntValues[isp] - 1;
 									if (tempInt1 >= 0 && tempInt1 <= 9) {
 										ssp--;
@@ -1514,17 +1514,17 @@ public final class ClientScriptRunner {
 									continue;
 								}
 								if (opcode == CC_SETDRAGRENDERBEHAVIOR) {
-									isp--;
+									isp--; // Decrement then read
 									createdComponent.dragRenderBehavior = scriptIntValues[isp] == 1;
 									continue;
 								}
 								if (opcode == CC_SETDRAGDEADZONE) {
-									isp--;
+									isp--; // Decrement then read
 									createdComponent.dragDeadzone = scriptIntValues[isp];
 									continue;
 								}
 								if (opcode == CC_SETDRAGDEADTIME) {
-									isp--;
+									isp--; // Decrement then read
 									createdComponent.dragDeadtime = scriptIntValues[isp];
 									continue;
 								}
@@ -1543,16 +1543,16 @@ public final class ClientScriptRunner {
 									continue;
 								}
 								if (opcode == CC_SETCOMPONENTINTS) {
-									isp--;
+									isp--; // Decrement then read
 									createdComponent.anInt484 = scriptIntValues[isp];
-									isp--;
+									isp--; // Decrement then read
 									createdComponent.anInt499 = scriptIntValues[isp];
 									continue;
 								}
 								if (opcode == CC_SETCOMPONENTPROPERTY) {
-									isp--;
+									isp--; // Decrement then read
 									tempInt1 = scriptIntValues[isp];
-									isp--;
+									isp--; // Decrement then read
 									j = scriptIntValues[isp];
 									if (j >= 1 && j <= 10) {
 										createdComponent.method477(j - 1, tempInt1);
@@ -1568,19 +1568,19 @@ public final class ClientScriptRunner {
 									} else {
 										// cc_
 										opcode -= 1000;
-										isp--;
+										isp--; // Decrement then read
 										createdComponent = ComponentList.getComponent(scriptIntValues[isp]);
 									}
 									@Pc(12937) int[] triggerArray = null;
 									ssp--;
 									chatTypedLowercase = scriptStringValues[ssp];
 									if (chatTypedLowercase.length() > 0 && chatTypedLowercase.charAt(chatTypedLowercase.length() - 1) == 89) {
-										isp--;
+										isp--; // Decrement then read
 										i = scriptIntValues[isp];
 										if (i > 0) {
 											triggerArray = new int[i];
 											while (i-- > 0) {
-												isp--;
+												isp--; // Decrement then read
 												triggerArray[i] = scriptIntValues[isp];
 											}
 										}
@@ -1592,11 +1592,11 @@ public final class ClientScriptRunner {
 											ssp--;
 											arguments[start] = scriptStringValues[ssp];
 										} else {
-											isp--;
+											isp--; // Decrement then read
 											arguments[start] = Integer.valueOf(scriptIntValues[isp]);
 										}
 									}
-									isp--;
+									isp--; // Decrement then read
 									start = scriptIntValues[isp];
 									if (start == -1) {
 										arguments = null;
@@ -1783,7 +1783,7 @@ public final class ClientScriptRunner {
 										continue;
 									}
 									if (opcode == CC_GETOP) {
-										isp--;
+										isp--; // Decrement then read
 										tempInt1 = scriptIntValues[isp];
 										tempInt1--;
 										if (createdComponent.ops != null && tempInt1 < createdComponent.ops.length && createdComponent.ops[tempInt1] != null) {
@@ -1802,7 +1802,7 @@ public final class ClientScriptRunner {
 										continue;
 									}
 								} else if (opcode < 2600) {
-									isp--;
+									isp--; // Decrement then read
 									createdComponent = ComponentList.getComponent(scriptIntValues[isp]);
 									if (opcode == IF_GETX) {
 										// if_getx
@@ -1835,7 +1835,7 @@ public final class ClientScriptRunner {
 										continue;
 									}
 								} else if (opcode < 2700) {
-									isp--;
+									isp--; // Decrement then read
 									createdComponent = ComponentList.getComponent(scriptIntValues[isp]);
 									if (opcode == IF_GETSCROLLX) {
 										// if_getscrollx
@@ -1893,13 +1893,13 @@ public final class ClientScriptRunner {
 									}
 								} else if (opcode < 2800) {
 									if (opcode == IF_GETINVOBJECT) {
-										isp--;
+										isp--; // Decrement then read
 										createdComponent = ComponentList.getComponent(scriptIntValues[isp]);
 										scriptIntValues[isp++] = createdComponent.objId;
 										continue;
 									}
 									if (opcode == IF_GETINVCOUNT) {
-										isp--;
+										isp--; // Decrement then read
 										createdComponent = ComponentList.getComponent(scriptIntValues[isp]);
 										if (createdComponent.objId == -1) {
 											scriptIntValues[isp++] = 0;
@@ -1909,7 +1909,7 @@ public final class ClientScriptRunner {
 										continue;
 									}
 									if (opcode == IF_HASSUB) {
-										isp--;
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										@Pc(12566) SubInterface openSubInterface = (SubInterface) ComponentList.openInterfaces.get((long) tempInt2);
 										if (openSubInterface == null) {
@@ -1920,7 +1920,7 @@ public final class ClientScriptRunner {
 										continue;
 									}
 									if (opcode == IF_GETTOTALSUBCOMPONENTS) {
-										isp--;
+										isp--; // Decrement then read
 										createdComponent = ComponentList.getComponent(scriptIntValues[isp]);
 										if (createdComponent.createdComponents == null) {
 											scriptIntValues[isp++] = 0;
@@ -1949,14 +1949,14 @@ public final class ClientScriptRunner {
 										continue;
 									}
 								} else if (opcode < 2900) {
-									isp--;
+									isp--; // Decrement then read
 									createdComponent = ComponentList.getComponent(scriptIntValues[isp]);
 									if (opcode == IF_GETTARGETMASK) {
 										scriptIntValues[isp++] = ComponentList.getServerActiveProperties(createdComponent).getTargetMask();
 										continue;
 									}
 									if (opcode == IF_GETOP) {
-										isp--;
+										isp--; // Decrement then read
 										tempInt1 = scriptIntValues[isp];
 										tempInt1--;
 										if (createdComponent.ops != null && createdComponent.ops.length > tempInt1 && createdComponent.ops[tempInt1] != null) {
@@ -2019,7 +2019,7 @@ public final class ClientScriptRunner {
 										continue;
 									}
 									if (opcode == CLICK_PLAYER_OPTION) {
-										isp--;
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										ssp--;
 										chatTypedLowercase = scriptStringValues[ssp];
@@ -2044,7 +2044,7 @@ public final class ClientScriptRunner {
 										continue;
 									}
 									if (opcode == IF_ON_COMPONENT4) {
-										isp--;
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										Protocol.outboundBuffer.pIsaac1(ClientProt.IF_ON_COMPONENT4);
 										Protocol.outboundBuffer.p2(tempInt2);
@@ -2059,7 +2059,7 @@ public final class ClientScriptRunner {
 									}
 									if (opcode == SOUND_SONG) {
 										// sound_song
-										isp--;
+										isp--; // Decrement then read
 										MusicPlayer.playSong(scriptIntValues[isp]);
 										continue;
 									}
@@ -2097,25 +2097,25 @@ public final class ClientScriptRunner {
 										continue;
 									}
 									if (opcode == INV_SIZE) {
-										isp--;
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										scriptIntValues[isp++] = InvTypeList.get(tempInt2).size;
 										continue;
 									}
 									if (opcode == STAT) {
-										isp--;
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										scriptIntValues[isp++] = PlayerSkillXpTable.boostedLevels[tempInt2];
 										continue;
 									}
 									if (opcode == STAT_BASE) {
-										isp--;
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										scriptIntValues[isp++] = PlayerSkillXpTable.baseLevels[tempInt2];
 										continue;
 									}
 									if (opcode == STAT_XP) {
-										isp--;
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										scriptIntValues[isp++] = PlayerSkillXpTable.experience[tempInt2];
 										continue;
@@ -2128,19 +2128,19 @@ public final class ClientScriptRunner {
 										continue;
 									}
 									if (opcode == COORDX) {
-                                        isp--;
+                                        isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										scriptIntValues[isp++] = tempInt2 >> 14 & 0x3FFF;
 										continue;
 									}
 									if (opcode == COORDY) {
-                                        isp--;
+                                        isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										scriptIntValues[isp++] = tempInt2 >> 28;
 										continue;
 									}
 									if (opcode == COORDZ) {
-										isp--;
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										scriptIntValues[isp++] = tempInt2 & 0x3FFF;
 										continue;
@@ -2239,7 +2239,7 @@ public final class ClientScriptRunner {
 										continue;
 									}
 									if (opcode == INV_FREESPACE) {
-										isp--;
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										scriptIntValues[isp++] = Inv.getFreeSpace(tempInt2);
 										continue;
@@ -2327,7 +2327,7 @@ public final class ClientScriptRunner {
 										continue;
 									}
 									if (opcode == ENUM_HASOUTPUTSTRING) {
-										isp--;
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										ssp--;
 										chatTypedLowercase = scriptStringValues[ssp];
@@ -2342,7 +2342,7 @@ public final class ClientScriptRunner {
 										continue;
 									}
 									if (opcode == ENUM_GETSIZE) {
-										isp--;
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										@Pc(3645) EnumType outputEnumType = EnumTypeList.get(tempInt2);
 										scriptIntValues[isp++] = outputEnumType.table.length();
@@ -2360,7 +2360,7 @@ public final class ClientScriptRunner {
 										continue;
 									}
 									if (opcode == FRIENDGETNAME) {
-										isp--;
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										if (FriendList.state == 2 && tempInt2 < FriendList.friendCount) {
 											scriptStringValues[ssp++] = FriendList.friendUsernames[tempInt2];
@@ -2370,7 +2370,7 @@ public final class ClientScriptRunner {
 										continue;
 									}
 									if (opcode == FRIENDGETWORLD) {
-										isp--;
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										if (FriendList.state == 2 && FriendList.friendCount > tempInt2) {
 											scriptIntValues[isp++] = FriendList.friendWorlds[tempInt2];
@@ -2380,7 +2380,7 @@ public final class ClientScriptRunner {
 										continue;
 									}
 									if (opcode == FRIENDGETRANK) {
-										isp--;
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										if (FriendList.state == 2 && FriendList.friendCount > tempInt2) {
 											scriptIntValues[isp++] = FriendList.ranks[tempInt2];
@@ -2390,7 +2390,7 @@ public final class ClientScriptRunner {
 										continue;
 									}
 									if (opcode == FRIENDSETRANK) {
-										isp--;
+										isp--; // Decrement then read
 										tempInt1 = scriptIntValues[isp];
 										ssp--;
 										tempString1 = scriptStringValues[ssp];
@@ -2424,14 +2424,14 @@ public final class ClientScriptRunner {
 									if (opcode == FRIENDTEST) {
 										ssp--;
 										tempString1 = scriptStringValues[ssp];
-										if (tempString1.startsWith(aClass100_446) || tempString1.startsWith(aClass100_537)) {
+										if (tempString1.startsWith(SPRITE_TAG_0) || tempString1.startsWith(SPRITE_TAG_1)) {
 											tempString1 = tempString1.substring(7);
 										}
 										scriptIntValues[isp++] = FriendList.contains(tempString1) ? 1 : 0;
 										continue;
 									}
 									if (opcode == FRIENDGETWORLDNAME) {
-										isp--;
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										if (FriendList.state == 2 && FriendList.friendCount > tempInt2) {
 											scriptStringValues[ssp++] = FriendList.worldNames[tempInt2];
@@ -2457,7 +2457,7 @@ public final class ClientScriptRunner {
 										continue;
 									}
 									if (opcode == CLANCHATGETUSERNAME) {
-										isp--;
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										if (ClanChat.name != null && ClanChat.size > tempInt2) {
 											scriptStringValues[ssp++] = ClanChat.members[tempInt2].username.toTitleCase();
@@ -2467,7 +2467,7 @@ public final class ClientScriptRunner {
 										continue;
 									}
 									if (opcode == CLANCHATGETUSERWORLD) {
-										isp--;
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										if (ClanChat.name != null && tempInt2 < ClanChat.size) {
 											scriptIntValues[isp++] = ClanChat.members[tempInt2].world;
@@ -2477,7 +2477,7 @@ public final class ClientScriptRunner {
 										continue;
 									}
 									if (opcode == CLANCHATGETUSERRANK) {
-										isp--;
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										if (ClanChat.name != null && ClanChat.size > tempInt2) {
 											scriptIntValues[isp++] = ClanChat.members[tempInt2].rank;
@@ -2519,7 +2519,7 @@ public final class ClientScriptRunner {
 										continue;
 									}
 									if (opcode == IGNOREGETNAME) {
-										isp--;
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										if (FriendList.state != 0 && IgnoreList.ignoreCount > tempInt2) {
 											scriptStringValues[ssp++] = Base37.fromBase37(IgnoreList.encodedIgnores[tempInt2]).toTitleCase();
@@ -2531,14 +2531,14 @@ public final class ClientScriptRunner {
 									if (opcode == IGNORETEST) {
 										ssp--;
 										tempString1 = scriptStringValues[ssp];
-										if (tempString1.startsWith(aClass100_446) || tempString1.startsWith(aClass100_537)) {
+										if (tempString1.startsWith(SPRITE_TAG_0) || tempString1.startsWith(SPRITE_TAG_1)) {
 											tempString1 = tempString1.substring(7);
 										}
 										scriptIntValues[isp++] = IgnoreList.contains(tempString1) ? 1 : 0;
 										continue;
 									}
 									if (opcode == CLANCHATISSELFINCHANNEL) {
-										isp--;
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										if (ClanChat.members != null && ClanChat.size > tempInt2 && ClanChat.members[tempInt2].username.equalsIgnoreCase(PlayerList.self.username)) {
 											scriptIntValues[isp++] = 1;
@@ -2556,7 +2556,7 @@ public final class ClientScriptRunner {
 										continue;
 									}
 									if (opcode == CLANCHATGETWORLDNAME) {
-										isp--;
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										if (ClanChat.name != null && ClanChat.size > tempInt2) {
 											scriptStringValues[ssp++] = ClanChat.members[tempInt2].worldName;
@@ -2566,7 +2566,7 @@ public final class ClientScriptRunner {
 										continue;
 									}
 									if (opcode == FRIENDGETGAME) {
-										isp--;
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										if (FriendList.state == 2 && tempInt2 >= 0 && tempInt2 < FriendList.friendCount) {
 											scriptIntValues[isp++] = FriendList.friendGame[tempInt2] ? 1 : 0;
@@ -2578,7 +2578,7 @@ public final class ClientScriptRunner {
 									if (opcode == FRIENDGETINDEX) {
 										ssp--;
 										tempString1 = scriptStringValues[ssp];
-										if (tempString1.startsWith(aClass100_446) || tempString1.startsWith(aClass100_537)) {
+										if (tempString1.startsWith(SPRITE_TAG_0) || tempString1.startsWith(SPRITE_TAG_1)) {
 											tempString1 = tempString1.substring(7);
 										}
 										scriptIntValues[isp++] = FriendList.indexOf(tempString1);
@@ -2590,64 +2590,64 @@ public final class ClientScriptRunner {
 									}
 								} else if (opcode < 4000) {
 									if (opcode == STOCKMARKET_GETOFFERTYPE) {
-										isp--;
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										scriptIntValues[isp++] = StockMarketManager.offers[tempInt2].getType();
 										continue;
 									}
 									if (opcode == STOCKMARKET_GETOFFERITEM) {
-										isp--;
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										scriptIntValues[isp++] = StockMarketManager.offers[tempInt2].item;
 										continue;
 									}
 									if (opcode == STOCKMARKET_GETOFFERPRICE) {
-										isp--;
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										scriptIntValues[isp++] = StockMarketManager.offers[tempInt2].price;
 										continue;
 									}
 									if (opcode == STOCKMARKET_GETOFFERCOUNT) {
-										isp--;
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										scriptIntValues[isp++] = StockMarketManager.offers[tempInt2].count;
 										continue;
 									}
 									if (opcode == STOCKMARKET_GETOFFERCOMPLETEDCOUNT) {
-										isp--;
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										scriptIntValues[isp++] = StockMarketManager.offers[tempInt2].completedCount;
 										continue;
 									}
 									if (opcode == STOCKMARKET_GETOFFERCOMPLETEDGOLD) {
-										isp--;
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										scriptIntValues[isp++] = StockMarketManager.offers[tempInt2].completedGold;
 										continue;
 									}
 									if (opcode == STOCKMARKET_ISOFFEREMPTY) {
-										isp--;
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										tempInt1 = StockMarketManager.offers[tempInt2].getStatus();
 										scriptIntValues[isp++] = tempInt1 == 0 ? 1 : 0;
 										continue;
 									}
 									if (opcode == STOCKMARKET_ISOFFERCOMPLETING) {
-										isp--;
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										tempInt1 = StockMarketManager.offers[tempInt2].getStatus();
 										scriptIntValues[isp++] = tempInt1 == 2 ? 1 : 0;
 										continue;
 									}
 									if (opcode == STOCKMARKET_ISOFFERFINISHED) {
-										isp--;
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										tempInt1 = StockMarketManager.offers[tempInt2].getStatus();
 										scriptIntValues[isp++] = tempInt1 == 5 ? 1 : 0;
 										continue;
 									}
 									if (opcode == STOCKMARKET_ISOFFERACTIVE) {
-										isp--;
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										tempInt1 = StockMarketManager.offers[tempInt2].getStatus();
 										scriptIntValues[isp++] = tempInt1 == 1 ? 1 : 0;
@@ -2688,14 +2688,14 @@ public final class ClientScriptRunner {
 									}
 									if (opcode == RANDOM) {
 										// random
-										isp--;
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										scriptIntValues[isp++] = (int) ((double) tempInt2 * Math.random());
 										continue;
 									}
 									if (opcode == RANDOMINC) {
 										// randominc
-										isp--;
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										scriptIntValues[isp++] = (int) (Math.random() * (double) (tempInt2 + 1));
 										continue;
@@ -2829,7 +2829,7 @@ public final class ClientScriptRunner {
 										if (opcode == OC_NAME) {
                                             // oc_name
                                             // Get object/item name
-											isp--;
+											isp--; // Decrement then read
 											tempInt2 = scriptIntValues[isp];
 											scriptStringValues[ssp++] = ObjTypeList.get(tempInt2).name;
 											continue;
@@ -2866,7 +2866,7 @@ public final class ClientScriptRunner {
 										if (opcode == OC_COST) {
                                             // oc_cost
                                             // Get object shop value
-											isp--;
+											isp--; // Decrement then read
 											tempInt2 = scriptIntValues[isp];
 											scriptIntValues[isp++] = ObjTypeList.get(tempInt2).cost;
 											continue;
@@ -2874,7 +2874,7 @@ public final class ClientScriptRunner {
 										if (opcode == OC_STACKABLE) {
                                             // oc_stackable
                                             // Check if object is stackable
-											isp--;
+											isp--; // Decrement then read
 											tempInt2 = scriptIntValues[isp];
 											scriptIntValues[isp++] = ObjTypeList.get(tempInt2).stackable == 1 ? 1 : 0;
 											continue;
@@ -2884,7 +2884,7 @@ public final class ClientScriptRunner {
                                             // oc_cert
                                             // Get certificate link
                                             // Returns the actual object if this is a certificate
-											isp--;
+											isp--; // Decrement then read
 											tempInt2 = scriptIntValues[isp];
 											targetObjType = ObjTypeList.get(tempInt2);
 											if (targetObjType.certTemplate == -1 && targetObjType.certLink >= 0) {
@@ -2898,7 +2898,7 @@ public final class ClientScriptRunner {
                                             // oc_uncert
                                             // Get uncertificate link
                                             // // Returns the certificate version of this object
-											isp--;
+											isp--; // Decrement then read
 											tempInt2 = scriptIntValues[isp];
 											targetObjType = ObjTypeList.get(tempInt2);
 											if (targetObjType.certTemplate >= 0 && targetObjType.certLink >= 0) {
@@ -2909,7 +2909,7 @@ public final class ClientScriptRunner {
 											continue;
 										}
 										if (opcode == OC_MEMBERS) {
-											isp--;
+											isp--; // Decrement then read
 											tempInt2 = scriptIntValues[isp];
 											scriptIntValues[isp++] = ObjTypeList.get(tempInt2).members ? 1 : 0;
 											continue;
@@ -2931,7 +2931,7 @@ public final class ClientScriptRunner {
                                             // Search for objects by name
 											ssp--;
 											tempString1 = scriptStringValues[ssp]; // Search string
-											isp--;
+											isp--; // Decrement then read
 											tempInt1 = scriptIntValues[isp]; // Search type (0=exact, 1=contains)
 											Find.search(tempInt1 == 1, tempString1); // Populate Find.results
 											scriptIntValues[isp++] = Find.index; // Return result count
@@ -2998,7 +2998,7 @@ public final class ClientScriptRunner {
 												}
 												if (opcode == CHAT_GETHISTORY_BYTYPEANDLINE) {
 													chatTypedLowercase = null;
-													isp--;
+													isp--; // Decrement then read
 													tempInt2 = scriptIntValues[isp];
 													if (tempInt2 < 100) {
 														chatTypedLowercase = Chat.messages[tempInt2];
@@ -3010,7 +3010,7 @@ public final class ClientScriptRunner {
 													continue;
 												}
 												if (opcode == CHAT_GETHISTORY_BYTYPE) {
-													isp--;
+													isp--; // Decrement then read
 													tempInt2 = scriptIntValues[isp];
 													tempInt1 = -1;
 													if (tempInt2 < 100 && Chat.messages[tempInt2] != null) {
@@ -3171,7 +3171,7 @@ public final class ClientScriptRunner {
 													continue;
 												}
 												if (opcode == CHAT_GETHISTORY_USERNAME) {
-													isp--;
+													isp--; // Decrement then read
 													tempInt2 = scriptIntValues[isp];
 													chatTypedLowercase = null;
 													if (tempInt2 < 100) {
@@ -3184,7 +3184,7 @@ public final class ClientScriptRunner {
 													continue;
 												}
 												if (opcode == CHAT_GETHISTORY_CLAN) {
-													isp--;
+													isp--; // Decrement then read
 													tempInt2 = scriptIntValues[isp];
 													chatTypedLowercase = null;
 													if (tempInt2 < 100) {
@@ -3197,7 +3197,7 @@ public final class ClientScriptRunner {
 													continue;
 												}
 												if (opcode == CHAT_GETHISTORY_QUICKCHATID) {
-													isp--;
+													isp--; // Decrement then read
 													tempInt2 = scriptIntValues[isp];
 													tempInt1 = -1;
 													if (tempInt2 < 100) {
@@ -3224,14 +3224,14 @@ public final class ClientScriptRunner {
 													continue;
 												}
 												if (opcode == QUICKCHAT_GETCATEGORYNAME) {
-													isp--;
+													isp--; // Decrement then read
 													tempInt2 = scriptIntValues[isp];
 													scriptStringValues[ssp++] = QuickChatCatTypeList.get(tempInt2).description;
 													continue;
 												}
 												@Pc(6378) QuickChatCatType quickChatCategory;
 												if (opcode == QUICKCHAT_GETCATEGORYSIZE) {
-													isp--;
+													isp--; // Decrement then read
 													tempInt2 = scriptIntValues[isp];
 													quickChatCategory = QuickChatCatTypeList.get(tempInt2);
 													if (quickChatCategory.subcategories == null) {
@@ -3251,7 +3251,7 @@ public final class ClientScriptRunner {
 													continue;
 												}
 												if (opcode == QUICKCHAT_GETCATEGORYPHRASESIZE) {
-													isp--;
+													isp--; // Decrement then read
 													tempInt2 = scriptIntValues[isp];
 													quickChatCategory = QuickChatCatTypeList.get(tempInt2);
 													if (quickChatCategory.phrases == null) {
@@ -3269,13 +3269,13 @@ public final class ClientScriptRunner {
 													continue;
 												}
 												if (opcode == QUICKCHAT_GETPHRASETRING) {
-													isp--;
+													isp--; // Decrement then read
 													tempInt2 = scriptIntValues[isp];
 													scriptStringValues[ssp++] = QuickChatPhraseTypeList.get(tempInt2).getText();
 													continue;
 												}
 												if (opcode == QUICKCHAT_GETPHRASEDYNAMICCOMMANDCOUNT) {
-													isp--;
+													isp--; // Decrement then read
 													tempInt2 = scriptIntValues[isp];
 													@Pc(6527) QuickChatPhraseType quickChatPhrase = QuickChatPhraseTypeList.get(tempInt2);
 													if (quickChatPhrase.autoResponses == null) {
@@ -3294,7 +3294,7 @@ public final class ClientScriptRunner {
 												}
 												if (opcode == QUICKCHAT_INIT) {
 													activePhrase = new QuickChatPhrase();
-													isp--;
+													isp--; // Decrement then read
 													activePhrase.id = scriptIntValues[isp];
 													activePhrase.type = QuickChatPhraseTypeList.get(activePhrase.id);
 													activePhrase.values = new int[activePhrase.type.getDynamicCommandCount()];
@@ -3369,7 +3369,7 @@ public final class ClientScriptRunner {
 													continue;
 												}
 												if (opcode == QUICKCHAT_GETPHRASEDYNAMICCOUNT) {
-													isp--;
+													isp--; // Decrement then read
 													tempInt2 = scriptIntValues[isp];
 													scriptIntValues[isp++] = QuickChatPhraseTypeList.get(tempInt2).getDynamicCommandCount();
 													continue;
@@ -3411,7 +3411,7 @@ public final class ClientScriptRunner {
 												if (opcode == QUICKCHAT_FINDPHRASE) {
 													ssp--;
 													tempString1 = scriptStringValues[ssp];
-													isp--;
+													isp--; // Decrement then read
 													local1552 = scriptIntValues[isp] == 1;
 													Find.findQuickChatPhrases(local1552, tempString1);
 													scriptIntValues[isp++] = Find.index;
@@ -3458,7 +3458,7 @@ public final class ClientScriptRunner {
 												@Pc(7566) boolean local7566;
 												if (opcode < 5300) {
 													if (opcode == WORLDMAP_SETZOOM) {
-														isp--;
+														isp--; // Decrement then read
 														WorldMap.setTargetZoom(scriptIntValues[isp]);
 														continue;
 													}
@@ -3467,7 +3467,7 @@ public final class ClientScriptRunner {
 														continue;
 													}
 													if (opcode == WORLDMAP_METHOD4444) {
-														isp--;
+														isp--; // Decrement then read
 														WorldMap.method4444(scriptIntValues[isp]);
 														continue;
 													}
@@ -3486,7 +3486,7 @@ public final class ClientScriptRunner {
 														continue;
 													}
 													if (opcode == WORLDMAP_GETMAPNAME) {
-														isp--;
+														isp--; // Decrement then read
 														tempInt2 = scriptIntValues[isp];
 														@Pc(7264) Map sourceMap = MapList.getContainingSource(tempInt2 >> 14 & 0x3FFF, tempInt2 & 0x3FFF);
 														if (sourceMap == null) {
@@ -3548,7 +3548,7 @@ public final class ClientScriptRunner {
 															chatTypedLowercase = WorldMap.labels.text[tempInt2];
 															j = WorldMap.labels.getLowerTwoBits(tempInt2);
 														}
-														chatTypedLowercase = chatTypedLowercase.method3140(SPACE_STRING, aClass100_10);
+														chatTypedLowercase = chatTypedLowercase.method3140(SPACE_STRING, HTML_LINE_BREAK);
 														scriptStringValues[ssp++] = chatTypedLowercase;
 														scriptIntValues[isp++] = j;
 														continue;
@@ -3562,19 +3562,19 @@ public final class ClientScriptRunner {
 															chatTypedLowercase = WorldMap.labels.text[tempInt2];
 															j = WorldMap.labels.getLowerTwoBits(tempInt2);
 														}
-														chatTypedLowercase = chatTypedLowercase.method3140(SPACE_STRING, aClass100_10);
+														chatTypedLowercase = chatTypedLowercase.method3140(SPACE_STRING, HTML_LINE_BREAK);
 														scriptStringValues[ssp++] = chatTypedLowercase;
 														scriptIntValues[isp++] = j;
 														continue;
 													}
 													if (opcode == WORLDMAP_JUMPTODISPLAYCOORD) {
-														isp--;
+														isp--; // Decrement then read
 														tempInt2 = scriptIntValues[isp];
 														WorldMap.method3616(tempInt2 >> 14 & 0x3FFF, tempInt2 & 0x3FFF);
 														continue;
 													}
 													if (opcode == WORLDMAP_COORDHASMAP) {
-														isp--;
+														isp--; // Decrement then read
 														tempInt2 = scriptIntValues[isp];
 														ssp--;
 														chatTypedLowercase = scriptStringValues[ssp];
@@ -3594,13 +3594,13 @@ public final class ClientScriptRunner {
 														continue;
 													}
 													if (opcode == WORLDMAP_FLASHELEMENT) {
-														isp--;
+														isp--; // Decrement then read
 														tempInt2 = scriptIntValues[isp];
 														MapList.method4332(tempInt2);
 														continue;
 													}
 													if (opcode == WORLDMAP_ISELEMENTFLASHING) {
-														isp--;
+														isp--; // Decrement then read
 														tempInt2 = scriptIntValues[isp];
 														if (MapList.method1855(tempInt2)) {
 															scriptIntValues[isp++] = 1;
@@ -3648,7 +3648,7 @@ public final class ClientScriptRunner {
 														continue;
 													}
 													if (opcode == GETDISPLAYMODESIZE) {
-														isp--;
+														isp--; // Decrement then read
 														tempInt2 = scriptIntValues[isp];
 														@Pc(7800) DisplayMode[] availableModes = DisplayMode.getModes();
 														scriptIntValues[isp++] = availableModes[tempInt2].width;
@@ -3675,7 +3675,7 @@ public final class ClientScriptRunner {
 														continue;
 													}
 													if (opcode == SETWINDOWMODE) {
-														isp--;
+														isp--; // Decrement then read
 														tempInt2 = scriptIntValues[isp];
 														if (tempInt2 < 0 || tempInt2 > 2) {
 															tempInt2 = 0;
@@ -3688,7 +3688,7 @@ public final class ClientScriptRunner {
 														continue;
 													}
 													if (opcode == SETDEFAULTWINDOWMODE) {
-														isp--;
+														isp--; // Decrement then read
 														tempInt2 = scriptIntValues[isp];
 														if (tempInt2 < 0 || tempInt2 > 2) {
 															tempInt2 = 0;
@@ -3702,7 +3702,7 @@ public final class ClientScriptRunner {
 														ssp -= 2;
 														tempString1 = scriptStringValues[ssp];
 														chatTypedLowercase = scriptStringValues[ssp + 1];
-														isp--;
+														isp--; // Decrement then read
 														j = scriptIntValues[isp];
 														Protocol.outboundBuffer.pIsaac1(ClientProt.CLIENTSCRIPT_117);
 														Protocol.outboundBuffer.p1(Packet.gjstrlen(tempString1) + Packet.gjstrlen(chatTypedLowercase) + 1);
@@ -3746,7 +3746,7 @@ public final class ClientScriptRunner {
 														continue;
 													}
 													if (opcode == CAM_SPLINE_LENGTH) {
-														isp--;
+														isp--; // Decrement then read
 														tempInt2 = Camera.cameraSplines[scriptIntValues[isp]].length >> 1;
 														scriptIntValues[isp++] = tempInt2;
 														continue;
@@ -3785,7 +3785,7 @@ public final class ClientScriptRunner {
 														if (GameShell.fullScreenFrame != null) {
 															DisplayMode.setWindowMode(false, Preferences.favoriteWorlds, -1, -1);
 														}
-														isp--;
+														isp--; // Decrement then read
 														local1552 = scriptIntValues[isp] == 1;
 														ssp--;
 														tempString1 = scriptStringValues[ssp];
@@ -3800,7 +3800,7 @@ public final class ClientScriptRunner {
 														continue;
 													}
 													if (opcode == SETPLAYERNAME) {
-														isp--;
+														isp--; // Decrement then read
 														j = scriptIntValues[isp];
 														ssp -= 2;
 														chatTypedLowercase = scriptStringValues[ssp + 1];
@@ -3851,7 +3851,7 @@ public final class ClientScriptRunner {
 														continue;
 													}
 													if (opcode == SET_ANINT5794) {
-														isp--;
+														isp--; // Decrement then read
 														anInt5794 = scriptIntValues[isp];
 														continue;
 													}
@@ -3947,7 +3947,7 @@ public final class ClientScriptRunner {
 														ssp -= 2;
 														tempString1 = scriptStringValues[ssp];
 														chatTypedLowercase = scriptStringValues[ssp + 1];
-														isp--;
+														isp--; // Decrement then read
 														j = scriptIntValues[isp];
 														if (Client.gameState == 10 && LoginManager.autoStep == 0 && LoginManager.step == 0 && CreateManager.step == 0 && WorldList.step == 0) {
 															LoginManager.login(tempString1, chatTypedLowercase, j);
@@ -4019,7 +4019,7 @@ public final class ClientScriptRunner {
 													if (opcode == SETBRIGHTNESS) {
                                                         // setbrightness
                                                         // Set display brightness
-														isp--;
+														isp--; // Decrement then read
 														int brightness = scriptIntValues[isp];
 
                                                         // Clamp to valid range
@@ -4064,7 +4064,7 @@ public final class ClientScriptRunner {
 														continue;
 													}
 													if (opcode == SETLOWMEM) {
-														isp--;
+														isp--; // Decrement then read
 														Preferences.setLowmem(scriptIntValues[isp] == 1);
 														LocTypeList.clear();
 														method2742();
@@ -4074,7 +4074,7 @@ public final class ClientScriptRunner {
 														continue;
 													}
 													if (opcode == SETROOFSVISIBLE) {
-														isp--;
+														isp--; // Decrement then read
 														Preferences.roofsVisible = scriptIntValues[isp] == 1;
 														method2218();
 														Preferences.write(GameShell.signLink);
@@ -4082,7 +4082,7 @@ public final class ClientScriptRunner {
 														continue;
 													}
 													if (opcode == SETGROUNDDECOR) {
-														isp--;
+														isp--; // Decrement then read
 														Preferences.showGroundDecorations = scriptIntValues[isp] == 1;
 														method2742();
 														Preferences.write(GameShell.signLink);
@@ -4090,7 +4090,7 @@ public final class ClientScriptRunner {
 														continue;
 													}
 													if (opcode == SETHIGHTEXTURES) {
-														isp--;
+														isp--; // Decrement then read
 														Preferences.highDetailTextures = scriptIntValues[isp] == 1;
 														((Js5TextureProvider) Rasterizer.textureProvider).method3245(!Preferences.highDetailTextures);
 														Preferences.write(GameShell.signLink);
@@ -4098,35 +4098,35 @@ public final class ClientScriptRunner {
 														continue;
 													}
 													if (opcode == SETMANYIDLEANIMS) {
-														isp--;
+														isp--; // Decrement then read
 														Preferences.manyIdleAnimations = scriptIntValues[isp] == 1;
 														Preferences.write(GameShell.signLink);
 														Preferences.sentToServer = false;
 														continue;
 													}
 													if (opcode == SETFLICKERINGEFFECTS) {
-														isp--;
+														isp--; // Decrement then read
 														Preferences.flickeringEffectsOn = scriptIntValues[isp] == 1;
 														Preferences.write(GameShell.signLink);
 														Preferences.sentToServer = false;
 														continue;
 													}
 													if (opcode == SETMANYGROUNDTEXTURES) {
-														isp--;
+														isp--; // Decrement then read
 														Preferences.manyGroundTextures = scriptIntValues[isp] == 1;
 														Preferences.write(GameShell.signLink);
 														Preferences.sentToServer = false;
 														continue;
 													}
 													if (opcode == SETCHARACTERSHADOWS) {
-														isp--;
+														isp--; // Decrement then read
 														Preferences.characterShadowsOn = scriptIntValues[isp] == 1;
 														Preferences.write(GameShell.signLink);
 														Preferences.sentToServer = false;
 														continue;
 													}
 													if (opcode == SETSCENERYSHADOWS) {
-														isp--;
+														isp--; // Decrement then read
 														tempInt2 = scriptIntValues[isp];
 														if (tempInt2 < 0 || tempInt2 > 2) {
 															tempInt2 = 0;
@@ -4140,7 +4140,7 @@ public final class ClientScriptRunner {
 														if (GlRenderer.enabled) {
 															MaterialManager.setMaterial(0, 0);
 														}
-														isp--;
+														isp--; // Decrement then read
 														Preferences.highDetailLighting = scriptIntValues[isp] == 1;
 														if (GlRenderer.enabled && Preferences.highDetailLighting) {
 															Rasterizer.setBrightness(0.7F);
@@ -4164,7 +4164,7 @@ public final class ClientScriptRunner {
 														continue;
 													}
 													if (opcode == SETHIGHWATER) {
-														isp--;
+														isp--; // Decrement then read
 														Preferences.highWaterDetail = scriptIntValues[isp] == 1;
 														if (GlRenderer.enabled) {
 															method2742();
@@ -4174,7 +4174,7 @@ public final class ClientScriptRunner {
 														continue;
 													}
 													if (opcode == SETFOG) {
-														isp--;
+														isp--; // Decrement then read
 														Preferences.fogEnabled = scriptIntValues[isp] == 1;
 														if (GlRenderer.enabled) {
 															FogManager.setInstantFade();
@@ -4184,7 +4184,7 @@ public final class ClientScriptRunner {
 														continue;
 													}
 													if (opcode == SETANTIALIASING) {
-														isp--;
+														isp--; // Decrement then read
 														tempInt2 = scriptIntValues[isp];
 														if (GlRenderer.enabled) {
 															GameShell.canvasReplaceRecommended = true;
@@ -4196,7 +4196,7 @@ public final class ClientScriptRunner {
 														continue;
 													}
 													if (opcode == SETSTEREO) {
-														isp--;
+														isp--; // Decrement then read
 														Preferences.stereo = scriptIntValues[isp] == 1;
 														Client.method930();
 														Preferences.write(GameShell.signLink);
@@ -4204,7 +4204,7 @@ public final class ClientScriptRunner {
 														continue;
 													}
 													if (opcode == SETSOUNDVOLUME) {
-														isp--;
+														isp--; // Decrement then read
 														tempInt2 = scriptIntValues[isp];
 														if (tempInt2 < 0) {
 															tempInt2 = 0;
@@ -4218,7 +4218,7 @@ public final class ClientScriptRunner {
 														continue;
 													}
 													if (opcode == SETMUSICVOLUME) {
-														isp--;
+														isp--; // Decrement then read
 														tempInt2 = scriptIntValues[isp];
 														if (tempInt2 < 0) {
 															tempInt2 = 0;
@@ -4243,7 +4243,7 @@ public final class ClientScriptRunner {
 														continue;
 													}
 													if (opcode == SETAMBIENTSOUNDSVOLUME) {
-														isp--;
+														isp--; // Decrement then read
 														tempInt2 = scriptIntValues[isp];
 														if (tempInt2 < 0) {
 															tempInt2 = 0;
@@ -4257,13 +4257,13 @@ public final class ClientScriptRunner {
 														continue;
 													}
 													if (opcode == SETNEVERREMOVINGROOFS) {
-														isp--;
+														isp--; // Decrement then read
 														neverRemoveRoofs = scriptIntValues[isp] == 1;
 														method2218();
 														continue;
 													}
 													if (opcode == SETPARTICLES) {
-														isp--;
+														isp--; // Decrement then read
 														tempInt2 = scriptIntValues[isp];
 														if (tempInt2 < 0) {
 															tempInt2 = 0;
@@ -4283,7 +4283,7 @@ public final class ClientScriptRunner {
 														continue;
 													}
 													if (opcode == SETWINDOWMODE_PREF) {
-														isp--;
+														isp--; // Decrement then read
 														tempInt2 = scriptIntValues[isp];
 														if (tempInt2 < 0 || tempInt2 > 2) {
 															tempInt2 = 0;
@@ -4293,7 +4293,7 @@ public final class ClientScriptRunner {
 														continue;
 													}
 													if (opcode == SETCURSORS) {
-														isp--;
+														isp--; // Decrement then read
 														Preferences.cursorsEnabled = scriptIntValues[isp] != 0;
 														Preferences.write(GameShell.signLink);
 														continue;
@@ -4473,21 +4473,21 @@ public final class ClientScriptRunner {
 														j = scriptIntValues[isp + 2];
 														tempInt1 = scriptIntValues[isp + 1];
 														tempInt2 = scriptIntValues[isp];
-														aCalendar2.clear();
-														aCalendar2.set(11, 12);
-														aCalendar2.set(j, tempInt1, tempInt2);
-														scriptIntValues[isp++] = (int) (aCalendar2.getTime().getTime() / 86400000L) - 11745;
+														calendar.clear();
+														calendar.set(11, 12);
+														calendar.set(j, tempInt1, tempInt2);
+														scriptIntValues[isp++] = (int) (calendar.getTime().getTime() / 86400000L) - 11745;
 														continue;
 													}
 													if (opcode == CALC_YEAR) {
-														aCalendar2.clear();
-														aCalendar2.setTime(new Date(MonotonicTime.currentTimeMillis()));
-														scriptIntValues[isp++] = aCalendar2.get(1);
+														calendar.clear();
+														calendar.setTime(new Date(MonotonicTime.currentTimeMillis()));
+														scriptIntValues[isp++] = calendar.get(1);
 														continue;
 													}
 													if (opcode == CALC_ISLEAPYEAR) {
 														local1552 = true;
-														isp--;
+														isp--; // Decrement then read
 														tempInt2 = scriptIntValues[isp];
 														if (tempInt2 < 0) {
 															local1552 = (tempInt2 + 1) % 4 == 0;
@@ -4566,7 +4566,7 @@ public final class ClientScriptRunner {
 														continue;
 													}
 													if (opcode == WORLDLIST_HOPWORLD) {
-														isp--;
+														isp--; // Decrement then read
 														tempInt2 = scriptIntValues[isp];
 														if (Client.gameState == 10 && LoginManager.autoStep == 0 && LoginManager.step == 0 && CreateManager.step == 0) {
 															scriptIntValues[isp++] = WorldList.hopWorld(tempInt2) ? 1 : 0;
@@ -4576,7 +4576,7 @@ public final class ClientScriptRunner {
 														continue;
 													}
 													if (opcode == WORLDLIST_SETLAST) {
-														isp--;
+														isp--; // Decrement then read
 														Preferences.lastWorldId = scriptIntValues[isp];
 														Preferences.write(GameShell.signLink);
 														continue;
@@ -4586,7 +4586,7 @@ public final class ClientScriptRunner {
 														continue;
 													}
 													if (opcode == WORLDLIST_GETBYID) {
-														isp--;
+														isp--; // Decrement then read
 														tempInt2 = scriptIntValues[isp];
 														@Pc(10440) World targetWorld = getWorld(tempInt2);
 														if (targetWorld == null) {
@@ -4616,7 +4616,7 @@ public final class ClientScriptRunner {
 													}
 												} else if (opcode < 6700) {
 													if (opcode == SET_KEYBOARDCAMERA) {
-														isp--;
+														isp--; // Decrement then read
 														Preferences.keyboardCameraEnabled = scriptIntValues[isp] == 1;
 														Preferences.write(GameShell.signLink);
 														continue;
@@ -4657,7 +4657,7 @@ public final class ClientScriptRunner {
                                         // Append integer to string
 										ssp--;
 										tempString1 = scriptStringValues[ssp]; // Base string
-										isp--;
+										isp--; // Decrement then read
 										tempInt1 = scriptIntValues[isp]; // Number to append
 										scriptStringValues[ssp++] = JString.concatenate(new JString[] { tempString1, JString.parseInt(tempInt1) });
 										continue;
@@ -4675,7 +4675,7 @@ public final class ClientScriptRunner {
                                         // Append signed integer
 										ssp--;
 										tempString1 = scriptStringValues[ssp];
-										isp--;
+										isp--; // Decrement then read
 										tempInt1 = scriptIntValues[isp];
 										scriptStringValues[ssp++] = JString.concatenate(new JString[] { tempString1, JString.parseIntTrue(tempInt1) });
 										continue;
@@ -4690,19 +4690,19 @@ public final class ClientScriptRunner {
 									if (opcode == FROMDATE) {
 										// fromdate
                                         // Convert day count to formatted date string (dd-MMM-yyyy)
-										isp--;
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp]; // Days since reference date (Jan 1, 2002)
 										@Pc(11770) long calculatedDate = (long) tempInt2 * 86400000L + 1014768000000L; // Convert to epoch millis
-										aCalendar2.setTime(new Date(calculatedDate));
-										i = aCalendar2.get(5); // Day of month
-										start = aCalendar2.get(2); // Month (0-11)
-										childId = aCalendar2.get(1); // Year
+										calendar.setTime(new Date(calculatedDate));
+										i = calendar.get(5); // Day of month
+										start = calendar.get(2); // Month (0-11)
+										childId = calendar.get(1); // Year
                                         // Format: "dd-MMM-yyyy" (e.g., "15-Jan-2009")
 										scriptStringValues[ssp++] = JString.concatenate(new JString[] {
                                                 JString.parseInt(i),
-                                                aClass100_767, // "-"
+												ESCAPE_CHAR, // "-"
                                                 DateUtil.aClass100Array40[start], // Month name
-                                                aClass100_767, // "-"
+												ESCAPE_CHAR, // "-"
                                                 JString.parseInt(childId)
                                         });
 										continue;
@@ -4722,7 +4722,7 @@ public final class ClientScriptRunner {
 									}
 									if (opcode == TOSTRING) {
 										// tostring
-										isp--;
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										scriptStringValues[ssp++] = JString.parseInt(tempInt2);
 										continue;
@@ -4762,7 +4762,7 @@ public final class ClientScriptRunner {
 										ssp -= 2;
 										tempString1 = scriptStringValues[ssp];
 										chatTypedLowercase = scriptStringValues[ssp + 1];
-										isp--;
+										isp--; // Decrement then read
 										if (scriptIntValues[isp] == 1) {
 											scriptStringValues[ssp++] = tempString1;
 										} else {
@@ -4783,7 +4783,7 @@ public final class ClientScriptRunner {
                                         // Append character to string
 										ssp--;
 										tempString1 = scriptStringValues[ssp];
-										isp--;
+										isp--; // Decrement then read
 										tempInt1 = scriptIntValues[isp]; // Character code
 										if (tempInt1 == -1) {
 											throw new RuntimeException("null char"); // Invalid character
@@ -4794,13 +4794,13 @@ public final class ClientScriptRunner {
 									if (opcode == CHAR_ISVALID) {
                                         // char_isvalid
                                         // Check if character code is valid
-										isp--;
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										scriptIntValues[isp++] = CharUtils.isValidChar(tempInt2) ? 1 : 0;
 										continue;
 									}
 									if (opcode == CHAR_ISOTHER) {
-										isp--;
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										scriptIntValues[isp++] = CharUtils.method433(tempInt2) ? 1 : 0;
 										continue;
@@ -4808,7 +4808,7 @@ public final class ClientScriptRunner {
 									if (opcode == CHAR_ISLETTER) {
                                         // char_isletter
                                         // Check if character is a letter
-										isp--;
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										scriptIntValues[isp++] = CharUtils.isLetter(tempInt2) ? 1 : 0;
 										continue;
@@ -4816,7 +4816,7 @@ public final class ClientScriptRunner {
 									if (opcode == CHAR_ISDIGIT) {
                                         // char_isdigit
                                         // Check if character is a digit
-										isp--;
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										scriptIntValues[isp++] = CharUtils.isDigit(tempInt2) ? 1 : 0;
 										continue;
@@ -4872,27 +4872,27 @@ public final class ClientScriptRunner {
 										ssp -= 2;
 										tempString1 = scriptStringValues[ssp];
 										chatTypedLowercase = scriptStringValues[ssp + 1];
-										isp--;
+										isp--; // Decrement then read
 										j = scriptIntValues[isp];
 										scriptIntValues[isp++] = tempString1.indexOf(chatTypedLowercase, j);
 										continue;
 									}
 									if (opcode == CHAR_TOLOWERCASE) {
-										isp--;
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										scriptIntValues[isp++] = CharUtils.toLowerCase(tempInt2);
 										continue;
 									}
 									if (opcode == CHAR_TOUPPERCASE) {
-										isp--;
+										isp--; // Decrement then read
 										tempInt2 = scriptIntValues[isp];
 										scriptIntValues[isp++] = CharUtils.toUpperCase(tempInt2);
 										continue;
 									}
 									if (opcode == FORMATNUMBER) {
-										isp--;
+										isp--; // Decrement then read
 										isFemale = scriptIntValues[isp] != 0;
-										isp--;
+										isp--; // Decrement then read
 										tempInt1 = scriptIntValues[isp];
 										scriptStringValues[ssp++] = StringUtils.formatNumber(Client.language, isFemale, 0, (long) tempInt1);
 										continue;
@@ -4903,7 +4903,7 @@ public final class ClientScriptRunner {
 							if (opcode < 2000) {
 								createdComponent = secondary ? secondaryActiveComponent : primaryActiveComponent;
 							} else {
-								isp--;
+								isp--; // Decrement then read
 								createdComponent = ComponentList.getComponent(scriptIntValues[isp]);
 								opcode -= 1000;
 							}
@@ -4929,7 +4929,7 @@ public final class ClientScriptRunner {
 								ComponentList.redraw(createdComponent);
 								ComponentList.update(createdComponent);
 								if (createdComponent.createdComponentId == -1) {
-									DelayedStateChange.setComponentPositionClient(createdComponent.id);
+									ClientServerStateSync.setComponentPositionClient(createdComponent.id);
 								}
 								continue;
 							}
@@ -4963,14 +4963,14 @@ public final class ClientScriptRunner {
 							}
 							if (opcode == CC_SETHIDE) {
 								// sethide
-								isp--;
+								isp--; // Decrement then read
 								local1552 = scriptIntValues[isp] == 1;
 								if (local1552 != createdComponent.hidden) {
 									createdComponent.hidden = local1552;
 									ComponentList.redraw(createdComponent);
 								}
 								if (createdComponent.createdComponentId == -1) {
-									DelayedStateChange.setComponentHiddenClient(createdComponent.id);
+									ClientServerStateSync.setComponentHiddenClient(createdComponent.id);
 								}
 								continue;
 							}
@@ -4987,7 +4987,7 @@ public final class ClientScriptRunner {
 								continue;
 							}
 							if (opcode == CC_SETNOCLICK) {
-								isp--;
+								isp--; // Decrement then read
 								createdComponent.noClickThrough = scriptIntValues[isp] == 1;
 								continue;
 							}
