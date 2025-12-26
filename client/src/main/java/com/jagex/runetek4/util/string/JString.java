@@ -49,11 +49,11 @@ public final class JString implements ComponentString {
 	@OriginalMember(owner = "client!sh", name = "e", descriptor = "Lclient!na;")
 	public static final JString aClass100_967 = parse("");
 	@OriginalMember(owner = "client!je", name = "db", descriptor = "Lclient!na;")
-	public static final JString aClass100_589 = parse(" <col=ffffff>");
+	public static final JString COLOR_WHITE_SPACE = parse(" <col=ffffff>");
 	@OriginalMember(owner = "runetek4.client!uf", name = "s", descriptor = "Lclient!na;")
-	public static final JString aClass100_1043 = parse(" <col=00ff80>");
+	public static final JString COLOR_SPRING_GREEN_SPACE = parse(" <col=00ff80>");
 	@OriginalMember(owner = "runetek4.client!wj", name = "b", descriptor = "Lclient!na;")
-	public static final JString aClass100_1101 = parse(" <col=ffff00>");
+	public static final JString COLOR_YELLOW_SPACE = parse(" <col=ffff00>");
 	@OriginalMember(owner = "runetek4.client!mi", name = "R", descriptor = "Lclient!na;")
 	public static final JString COMMA_SEPARATOR = parse(")1");
 	@OriginalMember(owner = "runetek4.client!sj", name = "w", descriptor = "Lclient!na;")

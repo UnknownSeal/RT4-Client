@@ -80,11 +80,11 @@ public class StringUtils {
             numberStr = JString.concatenate(new JString[] { numberStr.substring(insertPos, 0), JString.COMMA_SEPARATOR, numberStr.substring(insertPos) });
         }
         if (numberStr.length() > 9) {
-            return JString.concatenate(new JString[] { JString.aClass100_1043, numberStr.substring(numberStr.length() - 8, 0), LocalizedText.MILLION_SHORT, MiniMenu.OPEN_PARENTHESIS, numberStr, JString.aClass100_583 });
+            return JString.concatenate(new JString[] { JString.COLOR_SPRING_GREEN_SPACE, numberStr.substring(numberStr.length() - 8, 0), LocalizedText.MILLION_SHORT, MiniMenu.OPEN_PARENTHESIS, numberStr, JString.aClass100_583 });
         } else if (numberStr.length() > 6) {
-            return JString.concatenate(new JString[] { JString.aClass100_589, numberStr.substring(numberStr.length() - 4, 0), LocalizedText.THOUSAND_SHORT, MiniMenu.OPEN_PARENTHESIS, numberStr, JString.aClass100_583 });
+            return JString.concatenate(new JString[] { JString.COLOR_WHITE_SPACE, numberStr.substring(numberStr.length() - 4, 0), LocalizedText.THOUSAND_SHORT, MiniMenu.OPEN_PARENTHESIS, numberStr, JString.aClass100_583 });
         } else {
-            return JString.concatenate(new JString[] { JString.aClass100_1101, numberStr, JString.aClass100_978 });
+            return JString.concatenate(new JString[] { JString.COLOR_YELLOW_SPACE, numberStr, JString.aClass100_978 });
         }
     }
 }

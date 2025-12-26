@@ -1830,7 +1830,7 @@ public class ComponentList {
                                                     local1934 = MiniMenu.NULL;
                                                 }
                                                 if ((local1989.stackable == 1 || component.objCount != 1) && component.objCount != -1) {
-                                                    local1934 = JString.concatenate(new JString[] { MiniMenu.aClass100_32, local1934, JString.aClass100_375, StringUtils.formatNumber(component.objCount) });
+                                                    local1934 = JString.concatenate(new JString[] { MiniMenu.COLOR_LIGHT_ORANGE, local1934, JString.aClass100_375, StringUtils.formatNumber(component.objCount) });
                                                 }
                                             }
                                             if (ClientScriptRunner.modalBackgroundComponent == component) {
@@ -2058,9 +2058,9 @@ public class ComponentList {
                                                             local2611 = ObjTypeList.get(component.invSlotObjId[clipBottom2] - 1);
                                                             @Pc(3159) JString local3159;
                                                             if (local2611.stackable != 1 && component.invSlotObjCount[clipBottom2] == 1) {
-                                                                local3159 = JString.concatenate(new JString[] { MiniMenu.aClass100_32, local2611.name, JString.aClass100_978 });
+                                                                local3159 = JString.concatenate(new JString[] { MiniMenu.COLOR_LIGHT_ORANGE, local2611.name, JString.aClass100_978 });
                                                             } else {
-                                                                local3159 = JString.concatenate(new JString[] { MiniMenu.aClass100_32, local2611.name, JString.aClass100_375, StringUtils.formatNumber(component.invSlotObjCount[clipBottom2]) });
+                                                                local3159 = JString.concatenate(new JString[] { MiniMenu.COLOR_LIGHT_ORANGE, local2611.name, JString.aClass100_375, StringUtils.formatNumber(component.invSlotObjCount[clipBottom2]) });
                                                             }
                                                             dragOffsetY = renderX + tempValue * (component.invMarginX + 115);
                                                             objId = (component.invMarginY + 12) * temp + renderY;

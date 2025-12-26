@@ -27,11 +27,11 @@ public final class Inv extends Node {
 	@OriginalMember(owner = "client!cb", name = "I", descriptor = "[I")
 	public static final int[] updatedInventories = new int[32];
 	@OriginalMember(owner = "runetek4.client!kl", name = "u", descriptor = "Lclient!na;")
-	public static final JString aClass100_637 = JString.parse("<col=ffffff>");
+	public static final JString COLOR_WHITE = JString.parse("<col=ffffff>");
 	@OriginalMember(owner = "runetek4.client!ol", name = "Y", descriptor = "Lclient!na;")
-	public static final JString aClass100_819 = JString.parse("<col=00ff80>");
+	public static final JString COLOR_SPRING_GREEN = JString.parse("<col=00ff80>");
 	@OriginalMember(owner = "runetek4.client!ib", name = "g", descriptor = "Lclient!na;")
-	public static final JString aClass100_559 = JString.parse("<col=ffff00>");
+	public static final JString COLOR_YELLOW = JString.parse("<col=ffff00>");
 	@OriginalMember(owner = "runetek4.client!jj", name = "m", descriptor = "Lclient!na;")
 	public static final JString aClass100_594 = JString.parse("<)4col>");
 	@OriginalMember(owner = "client!bj", name = "v", descriptor = "Lclient!sc;")
@@ -237,11 +237,11 @@ public final class Inv extends Node {
 	@OriginalMember(owner = "runetek4.client!eb", name = "b", descriptor = "(II)Lclient!na;")
 	public static JString getShortenedAmountText(@OriginalArg(1) int amount) {
 		if (amount < 100000) {
-			return JString.concatenate(new JString[] {aClass100_559, JString.parseInt(amount), aClass100_594});
+			return JString.concatenate(new JString[] {COLOR_YELLOW, JString.parseInt(amount), aClass100_594});
 		} else if (amount >= 10000000) {
-			return JString.concatenate(new JString[] {aClass100_819, JString.parseInt(amount / 1000000), LocalizedText.MILLION, aClass100_594});
+			return JString.concatenate(new JString[] {COLOR_SPRING_GREEN, JString.parseInt(amount / 1000000), LocalizedText.MILLION, aClass100_594});
 		} else {
-			return JString.concatenate(new JString[] {aClass100_637, JString.parseInt(amount / 1000), LocalizedText.THOUSAND, aClass100_594});
+			return JString.concatenate(new JString[] {COLOR_WHITE, JString.parseInt(amount / 1000), LocalizedText.THOUSAND, aClass100_594});
 		}
 	}
 

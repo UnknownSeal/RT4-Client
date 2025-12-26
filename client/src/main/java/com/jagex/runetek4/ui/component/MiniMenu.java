@@ -60,37 +60,37 @@ public class MiniMenu {
     @OriginalMember(owner = "runetek4.client!hd", name = "l", descriptor = "Lclient!na;")
     public static final JString NULL = JString.parse("null");
     @OriginalMember(owner = "client!aj", name = "R", descriptor = "Lclient!na;")
-    public static final JString aClass100_32 = JString.parse("<col=ff9040>");
+    public static final JString COLOR_LIGHT_ORANGE = JString.parse("<col=ff9040>");
     @OriginalMember(owner = "runetek4.client!pl", name = "e", descriptor = "[I")
     public static final int[] intArgs1 = new int[500];
     @OriginalMember(owner = "client!df", name = "l", descriptor = "Lclient!na;")
-    public static final JString GREEN = JString.parse("<col=00ff00>");
+    public static final JString COLOR_LIMEGREEN = JString.parse("<col=00ff00>");
     @OriginalMember(owner = "runetek4.client!sc", name = "g", descriptor = "Lclient!na;")
-    public static final JString aClass100_947 = JString.parse(" )2> <col=ff9040>");
+    public static final JString COLOR_LIGHT_ORANGE_ARROW = JString.parse(" )2> <col=ff9040>");
     @OriginalMember(owner = "runetek4.client!mi", name = "U", descriptor = "[J")
     public static final long[] keys = new long[500];
     @OriginalMember(owner = "client!ef", name = "c", descriptor = "[I")
     public static final int[] intArgs2 = new int[500];
     @OriginalMember(owner = "runetek4.client!nm", name = "bb", descriptor = "Lclient!na;")
-    public static final JString RED = JString.parse("<col=ff0000>");
+    public static final JString COLOR_RED = JString.parse("<col=ff0000>");
     @OriginalMember(owner = "client!fb", name = "p", descriptor = "Lclient!na;")
-    public static final JString RED2 = JString.parse("<col=ff3000>");
+    public static final JString COLOR_RED_ORANGE = JString.parse("<col=ff3000>");
     @OriginalMember(owner = "runetek4.client!sc", name = "D", descriptor = "Lclient!na;")
-    public static final JString ORANGE = JString.parse("<col=ff7000>");
+    public static final JString COLOR_ORANGE = JString.parse("<col=ff7000>");
     @OriginalMember(owner = "runetek4.client!si", name = "Z", descriptor = "Lclient!na;")
-    public static final JString YELLOW = JString.parse("<col=ffb000>");
+    public static final JString COLOR_AMBER = JString.parse("<col=ffb000>");
     @OriginalMember(owner = "client!ag", name = "bb", descriptor = "Lclient!na;")
-    public static final JString GREEN2 = JString.parse("<col=40ff00>");
+    public static final JString COLOR_BRIGHT_LIMEGREEN = JString.parse("<col=40ff00>");
     @OriginalMember(owner = "client!dc", name = "v", descriptor = "Lclient!na;")
-    public static final JString GREEN3 = JString.parse("<col=c0ff00>");
+    public static final JString COLOR_YELLOW_GREEN = JString.parse("<col=c0ff00>");
     @OriginalMember(owner = "runetek4.client!sf", name = "g", descriptor = "Lclient!na;")
-    public static final JString YELLOW2 = JString.parse("<col=ffff00>");
+    public static final JString COLOR_YELLOW2 = JString.parse("<col=ffff00>");
     @OriginalMember(owner = "runetek4.client!vg", name = "f", descriptor = "Lclient!na;")
-    public static final JString GREEN4 = JString.parse("<col=80ff00>");
+    public static final JString COLOR_SPRING_GREEN = JString.parse("<col=80ff00>");
     @OriginalMember(owner = "runetek4.client!r", name = "d", descriptor = "Z")
     public static final boolean aBoolean237 = false;
     @OriginalMember(owner = "runetek4.client!a", name = "j", descriptor = "Lclient!na;")
-    public static final JString aClass100_2 = JString.parse("<col=ffffff> )4 ");
+    public static final JString COLOR_WHITE_BRACKET = JString.parse("<col=ffffff> )4 ");
     @OriginalMember(owner = "client!cb", name = "fb", descriptor = "Lclient!na;")
     public static final JString COLON_SEPARATOR = JString.parse(": ");
     @OriginalMember(owner = "runetek4.client!qf", name = "Q", descriptor = "Lclient!na;")
@@ -104,7 +104,7 @@ public class MiniMenu {
     @OriginalMember(owner = "runetek4.client!jj", name = "g", descriptor = "Lclient!na;")
     public static final JString OPEN_PARENTHESIS = JString.parse(" (X");
     @OriginalMember(owner = "runetek4.client!qi", name = "B", descriptor = "Lclient!na;")
-	public static final JString WHITE = JString.parse("<col=ffffff>");
+	public static final JString COLOR_WHITE2 = JString.parse("<col=ffffff>");
     @OriginalMember(owner = "client!cb", name = "ab", descriptor = "Lclient!na;")
     public static final JString CYAN_ARROW = JString.parse(" )2> <col=00ffff>");
     @OriginalMember(owner = "runetek4.client!ud", name = "Q", descriptor = "Lclient!na;")
@@ -112,7 +112,7 @@ public class MiniMenu {
     @OriginalMember(owner = "runetek4.client!ib", name = "k", descriptor = "Lclient!na;")
     public static final JString WHITE_ARROW = JString.parse(" )2> <col=ffffff>");
     @OriginalMember(owner = "runetek4.client!tg", name = "e", descriptor = "Lclient!na;")
-    public static final JString CYAN = JString.parse("<col=00ffff>");
+    public static final JString COLOR_CYAN = JString.parse("<col=00ffff>");
     @OriginalMember(owner = "runetek4.client!uf", name = "q", descriptor = "Lclient!na;")
     public static final JString NULL_TEXT = JString.parse("Null");
     @OriginalMember(owner = "client!e", name = "pc", descriptor = "[I")
@@ -318,7 +318,7 @@ public class MiniMenu {
         if (component.buttonType == 2 && !useWithActive) {
             targetVerb = MiniMap.getTargetVerb(component);
             if (targetVerb != null) {
-                addActionRow(-1, 0L, JString.concatenate(new JString[] { GREEN, component.optionSuffix}), -1, (short) 32, targetVerb, component.id);
+                addActionRow(-1, 0L, JString.concatenate(new JString[] {COLOR_LIMEGREEN, component.optionSuffix}), -1, (short) 32, targetVerb, component.id);
             }
         }
         if (component.buttonType == 3) {
@@ -353,12 +353,12 @@ public class MiniMenu {
                             @Pc(276) ObjType objType = ObjTypeList.get(component.invSlotObjId[slotIndex] - 1);
                             if (anInt5014 == 1 && serverProps.isObjOpsEnabled()) {
                                 if (MiniMap.anInt5062 != component.id || anInt4370 != slotIndex) {
-                                    addActionRow(-1, (long) objType.id, JString.concatenate(new JString[] { aClass100_203, aClass100_947, objType.name}), slotIndex, (short) 40, LocalizedText.USE, component.id);
+                                    addActionRow(-1, (long) objType.id, JString.concatenate(new JString[] { aClass100_203, COLOR_LIGHT_ORANGE_ARROW, objType.name}), slotIndex, (short) 40, LocalizedText.USE, component.id);
                                 }
                             } else if (useWithActive && serverProps.isObjOpsEnabled()) {
                                 @Pc(596) ParamType paramType = useWithParam == -1 ? null : ParamTypeList.get(useWithParam);
                                 if ((useWithMask & TARGET_MASK_OBJ) != 0 && (paramType == null || objType.getParam(paramType.defaultInt, useWithParam) != paramType.defaultInt)) {
-                                    addActionRow(useWithCursor, (long) objType.id, JString.concatenate(new JString[] { aClass100_466, aClass100_947, objType.name}), slotIndex, (short) 3, aClass100_545, component.id);
+                                    addActionRow(useWithCursor, (long) objType.id, JString.concatenate(new JString[] { aClass100_466, COLOR_LIGHT_ORANGE_ARROW, objType.name}), slotIndex, (short) 3, aClass100_545, component.id);
                                 }
                             } else {
                                 @Pc(296) JString[] objOps = objType.iop;
@@ -375,12 +375,12 @@ public class MiniMenu {
                                             } else {
                                                 actionId = 58;
                                             }
-                                            addActionRow(-1, (long) objType.id, JString.concatenate(new JString[] { aClass100_32, objType.name}), slotIndex, actionId, objOps[opIndex], component.id);
+                                            addActionRow(-1, (long) objType.id, JString.concatenate(new JString[] {COLOR_LIGHT_ORANGE, objType.name}), slotIndex, actionId, objOps[opIndex], component.id);
                                         }
                                     }
                                 }
                                 if (serverProps.isObjUseEnabled()) {
-                                    addActionRow(MiniMap.anInt4075, (long) objType.id, JString.concatenate(new JString[] { aClass100_32, objType.name}), slotIndex, (short) 22, LocalizedText.USE, component.id);
+                                    addActionRow(MiniMap.anInt4075, (long) objType.id, JString.concatenate(new JString[] {COLOR_LIGHT_ORANGE, objType.name}), slotIndex, (short) 22, LocalizedText.USE, component.id);
                                 }
                                 if (serverProps.isObjOpsEnabled() && objOps != null) {
                                     for (opIndex = 2; opIndex >= 0; opIndex--) {
@@ -395,7 +395,7 @@ public class MiniMenu {
                                             if (opIndex == 2) {
                                                 actionId = 43;
                                             }
-                                            addActionRow(-1, (long) objType.id, JString.concatenate(new JString[] { aClass100_32, objType.name}), slotIndex, actionId, objOps[opIndex], component.id);
+                                            addActionRow(-1, (long) objType.id, JString.concatenate(new JString[] {COLOR_LIGHT_ORANGE, objType.name}), slotIndex, actionId, objOps[opIndex], component.id);
                                         }
                                     }
                                 }
@@ -422,11 +422,11 @@ public class MiniMenu {
                                             if (opIndex == 4) {
                                                 actionId = 13;
                                             }
-                                            addActionRow(-1, (long) objType.id, JString.concatenate(new JString[] { aClass100_32, objType.name}), slotIndex, actionId, objOps[opIndex], component.id);
+                                            addActionRow(-1, (long) objType.id, JString.concatenate(new JString[] {COLOR_LIGHT_ORANGE, objType.name}), slotIndex, actionId, objOps[opIndex], component.id);
                                         }
                                     }
                                 }
-                                addActionRow(MiniMap.anInt5073, (long) objType.id, JString.concatenate(new JString[] { aClass100_32, objType.name}), slotIndex, (short) 1006, LocalizedText.EXAMINE, component.id);
+                                addActionRow(MiniMap.anInt5073, (long) objType.id, JString.concatenate(new JString[] {COLOR_LIGHT_ORANGE, objType.name}), slotIndex, (short) 1006, LocalizedText.EXAMINE, component.id);
                             }
                         }
                     }
@@ -1023,9 +1023,9 @@ public class MiniMenu {
                     aClass100_545 = NULL_TEXT;
                 }
                 if (component.if3) {
-                    aClass100_466 = JString.concatenate(new JString[] { component.optionBase, WHITE});
+                    aClass100_466 = JString.concatenate(new JString[] { component.optionBase, COLOR_WHITE2});
                 } else {
-                    aClass100_466 = JString.concatenate(new JString[] {GREEN, component.optionSuffix, WHITE});
+                    aClass100_466 = JString.concatenate(new JString[] {COLOR_LIMEGREEN, component.optionSuffix, COLOR_WHITE2});
                 }
             }
             return;
@@ -1269,7 +1269,7 @@ public class MiniMenu {
             anInt5014 = 1;
             anInt4997 = keyInt;
             ComponentList.redraw(component);
-            aClass100_203 = JString.concatenate(new JString[] {aClass100_32, ObjTypeList.get(keyInt).name, WHITE});
+            aClass100_203 = JString.concatenate(new JString[] {COLOR_LIGHT_ORANGE, ObjTypeList.get(keyInt).name, COLOR_WHITE2});
             if (aClass100_203 == null) {
                 aClass100_203 = NULL;
             }
@@ -1405,21 +1405,21 @@ public class MiniMenu {
     public static JString getCombatLevelColorTag(@OriginalArg(0) int viewerLevel, @OriginalArg(2) int otherLevel) {
         @Pc(4) int diff = otherLevel - viewerLevel;
         if (diff < -9) {
-            return RED;
+            return COLOR_RED;
         } else if (diff < -6) {
-            return RED2;
+            return COLOR_RED_ORANGE;
         } else if (diff < -3) {
-            return ORANGE;
+            return COLOR_ORANGE;
         } else if (diff < 0) {
-            return YELLOW;
+            return COLOR_AMBER;
         } else if (diff > 9) {
-            return GREEN;
+            return COLOR_LIMEGREEN;
         } else if (diff > 6) {
-            return GREEN2;
+            return COLOR_BRIGHT_LIMEGREEN;
         } else if (diff <= 3) {
-            return diff > 0 ? GREEN3 : YELLOW2;
+            return diff > 0 ? COLOR_YELLOW_GREEN : COLOR_YELLOW2;
         } else {
-            return GREEN4;
+            return COLOR_SPRING_GREEN;
         }
     }
 
@@ -1504,11 +1504,11 @@ public class MiniMenu {
                                     if (opIndex == 4) {
                                         actionId = 1001;
                                     }
-                                    addActionRow(cursor, key, JString.concatenate(new JString[] {CYAN, locType.name}), worldY, actionId, locOps[opIndex], localZ);
+                                    addActionRow(cursor, key, JString.concatenate(new JString[] {COLOR_CYAN, locType.name}), worldY, actionId, locOps[opIndex], localZ);
                                 }
                             }
                         }
-                        addActionRow(MiniMap.anInt5073, (long) locType.id, JString.concatenate(new JString[] {CYAN, locType.name}), worldY, (short) 1004, LocalizedText.EXAMINE, localZ);
+                        addActionRow(MiniMap.anInt5073, (long) locType.id, JString.concatenate(new JString[] {COLOR_CYAN, locType.name}), worldY, (short) 1004, LocalizedText.EXAMINE, localZ);
                     }
                 }
                 @Pc(514) int otherEntityX;
@@ -1572,11 +1572,11 @@ public class MiniMenu {
                             opIndex = objNode.value.id;
                             @Pc(951) ObjType objType = ObjTypeList.get(opIndex);
                             if (anInt5014 == 1) {
-                                addActionRow(MiniMap.anInt4075, (long) opIndex, JString.concatenate(new JString[] {aClass100_203, aClass100_947, objType.name}), worldY, (short) 33, LocalizedText.USE, localZ);
+                                addActionRow(MiniMap.anInt4075, (long) opIndex, JString.concatenate(new JString[] {aClass100_203, COLOR_LIGHT_ORANGE_ARROW, objType.name}), worldY, (short) 33, LocalizedText.USE, localZ);
                             } else if (useWithActive) {
                                 @Pc(1142) ParamType paramType = useWithParam == -1 ? null : ParamTypeList.get(useWithParam);
                                 if ((useWithMask & TARGET_MASK_OBJSTACK) != 0 && (paramType == null || objType.getParam(paramType.defaultInt, useWithParam) != paramType.defaultInt)) {
-                                    addActionRow(useWithCursor, (long) opIndex, JString.concatenate(new JString[] {aClass100_466, aClass100_947, objType.name}), worldY, (short) 39, aClass100_545, localZ);
+                                    addActionRow(useWithCursor, (long) opIndex, JString.concatenate(new JString[] {aClass100_466, COLOR_LIGHT_ORANGE_ARROW, objType.name}), worldY, (short) 39, aClass100_545, localZ);
                                 }
                             } else {
                                 @Pc(997) JString[] objOps = objType.op;
@@ -1608,10 +1608,10 @@ public class MiniMenu {
                                         if (otherEntityX == 4) {
                                             actionId = 24;
                                         }
-                                        addActionRow(cursor, (long) opIndex, JString.concatenate(new JString[] {aClass100_32, objType.name}), worldY, actionId, objOps[otherEntityX], localZ);
+                                        addActionRow(cursor, (long) opIndex, JString.concatenate(new JString[] {COLOR_LIGHT_ORANGE, objType.name}), worldY, actionId, objOps[otherEntityX], localZ);
                                     }
                                 }
-                                addActionRow(MiniMap.anInt5073, (long) opIndex, JString.concatenate(new JString[] {aClass100_32, objType.name}), worldY, (short) 1002, LocalizedText.EXAMINE, localZ);
+                                addActionRow(MiniMap.anInt5073, (long) opIndex, JString.concatenate(new JString[] {COLOR_LIGHT_ORANGE, objType.name}), worldY, (short) 1002, LocalizedText.EXAMINE, localZ);
                             }
                         }
                     }
@@ -1675,7 +1675,7 @@ public class MiniMenu {
                         if (opIndex == 4) {
                             actionId = 2;
                         }
-                        addActionRow(cursor, (long) npcId, JString.concatenate(new JString[] {YELLOW2, tooltip }), localX, actionId, npcOps[opIndex], localZ);
+                        addActionRow(cursor, (long) npcId, JString.concatenate(new JString[] {COLOR_YELLOW2, tooltip }), localX, actionId, npcOps[opIndex], localZ);
                     }
                 }
             }
@@ -1705,11 +1705,11 @@ public class MiniMenu {
                         if (baseActionId != 0) {
                             baseActionId += priorityModifier;
                         }
-                        addActionRow(npc.cursorattack, (long) npcId, JString.concatenate(new JString[] {YELLOW2, tooltip }), localX, baseActionId, npcOps[opIndex], localZ);
+                        addActionRow(npc.cursorattack, (long) npcId, JString.concatenate(new JString[] {COLOR_YELLOW2, tooltip }), localX, baseActionId, npcOps[opIndex], localZ);
                     }
                 }
             }
-            addActionRow(MiniMap.anInt5073, (long) npcId, JString.concatenate(new JString[] {YELLOW2, tooltip }), localX, (short) 1007, LocalizedText.EXAMINE, localZ);
+            addActionRow(MiniMap.anInt5073, (long) npcId, JString.concatenate(new JString[] {COLOR_YELLOW2, tooltip }), localX, (short) 1007, LocalizedText.EXAMINE, localZ);
         }
     }
 
@@ -1735,9 +1735,9 @@ public class MiniMenu {
             }
             @Pc(95) JString levelText = Client.game == 1 ? LocalizedText.RATING : LocalizedText.LEVEL;
             if (other.combatLevel < other.combatLevelWithSummoning) {
-                tooltip = JString.concatenate(new JString[] { other.getUsername(), shouldColorByLevel ? getCombatLevelColorTag(other.combatLevel, PlayerList.self.combatLevel) : WHITE, OPEN_PARENTHESIS, levelText, JString.parseInt(other.combatLevel), PLUS, JString.parseInt(other.combatLevelWithSummoning - other.combatLevel), CLOSE_PARENTHESIS});
+                tooltip = JString.concatenate(new JString[] { other.getUsername(), shouldColorByLevel ? getCombatLevelColorTag(other.combatLevel, PlayerList.self.combatLevel) : COLOR_WHITE2, OPEN_PARENTHESIS, levelText, JString.parseInt(other.combatLevel), PLUS, JString.parseInt(other.combatLevelWithSummoning - other.combatLevel), CLOSE_PARENTHESIS});
             } else {
-                tooltip = JString.concatenate(new JString[] { other.getUsername(), shouldColorByLevel ? getCombatLevelColorTag(other.combatLevel, PlayerList.self.combatLevel) : WHITE, OPEN_PARENTHESIS, levelText, JString.parseInt(other.combatLevel), CLOSE_PARENTHESIS});
+                tooltip = JString.concatenate(new JString[] { other.getUsername(), shouldColorByLevel ? getCombatLevelColorTag(other.combatLevel, PlayerList.self.combatLevel) : COLOR_WHITE2, OPEN_PARENTHESIS, levelText, JString.parseInt(other.combatLevel), CLOSE_PARENTHESIS});
             }
         } else {
             tooltip = JString.concatenate(new JString[] { other.getUsername(), OPEN_PARENTHESIS, LocalizedText.SKILL, JString.parseInt(other.skill), CLOSE_PARENTHESIS});
@@ -1765,7 +1765,7 @@ public class MiniMenu {
                     }
                     @Pc(353) short baseActionId = PLAYER_ACTION_IDS[playerOptionIndex];
                     @Pc(358) short finalActionId = (short) (baseActionId + priorityModifier);
-                    addActionRow(Player.cursors[playerOptionIndex], (long) playerId, JString.concatenate(new JString[] {WHITE, tooltip }), localX, finalActionId, Player.options[playerOptionIndex], localZ);
+                    addActionRow(Player.cursors[playerOptionIndex], (long) playerId, JString.concatenate(new JString[] {COLOR_WHITE2, tooltip }), localX, finalActionId, Player.options[playerOptionIndex], localZ);
                 }
             }
         } else if ((useWithMask & TARGET_MASK_PLAYER) != 0) {
@@ -1773,7 +1773,7 @@ public class MiniMenu {
         }
         for (playerOptionIndex = 0; playerOptionIndex < menuActionRow; playerOptionIndex++) {
             if (actions[playerOptionIndex] == 60) {
-                opBases[playerOptionIndex] = JString.concatenate(new JString[] {WHITE, tooltip });
+                opBases[playerOptionIndex] = JString.concatenate(new JString[] {COLOR_WHITE2, tooltip });
                 break;
             }
         }
@@ -1792,7 +1792,7 @@ public class MiniMenu {
             actionText = getOp(menuActionRow - 1);
         }
         if (menuActionRow > 2) {
-            actionText = JString.concatenate(new JString[] { actionText, aClass100_2, JString.parseInt(menuActionRow - 2), LocalizedText.MOREOPTIONS});
+            actionText = JString.concatenate(new JString[] { actionText, COLOR_WHITE_BRACKET, JString.parseInt(menuActionRow - 2), LocalizedText.MOREOPTIONS});
         }
         return actionText;
     }
