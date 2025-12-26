@@ -40,8 +40,8 @@ import com.jagex.runetek4.core.io.PacketBit;
 import com.jagex.runetek4.config.types.bas.BasType;
 import com.jagex.runetek4.config.types.quickchat.QuickChatPhraseType;
 import com.jagex.runetek4.game.inventory.Inv;
-import com.jagex.runetek4.game.locs.AttachLocRequest;
-import com.jagex.runetek4.game.locs.ChangeLocRequest;
+import com.jagex.runetek4.game.locs.LocToEntityAttachment;
+import com.jagex.runetek4.game.locs.LocChangeRequest;
 import com.jagex.runetek4.game.state.VarpDomain;
 import com.jagex.runetek4.graphics.gl.GlRenderer;
 import com.jagex.runetek4.graphics.core.DisplayMode;
@@ -1024,7 +1024,7 @@ public class Protocol {
                                 }
                             }
                         }
-                        for (@Pc(2604) ChangeLocRequest locRequest = (ChangeLocRequest) ChangeLocRequest.queue.head(); locRequest != null; locRequest = (ChangeLocRequest) ChangeLocRequest.queue.next()) {
+                        for (@Pc(2604) LocChangeRequest locRequest = (LocChangeRequest) LocChangeRequest.queue.head(); locRequest != null; locRequest = (LocChangeRequest) LocChangeRequest.queue.next()) {
                             if (locRequest.x >= SceneGraph.currentChunkX && SceneGraph.currentChunkX + ZONE_SIZE > locRequest.x && locRequest.z >= SceneGraph.currentChunkZ && locRequest.z < SceneGraph.currentChunkZ + ZONE_SIZE && locRequest.level == Player.currentLevel) {
                                 locRequest.resetLoops = 0;
                             }
@@ -2126,7 +2126,7 @@ public class Protocol {
 
             if (local39 >= 0 && local45 >= 0 && local39 < 104 && local45 < 104) {
                 // Delete the location ath this position
-                ChangeLocRequest.push(Player.currentLevel, local45, local19, local39, -1, -1, local27, local23, 0);
+                LocChangeRequest.push(Player.currentLevel, local45, local19, local39, -1, -1, local27, local23, 0);
             }
         } else if (currentOpcode == ZONE_OBJ_ADD) {
             // ZONE_OBJ_ADD
@@ -2232,7 +2232,7 @@ public class Protocol {
                 local45 = (local31 & ZONE_COORD_MASK) + SceneGraph.currentChunkZ; // Zone Z
                 startHeight = inboundBuffer.g2_alt2(); // Location Type ID
                 if (local39 >= 0 && local45 >= 0 && local39 < SIZE && local45 < SIZE) {
-                    ChangeLocRequest.push(Player.currentLevel, local45, local19, local39, -1, startHeight, local27, local23, 0);
+                    LocChangeRequest.push(Player.currentLevel, local45, local19, local39, -1, startHeight, local27, local23, 0);
                 }
             } else if (currentOpcode == ZONE_LOC_MERGE) {
                 // ZONE_LOC_MERGE
@@ -2279,7 +2279,7 @@ public class Protocol {
 
                     if (!GlRenderer.enabled) {
                         // OpenGL-only packet, push to attach queue for processing
-                        AttachLocRequest.push(
+                        LocToEntityAttachment.push(
                                 transformParam4,
                                 arc,
                                 transformValue3,

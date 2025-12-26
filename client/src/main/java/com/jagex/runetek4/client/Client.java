@@ -32,7 +32,7 @@ import com.jagex.runetek4.game.logic.HintArrowManager;
 import com.jagex.runetek4.game.logic.PathFinder;
 import com.jagex.runetek4.game.combat.HitBarList;
 import com.jagex.runetek4.game.inventory.Equipment;
-import com.jagex.runetek4.game.locs.ChangeLocRequest;
+import com.jagex.runetek4.game.locs.LocChangeRequest;
 import com.jagex.runetek4.game.state.VarcDomain;
 import com.jagex.runetek4.game.state.VarpDomain;
 import com.jagex.runetek4.graphics.core.DisplayMode;
@@ -690,7 +690,7 @@ public final class Client extends GameShell {
 				}
 			}
 		}
-		ChangeLocRequest.queue = new LinkList();
+		LocChangeRequest.queue = new LinkList();
 		FriendList.state = 0;
 		FriendList.friendCount = 0;
 		VarpDomain.resetVarBits();

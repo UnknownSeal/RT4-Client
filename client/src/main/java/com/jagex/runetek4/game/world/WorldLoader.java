@@ -18,7 +18,7 @@ import com.jagex.runetek4.entity.npc.Npc;
 import com.jagex.runetek4.entity.npc.NpcList;
 import com.jagex.runetek4.entity.PathingEntity;
 import com.jagex.runetek4.entity.player.Player;
-import com.jagex.runetek4.game.locs.ChangeLocRequest;
+import com.jagex.runetek4.game.locs.LocChangeRequest;
 import com.jagex.runetek4.game.logic.CollisionMap;
 import com.jagex.runetek4.game.logic.PathFinder;
 import com.jagex.runetek4.game.map.Map;
@@ -392,7 +392,7 @@ public class WorldLoader {
                 }
             }
         }
-        for (@Pc(451) ChangeLocRequest locRequest = (ChangeLocRequest) ChangeLocRequest.queue.head(); locRequest != null; locRequest = (ChangeLocRequest) ChangeLocRequest.queue.next()) {
+        for (@Pc(451) LocChangeRequest locRequest = (LocChangeRequest) LocChangeRequest.queue.head(); locRequest != null; locRequest = (LocChangeRequest) LocChangeRequest.queue.next()) {
             locRequest.z -= deltaZ;
             locRequest.x -= deltaX;
             if (locRequest.x < 0 || locRequest.z < 0 || locRequest.x >= 104 || locRequest.z >= 104) {
@@ -711,7 +711,7 @@ public class WorldLoader {
         }
         ClientScriptRunner.method2218();
         Client.audioLoop();
-        ChangeLocRequest.refreshRequests();
+        LocChangeRequest.refreshRequests();
         Client.unload();
         aBoolean252 = false;
         if (GameShell.frame != null && Protocol.gameServerSocket != null && Client.gameState == 25) {

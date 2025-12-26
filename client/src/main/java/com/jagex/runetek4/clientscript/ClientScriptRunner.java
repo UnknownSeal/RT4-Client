@@ -5605,7 +5605,7 @@ public final class ClientScriptRunner {
 				} else {
 					player.lowMemory = false;
 					player.groundHeight = SceneGraph.getTileHeight(Player.currentLevel, player.xFine, player.zFine);
-					addTemporary(Player.currentLevel, player.xFine, player.zFine, player.groundHeight, player, player.orientation, entityBitset, player.atachmentX0, player.attachmentZ0, player.attachmentX1, player.attachmentZ1);
+					addTemporary(Player.currentLevel, player.xFine, player.zFine, player.groundHeight, player, player.orientation, entityBitset, player.attachmentX0, player.attachmentZ0, player.attachmentX1, player.attachmentZ1);
 				}
 			}
 		}

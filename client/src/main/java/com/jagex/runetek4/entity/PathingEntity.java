@@ -51,7 +51,7 @@ public abstract class PathingEntity extends Entity {
 	public int orientation;
 
 	@OriginalMember(owner = "client!fe", name = "fb", descriptor = "I")
-	public int atachmentX0;
+	public int attachmentX0;
 
 	@OriginalMember(owner = "client!fe", name = "hb", descriptor = "I")
 	public int anInt3386;

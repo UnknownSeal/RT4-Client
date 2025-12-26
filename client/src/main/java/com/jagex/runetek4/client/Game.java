@@ -11,8 +11,8 @@ import com.jagex.runetek4.network.ClientProt;
 import com.jagex.runetek4.scene.Camera;
 import com.jagex.runetek4.ui.chat.OverHeadChat;
 import com.jagex.runetek4.game.logic.PathFinder;
-import com.jagex.runetek4.game.locs.AttachLocRequest;
-import com.jagex.runetek4.game.locs.ChangeLocRequest;
+import com.jagex.runetek4.game.locs.LocToEntityAttachment;
+import com.jagex.runetek4.game.locs.LocChangeRequest;
 import com.jagex.runetek4.game.state.VarcDomain;
 import com.jagex.runetek4.game.state.VarpDomain;
 import com.jagex.runetek4.network.Protocol;
@@ -221,8 +221,8 @@ public class Game {
         if (Client.gameState != 30) {
             return;
         }
-        ChangeLocRequest.loop();
-        AttachLocRequest.loop();
+        LocChangeRequest.loop();
+        LocToEntityAttachment.loop();
         SoundPlayer.loop(); // SoundPlayer
         LoginManager.idleNetCycles++;
         if (LoginManager.idleNetCycles > 750) {
