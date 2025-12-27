@@ -57,18 +57,18 @@ public class PathFinder {
     public static int tryMoveNearest = 0;
 
     @OriginalMember(owner = "runetek4.client!hn", name = "a", descriptor = "(IIIZIIIIIIII)Z")
-    public static boolean findPath(@OriginalArg(0) int startX, @OriginalArg(1) int startZ, @OriginalArg(2) int targetX, @OriginalArg(3) boolean allowNearest, @OriginalArg(4) int arg4, @OriginalArg(6) int targetZ, @OriginalArg(7) int targetWidth, @OriginalArg(8) int targetHeight, @OriginalArg(9) int moveType, @OriginalArg(10) int locationAngle, @OriginalArg(11) int entitySize) {
+    public static boolean findPath(@OriginalArg(0) int startZ, @OriginalArg(1) int angle, @OriginalArg(2) int targetLength, @OriginalArg(3) boolean allowNearest, @OriginalArg(4) int blockSides, @OriginalArg(6) int targetX, @OriginalArg(7) int targetWidth, @OriginalArg(8) int locShape, @OriginalArg(9) int moveType, @OriginalArg(10) int targetZ, @OriginalArg(11) int startX) {
         if (PlayerList.self.getSize() == 2) {
-            return findPathMediumEntity(targetWidth, targetHeight, arg4, startX, locationAngle, allowNearest, targetX, startZ, targetZ, moveType, entitySize);
+            return findPathMediumEntity(targetWidth, locShape, blockSides, startZ, targetZ, allowNearest, targetLength, angle, targetX, moveType, startX);
         } else if (PlayerList.self.getSize() <= 2) {
-            return findPathMediumEntity(targetZ, arg4, entitySize, locationAngle, moveType, targetX, startZ, allowNearest, targetHeight, startX, targetWidth);
+            return findPathMediumEntity(targetX, blockSides, startX, targetZ, moveType, targetLength, angle, allowNearest, locShape, startZ, targetWidth);
         } else {
-            return findPathLargeEntity(locationAngle, targetWidth, moveType, startZ, PlayerList.self.getSize(), targetZ, targetHeight, arg4, entitySize, targetX, allowNearest, startX);
+            return findPathLargeEntity(targetZ, targetWidth, moveType, angle, PlayerList.self.getSize(), targetX, locShape, blockSides, startX, targetLength, allowNearest, startZ);
         }
     }
 
     @OriginalMember(owner = "client!di", name = "a", descriptor = "(IIIIIIIIZIII)Z")
-    public static boolean findPathMediumEntity(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int arg6, @OriginalArg(8) boolean arg7, @OriginalArg(9) int targetHeight, @OriginalArg(10) int locationAngle, @OriginalArg(11) int targetDepth) {
+    public static boolean findPathMediumEntity(@OriginalArg(0) int targetX, @OriginalArg(1) int blockSides, @OriginalArg(2) int startX, @OriginalArg(4) int targetZ, @OriginalArg(5) int moveType, @OriginalArg(6) int targetLength, @OriginalArg(7) int angle, @OriginalArg(8) boolean allowNearest, @OriginalArg(9) int lochShape, @OriginalArg(10) int startZ, @OriginalArg(11) int targetWidth) {
         @Pc(3) int x;
         @Pc(10) int z;
 
@@ -81,17 +81,17 @@ public class PathFinder {
         }
 
         // Set start position
-        x = arg2;
-        parents[arg2][locationAngle] = PARENT_START_MARKER;
-        z = locationAngle;
-        costs[arg2][locationAngle] = 0;
+        x = startX;
+        parents[startX][startZ] = PARENT_START_MARKER;
+        z = startZ;
+        costs[startX][startZ] = 0;
 
         @Pc(51) byte queueHead = 0;
         @Pc(53) boolean foundPath = false;
         @Pc(64) int queueTail = 0;
-        bfsStepX[0] = arg2;
+        bfsStepX[0] = startX;
         @Pc(71) int queueSize = queueHead + 1;
-        bfsStepZ[0] = locationAngle;
+        bfsStepZ[0] = startZ;
         @Pc(78) int[][] collisionFlags = collisionMaps[Player.currentLevel].flags;
         @Pc(198) int newCost;
 
@@ -102,25 +102,25 @@ public class PathFinder {
             queueTail = queueTail + 1 & QUEUE_INDEX_MASK;
 
             // Check if reached target
-            if (x == arg0 && z == arg3) {
+            if (x == targetX && z == targetZ) {
                 foundPath = true;
                 break;
             }
 
             // Check if at wall target
-            if (targetHeight != 0) {
-                if ((targetHeight < 5 || targetHeight == 10) && collisionMaps[Player.currentLevel].isAtWall(arg3, x, z, arg0, targetHeight - 1, 1, arg6)) {
+            if (lochShape != 0) {
+                if ((lochShape < 5 || lochShape == 10) && collisionMaps[Player.currentLevel].isAtWall(targetZ, x, z, targetX, lochShape - 1, 1, angle)) {
                     foundPath = true;
                     break;
                 }
-                if (targetHeight < 10 && collisionMaps[Player.currentLevel].isAtWallDecor(arg3, targetHeight - 1, arg0, z, 1, arg6, x)) {
+                if (lochShape < 10 && collisionMaps[Player.currentLevel].isAtWallDecor(targetZ, lochShape - 1, targetX, z, 1, angle, x)) {
                     foundPath = true;
                     break;
                 }
             }
 
             // Check if inside/outside rectangular target
-            if (targetDepth != 0 && arg5 != 0 && collisionMaps[Player.currentLevel].isInsideOrOutsideRect(arg0, z, x, 1, targetDepth, arg1, arg3, arg5)) {
+            if (targetWidth != 0 && targetLength != 0 && collisionMaps[Player.currentLevel].isInsideOrOutsideRect(targetX, z, x, 1, targetWidth, blockSides, targetZ, targetLength)) {
                 foundPath = true;
                 break;
             }
@@ -206,7 +206,7 @@ public class PathFinder {
 
         // If exact path not found, try to find nearest reachable tile
         if (!foundPath) {
-            if (!arg7) {
+            if (!allowNearest) {
                 return false;
             }
 
@@ -214,24 +214,24 @@ public class PathFinder {
             minCost = MAX_NEAREST_COST;
 
             // Search 10 tiles around target for nearest reachable tile
-            for (@Pc(846) int searchX = arg0 - NEAREST_SEARCH_RADIUS; searchX <= arg0 + NEAREST_SEARCH_RADIUS; searchX++) {
-                for (@Pc(856) int searchZ = arg3 - NEAREST_SEARCH_RADIUS; searchZ <= arg3 + NEAREST_SEARCH_RADIUS; searchZ++) {
+            for (@Pc(846) int searchX = targetX - NEAREST_SEARCH_RADIUS; searchX <= targetX + NEAREST_SEARCH_RADIUS; searchX++) {
+                for (@Pc(856) int searchZ = targetZ - NEAREST_SEARCH_RADIUS; searchZ <= targetZ + NEAREST_SEARCH_RADIUS; searchZ++) {
                     if (searchX >= 0 && searchZ >= 0 && searchX < BUILD_AREA_SIZE && searchZ < BUILD_AREA_SIZE && costs[searchX][searchZ] < MAX_NEAREST_COST) {
 
                         // Calculate distance from tile to target rectangle
                         @Pc(894) int deltaZ = 0;
-                        if (searchZ < arg3) {
-                            deltaZ = arg3 - searchZ;
-                        } else if (arg5 + arg3 - 1 < searchZ) {
-                            deltaZ = searchZ + 1 - arg3 - arg5;
+                        if (searchZ < targetZ) {
+                            deltaZ = targetZ - searchZ;
+                        } else if (targetLength + targetZ - 1 < searchZ) {
+                            deltaZ = searchZ + 1 - targetZ - targetLength;
                         }
 
 
                         @Pc(927) int deltaX = 0;
-                        if (searchX < arg0) {
-                            deltaX = arg0 - searchX;
-                        } else if (searchX > targetDepth + arg0 - 1) {
-                            deltaX = searchX + 1 - targetDepth - arg0;
+                        if (searchX < targetX) {
+                            deltaX = targetX - searchX;
+                        } else if (searchX > targetWidth + targetX - 1) {
+                            deltaX = searchX + 1 - targetWidth - targetX;
                         }
 
                         @Pc(968) int distanceSquared = deltaZ * deltaZ + deltaX * deltaX;
@@ -250,7 +250,7 @@ public class PathFinder {
             if (newCost == DISTANCE_INFINITY) {
                 return false; // No reachable tiles found
             }
-            if (arg2 == x && z == locationAngle) {
+            if (startX == x && z == startZ) {
                 return false; // Already at nearest tile
             }
 
@@ -266,7 +266,7 @@ public class PathFinder {
         newCost = minCost = parents[x][z];
 
         // Walk backwards through parent pointers
-        while (arg2 != x || z != locationAngle) {
+        while (startX != x || z != startZ) {
             if (minCost != newCost) {
                 minCost = newCost;
                 bfsStepX[queueTail] = x;
@@ -290,9 +290,9 @@ public class PathFinder {
 
         // Send path to server
         if (queueTail > 0) {
-            ClientProt.method3502(queueTail, arg4);
+            ClientProt.method3502(queueTail, moveType);
             return true;
-        } else if (arg4 == 1) {
+        } else if (moveType == 1) {
             return false;
         } else {
             return true;
@@ -300,7 +300,7 @@ public class PathFinder {
     }
 
     @OriginalMember(owner = "runetek4.client!aa", name = "a", descriptor = "(IIIIIZIIIIII)Z")
-    public static boolean findPathMediumEntity(@OriginalArg(0) int targetWidth, @OriginalArg(1) int targetHeight, @OriginalArg(2) int arg2, @OriginalArg(3) int startX, @OriginalArg(4) int locationShape, @OriginalArg(5) boolean allowNearest, @OriginalArg(6) int targetX, @OriginalArg(7) int startZ, @OriginalArg(8) int targetZ, @OriginalArg(9) int moveType, @OriginalArg(11) int entitySize) {
+    public static boolean findPathMediumEntity(@OriginalArg(0) int targetWidth, @OriginalArg(1) int locShape, @OriginalArg(2) int blockSides, @OriginalArg(3) int startZ, @OriginalArg(4) int targetZ, @OriginalArg(5) boolean allowNearest, @OriginalArg(6) int targetLength, @OriginalArg(7) int angle, @OriginalArg(8) int targetX, @OriginalArg(9) int moveType, @OriginalArg(11) int startX) {
         @Pc(3) int currentX;
         @Pc(8) int currentZ;
 
@@ -313,38 +313,38 @@ public class PathFinder {
         }
 
         // Set start position
-        parents[entitySize][startX] = PARENT_START_MARKER;
-        costs[entitySize][startX] = 0;
-        currentZ = startX;
-        currentX = entitySize;
+        parents[startX][startZ] = PARENT_START_MARKER;
+        costs[startX][startZ] = 0;
+        currentZ = startZ;
+        currentX = startX;
 
         @Pc(53) byte local53 = 0;
-        bfsStepX[0] = entitySize;
+        bfsStepX[0] = startX;
         @Pc(59) boolean local59 = false;
         @Pc(61) int local61 = 0;
         @Pc(64) int local64 = local53 + 1;
-        bfsStepZ[0] = startX;
+        bfsStepZ[0] = startZ;
         @Pc(71) int[][] local71 = collisionMaps[Player.currentLevel].flags;
         @Pc(193) int local193;
         while (local61 != local64) {
             currentX = bfsStepX[local61];
             currentZ = bfsStepZ[local61];
             local61 = local61 + 1 & 0xFFF;
-            if (targetZ == currentX && locationShape == currentZ) {
+            if (targetX == currentX && targetZ == currentZ) {
                 local59 = true;
                 break;
             }
-            if (targetHeight != 0) {
-                if ((targetHeight < 5 || targetHeight == 10) && collisionMaps[Player.currentLevel].isAtWall(locationShape, currentX, currentZ, targetZ, targetHeight - 1, 2, startZ)) {
+            if (locShape != 0) {
+                if ((locShape < 5 || locShape == 10) && collisionMaps[Player.currentLevel].isAtWall(targetZ, currentX, currentZ, targetX, locShape - 1, 2, angle)) {
                     local59 = true;
                     break;
                 }
-                if (targetHeight < 10 && collisionMaps[Player.currentLevel].isAtWallDecor(locationShape, targetHeight - 1, targetZ, currentZ, 2, startZ, currentX)) {
+                if (locShape < 10 && collisionMaps[Player.currentLevel].isAtWallDecor(targetZ, locShape - 1, targetX, currentZ, 2, angle, currentX)) {
                     local59 = true;
                     break;
                 }
             }
-            if (targetWidth != 0 && targetX != 0 && collisionMaps[Player.currentLevel].isInsideOrOutsideRect(targetZ, currentZ, currentX, 2, targetWidth, arg2, locationShape, targetX)) {
+            if (targetWidth != 0 && targetLength != 0 && collisionMaps[Player.currentLevel].isInsideOrOutsideRect(targetX, currentZ, currentX, 2, targetWidth, blockSides, targetZ, targetLength)) {
                 local59 = true;
                 break;
             }
@@ -414,20 +414,20 @@ public class PathFinder {
             }
             local193 = 1000;
             local921 = 100;
-            for (@Pc(928) int local928 = targetZ - 10; local928 <= targetZ + 10; local928++) {
-                for (@Pc(942) int local942 = locationShape - 10; local942 <= locationShape + 10; local942++) {
+            for (@Pc(928) int local928 = targetX - 10; local928 <= targetX + 10; local928++) {
+                for (@Pc(942) int local942 = targetZ - 10; local942 <= targetZ + 10; local942++) {
                     if (local928 >= 0 && local942 >= 0 && local928 < 104 && local942 < 104 && costs[local928][local942] < 100) {
                         @Pc(978) int local978 = 0;
                         @Pc(980) int local980 = 0;
-                        if (local928 < targetZ) {
-                            local978 = targetZ - local928;
-                        } else if (local928 > targetWidth + targetZ - 1) {
-                            local978 = local928 + 1 - targetWidth - targetZ;
+                        if (local928 < targetX) {
+                            local978 = targetX - local928;
+                        } else if (local928 > targetWidth + targetX - 1) {
+                            local978 = local928 + 1 - targetWidth - targetX;
                         }
-                        if (locationShape > local942) {
-                            local980 = locationShape - local942;
-                        } else if (local942 > locationShape + targetX - 1) {
-                            local980 = local942 + 1 - locationShape - targetX;
+                        if (targetZ > local942) {
+                            local980 = targetZ - local942;
+                        } else if (local942 > targetZ + targetLength - 1) {
+                            local980 = local942 + 1 - targetZ - targetLength;
                         }
                         @Pc(1057) int local1057 = local978 * local978 + local980 * local980;
                         if (local1057 < local193 || local193 == local1057 && costs[local928][local942] < local921) {
@@ -442,7 +442,7 @@ public class PathFinder {
             if (local193 == 1000) {
                 return false;
             }
-            if (entitySize == currentX && currentZ == startX) {
+            if (startX == currentX && currentZ == startZ) {
                 return false;
             }
             tryMoveNearest = 1;
@@ -452,7 +452,7 @@ public class PathFinder {
         local61 = local1121 + 1;
         bfsStepZ[0] = currentZ;
         local193 = local921 = parents[currentX][currentZ];
-        while (entitySize != currentX || startX != currentZ) {
+        while (startX != currentX || startZ != currentZ) {
             if (local921 != local193) {
                 bfsStepX[local61] = currentX;
                 bfsStepZ[local61++] = currentZ;
@@ -481,7 +481,7 @@ public class PathFinder {
     }
 
     @OriginalMember(owner = "runetek4.client!hh", name = "a", descriptor = "(IBIIIIIIIIIZI)Z")
-    public static boolean findPathLargeEntity(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int arg6, @OriginalArg(8) int arg7, @OriginalArg(9) int arg8, @OriginalArg(10) int arg9, @OriginalArg(11) boolean arg10, @OriginalArg(12) int arg11) {
+    public static boolean findPathLargeEntity(@OriginalArg(0) int targetZ, @OriginalArg(2) int targetWidth, @OriginalArg(3) int moveType, @OriginalArg(4) int angle, @OriginalArg(5) int entitySize, @OriginalArg(6) int targetX, @OriginalArg(7) int locShape, @OriginalArg(8) int blockSides, @OriginalArg(9) int startX, @OriginalArg(10) int targetLength, @OriginalArg(11) boolean allowNearest, @OriginalArg(12) int startZ) {
         @Pc(3) int local3;
         @Pc(10) int local10;
         for (local3 = 0; local3 < 104; local3++) {
@@ -490,14 +490,14 @@ public class PathFinder {
                 costs[local3][local10] = 99999999;
             }
         }
-        local3 = arg8;
-        local10 = arg11;
-        parents[arg8][arg11] = 99;
-        costs[arg8][arg11] = 0;
+        local3 = startX;
+        local10 = startZ;
+        parents[startX][startZ] = 99;
+        costs[startX][startZ] = 0;
         @Pc(53) byte local53 = 0;
-        bfsStepX[0] = arg8;
+        bfsStepX[0] = startX;
         @Pc(65) int local65 = local53 + 1;
-        bfsStepZ[0] = arg11;
+        bfsStepZ[0] = startZ;
         @Pc(69) int local69 = 0;
         @Pc(71) boolean local71 = false;
         @Pc(76) int[][] local76 = collisionMaps[Player.currentLevel].flags;
@@ -507,29 +507,29 @@ public class PathFinder {
             local3 = bfsStepX[local69];
             local10 = bfsStepZ[local69];
             local69 = local69 + 1 & 0xFFF;
-            if (arg5 == local3 && local10 == arg0) {
+            if (targetX == local3 && local10 == targetZ) {
                 local71 = true;
                 break;
             }
-            if (arg6 != 0) {
-                if ((arg6 < 5 || arg6 == 10) && collisionMaps[Player.currentLevel].isAtWall(arg0, local3, local10, arg5, arg6 - 1, arg4, arg3)) {
+            if (locShape != 0) {
+                if ((locShape < 5 || locShape == 10) && collisionMaps[Player.currentLevel].isAtWall(targetZ, local3, local10, targetX, locShape - 1, entitySize, angle)) {
                     local71 = true;
                     break;
                 }
-                if (arg6 < 10 && collisionMaps[Player.currentLevel].isAtWallDecor(arg0, arg6 - 1, arg5, local10, arg4, arg3, local3)) {
+                if (locShape < 10 && collisionMaps[Player.currentLevel].isAtWallDecor(targetZ, locShape - 1, targetX, local10, entitySize, angle, local3)) {
                     local71 = true;
                     break;
                 }
             }
-            if (arg1 != 0 && arg9 != 0 && collisionMaps[Player.currentLevel].isInsideOrOutsideRect(arg5, local10, local3, arg4, arg1, arg7, arg0, arg9)) {
+            if (targetWidth != 0 && targetLength != 0 && collisionMaps[Player.currentLevel].isInsideOrOutsideRect(targetX, local10, local3, entitySize, targetWidth, blockSides, targetZ, targetLength)) {
                 local71 = true;
                 break;
             }
             local201 = costs[local3][local10] + 1;
-            if (local3 > 0 && parents[local3 - 1][local10] == 0 && (local76[local3 - 1][local10] & 0x12C010E) == 0 && (local76[local3 - 1][arg4 + local10 - 1] & 0x12C0138) == 0) {
+            if (local3 > 0 && parents[local3 - 1][local10] == 0 && (local76[local3 - 1][local10] & 0x12C010E) == 0 && (local76[local3 - 1][entitySize + local10 - 1] & 0x12C0138) == 0) {
                 local242 = 1;
                 while (true) {
-                    if (arg4 - 1 <= local242) {
+                    if (entitySize - 1 <= local242) {
                         bfsStepX[local65] = local3 - 1;
                         bfsStepZ[local65] = local10;
                         parents[local3 - 1][local10] = 2;
@@ -543,10 +543,10 @@ public class PathFinder {
                     local242++;
                 }
             }
-            if (local3 < 102 && parents[local3 + 1][local10] == 0 && (local76[local3 + arg4][local10] & 0x12C0183) == 0 && (local76[arg4 + local3][local10 + arg4 - 1] & 0x12C01E0) == 0) {
+            if (local3 < 102 && parents[local3 + 1][local10] == 0 && (local76[local3 + entitySize][local10] & 0x12C0183) == 0 && (local76[entitySize + local3][local10 + entitySize - 1] & 0x12C01E0) == 0) {
                 local242 = 1;
                 while (true) {
-                    if (local242 >= arg4 - 1) {
+                    if (local242 >= entitySize - 1) {
                         bfsStepX[local65] = local3 + 1;
                         bfsStepZ[local65] = local10;
                         parents[local3 + 1][local10] = 8;
@@ -554,16 +554,16 @@ public class PathFinder {
                         local65 = local65 + 1 & 0xFFF;
                         break;
                     }
-                    if ((local76[arg4 + local3][local10 + local242] & 0x12C01E3) != 0) {
+                    if ((local76[entitySize + local3][local10 + local242] & 0x12C01E3) != 0) {
                         break;
                     }
                     local242++;
                 }
             }
-            if (local10 > 0 && parents[local3][local10 - 1] == 0 && (local76[local3][local10 - 1] & 0x12C010E) == 0 && (local76[arg4 + local3 - 1][local10 - 1] & 0x12C0183) == 0) {
+            if (local10 > 0 && parents[local3][local10 - 1] == 0 && (local76[local3][local10 - 1] & 0x12C010E) == 0 && (local76[entitySize + local3 - 1][local10 - 1] & 0x12C0183) == 0) {
                 local242 = 1;
                 while (true) {
-                    if (arg4 - 1 <= local242) {
+                    if (entitySize - 1 <= local242) {
                         bfsStepX[local65] = local3;
                         bfsStepZ[local65] = local10 - 1;
                         parents[local3][local10 - 1] = 1;
@@ -577,10 +577,10 @@ public class PathFinder {
                     local242++;
                 }
             }
-            if (local10 < 102 && parents[local3][local10 + 1] == 0 && (local76[local3][local10 + arg4] & 0x12C0138) == 0 && (local76[local3 + arg4 - 1][arg4 + local10] & 0x12C01E0) == 0) {
+            if (local10 < 102 && parents[local3][local10 + 1] == 0 && (local76[local3][local10 + entitySize] & 0x12C0138) == 0 && (local76[local3 + entitySize - 1][entitySize + local10] & 0x12C01E0) == 0) {
                 local242 = 1;
                 while (true) {
-                    if (local242 >= arg4 - 1) {
+                    if (local242 >= entitySize - 1) {
                         bfsStepX[local65] = local3;
                         bfsStepZ[local65] = local10 + 1;
                         parents[local3][local10 + 1] = 4;
@@ -588,16 +588,16 @@ public class PathFinder {
                         local65 = local65 + 1 & 0xFFF;
                         break;
                     }
-                    if ((local76[local3 + local242][arg4 + local10] & 0x12C01F8) != 0) {
+                    if ((local76[local3 + local242][entitySize + local10] & 0x12C01F8) != 0) {
                         break;
                     }
                     local242++;
                 }
             }
-            if (local3 > 0 && local10 > 0 && parents[local3 - 1][local10 - 1] == 0 && (local76[local3 - 1][arg4 + local10 - 1 - 1] & 0x12C0138) == 0 && (local76[local3 - 1][local10 - 1] & 0x12C010E) == 0 && (local76[arg4 + local3 - 1 - 1][local10 - 1] & 0x12C0183) == 0) {
+            if (local3 > 0 && local10 > 0 && parents[local3 - 1][local10 - 1] == 0 && (local76[local3 - 1][entitySize + local10 - 1 - 1] & 0x12C0138) == 0 && (local76[local3 - 1][local10 - 1] & 0x12C010E) == 0 && (local76[entitySize + local3 - 1 - 1][local10 - 1] & 0x12C0183) == 0) {
                 local242 = 1;
                 while (true) {
-                    if (arg4 - 1 <= local242) {
+                    if (entitySize - 1 <= local242) {
                         bfsStepX[local65] = local3 - 1;
                         bfsStepZ[local65] = local10 - 1;
                         local65 = local65 + 1 & 0xFFF;
@@ -611,10 +611,10 @@ public class PathFinder {
                     local242++;
                 }
             }
-            if (local3 < 102 && local10 > 0 && parents[local3 + 1][local10 - 1] == 0 && (local76[local3 + 1][local10 - 1] & 0x12C010E) == 0 && (local76[arg4 + local3][local10 - 1] & 0x12C0183) == 0 && (local76[local3 + arg4][local10 + arg4 - 1 - 1] & 0x12C01E0) == 0) {
+            if (local3 < 102 && local10 > 0 && parents[local3 + 1][local10 - 1] == 0 && (local76[local3 + 1][local10 - 1] & 0x12C010E) == 0 && (local76[entitySize + local3][local10 - 1] & 0x12C0183) == 0 && (local76[local3 + entitySize][local10 + entitySize - 1 - 1] & 0x12C01E0) == 0) {
                 local242 = 1;
                 while (true) {
-                    if (local242 >= arg4 - 1) {
+                    if (local242 >= entitySize - 1) {
                         bfsStepX[local65] = local3 + 1;
                         bfsStepZ[local65] = local10 - 1;
                         local65 = local65 + 1 & 0xFFF;
@@ -622,16 +622,16 @@ public class PathFinder {
                         costs[local3 + 1][local10 - 1] = local201;
                         break;
                     }
-                    if ((local76[local3 + arg4][local10 + local242 - 1] & 0x12C01E3) != 0 || (local76[local242 + local3 + 1][local10 - 1] & 0x12C018F) != 0) {
+                    if ((local76[local3 + entitySize][local10 + local242 - 1] & 0x12C01E3) != 0 || (local76[local242 + local3 + 1][local10 - 1] & 0x12C018F) != 0) {
                         break;
                     }
                     local242++;
                 }
             }
-            if (local3 > 0 && local10 < 102 && parents[local3 - 1][local10 + 1] == 0 && (local76[local3 - 1][local10 + 1] & 0x12C010E) == 0 && (local76[local3 - 1][local10 + arg4] & 0x12C0138) == 0 && (local76[local3][local10 + arg4] & 0x12C01E0) == 0) {
+            if (local3 > 0 && local10 < 102 && parents[local3 - 1][local10 + 1] == 0 && (local76[local3 - 1][local10 + 1] & 0x12C010E) == 0 && (local76[local3 - 1][local10 + entitySize] & 0x12C0138) == 0 && (local76[local3][local10 + entitySize] & 0x12C01E0) == 0) {
                 local242 = 1;
                 while (true) {
-                    if (arg4 - 1 <= local242) {
+                    if (entitySize - 1 <= local242) {
                         bfsStepX[local65] = local3 - 1;
                         bfsStepZ[local65] = local10 + 1;
                         local65 = local65 + 1 & 0xFFF;
@@ -639,15 +639,15 @@ public class PathFinder {
                         costs[local3 - 1][local10 + 1] = local201;
                         break;
                     }
-                    if ((local76[local3 - 1][local10 + local242 + 1] & 0x12C013E) != 0 || (local76[local242 + local3 - 1][arg4 + local10] & 0x12C01F8) != 0) {
+                    if ((local76[local3 - 1][local10 + local242 + 1] & 0x12C013E) != 0 || (local76[local242 + local3 - 1][entitySize + local10] & 0x12C01F8) != 0) {
                         break;
                     }
                     local242++;
                 }
             }
-            if (local3 < 102 && local10 < 102 && parents[local3 + 1][local10 + 1] == 0 && (local76[local3 + 1][local10 + arg4] & 0x12C0138) == 0 && (local76[local3 + arg4][local10 + arg4] & 0x12C01E0) == 0 && (local76[arg4 + local3][local10 + 1] & 0x12C0183) == 0) {
-                for (local242 = 1; local242 < arg4 - 1; local242++) {
-                    if ((local76[local242 + local3 + 1][local10 + arg4] & 0x12C01F8) != 0 || (local76[arg4 + local3][local242 + local10 + 1] & 0x12C01E3) != 0) {
+            if (local3 < 102 && local10 < 102 && parents[local3 + 1][local10 + 1] == 0 && (local76[local3 + 1][local10 + entitySize] & 0x12C0138) == 0 && (local76[local3 + entitySize][local10 + entitySize] & 0x12C01E0) == 0 && (local76[entitySize + local3][local10 + 1] & 0x12C0183) == 0) {
+                for (local242 = 1; local242 < entitySize - 1; local242++) {
+                    if ((local76[local242 + local3 + 1][local10 + entitySize] & 0x12C01F8) != 0 || (local76[entitySize + local3][local242 + local10 + 1] & 0x12C01E3) != 0) {
                         continue label397;
                     }
                 }
@@ -660,25 +660,25 @@ public class PathFinder {
         }
         tryMoveNearest = 0;
         if (!local71) {
-            if (!arg10) {
+            if (!allowNearest) {
                 return false;
             }
             local201 = 1000;
             local242 = 100;
-            for (@Pc(1247) int local1247 = arg5 - 10; local1247 <= arg5 + 10; local1247++) {
-                for (@Pc(1257) int local1257 = arg0 - 10; local1257 <= arg0 + 10; local1257++) {
+            for (@Pc(1247) int local1247 = targetX - 10; local1247 <= targetX + 10; local1247++) {
+                for (@Pc(1257) int local1257 = targetZ - 10; local1257 <= targetZ + 10; local1257++) {
                     if (local1247 >= 0 && local1257 >= 0 && local1247 < 104 && local1257 < 104 && costs[local1247][local1257] < 100) {
                         @Pc(1295) int local1295 = 0;
-                        if (arg5 > local1247) {
-                            local1295 = arg5 - local1247;
-                        } else if (arg5 + arg1 - 1 < local1247) {
-                            local1295 = local1247 + 1 - arg1 - arg5;
+                        if (targetX > local1247) {
+                            local1295 = targetX - local1247;
+                        } else if (targetX + targetWidth - 1 < local1247) {
+                            local1295 = local1247 + 1 - targetWidth - targetX;
                         }
                         @Pc(1334) int local1334 = 0;
-                        if (local1257 < arg0) {
-                            local1334 = arg0 - local1257;
-                        } else if (arg0 + arg9 - 1 < local1257) {
-                            local1334 = local1257 + 1 - arg0 - arg9;
+                        if (local1257 < targetZ) {
+                            local1334 = targetZ - local1257;
+                        } else if (targetZ + targetLength - 1 < local1257) {
+                            local1334 = local1257 + 1 - targetZ - targetLength;
                         }
                         @Pc(1377) int local1377 = local1295 * local1295 + local1334 * local1334;
                         if (local1377 < local201 || local1377 == local201 && local242 > costs[local1247][local1257]) {
@@ -693,7 +693,7 @@ public class PathFinder {
             if (local201 == 1000) {
                 return false;
             }
-            if (local3 == arg8 && arg11 == local10) {
+            if (local3 == startX && startZ == local10) {
                 return false;
             }
             tryMoveNearest = 1;
@@ -703,7 +703,7 @@ public class PathFinder {
         local69 = local1438 + 1;
         bfsStepZ[0] = local10;
         local201 = local242 = parents[local3][local10];
-        while (local3 != arg8 || arg11 != local10) {
+        while (local3 != startX || startZ != local10) {
             if (local242 != local201) {
                 bfsStepX[local69] = local3;
                 local242 = local201;
@@ -722,9 +722,9 @@ public class PathFinder {
             local201 = parents[local3][local10];
         }
         if (local69 > 0) {
-            ClientProt.method3502(local69, arg2);
+            ClientProt.method3502(local69, moveType);
             return true;
-        } else if (arg2 == 1) {
+        } else if (moveType == 1) {
             return false;
         } else {
             return true;
