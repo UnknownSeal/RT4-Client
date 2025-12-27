@@ -2942,14 +2942,14 @@ public final class ClientScriptRunner {
 											tempString1 = scriptStringValues[ssp]; // Search string
 											isp--; // Decrement then read
 											tempInt1 = scriptIntValues[isp]; // Search type (0=exact, 1=contains)
-											Find.search(tempInt1 == 1, tempString1); // Populate Find.results
-											scriptIntValues[isp++] = Find.index; // Return result count
+											Find.findItem(tempInt1 == 1, tempString1); // Populate Find.results
+											scriptIntValues[isp++] = Find.resultCount; // Return result count
 											continue;
 										}
 										if (opcode == OC_FINDNEXT) {
                                             // oc_findnext
                                             // Get next object ID from search results
-											if (Find.results != null && Find.size < Find.index) {
+											if (Find.results != null && Find.size < Find.resultCount) {
 												scriptIntValues[isp++] = Find.results[Find.size++] & 0xFFFF;
 												continue;
 											}
@@ -3423,11 +3423,11 @@ public final class ClientScriptRunner {
 													isp--; // Decrement then read
 													local1552 = scriptIntValues[isp] == 1;
 													Find.findQuickChatPhrases(local1552, tempString1);
-													scriptIntValues[isp++] = Find.index;
+													scriptIntValues[isp++] = Find.resultCount;
 													continue;
 												}
 												if (opcode == QUICKCHAT_FINDNEXT) {
-													if (Find.results != null && Find.size < Find.index) {
+													if (Find.results != null && Find.size < Find.resultCount) {
 														scriptIntValues[isp++] = Find.results[Find.size++] & 0xFFFF;
 														continue;
 													}

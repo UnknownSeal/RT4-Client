@@ -15,109 +15,159 @@ public class Find {
     @OriginalMember(owner = "client!fe", name = "x", descriptor = "I")
     public static int size;
     @OriginalMember(owner = "runetek4.client!ii", name = "l", descriptor = "I")
-    public static int index;
+    public static int resultCount;
 
+    private static int INITIAL_RESULT_CAPACITY = 16;
+    private static int MAX_QUICKCHAT_RESULTS = 50;
+    private static int MAX_ITEM_RESULTS = 250;
+    private static int MEMBERS_PHRASE_OFFSET = 32768;
+
+    // Sorted alphabetically
     @OriginalMember(owner = "client!bn", name = "a", descriptor = "(BZLclient!na;)V")
-    public static void findQuickChatPhrases(@OriginalArg(1) boolean arg0, @OriginalArg(2) JString arg1) {
-        @Pc(9) JString local9 = arg1.toLowerCase();
-        @Pc(11) int local11 = 0;
-        @Pc(22) short[] local22 = new short[16];
-        @Pc(28) int local28 = arg0 ? 32768 : 0;
-        @Pc(36) int local36 = (arg0 ? QuickChatPhraseTypeList.anInt1047 : QuickChatPhraseTypeList.anInt3490) + local28;
-        for (@Pc(38) int local38 = local28; local38 < local36; local38++) {
-            @Pc(45) QuickChatPhraseType local45 = QuickChatPhraseTypeList.get(local38);
-            if (local45.aBoolean60 && local45.getText().toLowerCase().indexOf(local9) != -1) {
-                if (local11 >= 50) {
-                    index = -1;
+    public static void findQuickChatPhrases(@OriginalArg(1) boolean membersOnly, @OriginalArg(2) JString query) {
+        @Pc(9) JString queryLowercase = query.toLowerCase();
+        @Pc(11) int foundCount = 0;
+        @Pc(22) short[] resultIds = new short[INITIAL_RESULT_CAPACITY];
+
+        // Determine phrase ID range based on members filter
+        @Pc(28) int startId = membersOnly ? MEMBERS_PHRASE_OFFSET : 0;
+        @Pc(36) int endId = (membersOnly ? QuickChatPhraseTypeList.anInt1047 : QuickChatPhraseTypeList.anInt3490) + startId;
+
+        // Search all phrases in range
+        for (@Pc(38) int phraseId = startId; phraseId < endId; phraseId++) {
+            @Pc(45) QuickChatPhraseType phrase = QuickChatPhraseTypeList.get(phraseId);
+            if (phrase.aBoolean60 && phrase.getText().toLowerCase().indexOf(queryLowercase) != -1) {
+
+                // Abort search if too many results
+                if (foundCount >= MAX_QUICKCHAT_RESULTS) {
+                    resultCount = -1;
                     results = null;
                     return;
                 }
-                if (local11 >= local22.length) {
-                    @Pc(79) short[] local79 = new short[local22.length * 2];
-                    for (@Pc(81) int local81 = 0; local81 < local11; local81++) {
-                        local79[local81] = local22[local81];
+
+                // Grow array if needed
+                if (foundCount >= resultIds.length) {
+                    @Pc(79) short[] local79 = new short[resultIds.length * 2];
+                    for (@Pc(81) int local81 = 0; local81 < foundCount; local81++) {
+                        local79[local81] = resultIds[local81];
                     }
-                    local22 = local79;
+                    resultIds = local79;
                 }
-                local22[local11++] = (short) local38;
+                resultIds[foundCount++] = (short) phraseId;
             }
         }
-        results = local22;
-        index = local11;
+
+        // Store results
+        results = resultIds;
+        resultCount = foundCount;
         size = 0;
-        @Pc(113) JString[] local113 = new JString[index];
-        for (@Pc(115) int local115 = 0; local115 < index; local115++) {
-            local113[local115] = QuickChatPhraseTypeList.get(local22[local115]).getText();
+
+        // Sort aplhabetically
+        @Pc(113) JString[] local113 = new JString[resultCount];
+        for (@Pc(115) int local115 = 0; local115 < resultCount; local115++) {
+            local113[local115] = QuickChatPhraseTypeList.get(resultIds[local115]).getText();
         }
-        method3656(local113, results);
+        sortResults(local113, results);
     }
 
     @OriginalMember(owner = "runetek4.client!me", name = "a", descriptor = "(ZLclient!na;I)V")
-    public static void search(@OriginalArg(0) boolean arg0, @OriginalArg(1) JString arg1) {
-        @Pc(8) short[] local8 = new short[16];
-        @Pc(12) JString local12 = arg1.toLowerCase();
-        @Pc(14) int local14 = 0;
+    public static void findItem(@OriginalArg(0) boolean tradeableOnly, @OriginalArg(1) JString query) {
+        @Pc(8) short[] resultIds = new short[INITIAL_RESULT_CAPACITY];
+        @Pc(12) JString queryLowercase = query.toLowerCase();
+        @Pc(14) int foundCount = 0;
+
+        // Search all items
         for (@Pc(16) int local16 = 0; local16 < ObjTypeList.capacity; local16++) {
             @Pc(27) ObjType local27 = ObjTypeList.get(local16);
-            if ((!arg0 || local27.stockMarket) && local27.certTemplate == -1 && local27.lentTemplate == -1 && local27.dummyItem == 0 && local27.name.toLowerCase().indexOf(local12) != -1) {
-                if (local14 >= 250) {
+
+            // Apply filters and check name match
+            if ((!tradeableOnly || local27.stockMarket)
+                    && local27.certTemplate == -1
+                    && local27.lentTemplate == -1
+                    && local27.dummyItem == 0
+                    && local27.name.toLowerCase().indexOf(queryLowercase) != -1) {
+
+                // Abort search if too many results
+                if (foundCount >= MAX_ITEM_RESULTS) {
                     results = null;
-                    index = -1;
+                    resultCount = -1;
                     return;
                 }
-                if (local14 >= local8.length) {
-                    @Pc(83) short[] local83 = new short[local8.length * 2];
-                    for (@Pc(85) int local85 = 0; local85 < local14; local85++) {
-                        local83[local85] = local8[local85];
+
+                // Grow array if needed
+                if (foundCount >= resultIds.length) {
+                    @Pc(83) short[] local83 = new short[resultIds.length * 2];
+                    for (@Pc(85) int local85 = 0; local85 < foundCount; local85++) {
+                        local83[local85] = resultIds[local85];
                     }
-                    local8 = local83;
+                    resultIds = local83;
                 }
-                local8[local14++] = (short) local16;
+                resultIds[foundCount++] = (short) local16;
             }
         }
-        results = local8;
+
+        // Store results
+        results = resultIds;
         size = 0;
-        index = local14;
-        @Pc(117) JString[] local117 = new JString[index];
-        for (@Pc(119) int local119 = 0; local119 < index; local119++) {
-            local117[local119] = ObjTypeList.get(local8[local119]).name;
+        resultCount = foundCount;
+
+        // Sort alphabetically
+        @Pc(117) JString[] local117 = new JString[resultCount];
+        for (@Pc(119) int local119 = 0; local119 < resultCount; local119++) {
+            local117[local119] = ObjTypeList.get(resultIds[local119]).name;
         }
-        method3656(local117, results);
+        sortResults(local117, results);
     }
 
+    // Sort alphabetically
     @OriginalMember(owner = "runetek4.client!qg", name = "a", descriptor = "([Lclient!na;[SI)V")
-    public static void method3656(@OriginalArg(0) JString[] arg0, @OriginalArg(1) short[] arg1) {
-        method1307(arg1, arg0.length - 1, arg0, 0);
+    public static void sortResults(@OriginalArg(0) JString[] arg0, @OriginalArg(1) short[] arg1) {
+        quicksort(arg1, arg0.length - 1, arg0, 0);
     }
 
+    // Quicksort that sorts two arrays in parallel
     @OriginalMember(owner = "client!ed", name = "a", descriptor = "([SI[Lclient!na;II)V")
-    public static void method1307(@OriginalArg(0) short[] arg0, @OriginalArg(1) int arg1, @OriginalArg(2) JString[] arg2, @OriginalArg(4) int arg3) {
-        if (arg1 <= arg3) {
+    public static void quicksort(@OriginalArg(0) short[] ids, @OriginalArg(1) int high, @OriginalArg(2) JString[] names, @OriginalArg(4) int low) {
+        if (high <= low) {
             return;
         }
-        @Pc(14) int local14 = arg3;
-        @Pc(21) int local21 = (arg3 + arg1) / 2;
-        @Pc(25) JString local25 = arg2[local21];
-        arg2[local21] = arg2[arg1];
-        arg2[arg1] = local25;
-        @Pc(39) short local39 = arg0[local21];
-        arg0[local21] = arg0[arg1];
-        arg0[arg1] = local39;
-        for (@Pc(51) int local51 = arg3; local51 < arg1; local51++) {
-            if (local25 == null || arg2[local51] != null && arg2[local51].method3139(local25) < (local51 & 0x1)) {
-                @Pc(80) JString local80 = arg2[local51];
-                arg2[local51] = arg2[local14];
-                arg2[local14] = local80;
-                @Pc(94) short local94 = arg0[local51];
-                arg0[local51] = arg0[local14];
-                arg0[local14++] = local94;
+
+        @Pc(14) int partitionIndex = low;
+        @Pc(21) int pivotIndex = (low + high) / 2;
+        @Pc(25) JString pivotName = names[pivotIndex];
+
+        // Move pivot to end
+        names[pivotIndex] = names[high];
+        names[high] = pivotName;
+        @Pc(39) short pivotId = ids[pivotIndex];
+        ids[pivotIndex] = ids[high];
+        ids[high] = pivotId;
+
+        // Partition step with intentional instability
+        for (@Pc(51) int i = low; i < high; i++) {
+            // Compare with instability
+            // This prevents identical strings from always sorting in the same order
+            if (pivotName == null || names[i] != null && names[i].method3139(pivotName) < (i & 0x1)) {
+                // Swap names
+                @Pc(80) JString tempNames = names[i];
+                names[i] = names[partitionIndex];
+                names[partitionIndex] = tempNames;
+
+                // Swap ids in parallel
+                @Pc(94) short tempId = ids[i];
+                ids[i] = ids[partitionIndex];
+                ids[partitionIndex++] = tempId;
             }
         }
-        arg2[arg1] = arg2[local14];
-        arg2[local14] = local25;
-        arg0[arg1] = arg0[local14];
-        arg0[local14] = local39;
-        method1307(arg0, local14 - 1, arg2, arg3);
-        method1307(arg0, arg1, arg2, local14 + 1);
+
+        // Move pivot to final position
+        names[high] = names[partitionIndex];
+        names[partitionIndex] = pivotName;
+        ids[high] = ids[partitionIndex];
+        ids[partitionIndex] = pivotId;
+
+        // Recursively sort partitions
+        quicksort(ids, partitionIndex - 1, names, low);
+        quicksort(ids, high, names, partitionIndex + 1);
     }
 }

@@ -13,203 +13,284 @@ import org.openrs2.deob.annotation.Pc;
 
 public class PathFinder {
 
+    private static final int BFS_QUEUE_SIZE = 4096;
+
+    private static final int BUILD_AREA_SIZE = 104;
+
+    private static final int COST_INFINITY = 99999999;
+
+    private static final int PARENT_START_MARKER = 99;
+
+    private static final int QUEUE_INDEX_MASK = 0xFFF;
+
+    private static final int DISTANCE_INFINITY = 1000;
+
+    private static final int MAX_NEAREST_COST = 100;
+
+    private static final int NEAREST_SEARCH_RADIUS = 10;
+
+    private static final int DIR_SOUTH = 1;
+    private static final int DIR_WEST = 2;
+    private static final int DIR_SOUTHWEST = 3;
+    private static final int DIR_NORTH = 4;
+    private static final int DIR_NORTHWEST = 6;
+    private static final int DIR_EAST = 8;
+    private static final int DIR_SOUTHEAST = 9;
+    private static final int DIR_NORTHEAST = 12;
+
     @OriginalMember(owner = "runetek4.client!li", name = "h", descriptor = "[Lclient!mj;")
     public static final CollisionMap[] collisionMaps = new CollisionMap[4];
 
     @OriginalMember(owner = "runetek4.client!vc", name = "eb", descriptor = "[I")
-    public static final int[] bfsStepX = new int[4096];
+    public static final int[] bfsStepX = new int[BFS_QUEUE_SIZE];
 
     @OriginalMember(owner = "runetek4.client!gk", name = "c", descriptor = "[I")
-    public static final int[] bfsStepZ = new int[4096];
+    public static final int[] bfsStepZ = new int[BFS_QUEUE_SIZE];
 
     @OriginalMember(owner = "runetek4.client!lf", name = "a", descriptor = "[[I")
-    public static final int[][] parents = new int[104][104];
+    public static final int[][] parents = new int[BUILD_AREA_SIZE][BUILD_AREA_SIZE];
 
     @OriginalMember(owner = "runetek4.client!nd", name = "q", descriptor = "[[I")
-    public static final int[][] costs = new int[104][104];
+    public static final int[][] costs = new int[BUILD_AREA_SIZE][BUILD_AREA_SIZE];
 
     @OriginalMember(owner = "runetek4.client!s", name = "d", descriptor = "I")
     public static int tryMoveNearest = 0;
 
     @OriginalMember(owner = "runetek4.client!hn", name = "a", descriptor = "(IIIZIIIIIIII)Z")
-    public static boolean findPath(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) boolean arg3, @OriginalArg(4) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int arg6, @OriginalArg(8) int arg7, @OriginalArg(9) int arg8, @OriginalArg(10) int arg9, @OriginalArg(11) int arg10) {
+    public static boolean findPath(@OriginalArg(0) int startX, @OriginalArg(1) int startZ, @OriginalArg(2) int targetX, @OriginalArg(3) boolean allowNearest, @OriginalArg(4) int arg4, @OriginalArg(6) int targetZ, @OriginalArg(7) int targetWidth, @OriginalArg(8) int targetHeight, @OriginalArg(9) int moveType, @OriginalArg(10) int locationAngle, @OriginalArg(11) int entitySize) {
         if (PlayerList.self.getSize() == 2) {
-            return findPathN(arg6, arg7, arg4, arg0, arg9, arg3, arg2, arg1, arg5, arg8, arg10);
+            return findPathMediumEntity(targetWidth, targetHeight, arg4, startX, locationAngle, allowNearest, targetX, startZ, targetZ, moveType, entitySize);
         } else if (PlayerList.self.getSize() <= 2) {
-            return findPathN(arg5, arg4, arg10, arg9, arg8, arg2, arg1, arg3, arg7, arg0, arg6);
+            return findPathMediumEntity(targetZ, arg4, entitySize, locationAngle, moveType, targetX, startZ, allowNearest, targetHeight, startX, targetWidth);
         } else {
-            return findPath1(arg9, arg6, arg8, arg1, PlayerList.self.getSize(), arg5, arg7, arg4, arg10, arg2, arg3, arg0);
+            return findPathLargeEntity(locationAngle, targetWidth, moveType, startZ, PlayerList.self.getSize(), targetZ, targetHeight, arg4, entitySize, targetX, allowNearest, startX);
         }
     }
 
     @OriginalMember(owner = "client!di", name = "a", descriptor = "(IIIIIIIIZIII)Z")
-    public static boolean findPathN(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int arg6, @OriginalArg(8) boolean arg7, @OriginalArg(9) int arg8, @OriginalArg(10) int arg9, @OriginalArg(11) int arg10) {
+    public static boolean findPathMediumEntity(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int arg6, @OriginalArg(8) boolean arg7, @OriginalArg(9) int targetHeight, @OriginalArg(10) int locationAngle, @OriginalArg(11) int targetDepth) {
         @Pc(3) int x;
         @Pc(10) int z;
-        for (x = 0; x < 104; x++) {
-            for (z = 0; z < 104; z++) {
+
+        // Init search grids
+        for (x = 0; x < BUILD_AREA_SIZE; x++) {
+            for (z = 0; z < BUILD_AREA_SIZE; z++) {
                 parents[x][z] = 0;
-                costs[x][z] = 99999999;
+                costs[x][z] = COST_INFINITY;
             }
         }
+
+        // Set start position
         x = arg2;
-        parents[arg2][arg9] = 99;
-        z = arg9;
-        costs[arg2][arg9] = 0;
-        @Pc(51) byte local51 = 0;
-        @Pc(53) boolean local53 = false;
-        @Pc(64) int local64 = 0;
+        parents[arg2][locationAngle] = PARENT_START_MARKER;
+        z = locationAngle;
+        costs[arg2][locationAngle] = 0;
+
+        @Pc(51) byte queueHead = 0;
+        @Pc(53) boolean foundPath = false;
+        @Pc(64) int queueTail = 0;
         bfsStepX[0] = arg2;
-        @Pc(71) int local71 = local51 + 1;
-        bfsStepZ[0] = arg9;
-        @Pc(78) int[][] local78 = collisionMaps[Player.currentLevel].flags;
-        @Pc(198) int local198;
-        while (local71 != local64) {
-            z = bfsStepZ[local64];
-            x = bfsStepX[local64];
-            local64 = local64 + 1 & 0xFFF;
+        @Pc(71) int queueSize = queueHead + 1;
+        bfsStepZ[0] = locationAngle;
+        @Pc(78) int[][] collisionFlags = collisionMaps[Player.currentLevel].flags;
+        @Pc(198) int newCost;
+
+        // Main loop
+        while (queueSize != queueTail) {
+            z = bfsStepZ[queueTail];
+            x = bfsStepX[queueTail];
+            queueTail = queueTail + 1 & QUEUE_INDEX_MASK;
+
+            // Check if reached target
             if (x == arg0 && z == arg3) {
-                local53 = true;
+                foundPath = true;
                 break;
             }
-            if (arg8 != 0) {
-                if ((arg8 < 5 || arg8 == 10) && collisionMaps[Player.currentLevel].isAtWall(arg3, x, z, arg0, arg8 - 1, 1, arg6)) {
-                    local53 = true;
+
+            // Check if at wall target
+            if (targetHeight != 0) {
+                if ((targetHeight < 5 || targetHeight == 10) && collisionMaps[Player.currentLevel].isAtWall(arg3, x, z, arg0, targetHeight - 1, 1, arg6)) {
+                    foundPath = true;
                     break;
                 }
-                if (arg8 < 10 && collisionMaps[Player.currentLevel].isAtWallDecor(arg3, arg8 - 1, arg0, z, 1, arg6, x)) {
-                    local53 = true;
+                if (targetHeight < 10 && collisionMaps[Player.currentLevel].isAtWallDecor(arg3, targetHeight - 1, arg0, z, 1, arg6, x)) {
+                    foundPath = true;
                     break;
                 }
             }
-            if (arg10 != 0 && arg5 != 0 && collisionMaps[Player.currentLevel].isInsideOrOutsideRect(arg0, z, x, 1, arg10, arg1, arg3, arg5)) {
-                local53 = true;
+
+            // Check if inside/outside rectangular target
+            if (targetDepth != 0 && arg5 != 0 && collisionMaps[Player.currentLevel].isInsideOrOutsideRect(arg0, z, x, 1, targetDepth, arg1, arg3, arg5)) {
+                foundPath = true;
                 break;
             }
-            local198 = costs[x][z] + 1;
-            if (x > 0 && parents[x - 1][z] == 0 && (local78[x - 1][z] & 0x12C0108) == 0) {
-                bfsStepX[local71] = x - 1;
-                bfsStepZ[local71] = z;
-                local71 = local71 + 1 & 0xFFF;
-                parents[x - 1][z] = 2;
-                costs[x - 1][z] = local198;
+
+            newCost = costs[x][z] + 1;
+
+            // Explore 8 adjacent tiles
+
+            // West
+            if (x > 0 && parents[x - 1][z] == 0 && (collisionFlags[x - 1][z] & 0x12C0108) == 0) {
+                bfsStepX[queueSize] = x - 1;
+                bfsStepZ[queueSize] = z;
+                queueSize = queueSize + 1 & QUEUE_INDEX_MASK;
+                parents[x - 1][z] = DIR_WEST;
+                costs[x - 1][z] = newCost;
             }
-            if (x < 103 && parents[x + 1][z] == 0 && (local78[x + 1][z] & 0x12C0180) == 0) {
-                bfsStepX[local71] = x + 1;
-                bfsStepZ[local71] = z;
-                local71 = local71 + 1 & 0xFFF;
-                parents[x + 1][z] = 8;
-                costs[x + 1][z] = local198;
+
+            // East
+            if (x < 103 && parents[x + 1][z] == 0 && (collisionFlags[x + 1][z] & 0x12C0180) == 0) {
+                bfsStepX[queueSize] = x + 1;
+                bfsStepZ[queueSize] = z;
+                queueSize = queueSize + 1 & QUEUE_INDEX_MASK;
+                parents[x + 1][z] = DIR_EAST;
+                costs[x + 1][z] = newCost;
             }
-            if (z > 0 && parents[x][z - 1] == 0 && (local78[x][z - 1] & 0x12C0102) == 0) {
-                bfsStepX[local71] = x;
-                bfsStepZ[local71] = z - 1;
-                parents[x][z - 1] = 1;
-                local71 = local71 + 1 & 0xFFF;
-                costs[x][z - 1] = local198;
+
+            // South
+            if (z > 0 && parents[x][z - 1] == 0 && (collisionFlags[x][z - 1] & 0x12C0102) == 0) {
+                bfsStepX[queueSize] = x;
+                bfsStepZ[queueSize] = z - 1;
+                parents[x][z - 1] = DIR_SOUTH;;
+                queueSize = queueSize + 1 & QUEUE_INDEX_MASK;
+                costs[x][z - 1] = newCost;
             }
-            if (z < 103 && parents[x][z + 1] == 0 && (local78[x][z + 1] & 0x12C0120) == 0) {
-                bfsStepX[local71] = x;
-                bfsStepZ[local71] = z + 1;
-                local71 = local71 + 1 & 0xFFF;
-                parents[x][z + 1] = 4;
-                costs[x][z + 1] = local198;
+
+            // North
+            if (z < 103 && parents[x][z + 1] == 0 && (collisionFlags[x][z + 1] & 0x12C0120) == 0) {
+                bfsStepX[queueSize] = x;
+                bfsStepZ[queueSize] = z + 1;
+                queueSize = queueSize + 1 & QUEUE_INDEX_MASK;
+                parents[x][z + 1] = DIR_NORTH;
+                costs[x][z + 1] = newCost;
             }
-            if (x > 0 && z > 0 && parents[x - 1][z - 1] == 0 && (local78[x - 1][z - 1] & 0x12C010E) == 0 && (local78[x - 1][z] & 0x12C0108) == 0 && (local78[x][z - 1] & 0x12C0102) == 0) {
-                bfsStepX[local71] = x - 1;
-                bfsStepZ[local71] = z - 1;
-                local71 = local71 + 1 & 0xFFF;
-                parents[x - 1][z - 1] = 3;
-                costs[x - 1][z - 1] = local198;
+
+            // Southwest
+            if (x > 0 && z > 0 && parents[x - 1][z - 1] == 0 && (collisionFlags[x - 1][z - 1] & 0x12C010E) == 0 && (collisionFlags[x - 1][z] & 0x12C0108) == 0 && (collisionFlags[x][z - 1] & 0x12C0102) == 0) {
+                bfsStepX[queueSize] = x - 1;
+                bfsStepZ[queueSize] = z - 1;
+                queueSize = queueSize + 1 & QUEUE_INDEX_MASK;
+                parents[x - 1][z - 1] = DIR_SOUTHWEST;
+                costs[x - 1][z - 1] = newCost;
             }
-            if (x < 103 && z > 0 && parents[x + 1][z - 1] == 0 && (local78[x + 1][z - 1] & 0x12C0183) == 0 && (local78[x + 1][z] & 0x12C0180) == 0 && (local78[x][z - 1] & 0x12C0102) == 0) {
-                bfsStepX[local71] = x + 1;
-                bfsStepZ[local71] = z - 1;
-                local71 = local71 + 1 & 0xFFF;
-                parents[x + 1][z - 1] = 9;
-                costs[x + 1][z - 1] = local198;
+
+            // Southeast
+            if (x < 103 && z > 0 && parents[x + 1][z - 1] == 0 && (collisionFlags[x + 1][z - 1] & 0x12C0183) == 0 && (collisionFlags[x + 1][z] & 0x12C0180) == 0 && (collisionFlags[x][z - 1] & 0x12C0102) == 0) {
+                bfsStepX[queueSize] = x + 1;
+                bfsStepZ[queueSize] = z - 1;
+                queueSize = queueSize + 1 & QUEUE_INDEX_MASK;
+                parents[x + 1][z - 1] = DIR_SOUTHEAST;
+                costs[x + 1][z - 1] = newCost;
             }
-            if (x > 0 && z < 103 && parents[x - 1][z + 1] == 0 && (local78[x - 1][z + 1] & 0x12C0138) == 0 && (local78[x - 1][z] & 0x12C0108) == 0 && (local78[x][z + 1] & 0x12C0120) == 0) {
-                bfsStepX[local71] = x - 1;
-                bfsStepZ[local71] = z + 1;
-                parents[x - 1][z + 1] = 6;
-                local71 = local71 + 1 & 0xFFF;
-                costs[x - 1][z + 1] = local198;
+            // Northwest
+            if (x > 0 && z < 103 && parents[x - 1][z + 1] == 0 && (collisionFlags[x - 1][z + 1] & 0x12C0138) == 0 && (collisionFlags[x - 1][z] & 0x12C0108) == 0 && (collisionFlags[x][z + 1] & 0x12C0120) == 0) {
+                bfsStepX[queueSize] = x - 1;
+                bfsStepZ[queueSize] = z + 1;
+                parents[x - 1][z + 1] = DIR_NORTHWEST;
+                queueSize = queueSize + 1 & QUEUE_INDEX_MASK;
+                costs[x - 1][z + 1] = newCost;
             }
-            if (x < 103 && z < 103 && parents[x + 1][z + 1] == 0 && (local78[x + 1][z + 1] & 0x12C01E0) == 0 && (local78[x + 1][z] & 0x12C0180) == 0 && (local78[x][z + 1] & 0x12C0120) == 0) {
-                bfsStepX[local71] = x + 1;
-                bfsStepZ[local71] = z + 1;
-                parents[x + 1][z + 1] = 12;
-                local71 = local71 + 1 & 0xFFF;
-                costs[x + 1][z + 1] = local198;
+
+            // Northeast
+            if (x < 103 && z < 103 && parents[x + 1][z + 1] == 0 && (collisionFlags[x + 1][z + 1] & 0x12C01E0) == 0 && (collisionFlags[x + 1][z] & 0x12C0180) == 0 && (collisionFlags[x][z + 1] & 0x12C0120) == 0) {
+                bfsStepX[queueSize] = x + 1;
+                bfsStepZ[queueSize] = z + 1;
+                parents[x + 1][z + 1] = DIR_NORTHEAST;
+                queueSize = queueSize + 1 & QUEUE_INDEX_MASK;
+                costs[x + 1][z + 1] = newCost;
             }
         }
+
         tryMoveNearest = 0;
-        @Pc(839) int local839;
-        if (!local53) {
+        @Pc(839) int minCost;
+
+        // If exact path not found, try to find nearest reachable tile
+        if (!foundPath) {
             if (!arg7) {
                 return false;
             }
-            local198 = 1000;
-            local839 = 100;
-            for (@Pc(846) int local846 = arg0 - 10; local846 <= arg0 + 10; local846++) {
-                for (@Pc(856) int local856 = arg3 - 10; local856 <= arg3 + 10; local856++) {
-                    if (local846 >= 0 && local856 >= 0 && local846 < 104 && local856 < 104 && costs[local846][local856] < 100) {
-                        @Pc(894) int local894 = 0;
-                        if (local856 < arg3) {
-                            local894 = arg3 - local856;
-                        } else if (arg5 + arg3 - 1 < local856) {
-                            local894 = local856 + 1 - arg3 - arg5;
+
+            newCost = DISTANCE_INFINITY;
+            minCost = MAX_NEAREST_COST;
+
+            // Search 10 tiles around target for nearest reachable tile
+            for (@Pc(846) int searchX = arg0 - NEAREST_SEARCH_RADIUS; searchX <= arg0 + NEAREST_SEARCH_RADIUS; searchX++) {
+                for (@Pc(856) int searchZ = arg3 - NEAREST_SEARCH_RADIUS; searchZ <= arg3 + NEAREST_SEARCH_RADIUS; searchZ++) {
+                    if (searchX >= 0 && searchZ >= 0 && searchX < BUILD_AREA_SIZE && searchZ < BUILD_AREA_SIZE && costs[searchX][searchZ] < MAX_NEAREST_COST) {
+
+                        // Calculate distance from tile to target rectangle
+                        @Pc(894) int deltaZ = 0;
+                        if (searchZ < arg3) {
+                            deltaZ = arg3 - searchZ;
+                        } else if (arg5 + arg3 - 1 < searchZ) {
+                            deltaZ = searchZ + 1 - arg3 - arg5;
                         }
-                        @Pc(927) int local927 = 0;
-                        if (local846 < arg0) {
-                            local927 = arg0 - local846;
-                        } else if (local846 > arg10 + arg0 - 1) {
-                            local927 = local846 + 1 - arg10 - arg0;
+
+
+                        @Pc(927) int deltaX = 0;
+                        if (searchX < arg0) {
+                            deltaX = arg0 - searchX;
+                        } else if (searchX > targetDepth + arg0 - 1) {
+                            deltaX = searchX + 1 - targetDepth - arg0;
                         }
-                        @Pc(968) int local968 = local894 * local894 + local927 * local927;
-                        if (local968 < local198 || local968 == local198 && costs[local846][local856] < local839) {
-                            z = local856;
-                            local198 = local968;
-                            x = local846;
-                            local839 = costs[local846][local856];
+
+                        @Pc(968) int distanceSquared = deltaZ * deltaZ + deltaX * deltaX;
+
+                        // Select closest tile or cheapest path if tied
+                        if (distanceSquared < newCost || distanceSquared == newCost && costs[searchX][searchZ] < minCost) {
+                            z = searchZ;
+                            newCost = distanceSquared;
+                            x = searchX;
+                            minCost = costs[searchX][searchZ];
                         }
                     }
                 }
             }
-            if (local198 == 1000) {
-                return false;
+
+            if (newCost == DISTANCE_INFINITY) {
+                return false; // No reachable tiles found
             }
-            if (arg2 == x && z == arg9) {
-                return false;
+            if (arg2 == x && z == locationAngle) {
+                return false; // Already at nearest tile
             }
+
             tryMoveNearest = 1;
         }
-        @Pc(1032) byte local1032 = 0;
+
+        // Reconstruct path from target back to start
+        @Pc(1032) byte pathLength = 0;
         bfsStepX[0] = x;
-        local64 = local1032 + 1;
+        queueTail = pathLength + 1;
         bfsStepZ[0] = z;
-        local198 = local839 = parents[x][z];
-        while (arg2 != x || z != arg9) {
-            if (local839 != local198) {
-                local839 = local198;
-                bfsStepX[local64] = x;
-                bfsStepZ[local64++] = z;
+
+        newCost = minCost = parents[x][z];
+
+        // Walk backwards through parent pointers
+        while (arg2 != x || z != locationAngle) {
+            if (minCost != newCost) {
+                minCost = newCost;
+                bfsStepX[queueTail] = x;
+                bfsStepZ[queueTail++] = z;
             }
-            if ((local198 & 0x2) != 0) {
+
+            // Decode direction and move to parent tile
+            if ((newCost & DIR_WEST) != 0) {
                 x++;
-            } else if ((local198 & 0x8) != 0) {
-                x--;
+            } else if ((newCost & 0x8) != 0) {
+                x--; // EAST
             }
-            if ((local198 & 0x1) != 0) {
-                z++;
-            } else if ((local198 & 0x4) != 0) {
-                z--;
+            if ((newCost & 0x1) != 0) {
+                z++; // SOUTH
+            } else if ((newCost & 0x4) != 0) {
+                z--; // NORTH
             }
-            local198 = parents[x][z];
+
+            newCost = parents[x][z];
         }
-        if (local64 > 0) {
-            ClientProt.method3502(local64, arg4);
+
+        // Send path to server
+        if (queueTail > 0) {
+            ClientProt.method3502(queueTail, arg4);
             return true;
         } else if (arg4 == 1) {
             return false;
@@ -219,136 +300,141 @@ public class PathFinder {
     }
 
     @OriginalMember(owner = "runetek4.client!aa", name = "a", descriptor = "(IIIIIZIIIIII)Z")
-    public static boolean findPathN(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) boolean arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) int arg8, @OriginalArg(9) int arg9, @OriginalArg(11) int arg10) {
-        @Pc(3) int local3;
-        @Pc(8) int local8;
-        for (local3 = 0; local3 < 104; local3++) {
-            for (local8 = 0; local8 < 104; local8++) {
-                parents[local3][local8] = 0;
-                costs[local3][local8] = 99999999;
+    public static boolean findPathMediumEntity(@OriginalArg(0) int targetWidth, @OriginalArg(1) int targetHeight, @OriginalArg(2) int arg2, @OriginalArg(3) int startX, @OriginalArg(4) int locationShape, @OriginalArg(5) boolean allowNearest, @OriginalArg(6) int targetX, @OriginalArg(7) int startZ, @OriginalArg(8) int targetZ, @OriginalArg(9) int moveType, @OriginalArg(11) int entitySize) {
+        @Pc(3) int currentX;
+        @Pc(8) int currentZ;
+
+        // Init search grids
+        for (currentX = 0; currentX < BUILD_AREA_SIZE; currentX++) {
+            for (currentZ = 0; currentZ < BUILD_AREA_SIZE; currentZ++) {
+                parents[currentX][currentZ] = 0;
+                costs[currentX][currentZ] = COST_INFINITY;
             }
         }
-        parents[arg10][arg3] = 99;
-        costs[arg10][arg3] = 0;
-        local8 = arg3;
-        local3 = arg10;
+
+        // Set start position
+        parents[entitySize][startX] = PARENT_START_MARKER;
+        costs[entitySize][startX] = 0;
+        currentZ = startX;
+        currentX = entitySize;
+
         @Pc(53) byte local53 = 0;
-        bfsStepX[0] = arg10;
+        bfsStepX[0] = entitySize;
         @Pc(59) boolean local59 = false;
         @Pc(61) int local61 = 0;
         @Pc(64) int local64 = local53 + 1;
-        bfsStepZ[0] = arg3;
+        bfsStepZ[0] = startX;
         @Pc(71) int[][] local71 = collisionMaps[Player.currentLevel].flags;
         @Pc(193) int local193;
         while (local61 != local64) {
-            local3 = bfsStepX[local61];
-            local8 = bfsStepZ[local61];
+            currentX = bfsStepX[local61];
+            currentZ = bfsStepZ[local61];
             local61 = local61 + 1 & 0xFFF;
-            if (arg8 == local3 && arg4 == local8) {
+            if (targetZ == currentX && locationShape == currentZ) {
                 local59 = true;
                 break;
             }
-            if (arg1 != 0) {
-                if ((arg1 < 5 || arg1 == 10) && collisionMaps[Player.currentLevel].isAtWall(arg4, local3, local8, arg8, arg1 - 1, 2, arg7)) {
+            if (targetHeight != 0) {
+                if ((targetHeight < 5 || targetHeight == 10) && collisionMaps[Player.currentLevel].isAtWall(locationShape, currentX, currentZ, targetZ, targetHeight - 1, 2, startZ)) {
                     local59 = true;
                     break;
                 }
-                if (arg1 < 10 && collisionMaps[Player.currentLevel].isAtWallDecor(arg4, arg1 - 1, arg8, local8, 2, arg7, local3)) {
+                if (targetHeight < 10 && collisionMaps[Player.currentLevel].isAtWallDecor(locationShape, targetHeight - 1, targetZ, currentZ, 2, startZ, currentX)) {
                     local59 = true;
                     break;
                 }
             }
-            if (arg0 != 0 && arg6 != 0 && collisionMaps[Player.currentLevel].isInsideOrOutsideRect(arg8, local8, local3, 2, arg0, arg2, arg4, arg6)) {
+            if (targetWidth != 0 && targetX != 0 && collisionMaps[Player.currentLevel].isInsideOrOutsideRect(targetZ, currentZ, currentX, 2, targetWidth, arg2, locationShape, targetX)) {
                 local59 = true;
                 break;
             }
-            local193 = costs[local3][local8] + 1;
-            if (local3 > 0 && parents[local3 - 1][local8] == 0 && (local71[local3 - 1][local8] & 0x12C010E) == 0 && (local71[local3 - 1][local8 + 1] & 0x12C0138) == 0) {
-                bfsStepX[local64] = local3 - 1;
-                bfsStepZ[local64] = local8;
+            local193 = costs[currentX][currentZ] + 1;
+            if (currentX > 0 && parents[currentX - 1][currentZ] == 0 && (local71[currentX - 1][currentZ] & 0x12C010E) == 0 && (local71[currentX - 1][currentZ + 1] & 0x12C0138) == 0) {
+                bfsStepX[local64] = currentX - 1;
+                bfsStepZ[local64] = currentZ;
                 local64 = local64 + 1 & 0xFFF;
-                parents[local3 - 1][local8] = 2;
-                costs[local3 - 1][local8] = local193;
+                parents[currentX - 1][currentZ] = 2;
+                costs[currentX - 1][currentZ] = local193;
             }
-            if (local3 < 102 && parents[local3 + 1][local8] == 0 && (local71[local3 + 2][local8] & 0x12C0183) == 0 && (local71[local3 + 2][local8 + 1] & 0x12C01E0) == 0) {
-                bfsStepX[local64] = local3 + 1;
-                bfsStepZ[local64] = local8;
+            if (currentX < 102 && parents[currentX + 1][currentZ] == 0 && (local71[currentX + 2][currentZ] & 0x12C0183) == 0 && (local71[currentX + 2][currentZ + 1] & 0x12C01E0) == 0) {
+                bfsStepX[local64] = currentX + 1;
+                bfsStepZ[local64] = currentZ;
                 local64 = local64 + 1 & 0xFFF;
-                parents[local3 + 1][local8] = 8;
-                costs[local3 + 1][local8] = local193;
+                parents[currentX + 1][currentZ] = 8;
+                costs[currentX + 1][currentZ] = local193;
             }
-            if (local8 > 0 && parents[local3][local8 - 1] == 0 && (local71[local3][local8 - 1] & 0x12C010E) == 0 && (local71[local3 + 1][local8 - 1] & 0x12C0183) == 0) {
-                bfsStepX[local64] = local3;
-                bfsStepZ[local64] = local8 - 1;
-                parents[local3][local8 - 1] = 1;
-                costs[local3][local8 - 1] = local193;
-                local64 = local64 + 1 & 0xFFF;
-            }
-            if (local8 < 102 && parents[local3][local8 + 1] == 0 && (local71[local3][local8 + 2] & 0x12C0138) == 0 && (local71[local3 + 1][local8 + 2] & 0x12C01E0) == 0) {
-                bfsStepX[local64] = local3;
-                bfsStepZ[local64] = local8 + 1;
-                parents[local3][local8 + 1] = 4;
-                local64 = local64 + 1 & 0xFFF;
-                costs[local3][local8 + 1] = local193;
-            }
-            if (local3 > 0 && local8 > 0 && parents[local3 - 1][local8 - 1] == 0 && (local71[local3 - 1][local8] & 0x12C0138) == 0 && (local71[local3 - 1][local8 - 1] & 0x12C010E) == 0 && (local71[local3][local8 - 1] & 0x12C0183) == 0) {
-                bfsStepX[local64] = local3 - 1;
-                bfsStepZ[local64] = local8 - 1;
-                parents[local3 - 1][local8 - 1] = 3;
-                costs[local3 - 1][local8 - 1] = local193;
+            if (currentZ > 0 && parents[currentX][currentZ - 1] == 0 && (local71[currentX][currentZ - 1] & 0x12C010E) == 0 && (local71[currentX + 1][currentZ - 1] & 0x12C0183) == 0) {
+                bfsStepX[local64] = currentX;
+                bfsStepZ[local64] = currentZ - 1;
+                parents[currentX][currentZ - 1] = 1;
+                costs[currentX][currentZ - 1] = local193;
                 local64 = local64 + 1 & 0xFFF;
             }
-            if (local3 < 102 && local8 > 0 && parents[local3 + 1][local8 - 1] == 0 && (local71[local3 + 1][local8 - 1] & 0x12C010E) == 0 && (local71[local3 + 2][local8 - 1] & 0x12C0183) == 0 && (local71[local3 + 2][local8] & 0x12C01E0) == 0) {
-                bfsStepX[local64] = local3 + 1;
-                bfsStepZ[local64] = local8 - 1;
+            if (currentZ < 102 && parents[currentX][currentZ + 1] == 0 && (local71[currentX][currentZ + 2] & 0x12C0138) == 0 && (local71[currentX + 1][currentZ + 2] & 0x12C01E0) == 0) {
+                bfsStepX[local64] = currentX;
+                bfsStepZ[local64] = currentZ + 1;
+                parents[currentX][currentZ + 1] = 4;
                 local64 = local64 + 1 & 0xFFF;
-                parents[local3 + 1][local8 - 1] = 9;
-                costs[local3 + 1][local8 - 1] = local193;
+                costs[currentX][currentZ + 1] = local193;
             }
-            if (local3 > 0 && local8 < 102 && parents[local3 - 1][local8 + 1] == 0 && (local71[local3 - 1][local8 + 1] & 0x12C010E) == 0 && (local71[local3 - 1][local8 + 2] & 0x12C0138) == 0 && (local71[local3][local8 + 2] & 0x12C01E0) == 0) {
-                bfsStepX[local64] = local3 - 1;
-                bfsStepZ[local64] = local8 + 1;
-                parents[local3 - 1][local8 + 1] = 6;
-                costs[local3 - 1][local8 + 1] = local193;
+            if (currentX > 0 && currentZ > 0 && parents[currentX - 1][currentZ - 1] == 0 && (local71[currentX - 1][currentZ] & 0x12C0138) == 0 && (local71[currentX - 1][currentZ - 1] & 0x12C010E) == 0 && (local71[currentX][currentZ - 1] & 0x12C0183) == 0) {
+                bfsStepX[local64] = currentX - 1;
+                bfsStepZ[local64] = currentZ - 1;
+                parents[currentX - 1][currentZ - 1] = 3;
+                costs[currentX - 1][currentZ - 1] = local193;
                 local64 = local64 + 1 & 0xFFF;
             }
-            if (local3 < 102 && local8 < 102 && parents[local3 + 1][local8 + 1] == 0 && (local71[local3 + 1][local8 + 2] & 0x12C0138) == 0 && (local71[local3 + 2][local8 + 2] & 0x12C01E0) == 0 && (local71[local3 + 2][local8 + 1] & 0x12C0183) == 0) {
-                bfsStepX[local64] = local3 + 1;
-                bfsStepZ[local64] = local8 + 1;
+            if (currentX < 102 && currentZ > 0 && parents[currentX + 1][currentZ - 1] == 0 && (local71[currentX + 1][currentZ - 1] & 0x12C010E) == 0 && (local71[currentX + 2][currentZ - 1] & 0x12C0183) == 0 && (local71[currentX + 2][currentZ] & 0x12C01E0) == 0) {
+                bfsStepX[local64] = currentX + 1;
+                bfsStepZ[local64] = currentZ - 1;
                 local64 = local64 + 1 & 0xFFF;
-                parents[local3 + 1][local8 + 1] = 12;
-                costs[local3 + 1][local8 + 1] = local193;
+                parents[currentX + 1][currentZ - 1] = 9;
+                costs[currentX + 1][currentZ - 1] = local193;
+            }
+            if (currentX > 0 && currentZ < 102 && parents[currentX - 1][currentZ + 1] == 0 && (local71[currentX - 1][currentZ + 1] & 0x12C010E) == 0 && (local71[currentX - 1][currentZ + 2] & 0x12C0138) == 0 && (local71[currentX][currentZ + 2] & 0x12C01E0) == 0) {
+                bfsStepX[local64] = currentX - 1;
+                bfsStepZ[local64] = currentZ + 1;
+                parents[currentX - 1][currentZ + 1] = 6;
+                costs[currentX - 1][currentZ + 1] = local193;
+                local64 = local64 + 1 & 0xFFF;
+            }
+            if (currentX < 102 && currentZ < 102 && parents[currentX + 1][currentZ + 1] == 0 && (local71[currentX + 1][currentZ + 2] & 0x12C0138) == 0 && (local71[currentX + 2][currentZ + 2] & 0x12C01E0) == 0 && (local71[currentX + 2][currentZ + 1] & 0x12C0183) == 0) {
+                bfsStepX[local64] = currentX + 1;
+                bfsStepZ[local64] = currentZ + 1;
+                local64 = local64 + 1 & 0xFFF;
+                parents[currentX + 1][currentZ + 1] = 12;
+                costs[currentX + 1][currentZ + 1] = local193;
             }
         }
         tryMoveNearest = 0;
         @Pc(921) int local921;
         if (!local59) {
-            if (!arg5) {
+            if (!allowNearest) {
                 return false;
             }
             local193 = 1000;
             local921 = 100;
-            for (@Pc(928) int local928 = arg8 - 10; local928 <= arg8 + 10; local928++) {
-                for (@Pc(942) int local942 = arg4 - 10; local942 <= arg4 + 10; local942++) {
+            for (@Pc(928) int local928 = targetZ - 10; local928 <= targetZ + 10; local928++) {
+                for (@Pc(942) int local942 = locationShape - 10; local942 <= locationShape + 10; local942++) {
                     if (local928 >= 0 && local942 >= 0 && local928 < 104 && local942 < 104 && costs[local928][local942] < 100) {
                         @Pc(978) int local978 = 0;
                         @Pc(980) int local980 = 0;
-                        if (local928 < arg8) {
-                            local978 = arg8 - local928;
-                        } else if (local928 > arg0 + arg8 - 1) {
-                            local978 = local928 + 1 - arg0 - arg8;
+                        if (local928 < targetZ) {
+                            local978 = targetZ - local928;
+                        } else if (local928 > targetWidth + targetZ - 1) {
+                            local978 = local928 + 1 - targetWidth - targetZ;
                         }
-                        if (arg4 > local942) {
-                            local980 = arg4 - local942;
-                        } else if (local942 > arg4 + arg6 - 1) {
-                            local980 = local942 + 1 - arg4 - arg6;
+                        if (locationShape > local942) {
+                            local980 = locationShape - local942;
+                        } else if (local942 > locationShape + targetX - 1) {
+                            local980 = local942 + 1 - locationShape - targetX;
                         }
                         @Pc(1057) int local1057 = local978 * local978 + local980 * local980;
                         if (local1057 < local193 || local193 == local1057 && costs[local928][local942] < local921) {
-                            local8 = local942;
+                            currentZ = local942;
                             local921 = costs[local928][local942];
                             local193 = local1057;
-                            local3 = local928;
+                            currentX = local928;
                         }
                     }
                 }
@@ -356,38 +442,38 @@ public class PathFinder {
             if (local193 == 1000) {
                 return false;
             }
-            if (arg10 == local3 && local8 == arg3) {
+            if (entitySize == currentX && currentZ == startX) {
                 return false;
             }
             tryMoveNearest = 1;
         }
         @Pc(1121) byte local1121 = 0;
-        bfsStepX[0] = local3;
+        bfsStepX[0] = currentX;
         local61 = local1121 + 1;
-        bfsStepZ[0] = local8;
-        local193 = local921 = parents[local3][local8];
-        while (arg10 != local3 || arg3 != local8) {
+        bfsStepZ[0] = currentZ;
+        local193 = local921 = parents[currentX][currentZ];
+        while (entitySize != currentX || startX != currentZ) {
             if (local921 != local193) {
-                bfsStepX[local61] = local3;
-                bfsStepZ[local61++] = local8;
+                bfsStepX[local61] = currentX;
+                bfsStepZ[local61++] = currentZ;
                 local921 = local193;
             }
             if ((local193 & 0x2) != 0) {
-                local3++;
+                currentX++;
             } else if ((local193 & 0x8) != 0) {
-                local3--;
+                currentX--;
             }
             if ((local193 & 0x1) != 0) {
-                local8++;
+                currentZ++;
             } else if ((local193 & 0x4) != 0) {
-                local8--;
+                currentZ--;
             }
-            local193 = parents[local3][local8];
+            local193 = parents[currentX][currentZ];
         }
         if (local61 > 0) {
-            ClientProt.method3502(local61, arg9);
+            ClientProt.method3502(local61, moveType);
             return true;
-        } else if (arg9 == 1) {
+        } else if (moveType == 1) {
             return false;
         } else {
             return true;
@@ -395,7 +481,7 @@ public class PathFinder {
     }
 
     @OriginalMember(owner = "runetek4.client!hh", name = "a", descriptor = "(IBIIIIIIIIIZI)Z")
-    public static boolean findPath1(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int arg6, @OriginalArg(8) int arg7, @OriginalArg(9) int arg8, @OriginalArg(10) int arg9, @OriginalArg(11) boolean arg10, @OriginalArg(12) int arg11) {
+    public static boolean findPathLargeEntity(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int arg6, @OriginalArg(8) int arg7, @OriginalArg(9) int arg8, @OriginalArg(10) int arg9, @OriginalArg(11) boolean arg10, @OriginalArg(12) int arg11) {
         @Pc(3) int local3;
         @Pc(10) int local10;
         for (local3 = 0; local3 < 104; local3++) {
@@ -646,29 +732,38 @@ public class PathFinder {
     }
 
     @OriginalMember(owner = "runetek4.client!t", name = "a", descriptor = "(BJII)Z")
-    public static boolean findPathToLoc(@OriginalArg(1) long arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2) {
-        @Pc(12) int local12 = (int) arg0 >> 14 & 0x1F;
-        @Pc(24) int local24 = (int) arg0 >> 20 & 0x3;
-        @Pc(31) int local31 = (int) (arg0 >>> 32) & Integer.MAX_VALUE;
-        if (local12 == 10 || local12 == 11 || local12 == 22) {
-            @Pc(46) LocType local46 = LocTypeList.get(local31);
-            @Pc(62) int local62;
-            @Pc(59) int local59;
-            if (local24 == 0 || local24 == 2) {
-                local59 = local46.length;
-                local62 = local46.width;
+    public static boolean findPathToLoc(@OriginalArg(1) long locKey, @OriginalArg(2) int targetX, @OriginalArg(3) int targetZ) {
+        // Decode loc properties from packed key
+        @Pc(12) int shape = (int) locKey >> 14 & 0x1F;
+        @Pc(24) int rotation = (int) locKey >> 20 & 0x3;
+        @Pc(31) int locId = (int) (locKey >>> 32) & Integer.MAX_VALUE;
+
+        if (shape == 10 || shape == 11 || shape == 22) {
+            @Pc(46) LocType locType = LocTypeList.get(locId);
+            @Pc(62) int width;
+            @Pc(59) int length;
+
+            // Swap dimensions if rotated 90 or 270 degrees
+            if (rotation == 0 || rotation == 2) {
+                length = locType.length;
+                width = locType.width;
             } else {
-                local59 = local46.width;
-                local62 = local46.length;
+                length = locType.width;
+                width = locType.length;
             }
-            @Pc(73) int local73 = local46.blocksides;
-            if (local24 != 0) {
-                local73 = (local73 << local24 & 0xF) + (local73 >> 4 - local24);
+
+            // Get blocking sides and rotate based on angle
+            @Pc(73) int blockSides = locType.blocksides;
+            if (rotation != 0) {
+                blockSides = (blockSides << rotation & 0xF) + (blockSides >> 4 - rotation);
             }
-            findPath(PlayerList.self.movementQueueZ[0], 0, local59, true, local73, arg2, local62, 0, 2, arg1, PlayerList.self.movementQueueX[0]);
+            findPath(PlayerList.self.movementQueueZ[0], 0, length, true, blockSides, targetZ, width, 0, 2, targetX, PlayerList.self.movementQueueX[0]);
         } else {
-            findPath(PlayerList.self.movementQueueZ[0], local24, 0, true, 0, arg2, 0, local12 + 1, 2, arg1, PlayerList.self.movementQueueX[0]);
+            // For wall/decor shapes, use shape directly
+            findPath(PlayerList.self.movementQueueZ[0], rotation, 0, true, 0, targetZ, 0, shape + 1, 2, targetX, PlayerList.self.movementQueueX[0]);
         }
+
+        // Set crosshair at click position
         Crosshair.y = Mouse.mouseClickY;
         Crosshair.CrosshairCycle = 0;
         Crosshair.CrosshairMode = 2;
