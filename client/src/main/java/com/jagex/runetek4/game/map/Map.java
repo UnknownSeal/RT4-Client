@@ -13,19 +13,19 @@ import org.openrs2.deob.annotation.Pc;
 public final class Map extends SecondaryNode {
 
 	@OriginalMember(owner = "runetek4.client!bn", name = "K", descriptor = "I")
-	public int displayMinZ = 0;
+	public int displayMaxX = 0;
 
 	@OriginalMember(owner = "runetek4.client!bn", name = "L", descriptor = "I")
 	public int backgroundColor = -1;
 
 	@OriginalMember(owner = "runetek4.client!bn", name = "S", descriptor = "I")
-	public int displayMinX = 12800;
+	public int displayMinZ = 12800;
 
 	@OriginalMember(owner = "runetek4.client!bn", name = "Z", descriptor = "I")
 	public int displayMaxZ = 0;
 
 	@OriginalMember(owner = "runetek4.client!bn", name = "cb", descriptor = "I")
-	public int displayMaxX = 12800;
+	public int displayMinX = 12800;
 
 	@OriginalMember(owner = "runetek4.client!bn", name = "P", descriptor = "Z")
 	public boolean valid = true;
@@ -49,14 +49,14 @@ public final class Map extends SecondaryNode {
 	public final LinkList chunks;
 
 	@OriginalMember(owner = "runetek4.client!bn", name = "<init>", descriptor = "(Lclient!na;Lclient!na;IIIZI)V")
-	public Map(@OriginalArg(0) JString arg0, @OriginalArg(1) JString arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) boolean arg5, @OriginalArg(6) int arg6) {
-		this.originZ = arg3;
-		this.backgroundColor = arg4;
-		this.valid = arg5;
-		this.group = arg0;
-		this.name = arg1;
-		this.defaultZoom = arg6;
-		this.originX = arg2;
+	public Map(@OriginalArg(0) JString group, @OriginalArg(1) JString name, @OriginalArg(2) int originX, @OriginalArg(3) int originZ, @OriginalArg(4) int backgroundColor, @OriginalArg(5) boolean valid, @OriginalArg(6) int defaultZoom) {
+		this.originZ = originZ;
+		this.backgroundColor = backgroundColor;
+		this.valid = valid;
+		this.group = group;
+		this.name = name;
+		this.defaultZoom = defaultZoom;
+		this.originX = originX;
 		if (this.defaultZoom == 255) {
 			this.defaultZoom = 0;
 		}
@@ -75,12 +75,12 @@ public final class Map extends SecondaryNode {
     }
 
     @OriginalMember(owner = "runetek4.client!bn", name = "a", descriptor = "(IBI)Z")
-	public final boolean containsSource(@OriginalArg(0) int sourceX, @OriginalArg(2) int sourceZ) {
-		if (this.displayMinX > sourceZ || sourceZ > this.displayMaxZ || sourceX < this.displayMaxX || sourceX > this.displayMinZ) {
+	public final boolean containsCoordinate(@OriginalArg(0) int worldX, @OriginalArg(2) int worldZ) {
+		if (this.displayMinZ > worldZ || worldZ > this.displayMaxZ || worldX < this.displayMinX || worldX > this.displayMaxX) {
 			return false;
 		}
 		for (@Pc(33) MapChunk chunk = (MapChunk) this.chunks.head(); chunk != null; chunk = (MapChunk) this.chunks.next()) {
-			if (chunk.containsDisplay(sourceX, sourceZ)) {
+			if (chunk.containsDisplay(worldX, worldZ)) {
 				return true;
 			}
 		}
@@ -89,22 +89,22 @@ public final class Map extends SecondaryNode {
 
 	@OriginalMember(owner = "runetek4.client!bn", name = "f", descriptor = "(B)V")
 	public final void computeBounds() {
-		this.displayMaxX = 12800;
-		this.displayMaxZ = 0;
-		this.displayMinZ = 0;
 		this.displayMinX = 12800;
+		this.displayMaxZ = 0;
+		this.displayMaxX = 0;
+		this.displayMinZ = 12800;
 		for (@Pc(29) MapChunk local29 = (MapChunk) this.chunks.head(); local29 != null; local29 = (MapChunk) this.chunks.next()) {
-			if (local29.displayMaxX < this.displayMaxX) {
-				this.displayMaxX = local29.displayMaxX;
+			if (local29.displayMaxX < this.displayMinX) {
+				this.displayMinX = local29.displayMaxX;
 			}
-			if (local29.displayMinX < this.displayMinX) {
-				this.displayMinX = local29.displayMinX;
+			if (local29.displayMinX < this.displayMinZ) {
+				this.displayMinZ = local29.displayMinX;
 			}
 			if (local29.displayMaxZ > this.displayMaxZ) {
 				this.displayMaxZ = local29.displayMaxZ;
 			}
-			if (this.displayMinZ < local29.displayMinZ) {
-				this.displayMinZ = local29.displayMinZ;
+			if (this.displayMaxX < local29.displayMinZ) {
+				this.displayMaxX = local29.displayMinZ;
 			}
 		}
 	}

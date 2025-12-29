@@ -3543,8 +3543,8 @@ public final class ClientScriptRunner {
 															scriptIntValues[isp++] = 0;
 															scriptIntValues[isp++] = 0;
 														} else {
-															scriptIntValues[isp++] = worldMap.displayMaxZ - worldMap.displayMinX;
-															scriptIntValues[isp++] = worldMap.displayMinZ - worldMap.displayMaxX;
+															scriptIntValues[isp++] = worldMap.displayMaxZ - worldMap.displayMinZ;
+															scriptIntValues[isp++] = worldMap.displayMaxX - worldMap.displayMinX;
 														}
 														continue;
 													}
@@ -5793,7 +5793,7 @@ public final class ClientScriptRunner {
 	public static SecondaryLinkedList method3333(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
 		@Pc(9) SecondaryLinkedList local9 = new SecondaryLinkedList();
 		for (@Pc(14) Map local14 = (Map) MapList.areas.head(); local14 != null; local14 = (Map) MapList.areas.next()) {
-			if (local14.valid && local14.containsSource(arg1, arg0)) {
+			if (local14.valid && local14.containsCoordinate(arg1, arg0)) {
 				local9.addTail(local14);
 			}
 		}

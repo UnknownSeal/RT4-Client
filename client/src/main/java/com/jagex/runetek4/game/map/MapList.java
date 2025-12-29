@@ -24,7 +24,7 @@ public class MapList {
     @OriginalMember(owner = "client!ce", name = "a", descriptor = "(IBI)Lclient!bn;")
     public static Map getContainingSource(@OriginalArg(0) int z, @OriginalArg(2) int x) {
         for (@Pc(10) Map map = (Map) areas.head(); map != null; map = (Map) areas.next()) {
-            if (map.valid && map.containsSource(x, z)) {
+            if (map.valid && map.containsCoordinate(x, z)) {
                 return map;
             }
         }

@@ -57,25 +57,25 @@ public class WorldMap {
     public static final JString LOC = JString.parse("loc");
 
     @OriginalMember(owner = "client!vk", name = "h", descriptor = "I")
-    public static final int anInt5338 = (int) (Math.random() * 33.0D) - 16;
+    public static final int randomOffsetX = (int) (Math.random() * 33.0D) - 16;
 
     @OriginalMember(owner = "client!kd", name = "rb", descriptor = "I")
-    public static final int anInt3254 = (int) (Math.random() * 17.0D) - 8;
+    public static final int randomOffsetZ = (int) (Math.random() * 17.0D) - 8;
 
     @OriginalMember(owner = "client!lf", name = "c", descriptor = "Lclient!ih;")
     public static final LinkList mapFunctions = new LinkList();
 
     @OriginalMember(owner = "client!he", name = "db", descriptor = "Lclient!na;")
-    public static final JString aClass100_517 = JString.parse("");
+    public static final JString EMPTY_STRING = JString.parse("");
 
     @OriginalMember(owner = "client!hm", name = "T", descriptor = "Lclient!na;")
-    public static final JString aClass100_538 = JString.parse(" ");
+    public static final JString SPACE_STRING = JString.parse(" ");
 
     @OriginalMember(owner = "client!pm", name = "Y", descriptor = "Lclient!na;")
-    public static final JString aClass100_872 = JString.parse("<br>");
+    public static final JString LINE_BREAK = JString.parse("<br>");
 
     @OriginalMember(owner = "client!nj", name = "h", descriptor = "Lclient!ih;")
-    public static final LinkList aClass69_97 = new LinkList();
+    public static final LinkList mapElementCache = new LinkList();
 
     @OriginalMember(owner = "client!di", name = "q", descriptor = "[Lclient!na;")
     public static final JString[] lines = new JString[5];
@@ -177,7 +177,7 @@ public class WorldMap {
     public static int[][][] anIntArrayArrayArray17;
 
     @OriginalMember(owner = "client!mc", name = "Q", descriptor = "Lclient!na;")
-    public static JString aClass100_724;
+    public static JString preservedMapGroupName;
 
     @OriginalMember(owner = "client!mc", name = "S", descriptor = "Lclient!mm;")
     public static SoftwareSprite aClass3_Sub2_Sub1_Sub1_2;
@@ -206,9 +206,9 @@ public class WorldMap {
         overlayColors = null;
         aByteArrayArrayArray10 = null;
         if (preserveMapGroup && currentMap != null) {
-            aClass100_724 = currentMap.group;
+            preservedMapGroupName = currentMap.group;
         } else {
-            aClass100_724 = null;
+            preservedMapGroupName = null;
         }
         aByteArrayArrayArray7 = null;
         aByteArrayArrayArray12 = null;
@@ -399,9 +399,9 @@ public class WorldMap {
 
     @OriginalMember(owner = "client!lb", name = "d", descriptor = "(B)V")
     public static void method2720() {
-        if (aClass100_724 != null) {
-            method1853(aClass100_724);
-            aClass100_724 = null;
+        if (preservedMapGroupName != null) {
+            method1853(preservedMapGroupName);
+            preservedMapGroupName = null;
         }
     }
 
@@ -419,9 +419,9 @@ public class WorldMap {
             loadPercentage = 10;
         }
         if (loadPercentage == 10) {
-            originX = currentMap.displayMinX >> 6 << 6;
-            originZ = currentMap.displayMaxX >> 6 << 6;
-            length = (currentMap.displayMinZ >> 6 << 6) + 64 - originZ;
+            originX = currentMap.displayMinZ >> 6 << 6;
+            originZ = currentMap.displayMinX >> 6 << 6;
+            length = (currentMap.displayMaxX >> 6 << 6) + 64 - originZ;
             width = (currentMap.displayMaxZ >> 6 << 6) + 64 - originX;
             if (currentMap.defaultZoom == 37) {
                 zoom = 3.0F;
@@ -544,8 +544,8 @@ public class WorldMap {
 
     @OriginalMember(owner = "client!cj", name = "a", descriptor = "(BLclient!wa;)V")
     public static void readUnderlay(@OriginalArg(1) Packet arg0) {
-        @Pc(13) int local13 = anInt5338 >> 1;
-        @Pc(19) int local19 = anInt3254 >> 2 << 10;
+        @Pc(13) int local13 = randomOffsetX >> 1;
+        @Pc(19) int local19 = randomOffsetZ >> 2 << 10;
         @Pc(23) byte[][] local23 = new byte[width][length];
         @Pc(33) int local33;
         @Pc(102) int local102;
@@ -832,7 +832,7 @@ public class WorldMap {
             return -1;
         }
         for (@Pc(20) int local20 = 0; local20 < labels.anInt5074; local20++) {
-            if (labels.text[local20].method3140(aClass100_538, aClass100_872).method3142(arg0)) {
+            if (labels.text[local20].method3140(SPACE_STRING, LINE_BREAK).method3142(arg0)) {
                 return local20;
             }
         }
@@ -1029,7 +1029,7 @@ public class WorldMap {
             return -1;
         }
         for (@Pc(20) int local20 = 0; local20 < labels.anInt5074; local20++) {
-            if (labels.text[local20].method3140(aClass100_538, aClass100_872).strEquals(arg0)) {
+            if (labels.text[local20].method3140(SPACE_STRING, LINE_BREAK).strEquals(arg0)) {
                 return local20;
             }
         }
@@ -1333,7 +1333,7 @@ public class WorldMap {
     @OriginalMember(owner = "runetek4.client!rc", name = "a", descriptor = "(Lclient!na;Z)Lclient!na;")
     public static JString method923(@OriginalArg(0) JString arg0) {
         @Pc(12) int local12 = method3218(arg0);
-        return local12 == -1 ? aClass100_517 : labels.text[local12].method3140(aClass100_538, aClass100_872);
+        return local12 == -1 ? EMPTY_STRING : labels.text[local12].method3140(SPACE_STRING, LINE_BREAK);
     }
 
     @OriginalMember(owner = "runetek4.client!rg", name = "d", descriptor = "(B)Lclient!bn;")
@@ -1391,7 +1391,7 @@ public class WorldMap {
                                             local243.x = local65;
                                             local243.z = local144;
                                             local243.id = local222.mapfunction;
-                                            aClass69_97.push(local243);
+                                            mapElementCache.push(local243);
                                         } else {
                                             MapList.sprites[local222.mapfunction].render(local65 - 7, local144 + -7);
                                         }
@@ -1403,14 +1403,14 @@ public class WorldMap {
                 }
             }
         }
-        for (@Pc(285) MapFunction local285 = (MapFunction) aClass69_97.head(); local285 != null; local285 = (MapFunction) aClass69_97.next()) {
+        for (@Pc(285) MapFunction local285 = (MapFunction) mapElementCache.head(); local285 != null; local285 = (MapFunction) mapElementCache.next()) {
             SoftwareRenderer.drawCircleAlpha(local285.x, local285.z, 15, local11);
             SoftwareRenderer.drawCircleAlpha(local285.x, local285.z, 13, local11);
             SoftwareRenderer.drawCircleAlpha(local285.x, local285.z, 11, local11);
             SoftwareRenderer.drawCircleAlpha(local285.x, local285.z, 9, local11);
             MapList.sprites[local285.id].render(local285.x - 7, local285.z + -7);
         }
-        aClass69_97.clear();
+        mapElementCache.clear();
     }
 
     @OriginalMember(owner = "runetek4.client!va", name = "c", descriptor = "(BI)V")
