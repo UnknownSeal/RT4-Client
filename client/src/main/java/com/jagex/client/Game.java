@@ -42,6 +42,7 @@ import java.io.IOException;
 
 import static com.jagex.game.camera.CameraMode.MODE_DEFAULT;
 import static com.jagex.game.camera.CameraMode.MODE_ORBITAL;
+import static com.jagex.network.ClientProt.*;
 
 public class Game {
 

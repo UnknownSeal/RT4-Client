@@ -49,7 +49,6 @@ import com.jagex.graphics.gl.GlRenderer;
 import com.jagex.graphics.core.DisplayMode;
 import com.jagex.graphics.font.Fonts;
 import com.jagex.input.Mouse;
-import com.jagex.runetek4.ui.component.*;
 import com.jagex.ui.social.ClanMember;
 import com.jagex.core.utils.string.JString;
 import com.jagex.core.utils.string.LocalizedText;
@@ -82,6 +81,8 @@ import java.util.Objects;
 
 import static com.jagex.game.camera.CameraMode.MODE_ORBITAL;
 import static com.jagex.core.constants.GameConstants.*;
+import static com.jagex.game.logic.CollisionConstants.SIZE;
+import static com.jagex.game.logic.CollisionConstants.ZONE_SIZE;
 import static com.jagex.game.world.CoordinateConstants.*;
 import static com.jagex.network.ClientProt.TRANSMITVAR_VERIFYID;
 import static com.jagex.network.ProtocolConstants.*;
@@ -2308,7 +2309,7 @@ public class Protocol {
                     int oldCount = inboundBuffer.g2(); // Old count
                     int newCount = inboundBuffer.g2(); // New count
 
-                    if (x >= 0 && z >= 0 && x < CollisionConstants.SIZE && z < CollisionConstants.SIZE) {
+                    if (x >= 0 && z >= 0 && x < SIZE && z < SIZE) {
                         @Pc(710) LinkedList list = SceneGraph.objStacks[Player.currentLevel][x][z];
 
                         if (list != null) {
@@ -2339,7 +2340,7 @@ public class Protocol {
                     int count = inboundBuffer.g2_al1(); // Item count
                     int id = inboundBuffer.g2_al1(); // Object type ID
 
-                    if (x >= 0 && z >= 0 && x < CollisionConstants.SIZE && z < CollisionConstants.SIZE && receiver != PlayerList.localPid) {
+                    if (x >= 0 && z >= 0 && x < SIZE && z < SIZE && receiver != PlayerList.localPid) {
                         @Pc(812) ObjStack objStack = new ObjStack();
                         objStack.count = count; // Stack size
                         objStack.id = id; // Item ID
@@ -2528,7 +2529,7 @@ public class Protocol {
                     local23 = (packedData >> ZONE_COORD_SHIFT & ZONE_COORD_MASK) + SceneGraph.currentChunkX; // Zone X
                     local27 = inboundBuffer.g2(); // Object type ID
 
-                    if (local23 >= 0 && local19 >= 0 && local23 < CollisionConstants.SIZE && local19 < CollisionConstants.SIZE) {
+                    if (local23 >= 0 && local19 >= 0 && local23 < SIZE && local19 < SIZE) {
                         @Pc(1565) LinkedList objStackList = SceneGraph.objStacks[Player.currentLevel][local23][local19];
 
                         if (objStackList != null) {

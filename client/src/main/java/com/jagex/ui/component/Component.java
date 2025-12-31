@@ -13,7 +13,6 @@ import com.jagex.graphics.model.RawModel;
 import com.jagex.graphics.gl.GlAlphaSprite;
 import com.jagex.graphics.gl.GlRenderer;
 import com.jagex.ui.sprite.*;
-import com.jagex.runetek4.ui.sprite.*;
 import com.jagex.core.utils.string.JString;
 import com.jagex.core.utils.string.LocalizedText;
 import com.jagex.core.node.SoftLruHashTable;

@@ -40,7 +40,6 @@ import com.jagex.graphics.render.MaterialManager;
 import com.jagex.graphics.render.UnderwaterMaterialRenderer;
 import com.jagex.graphics.render.WaterMaterialRenderer;
 import com.jagex.network.Protocol;
-import com.jagex.runetek4.scene.tile.*;
 import com.jagex.clientscript.ClientScriptRunner;
 import com.jagex.ui.component.MiniMap;
 import com.jagex.ui.component.MiniMenu;

@@ -120,6 +120,7 @@ import static com.jagex.core.constants.ClientScriptOpcode.IF_ON_COMPONENT;
 import static com.jagex.core.constants.ClientScriptOpcode.IF_ON_COMPONENT2;
 import static com.jagex.core.constants.ClientScriptOpcode.IF_ON_COMPONENT3;
 import static com.jagex.core.constants.ClientScriptOpcode.IF_ON_COMPONENT4;
+import static com.jagex.network.ClientProt.*;
 
 public final class ClientScriptRunner {
 
