@@ -1,0 +1,39 @@
+package com.jagex.client.ui;
+
+import com.jagex.client.Client;
+import com.jagex.game.runetek4.client.GameShell;
+import com.jagex.graphics.gl.GlRaster;
+import com.jagex.graphics.gl.GlRenderer;
+import com.jagex.core.utils.string.LocalizedText;
+import com.jagex.graphics.raster.SoftwareRenderer;
+import com.jagex.cache.media.Font;
+import org.openrs2.deob.annotation.OriginalArg;
+import org.openrs2.deob.annotation.OriginalMember;
+import org.openrs2.deob.annotation.Pc;
+
+public class LoadingBar {
+    @OriginalMember(owner = "runetek4.client!oj", name = "a", descriptor = "(BZLclient!rk;)V")
+    public static void render(@OriginalArg(1) boolean renderBackground, @OriginalArg(2) Font font) {
+        @Pc(9) int canvasHeight;
+        if (GlRenderer.enabled || renderBackground) {
+            canvasHeight = GameShell.canvasHeight;
+            @Pc(15) int backgroundWidth = canvasHeight * 956 / 503;
+            TitleScreen.titleBg.renderResized((GameShell.canvasWidth - backgroundWidth) / 2, 0, backgroundWidth, canvasHeight);
+            TitleScreen.logo.renderTransparent(GameShell.canvasWidth / 2 - TitleScreen.logo.width / 2, 18);
+        }
+        font.renderCenter(LocalizedText.GAME0_LOADING, GameShell.canvasWidth / 2, GameShell.canvasHeight / 2 - 26, 16777215, -1);
+        canvasHeight = GameShell.canvasHeight / 2 - 18;
+        if (GlRenderer.enabled) {
+            GlRaster.drawRect(GameShell.canvasWidth / 2 - 152, canvasHeight, 304, 34, 9179409);
+            GlRaster.drawRect(GameShell.canvasWidth / 2 - 151, canvasHeight - -1, 302, 32, 0);
+            GlRaster.fillRect(GameShell.canvasWidth / 2 - 150, canvasHeight + 2, Client.mainLoadPercentage * 3, 30, 9179409);
+            GlRaster.fillRect(GameShell.canvasWidth / 2 + Client.mainLoadPercentage * 3 - 150, canvasHeight + 2, 300 - Client.mainLoadPercentage * 3, 30, 0);
+        } else {
+            SoftwareRenderer.drawRect(GameShell.canvasWidth / 2 - 152, canvasHeight, 304, 34, 9179409);
+            SoftwareRenderer.drawRect(GameShell.canvasWidth / 2 - 151, canvasHeight + 1, 302, 32, 0);
+            SoftwareRenderer.fillRect(GameShell.canvasWidth / 2 - 150, canvasHeight + 2, Client.mainLoadPercentage * 3, 30, 9179409);
+            SoftwareRenderer.fillRect(Client.mainLoadPercentage * 3 + GameShell.canvasWidth / 2 - 150, canvasHeight + 2, 300 - Client.mainLoadPercentage * 3, 30, 0);
+        }
+        font.renderCenter(Client.mainLoadSecondaryText, GameShell.canvasWidth / 2, GameShell.canvasHeight / 2 + 4, 16777215, -1);
+    }
+}

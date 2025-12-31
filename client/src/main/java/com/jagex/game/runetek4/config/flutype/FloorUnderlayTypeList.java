@@ -1,0 +1,55 @@
+package com.jagex.game.runetek4.config.flutype;
+
+import com.jagex.core.io.Packet;
+import com.jagex.js5.Js5;
+import com.jagex.core.node.SoftLruHashTable;
+import org.openrs2.deob.annotation.OriginalArg;
+import org.openrs2.deob.annotation.OriginalMember;
+import org.openrs2.deob.annotation.Pc;
+
+public final class FloorUnderlayTypeList {
+
+	@OriginalMember(owner = "client!gj", name = "p", descriptor = "Lclient!n;")
+	public static final SoftLruHashTable types = new SoftLruHashTable(64);
+
+	@OriginalMember(owner = "client!sd", name = "S", descriptor = "I")
+	public static int anInt5063 = 100;
+
+	@OriginalMember(owner = "client!oj", name = "x", descriptor = "Lclient!ve;")
+	public static Js5 archive;
+
+	@OriginalMember(owner = "client!sd", name = "f", descriptor = "(B)V")
+	public static void removeSoft() {
+		types.removeSoft();
+	}
+
+	@OriginalMember(owner = "runetek4.client!qc", name = "a", descriptor = "(ZI)Lclient!ni;")
+	public static FloorUnderlayType get(@OriginalArg(1) int arg0) {
+		@Pc(10) FloorUnderlayType floorUnderlay = (FloorUnderlayType) types.get(arg0);
+		if (floorUnderlay != null) {
+			return floorUnderlay;
+		}
+		@Pc(27) byte[] local27 = archive.getfile(1, arg0);
+		floorUnderlay = new FloorUnderlayType();
+		if (local27 != null) {
+			floorUnderlay.decode(new Packet(local27));
+		}
+		types.put(floorUnderlay, arg0);
+		return floorUnderlay;
+	}
+
+	@OriginalMember(owner = "client!hc", name = "a", descriptor = "(Lclient!ve;I)V")
+	public static void init(@OriginalArg(0) Js5 arg0) {
+		archive = arg0;
+	}
+
+	@OriginalMember(owner = "client!fk", name = "b", descriptor = "(IB)V")
+	public static void clean() {
+		types.clean(5);
+	}
+
+	@OriginalMember(owner = "client!ed", name = "c", descriptor = "(I)V")
+	public static void clear() {
+		types.clean();
+	}
+}
