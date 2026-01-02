@@ -741,7 +741,7 @@ public class WorldLoader {
                 Protocol.outboundBuffer.pIsaac1(ClientProt.MAP_BUILD_COMPLETE);
             }
         }
-        WorldMap.method2720();
+        WorldMap.loadLastArea();
         Client.audioLoop();
         GameShell.resetTimer();
     }

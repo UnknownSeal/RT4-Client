@@ -929,8 +929,8 @@ public class InterfaceManager {
                                             worldMapState = 2;
                                         }
                                         if (worldMapState == 2) {
-                                            WorldMap.method1964(anInt4620 + (int) ((double) (ClientScriptRunner.dragStartX - Mouse.lastMouseX) * 2.0D / (double) WorldMap.targetZoom));
-                                            WorldMap.method4641(anInt1885 + (int) ((double) (dragStartY - Mouse.lastMouseY) * 2.0D / (double) WorldMap.targetZoom));
+                                            WorldMap.setDisplayX(anInt4620 + (int) ((double) (ClientScriptRunner.dragStartX - Mouse.lastMouseX) * 2.0D / (double) WorldMap.targetZoom));
+                                            WorldMap.setDisplayZ(anInt1885 + (int) ((double) (dragStartY - Mouse.lastMouseY) * 2.0D / (double) WorldMap.targetZoom));
                                         }
                                         continue;
                                     }

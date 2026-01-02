@@ -3455,12 +3455,12 @@ public final class ClientScriptRunner {
 													}
 													if (opcode == WORLDMAP_METHOD4444) {
 														intStackPointer--; // Decrement then read
-														WorldMap.method4444(intStack[intStackPointer]);
+														WorldMap.selectAndFlashMapFunction(intStack[intStackPointer]);
 														continue;
 													}
 													if (opcode == WORLDMAP_METHOD4656) {
 														ssp--;
-														WorldMap.method4656(scriptStringValues[ssp]);
+														WorldMap.centerOnLabelFuzzy(scriptStringValues[ssp]);
 														continue;
 													}
 													if (opcode == WORLDMAP_METHOD923) {
@@ -3469,7 +3469,7 @@ public final class ClientScriptRunner {
 													}
 													if (opcode == WORLDMAP_METHOD1853) {
 														ssp--;
-														WorldMap.method1853(scriptStringValues[ssp]);
+														WorldMap.loadAreaByName(scriptStringValues[ssp]);
 														continue;
 													}
 													if (opcode == WORLDMAP_GETMAPNAME) {
@@ -3495,8 +3495,8 @@ public final class ClientScriptRunner {
 														continue;
 													}
 													if (opcode == WORLDMAP_GETCURRENTPOS) {
-														intStack[intStackPointer++] = WorldMap.anInt2387;
-														intStack[intStackPointer++] = WorldMap.anInt1176;
+														intStack[intStackPointer++] = WorldMap.viewportDoubleWidth;
+														intStack[intStackPointer++] = WorldMap.viewportDoubleHeight;
 														continue;
 													}
 													if (opcode == WORLDMAP_GETDISPLAYBOUNDS) {
@@ -3527,7 +3527,7 @@ public final class ClientScriptRunner {
 														continue;
 													}
 													if (opcode == WORLDMAP_GETHOVEREDLABEL) {
-														tempInt2 = WorldMap.method2352();
+														tempInt2 = WorldMap.resetLabelIterator();
 														j = 0;
 														if (tempInt2 == -1) {
 															textLowerCase = EMPTY_STRING;
@@ -3542,7 +3542,7 @@ public final class ClientScriptRunner {
 													}
 													if (opcode == WORLDMAP_GETCLICKEDLABEL) {
 														j = 0;
-														tempInt2 = WorldMap.method2385();
+														tempInt2 = WorldMap.getNextVisibleLabel();
 														if (tempInt2 == -1) {
 															textLowerCase = EMPTY_STRING;
 														} else {
@@ -3557,7 +3557,7 @@ public final class ClientScriptRunner {
 													if (opcode == WORLDMAP_JUMPTODISPLAYCOORD) {
 														intStackPointer--; // Decrement then read
 														tempInt2 = intStack[intStackPointer];
-														WorldMap.method3616(tempInt2 >> 14 & 0x3FFF, tempInt2 & 0x3FFF);
+														WorldMap.setMapCenterPosition(tempInt2 >> 14 & 0x3FFF, tempInt2 & 0x3FFF);
 														continue;
 													}
 													if (opcode == WORLDMAP_COORDHASMAP) {
@@ -3607,7 +3607,7 @@ public final class ClientScriptRunner {
 													}
 													if (opcode == WORLDMAP_METHOD1149) {
 														ssp--;
-														WorldMap.method1149(scriptStringValues[ssp]);
+														WorldMap.centerOnLabelExact(scriptStringValues[ssp]);
 														continue;
 													}
 													if (opcode == WORLDMAP_ISLOADED) {

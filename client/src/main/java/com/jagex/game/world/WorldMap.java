@@ -147,10 +147,10 @@ public class WorldMap {
     public static WorldMapFont font11;
 
     @OriginalMember(owner = "client!rj", name = "P", descriptor = "I")
-    public static int anInt4901 = -1;
+    public static int targetCenterZ = -1;
 
     @OriginalMember(owner = "client!lc", name = "l", descriptor = "I")
-    public static int anInt3482 = -1;
+    public static int targetCenterX = -1;
 
     @OriginalMember(owner = "client!qh", name = "a", descriptor = "Lclient!se;")
     public static MapElementList labels;
@@ -174,7 +174,7 @@ public class WorldMap {
     public static int[][][] underlayColors;
 
     @OriginalMember(owner = "client!uc", name = "d", descriptor = "[[[I")
-    public static int[][][] anIntArrayArrayArray17;
+    public static int[][][] underlayColorData;
 
     @OriginalMember(owner = "client!mc", name = "Q", descriptor = "Lclient!na;")
     public static JString lastAreaId;
@@ -183,13 +183,13 @@ public class WorldMap {
     public static SoftwareSprite aClass3_Sub2_Sub1_Sub1_2;
 
     @OriginalMember(owner = "client!ha", name = "o", descriptor = "I")
-    public static int anInt2387;
+    public static int viewportDoubleWidth;
 
     @OriginalMember(owner = "client!cm", name = "c", descriptor = "I")
-    public static int anInt1176;
+    public static int viewportDoubleHeight;
 
     @OriginalMember(owner = "client!sm", name = "m", descriptor = "I")
-    public static int anInt5212;
+    public static int currentLabelIndex;
 
     @OriginalMember(owner = "client!al", name = "e", descriptor = "I")
     public static int selectedMapFunctionId;
@@ -213,12 +213,12 @@ public class WorldMap {
         aByteArrayArrayArray7 = null;
         aByteArrayArrayArray12 = null;
         scenery = null;
-        anIntArrayArrayArray17 = null;
+        underlayColorData = null;
         loadPercentage = 0;
         area = null;
         elements.clear();
         labels = null;
-        anInt4901 = -1;
+        targetCenterZ = -1;
         font22 = null;
         font30 = null;
         font12 = null;
@@ -228,7 +228,7 @@ public class WorldMap {
         font17 = null;
         font19 = null;
         cachedMapSprite = null;
-        anInt3482 = -1;
+        targetCenterX = -1;
         aClass3_Sub2_Sub1_Sub1_2 = null;
     }
 
@@ -263,14 +263,14 @@ public class WorldMap {
             Fonts.b12Full.renderCenter(LocalizedText.LOADINGDOTDOTDOT, centerX, centerY + 20, 16777215, -1);
             return;
         }
-        anInt1176 = (int) ((float) (height * 2) / zoom);
+        viewportDoubleHeight = (int) ((float) (height * 2) / zoom);
         ClientScriptRunner.worldMapViewportX = displayX - (int) ((float) width / zoom);
         @Pc(211) int leftBound = displayX - (int) ((float) width / zoom);
         centerX = displayZ - (int) ((float) height / zoom);
         ClientScriptRunner.worldMapViewportY = displayZ - (int) ((float) height / zoom);
         @Pc(236) int bottomBound = displayZ + (int) ((float) height / zoom);
         centerY = (int) ((float) width / zoom) + displayX;
-        anInt2387 = (int) ((float) (width * 2) / zoom);
+        viewportDoubleWidth = (int) ((float) (width * 2) / zoom);
         if (GlRenderer.enabled) {
             if (aClass3_Sub2_Sub1_Sub1_2 == null || aClass3_Sub2_Sub1_Sub1_2.width != width || aClass3_Sub2_Sub1_Sub1_2.height != height) {
                 aClass3_Sub2_Sub1_Sub1_2 = null;
@@ -278,14 +278,14 @@ public class WorldMap {
             }
             SoftwareRenderer.setSize(aClass3_Sub2_Sub1_Sub1_2.pixels, width, height);
             renderMapToBuffer(width, 0, centerY, centerX, 0, bottomBound, height, leftBound);
-            method1195(width, 0, centerY, bottomBound, height, 0, leftBound, centerX);
-            method959(0, 0, leftBound, width, bottomBound, centerX, centerY, height);
+            renderLabelsWithGradient(width, 0, centerY, bottomBound, height, 0, leftBound, centerX);
+            renderLabelsToBuffer(0, 0, leftBound, width, bottomBound, centerX, centerY, height);
             GlRaster.render(aClass3_Sub2_Sub1_Sub1_2.pixels, x, y, width, height);
             SoftwareRenderer.pixels = null;
         } else {
             renderMapToBuffer(width + x, y, centerY, centerX, x, bottomBound, y + height, leftBound);
-            method1195(x + width, x, centerY, bottomBound, height + y, y, leftBound, centerX);
-            method959(x, y, leftBound, x + width, bottomBound, centerX, centerY, height + y);
+            renderLabelsWithGradient(x + width, x, centerY, bottomBound, height + y, y, leftBound, centerX);
+            renderLabelsToBuffer(x, y, leftBound, x + width, bottomBound, centerX, centerY, height + y);
         }
         if (mapFunctionCount > 0) {
             ClientScriptRunner.mapFunctionFlashTimer--;
@@ -314,40 +314,40 @@ public class WorldMap {
 
     //TODO Move?
     @OriginalMember(owner = "client!dk", name = "a", descriptor = "(Lclient!wa;Z)V")
-    public static void method3998(@OriginalArg(0) Packet arg0) {
+    public static void readOverlayData(@OriginalArg(0) Packet packet) {
         label87: while (true) {
-            if (arg0.offset < arg0.data.length) {
-                @Pc(22) int local22 = 0;
-                @Pc(24) boolean local24 = false;
-                @Pc(26) int local26 = 0;
-                if (arg0.g1() == 1) {
-                    local24 = true;
-                    local22 = arg0.g1();
-                    local26 = arg0.g1();
+            if (packet.offset < packet.data.length) {
+                @Pc(22) int subTileX = 0;
+                @Pc(24) boolean isSubTile = false;
+                @Pc(26) int subTileZ = 0;
+                if (packet.g1() == 1) {
+                    isSubTile = true;
+                    subTileX = packet.g1();
+                    subTileZ = packet.g1();
                 }
-                @Pc(46) int local46 = arg0.g1();
-                @Pc(50) int local50 = arg0.g1();
-                @Pc(62) int local62 = originZ + areaHeight - local50 * 64 - 1;
-                @Pc(69) int local69 = local46 * 64 - originX;
+                @Pc(46) int mapSquareX = packet.g1();
+                @Pc(50) int mapSquareZ = packet.g1();
+                @Pc(62) int mapZ = originZ + areaHeight - mapSquareZ * 64 - 1;
+                @Pc(69) int mapX = mapSquareX * 64 - originX;
                 @Pc(147) byte local147;
                 @Pc(91) int local91;
-                if (local69 >= 0 && local62 - 63 >= 0 && local69 + 63 < areaWidth && local62 < areaHeight) {
-                    local91 = local69 >> 6;
-                    @Pc(95) int local95 = local62 >> 6;
+                if (mapX >= 0 && mapZ - 63 >= 0 && mapX + 63 < areaWidth && mapZ < areaHeight) {
+                    local91 = mapX >> 6;
+                    @Pc(95) int local95 = mapZ >> 6;
                     @Pc(97) int local97 = 0;
                     while (true) {
                         if (local97 >= 64) {
                             continue label87;
                         }
                         for (@Pc(104) int local104 = 0; local104 < 64; local104++) {
-                            if (!local24 || local97 >= local22 * 8 && local97 < local22 * 8 + 8 && local104 >= local26 * 8 && local104 < local26 * 8 + 8) {
-                                local147 = arg0.g1s();
+                            if (!isSubTile || local97 >= subTileX * 8 && local97 < subTileX * 8 + 8 && local104 >= subTileZ * 8 && local104 < subTileZ * 8 + 8) {
+                                local147 = packet.g1s();
                                 if (local147 != 0) {
                                     if (aByteArrayArrayArray3[local91][local95] == null) {
                                         aByteArrayArrayArray3[local91][local95] = new byte[4096];
                                     }
                                     aByteArrayArrayArray3[local91][local95][local97 + (63 - local104 << 6)] = local147;
-                                    @Pc(186) byte local186 = arg0.g1s();
+                                    @Pc(186) byte local186 = packet.g1s();
                                     if (aByteArrayArrayArray8[local91][local95] == null) {
                                         aByteArrayArrayArray8[local91][local95] = new byte[4096];
                                     }
@@ -360,12 +360,12 @@ public class WorldMap {
                 }
                 local91 = 0;
                 while (true) {
-                    if ((local24 ? 64 : 4096) <= local91) {
+                    if ((isSubTile ? 64 : 4096) <= local91) {
                         continue label87;
                     }
-                    local147 = arg0.g1s();
+                    local147 = packet.g1s();
                     if (local147 != 0) {
-                        arg0.offset++;
+                        packet.offset++;
                     }
                     local91++;
                 }
@@ -375,34 +375,34 @@ public class WorldMap {
     }
 
     @OriginalMember(owner = "client!hj", name = "a", descriptor = "(II)V")
-    public static void method1964(@OriginalArg(0) int arg0) {
-        anInt4901 = -1;
-        anInt3482 = -1;
-        displayX = arg0;
+    public static void setDisplayX(@OriginalArg(0) int x) {
+        targetCenterZ = -1;
+        targetCenterX = -1;
+        displayX = x;
         checkJump();
     }
 
     @OriginalMember(owner = "client!wi", name = "d", descriptor = "(II)V")
-    public static void method4641(@OriginalArg(1) int arg0) {
-        anInt4901 = -1;
-        anInt4901 = -1;
-        displayZ = arg0;
+    public static void setDisplayZ(@OriginalArg(1) int z) {
+        targetCenterZ = -1;
+        targetCenterZ = -1;
+        displayZ = z;
         checkJump();
     }
 
     @OriginalMember(owner = "client!je", name = "a", descriptor = "(IIIII)V")
-    public static void clickedOverview(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
-        displayX = areaWidth * arg2 / arg0;
-        displayZ = areaHeight * arg1 / arg3;
-        anInt3482 = -1;
-        anInt4901 = -1;
+    public static void clickedOverview(@OriginalArg(1) int overviewWidth, @OriginalArg(2) int overviewHeight, @OriginalArg(3) int clickX, @OriginalArg(4) int clickZ) {
+        displayX = areaWidth * clickX / overviewWidth;
+        displayZ = areaHeight * overviewHeight / clickZ;
+        targetCenterX = -1;
+        targetCenterZ = -1;
         checkJump();
     }
 
     @OriginalMember(owner = "client!lb", name = "d", descriptor = "(B)V")
-    public static void method2720() {
+    public static void loadLastArea() {
         if (lastAreaId != null) {
-            method1853(lastAreaId);
+            loadAreaByName(lastAreaId);
             lastAreaId = null;
         }
     }
@@ -444,32 +444,32 @@ public class WorldMap {
                 zoom = 8.0F;
                 targetZoom = 8.0F;
             }
-            @Pc(144) int local144 = (PlayerList.self.xFine >> 7) + Camera.sceneBaseTileX - originX;
-            @Pc(153) int local153 = local144 + (int) (Math.random() * 10.0D) - 5;
-            @Pc(168) int local168 = originZ + areaHeight - Camera.sceneBaseTileZ - (PlayerList.self.zFine >> 7) - 1;
-            @Pc(177) int local177 = local168 + (int) (Math.random() * 10.0D) - 5;
-            if (local153 >= 0 && areaWidth > local153 && local177 >= 0 && local177 < areaHeight) {
-                displayX = local153;
-                displayZ = local177;
+            @Pc(144) int playerMapX = (PlayerList.self.xFine >> 7) + Camera.sceneBaseTileX - originX;
+            @Pc(153) int randomizedPlayerX = playerMapX + (int) (Math.random() * 10.0D) - 5;
+            @Pc(168) int playerMapZ = originZ + areaHeight - Camera.sceneBaseTileZ - (PlayerList.self.zFine >> 7) - 1;
+            @Pc(177) int randomizedPlayerZ = playerMapZ + (int) (Math.random() * 10.0D) - 5;
+            if (randomizedPlayerX >= 0 && areaWidth > randomizedPlayerX && randomizedPlayerZ >= 0 && randomizedPlayerZ < areaHeight) {
+                displayX = randomizedPlayerX;
+                displayZ = randomizedPlayerZ;
             } else {
                 displayZ = originZ + areaHeight - area.originZ * 64 - 1;
                 displayX = area.originX * 64 - originX;
             }
             checkJump();
             overlayColors = new int[FloorOverlayTypeList.capacity + 1];
-            @Pc(235) int local235 = areaHeight >> 6;
-            @Pc(239) int local239 = areaWidth >> 6;
-            aByteArrayArrayArray8 = new byte[local239][local235][];
-            @Pc(249) int local249 = SceneGraph.randomLightOffsetX >> 2 << 10;
-            aByteArrayArrayArray7 = new byte[local239][local235][];
-            underlayColors = new int[local239][local235][];
-            aByteArrayArrayArray3 = new byte[local239][local235][];
-            anIntArrayArrayArray17 = new int[local239][local235][];
-            aByteArrayArrayArray12 = new byte[local239][local235][];
+            @Pc(235) int mapSquaresZ = areaHeight >> 6;
+            @Pc(239) int mapSquaresX = areaWidth >> 6;
+            aByteArrayArrayArray8 = new byte[mapSquaresX][mapSquaresZ][];
+            @Pc(249) int lightOffsetHue = SceneGraph.randomLightOffsetX >> 2 << 10;
+            aByteArrayArrayArray7 = new byte[mapSquaresX][mapSquaresZ][];
+            underlayColors = new int[mapSquaresX][mapSquaresZ][];
+            aByteArrayArrayArray3 = new byte[mapSquaresX][mapSquaresZ][];
+            underlayColorData = new int[mapSquaresX][mapSquaresZ][];
+            aByteArrayArrayArray12 = new byte[mapSquaresX][mapSquaresZ][];
             @Pc(273) int local273 = SceneGraph.randomLightOffsetZ >> 1;
-            aByteArrayArrayArray10 = new byte[local239][local235][];
-            scenery = new int[local239][local235][];
-            loadOverlayColors(local273, local249);
+            aByteArrayArrayArray10 = new byte[mapSquaresX][mapSquaresZ][];
+            scenery = new int[mapSquaresX][mapSquaresZ][];
+            loadOverlayColors(local273, lightOffsetHue);
             loadPercentage = 20;
         } else if (loadPercentage == 20) {
             readUnderlay(new Packet(MapList.archive.fetchFile(UNDERLAY, area.id)));
@@ -477,7 +477,7 @@ public class WorldMap {
             ClientProt.ping(true);
             GameShell.resetTimer();
         } else if (loadPercentage == 30) {
-            method3998(new Packet(MapList.archive.fetchFile(OVERLAY, area.id)));
+            readOverlayData(new Packet(MapList.archive.fetchFile(OVERLAY, area.id)));
             loadPercentage = 40;
             GameShell.resetTimer();
         } else if (loadPercentage == 40) {
@@ -545,63 +545,63 @@ public class WorldMap {
     }
 
     @OriginalMember(owner = "client!cj", name = "a", descriptor = "(BLclient!wa;)V")
-    public static void readUnderlay(@OriginalArg(1) Packet arg0) {
-        @Pc(13) int local13 = randomOffsetX >> 1;
-        @Pc(19) int local19 = randomOffsetZ >> 2 << 10;
+    public static void readUnderlay(@OriginalArg(1) Packet packet) {
+        @Pc(13) int lightnessOffset = randomOffsetX >> 1;
+        @Pc(19) int hueOffset = randomOffsetZ >> 2 << 10;
         @Pc(23) byte[][] local23 = new byte[areaWidth][areaHeight];
-        @Pc(33) int local33;
+        @Pc(33) int subTileX;
         @Pc(102) int local102;
-        @Pc(114) int local114;
-        while (arg0.offset < arg0.data.length) {
-            @Pc(31) int local31 = 0;
-            local33 = 0;
-            @Pc(35) boolean local35 = false;
-            if (arg0.g1() == 1) {
-                local33 = arg0.g1();
-                local31 = arg0.g1();
-                local35 = true;
+        @Pc(114) int z;
+        while (packet.offset < packet.data.length) {
+            @Pc(31) int subTileZ = 0;
+            subTileX = 0;
+            @Pc(35) boolean isSubTile = false;
+            if (packet.g1() == 1) {
+                subTileX = packet.g1();
+                subTileZ = packet.g1();
+                isSubTile = true;
             }
-            @Pc(57) int local57 = arg0.g1();
-            @Pc(61) int local61 = arg0.g1();
-            @Pc(68) int local68 = local57 * 64 - originX;
-            @Pc(78) int local78 = areaHeight + originZ - local61 * 64 - 1;
-            if (local68 >= 0 && local78 - 63 >= 0 && areaWidth > local68 + 63 && areaHeight > local78) {
+            @Pc(57) int mapSquareX = packet.g1();
+            @Pc(61) int mapSquareZ = packet.g1();
+            @Pc(68) int worldX = mapSquareX * 64 - originX;
+            @Pc(78) int worldZ = areaHeight + originZ - mapSquareZ * 64 - 1;
+            if (worldX >= 0 && worldZ - 63 >= 0 && areaWidth > worldX + 63 && areaHeight > worldZ) {
                 for (local102 = 0; local102 < 64; local102++) {
-                    @Pc(112) byte[] local112 = local23[local68 + local102];
-                    for (local114 = 0; local114 < 64; local114++) {
-                        if (!local35 || local102 >= local33 * 8 && local33 * 8 + 8 > local102 && local114 >= local31 * 8 && local114 < local31 * 8 + 8) {
-                            local112[local78 - local114] = arg0.g1s();
+                    @Pc(112) byte[] local112 = local23[worldX + local102];
+                    for (z = 0; z < 64; z++) {
+                        if (!isSubTile || local102 >= subTileX * 8 && subTileX * 8 + 8 > local102 && z >= subTileZ * 8 && z < subTileZ * 8 + 8) {
+                            local112[worldZ - z] = packet.g1s();
                         }
                     }
                 }
-            } else if (local35) {
-                arg0.offset += 64;
+            } else if (isSubTile) {
+                packet.offset += 64;
             } else {
-                arg0.offset += 4096;
+                packet.offset += 4096;
             }
         }
         @Pc(175) int local175 = areaWidth;
-        local33 = areaHeight;
-        @Pc(180) int[] local180 = new int[local33];
-        @Pc(183) int[] local183 = new int[local33];
-        @Pc(186) int[] local186 = new int[local33];
-        @Pc(189) int[] local189 = new int[local33];
-        @Pc(192) int[] local192 = new int[local33];
+        subTileX = areaHeight;
+        @Pc(180) int[] saturationSum = new int[subTileX];
+        @Pc(183) int[] hueSum = new int[subTileX];
+        @Pc(186) int[] lightnessSum = new int[subTileX];
+        @Pc(189) int[] chromaSum = new int[subTileX];
+        @Pc(192) int[] underlayCount = new int[subTileX];
         for (local102 = -5; local102 < local175; local102++) {
             @Pc(225) int local225;
             @Pc(293) int local293;
-            for (@Pc(203) int local203 = 0; local203 < local33; local203++) {
-                local114 = local102 + 5;
+            for (@Pc(203) int local203 = 0; local203 < subTileX; local203++) {
+                z = local102 + 5;
                 @Pc(272) int local272;
-                if (local175 > local114) {
-                    local225 = local23[local114][local203] & 0xFF;
+                if (local175 > z) {
+                    local225 = local23[z][local203] & 0xFF;
                     if (local225 > 0) {
                         @Pc(236) FloorUnderlayType local236 = FloorUnderlayTypeList.get(local225 - 1);
-                        local183[local203] += local236.weightedHue;
-                        local180[local203] += local236.saturation;
-                        local186[local203] += local236.lightness;
-                        local189[local203] += local236.chroma;
-                        local272 = local192[local203]++;
+                        hueSum[local203] += local236.weightedHue;
+                        saturationSum[local203] += local236.saturation;
+                        lightnessSum[local203] += local236.lightness;
+                        chromaSum[local203] += local236.chroma;
+                        local272 = underlayCount[local203]++;
                     }
                 }
                 local225 = local102 - 5;
@@ -609,52 +609,52 @@ public class WorldMap {
                     local293 = local23[local225][local203] & 0xFF;
                     if (local293 > 0) {
                         @Pc(302) FloorUnderlayType local302 = FloorUnderlayTypeList.get(local293 - 1);
-                        local183[local203] -= local302.weightedHue;
-                        local180[local203] -= local302.saturation;
-                        local186[local203] -= local302.lightness;
-                        local189[local203] -= local302.chroma;
-                        local272 = local192[local203]--;
+                        hueSum[local203] -= local302.weightedHue;
+                        saturationSum[local203] -= local302.saturation;
+                        lightnessSum[local203] -= local302.lightness;
+                        chromaSum[local203] -= local302.chroma;
+                        local272 = underlayCount[local203]--;
                     }
                 }
             }
             if (local102 >= 0) {
-                @Pc(355) int[][] local355 = anIntArrayArrayArray17[local102 >> 6];
-                local114 = 0;
+                @Pc(355) int[][] local355 = underlayColorData[local102 >> 6];
+                z = 0;
                 local225 = 0;
                 @Pc(361) int local361 = 0;
                 @Pc(363) int local363 = 0;
                 local293 = 0;
-                for (@Pc(367) int local367 = -5; local367 < local33; local367++) {
+                for (@Pc(367) int local367 = -5; local367 < subTileX; local367++) {
                     @Pc(378) int local378 = local367 + 5;
-                    if (local33 > local378) {
-                        local363 += local192[local378];
-                        local225 += local180[local378];
-                        local293 += local186[local378];
-                        local114 += local183[local378];
-                        local361 += local189[local378];
+                    if (subTileX > local378) {
+                        local363 += underlayCount[local378];
+                        local225 += saturationSum[local378];
+                        local293 += lightnessSum[local378];
+                        z += hueSum[local378];
+                        local361 += chromaSum[local378];
                     }
                     @Pc(415) int local415 = local367 - 5;
                     if (local415 >= 0) {
-                        local293 -= local186[local415];
-                        local361 -= local189[local415];
-                        local114 -= local183[local415];
-                        local363 -= local192[local415];
-                        local225 -= local180[local415];
+                        local293 -= lightnessSum[local415];
+                        local361 -= chromaSum[local415];
+                        z -= hueSum[local415];
+                        local363 -= underlayCount[local415];
+                        local225 -= saturationSum[local415];
                     }
                     if (local367 >= 0 && local363 > 0) {
                         @Pc(462) int[] local462 = local355[local367 >> 6];
-                        @Pc(480) int local480 = local361 == 0 ? 0 : ColorUtils.method1309(local293 / local363, local225 / local363, local114 * 256 / local361);
+                        @Pc(480) int local480 = local361 == 0 ? 0 : ColorUtils.method1309(local293 / local363, local225 / local363, z * 256 / local361);
                         if (local23[local102][local367] != 0) {
                             if (local462 == null) {
                                 local462 = local355[local367 >> 6] = new int[4096];
                             }
-                            @Pc(519) int local519 = local13 + (local480 & 0x7F);
+                            @Pc(519) int local519 = lightnessOffset + (local480 & 0x7F);
                             if (local519 < 0) {
                                 local519 = 0;
                             } else if (local519 > 127) {
                                 local519 = 127;
                             }
-                            @Pc(541) int local541 = local519 + (local480 & 0x380) + (local480 + local19 & 0xFC00);
+                            @Pc(541) int local541 = local519 + (local480 & 0x380) + (local480 + hueOffset & 0xFC00);
                             local462[((local367 & 0x3F) << 6) + (local102 & 0x3F)] = Rasterizer.palette[ColorUtils.multiplyLightnessSafe(96, local541)];
                         } else if (local462 != null) {
                             local462[((local367 & 0x3F) << 6) + (local102 & 0x3F)] = 0;
@@ -669,47 +669,47 @@ public class WorldMap {
     public static void readLocs(@OriginalArg(1) Packet packet) {
         label123: while (true) {
             if (packet.data.length > packet.offset) {
-                @Pc(17) boolean local17 = false;
-                @Pc(19) int local19 = 0;
-                @Pc(21) int local21 = 0;
+                @Pc(17) boolean isSubTile = false;
+                @Pc(19) int subTileX = 0;
+                @Pc(21) int subTileZ = 0;
                 if (packet.g1() == 1) {
-                    local19 = packet.g1();
-                    local17 = true;
-                    local21 = packet.g1();
+                    subTileX = packet.g1();
+                    isSubTile = true;
+                    subTileZ = packet.g1();
                 }
-                @Pc(42) int local42 = packet.g1();
-                @Pc(46) int local46 = packet.g1();
-                @Pc(53) int mapx = local42 * 64 - originX;
-                @Pc(65) int mapz = originZ + areaHeight - local46 * 64 - 1;
+                @Pc(42) int mapSquareX = packet.g1();
+                @Pc(46) int mapSquareZ = packet.g1();
+                @Pc(53) int mapx = mapSquareX * 64 - originX;
+                @Pc(65) int mapz = originZ + areaHeight - mapSquareZ * 64 - 1;
                 @Pc(84) int x;
                 @Pc(95) int z;
                 if (mapx >= 0 && mapz - 63 >= 0 && areaWidth > mapx + 63 && mapz < areaHeight) {
                     x = mapx >> 6;
                     z = mapz >> 6;
-                    @Pc(150) int local150 = 0;
+                    @Pc(150) int localX = 0;
                     while (true) {
-                        if (local150 >= 64) {
+                        if (localX >= 64) {
                             continue label123;
                         }
-                        for (@Pc(155) int local155 = 0; local155 < 64; local155++) {
-                            if (!local17 || local19 * 8 <= local150 && local150 < local19 * 8 + 8 && local155 >= local21 * 8 && local155 < local21 * 8 + 8) {
+                        for (@Pc(155) int localZ = 0; localZ < 64; localZ++) {
+                            if (!isSubTile || subTileX * 8 <= localX && localX < subTileX * 8 + 8 && localZ >= subTileZ * 8 && localZ < subTileZ * 8 + 8) {
 
                                 @Pc(202) int flags = packet.g1();
                                 if (flags != 0) {
-                                    @Pc(214) int local214;
+                                    @Pc(214) int data;
                                     if ((flags & 0x1) == 1) {
-                                        local214 = packet.g1();
+                                        data = packet.g1();
                                         if (aByteArrayArrayArray7[x][z] == null) {
                                             aByteArrayArrayArray7[x][z] = new byte[4096];
                                         }
-                                        aByteArrayArrayArray7[x][z][local150 + (63 - local155 << 6)] = (byte) local214;
+                                        aByteArrayArrayArray7[x][z][localX + (63 - localZ << 6)] = (byte) data;
                                     }
                                     if ((flags & 0x2) == 2) {
-                                        local214 = packet.g3();
+                                        data = packet.g3();
                                         if (scenery[x][z] == null) {
                                             scenery[x][z] = new int[4096];
                                         }
-                                        scenery[x][z][(63 - local155 << 6) + local150] = local214;
+                                        scenery[x][z][(63 - localZ << 6) + localX] = data;
                                     }
                                     if ((flags & 0x4) == 4) {
                                         int locId = packet.g3();
@@ -724,7 +724,7 @@ public class WorldMap {
                                                 continue;
                                             }
                                         }
-                                        underlayColors[x][z][(63 - local155 << 6) + local150] = type.id + 1;
+                                        underlayColors[x][z][(63 - localZ << 6) + localX] = type.id + 1;
                                         @Pc(353) MapFunction mapFunction = new MapFunction();
                                         mapFunction.id = type.mapelement;
                                         mapFunction.x = mapx;
@@ -734,12 +734,12 @@ public class WorldMap {
                                 }
                             }
                         }
-                        local150++;
+                        localX++;
                     }
                 }
                 x = 0;
                 while (true) {
-                    if (x >= (local17 ? 64 : 4096)) {
+                    if (x >= (isSubTile ? 64 : 4096)) {
                         continue label123;
                     }
                     z = packet.g1();
@@ -764,92 +764,92 @@ public class WorldMap {
     @OriginalMember(owner = "client!cn", name = "e", descriptor = "(B)V")
     public static void checkJump() {
         if (displayX < 0) {
-            anInt4901 = -1;
+            targetCenterZ = -1;
             displayX = 0;
-            anInt3482 = -1;
+            targetCenterX = -1;
         }
         if (displayX > areaWidth) {
-            anInt4901 = -1;
+            targetCenterZ = -1;
             displayX = areaWidth;
-            anInt3482 = -1;
+            targetCenterX = -1;
         }
         if (displayZ < 0) {
-            anInt3482 = -1;
-            anInt4901 = -1;
+            targetCenterX = -1;
+            targetCenterZ = -1;
             displayZ = 0;
         }
         if (areaHeight < displayZ) {
             displayZ = areaHeight;
-            anInt4901 = -1;
-            anInt3482 = -1;
+            targetCenterZ = -1;
+            targetCenterX = -1;
         }
     }
 
     @OriginalMember(owner = "client!fi", name = "a", descriptor = "(III)V")
-    public static void loadOverlayColors(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1) {
-        for (@Pc(11) int local11 = 0; local11 < FloorOverlayTypeList.capacity; local11++) {
-            @Pc(18) FloorOverlayType local18 = FloorOverlayTypeList.method4395(local11);
-            if (local18 != null) {
-                @Pc(24) int local24 = local18.texture;
-                if (local24 >= 0 && !Rasterizer.textureProvider.method3236(local24)) {
-                    local24 = -1;
+    public static void loadOverlayColors(@OriginalArg(1) int randomLightZ, @OriginalArg(2) int randomLightX) {
+        for (@Pc(11) int i = 0; i < FloorOverlayTypeList.capacity; i++) {
+            @Pc(18) FloorOverlayType overlayType = FloorOverlayTypeList.method4395(i);
+            if (overlayType != null) {
+                @Pc(24) int textureId = overlayType.texture;
+                if (textureId >= 0 && !Rasterizer.textureProvider.method3236(textureId)) {
+                    textureId = -1;
                 }
-                @Pc(53) int local53;
-                @Pc(66) int local66;
-                @Pc(72) int local72;
-                @Pc(95) int local95;
-                if (local18.blendColor >= 0) {
-                    local66 = local18.blendColor;
-                    local72 = (local66 & 0x7F) + arg0;
-                    if (local72 < 0) {
-                        local72 = 0;
-                    } else if (local72 > 127) {
-                        local72 = 127;
+                @Pc(53) int finalColor;
+                @Pc(66) int baseColor;
+                @Pc(72) int adjustedLightness;
+                @Pc(95) int adjustedColor;
+                if (overlayType.blendColor >= 0) {
+                    baseColor = overlayType.blendColor;
+                    adjustedLightness = (baseColor & 0x7F) + randomLightZ;
+                    if (adjustedLightness < 0) {
+                        adjustedLightness = 0;
+                    } else if (adjustedLightness > 127) {
+                        adjustedLightness = 127;
                     }
-                    local95 = (local66 & 0x380) + (arg1 + local66 & 0xFC00) + local72;
-                    local53 = Rasterizer.palette[ColorUtils.multiplyLightnessGrayscale(local95, 96)];
-                } else if (local24 >= 0) {
-                    local53 = Rasterizer.palette[ColorUtils.multiplyLightnessGrayscale(Rasterizer.textureProvider.getAverageColor(local24), 96)];
-                } else if (local18.baseColor == -1) {
-                    local53 = -1;
+                    adjustedColor = (baseColor & 0x380) + (randomLightX + baseColor & 0xFC00) + adjustedLightness;
+                    finalColor = Rasterizer.palette[ColorUtils.multiplyLightnessGrayscale(adjustedColor, 96)];
+                } else if (textureId >= 0) {
+                    finalColor = Rasterizer.palette[ColorUtils.multiplyLightnessGrayscale(Rasterizer.textureProvider.getAverageColor(textureId), 96)];
+                } else if (overlayType.baseColor == -1) {
+                    finalColor = -1;
                 } else {
-                    local66 = local18.baseColor;
-                    local72 = arg0 + (local66 & 0x7F);
-                    if (local72 < 0) {
-                        local72 = 0;
-                    } else if (local72 > 127) {
-                        local72 = 127;
+                    baseColor = overlayType.baseColor;
+                    adjustedLightness = randomLightZ + (baseColor & 0x7F);
+                    if (adjustedLightness < 0) {
+                        adjustedLightness = 0;
+                    } else if (adjustedLightness > 127) {
+                        adjustedLightness = 127;
                     }
-                    local95 = local72 + (local66 & 0x380) + (local66 + arg1 & 0xFC00);
-                    local53 = Rasterizer.palette[ColorUtils.multiplyLightnessGrayscale(local95, 96)];
+                    adjustedColor = adjustedLightness + (baseColor & 0x380) + (baseColor + randomLightX & 0xFC00);
+                    finalColor = Rasterizer.palette[ColorUtils.multiplyLightnessGrayscale(adjustedColor, 96)];
                 }
-                overlayColors[local11 + 1] = local53;
+                overlayColors[i + 1] = finalColor;
             }
         }
     }
 
     @OriginalMember(owner = "runetek4.client!ni", name = "a", descriptor = "(ILclient!na;)I")
-    public static int method3218(@OriginalArg(1) JString arg0) {
-        if (labels == null || arg0.length() == 0) {
+    public static int findLabelIndexFuzzy(@OriginalArg(1) JString text) {
+        if (labels == null || text.length() == 0) {
             return -1;
         }
-        for (@Pc(20) int local20 = 0; local20 < labels.anInt5074; local20++) {
-            if (labels.text[local20].method3140(SPACE_STRING, LINE_BREAK).method3142(arg0)) {
-                return local20;
+        for (@Pc(20) int i = 0; i < labels.anInt5074; i++) {
+            if (labels.text[i].method3140(SPACE_STRING, LINE_BREAK).method3142(text)) {
+                return i;
             }
         }
         return -1;
     }
 
     @OriginalMember(owner = "client!cn", name = "a", descriptor = "(BIIIIIIII)V")
-    public static void method959(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int arg6, @OriginalArg(8) int arg7) {
-        for (@Pc(11) int local11 = 0; local11 < labels.anInt5074; local11++) {
-            if (labels.hasFlag8Set(local11)) {
-                @Pc(32) int local32 = labels.aShortArray73[local11] - originX;
-                @Pc(43) int local43 = originZ + areaHeight - labels.aShortArray72[local11] - 1;
-                @Pc(59) int local59 = arg0 + (arg3 - arg0) * (local32 - arg2) / (arg6 - arg2);
-                @Pc(64) int textsize = labels.getLowerTwoBits(local11);
-                @Pc(80) int local80 = (arg7 - arg1) * (local43 - arg5) / (arg4 - arg5) + arg1;
+    public static void renderLabelsToBuffer(@OriginalArg(1) int screenX1, @OriginalArg(2) int screenY1, @OriginalArg(3) int mapLeft, @OriginalArg(4) int screenX2, @OriginalArg(5) int mapBottom, @OriginalArg(6) int mapTop, @OriginalArg(7) int mapRight, @OriginalArg(8) int screenY2) {
+        for (@Pc(11) int j = 0; j < labels.anInt5074; j++) {
+            if (labels.hasFlag8Set(j)) {
+                @Pc(32) int labelMapX = labels.aShortArray73[j] - originX;
+                @Pc(43) int labelMapZ = originZ + areaHeight - labels.aShortArray72[j] - 1;
+                @Pc(59) int screenX = screenX1 + (screenX2 - screenX1) * (labelMapX - mapLeft) / (mapRight - mapLeft);
+                @Pc(64) int textsize = labels.getLowerTwoBits(j);
+                @Pc(80) int screenY = (screenY2 - screenY1) * (labelMapZ - mapTop) / (mapBottom - mapTop) + screenY1;
                 @Pc(82) int textColor = 16777215;
                 @Pc(84) WorldMapFont font = null;
                 if (textsize == 0) {
@@ -895,20 +895,20 @@ public class WorldMap {
                         font = font30;
                     }
                 }
-                if (labels.anIntArray444[local11] != -1) {
-                    textColor = labels.anIntArray444[local11];
+                if (labels.anIntArray444[j] != -1) {
+                    textColor = labels.anIntArray444[j];
                 }
                 if (font != null) {
-                    @Pc(211) int lineCount = Fonts.p11Full.splitParagraph(labels.text[local11], null, lines);
-                    local80 -= font.getBaselineOffset() * (lineCount - 1) / 2;
-                    local80 += font.getLineHeight() / 2;
+                    @Pc(211) int lineCount = Fonts.p11Full.splitParagraph(labels.text[j], null, lines);
+                    screenY -= font.getBaselineOffset() * (lineCount - 1) / 2;
+                    screenY += font.getLineHeight() / 2;
                     for (@Pc(231) int i = 0; i < lineCount; i++) {
-                        @Pc(242) JString local242 = lines[i];
+                        @Pc(242) JString line = lines[i];
                         if (lineCount - 1 > i) {
-                            local242.method3133(local242.length() - 4);
+                            line.method3133(line.length() - 4);
                         }
-                        font.renderStringCenter(local242, local59, local80, textColor);
-                        local80 += font.getBaselineOffset();
+                        font.renderStringCenter(line, screenX, screenY, textColor);
+                        screenY += font.getBaselineOffset();
                     }
                 }
             }
@@ -916,10 +916,10 @@ public class WorldMap {
     }
 
     @OriginalMember(owner = "runetek4.client!ab", name = "a", descriptor = "(Lclient!na;I)V")
-    public static void method4656(@OriginalArg(0) JString arg0) {
-        @Pc(9) int local9 = method3218(arg0);
-        if (local9 != -1) {
-            method3616(labels.aShortArray73[local9], labels.aShortArray72[local9]);
+    public static void centerOnLabelFuzzy(@OriginalArg(0) JString arg0) {
+        @Pc(9) int labelText = findLabelIndexFuzzy(arg0);
+        if (labelText != -1) {
+            setMapCenterPosition(labels.aShortArray73[labelText], labels.aShortArray72[labelText]);
         }
     }
 
@@ -945,69 +945,69 @@ public class WorldMap {
             }
             checkJump();
         }
-        if (anInt3482 == -1 || anInt4901 == -1) {
+        if (targetCenterX == -1 || targetCenterZ == -1) {
             return;
         }
-        @Pc(60) int local60 = anInt3482 - displayX;
-        if (local60 < 2 || local60 > 2) {
-            local60 >>= 0x4;
+        @Pc(60) int deltaX = targetCenterX - displayX;
+        if (deltaX < 2 || deltaX > 2) {
+            deltaX >>= 0x4;
         }
-        @Pc(78) int local78 = anInt4901 - displayZ;
-        if (local78 < 2 || local78 > 2) {
-            local78 >>= 0x4;
+        @Pc(78) int deltaZ = targetCenterZ - displayZ;
+        if (deltaZ < 2 || deltaZ > 2) {
+            deltaZ >>= 0x4;
         }
-        displayZ -= -local78;
-        displayX += local60;
-        if (local60 == 0 && local78 == 0) {
-            anInt3482 = -1;
-            anInt4901 = -1;
+        displayZ -= -deltaZ;
+        displayX += deltaX;
+        if (deltaX == 0 && deltaZ == 0) {
+            targetCenterX = -1;
+            targetCenterZ = -1;
         }
         checkJump();
     }
 
     @OriginalMember(owner = "client!dh", name = "a", descriptor = "(Lclient!na;I)V")
-    public static void method1149(@OriginalArg(0) JString arg0) {
-        @Pc(7) int local7 = method1879(arg0);
-        if (local7 != -1) {
-            method3616(labels.aShortArray73[local7], labels.aShortArray72[local7]);
+    public static void centerOnLabelExact(@OriginalArg(0) JString labelText) {
+        @Pc(7) int labelIndex = findLabelIndexExact(labelText);
+        if (labelIndex != -1) {
+            setMapCenterPosition(labels.aShortArray73[labelIndex], labels.aShortArray72[labelIndex]);
         }
     }
 
     @OriginalMember(owner = "client!dl", name = "a", descriptor = "(IIIIIIIII)V")
-    public static void method1195(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(7) int arg6, @OriginalArg(8) int arg7) {
-        @Pc(13) int local13 = arg2 - arg6;
-        @Pc(17) int local17 = arg3 - arg7;
-        @Pc(26) int local26 = (arg0 - arg1 << 16) / local13;
-        @Pc(35) int local35 = (arg4 - arg5 << 16) / local17;
-        method3991(arg1, arg3, arg2, local35, arg6, local26, arg7, arg5);
+    public static void renderLabelsWithGradient(@OriginalArg(0) int screenX2, @OriginalArg(1) int screenX1, @OriginalArg(2) int mapRight, @OriginalArg(3) int mapBottom, @OriginalArg(4) int screenY2, @OriginalArg(5) int screenY1, @OriginalArg(7) int mapLeft, @OriginalArg(8) int mapTop) {
+        @Pc(13) int mapWidth = mapRight - mapLeft;
+        @Pc(17) int mapHeight = mapBottom - mapTop;
+        @Pc(26) int scaleX = (screenX2 - screenX1 << 16) / mapWidth;
+        @Pc(35) int scaleY = (screenY2 - screenY1 << 16) / mapHeight;
+        renderMapIconsToBuffer(screenX1, mapBottom, mapRight, scaleY, mapLeft, scaleX, mapTop, screenY1);
     }
 
     @OriginalMember(owner = "client!gf", name = "a", descriptor = "(BII)V")
-    public static void method3616(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1) {
-        anInt3482 = arg0 - originX;
-        @Pc(24) int local24 = anInt3482 - (int) ((float) component.width / zoom);
-        @Pc(33) int local33 = anInt3482 + (int) ((float) component.width / zoom);
-        if (local24 < 0) {
-            anInt3482 = (int) ((float) component.width / zoom);
+    public static void setMapCenterPosition(@OriginalArg(1) int worldX, @OriginalArg(2) int worldZ) {
+        targetCenterX = worldX - originX;
+        @Pc(24) int minX = targetCenterX - (int) ((float) component.width / zoom);
+        @Pc(33) int maxX = targetCenterX + (int) ((float) component.width / zoom);
+        if (minX < 0) {
+            targetCenterX = (int) ((float) component.width / zoom);
         }
-        anInt4901 = areaHeight + originZ - arg1 - 1;
-        @Pc(61) int local61 = (int) ((float) component.height / zoom) + anInt4901;
-        @Pc(70) int local70 = anInt4901 - (int) ((float) component.height / zoom);
-        if (local33 > areaWidth) {
-            anInt3482 = areaWidth - (int) ((float) component.width / zoom);
+        targetCenterZ = areaHeight + originZ - worldZ - 1;
+        @Pc(61) int maxZ = (int) ((float) component.height / zoom) + targetCenterZ;
+        @Pc(70) int minZ = targetCenterZ - (int) ((float) component.height / zoom);
+        if (maxX > areaWidth) {
+            targetCenterX = areaWidth - (int) ((float) component.width / zoom);
         }
-        if (local70 < 0) {
-            anInt4901 = (int) ((float) component.height / zoom);
+        if (minZ < 0) {
+            targetCenterZ = (int) ((float) component.height / zoom);
         }
-        if (areaHeight < local61) {
-            anInt4901 = areaHeight - (int) ((float) component.height / zoom);
+        if (areaHeight < maxZ) {
+            targetCenterZ = areaHeight - (int) ((float) component.height / zoom);
         }
     }
 
     @OriginalMember(owner = "runetek4.client!hb", name = "b", descriptor = "(Lclient!na;I)V")
-    public static void method1853(@OriginalArg(0) JString arg0) {
+    public static void loadAreaByName(@OriginalArg(0) JString areaName) {
         reset(false);
-        method4011(arg0);
+        setAreaByName(areaName);
     }
 
     @OriginalMember(owner = "runetek4.client!hc", name = "d", descriptor = "(I)I")
@@ -1026,210 +1026,210 @@ public class WorldMap {
     }
 
     @OriginalMember(owner = "runetek4.client!hc", name = "a", descriptor = "(Lclient!na;Z)I")
-    public static int method1879(@OriginalArg(0) JString arg0) {
-        if (labels == null || arg0.length() == 0) {
+    public static int findLabelIndexExact(@OriginalArg(0) JString text) {
+        if (labels == null || text.length() == 0) {
             return -1;
         }
-        for (@Pc(20) int local20 = 0; local20 < labels.anInt5074; local20++) {
-            if (labels.text[local20].method3140(SPACE_STRING, LINE_BREAK).strEquals(arg0)) {
-                return local20;
+        for (@Pc(20) int i = 0; i < labels.anInt5074; i++) {
+            if (labels.text[i].method3140(SPACE_STRING, LINE_BREAK).strEquals(text)) {
+                return i;
             }
         }
         return -1;
     }
 
     @OriginalMember(owner = "runetek4.client!jd", name = "a", descriptor = "(B)I")
-    public static int method2352() {
-        anInt5212 = 0;
-        return method2385();
+    public static int resetLabelIterator() {
+        currentLabelIndex = 0;
+        return getNextVisibleLabel();
     }
 
     @OriginalMember(owner = "client!je", name = "j", descriptor = "(I)I")
-    public static int method2385() {
+    public static int getNextVisibleLabel() {
         if (labels == null) {
             return -1;
         }
-        while (anInt5212 < labels.anInt5074) {
-            if (labels.isFlag16Clear(anInt5212)) {
-                return anInt5212++;
+        while (currentLabelIndex < labels.anInt5074) {
+            if (labels.isFlag16Clear(currentLabelIndex)) {
+                return currentLabelIndex++;
             }
-            anInt5212++;
+            currentLabelIndex++;
         }
         return -1;
     }
 
     @OriginalMember(owner = "runetek4.client!kf", name = "a", descriptor = "(Lclient!na;I)V")
-    public static void method4011(@OriginalArg(0) JString arg0) {
-        for (@Pc(15) Map local15 = (Map) MapList.areas.head(); local15 != null; local15 = (Map) MapList.areas.next()) {
-            if (local15.id.strEquals(arg0)) {
-                area = local15;
+    public static void setAreaByName(@OriginalArg(0) JString areaName) {
+        for (@Pc(15) Map map = (Map) MapList.areas.head(); map != null; map = (Map) MapList.areas.next()) {
+            if (map.id.strEquals(areaName)) {
+                area = map;
                 return;
             }
         }
     }
 
     @OriginalMember(owner = "runetek4.client!le", name = "a", descriptor = "(IIIIIIIIIII)V")
-    public static void method2735(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int arg6, @OriginalArg(8) int arg7) {
-        @Pc(9) int local9 = arg3 - arg5;
-        @Pc(14) int local14 = arg1 - arg2;
-        if (areaWidth > arg3) {
-            local9++;
+    public static void renderMapTilesToBuffer(@OriginalArg(0) int screenY1, @OriginalArg(2) int screenY2, @OriginalArg(3) int mapTop, @OriginalArg(4) int mapRight, @OriginalArg(5) int screenX1, @OriginalArg(6) int mapLeft, @OriginalArg(7) int scaleY, @OriginalArg(8) int scaleX) {
+        @Pc(9) int mapWidth = mapRight - mapLeft;
+        @Pc(14) int mapHeight = screenY2 - mapTop;
+        if (areaWidth > mapRight) {
+            mapWidth++;
         }
-        if (areaHeight > arg1) {
-            local14++;
+        if (areaHeight > screenY2) {
+            mapHeight++;
         }
-        @Pc(32) int local32;
-        @Pc(47) int local47;
-        @Pc(57) int local57;
-        @Pc(62) int local62;
-        @Pc(71) int local71;
-        @Pc(104) int local104;
-        @Pc(145) int local145;
-        @Pc(157) int local157;
-        @Pc(162) int local162;
-        @Pc(211) int local211;
-        @Pc(222) int local222;
+        @Pc(32) int x;
+        @Pc(47) int pixelX1;
+        @Pc(57) int pixelX2;
+        @Pc(62) int pixelWidth;
+        @Pc(71) int zoneX;
+        @Pc(104) int color;
+        @Pc(145) int pixelY1;
+        @Pc(157) int pixelY2;
+        @Pc(162) int pixelHeight;
+        @Pc(211) int z;
+        @Pc(222) int y;
         @Pc(233) int local233;
-        @Pc(254) int local254;
-        @Pc(270) int local270;
-        @Pc(276) int local276;
+        @Pc(254) int zoneZ;
+        @Pc(270) int localX;
+        @Pc(276) int tileIndex;
         @Pc(312) int local312;
-        @Pc(372) int local372;
-        @Pc(185) int[][] local185;
-        for (local32 = 0; local32 < local9; local32++) {
-            local47 = local32 * arg7 >> 16;
-            local57 = (local32 + 1) * arg7 >> 16;
-            local62 = local57 - local47;
-            if (local62 > 0) {
-                local71 = local32 + arg5 >> 6;
-                if (local71 >= 0 && anIntArrayArrayArray17.length - 1 >= local71) {
-                    local47 += arg4;
-                    local185 = anIntArrayArrayArray17[local71];
-                    @Pc(189) byte[][] local189 = aByteArrayArrayArray3[local71];
-                    @Pc(193) byte[][] local193 = aByteArrayArrayArray8[local71];
-                    @Pc(197) byte[][] local197 = aByteArrayArrayArray7[local71];
-                    @Pc(201) byte[][] local201 = aByteArrayArrayArray10[local71];
-                    local57 += arg4;
-                    @Pc(209) byte[][] local209 = aByteArrayArrayArray12[local71];
-                    for (local211 = 0; local211 < local14; local211++) {
-                        local222 = arg6 * local211 >> 16;
-                        local233 = (local211 + 1) * arg6 >> 16;
-                        @Pc(238) int local238 = local233 - local222;
+        @Pc(372) int overlayColor;
+        @Pc(185) int[][] colorData;
+        for (x = 0; x < mapWidth; x++) {
+            pixelX1 = x * scaleX >> 16;
+            pixelX2 = (x + 1) * scaleX >> 16;
+            pixelWidth = pixelX2 - pixelX1;
+            if (pixelWidth > 0) {
+                zoneX = x + mapLeft >> 6;
+                if (zoneX >= 0 && underlayColorData.length - 1 >= zoneX) {
+                    pixelX1 += screenX1;
+                    colorData = underlayColorData[zoneX];
+                    @Pc(189) byte[][] overlayIdRow = aByteArrayArrayArray3[zoneX];
+                    @Pc(193) byte[][] overlayShapeRow = aByteArrayArrayArray8[zoneX];
+                    @Pc(197) byte[][] borderRow = aByteArrayArrayArray7[zoneX];
+                    @Pc(201) byte[][] overlay2Row = aByteArrayArrayArray10[zoneX];
+                    pixelX2 += screenX1;
+                    @Pc(209) byte[][] overlay2IdRow = aByteArrayArrayArray12[zoneX];
+                    for (z = 0; z < mapHeight; z++) {
+                        y = scaleY * z >> 16;
+                        local233 = (z + 1) * scaleY >> 16;
+                        @Pc(238) int local238 = local233 - y;
                         if (local238 > 0) {
-                            local233 += arg0;
-                            local254 = arg2 + local211 >> 6;
-                            @Pc(260) int local260 = arg2 + local211 & 0x3F;
-                            local222 += arg0;
-                            local270 = local32 + arg5 & 0x3F;
-                            local276 = (local260 << 6) + local270;
-                            if (local254 < 0 || local185.length - 1 < local254 || local185[local254] == null) {
+                            local233 += screenY1;
+                            zoneZ = mapTop + z >> 6;
+                            @Pc(260) int localZ = mapTop + z & 0x3F;
+                            y += screenY1;
+                            localX = x + mapLeft & 0x3F;
+                            tileIndex = (localZ << 6) + localX;
+                            if (zoneZ < 0 || colorData.length - 1 < zoneZ || colorData[zoneZ] == null) {
                                 if (area.backgroundColor != -1) {
                                     local312 = area.backgroundColor;
-                                } else if ((local211 + arg2 & 0x4) == (arg5 + local32 & 0x4)) {
+                                } else if ((z + mapTop & 0x4) == (mapLeft + x & 0x4)) {
                                     local312 = overlayColors[FloorOverlayType.anInt865 + 1];
                                 } else {
                                     local312 = 4936552;
                                 }
-                                if (local254 < 0 || local254 > local185.length - 1) {
+                                if (zoneZ < 0 || zoneZ > colorData.length - 1) {
                                     if (local312 == 0) {
                                         local312 = 1;
                                     }
-                                    SoftwareRenderer.fillRect(local47, local222, local62, local238, local312);
+                                    SoftwareRenderer.fillRect(pixelX1, y, pixelWidth, local238, local312);
                                     continue;
                                 }
                             } else {
-                                local312 = local185[local254][local276];
+                                local312 = colorData[zoneZ][tileIndex];
                             }
-                            local372 = local189[local254] == null ? 0 : overlayColors[local189[local254][local276] & 0xFF];
+                            overlayColor = overlayIdRow[zoneZ] == null ? 0 : overlayColors[overlayIdRow[zoneZ][tileIndex] & 0xFF];
                             if (local312 == 0) {
                                 local312 = 1;
                             }
-                            @Pc(395) int local395 = local209[local254] == null ? 0 : overlayColors[local209[local254][local276] & 0xFF];
+                            @Pc(395) int overlay2Color = overlay2IdRow[zoneZ] == null ? 0 : overlayColors[overlay2IdRow[zoneZ][tileIndex] & 0xFF];
                             @Pc(437) int local437;
-                            if (local372 == 0 && local395 == 0) {
-                                SoftwareRenderer.fillRect(local47, local222, local62, local238, local312);
+                            if (overlayColor == 0 && overlay2Color == 0) {
+                                SoftwareRenderer.fillRect(pixelX1, y, pixelWidth, local238, local312);
                             } else {
-                                @Pc(433) byte local433;
-                                if (local372 != 0) {
-                                    if (local372 == -1) {
-                                        local372 = 1;
+                                @Pc(433) byte shape;
+                                if (overlayColor != 0) {
+                                    if (overlayColor == -1) {
+                                        overlayColor = 1;
                                     }
-                                    local433 = local193[local254] == null ? 0 : local193[local254][local276];
-                                    local437 = local433 & 0xFC;
-                                    if (local437 == 0 || local62 <= 1 || local238 <= 1) {
-                                        SoftwareRenderer.fillRect(local47, local222, local62, local238, local372);
+                                    shape = overlayShapeRow[zoneZ] == null ? 0 : overlayShapeRow[zoneZ][tileIndex];
+                                    local437 = shape & 0xFC;
+                                    if (local437 == 0 || pixelWidth <= 1 || local238 <= 1) {
+                                        SoftwareRenderer.fillRect(pixelX1, y, pixelWidth, local238, overlayColor);
                                     } else {
-                                        method4667(SoftwareRenderer.pixels, local372, local47, local433 & 0x3, local312, local437 >> 2, local238, local62, local222, true);
+                                        renderFloorOverlayPattern(SoftwareRenderer.pixels, overlayColor, pixelX1, shape & 0x3, local312, local437 >> 2, local238, pixelWidth, y, true);
                                     }
                                 }
-                                if (local395 != 0) {
-                                    if (local395 == -1) {
-                                        local395 = local312;
+                                if (overlay2Color != 0) {
+                                    if (overlay2Color == -1) {
+                                        overlay2Color = local312;
                                     }
-                                    local433 = local201[local254][local276];
-                                    local437 = local433 & 0xFC;
-                                    if (local437 == 0 || local62 <= 1 || local238 <= 1) {
-                                        SoftwareRenderer.fillRect(local47, local222, local62, local238, local395);
+                                    shape = overlay2Row[zoneZ][tileIndex];
+                                    local437 = shape & 0xFC;
+                                    if (local437 == 0 || pixelWidth <= 1 || local238 <= 1) {
+                                        SoftwareRenderer.fillRect(pixelX1, y, pixelWidth, local238, overlay2Color);
                                     }
-                                    method4667(SoftwareRenderer.pixels, local395, local47, local433 & 0x3, 0, local437 >> 2, local238, local62, local222, local372 == 0);
+                                    renderFloorOverlayPattern(SoftwareRenderer.pixels, overlay2Color, pixelX1, shape & 0x3, 0, local437 >> 2, local238, pixelWidth, y, overlayColor == 0);
                                 }
                             }
-                            if (local197[local254] != null) {
-                                @Pc(546) int local546 = local197[local254][local276] & 0xFF;
-                                if (local546 != 0) {
-                                    if (local62 == 1) {
-                                        local437 = local47;
+                            if (borderRow[zoneZ] != null) {
+                                @Pc(546) int borderType = borderRow[zoneZ][tileIndex] & 0xFF;
+                                if (borderType != 0) {
+                                    if (pixelWidth == 1) {
+                                        local437 = pixelX1;
                                     } else {
-                                        local437 = local57 - 1;
+                                        local437 = pixelX2 - 1;
                                     }
                                     @Pc(569) int local569;
                                     if (local238 == 1) {
-                                        local569 = local222;
+                                        local569 = y;
                                     } else {
                                         local569 = local233 - 1;
                                     }
-                                    @Pc(575) int local575 = 13421772;
-                                    if (local546 >= 5 && local546 <= 8 || local546 >= 13 && local546 <= 16 || local546 >= 21 && local546 <= 24 || local546 == 27 || local546 == 28) {
-                                        local575 = 13369344;
-                                        local546 -= 4;
+                                    @Pc(575) int edgeColor = 13421772;
+                                    if (borderType >= 5 && borderType <= 8 || borderType >= 13 && borderType <= 16 || borderType >= 21 && borderType <= 24 || borderType == 27 || borderType == 28) {
+                                        edgeColor = 13369344;
+                                        borderType -= 4;
                                     }
-                                    if (local546 == 1) {
-                                        SoftwareRenderer.drawVerticalLine(local47, local222, local238, local575);
-                                    } else if (local546 == 2) {
-                                        SoftwareRenderer.drawHorizontalLine(local47, local222, local62, local575);
-                                    } else if (local546 == 3) {
-                                        SoftwareRenderer.drawVerticalLine(local437, local222, local238, local575);
-                                    } else if (local546 == 4) {
-                                        SoftwareRenderer.drawHorizontalLine(local47, local569, local62, local575);
-                                    } else if (local546 == 9) {
-                                        SoftwareRenderer.drawVerticalLine(local47, local222, local238, 16777215);
-                                        SoftwareRenderer.drawHorizontalLine(local47, local222, local62, local575);
-                                    } else if (local546 == 10) {
-                                        SoftwareRenderer.drawVerticalLine(local437, local222, local238, 16777215);
-                                        SoftwareRenderer.drawHorizontalLine(local47, local222, local62, local575);
-                                    } else if (local546 == 11) {
-                                        SoftwareRenderer.drawVerticalLine(local437, local222, local238, 16777215);
-                                        SoftwareRenderer.drawHorizontalLine(local47, local569, local62, local575);
-                                    } else if (local546 == 12) {
-                                        SoftwareRenderer.drawVerticalLine(local47, local222, local238, 16777215);
-                                        SoftwareRenderer.drawHorizontalLine(local47, local569, local62, local575);
-                                    } else if (local546 == 17) {
-                                        SoftwareRenderer.drawHorizontalLine(local47, local222, 1, local575);
-                                    } else if (local546 == 18) {
-                                        SoftwareRenderer.drawHorizontalLine(local437, local222, 1, local575);
-                                    } else if (local546 == 19) {
-                                        SoftwareRenderer.drawHorizontalLine(local437, local569, 1, local575);
-                                    } else if (local546 == 20) {
-                                        SoftwareRenderer.drawHorizontalLine(local47, local569, 1, local575);
+                                    if (borderType == 1) {
+                                        SoftwareRenderer.drawVerticalLine(pixelX1, y, local238, edgeColor);
+                                    } else if (borderType == 2) {
+                                        SoftwareRenderer.drawHorizontalLine(pixelX1, y, pixelWidth, edgeColor);
+                                    } else if (borderType == 3) {
+                                        SoftwareRenderer.drawVerticalLine(local437, y, local238, edgeColor);
+                                    } else if (borderType == 4) {
+                                        SoftwareRenderer.drawHorizontalLine(pixelX1, local569, pixelWidth, edgeColor);
+                                    } else if (borderType == 9) {
+                                        SoftwareRenderer.drawVerticalLine(pixelX1, y, local238, 16777215);
+                                        SoftwareRenderer.drawHorizontalLine(pixelX1, y, pixelWidth, edgeColor);
+                                    } else if (borderType == 10) {
+                                        SoftwareRenderer.drawVerticalLine(local437, y, local238, 16777215);
+                                        SoftwareRenderer.drawHorizontalLine(pixelX1, y, pixelWidth, edgeColor);
+                                    } else if (borderType == 11) {
+                                        SoftwareRenderer.drawVerticalLine(local437, y, local238, 16777215);
+                                        SoftwareRenderer.drawHorizontalLine(pixelX1, local569, pixelWidth, edgeColor);
+                                    } else if (borderType == 12) {
+                                        SoftwareRenderer.drawVerticalLine(pixelX1, y, local238, 16777215);
+                                        SoftwareRenderer.drawHorizontalLine(pixelX1, local569, pixelWidth, edgeColor);
+                                    } else if (borderType == 17) {
+                                        SoftwareRenderer.drawHorizontalLine(pixelX1, y, 1, edgeColor);
+                                    } else if (borderType == 18) {
+                                        SoftwareRenderer.drawHorizontalLine(local437, y, 1, edgeColor);
+                                    } else if (borderType == 19) {
+                                        SoftwareRenderer.drawHorizontalLine(local437, local569, 1, edgeColor);
+                                    } else if (borderType == 20) {
+                                        SoftwareRenderer.drawHorizontalLine(pixelX1, local569, 1, edgeColor);
                                     } else {
                                         @Pc(705) int local705;
-                                        if (local546 == 25) {
+                                        if (borderType == 25) {
                                             for (local705 = 0; local705 < local238; local705++) {
-                                                SoftwareRenderer.drawHorizontalLine(local705 + local47, -local705 + local569, 1, local575);
+                                                SoftwareRenderer.drawHorizontalLine(local705 + pixelX1, -local705 + local569, 1, edgeColor);
                                             }
-                                        } else if (local546 == 26) {
+                                        } else if (borderType == 26) {
                                             for (local705 = 0; local705 < local238; local705++) {
-                                                SoftwareRenderer.drawHorizontalLine(local705 + local47, local222 + local705, 1, local575);
+                                                SoftwareRenderer.drawHorizontalLine(local705 + pixelX1, y + local705, 1, edgeColor);
                                             }
                                         }
                                     }
@@ -1238,70 +1238,70 @@ public class WorldMap {
                         }
                     }
                 } else {
-                    local47 += arg4;
-                    for (@Pc(90) int local90 = 0; local90 < local14; local90++) {
+                    pixelX1 += screenX1;
+                    for (@Pc(90) int local90 = 0; local90 < mapHeight; local90++) {
                         if (area.backgroundColor != -1) {
-                            local104 = area.backgroundColor;
-                        } else if ((local32 + arg5 & 0x4) == (local90 + arg2 & 0x4)) {
-                            local104 = overlayColors[FloorOverlayType.anInt865 + 1];
+                            color = area.backgroundColor;
+                        } else if ((x + mapLeft & 0x4) == (local90 + mapTop & 0x4)) {
+                            color = overlayColors[FloorOverlayType.anInt865 + 1];
                         } else {
-                            local104 = 4936552;
+                            color = 4936552;
                         }
-                        if (local104 == 0) {
-                            local104 = 1;
+                        if (color == 0) {
+                            color = 1;
                         }
-                        local145 = (arg6 * local90 >> 16) + arg0;
-                        local157 = arg0 + ((local90 + 1) * arg6 >> 16);
-                        local162 = local157 - local145;
-                        SoftwareRenderer.fillRect(local47, local145, local62, local162, local104);
+                        pixelY1 = (scaleY * local90 >> 16) + screenY1;
+                        pixelY2 = screenY1 + ((local90 + 1) * scaleY >> 16);
+                        pixelHeight = pixelY2 - pixelY1;
+                        SoftwareRenderer.fillRect(pixelX1, pixelY1, pixelWidth, pixelHeight, color);
                     }
                 }
             }
         }
-        for (local32 = -2; local32 < local9 + 2; local32++) {
-            local47 = local32 * arg7 >> 16;
-            local57 = arg7 * (local32 + 1) >> 16;
-            local62 = local57 - local47;
-            if (local62 > 0) {
-                local47 += arg4;
-                local71 = arg5 + local32 >> 6;
-                if (local71 >= 0 && scenery.length - 1 >= local71) {
-                    local185 = scenery[local71];
-                    for (local104 = -2; local104 < local14 + 2; local104++) {
-                        local145 = local104 * arg6 >> 16;
-                        local157 = (local104 + 1) * arg6 >> 16;
-                        local162 = local157 - local145;
-                        if (local162 > 0) {
-                            local145 += arg0;
-                            @Pc(931) int local931 = local104 + arg2 >> 6;
-                            if (local931 >= 0 && local931 <= local185.length - 1) {
-                                local211 = ((arg2 + local104 & 0x3F) << 6) + (local32 + arg5 & 0x3F);
-                                if (local185[local931] != null) {
-                                    local222 = local185[local931][local211];
-                                    local233 = local222 & 0x3FFF;
+        for (x = -2; x < mapWidth + 2; x++) {
+            pixelX1 = x * scaleX >> 16;
+            pixelX2 = scaleX * (x + 1) >> 16;
+            pixelWidth = pixelX2 - pixelX1;
+            if (pixelWidth > 0) {
+                pixelX1 += screenX1;
+                zoneX = mapLeft + x >> 6;
+                if (zoneX >= 0 && scenery.length - 1 >= zoneX) {
+                    colorData = scenery[zoneX];
+                    for (color = -2; color < mapHeight + 2; color++) {
+                        pixelY1 = color * scaleY >> 16;
+                        pixelY2 = (color + 1) * scaleY >> 16;
+                        pixelHeight = pixelY2 - pixelY1;
+                        if (pixelHeight > 0) {
+                            pixelY1 += screenY1;
+                            @Pc(931) int local931 = color + mapTop >> 6;
+                            if (local931 >= 0 && local931 <= colorData.length - 1) {
+                                z = ((mapTop + color & 0x3F) << 6) + (x + mapLeft & 0x3F);
+                                if (colorData[local931] != null) {
+                                    y = colorData[local931][z];
+                                    local233 = y & 0x3FFF;
                                     if (local233 != 0) {
-                                        local254 = local222 >> 14 & 0x3;
+                                        zoneZ = y >> 14 & 0x3;
                                         @Pc(998) MSIType local998 = MSITypeList.get(local233 - 1);
-                                        @Pc(1003) SoftwareIndexedSprite local1003 = local998.getSprite(local254);
+                                        @Pc(1003) SoftwareIndexedSprite local1003 = local998.getSprite(zoneZ);
                                         if (local1003 != null) {
-                                            local276 = local162 * local1003.height / 4;
-                                            local270 = local62 * local1003.width / 4;
+                                            tileIndex = pixelHeight * local1003.height / 4;
+                                            localX = pixelWidth * local1003.width / 4;
                                             if (local998.aBoolean2) {
-                                                local312 = local222 >> 16 & 0xF;
-                                                local372 = local222 >> 20 & 0xF;
-                                                if ((local254 & 0x1) == 1) {
-                                                    local254 = local312;
-                                                    local312 = local372;
-                                                    local372 = local254;
+                                                local312 = y >> 16 & 0xF;
+                                                overlayColor = y >> 20 & 0xF;
+                                                if ((zoneZ & 0x1) == 1) {
+                                                    zoneZ = local312;
+                                                    local312 = overlayColor;
+                                                    overlayColor = zoneZ;
                                                 }
-                                                local270 = local62 * local312;
-                                                local276 = local162 * local372;
+                                                localX = pixelWidth * local312;
+                                                tileIndex = pixelHeight * overlayColor;
                                             }
-                                            if (local270 != 0 && local276 != 0) {
+                                            if (localX != 0 && tileIndex != 0) {
                                                 if (local998.anInt11 == 0) {
-                                                    local1003.method1398(local47, local145 + local162 - local276, local270, local276);
+                                                    local1003.method1398(pixelX1, pixelY1 + pixelHeight - tileIndex, localX, tileIndex);
                                                 } else {
-                                                    local1003.method1390(local47, local145 + local162 - local276, local270, local276, local998.anInt11);
+                                                    local1003.method1390(pixelX1, pixelY1 + pixelHeight - tileIndex, localX, tileIndex, local998.anInt11);
                                                 }
                                             }
                                         }
@@ -1316,26 +1316,26 @@ public class WorldMap {
     }
 
     @OriginalMember(owner = "runetek4.client!me", name = "a", descriptor = "(IB)V")
-    public static void setTargetZoom(@OriginalArg(0) int arg0) {
-        anInt4901 = -1;
-        if (arg0 == 37) {
+    public static void setTargetZoom(@OriginalArg(0) int zoomLevel) {
+        targetCenterZ = -1;
+        if (zoomLevel == 37) {
             targetZoom = 3.0F;
-        } else if (arg0 == 50) {
+        } else if (zoomLevel == 50) {
             targetZoom = 4.0F;
-        } else if (arg0 == 75) {
+        } else if (zoomLevel == 75) {
             targetZoom = 6.0F;
-        } else if (arg0 == 100) {
+        } else if (zoomLevel == 100) {
             targetZoom = 8.0F;
-        } else if (arg0 == 200) {
+        } else if (zoomLevel == 200) {
             targetZoom = 16.0F;
         }
-        anInt4901 = -1;
+        targetCenterZ = -1;
     }
 
     @OriginalMember(owner = "runetek4.client!rc", name = "a", descriptor = "(Lclient!na;Z)Lclient!na;")
-    public static JString method923(@OriginalArg(0) JString arg0) {
-        @Pc(12) int local12 = method3218(arg0);
-        return local12 == -1 ? EMPTY_STRING : labels.text[local12].method3140(SPACE_STRING, LINE_BREAK);
+    public static JString method923(@OriginalArg(0) JString text) {
+        @Pc(12) int labelIndex = findLabelIndexFuzzy(text);
+        return labelIndex == -1 ? EMPTY_STRING : labels.text[labelIndex].method3140(SPACE_STRING, LINE_BREAK);
     }
 
     @OriginalMember(owner = "runetek4.client!rg", name = "d", descriptor = "(B)Lclient!bn;")
@@ -1344,58 +1344,58 @@ public class WorldMap {
     }
 
     @OriginalMember(owner = "runetek4.client!rg", name = "a", descriptor = "(IIIIIIIII)V")
-    public static void renderMapToBuffer(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int arg6, @OriginalArg(8) int arg7) {
-        @Pc(7) int local7 = arg2 - arg7;
-        @Pc(16) int local16 = (arg0 - arg4 << 16) / local7;
-        @Pc(21) int local21 = arg5 - arg3;
-        @Pc(30) int local30 = (arg6 - arg1 << 16) / local21;
-        method2735(arg1, arg5, arg3, arg2, arg4, arg7, local30, local16);
+    public static void renderMapToBuffer(@OriginalArg(0) int screenX2, @OriginalArg(1) int screenY1, @OriginalArg(3) int mapRight, @OriginalArg(4) int mapTop, @OriginalArg(5) int screenX1, @OriginalArg(6) int screenY2, @OriginalArg(7) int mapBottom, @OriginalArg(8) int mapLeft) {
+        @Pc(7) int mapWidth = mapRight - mapLeft;
+        @Pc(16) int scaleX = (screenX2 - screenX1 << 16) / mapWidth;
+        @Pc(21) int mapHeight = screenY2 - mapTop;
+        @Pc(30) int scaleY = (mapBottom - screenY1 << 16) / mapHeight;
+        renderMapTilesToBuffer(screenY1, screenY2, mapTop, mapRight, screenX1, mapLeft, scaleY, scaleX);
     }
 
     @OriginalMember(owner = "runetek4.client!sm", name = "a", descriptor = "(IIIIIIIIIII)V")
-    public static void method3991(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(8) int arg5, @OriginalArg(9) int arg6, @OriginalArg(10) int arg7) {
-        @Pc(9) int local9 = arg2 - arg4;
-        @Pc(11) int local11 = -1;
+    public static void renderMapIconsToBuffer(@OriginalArg(0) int screenX1, @OriginalArg(1) int screenY2, @OriginalArg(2) int mapRight, @OriginalArg(3) int scaleY, @OriginalArg(4) int mapLeft, @OriginalArg(8) int scaleX, @OriginalArg(9) int mapTop, @OriginalArg(10) int screenY1) {
+        @Pc(9) int mapWidth = mapRight - mapLeft;
+        @Pc(11) int flashAlpha = -1;
         if (mapFunctionCount > 0) {
             if (ClientScriptRunner.mapFunctionFlashTimer <= 10) {
-                local11 = ClientScriptRunner.mapFunctionFlashTimer * 5;
+                flashAlpha = ClientScriptRunner.mapFunctionFlashTimer * 5;
             } else {
-                local11 = 50 - (ClientScriptRunner.mapFunctionFlashTimer - 10) * 5;
+                flashAlpha = 50 - (ClientScriptRunner.mapFunctionFlashTimer - 10) * 5;
             }
         }
-        @Pc(39) int local39 = arg1 - arg6;
-        @Pc(43) int local43 = 983040 / arg5;
-        @Pc(47) int local47 = 983040 / arg3;
-        for (@Pc(50) int local50 = -local43; local50 < local9 + local43; local50++) {
-            @Pc(65) int local65 = local50 * arg5 >> 16;
-            @Pc(75) int local75 = arg5 * (local50 + 1) >> 16;
-            @Pc(80) int local80 = local75 - local65;
-            if (local80 > 0) {
-                @Pc(91) int local91 = arg4 + local50 >> 6;
-                local65 += arg0;
-                if (local91 >= 0 && local91 <= underlayColors.length - 1) {
-                    @Pc(116) int[][] local116 = underlayColors[local91];
-                    for (@Pc(119) int local119 = -local47; local119 < local39 + local47; local119++) {
-                        @Pc(136) int local136 = arg3 * (local119 + 1) >> 16;
-                        @Pc(144) int local144 = local119 * arg3 >> 16;
-                        @Pc(149) int local149 = local136 - local144;
-                        if (local149 > 0) {
-                            local144 += arg7;
-                            @Pc(163) int local163 = arg6 + local119 >> 6;
-                            if (local163 >= 0 && local163 <= local116.length - 1 && local116[local163] != null) {
-                                @Pc(203) int local203 = (local50 + arg4 & 0x3F) + ((arg6 + local119 & 0x3F) << 6);
-                                @Pc(209) int local209 = local116[local163][local203];
-                                if (local209 != 0) {
-                                    @Pc(222) LocType local222 = LocTypeList.get(local209 - 1);
-                                    if (!MapList.aBooleanArray130[local222.mapelement]) {
-                                        if (local11 != -1 && local222.mapelement == selectedMapFunctionId) {
-                                            @Pc(243) MapFunction local243 = new MapFunction();
-                                            local243.x = local65;
-                                            local243.z = local144;
-                                            local243.id = local222.mapelement;
-                                            mapElementCache.push(local243);
+        @Pc(39) int mapHeight = screenY2 - mapTop;
+        @Pc(43) int xPadding = 983040 / scaleX;
+        @Pc(47) int zPadding = 983040 / scaleY;
+        for (@Pc(50) int x = -xPadding; x < mapWidth + xPadding; x++) {
+            @Pc(65) int pixelX1 = x * scaleX >> 16;
+            @Pc(75) int pixelX2 = scaleX * (x + 1) >> 16;
+            @Pc(80) int pixelWidth = pixelX2 - pixelX1;
+            if (pixelWidth > 0) {
+                @Pc(91) int zoneX = mapLeft + x >> 6;
+                pixelX1 += screenX1;
+                if (zoneX >= 0 && zoneX <= underlayColors.length - 1) {
+                    @Pc(116) int[][] underlayColorRow = underlayColors[zoneX];
+                    for (@Pc(119) int z = -zPadding; z < mapHeight + zPadding; z++) {
+                        @Pc(136) int pixelY2 = scaleY * (z + 1) >> 16;
+                        @Pc(144) int pixelY1 = z * scaleY >> 16;
+                        @Pc(149) int i = pixelY2 - pixelY1;
+                        if (i > 0) {
+                            pixelY1 += screenY1;
+                            @Pc(163) int zoneZ = mapTop + z >> 6;
+                            if (zoneZ >= 0 && zoneZ <= underlayColorRow.length - 1 && underlayColorRow[zoneZ] != null) {
+                                @Pc(203) int tileIndex = (x + mapLeft & 0x3F) + ((mapTop + z & 0x3F) << 6);
+                                @Pc(209) int locId = underlayColorRow[zoneZ][tileIndex];
+                                if (locId != 0) {
+                                    @Pc(222) LocType locType = LocTypeList.get(locId - 1);
+                                    if (!MapList.aBooleanArray130[locType.mapelement]) {
+                                        if (flashAlpha != -1 && locType.mapelement == selectedMapFunctionId) {
+                                            @Pc(243) MapFunction icon = new MapFunction();
+                                            icon.x = pixelX1;
+                                            icon.z = pixelY1;
+                                            icon.id = locType.mapelement;
+                                            mapElementCache.push(icon);
                                         } else {
-                                            MapList.sprites[local222.mapelement].render(local65 - 7, local144 + -7);
+                                            MapList.sprites[locType.mapelement].render(pixelX1 - 7, pixelY1 + -7);
                                         }
                                     }
                                 }
@@ -1405,503 +1405,503 @@ public class WorldMap {
                 }
             }
         }
-        for (@Pc(285) MapFunction local285 = (MapFunction) mapElementCache.head(); local285 != null; local285 = (MapFunction) mapElementCache.next()) {
-            SoftwareRenderer.drawCircleAlpha(local285.x, local285.z, 15, local11);
-            SoftwareRenderer.drawCircleAlpha(local285.x, local285.z, 13, local11);
-            SoftwareRenderer.drawCircleAlpha(local285.x, local285.z, 11, local11);
-            SoftwareRenderer.drawCircleAlpha(local285.x, local285.z, 9, local11);
-            MapList.sprites[local285.id].render(local285.x - 7, local285.z + -7);
+        for (@Pc(285) MapFunction icon = (MapFunction) mapElementCache.head(); icon != null; icon = (MapFunction) mapElementCache.next()) {
+            SoftwareRenderer.drawCircleAlpha(icon.x, icon.z, 15, flashAlpha);
+            SoftwareRenderer.drawCircleAlpha(icon.x, icon.z, 13, flashAlpha);
+            SoftwareRenderer.drawCircleAlpha(icon.x, icon.z, 11, flashAlpha);
+            SoftwareRenderer.drawCircleAlpha(icon.x, icon.z, 9, flashAlpha);
+            MapList.sprites[icon.id].render(icon.x - 7, icon.z + -7);
         }
         mapElementCache.clear();
     }
 
     @OriginalMember(owner = "runetek4.client!va", name = "c", descriptor = "(BI)V")
-    public static void method4444(@OriginalArg(1) int arg0) {
-        selectedMapFunctionId = arg0;
+    public static void selectAndFlashMapFunction(@OriginalArg(1) int iconId) {
+        selectedMapFunctionId = iconId;
         ClientScriptRunner.mapFunctionFlashTimer = 20;
         mapFunctionCount = 3;
     }
 
     @OriginalMember(owner = "runetek4.client!wl", name = "a", descriptor = "([IIIIIIIIIZB)V")
-    public static void method4667(@OriginalArg(0) int[] arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) int arg8, @OriginalArg(9) boolean arg9) {
-        @Pc(7) int local7 = arg2;
-        if (SoftwareRenderer.clipRight <= arg2) {
+    public static void renderFloorOverlayPattern(@OriginalArg(0) int[] pixels, @OriginalArg(1) int color, @OriginalArg(2) int x, @OriginalArg(3) int rotation, @OriginalArg(4) int underlayColor, @OriginalArg(5) int shapeId, @OriginalArg(6) int height, @OriginalArg(7) int width, @OriginalArg(8) int y, @OriginalArg(9) boolean drawUnderlay) {
+        @Pc(7) int clippedX = x;
+        if (SoftwareRenderer.clipRight <= x) {
             return;
         }
-        if (arg2 < SoftwareRenderer.clipLeft) {
-            local7 = SoftwareRenderer.clipLeft;
+        if (x < SoftwareRenderer.clipLeft) {
+            clippedX = SoftwareRenderer.clipLeft;
         }
-        @Pc(30) int local30 = arg7 + arg2;
-        if (SoftwareRenderer.clipLeft >= local30) {
+        @Pc(30) int maxX = width + x;
+        if (SoftwareRenderer.clipLeft >= maxX) {
             return;
         }
-        if (SoftwareRenderer.clipRight < local30) {
-            local30 = SoftwareRenderer.clipRight;
+        if (SoftwareRenderer.clipRight < maxX) {
+            maxX = SoftwareRenderer.clipRight;
         }
-        @Pc(43) int local43 = arg8;
-        if (SoftwareRenderer.clipBottom <= arg8) {
+        @Pc(43) int clippedY = y;
+        if (SoftwareRenderer.clipBottom <= y) {
             return;
         }
-        @Pc(56) int local56 = arg8 + arg6;
-        if (arg8 < SoftwareRenderer.clipTop) {
-            local43 = SoftwareRenderer.clipTop;
+        @Pc(56) int maxY = y + height;
+        if (y < SoftwareRenderer.clipTop) {
+            clippedY = SoftwareRenderer.clipTop;
         }
-        if (local56 <= SoftwareRenderer.clipTop) {
+        if (maxY <= SoftwareRenderer.clipTop) {
             return;
         }
-        @Pc(79) int local79 = local7 + SoftwareRenderer.width * local43;
-        if (arg5 == 9) {
-            arg3 = arg3 + 1 & 0x3;
-            arg5 = 1;
+        @Pc(79) int pixelIndex = clippedX + SoftwareRenderer.width * clippedY;
+        if (shapeId == 9) {
+            rotation = rotation + 1 & 0x3;
+            shapeId = 1;
         }
-        @Pc(99) int local99 = local7 + SoftwareRenderer.width - local30;
-        local43 -= arg8;
-        @Pc(108) int local108 = arg6 - local43;
-        if (SoftwareRenderer.clipBottom < local56) {
-            local56 = SoftwareRenderer.clipBottom;
+        @Pc(99) int rowStride = clippedX + SoftwareRenderer.width - maxX;
+        clippedY -= y;
+        @Pc(108) int clippedHeight = height - clippedY;
+        if (SoftwareRenderer.clipBottom < maxY) {
+            maxY = SoftwareRenderer.clipBottom;
         }
-        if (arg5 == 10) {
-            arg3 = arg3 + 3 & 0x3;
-            arg5 = 1;
+        if (shapeId == 10) {
+            rotation = rotation + 3 & 0x3;
+            shapeId = 1;
         }
-        local7 -= arg2;
-        @Pc(136) int local136 = arg7 - local7;
-        if (arg5 == 11) {
-            arg3 = arg3 + 3 & 0x3;
-            arg5 = 8;
+        clippedX -= x;
+        @Pc(136) int clippedWidth = width - clippedX;
+        if (shapeId == 11) {
+            rotation = rotation + 3 & 0x3;
+            shapeId = 8;
         }
-        local30 -= arg2;
-        @Pc(157) int local157 = arg7 - local30;
-        local56 -= arg8;
-        @Pc(165) int local165 = arg6 - local56;
+        maxX -= x;
+        @Pc(157) int rightWidth = width - maxX;
+        maxY -= y;
+        @Pc(165) int bottomHeight = height - maxY;
         @Pc(175) int local175;
         @Pc(184) int local184;
-        if (arg5 == 1) {
-            if (arg3 == 0) {
-                for (local175 = local43; local175 < local56; local175++) {
-                    for (local184 = local7; local184 < local30; local184++) {
+        if (shapeId == 1) {
+            if (rotation == 0) {
+                for (local175 = clippedY; local175 < maxY; local175++) {
+                    for (local184 = clippedX; local184 < maxX; local184++) {
                         if (local184 <= local175) {
-                            arg0[local79] = arg1;
-                        } else if (arg9) {
-                            arg0[local79] = arg4;
+                            pixels[pixelIndex] = color;
+                        } else if (drawUnderlay) {
+                            pixels[pixelIndex] = underlayColor;
                         }
-                        local79++;
+                        pixelIndex++;
                     }
-                    local79 += local99;
+                    pixelIndex += rowStride;
                 }
-            } else if (arg3 == 1) {
-                for (local175 = local108 - 1; local175 >= local165; local175--) {
-                    for (local184 = local7; local184 < local30; local184++) {
+            } else if (rotation == 1) {
+                for (local175 = clippedHeight - 1; local175 >= bottomHeight; local175--) {
+                    for (local184 = clippedX; local184 < maxX; local184++) {
                         if (local175 >= local184) {
-                            arg0[local79] = arg1;
-                        } else if (arg9) {
-                            arg0[local79] = arg4;
+                            pixels[pixelIndex] = color;
+                        } else if (drawUnderlay) {
+                            pixels[pixelIndex] = underlayColor;
                         }
-                        local79++;
+                        pixelIndex++;
                     }
-                    local79 += local99;
+                    pixelIndex += rowStride;
                 }
-            } else if (arg3 == 2) {
-                for (local175 = local43; local175 < local56; local175++) {
-                    for (local184 = local7; local184 < local30; local184++) {
+            } else if (rotation == 2) {
+                for (local175 = clippedY; local175 < maxY; local175++) {
+                    for (local184 = clippedX; local184 < maxX; local184++) {
                         if (local184 >= local175) {
-                            arg0[local79] = arg1;
-                        } else if (arg9) {
-                            arg0[local79] = arg4;
+                            pixels[pixelIndex] = color;
+                        } else if (drawUnderlay) {
+                            pixels[pixelIndex] = underlayColor;
                         }
-                        local79++;
+                        pixelIndex++;
                     }
-                    local79 += local99;
+                    pixelIndex += rowStride;
                 }
-            } else if (arg3 == 3) {
-                for (local175 = local108 - 1; local175 >= local165; local175--) {
-                    for (local184 = local7; local184 < local30; local184++) {
+            } else if (rotation == 3) {
+                for (local175 = clippedHeight - 1; local175 >= bottomHeight; local175--) {
+                    for (local184 = clippedX; local184 < maxX; local184++) {
                         if (local184 >= local175) {
-                            arg0[local79] = arg1;
-                        } else if (arg9) {
-                            arg0[local79] = arg4;
+                            pixels[pixelIndex] = color;
+                        } else if (drawUnderlay) {
+                            pixels[pixelIndex] = underlayColor;
                         }
-                        local79++;
+                        pixelIndex++;
                     }
-                    local79 += local99;
+                    pixelIndex += rowStride;
                 }
             }
-        } else if (arg5 == 2) {
-            if (arg3 == 0) {
-                for (local175 = local108 - 1; local175 >= local165; local175--) {
-                    for (local184 = local7; local184 < local30; local184++) {
+        } else if (shapeId == 2) {
+            if (rotation == 0) {
+                for (local175 = clippedHeight - 1; local175 >= bottomHeight; local175--) {
+                    for (local184 = clippedX; local184 < maxX; local184++) {
                         if (local175 >> 1 >= local184) {
-                            arg0[local79] = arg1;
-                        } else if (arg9) {
-                            arg0[local79] = arg4;
+                            pixels[pixelIndex] = color;
+                        } else if (drawUnderlay) {
+                            pixels[pixelIndex] = underlayColor;
                         }
-                        local79++;
+                        pixelIndex++;
                     }
-                    local79 += local99;
+                    pixelIndex += rowStride;
                 }
-            } else if (arg3 == 1) {
-                for (local175 = local43; local175 < local56; local175++) {
-                    for (local184 = local7; local184 < local30; local184++) {
-                        if (local79 >= 0 && local79 < arg0.length) {
+            } else if (rotation == 1) {
+                for (local175 = clippedY; local175 < maxY; local175++) {
+                    for (local184 = clippedX; local184 < maxX; local184++) {
+                        if (pixelIndex >= 0 && pixelIndex < pixels.length) {
                             if (local175 << 1 <= local184) {
-                                arg0[local79] = arg1;
-                            } else if (arg9) {
-                                arg0[local79] = arg4;
+                                pixels[pixelIndex] = color;
+                            } else if (drawUnderlay) {
+                                pixels[pixelIndex] = underlayColor;
                             }
-                            local79++;
+                            pixelIndex++;
                         } else {
-                            local79++;
+                            pixelIndex++;
                         }
                     }
-                    local79 += local99;
+                    pixelIndex += rowStride;
                 }
-            } else if (arg3 == 2) {
-                for (local175 = local43; local175 < local56; local175++) {
-                    for (local184 = local136 - 1; local184 >= local157; local184--) {
+            } else if (rotation == 2) {
+                for (local175 = clippedY; local175 < maxY; local175++) {
+                    for (local184 = clippedWidth - 1; local184 >= rightWidth; local184--) {
                         if (local175 >> 1 >= local184) {
-                            arg0[local79] = arg1;
-                        } else if (arg9) {
-                            arg0[local79] = arg4;
+                            pixels[pixelIndex] = color;
+                        } else if (drawUnderlay) {
+                            pixels[pixelIndex] = underlayColor;
                         }
-                        local79++;
+                        pixelIndex++;
                     }
-                    local79 += local99;
+                    pixelIndex += rowStride;
                 }
-            } else if (arg3 == 3) {
-                for (local175 = local108 - 1; local175 >= local165; local175--) {
-                    for (local184 = local136 - 1; local184 >= local157; local184--) {
+            } else if (rotation == 3) {
+                for (local175 = clippedHeight - 1; local175 >= bottomHeight; local175--) {
+                    for (local184 = clippedWidth - 1; local184 >= rightWidth; local184--) {
                         if (local175 << 1 <= local184) {
-                            arg0[local79] = arg1;
-                        } else if (arg9) {
-                            arg0[local79] = arg4;
+                            pixels[pixelIndex] = color;
+                        } else if (drawUnderlay) {
+                            pixels[pixelIndex] = underlayColor;
                         }
-                        local79++;
+                        pixelIndex++;
                     }
-                    local79 += local99;
+                    pixelIndex += rowStride;
                 }
             }
-        } else if (arg5 == 3) {
-            if (arg3 == 0) {
-                for (local175 = local108 - 1; local175 >= local165; local175--) {
-                    for (local184 = local136 - 1; local184 >= local157; local184--) {
+        } else if (shapeId == 3) {
+            if (rotation == 0) {
+                for (local175 = clippedHeight - 1; local175 >= bottomHeight; local175--) {
+                    for (local184 = clippedWidth - 1; local184 >= rightWidth; local184--) {
                         if (local175 >> 1 >= local184) {
-                            arg0[local79] = arg1;
-                        } else if (arg9) {
-                            arg0[local79] = arg4;
+                            pixels[pixelIndex] = color;
+                        } else if (drawUnderlay) {
+                            pixels[pixelIndex] = underlayColor;
                         }
-                        local79++;
+                        pixelIndex++;
                     }
-                    local79 += local99;
+                    pixelIndex += rowStride;
                 }
-            } else if (arg3 == 1) {
-                for (local175 = local108 - 1; local175 >= local165; local175--) {
-                    for (local184 = local7; local184 < local30; local184++) {
+            } else if (rotation == 1) {
+                for (local175 = clippedHeight - 1; local175 >= bottomHeight; local175--) {
+                    for (local184 = clippedX; local184 < maxX; local184++) {
                         if (local184 >= local175 << 1) {
-                            arg0[local79] = arg1;
-                        } else if (arg9) {
-                            arg0[local79] = arg4;
+                            pixels[pixelIndex] = color;
+                        } else if (drawUnderlay) {
+                            pixels[pixelIndex] = underlayColor;
                         }
-                        local79++;
+                        pixelIndex++;
                     }
-                    local79 += local99;
+                    pixelIndex += rowStride;
                 }
-            } else if (arg3 == 2) {
-                for (local175 = local43; local175 < local56; local175++) {
-                    for (local184 = local7; local184 < local30; local184++) {
+            } else if (rotation == 2) {
+                for (local175 = clippedY; local175 < maxY; local175++) {
+                    for (local184 = clippedX; local184 < maxX; local184++) {
                         if (local184 <= local175 >> 1) {
-                            arg0[local79] = arg1;
-                        } else if (arg9) {
-                            arg0[local79] = arg4;
+                            pixels[pixelIndex] = color;
+                        } else if (drawUnderlay) {
+                            pixels[pixelIndex] = underlayColor;
                         }
-                        local79++;
+                        pixelIndex++;
                     }
-                    local79 += local99;
+                    pixelIndex += rowStride;
                 }
-            } else if (arg3 == 3) {
-                for (local175 = local43; local175 < local56; local175++) {
-                    for (local184 = local136 - 1; local184 >= local157; local184--) {
+            } else if (rotation == 3) {
+                for (local175 = clippedY; local175 < maxY; local175++) {
+                    for (local184 = clippedWidth - 1; local184 >= rightWidth; local184--) {
                         if (local175 << 1 <= local184) {
-                            arg0[local79] = arg1;
-                        } else if (arg9) {
-                            arg0[local79] = arg4;
+                            pixels[pixelIndex] = color;
+                        } else if (drawUnderlay) {
+                            pixels[pixelIndex] = underlayColor;
                         }
-                        local79++;
+                        pixelIndex++;
                     }
-                    local79 += local99;
+                    pixelIndex += rowStride;
                 }
             }
-        } else if (arg5 == 4) {
-            if (arg3 == 0) {
-                for (local175 = local108 - 1; local175 >= local165; local175--) {
-                    for (local184 = local7; local184 < local30; local184++) {
+        } else if (shapeId == 4) {
+            if (rotation == 0) {
+                for (local175 = clippedHeight - 1; local175 >= bottomHeight; local175--) {
+                    for (local184 = clippedX; local184 < maxX; local184++) {
                         if (local175 >> 1 <= local184) {
-                            arg0[local79] = arg1;
-                        } else if (arg9) {
-                            arg0[local79] = arg4;
+                            pixels[pixelIndex] = color;
+                        } else if (drawUnderlay) {
+                            pixels[pixelIndex] = underlayColor;
                         }
-                        local79++;
+                        pixelIndex++;
                     }
-                    local79 += local99;
+                    pixelIndex += rowStride;
                 }
-            } else if (arg3 == 1) {
-                for (local175 = local43; local175 < local56; local175++) {
-                    for (local184 = local7; local184 < local30; local184++) {
+            } else if (rotation == 1) {
+                for (local175 = clippedY; local175 < maxY; local175++) {
+                    for (local184 = clippedX; local184 < maxX; local184++) {
                         if (local175 << 1 >= local184) {
-                            arg0[local79] = arg1;
-                        } else if (arg9) {
-                            arg0[local79] = arg4;
+                            pixels[pixelIndex] = color;
+                        } else if (drawUnderlay) {
+                            pixels[pixelIndex] = underlayColor;
                         }
-                        local79++;
+                        pixelIndex++;
                     }
-                    local79 += local99;
+                    pixelIndex += rowStride;
                 }
-            } else if (arg3 == 2) {
-                for (local175 = local43; local175 < local56; local175++) {
-                    for (local184 = local136 - 1; local184 >= local157; local184--) {
+            } else if (rotation == 2) {
+                for (local175 = clippedY; local175 < maxY; local175++) {
+                    for (local184 = clippedWidth - 1; local184 >= rightWidth; local184--) {
                         if (local184 >= local175 >> 1) {
-                            arg0[local79] = arg1;
-                        } else if (arg9) {
-                            arg0[local79] = arg4;
+                            pixels[pixelIndex] = color;
+                        } else if (drawUnderlay) {
+                            pixels[pixelIndex] = underlayColor;
                         }
-                        local79++;
+                        pixelIndex++;
                     }
-                    local79 += local99;
+                    pixelIndex += rowStride;
                 }
-            } else if (arg3 == 3) {
-                for (local175 = local108 - 1; local175 >= local165; local175--) {
-                    for (local184 = local136 - 1; local184 >= local157; local184--) {
+            } else if (rotation == 3) {
+                for (local175 = clippedHeight - 1; local175 >= bottomHeight; local175--) {
+                    for (local184 = clippedWidth - 1; local184 >= rightWidth; local184--) {
                         if (local184 <= local175 << 1) {
-                            arg0[local79] = arg1;
-                        } else if (arg9) {
-                            arg0[local79] = arg4;
+                            pixels[pixelIndex] = color;
+                        } else if (drawUnderlay) {
+                            pixels[pixelIndex] = underlayColor;
                         }
-                        local79++;
+                        pixelIndex++;
                     }
-                    local79 += local99;
+                    pixelIndex += rowStride;
                 }
             }
-        } else if (arg5 != 5) {
-            if (arg5 == 6) {
-                if (arg3 == 0) {
-                    for (local175 = local43; local175 < local56; local175++) {
-                        for (local184 = local7; local184 < local30; local184++) {
-                            if (local184 <= arg7 / 2) {
-                                arg0[local79] = arg1;
-                            } else if (arg9) {
-                                arg0[local79] = arg4;
+        } else if (shapeId != 5) {
+            if (shapeId == 6) {
+                if (rotation == 0) {
+                    for (local175 = clippedY; local175 < maxY; local175++) {
+                        for (local184 = clippedX; local184 < maxX; local184++) {
+                            if (local184 <= width / 2) {
+                                pixels[pixelIndex] = color;
+                            } else if (drawUnderlay) {
+                                pixels[pixelIndex] = underlayColor;
                             }
-                            local79++;
+                            pixelIndex++;
                         }
-                        local79 += local99;
+                        pixelIndex += rowStride;
                     }
                     return;
                 }
-                if (arg3 == 1) {
-                    for (local175 = local43; local175 < local56; local175++) {
-                        for (local184 = local7; local184 < local30; local184++) {
-                            if (local175 <= arg6 / 2) {
-                                arg0[local79] = arg1;
-                            } else if (arg9) {
-                                arg0[local79] = arg4;
+                if (rotation == 1) {
+                    for (local175 = clippedY; local175 < maxY; local175++) {
+                        for (local184 = clippedX; local184 < maxX; local184++) {
+                            if (local175 <= height / 2) {
+                                pixels[pixelIndex] = color;
+                            } else if (drawUnderlay) {
+                                pixels[pixelIndex] = underlayColor;
                             }
-                            local79++;
+                            pixelIndex++;
                         }
-                        local79 += local99;
+                        pixelIndex += rowStride;
                     }
                     return;
                 }
-                if (arg3 == 2) {
-                    for (local175 = local43; local175 < local56; local175++) {
-                        for (local184 = local7; local184 < local30; local184++) {
-                            if (local184 >= arg7 / 2) {
-                                arg0[local79] = arg1;
-                            } else if (arg9) {
-                                arg0[local79] = arg4;
+                if (rotation == 2) {
+                    for (local175 = clippedY; local175 < maxY; local175++) {
+                        for (local184 = clippedX; local184 < maxX; local184++) {
+                            if (local184 >= width / 2) {
+                                pixels[pixelIndex] = color;
+                            } else if (drawUnderlay) {
+                                pixels[pixelIndex] = underlayColor;
                             }
-                            local79++;
+                            pixelIndex++;
                         }
-                        local79 += local99;
+                        pixelIndex += rowStride;
                     }
                     return;
                 }
-                if (arg3 == 3) {
-                    for (local175 = local43; local175 < local56; local175++) {
-                        for (local184 = local7; local184 < local30; local184++) {
-                            if (local175 >= arg6 / 2) {
-                                arg0[local79] = arg1;
-                            } else if (arg9) {
-                                arg0[local79] = arg4;
+                if (rotation == 3) {
+                    for (local175 = clippedY; local175 < maxY; local175++) {
+                        for (local184 = clippedX; local184 < maxX; local184++) {
+                            if (local175 >= height / 2) {
+                                pixels[pixelIndex] = color;
+                            } else if (drawUnderlay) {
+                                pixels[pixelIndex] = underlayColor;
                             }
-                            local79++;
+                            pixelIndex++;
                         }
-                        local79 += local99;
-                    }
-                    return;
-                }
-            }
-            if (arg5 == 7) {
-                if (arg3 == 0) {
-                    for (local175 = local43; local175 < local56; local175++) {
-                        for (local184 = local7; local184 < local30; local184++) {
-                            if (local184 <= local175 - arg6 / 2) {
-                                arg0[local79] = arg1;
-                            } else if (arg9) {
-                                arg0[local79] = arg4;
-                            }
-                            local79++;
-                        }
-                        local79 += local99;
-                    }
-                    return;
-                }
-                if (arg3 == 1) {
-                    for (local175 = local108 - 1; local175 >= local165; local175--) {
-                        for (local184 = local7; local184 < local30; local184++) {
-                            if (local175 - arg6 / 2 >= local184) {
-                                arg0[local79] = arg1;
-                            } else if (arg9) {
-                                arg0[local79] = arg4;
-                            }
-                            local79++;
-                        }
-                        local79 += local99;
-                    }
-                    return;
-                }
-                if (arg3 == 2) {
-                    for (local175 = local108 - 1; local175 >= local165; local175--) {
-                        for (local184 = local136 - 1; local184 >= local157; local184--) {
-                            if (local184 <= local175 - arg6 / 2) {
-                                arg0[local79] = arg1;
-                            } else if (arg9) {
-                                arg0[local79] = arg4;
-                            }
-                            local79++;
-                        }
-                        local79 += local99;
-                    }
-                    return;
-                }
-                if (arg3 == 3) {
-                    for (local175 = local43; local175 < local56; local175++) {
-                        for (local184 = local136 - 1; local184 >= local157; local184--) {
-                            if (local175 - arg6 / 2 >= local184) {
-                                arg0[local79] = arg1;
-                            } else if (arg9) {
-                                arg0[local79] = arg4;
-                            }
-                            local79++;
-                        }
-                        local79 += local99;
+                        pixelIndex += rowStride;
                     }
                     return;
                 }
             }
-            if (arg5 == 8) {
-                if (arg3 == 0) {
-                    for (local175 = local43; local175 < local56; local175++) {
-                        for (local184 = local7; local184 < local30; local184++) {
-                            if (local175 - arg6 / 2 <= local184) {
-                                arg0[local79] = arg1;
-                            } else if (arg9) {
-                                arg0[local79] = arg4;
+            if (shapeId == 7) {
+                if (rotation == 0) {
+                    for (local175 = clippedY; local175 < maxY; local175++) {
+                        for (local184 = clippedX; local184 < maxX; local184++) {
+                            if (local184 <= local175 - height / 2) {
+                                pixels[pixelIndex] = color;
+                            } else if (drawUnderlay) {
+                                pixels[pixelIndex] = underlayColor;
                             }
-                            local79++;
+                            pixelIndex++;
                         }
-                        local79 += local99;
+                        pixelIndex += rowStride;
                     }
                     return;
                 }
-                if (arg3 == 1) {
-                    for (local175 = local108 - 1; local175 >= local165; local175--) {
-                        for (local184 = local7; local184 < local30; local184++) {
-                            if (local175 - arg6 / 2 <= local184) {
-                                arg0[local79] = arg1;
-                            } else if (arg9) {
-                                arg0[local79] = arg4;
+                if (rotation == 1) {
+                    for (local175 = clippedHeight - 1; local175 >= bottomHeight; local175--) {
+                        for (local184 = clippedX; local184 < maxX; local184++) {
+                            if (local175 - height / 2 >= local184) {
+                                pixels[pixelIndex] = color;
+                            } else if (drawUnderlay) {
+                                pixels[pixelIndex] = underlayColor;
                             }
-                            local79++;
+                            pixelIndex++;
                         }
-                        local79 += local99;
+                        pixelIndex += rowStride;
                     }
                     return;
                 }
-                if (arg3 == 2) {
-                    for (local175 = local108 - 1; local175 >= local165; local175--) {
-                        for (local184 = local136 - 1; local184 >= local157; local184--) {
-                            if (local184 >= local175 - arg6 / 2) {
-                                arg0[local79] = arg1;
-                            } else if (arg9) {
-                                arg0[local79] = arg4;
+                if (rotation == 2) {
+                    for (local175 = clippedHeight - 1; local175 >= bottomHeight; local175--) {
+                        for (local184 = clippedWidth - 1; local184 >= rightWidth; local184--) {
+                            if (local184 <= local175 - height / 2) {
+                                pixels[pixelIndex] = color;
+                            } else if (drawUnderlay) {
+                                pixels[pixelIndex] = underlayColor;
                             }
-                            local79++;
+                            pixelIndex++;
                         }
-                        local79 += local99;
+                        pixelIndex += rowStride;
                     }
                     return;
                 }
-                if (arg3 == 3) {
-                    for (local175 = local43; local175 < local56; local175++) {
-                        for (local184 = local136 - 1; local184 >= local157; local184--) {
-                            if (local175 - arg6 / 2 <= local184) {
-                                arg0[local79] = arg1;
-                            } else if (arg9) {
-                                arg0[local79] = arg4;
+                if (rotation == 3) {
+                    for (local175 = clippedY; local175 < maxY; local175++) {
+                        for (local184 = clippedWidth - 1; local184 >= rightWidth; local184--) {
+                            if (local175 - height / 2 >= local184) {
+                                pixels[pixelIndex] = color;
+                            } else if (drawUnderlay) {
+                                pixels[pixelIndex] = underlayColor;
                             }
-                            local79++;
+                            pixelIndex++;
                         }
-                        local79 += local99;
+                        pixelIndex += rowStride;
                     }
                     return;
                 }
             }
-        } else if (arg3 == 0) {
-            for (local175 = local108 - 1; local175 >= local165; local175--) {
-                for (local184 = local136 - 1; local184 >= local157; local184--) {
+            if (shapeId == 8) {
+                if (rotation == 0) {
+                    for (local175 = clippedY; local175 < maxY; local175++) {
+                        for (local184 = clippedX; local184 < maxX; local184++) {
+                            if (local175 - height / 2 <= local184) {
+                                pixels[pixelIndex] = color;
+                            } else if (drawUnderlay) {
+                                pixels[pixelIndex] = underlayColor;
+                            }
+                            pixelIndex++;
+                        }
+                        pixelIndex += rowStride;
+                    }
+                    return;
+                }
+                if (rotation == 1) {
+                    for (local175 = clippedHeight - 1; local175 >= bottomHeight; local175--) {
+                        for (local184 = clippedX; local184 < maxX; local184++) {
+                            if (local175 - height / 2 <= local184) {
+                                pixels[pixelIndex] = color;
+                            } else if (drawUnderlay) {
+                                pixels[pixelIndex] = underlayColor;
+                            }
+                            pixelIndex++;
+                        }
+                        pixelIndex += rowStride;
+                    }
+                    return;
+                }
+                if (rotation == 2) {
+                    for (local175 = clippedHeight - 1; local175 >= bottomHeight; local175--) {
+                        for (local184 = clippedWidth - 1; local184 >= rightWidth; local184--) {
+                            if (local184 >= local175 - height / 2) {
+                                pixels[pixelIndex] = color;
+                            } else if (drawUnderlay) {
+                                pixels[pixelIndex] = underlayColor;
+                            }
+                            pixelIndex++;
+                        }
+                        pixelIndex += rowStride;
+                    }
+                    return;
+                }
+                if (rotation == 3) {
+                    for (local175 = clippedY; local175 < maxY; local175++) {
+                        for (local184 = clippedWidth - 1; local184 >= rightWidth; local184--) {
+                            if (local175 - height / 2 <= local184) {
+                                pixels[pixelIndex] = color;
+                            } else if (drawUnderlay) {
+                                pixels[pixelIndex] = underlayColor;
+                            }
+                            pixelIndex++;
+                        }
+                        pixelIndex += rowStride;
+                    }
+                    return;
+                }
+            }
+        } else if (rotation == 0) {
+            for (local175 = clippedHeight - 1; local175 >= bottomHeight; local175--) {
+                for (local184 = clippedWidth - 1; local184 >= rightWidth; local184--) {
                     if (local175 >> 1 <= local184) {
-                        arg0[local79] = arg1;
-                    } else if (arg9) {
-                        arg0[local79] = arg4;
+                        pixels[pixelIndex] = color;
+                    } else if (drawUnderlay) {
+                        pixels[pixelIndex] = underlayColor;
                     }
-                    local79++;
+                    pixelIndex++;
                 }
-                local79 += local99;
+                pixelIndex += rowStride;
             }
-        } else if (arg3 == 1) {
-            for (local175 = local108 - 1; local175 >= local165; local175--) {
-                for (local184 = local7; local184 < local30; local184++) {
+        } else if (rotation == 1) {
+            for (local175 = clippedHeight - 1; local175 >= bottomHeight; local175--) {
+                for (local184 = clippedX; local184 < maxX; local184++) {
                     if (local184 <= local175 << 1) {
-                        arg0[local79] = arg1;
-                    } else if (arg9) {
-                        arg0[local79] = arg4;
+                        pixels[pixelIndex] = color;
+                    } else if (drawUnderlay) {
+                        pixels[pixelIndex] = underlayColor;
                     }
-                    local79++;
+                    pixelIndex++;
                 }
-                local79 += local99;
+                pixelIndex += rowStride;
             }
-        } else if (arg3 == 2) {
-            for (local175 = local43; local175 < local56; local175++) {
-                for (local184 = local7; local184 < local30; local184++) {
+        } else if (rotation == 2) {
+            for (local175 = clippedY; local175 < maxY; local175++) {
+                for (local184 = clippedX; local184 < maxX; local184++) {
                     if (local184 >= local175 >> 1) {
-                        arg0[local79] = arg1;
-                    } else if (arg9) {
-                        arg0[local79] = arg4;
+                        pixels[pixelIndex] = color;
+                    } else if (drawUnderlay) {
+                        pixels[pixelIndex] = underlayColor;
                     }
-                    local79++;
+                    pixelIndex++;
                 }
-                local79 += local99;
+                pixelIndex += rowStride;
             }
-        } else if (arg3 == 3) {
-            for (local175 = local43; local175 < local56; local175++) {
-                for (local184 = local136 - 1; local184 >= local157; local184--) {
+        } else if (rotation == 3) {
+            for (local175 = clippedY; local175 < maxY; local175++) {
+                for (local184 = clippedWidth - 1; local184 >= rightWidth; local184--) {
                     if (local175 << 1 >= local184) {
-                        arg0[local79] = arg1;
-                    } else if (arg9) {
-                        arg0[local79] = arg4;
+                        pixels[pixelIndex] = color;
+                    } else if (drawUnderlay) {
+                        pixels[pixelIndex] = underlayColor;
                     }
-                    local79++;
+                    pixelIndex++;
                 }
-                local79 += local99;
+                pixelIndex += rowStride;
             }
         }
     }
@@ -1937,9 +1937,9 @@ public class WorldMap {
         }
         cachedMapSprite.drawPixels(x, y);
         @Pc(147) int viewportY = height * ClientScriptRunner.worldMapViewportY / areaHeight + y;
-        @Pc(153) int viewportHeight = anInt1176 * height / areaHeight;
+        @Pc(153) int viewportHeight = viewportDoubleHeight * height / areaHeight;
         @Pc(161) int viewportX = x + width * ClientScriptRunner.worldMapViewportX / WorldMap.areaWidth;
-        @Pc(167) int viewportWidth = width * anInt2387 / WorldMap.areaWidth;
+        @Pc(167) int viewportWidth = width * viewportDoubleWidth / WorldMap.areaWidth;
         @Pc(169) int viewportColor = 16711680;
         if (Client.game == 1) {
             viewportColor = 16777215;
