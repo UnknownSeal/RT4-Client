@@ -79,7 +79,7 @@ import com.jagex.game.compression.huffman.WordPack;
 import com.jagex.graphics.lighting.FogManager;
 import com.jagex.game.map.Map;
 import com.jagex.game.map.MapList;
-import com.jagex.game.map.HintArrow;
+import com.jagex.game.map.MapMarker;
 import com.jagex.network.ClientProt;
 import com.jagex.network.Protocol;
 import com.jagex.core.datastruct.Queue;
@@ -645,28 +645,48 @@ public final class ClientScriptRunner {
 
 	@OriginalMember(owner = "client!h", name = "a", descriptor = "(BILclient!jl;)V")
 	public static void executeScript(@OriginalArg(1) int maxOps, @OriginalArg(2) HookRequest hook) {
+		// request.arguments contains a set of intermingled ints and strings pulled from a cache file.
 		@Pc(4) Object[] arguments1 = hook.arguments;
+
+		// The first int in the arguments corresponds to the id of a client script.
 		@Pc(10) int sid = (Integer) arguments1[0];
 		@Pc(14) ClientScript clientScript = ClientScriptList.list(sid);
 		if (clientScript == null) {
 			return;
 		}
-		framepointer = 0;
-		@Pc(26) int ssp = 0;
-		@Pc(28) int intStackPointer = 0;
-		@Pc(30) int pc = -1;
-		@Pc(33) int[] intOperands = clientScript.intOperands;
+
+		// The client script contains three sets of opcodes/operands,
+		// which are all indexed by one pointer (pc).
 		@Pc(36) int[] opcodes = clientScript.opcodes;
+		@Pc(33) int[] intOperands = clientScript.intOperands;
+		JString[] stringOperands = clientScript.stringOperands;
+		@Pc(30) int pc = -1;
+
+		// Set up pointers for the different stacks managed in this process.
+		framepointer = 0; // call stack
+		@Pc(26) int ssp = 0; // string stack
+		@Pc(28) int intStackPointer = 0; // int stack
 		@Pc(44) byte op = -1;
+
+		// Keep track of how many cycles of the game loop have been run.
 		@Pc(58) int opCount;
 		try {
+			// Each client script has two stacks of local variables,
+			// one for ints and one for strings.
+
 			intVars = new int[clientScript.localIntCount];
 			@Pc(50) int localIntIndex = 0;
 			stringVars = new JString[clientScript.localStringCount];
 			@Pc(56) int localStringIndex = 0;
 			@Pc(77) int id;
 			@Pc(194) JString value;
+
+			// Iterate each subsequent item in request.arguments.
+			// The meaning of the argument depends on its type and value.
 			for (opCount = 1; opCount < arguments1.length; opCount++) {
+				// Int values correspond to specific properties on the request object,
+				// such as mouse position or key presses.
+
 				if (arguments1[opCount] instanceof Integer) {
 					id = (Integer) arguments1[opCount];
 					if (id == Integer.MIN_VALUE + 1) { // 0
@@ -4041,7 +4061,7 @@ public final class ClientScriptRunner {
 														if (GlRenderer.enabled) {
 															FogManager.setInstantFade();
 															if (!Preferences.highDetailLighting) {
-																method2742(); // Reload game state for brightness change
+																setLoadingState(); // Reload game state for brightness change
 															}
 														}
 
@@ -4054,7 +4074,7 @@ public final class ClientScriptRunner {
 														intStackPointer--; // Decrement then read
 														Preferences.setLowmem(intStack[intStackPointer] == 1);
 														LocTypeList.clear();
-														method2742();
+														setLoadingState();
 														method2218();
 														Preferences.save(GameShell.signLink);
 														Preferences.sentToServer = false;
@@ -4071,7 +4091,7 @@ public final class ClientScriptRunner {
 													if (opcode == SETGROUNDDECOR) {
 														intStackPointer--; // Decrement then read
 														Preferences.showGroundDecorations = intStack[intStackPointer] == 1;
-														method2742();
+														setLoadingState();
 														Preferences.save(GameShell.signLink);
 														Preferences.sentToServer = false;
 														continue;
@@ -4145,7 +4165,7 @@ public final class ClientScriptRunner {
 																Rasterizer.setBrightness(0.6F);
 															}
 														}
-														method2742();
+														setLoadingState();
 														Preferences.save(GameShell.signLink);
 														Preferences.sentToServer = false;
 														continue;
@@ -4154,7 +4174,7 @@ public final class ClientScriptRunner {
 														intStackPointer--; // Decrement then read
 														Preferences.highWaterDetail = intStack[intStackPointer] == 1;
 														if (GlRenderer.enabled) {
-															method2742();
+															setLoadingState();
 														}
 														Preferences.save(GameShell.signLink);
 														Preferences.sentToServer = false;
@@ -5189,9 +5209,9 @@ public final class ClientScriptRunner {
 							Sprites.headiconPrayers[npcType.headIcon].render(screenX + overheadScreenX - 12, screenY + -30 - -overheadScreenY);
 						}
 					}
-					@Pc(308) HintArrow[] local308 = MiniMap.hintArrows;
+					@Pc(308) MapMarker[] local308 = MiniMap.hintMapMarkers;
 					for (local310 = 0; local310 < local308.length; local310++) {
-						@Pc(322) HintArrow local322 = local308[local310];
+						@Pc(322) MapMarker local322 = local308[local310];
 						if (local322 != null && local322.type == 1 && local322.entity == NpcList.npcIds[entityIndex - PlayerList.playerCount] && Client.loop % 20 < 10) {
 							if (npcType.overlayheight == -1) {
 								local359 = local17.height() + 15;
@@ -5221,9 +5241,9 @@ public final class ClientScriptRunner {
 						}
 					}
 					if (entityIndex >= 0) {
-						@Pc(159) HintArrow[] local159 = MiniMap.hintArrows;
+						@Pc(159) MapMarker[] local159 = MiniMap.hintMapMarkers;
 						for (local161 = 0; local161 < local159.length; local161++) {
-							@Pc(173) HintArrow local173 = local159[local161];
+							@Pc(173) MapMarker local173 = local159[local161];
 							if (local173 != null && local173.type == 10 && PlayerList.playerIds[entityIndex] == local173.entity) {
 								setOverheadScreenCoordinateOffsets(screenHeight >> 1, cameraX, local17, cameraZ, local17.height() + 15, screenWidth >> 1);
 								if (overheadScreenX > -1) {
@@ -5822,7 +5842,7 @@ public final class ClientScriptRunner {
 		@Pc(14) byte markValue = forceVisible ? 1 : (byte) (anInt3325 & 0xFF);
 		if (markValue == tileMarkings[Player.currentLevel][startX][startZ]) {
 			return false;
-		} else if ((SceneGraph.renderFlags[Player.currentLevel][startX][startZ] & 0x4) == 0) {
+		} else if ((SceneGraph.tileRenderFlags[Player.currentLevel][startX][startZ] & 0x4) == 0) {
 			return false;
 		} else {
 			@Pc(47) int queueRead = 0;
@@ -5840,13 +5860,13 @@ public final class ClientScriptRunner {
 				queueRead = queueRead + 1 & 0xFFF;
 				@Pc(130) boolean isBlocked = false;
 				@Pc(132) boolean foundVisible = false;
-				if ((SceneGraph.renderFlags[Player.currentLevel][currentX][currentZ] & 0x4) == 0) {
+				if ((SceneGraph.tileRenderFlags[Player.currentLevel][currentX][currentZ] & 0x4) == 0) {
 					isBlocked = true;
 				}
 				@Pc(150) int level;
 				@Pc(191) int local191;
 				label238: for (level = Player.currentLevel + 1; level <= 3; level++) {
-					if ((SceneGraph.renderFlags[level][currentX][currentZ] & 0x8) == 0) {
+					if ((SceneGraph.tileRenderFlags[level][currentX][currentZ] & 0x8) == 0) {
 						@Pc(227) int sceneType;
 						@Pc(358) int local358;
 						if (isBlocked && tiles[level][currentX][currentZ] != null) {
@@ -5925,7 +5945,7 @@ public final class ClientScriptRunner {
 					}
 					currentZ++;
 					if (currentZ < 104) {
-						if (currentX - 1 >= 0 && markValue != tileMarkings[Player.currentLevel][currentX - 1][currentZ] && (SceneGraph.renderFlags[Player.currentLevel][currentX][currentZ] & 0x4) == 0 && (SceneGraph.renderFlags[Player.currentLevel][currentX - 1][currentZ - 1] & 0x4) == 0) {
+						if (currentX - 1 >= 0 && markValue != tileMarkings[Player.currentLevel][currentX - 1][currentZ] && (SceneGraph.tileRenderFlags[Player.currentLevel][currentX][currentZ] & 0x4) == 0 && (SceneGraph.tileRenderFlags[Player.currentLevel][currentX - 1][currentZ - 1] & 0x4) == 0) {
 							PathFinder.queueX[queueWrite] = 0x52000000 | 0x120000 | currentX - 1;
 							PathFinder.queueZ[queueWrite] = currentZ | 0x130000;
 							tileMarkings[Player.currentLevel][currentX - 1][currentZ] = markValue;
@@ -5937,7 +5957,7 @@ public final class ClientScriptRunner {
 							queueWrite = queueWrite + 1 & 0xFFF;
 							tileMarkings[Player.currentLevel][currentX][currentZ] = markValue;
 						}
-						if (currentX + 1 < 104 && tileMarkings[Player.currentLevel][currentX + 1][currentZ] != markValue && (SceneGraph.renderFlags[Player.currentLevel][currentX][currentZ] & 0x4) == 0 && (SceneGraph.renderFlags[Player.currentLevel][currentX + 1][currentZ - 1] & 0x4) == 0) {
+						if (currentX + 1 < 104 && tileMarkings[Player.currentLevel][currentX + 1][currentZ] != markValue && (SceneGraph.tileRenderFlags[Player.currentLevel][currentX][currentZ] & 0x4) == 0 && (SceneGraph.tileRenderFlags[Player.currentLevel][currentX + 1][currentZ - 1] & 0x4) == 0) {
 							PathFinder.queueX[queueWrite] = 0x92000000 | 0x520000 | currentX + 1;
 							PathFinder.queueZ[queueWrite] = currentZ | 0x530000;
 							tileMarkings[Player.currentLevel][currentX + 1][currentZ] = markValue;
@@ -5953,7 +5973,7 @@ public final class ClientScriptRunner {
 					}
 					currentZ--;
 					if (currentZ >= 0) {
-						if (currentX - 1 >= 0 && tileMarkings[Player.currentLevel][currentX - 1][currentZ] != markValue && (SceneGraph.renderFlags[Player.currentLevel][currentX][currentZ] & 0x4) == 0 && (SceneGraph.renderFlags[Player.currentLevel][currentX - 1][currentZ + 1] & 0x4) == 0) {
+						if (currentX - 1 >= 0 && tileMarkings[Player.currentLevel][currentX - 1][currentZ] != markValue && (SceneGraph.tileRenderFlags[Player.currentLevel][currentX][currentZ] & 0x4) == 0 && (SceneGraph.tileRenderFlags[Player.currentLevel][currentX - 1][currentZ + 1] & 0x4) == 0) {
 							PathFinder.queueX[queueWrite] = currentX - 1 | 0xD20000 | 0x12000000;
 							PathFinder.queueZ[queueWrite] = currentZ | 0xD30000;
 							tileMarkings[Player.currentLevel][currentX - 1][currentZ] = markValue;
@@ -5965,7 +5985,7 @@ public final class ClientScriptRunner {
 							queueWrite = queueWrite + 1 & 0xFFF;
 							tileMarkings[Player.currentLevel][currentX][currentZ] = markValue;
 						}
-						if (currentX + 1 < 104 && tileMarkings[Player.currentLevel][currentX + 1][currentZ] != markValue && (SceneGraph.renderFlags[Player.currentLevel][currentX][currentZ] & 0x4) == 0 && (SceneGraph.renderFlags[Player.currentLevel][currentX + 1][currentZ + 1] & 0x4) == 0) {
+						if (currentX + 1 < 104 && tileMarkings[Player.currentLevel][currentX + 1][currentZ] != markValue && (SceneGraph.tileRenderFlags[Player.currentLevel][currentX][currentZ] & 0x4) == 0 && (SceneGraph.tileRenderFlags[Player.currentLevel][currentX + 1][currentZ + 1] & 0x4) == 0) {
 							PathFinder.queueX[queueWrite] = currentX + 1 | 0xD2000000 | 0x920000;
 							PathFinder.queueZ[queueWrite] = currentZ | 0x930000;
 							tileMarkings[Player.currentLevel][currentX + 1][currentZ] = markValue;
@@ -6054,83 +6074,83 @@ public final class ClientScriptRunner {
 
 	//TODO move somewhere else
 	@OriginalMember(owner = "client!uh", name = "f", descriptor = "(I)V")
-	public static void performVisibilityCulling() {
+	public static void handleRemoveRoofsSelectively() {
 		if (getRoofVisibilityMode() != 2) {
 			return;
 		}
 		@Pc(27) byte markValue = (byte) (anInt3325 - 4 & 0xFF);
 		@Pc(31) int stripIndex = anInt3325 % 104;
-		@Pc(33) int local33;
-		@Pc(40) int local40;
-		for (local33 = 0; local33 < 4; local33++) {
-			for (local40 = 0; local40 < 104; local40++) {
-				tileMarkings[local33][stripIndex][local40] = markValue;
+		@Pc(33) int level;
+		@Pc(40) int tileZ;
+		for (level = 0; level < 4; level++) {
+			for (tileZ = 0; tileZ < 104; tileZ++) {
+				tileMarkings[level][stripIndex][tileZ] = markValue;
 			}
 		}
 		if (Player.currentLevel == 3) {
 			return;
 		}
-		for (local33 = 0; local33 < 2; local33++) {
-			maxHeights[local33] = -1000000;
-			anIntArray338[local33] = 1000000;
-			anIntArray518[local33] = 0;
-			anIntArray476[local33] = 1000000;
-			anIntArray134[local33] = 0;
+		for (level = 0; level < 2; level++) {
+			maxHeights[level] = -1000000;
+			anIntArray338[level] = 1000000;
+			anIntArray518[level] = 0;
+			anIntArray476[level] = 1000000;
+			anIntArray134[level] = 0;
 		}
 		if (Camera.mode != MODE_DEFAULT) {
-			local33 = SceneGraph.getTileHeight(Player.currentLevel, Camera.renderX, Camera.renderZ);
-			if (local33 - Camera.cameraY < 800 && (SceneGraph.renderFlags[Player.currentLevel][Camera.renderX >> 7][Camera.renderZ >> 7] & 0x4) != 0) {
+			level = SceneGraph.getTileHeight(Player.currentLevel, Camera.renderX, Camera.renderZ);
+			if (level - Camera.cameraY < 800 && (SceneGraph.tileRenderFlags[Player.currentLevel][Camera.renderX >> 7][Camera.renderZ >> 7] & 0x4) != 0) {
 				calculateVisibleRegion(false, Camera.renderX >> 7, Camera.renderZ >> 7, SceneGraph.tiles, 1);
 			}
 			return;
 		}
-		if ((SceneGraph.renderFlags[Player.currentLevel][PlayerList.self.xFine >> 7][PlayerList.self.zFine >> 7] & 0x4) != 0) {
+		if ((SceneGraph.tileRenderFlags[Player.currentLevel][PlayerList.self.xFine >> 7][PlayerList.self.zFine >> 7] & 0x4) != 0) {
 			calculateVisibleRegion(false, PlayerList.self.xFine >> 7, PlayerList.self.zFine >> 7, SceneGraph.tiles, 0);
 		}
 		if (Camera.cameraPitch >= 310) {
 			return;
 		}
 		@Pc(135) int playerZ = PlayerList.self.zFine >> 7;
-		local40 = Camera.renderZ >> 7;
+		tileZ = Camera.renderZ >> 7;
 		@Pc(146) int deltaZ;
-		if (local40 < playerZ) {
-			deltaZ = playerZ - local40;
+		if (tileZ < playerZ) {
+			deltaZ = playerZ - tileZ;
 		} else {
-			deltaZ = local40 - playerZ;
+			deltaZ = tileZ - playerZ;
 		}
-		local33 = Camera.renderX >> 7;
+		level = Camera.renderX >> 7;
 		@Pc(162) int playerX = PlayerList.self.xFine >> 7;
 		@Pc(174) int deltaX;
-		if (playerX > local33) {
-			deltaX = playerX - local33;
+		if (playerX > level) {
+			deltaX = playerX - level;
 		} else {
-			deltaX = local33 - playerX;
+			deltaX = level - playerX;
 		}
 		@Pc(192) int local192;
 		@Pc(186) int local186;
 		if (deltaX <= deltaZ) {
 			local186 = 32768;
 			local192 = deltaX * 65536 / deltaZ;
-			while (local40 != playerZ) {
-				if (local40 < playerZ) {
-					local40++;
-				} else if (local40 > playerZ) {
-					local40--;
+			while (tileZ != playerZ) {
+				if (tileZ < playerZ) {
+					tileZ++;
+				} else if (tileZ > playerZ) {
+					tileZ--;
 				}
-				if ((SceneGraph.renderFlags[Player.currentLevel][local33][local40] & 0x4) != 0) {
-					calculateVisibleRegion(false, local33, local40, SceneGraph.tiles, 1);
+				if ((SceneGraph.tileRenderFlags[Player.currentLevel][level][tileZ] & 0x4) != 0) {
+					calculateVisibleRegion(false, level, tileZ, SceneGraph.tiles, 1);
 					break;
 				}
 				local186 += local192;
 				if (local186 >= 65536) {
-					if (playerX > local33) {
-						local33++;
-					} else if (playerX < local33) {
-						local33--;
+					if (playerX > level) {
+						level++;
+					} else if (playerX < level) {
+						level--;
 					}
 					local186 -= 65536;
-					if ((SceneGraph.renderFlags[Player.currentLevel][local33][local40] & 0x4) != 0) {
-						calculateVisibleRegion(false, local33, local40, SceneGraph.tiles, 1);
+					if ((SceneGraph.tileRenderFlags[Player.currentLevel][level][tileZ] & 0x4) != 0) {
+						calculateVisibleRegion(false, level, tileZ, SceneGraph.tiles, 1);
 						break;
 					}
 				}
@@ -6139,26 +6159,26 @@ public final class ClientScriptRunner {
 		}
 		local186 = 32768;
 		local192 = deltaZ * 65536 / deltaX;
-		while (playerX != local33) {
-			if (playerX > local33) {
-				local33++;
-			} else if (local33 > playerX) {
-				local33--;
+		while (playerX != level) {
+			if (playerX > level) {
+				level++;
+			} else if (level > playerX) {
+				level--;
 			}
-			if ((SceneGraph.renderFlags[Player.currentLevel][local33][local40] & 0x4) != 0) {
-				calculateVisibleRegion(false, local33, local40, SceneGraph.tiles, 1);
+			if ((SceneGraph.tileRenderFlags[Player.currentLevel][level][tileZ] & 0x4) != 0) {
+				calculateVisibleRegion(false, level, tileZ, SceneGraph.tiles, 1);
 				break;
 			}
 			local186 += local192;
 			if (local186 >= 65536) {
-				if (local40 < playerZ) {
-					local40++;
-				} else if (playerZ < local40) {
-					local40--;
+				if (tileZ < playerZ) {
+					tileZ++;
+				} else if (playerZ < tileZ) {
+					tileZ--;
 				}
 				local186 -= 65536;
-				if ((SceneGraph.renderFlags[Player.currentLevel][local33][local40] & 0x4) != 0) {
-					calculateVisibleRegion(false, local33, local40, SceneGraph.tiles, 1);
+				if ((SceneGraph.tileRenderFlags[Player.currentLevel][level][tileZ] & 0x4) != 0) {
+					calculateVisibleRegion(false, level, tileZ, SceneGraph.tiles, 1);
 					break;
 				}
 			}
@@ -6166,7 +6186,7 @@ public final class ClientScriptRunner {
 	}
 
 	@OriginalMember(owner = "runetek4.client!lf", name = "a", descriptor = "(I)V")
-	public static void method2742() {
+	public static void setLoadingState() {
 		if (Client.gameState == 10 && GlRenderer.enabled) {
 			Client.processGameStatus(28);
 		}
@@ -6204,7 +6224,7 @@ public final class ClientScriptRunner {
 			menuY = 0;
 		}
 		if (MiniMenu.menuState == 1) {
-			if (scriptMouseX == Mouse.lastClickX && Mouse.lastClickY == scriptMouseY) {
+			if (scriptMouseX == Mouse.anInt5850 && Mouse.anInt5895 == scriptMouseY) {
 				InterfaceManager.menuHeight = MiniMenu.menuActionRow * 15 + (InterfaceManager.hasScrollbar ? 26 : 22);
 				MiniMenu.menuState = 0;
 				InterfaceManager.menuY = menuY;
@@ -6212,7 +6232,7 @@ public final class ClientScriptRunner {
 				MiniMenu.open = true;
 				InterfaceManager.menuWidth = maxWidth;
 			}
-		} else if (scriptMouseX == Mouse.mouseClickX && scriptMouseY == Mouse.mouseClickY) {
+		} else if (scriptMouseX == Mouse.clickX && scriptMouseY == Mouse.clickY) {
 			InterfaceManager.menuX = local27;
 			MiniMenu.menuState = 0;
 			InterfaceManager.menuWidth = maxWidth;
@@ -6220,8 +6240,8 @@ public final class ClientScriptRunner {
 			InterfaceManager.menuHeight = (InterfaceManager.hasScrollbar ? 26 : 22) + MiniMenu.menuActionRow * 15;
 			MiniMenu.open = true;
 		} else {
-			Mouse.lastClickY = Mouse.mouseClickY;
-			Mouse.lastClickX = Mouse.mouseClickX;
+			Mouse.anInt5895 = Mouse.clickY;
+			Mouse.anInt5850 = Mouse.clickX;
 			MiniMenu.menuState = 1;
 		}
 	}
@@ -6242,7 +6262,7 @@ public final class ClientScriptRunner {
 	}
 
 	@OriginalMember(owner = "client!fn", name = "c", descriptor = "(II)V")
-	public static void executeOnLoad(@OriginalArg(0) int interfaceId) {
+	public static void runHooks(@OriginalArg(0) int interfaceId) {
 		if (interfaceId == -1 || !InterfaceList.load(interfaceId)) {
 			return;
 		}

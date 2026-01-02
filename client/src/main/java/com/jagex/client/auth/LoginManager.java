@@ -202,14 +202,14 @@ public class LoginManager {
     public static void method1841() {
         if (!MiniMenu.open) {
             if (MiniMenu.menuState != 0) {
-                ClientScriptRunner.scriptMouseX = Mouse.lastClickX;
-                ClientScriptRunner.scriptMouseY = Mouse.lastClickY;
+                ClientScriptRunner.scriptMouseX = Mouse.anInt5850;
+                ClientScriptRunner.scriptMouseY = Mouse.anInt5895;
             } else if (Mouse.clickButton == 0) {
                 ClientScriptRunner.scriptMouseX = Mouse.lastMouseX;
                 ClientScriptRunner.scriptMouseY = Mouse.lastMouseY;
             } else {
-                ClientScriptRunner.scriptMouseX = Mouse.mouseClickX;
-                ClientScriptRunner.scriptMouseY = Mouse.mouseClickY;
+                ClientScriptRunner.scriptMouseX = Mouse.clickX;
+                ClientScriptRunner.scriptMouseY = Mouse.clickY;
             }
             MiniMenu.menuActionRow = 1;
             InterfaceManager.ops[0] = LocalizedText.CANCEL;

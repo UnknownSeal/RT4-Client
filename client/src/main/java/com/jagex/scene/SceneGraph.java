@@ -58,7 +58,7 @@ import static com.jagex.game.camera.CameraMode.MODE_SPLINE;
 
 public class SceneGraph {
     @OriginalMember(owner = "client!bb", name = "g", descriptor = "[[[B")
-    public static final byte[][][] renderFlags = new byte[4][104][104];
+    public static final byte[][][] tileRenderFlags = new byte[4][104][104];
 
     @OriginalMember(owner = "runetek4.client!rj", name = "U", descriptor = "Lclient!ih;")
     public static final LinkedList projectiles = new LinkedList();
@@ -280,10 +280,10 @@ public class SceneGraph {
     public static int randomLightOffsetZ = (int) (Math.random() * 33.0D) - 16;
 
     @OriginalMember(owner = "runetek4.client!rj", name = "R", descriptor = "I")
-    public static int eyeZ;
+    public static int cameraZ;
 
     @OriginalMember(owner = "runetek4.client!pi", name = "U", descriptor = "I")
-    public static int eyeTileZ;
+    public static int cameraTileZ;
 
     @OriginalMember(owner = "runetek4.client!sk", name = "mb", descriptor = "I")
     public static int sinPitch;
@@ -316,13 +316,13 @@ public class SceneGraph {
     public static int[] screenDepth;
 
     @OriginalMember(owner = "runetek4.client!ml", name = "K", descriptor = "I")
-    public static int eyeY;
+    public static int cameraY;
 
     @OriginalMember(owner = "runetek4.client!nd", name = "s", descriptor = "I")
     public static int eyeTileX;
 
     @OriginalMember(owner = "runetek4.client!lj", name = "B", descriptor = "I")
-    public static int eyeX;
+    public static int cameraX;
 
     @OriginalMember(owner = "runetek4.client!tb", name = "Q", descriptor = "I")
     public static int frameCounter = 0;
@@ -420,7 +420,7 @@ public class SceneGraph {
         @Pc(36) int xOffset = xFine & 0x7F;
         @Pc(40) int zOffset = zFine & 0x7F;
         @Pc(42) int virtualLevel = level;
-        if (level < 3 && (renderFlags[1][tileX][tileZ] & 0x2) == 2) {
+        if (level < 3 && (tileRenderFlags[1][tileX][tileZ] & 0x2) == 2) {
             virtualLevel = level + 1;
         }
         @Pc(91) int interpolatedHeightNorth = xOffset * tileHeights[virtualLevel][tileX + 1][tileZ + 1] + tileHeights[virtualLevel][tileX][tileZ + 1] * (128 - xOffset) >> 7;
@@ -434,9 +434,9 @@ public class SceneGraph {
             return;
         }
         @Pc(39) int renderPlane;
-        if (!allLevelsAreVisible() && (renderFlags[0][x][z] & 0x2) == 0) {
+        if (!allLevelsAreVisible() && (tileRenderFlags[0][x][z] & 0x2) == 0) {
             renderPlane = plane;
-            if ((renderFlags[plane][x][z] & 0x8) != 0) {
+            if ((tileRenderFlags[plane][x][z] & 0x8) != 0) {
                 renderPlane = 0;
             }
             if (renderPlane != centralPlane) {
@@ -444,7 +444,7 @@ public class SceneGraph {
             }
         }
         renderPlane = plane;
-        if (plane < 3 && (renderFlags[1][x][z] & 0x2) == 2) {
+        if (plane < 3 && (tileRenderFlags[1][x][z] & 0x2) == 2) {
             renderPlane = plane + 1;
         }
         removeLocWithCollision(z, x, plane, layer, renderPlane, PathFinder.collisionMaps[plane]);
@@ -495,7 +495,7 @@ public class SceneGraph {
         for (@Pc(9) int plane = 0; plane < 3; plane++) {
             @Pc(30) Tile tile = tiles[plane][x][z] = tiles[plane + 1][x][z];
             if (tile != null) {
-                tile.sceneX--;
+                tile.level--;
                 for (@Pc(40) int sceneryIndex = 0; sceneryIndex < tile.sceneryLen; sceneryIndex++) {
                     @Pc(49) Scenery scenery = tile.scenery[sceneryIndex];
                     if ((scenery.key >> 29 & 0x3L) == 2L && scenery.xMin == x && scenery.zMin == z) {
@@ -540,7 +540,7 @@ public class SceneGraph {
                     @Pc(90) CollisionMap collisionMap = null;
                     if (!highmem) {
                         @Pc(95) int collisionLevel = level;
-                        if ((renderFlags[1][x][z] & 0x2) == 2) {
+                        if ((tileRenderFlags[1][x][z] & 0x2) == 2) {
                             collisionLevel = level - 1;
                         }
                         if (collisionLevel >= 0) {
@@ -620,9 +620,9 @@ public class SceneGraph {
             for (lightLevel = 0; lightLevel < 4; lightLevel++) {
                 for (tileX = 0; tileX < 104; tileX++) {
                     for (@Pc(22) int tileZ = 0; tileZ < 104; tileZ++) {
-                        if ((renderFlags[lightLevel][tileX][tileZ] & 0x1) == 1) {
+                        if ((tileRenderFlags[lightLevel][tileX][tileZ] & 0x1) == 1) {
                             @Pc(43) int collisionLevel = lightLevel;
-                            if ((renderFlags[1][tileX][tileZ] & 0x2) == 2) {
+                            if ((tileRenderFlags[1][tileX][tileZ] & 0x2) == 2) {
                                 collisionLevel = lightLevel - 1;
                             }
                             if (collisionLevel >= 0) {
@@ -784,7 +784,7 @@ public class SceneGraph {
             }
             for (z = 1; z < 103; z++) {
                 waterCheckLoop: for (x = 1; x < 103; x++) {
-                    if (underwater || allLevelsAreVisible() || (renderFlags[0][z][x] & 0x2) != 0 || (renderFlags[level][z][x] & 0x10) == 0 && getRenderLevel(x, z, level) == centralPlane) {
+                    if (underwater || allLevelsAreVisible() || (tileRenderFlags[0][z][x] & 0x2) != 0 || (tileRenderFlags[level][z][x] & 0x10) == 0 && getRenderLevel(x, z, level) == centralPlane) {
                         if (firstVisibleLevel > level) {
                             firstVisibleLevel = level;
                         }
@@ -926,12 +926,12 @@ public class SceneGraph {
                     if (lightValue > 103) {
                         @Pc(2025) GlTile[] baseTiles;
                         if (underwater) {
-                            baseTiles = buildGlTiles(renderFlags, tileShapes[level], tileUnderlays[level], levelLightMap, normalYMap, tileColorBuffers, tileOverlays[level], tileAngles[level], normalXMap, level, normalZMap, underlayColorMap, tileHeights[level], surfaceTileHeights[0]);
+                            baseTiles = buildGlTiles(tileRenderFlags, tileShapes[level], tileUnderlays[level], levelLightMap, normalYMap, tileColorBuffers, tileOverlays[level], tileAngles[level], normalXMap, level, normalZMap, underlayColorMap, tileHeights[level], surfaceTileHeights[0]);
                             setUnderwaterHdTiles(level, baseTiles);
                             break;
                         }
-                        baseTiles = buildGlTiles(renderFlags, tileShapes[level], tileUnderlays[level], levelLightMap, normalYMap, null, tileOverlays[level], tileAngles[level], normalXMap, level, normalZMap, underlayColorMap, tileHeights[level], null);
-                        @Pc(2049) GlTile[] additionalTiles = buildUnderwaterGlTiles(normalYMap, normalXMap, tileHeights[level], level, normalZMap, tileAngles[level], levelLightMap, tileShapes[level], tileUnderlays[level], tileOverlays[level], renderFlags);
+                        baseTiles = buildGlTiles(tileRenderFlags, tileShapes[level], tileUnderlays[level], levelLightMap, normalYMap, null, tileOverlays[level], tileAngles[level], normalXMap, level, normalZMap, underlayColorMap, tileHeights[level], null);
+                        @Pc(2049) GlTile[] additionalTiles = buildUnderwaterGlTiles(normalYMap, normalXMap, tileHeights[level], level, normalZMap, tileAngles[level], levelLightMap, tileShapes[level], tileUnderlays[level], tileOverlays[level], tileRenderFlags);
                         @Pc(2057) GlTile[] combinedTiles = new GlTile[baseTiles.length + additionalTiles.length];
                         for (len = 0; len < baseTiles.length; len++) {
                             combinedTiles[len] = baseTiles[len];
@@ -967,7 +967,7 @@ public class SceneGraph {
         @Pc(2204) int coord;
         for (level = 0; level < 104; level++) {
             for (coord = 0; coord < 104; coord++) {
-                if ((renderFlags[1][level][coord] & 0x2) == 2) {
+                if ((tileRenderFlags[1][level][coord] & 0x2) == 2) {
                     method3884(level, coord);
                 }
             }
@@ -1137,8 +1137,8 @@ public class SceneGraph {
 
     @OriginalMember(owner = "runetek4.client!p", name = "a", descriptor = "(IZIZLclient!mj;IIIBII)V")
     public static void addLoc(@OriginalArg(0) int currentlevel, @OriginalArg(1) boolean lowmem, @OriginalArg(2) int level, @OriginalArg(3) boolean highmem, @OriginalArg(4) CollisionMap collision, @OriginalArg(5) int locId, @OriginalArg(6) int shape, @OriginalArg(7) int x, @OriginalArg(9) int z, @OriginalArg(10) int rotation) {
-        if (lowmem && !allLevelsAreVisible() && (renderFlags[0][x][z] & 0x2) == 0) {
-            if ((renderFlags[level][x][z] & 0x10) != 0) {
+        if (lowmem && !allLevelsAreVisible() && (tileRenderFlags[0][x][z] & 0x2) == 0) {
+            if ((tileRenderFlags[level][x][z] & 0x10) != 0) {
                 return;
             }
             if (getRenderLevel(z, x, level) != centralPlane) {
@@ -1737,16 +1737,16 @@ public class SceneGraph {
                 } while (lightCount <= 0);
                 for (startX = 0; startX < lightCount; startX++) {
                     @Pc(529) Light light = new Light(packet);
-                    if (light.anInt2243 == 31) {
+                    if (light.lightType == 31) {
                         @Pc(541) LightType lightType = LightTypeList.get(packet.g2());
-                        light.method1762(lightType.anInt2865, lightType.anInt2873, lightType.anInt2867, lightType.anInt2872);
+                        light.setUpLightType(lightType.flickerType, lightType.lightType, lightType.alphaMin, lightType.alphaMax);
                     }
                     light.z += baseZ << 7;
                     light.x += baseX << 7;
                     endZ = light.z >> 7;
                     startZ = light.x >> 7;
                     if (startZ >= 0 && endZ >= 0 && startZ < 104 && endZ < 104) {
-                        light.aBoolean125 = (renderFlags[1][startZ][endZ] & 0x2) != 0;
+                        light.aBoolean125 = (tileRenderFlags[1][startZ][endZ] & 0x2) != 0;
                         light.y = tileHeights[light.level][startZ][endZ] - light.y;
                         LightingManager.method2389(light);
                     }
@@ -1909,7 +1909,7 @@ public class SceneGraph {
             return;
         }
         if (!isDynamic) {
-            renderFlags[level][x][z] = 0;
+            tileRenderFlags[level][x][z] = 0;
         }
         while (true) {
             opcode = packet.g1();
@@ -1946,7 +1946,7 @@ public class SceneGraph {
             } else if (opcode > 81) {
                 tileUnderlays[level][x][z] = (byte) (opcode - 81);
             } else if (!isDynamic) {
-                renderFlags[level][x][z] = (byte) (opcode - 49);
+                tileRenderFlags[level][x][z] = (byte) (opcode - 49);
             }
         }
     }
@@ -2532,10 +2532,10 @@ public class SceneGraph {
                                                     return;
                                                 }
                                             } while (!tile.bridgeAbove);
-                                            tileX = tile.localZ;
-                                            tileZ = tile.plane;
-                                            plane = tile.sceneX;
-                                            occlusionLevel = tile.localX;
+                                            tileX = tile.x;
+                                            tileZ = tile.z;
+                                            plane = tile.level;
+                                            occlusionLevel = tile.plane;
                                             tiles = SceneGraph.tiles[plane];
                                             @Pc(33) float local33 = 0.0F;
                                             if (GlRenderer.enabled) {
@@ -2571,25 +2571,25 @@ public class SceneGraph {
                                                         continue;
                                                     }
                                                 }
-                                                if (tileX <= eyeTileX && tileX > LightingManager.anInt987) {
+                                                if (tileX <= eyeTileX && tileX > LightingManager.minimumVisibleX) {
                                                     checkTile = tiles[tileX - 1][tileZ];
                                                     if (checkTile != null && checkTile.bridgeAbove && (checkTile.hasObjects || (tile.combinedFlags & 0x1) == 0)) {
                                                         continue;
                                                     }
                                                 }
-                                                if (tileX >= eyeTileX && tileX < LightingManager.anInt15 - 1) {
+                                                if (tileX >= eyeTileX && tileX < LightingManager.maximumVisibleX - 1) {
                                                     checkTile = tiles[tileX + 1][tileZ];
                                                     if (checkTile != null && checkTile.bridgeAbove && (checkTile.hasObjects || (tile.combinedFlags & 0x4) == 0)) {
                                                         continue;
                                                     }
                                                 }
-                                                if (tileZ <= eyeTileZ && tileZ > LightingManager.anInt4698) {
+                                                if (tileZ <= cameraTileZ && tileZ > LightingManager.minimumVisibleZ) {
                                                     checkTile = tiles[tileX][tileZ - 1];
                                                     if (checkTile != null && checkTile.bridgeAbove && (checkTile.hasObjects || (tile.combinedFlags & 0x8) == 0)) {
                                                         continue;
                                                     }
                                                 }
-                                                if (tileZ >= eyeTileZ && tileZ < LightingManager.anInt4866 - 1) {
+                                                if (tileZ >= cameraTileZ && tileZ < LightingManager.maximumVisibleZ - 1) {
                                                     checkTile = tiles[tileX][tileZ + 1];
                                                     if (checkTile != null && checkTile.bridgeAbove && (checkTile.hasObjects || (tile.combinedFlags & 0x2) == 0)) {
                                                         continue;
@@ -2602,7 +2602,7 @@ public class SceneGraph {
                                             if (tile.bridgeTile != null) {
                                                 checkTile = tile.bridgeTile;
                                                 if (GlRenderer.enabled) {
-                                                    GlRenderer.method4159(201.5F - (float) (checkTile.localX + 1) * 50.0F);
+                                                    GlRenderer.method4159(201.5F - (float) (checkTile.plane + 1) * 50.0F);
                                                 }
                                                 if (checkTile.plainTile == null) {
                                                     if (checkTile.shapedTile != null) {
@@ -2621,20 +2621,20 @@ public class SceneGraph {
                                                 if (var22 != null) {
                                                     if (GlRenderer.enabled) {
                                                         if ((var22.typeA & tile.backWallFlags) == 0) {
-                                                            LightingManager.method2393(eyeX, eyeY, eyeZ, plane, tileX, tileZ);
+                                                            LightingManager.method2393(cameraX, cameraY, cameraZ, plane, tileX, tileZ);
                                                         } else {
-                                                            LightingManager.method2388(var22.typeA, eyeX, eyeY, eyeZ, occlusionLevel, tileX, tileZ);
+                                                            LightingManager.method2388(var22.typeA, cameraX, cameraY, cameraZ, occlusionLevel, tileX, tileZ);
                                                         }
                                                     }
-                                                    var22.primary.render(0, sinYaw, cosYaw, sinPitch, cosPitch, var22.xFine - eyeX, var22.yFine - eyeY, var22.zFine - eyeZ, var22.key, plane, null);
+                                                    var22.primary.render(0, sinYaw, cosYaw, sinPitch, cosPitch, var22.xFine - cameraX, var22.yFine - cameraY, var22.zFine - cameraZ, var22.key, plane, null);
                                                 }
                                                 for (frontWallTypes = 0; frontWallTypes < checkTile.sceneryLen; frontWallTypes++) {
                                                     scenery = checkTile.scenery[frontWallTypes];
                                                     if (scenery != null) {
                                                         if (GlRenderer.enabled) {
-                                                            LightingManager.method2393(eyeX, eyeY, eyeZ, plane, tileX, tileZ);
+                                                            LightingManager.method2393(cameraX, cameraY, cameraZ, plane, tileX, tileZ);
                                                         }
-                                                        scenery.entity.render(scenery.animationId, sinYaw, cosYaw, sinPitch, cosPitch, scenery.yMin - eyeX, scenery.type - eyeY, scenery.yMax - eyeZ, scenery.key, plane, null);
+                                                        scenery.entity.render(scenery.animationId, sinYaw, cosYaw, sinPitch, cosPitch, scenery.yMin - cameraX, scenery.type - cameraY, scenery.yMax - cameraZ, scenery.key, plane, null);
                                                     }
                                                 }
                                                 if (GlRenderer.enabled) {
@@ -2666,9 +2666,9 @@ public class SceneGraph {
                                                         GlRenderer.method4159(local33 + 50.0F - 1.5F);
                                                     }
                                                     if (GlRenderer.enabled) {
-                                                        LightingManager.method2393(eyeX, eyeY, eyeZ, plane, tileX, tileZ);
+                                                        LightingManager.method2393(cameraX, cameraY, cameraZ, plane, tileX, tileZ);
                                                     }
-                                                    groundDecor.entity.render(0, sinYaw, cosYaw, sinPitch, cosPitch, groundDecor.xFine - eyeX, groundDecor.yFine - eyeY, groundDecor.zFine - eyeZ, groundDecor.key, plane, null);
+                                                    groundDecor.entity.render(0, sinYaw, cosYaw, sinPitch, cosPitch, groundDecor.xFine - cameraX, groundDecor.yFine - cameraY, groundDecor.zFine - cameraZ, groundDecor.key, plane, null);
                                                     if (GlRenderer.enabled && groundDecor.interactive) {
                                                         GlRenderer.method4159(local33);
                                                     }
@@ -2684,9 +2684,9 @@ public class SceneGraph {
                                                 } else if (eyeTileX < tileX) {
                                                     viewDirection += 2;
                                                 }
-                                                if (eyeTileZ == tileZ) {
+                                                if (cameraTileZ == tileZ) {
                                                     viewDirection += 3;
-                                                } else if (eyeTileZ > tileZ) {
+                                                } else if (cameraTileZ > tileZ) {
                                                     viewDirection += 6;
                                                 }
                                                 frontWallTypes = FRONT_WALL_TYPES[viewDirection];
@@ -2714,15 +2714,15 @@ public class SceneGraph {
                                                 }
                                                 if ((wall.typeA & frontWallTypes) != 0 && !wallVisible(occlusionLevel, tileX, tileZ, wall.typeA)) {
                                                     if (GlRenderer.enabled) {
-                                                        LightingManager.method2393(eyeX, eyeY, eyeZ, plane, tileX, tileZ);
+                                                        LightingManager.method2393(cameraX, cameraY, cameraZ, plane, tileX, tileZ);
                                                     }
-                                                    wall.primary.render(0, sinYaw, cosYaw, sinPitch, cosPitch, wall.xFine - eyeX, wall.yFine - eyeY, wall.zFine - eyeZ, wall.key, plane, null);
+                                                    wall.primary.render(0, sinYaw, cosYaw, sinPitch, cosPitch, wall.xFine - cameraX, wall.yFine - cameraY, wall.zFine - cameraZ, wall.key, plane, null);
                                                 }
                                                 if ((wall.typeB & frontWallTypes) != 0 && !wallVisible(occlusionLevel, tileX, tileZ, wall.typeB)) {
                                                     if (GlRenderer.enabled) {
-                                                        LightingManager.method2393(eyeX, eyeY, eyeZ, plane, tileX, tileZ);
+                                                        LightingManager.method2393(cameraX, cameraY, cameraZ, plane, tileX, tileZ);
                                                     }
-                                                    wall.secondary.render(0, sinYaw, cosYaw, sinPitch, cosPitch, wall.xFine - eyeX, wall.yFine - eyeY, wall.zFine - eyeZ, wall.key, plane, null);
+                                                    wall.secondary.render(0, sinYaw, cosYaw, sinPitch, cosPitch, wall.xFine - cameraX, wall.yFine - cameraY, wall.zFine - cameraZ, wall.key, plane, null);
                                                 }
                                             }
                                             if (wallDecor != null && !visible(occlusionLevel, tileX, tileZ, wallDecor.primary.getMinY())) {
@@ -2731,13 +2731,13 @@ public class SceneGraph {
                                                 }
                                                 if ((wallDecor.type & frontWallTypes) != 0) {
                                                     if (GlRenderer.enabled) {
-                                                        LightingManager.method2393(eyeX, eyeY, eyeZ, plane, tileX, tileZ);
+                                                        LightingManager.method2393(cameraX, cameraY, cameraZ, plane, tileX, tileZ);
                                                     }
-                                                    wallDecor.primary.render(0, sinYaw, cosYaw, sinPitch, cosPitch, wallDecor.xFine + wallDecor.xOffset - eyeX, wallDecor.yOffset - eyeY, wallDecor.zFine + wallDecor.zOffset - eyeZ, wallDecor.key, plane, null);
+                                                    wallDecor.primary.render(0, sinYaw, cosYaw, sinPitch, cosPitch, wallDecor.xFine + wallDecor.xOffset - cameraX, wallDecor.yOffset - cameraY, wallDecor.zFine + wallDecor.zOffset - cameraZ, wallDecor.key, plane, null);
                                                 } else if (wallDecor.type == 256) {
-                                                    x = wallDecor.xFine - eyeX;
-                                                    y = wallDecor.yOffset - eyeY;
-                                                    z = wallDecor.zFine - eyeZ;
+                                                    x = wallDecor.xFine - cameraX;
+                                                    y = wallDecor.yOffset - cameraY;
+                                                    z = wallDecor.zFine - cameraZ;
                                                     wallRotation = wallDecor.yFine;
                                                     if (wallRotation == 1 || wallRotation == 2) {
                                                         adjustedX = -x;
@@ -2752,12 +2752,12 @@ public class SceneGraph {
                                                     }
                                                     if (adjustedZ < adjustedX) {
                                                         if (GlRenderer.enabled) {
-                                                            LightingManager.method2393(eyeX, eyeY, eyeZ, plane, tileX, tileZ);
+                                                            LightingManager.method2393(cameraX, cameraY, cameraZ, plane, tileX, tileZ);
                                                         }
                                                         wallDecor.primary.render(0, sinYaw, cosYaw, sinPitch, cosPitch, x + wallDecor.xOffset, y, z + wallDecor.zOffset, wallDecor.key, plane, null);
                                                     } else if (wallDecor.secondary != null) {
                                                         if (GlRenderer.enabled) {
-                                                            LightingManager.method2393(eyeX, eyeY, eyeZ, plane, tileX, tileZ);
+                                                            LightingManager.method2393(cameraX, cameraY, cameraZ, plane, tileX, tileZ);
                                                         }
                                                         wallDecor.secondary.render(0, sinYaw, cosYaw, sinPitch, cosPitch, x, y, z, wallDecor.key, plane, null);
                                                     }
@@ -2773,9 +2773,9 @@ public class SceneGraph {
                                                         GlRenderer.method4159(local33 + 50.0F - 1.5F);
                                                     }
                                                     if (GlRenderer.enabled) {
-                                                        LightingManager.method2393(eyeX, eyeY, eyeZ, plane, tileX, tileZ);
+                                                        LightingManager.method2393(cameraX, cameraY, cameraZ, plane, tileX, tileZ);
                                                     }
-                                                    groundDecor.entity.render(0, sinYaw, cosYaw, sinPitch, cosPitch, groundDecor.xFine - eyeX, groundDecor.yFine - eyeY, groundDecor.zFine - eyeZ, groundDecor.key, plane, null);
+                                                    groundDecor.entity.render(0, sinYaw, cosYaw, sinPitch, cosPitch, groundDecor.xFine - cameraX, groundDecor.yFine - cameraY, groundDecor.zFine - cameraZ, groundDecor.key, plane, null);
                                                     if (GlRenderer.enabled && groundDecor.interactive) {
                                                         GlRenderer.method4159(local33);
                                                     }
@@ -2783,16 +2783,16 @@ public class SceneGraph {
                                                 @Pc(1064) ObjStackEntity objs = tile.objStack;
                                                 if (objs != null && objs.offset == 0) {
                                                     if (GlRenderer.enabled) {
-                                                        LightingManager.method2393(eyeX, eyeY, eyeZ, plane, tileX, tileZ);
+                                                        LightingManager.method2393(cameraX, cameraY, cameraZ, plane, tileX, tileZ);
                                                     }
                                                     if (objs.secondary != null) {
-                                                        objs.secondary.render(0, sinYaw, cosYaw, sinPitch, cosPitch, objs.xFine - eyeX, objs.anInt3057 - eyeY, objs.zFine - eyeZ, objs.key, plane, null);
+                                                        objs.secondary.render(0, sinYaw, cosYaw, sinPitch, cosPitch, objs.xFine - cameraX, objs.anInt3057 - cameraY, objs.zFine - cameraZ, objs.key, plane, null);
                                                     }
                                                     if (objs.tertiary != null) {
-                                                        objs.tertiary.render(0, sinYaw, cosYaw, sinPitch, cosPitch, objs.xFine - eyeX, objs.anInt3057 - eyeY, objs.zFine - eyeZ, objs.key, plane, null);
+                                                        objs.tertiary.render(0, sinYaw, cosYaw, sinPitch, cosPitch, objs.xFine - cameraX, objs.anInt3057 - cameraY, objs.zFine - cameraZ, objs.key, plane, null);
                                                     }
                                                     if (objs.primary != null) {
-                                                        objs.primary.render(0, sinYaw, cosYaw, sinPitch, cosPitch, objs.xFine - eyeX, objs.anInt3057 - eyeY, objs.zFine - eyeZ, objs.key, plane, null);
+                                                        objs.primary.render(0, sinYaw, cosYaw, sinPitch, cosPitch, objs.xFine - cameraX, objs.anInt3057 - cameraY, objs.zFine - cameraZ, objs.key, plane, null);
                                                     }
                                                 }
                                             }
@@ -2804,7 +2804,7 @@ public class SceneGraph {
                                                         drawTileQueue.push(adjacentTile);
                                                     }
                                                 }
-                                                if (tileZ < eyeTileZ && (x & 0x2) != 0) {
+                                                if (tileZ < cameraTileZ && (x & 0x2) != 0) {
                                                     adjacentTile = tiles[tileX][tileZ + 1];
                                                     if (adjacentTile != null && adjacentTile.bridgeAbove) {
                                                         drawTileQueue.push(adjacentTile);
@@ -2816,7 +2816,7 @@ public class SceneGraph {
                                                         drawTileQueue.push(adjacentTile);
                                                     }
                                                 }
-                                                if (tileZ > eyeTileZ && (x & 0x8) != 0) {
+                                                if (tileZ > cameraTileZ && (x & 0x8) != 0) {
                                                     adjacentTile = tiles[tileX][tileZ - 1];
                                                     if (adjacentTile != null && adjacentTile.bridgeAbove) {
                                                         drawTileQueue.push(adjacentTile);
@@ -2839,43 +2839,43 @@ public class SceneGraph {
                                                     if (GlRenderer.enabled) {
                                                         label882: {
                                                             if ((var22.key & 0xFC000L) == 16384L) {
-                                                                frontWallTypes = var22.xFine - eyeX;
-                                                                farthestIndex = var22.zFine - eyeZ;
+                                                                frontWallTypes = var22.xFine - cameraX;
+                                                                farthestIndex = var22.zFine - cameraZ;
                                                                 tempValue = (int) (var22.key >> 20 & 0x3L);
                                                                 if (tempValue == 0) {
                                                                     frontWallTypes -= 64;
                                                                     farthestIndex += 64;
                                                                     if (farthestIndex < frontWallTypes && tileX > 0 && tileZ < length - 1) {
-                                                                        LightingManager.method2393(eyeX, eyeY, eyeZ, plane, tileX - 1, tileZ + 1);
+                                                                        LightingManager.method2393(cameraX, cameraY, cameraZ, plane, tileX - 1, tileZ + 1);
                                                                         break label882;
                                                                     }
                                                                 } else if (tempValue == 1) {
                                                                     frontWallTypes += 64;
                                                                     farthestIndex += 64;
                                                                     if (farthestIndex < -frontWallTypes && tileX < width - 1 && tileZ < length - 1) {
-                                                                        LightingManager.method2393(eyeX, eyeY, eyeZ, plane, tileX + 1, tileZ + 1);
+                                                                        LightingManager.method2393(cameraX, cameraY, cameraZ, plane, tileX + 1, tileZ + 1);
                                                                         break label882;
                                                                     }
                                                                 } else if (tempValue == 2) {
                                                                     frontWallTypes += 64;
                                                                     farthestIndex -= 64;
                                                                     if (farthestIndex > frontWallTypes && tileX < width - 1 && tileZ > 0) {
-                                                                        LightingManager.method2393(eyeX, eyeY, eyeZ, plane, tileX + 1, tileZ - 1);
+                                                                        LightingManager.method2393(cameraX, cameraY, cameraZ, plane, tileX + 1, tileZ - 1);
                                                                         break label882;
                                                                     }
                                                                 } else if (tempValue == 3) {
                                                                     frontWallTypes -= 64;
                                                                     farthestIndex -= 64;
                                                                     if (farthestIndex > -frontWallTypes && tileX > 0 && tileZ > 0) {
-                                                                        LightingManager.method2393(eyeX, eyeY, eyeZ, plane, tileX - 1, tileZ - 1);
+                                                                        LightingManager.method2393(cameraX, cameraY, cameraZ, plane, tileX - 1, tileZ - 1);
                                                                         break label882;
                                                                     }
                                                                 }
                                                             }
-                                                            LightingManager.method2393(eyeX, eyeY, eyeZ, plane, tileX, tileZ);
+                                                            LightingManager.method2393(cameraX, cameraY, cameraZ, plane, tileX, tileZ);
                                                         }
                                                     }
-                                                    var22.primary.render(0, sinYaw, cosYaw, sinPitch, cosPitch, var22.xFine - eyeX, var22.yFine - eyeY, var22.zFine - eyeZ, var22.key, plane, null);
+                                                    var22.primary.render(0, sinYaw, cosYaw, sinPitch, cosPitch, var22.xFine - cameraX, var22.yFine - cameraY, var22.zFine - cameraZ, var22.key, plane, null);
                                                 }
                                                 tile.locCheckFlags = 0;
                                             }
@@ -2924,8 +2924,8 @@ public class SceneGraph {
                                                     if (x > tempValue) {
                                                         tempValue = x;
                                                     }
-                                                    y = eyeTileZ - scenery.zMin;
-                                                    z = scenery.zMax - eyeTileZ;
+                                                    y = cameraTileZ - scenery.zMin;
+                                                    z = scenery.zMax - cameraTileZ;
                                                     if (z > y) {
                                                         scenery.rotation = tempValue + z;
                                                     } else {
@@ -2943,10 +2943,10 @@ public class SceneGraph {
                                                             frontWallTypes = currentScenery.rotation;
                                                             farthestIndex = tempValue;
                                                         } else if (currentScenery.rotation == frontWallTypes) {
-                                                            y = currentScenery.yMin - eyeX;
-                                                            z = currentScenery.yMax - eyeZ;
-                                                            wallRotation = pickableEntities[farthestIndex].yMin - eyeX;
-                                                            adjustedX = pickableEntities[farthestIndex].yMax - eyeZ;
+                                                            y = currentScenery.yMin - cameraX;
+                                                            z = currentScenery.yMax - cameraZ;
+                                                            wallRotation = pickableEntities[farthestIndex].yMin - cameraX;
+                                                            adjustedX = pickableEntities[farthestIndex].yMax - cameraZ;
                                                             if (y * y + z * z > wallRotation * wallRotation + adjustedX * adjustedX) {
                                                                 farthestIndex = tempValue;
                                                             }
@@ -2961,9 +2961,9 @@ public class SceneGraph {
                                                 if (!isAreaVisible(occlusionLevel, selectedScenery.xMin, selectedScenery.xMax, selectedScenery.zMin, selectedScenery.zMax, selectedScenery.entity.getMinY())) {
                                                     if (GlRenderer.enabled) {
                                                         if ((selectedScenery.key & 0xFC000L) == 147456L) {
-                                                            LightingManager.method2393(eyeX, eyeY, eyeZ, plane, tileX, tileZ);
-                                                            x = selectedScenery.yMin - eyeX;
-                                                            y = selectedScenery.yMax - eyeZ;
+                                                            LightingManager.method2393(cameraX, cameraY, cameraZ, plane, tileX, tileZ);
+                                                            x = selectedScenery.yMin - cameraX;
+                                                            y = selectedScenery.yMax - cameraZ;
                                                             z = (int) (selectedScenery.key >> 20 & 0x3L);
                                                             if (z == 1 || z == 3) {
                                                                 if (y > -x) {
@@ -2977,10 +2977,10 @@ public class SceneGraph {
                                                                 LightingManager.method2397(plane, tileX, tileZ + 1, tileX - 1, tileZ);
                                                             }
                                                         } else {
-                                                            LightingManager.method2391(eyeX, eyeY, eyeZ, plane, selectedScenery.xMin, selectedScenery.zMin, selectedScenery.xMax, selectedScenery.zMax);
+                                                            LightingManager.method2391(cameraX, cameraY, cameraZ, plane, selectedScenery.xMin, selectedScenery.zMin, selectedScenery.xMax, selectedScenery.zMax);
                                                         }
                                                     }
-                                                    selectedScenery.entity.render(selectedScenery.animationId, sinYaw, cosYaw, sinPitch, cosPitch, selectedScenery.yMin - eyeX, selectedScenery.type - eyeY, selectedScenery.yMax - eyeZ, selectedScenery.key, plane, null);
+                                                    selectedScenery.entity.render(selectedScenery.animationId, sinYaw, cosYaw, sinPitch, cosPitch, selectedScenery.yMin - cameraX, selectedScenery.type - cameraY, selectedScenery.yMax - cameraZ, selectedScenery.key, plane, null);
                                                 }
                                                 for (x = selectedScenery.xMin; x <= selectedScenery.xMax; x++) {
                                                     for (y = selectedScenery.zMin; y <= selectedScenery.zMax; y++) {
@@ -3003,22 +3003,22 @@ public class SceneGraph {
                                     }
                                 } while (!tile.bridgeAbove);
                             } while (tile.locCheckFlags != 0);
-                            if (tileX > eyeTileX || tileX <= LightingManager.anInt987) {
+                            if (tileX > eyeTileX || tileX <= LightingManager.minimumVisibleX) {
                                 break;
                             }
                             checkTile = tiles[tileX - 1][tileZ];
                         } while (checkTile != null && checkTile.bridgeAbove);
-                        if (tileX < eyeTileX || tileX >= LightingManager.anInt15 - 1) {
+                        if (tileX < eyeTileX || tileX >= LightingManager.maximumVisibleX - 1) {
                             break;
                         }
                         checkTile = tiles[tileX + 1][tileZ];
                     } while (checkTile != null && checkTile.bridgeAbove);
-                    if (tileZ > eyeTileZ || tileZ <= LightingManager.anInt4698) {
+                    if (tileZ > cameraTileZ || tileZ <= LightingManager.minimumVisibleZ) {
                         break;
                     }
                     checkTile = tiles[tileX][tileZ - 1];
                 } while (checkTile != null && checkTile.bridgeAbove);
-                if (tileZ < eyeTileZ || tileZ >= LightingManager.anInt4866 - 1) {
+                if (tileZ < cameraTileZ || tileZ >= LightingManager.maximumVisibleZ - 1) {
                     break;
                 }
                 checkTile = tiles[tileX][tileZ + 1];
@@ -3028,16 +3028,16 @@ public class SceneGraph {
             @Pc(1999) ObjStackEntity objStack = tile.objStack;
             if (objStack != null && objStack.offset != 0) {
                 if (GlRenderer.enabled) {
-                    LightingManager.method2393(eyeX, eyeY, eyeZ, plane, tileX, tileZ);
+                    LightingManager.method2393(cameraX, cameraY, cameraZ, plane, tileX, tileZ);
                 }
                 if (objStack.secondary != null) {
-                    objStack.secondary.render(0, sinYaw, cosYaw, sinPitch, cosPitch, objStack.xFine - eyeX, objStack.anInt3057 - eyeY - objStack.offset, objStack.zFine - eyeZ, objStack.key, plane, null);
+                    objStack.secondary.render(0, sinYaw, cosYaw, sinPitch, cosPitch, objStack.xFine - cameraX, objStack.anInt3057 - cameraY - objStack.offset, objStack.zFine - cameraZ, objStack.key, plane, null);
                 }
                 if (objStack.tertiary != null) {
-                    objStack.tertiary.render(0, sinYaw, cosYaw, sinPitch, cosPitch, objStack.xFine - eyeX, objStack.anInt3057 - eyeY - objStack.offset, objStack.zFine - eyeZ, objStack.key, plane, null);
+                    objStack.tertiary.render(0, sinYaw, cosYaw, sinPitch, cosPitch, objStack.xFine - cameraX, objStack.anInt3057 - cameraY - objStack.offset, objStack.zFine - cameraZ, objStack.key, plane, null);
                 }
                 if (objStack.primary != null) {
-                    objStack.primary.render(0, sinYaw, cosYaw, sinPitch, cosPitch, objStack.xFine - eyeX, objStack.anInt3057 - eyeY - objStack.offset, objStack.zFine - eyeZ, objStack.key, plane, null);
+                    objStack.primary.render(0, sinYaw, cosYaw, sinPitch, cosPitch, objStack.xFine - cameraX, objStack.anInt3057 - cameraY - objStack.offset, objStack.zFine - cameraZ, objStack.key, plane, null);
                 }
             }
             if (tile.backWallFlags != 0) {
@@ -3045,13 +3045,13 @@ public class SceneGraph {
                 if (wallDecor != null && !visible(occlusionLevel, tileX, tileZ, wallDecor.primary.getMinY())) {
                     if ((wallDecor.type & tile.backWallFlags) != 0) {
                         if (GlRenderer.enabled) {
-                            LightingManager.method2393(eyeX, eyeY, eyeZ, plane, tileX, tileZ);
+                            LightingManager.method2393(cameraX, cameraY, cameraZ, plane, tileX, tileZ);
                         }
-                        wallDecor.primary.render(0, sinYaw, cosYaw, sinPitch, cosPitch, wallDecor.xFine + wallDecor.xOffset - eyeX, wallDecor.yOffset - eyeY, wallDecor.zFine + wallDecor.zOffset - eyeZ, wallDecor.key, plane, null);
+                        wallDecor.primary.render(0, sinYaw, cosYaw, sinPitch, cosPitch, wallDecor.xFine + wallDecor.xOffset - cameraX, wallDecor.yOffset - cameraY, wallDecor.zFine + wallDecor.zOffset - cameraZ, wallDecor.key, plane, null);
                     } else if (wallDecor.type == 256) {
-                        frontWallTypes = wallDecor.xFine - eyeX;
-                        farthestIndex = wallDecor.yOffset - eyeY;
-                        tempValue = wallDecor.zFine - eyeZ;
+                        frontWallTypes = wallDecor.xFine - cameraX;
+                        farthestIndex = wallDecor.yOffset - cameraY;
+                        tempValue = wallDecor.zFine - cameraZ;
                         x = wallDecor.yFine;
                         if (x == 1 || x == 2) {
                             y = -frontWallTypes;
@@ -3065,12 +3065,12 @@ public class SceneGraph {
                         }
                         if (z >= y) {
                             if (GlRenderer.enabled) {
-                                LightingManager.method2393(eyeX, eyeY, eyeZ, plane, tileX, tileZ);
+                                LightingManager.method2393(cameraX, cameraY, cameraZ, plane, tileX, tileZ);
                             }
                             wallDecor.primary.render(0, sinYaw, cosYaw, sinPitch, cosPitch, frontWallTypes + wallDecor.xOffset, farthestIndex, tempValue + wallDecor.zOffset, wallDecor.key, plane, null);
                         } else if (wallDecor.secondary != null) {
                             if (GlRenderer.enabled) {
-                                LightingManager.method2393(eyeX, eyeY, eyeZ, plane, tileX, tileZ);
+                                LightingManager.method2393(cameraX, cameraY, cameraZ, plane, tileX, tileZ);
                             }
                             wallDecor.secondary.render(0, sinYaw, cosYaw, sinPitch, cosPitch, frontWallTypes, farthestIndex, tempValue, wallDecor.key, plane, null);
                         }
@@ -3080,15 +3080,15 @@ public class SceneGraph {
                 if (wall != null) {
                     if ((wall.typeB & tile.backWallFlags) != 0 && !wallVisible(occlusionLevel, tileX, tileZ, wall.typeB)) {
                         if (GlRenderer.enabled) {
-                            LightingManager.method2388(wall.typeB, eyeX, eyeY, eyeZ, occlusionLevel, tileX, tileZ);
+                            LightingManager.method2388(wall.typeB, cameraX, cameraY, cameraZ, occlusionLevel, tileX, tileZ);
                         }
-                        wall.secondary.render(0, sinYaw, cosYaw, sinPitch, cosPitch, wall.xFine - eyeX, wall.yFine - eyeY, wall.zFine - eyeZ, wall.key, plane, null);
+                        wall.secondary.render(0, sinYaw, cosYaw, sinPitch, cosPitch, wall.xFine - cameraX, wall.yFine - cameraY, wall.zFine - cameraZ, wall.key, plane, null);
                     }
                     if ((wall.typeA & tile.backWallFlags) != 0 && !wallVisible(occlusionLevel, tileX, tileZ, wall.typeA)) {
                         if (GlRenderer.enabled) {
-                            LightingManager.method2388(wall.typeA, eyeX, eyeY, eyeZ, occlusionLevel, tileX, tileZ);
+                            LightingManager.method2388(wall.typeA, cameraX, cameraY, cameraZ, occlusionLevel, tileX, tileZ);
                         }
-                        wall.primary.render(0, sinYaw, cosYaw, sinPitch, cosPitch, wall.xFine - eyeX, wall.yFine - eyeY, wall.zFine - eyeZ, wall.key, plane, null);
+                        wall.primary.render(0, sinYaw, cosYaw, sinPitch, cosPitch, wall.xFine - cameraX, wall.yFine - cameraY, wall.zFine - cameraZ, wall.key, plane, null);
                     }
                 }
             }
@@ -3105,7 +3105,7 @@ public class SceneGraph {
                     drawTileQueue.push(neighborTile);
                 }
             }
-            if (tileZ < eyeTileZ) {
+            if (tileZ < cameraTileZ) {
                 neighborTile = tiles[tileX][tileZ + 1];
                 if (neighborTile != null && neighborTile.bridgeAbove) {
                     drawTileQueue.push(neighborTile);
@@ -3117,7 +3117,7 @@ public class SceneGraph {
                     drawTileQueue.push(neighborTile);
                 }
             }
-            if (tileZ > eyeTileZ) {
+            if (tileZ > cameraTileZ) {
                 neighborTile = tiles[tileX][tileZ - 1];
                 if (neighborTile != null && neighborTile.bridgeAbove) {
                     drawTileQueue.push(neighborTile);
@@ -3150,7 +3150,7 @@ public class SceneGraph {
         @Pc(36) int cornerHeight = baseHeight - 238;
         if (wallType < 16) {
             if (wallType == 1) {
-                if (xFine > eyeX) {
+                if (xFine > cameraX) {
                     if (!isInOccluderBounds(xFine, baseHeight, zFine)) {
                         return false;
                     }
@@ -3175,7 +3175,7 @@ public class SceneGraph {
                 return true;
             }
             if (wallType == 2) {
-                if (zFine < eyeZ) {
+                if (zFine < cameraZ) {
                     if (!isInOccluderBounds(xFine, baseHeight, zFine + 128)) {
                         return false;
                     }
@@ -3200,7 +3200,7 @@ public class SceneGraph {
                 return true;
             }
             if (wallType == 4) {
-                if (xFine < eyeX) {
+                if (xFine < cameraX) {
                     if (!isInOccluderBounds(xFine + 128, baseHeight, zFine)) {
                         return false;
                     }
@@ -3225,7 +3225,7 @@ public class SceneGraph {
                 return true;
             }
             if (wallType == 8) {
-                if (zFine > eyeZ) {
+                if (zFine > cameraZ) {
                     if (!isInOccluderBounds(xFine, baseHeight, zFine)) {
                         return false;
                     }
@@ -3320,26 +3320,28 @@ public class SceneGraph {
         cosYaw = MathUtils.cos[yaw];
         sinPitch = MathUtils.sin[pitch];
         cosPitch = MathUtils.cos[pitch];
-        eyeX = x;
-        eyeY = y;
-        eyeZ = z;
+        cameraX = x;
+        cameraY = y;
+        cameraZ = z;
         eyeTileX = x / 128;
-        eyeTileZ = z / 128;
-        LightingManager.anInt987 = eyeTileX - visibility;
-        if (LightingManager.anInt987 < 0) {
-            LightingManager.anInt987 = 0;
+        cameraTileZ = z / 128;
+        LightingManager.minimumVisibleX = eyeTileX - visibility;
+
+
+        if (LightingManager.minimumVisibleX < 0) {
+            LightingManager.minimumVisibleX = 0;
         }
-        LightingManager.anInt4698 = eyeTileZ - visibility;
-        if (LightingManager.anInt4698 < 0) {
-            LightingManager.anInt4698 = 0;
+        LightingManager.minimumVisibleZ = cameraTileZ - visibility;
+        if (LightingManager.minimumVisibleZ < 0) {
+            LightingManager.minimumVisibleZ = 0;
         }
-        LightingManager.anInt15 = eyeTileX + visibility;
-        if (LightingManager.anInt15 > width) {
-            LightingManager.anInt15 = width;
+        LightingManager.maximumVisibleX = eyeTileX + visibility;
+        if (LightingManager.maximumVisibleX > width) {
+            LightingManager.maximumVisibleX = width;
         }
-        LightingManager.anInt4866 = eyeTileZ + visibility;
-        if (LightingManager.anInt4866 > length) {
-            LightingManager.anInt4866 = length;
+        LightingManager.maximumVisibleZ = cameraTileZ + visibility;
+        if (LightingManager.maximumVisibleZ > length) {
+            LightingManager.maximumVisibleZ = length;
         }
         @Pc(99) short viewDistance;
         if (GlRenderer.enabled) {
@@ -3351,18 +3353,18 @@ public class SceneGraph {
         @Pc(113) int tileZ;
         for (tileX = 0; tileX < visibility + visibility + 2; tileX++) {
             for (tileZ = 0; tileZ < visibility + visibility + 2; tileZ++) {
-                @Pc(130) int relativeX = (tileX - visibility << 7) - (eyeX & 0x7F);
-                @Pc(140) int relativeZ = (tileZ - visibility << 7) - (eyeZ & 0x7F);
+                @Pc(130) int relativeX = (tileX - visibility << 7) - (cameraX & 0x7F);
+                @Pc(140) int relativeZ = (tileZ - visibility << 7) - (cameraZ & 0x7F);
                 @Pc(146) int worldX = eyeTileX + tileX - visibility;
-                @Pc(152) int worldZ = eyeTileZ + tileZ - visibility;
+                @Pc(152) int worldZ = cameraTileZ + tileZ - visibility;
                 if (worldX >= 0 && worldZ >= 0 && worldX < width && worldZ < length) {
                     @Pc(176) int surfaceHeight;
                     if (underwaterTileHeights == null) {
-                        surfaceHeight = surfaceTileHeights[0][worldX][worldZ] + 128 - eyeY;
+                        surfaceHeight = surfaceTileHeights[0][worldX][worldZ] + 128 - cameraY;
                     } else {
-                        surfaceHeight = underwaterTileHeights[0][worldX][worldZ] + 128 - eyeY;
+                        surfaceHeight = underwaterTileHeights[0][worldX][worldZ] + 128 - cameraY;
                     }
-                    @Pc(201) int ceilingHeight = surfaceTileHeights[3][worldX][worldZ] - eyeY - 1000;
+                    @Pc(201) int ceilingHeight = surfaceTileHeights[3][worldX][worldZ] - cameraY - 1000;
                     tileCulling[tileX][tileZ] = isLineVisible(relativeX, ceilingHeight, surfaceHeight, relativeZ, viewDistance);
                 } else {
                     tileCulling[tileX][tileZ] = false;
@@ -4008,8 +4010,8 @@ public class SceneGraph {
 
     @OriginalMember(owner = "runetek4.client!ac", name = "a", descriptor = "(IIII)I")
     public static int getRenderLevel(@OriginalArg(0) int x, @OriginalArg(1) int z, @OriginalArg(3) int plane) {
-        if ((renderFlags[plane][z][x] & 0x8) == 0) {
-            return plane <= 0 || (renderFlags[1][z][x] & 0x2) == 0 ? plane : plane - 1;
+        if ((tileRenderFlags[plane][z][x] & 0x8) == 0) {
+            return plane <= 0 || (tileRenderFlags[1][z][x] & 0x2) == 0 ? plane : plane - 1;
         } else {
             return 0;
         }
@@ -4018,17 +4020,17 @@ public class SceneGraph {
     @OriginalMember(owner = "runetek4.client!ke", name = "a", descriptor = "(Lclient!rh;IIIIIIIZ)V")
     public static void renderPlainTile(@OriginalArg(0) PlainTile plainTile, @OriginalArg(1) int plane, @OriginalArg(2) int sinYaw, @OriginalArg(3) int cosYaw, @OriginalArg(4) int sinPitch, @OriginalArg(5) int cosPitch, @OriginalArg(6) int tileX, @OriginalArg(7) int tileZ, @OriginalArg(8) boolean skipRendering) {
         @Pc(6) int baseX;
-        @Pc(7) int relativeX1 = baseX = (tileX << 7) - eyeX;
+        @Pc(7) int relativeX1 = baseX = (tileX << 7) - cameraX;
         @Pc(14) int baseZ;
-        @Pc(15) int relativeZ1 = baseZ = (tileZ << 7) - eyeZ;
+        @Pc(15) int relativeZ1 = baseZ = (tileZ << 7) - cameraZ;
         @Pc(20) int farX;
         @Pc(21) int relativeX2 = farX = relativeX1 + 128;
         @Pc(26) int farZ;
         @Pc(27) int relativeZ2 = farZ = relativeZ1 + 128;
-        @Pc(37) int height1 = tileHeights[plane][tileX][tileZ] - eyeY;
-        @Pc(49) int height2 = tileHeights[plane][tileX + 1][tileZ] - eyeY;
-        @Pc(63) int height3 = tileHeights[plane][tileX + 1][tileZ + 1] - eyeY;
-        @Pc(75) int height4 = tileHeights[plane][tileX][tileZ + 1] - eyeY;
+        @Pc(37) int height1 = tileHeights[plane][tileX][tileZ] - cameraY;
+        @Pc(49) int height2 = tileHeights[plane][tileX + 1][tileZ] - cameraY;
+        @Pc(63) int height3 = tileHeights[plane][tileX + 1][tileZ + 1] - cameraY;
+        @Pc(75) int height4 = tileHeights[plane][tileX][tileZ + 1] - cameraY;
         @Pc(85) int rotatedX = relativeZ1 * sinPitch + relativeX1 * cosPitch >> 16;
         @Pc(95) int rotatedZ1 = relativeZ1 * cosPitch - relativeX1 * sinPitch >> 16;
         @Pc(97) int projectedX1 = rotatedX;
@@ -4262,11 +4264,11 @@ public class SceneGraph {
             if (occluder.plane == 1) {
                 relativeCoord = occluder.tileX1 + visibility - eyeTileX;
                 if (relativeCoord >= 0 && relativeCoord <= visibility + visibility) {
-                    startRange = occluder.tileX2 + visibility - eyeTileZ;
+                    startRange = occluder.tileX2 + visibility - cameraTileZ;
                     if (startRange < 0) {
                         startRange = 0;
                     }
-                    endRange = occluder.tileZ2 + visibility - eyeTileZ;
+                    endRange = occluder.tileZ2 + visibility - cameraTileZ;
                     if (endRange > visibility + visibility) {
                         endRange = visibility + visibility;
                     }
@@ -4278,7 +4280,7 @@ public class SceneGraph {
                         }
                     }
                     if (isVisible) {
-                        distance = eyeX - occluder.worldX1;
+                        distance = cameraX - occluder.worldX1;
                         if (distance > 32) {
                             occluder.anInt4462 = 1;
                         } else {
@@ -4288,15 +4290,15 @@ public class SceneGraph {
                             occluder.anInt4462 = 2;
                             distance = -distance;
                         }
-                        occluder.anInt4454 = (occluder.worldX2 - eyeZ << 8) / distance;
-                        occluder.anInt4450 = (occluder.worldZ2 - eyeZ << 8) / distance;
-                        occluder.anInt4459 = (occluder.minY - eyeY << 8) / distance;
-                        occluder.anInt4463 = (occluder.maxY - eyeY << 8) / distance;
+                        occluder.anInt4454 = (occluder.worldX2 - cameraZ << 8) / distance;
+                        occluder.anInt4450 = (occluder.worldZ2 - cameraZ << 8) / distance;
+                        occluder.anInt4459 = (occluder.minY - cameraY << 8) / distance;
+                        occluder.anInt4463 = (occluder.maxY - cameraY << 8) / distance;
                         aSceneGraphClass120Array2[lightSourceCount++] = occluder;
                     }
                 }
             } else if (occluder.plane == 2) {
-                relativeCoord = occluder.tileX2 + visibility - eyeTileZ;
+                relativeCoord = occluder.tileX2 + visibility - cameraTileZ;
                 if (relativeCoord >= 0 && relativeCoord <= visibility + visibility) {
                     startRange = occluder.tileX1 + visibility - eyeTileX;
                     if (startRange < 0) {
@@ -4314,7 +4316,7 @@ public class SceneGraph {
                         }
                     }
                     if (isVisible) {
-                        distance = eyeZ - occluder.worldX2;
+                        distance = cameraZ - occluder.worldX2;
                         if (distance > 32) {
                             occluder.anInt4462 = 3;
                         } else {
@@ -4324,21 +4326,21 @@ public class SceneGraph {
                             occluder.anInt4462 = 4;
                             distance = -distance;
                         }
-                        occluder.anInt4448 = (occluder.worldX1 - eyeX << 8) / distance;
-                        occluder.anInt4456 = (occluder.worldZ1 - eyeX << 8) / distance;
-                        occluder.anInt4459 = (occluder.minY - eyeY << 8) / distance;
-                        occluder.anInt4463 = (occluder.maxY - eyeY << 8) / distance;
+                        occluder.anInt4448 = (occluder.worldX1 - cameraX << 8) / distance;
+                        occluder.anInt4456 = (occluder.worldZ1 - cameraX << 8) / distance;
+                        occluder.anInt4459 = (occluder.minY - cameraY << 8) / distance;
+                        occluder.anInt4463 = (occluder.maxY - cameraY << 8) / distance;
                         aSceneGraphClass120Array2[lightSourceCount++] = occluder;
                     }
                 }
             } else if (occluder.plane == 4) {
-                relativeCoord = occluder.minY - eyeY;
+                relativeCoord = occluder.minY - cameraY;
                 if (relativeCoord > 128) {
-                    startRange = occluder.tileX2 + visibility - eyeTileZ;
+                    startRange = occluder.tileX2 + visibility - cameraTileZ;
                     if (startRange < 0) {
                         startRange = 0;
                     }
-                    endRange = occluder.tileZ2 + visibility - eyeTileZ;
+                    endRange = occluder.tileZ2 + visibility - cameraTileZ;
                     if (endRange > visibility + visibility) {
                         endRange = visibility + visibility;
                     }
@@ -4362,10 +4364,10 @@ public class SceneGraph {
                         }
                         if (hasVisibleTile) {
                             occluder.anInt4462 = 5;
-                            occluder.anInt4448 = (occluder.worldX1 - eyeX << 8) / relativeCoord;
-                            occluder.anInt4456 = (occluder.worldZ1 - eyeX << 8) / relativeCoord;
-                            occluder.anInt4454 = (occluder.worldX2 - eyeZ << 8) / relativeCoord;
-                            occluder.anInt4450 = (occluder.worldZ2 - eyeZ << 8) / relativeCoord;
+                            occluder.anInt4448 = (occluder.worldX1 - cameraX << 8) / relativeCoord;
+                            occluder.anInt4456 = (occluder.worldZ1 - cameraX << 8) / relativeCoord;
+                            occluder.anInt4454 = (occluder.worldX2 - cameraZ << 8) / relativeCoord;
+                            occluder.anInt4450 = (occluder.worldZ2 - cameraZ << 8) / relativeCoord;
                             aSceneGraphClass120Array2[lightSourceCount++] = occluder;
                         }
                     }
@@ -4401,9 +4403,9 @@ public class SceneGraph {
         @Pc(29) int local29;
         @Pc(39) int local39;
         for (index = 0; index < numVertices; index++) {
-            vertexA = overlay.vertexX[index] - eyeX;
-            relativeY = overlay.vertexY[index] - eyeY;
-            local29 = overlay.vertexZ[index] - eyeZ;
+            vertexA = overlay.vertexX[index] - cameraX;
+            relativeY = overlay.vertexY[index] - cameraY;
+            local29 = overlay.vertexZ[index] - cameraZ;
             local39 = local29 * sinPitch + vertexA * cosPitch >> 16;
             @Pc(49) int rotatedZ = local29 * cosPitch - vertexA * sinPitch >> 16;
             @Pc(61) int transformedY = relativeY * cosYaw - rotatedZ * sinYaw >> 16;
@@ -5347,9 +5349,9 @@ public class SceneGraph {
                 } while (local497 <= 0);
                 for (local232 = 0; local232 < local497; local232++) {
                     @Pc(517) Light light = new Light(packet);
-                    if (light.anInt2243 == 31) {
+                    if (light.lightType == 31) {
                         @Pc(529) LightType lightType = LightTypeList.get(packet.g2());
-                        light.method1762(lightType.anInt2865, lightType.anInt2873, lightType.anInt2867, lightType.anInt2872);
+                        light.setUpLightType(lightType.flickerType, lightType.lightType, lightType.alphaMin, lightType.alphaMax);
                     }
                     local417 = light.x >> 7;
                     local255 = light.z >> 7;
@@ -5361,7 +5363,7 @@ public class SceneGraph {
                         local417 = light.x >> 7;
                         local255 = light.z >> 7;
                         if (local417 >= 0 && local255 >= 0 && local417 < 104 && local255 < 104) {
-                            light.aBoolean125 = (renderFlags[1][local417][local255] & 0x2) != 0;
+                            light.aBoolean125 = (tileRenderFlags[1][local417][local255] & 0x2) != 0;
                             light.y = tileHeights[light.level][local417][local255] - light.y;
                             LightingManager.method2389(light);
                         }
@@ -5447,11 +5449,11 @@ public class SceneGraph {
         @Pc(183) int sceneryIndex;
         for (@Pc(23) int plane = frameCounter; plane < planes; plane++) {
             @Pc(30) Tile[][] planeTiles = tiles[plane];
-            for (x = LightingManager.anInt987; x < LightingManager.anInt15; x++) {
-                for (z = LightingManager.anInt4698; z < LightingManager.anInt4866; z++) {
+            for (x = LightingManager.minimumVisibleX; x < LightingManager.maximumVisibleX; x++) {
+                for (z = LightingManager.minimumVisibleZ; z < LightingManager.maximumVisibleZ; z++) {
                     @Pc(46) Tile tile = planeTiles[x][z];
                     if (tile != null) {
-                        if (tileVisibility[x + visibility - eyeTileX][z + visibility - eyeTileZ] && (visibilityMask == null || plane < maxVisiblePlane || visibilityMask[plane][x][z] != visibilityFlag)) {
+                        if (tileVisibility[x + visibility - eyeTileX][z + visibility - cameraTileZ] && (visibilityMask == null || plane < maxVisiblePlane || visibilityMask[plane][x][z] != visibilityFlag)) {
                             tile.hasObjects = true;
                             tile.bridgeAbove = true;
                             if (tile.sceneryLen > 0) {
@@ -5522,7 +5524,7 @@ public class SceneGraph {
                 x = frameCounter;
                 while (true) {
                     if (x >= planes) {
-                        LightingManager.method2402(eyeTileX, eyeTileZ, tiles);
+                        LightingManager.method2402(eyeTileX, cameraTileZ, tiles);
                         break;
                     }
                     for (z = 0; z < underwaterHdTiles[x].length; z++) {
@@ -5535,7 +5537,7 @@ public class SceneGraph {
                     }
                     if (x == 0 && Preferences.sceneryShadowsType > 0) {
                         GlRenderer.method4159(101.5F);
-                        ShadowManager.method4198(eyeTileX, eyeTileZ, visibility, offsetY, tileVisibility, tileHeights[0]);
+                        ShadowManager.method4198(eyeTileX, cameraTileZ, visibility, offsetY, tileVisibility, tileHeights[0]);
                     }
                     x++;
                 }
@@ -5554,32 +5556,32 @@ public class SceneGraph {
             for (z = -visibility; z <= 0; z++) {
                 leftX = eyeTileX + z;
                 sceneryIndex = eyeTileX - z;
-                if (leftX >= LightingManager.anInt987 || sceneryIndex < LightingManager.anInt15) {
+                if (leftX >= LightingManager.minimumVisibleX || sceneryIndex < LightingManager.maximumVisibleX) {
                     for (zOffset = -visibility; zOffset <= 0; zOffset++) {
-                        topZ = eyeTileZ + zOffset;
-                        bottomZ = eyeTileZ - zOffset;
-                        if (leftX >= LightingManager.anInt987) {
-                            if (topZ >= LightingManager.anInt4698) {
+                        topZ = cameraTileZ + zOffset;
+                        bottomZ = cameraTileZ - zOffset;
+                        if (leftX >= LightingManager.minimumVisibleX) {
+                            if (topZ >= LightingManager.minimumVisibleZ) {
                                 renderTile = renderPlaneTiles[leftX][topZ];
                                 if (renderTile != null && renderTile.hasObjects) {
                                     renderScene(renderTile, true);
                                 }
                             }
-                            if (bottomZ < LightingManager.anInt4866) {
+                            if (bottomZ < LightingManager.maximumVisibleZ) {
                                 renderTile = renderPlaneTiles[leftX][bottomZ];
                                 if (renderTile != null && renderTile.hasObjects) {
                                     renderScene(renderTile, true);
                                 }
                             }
                         }
-                        if (sceneryIndex < LightingManager.anInt15) {
-                            if (topZ >= LightingManager.anInt4698) {
+                        if (sceneryIndex < LightingManager.maximumVisibleX) {
+                            if (topZ >= LightingManager.minimumVisibleZ) {
                                 renderTile = renderPlaneTiles[sceneryIndex][topZ];
                                 if (renderTile != null && renderTile.hasObjects) {
                                     renderScene(renderTile, true);
                                 }
                             }
-                            if (bottomZ < LightingManager.anInt4866) {
+                            if (bottomZ < LightingManager.maximumVisibleZ) {
                                 renderTile = renderPlaneTiles[sceneryIndex][bottomZ];
                                 if (renderTile != null && renderTile.hasObjects) {
                                     renderScene(renderTile, true);
@@ -5601,32 +5603,32 @@ public class SceneGraph {
             for (z = -visibility; z <= 0; z++) {
                 leftX = eyeTileX + z;
                 sceneryIndex = eyeTileX - z;
-                if (leftX >= LightingManager.anInt987 || sceneryIndex < LightingManager.anInt15) {
+                if (leftX >= LightingManager.minimumVisibleX || sceneryIndex < LightingManager.maximumVisibleX) {
                     for (zOffset = -visibility; zOffset <= 0; zOffset++) {
-                        topZ = eyeTileZ + zOffset;
-                        bottomZ = eyeTileZ - zOffset;
-                        if (leftX >= LightingManager.anInt987) {
-                            if (topZ >= LightingManager.anInt4698) {
+                        topZ = cameraTileZ + zOffset;
+                        bottomZ = cameraTileZ - zOffset;
+                        if (leftX >= LightingManager.minimumVisibleX) {
+                            if (topZ >= LightingManager.minimumVisibleZ) {
                                 renderTile = renderPlaneTiles[leftX][topZ];
                                 if (renderTile != null && renderTile.hasObjects) {
                                     renderScene(renderTile, false);
                                 }
                             }
-                            if (bottomZ < LightingManager.anInt4866) {
+                            if (bottomZ < LightingManager.maximumVisibleZ) {
                                 renderTile = renderPlaneTiles[leftX][bottomZ];
                                 if (renderTile != null && renderTile.hasObjects) {
                                     renderScene(renderTile, false);
                                 }
                             }
                         }
-                        if (sceneryIndex < LightingManager.anInt15) {
-                            if (topZ >= LightingManager.anInt4698) {
+                        if (sceneryIndex < LightingManager.maximumVisibleX) {
+                            if (topZ >= LightingManager.minimumVisibleZ) {
                                 renderTile = renderPlaneTiles[sceneryIndex][topZ];
                                 if (renderTile != null && renderTile.hasObjects) {
                                     renderScene(renderTile, false);
                                 }
                             }
-                            if (bottomZ < LightingManager.anInt4866) {
+                            if (bottomZ < LightingManager.maximumVisibleZ) {
                                 renderTile = renderPlaneTiles[sceneryIndex][bottomZ];
                                 if (renderTile != null && renderTile.hasObjects) {
                                     renderScene(renderTile, false);
@@ -5713,7 +5715,7 @@ public class SceneGraph {
                 }
             }
         }
-        ClientScriptRunner.performVisibilityCulling();
+        ClientScriptRunner.handleRemoveRoofsSelectively();
         if (GlRenderer.enabled) {
             GlRaster.setClip(x, y, x + width, y - -height);
             @Pc(248) float pitchDegrees = (float) Camera.cameraPitch * 0.17578125F;
@@ -5764,8 +5766,12 @@ public class SceneGraph {
             ClientScriptRunner.drawOverheads(y, width, x, ClientScriptRunner.anInt5029, height, ClientScriptRunner.anInt5029);
             MiniMap.renderOverheadHints(width, x, height, ClientScriptRunner.anInt5029, ClientScriptRunner.anInt5029, y);
         } else {
+            // Fill in black background
             SoftwareRenderer.fillRect(x, y, width, height, 0);
+
+            // Render the 3D scene
             setupSceneRender(Camera.renderX, Camera.cameraY, Camera.renderZ, Camera.cameraPitch, Camera.cameraYaw, ClientScriptRunner.tileMarkings, ClientScriptRunner.maxHeights, ClientScriptRunner.anIntArray338, ClientScriptRunner.anIntArray518, ClientScriptRunner.anIntArray134, ClientScriptRunner.anIntArray476, Player.currentLevel + 1, roofVisibilityFlag, PlayerList.self.xFine >> 7, PlayerList.self.zFine >> 7);
+
             Client.audioLoop();
             ClientScriptRunner.clearAllScenery();
             ClientScriptRunner.drawOverheads(y, width, x, 256, height, 256);

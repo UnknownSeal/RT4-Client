@@ -22,7 +22,7 @@ import com.jagex.game.inventory.Equipment;
 import com.jagex.graphics.gl.GlRenderer;
 import com.jagex.scene.Camera;
 import com.jagex.core.utils.string.JString;
-import com.jagex.game.map.HintArrow;
+import com.jagex.game.map.MapMarker;
 import com.jagex.graphics.model.Model;
 import com.jagex.graphics.model.SoftwareModel;
 import com.jagex.graphics.lighting.ShadowModelList;
@@ -373,9 +373,11 @@ public final class Player extends PathingEntity {
 		if (this.playerModel == null) {
 			return;
 		}
+
+		// Get player model for current animation frame
 		@Pc(25) SeqType local25 = this.primarySeqId != -1 && this.animationDelay == 0 ? SeqTypeList.get(this.primarySeqId) : null;
 		@Pc(54) SeqType local54 = this.movementSeqId == -1 || this.lowMemory || this.movementSeqId == this.getBasType().readyanim && local25 != null ? null : SeqTypeList.get(this.movementSeqId);
-		@Pc(76) Model local76 = this.playerModel.createAnimatedBodyModel(this.layeredAnimations, this.animationDirection, local54, local25, this.anInt3396, this.anInt3388, this.animationFrame, this.animationFrameDelay, this.anInt3407);
+		@Pc(76) Model local76 = this.playerModel.getPlayerModel(this.layeredAnimations, this.animationDirection, local54, local25, this.anInt3396, this.anInt3388, this.animationFrame, this.animationFrameDelay, this.anInt3407);
 		@Pc(79) int local79 = PlayerAppearance.getModelCacheSize();
 		if (GlRenderer.enabled && GameShell.maxMemory < 96 && local79 > 50) {
 			GlRenderer.updateOpenGLModelBuffers();
@@ -396,6 +398,8 @@ public final class Player extends PathingEntity {
 			return;
 		}
 		this.minY = local76.getMinY();
+
+		// Render shadows
 		@Pc(184) Model model;
 		if (Preferences.characterShadowsOn && (this.playerModel.npcId == -1 || NpcTypeList.get(this.playerModel.npcId).spotshadow)) {
 			model = ShadowModelList.method1043(160, this.seqStretches, local54 == null ? local25 : local54, this.xFine, 0, this.zFine, 0, 1, local76, arg0, local54 == null ? this.animationFrameDelay : this.anInt3407, this.groundHeight, 240);
@@ -411,36 +415,40 @@ public final class Player extends PathingEntity {
 				model.render(0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, -1L, arg9, null);
 			}
 		}
+
+		// Render player dot on minimap
 		if (PlayerList.self == this) {
-			for (local102 = MiniMap.hintArrows.length - 1; local102 >= 0; local102--) {
-				@Pc(245) HintArrow local245 = MiniMap.hintArrows[local102];
-				if (local245 != null && local245.playerModelId != -1) {
+			for (local102 = MiniMap.hintMapMarkers.length - 1; local102 >= 0; local102--) {
+				@Pc(245) MapMarker hintMapMarker = MiniMap.hintMapMarkers[local102];
+				if (hintMapMarker != null && hintMapMarker.playerModelId != -1) {
 					@Pc(291) int anchorX;
 					@Pc(302) int anchorY;
-					if (local245.type == 1 && local245.entity >= 0 && NpcList.npcs.length > local245.entity) {
-						@Pc(278) Npc npc = NpcList.npcs[local245.entity];
+					if (hintMapMarker.type == 1 && hintMapMarker.entity >= 0 && NpcList.npcs.length > hintMapMarker.entity) {
+						@Pc(278) Npc npc = NpcList.npcs[hintMapMarker.entity];
 						if (npc != null) {
 							anchorX = npc.xFine / 32 - PlayerList.self.xFine / 32;
 							anchorY = npc.zFine / 32 - PlayerList.self.zFine / 32;
-							this.drawOnMinimap(null, anchorY, local76, anchorX, arg5, arg9, arg0, arg7, arg4, arg3, arg1, local245.playerModelId, arg2, arg6);
+							this.drawOnMinimap(null, anchorY, local76, anchorX, arg5, arg9, arg0, arg7, arg4, arg3, arg1, hintMapMarker.playerModelId, arg2, arg6);
 						}
 					}
-					if (local245.type == 2) {
-						@Pc(340) int local340 = (local245.targetX - Camera.sceneBaseTileX) * 4 + 2 - PlayerList.self.xFine / 32;
-						anchorX = (local245.anInt4046 - Camera.sceneBaseTileZ) * 4 + 2 - PlayerList.self.zFine / 32;
-						this.drawOnMinimap(null, anchorX, local76, local340, arg5, arg9, arg0, arg7, arg4, arg3, arg1, local245.playerModelId, arg2, arg6);
+					if (hintMapMarker.type == 2) {
+						@Pc(340) int local340 = (hintMapMarker.targetX - Camera.sceneBaseTileX) * 4 + 2 - PlayerList.self.xFine / 32;
+						anchorX = (hintMapMarker.anInt4046 - Camera.sceneBaseTileZ) * 4 + 2 - PlayerList.self.zFine / 32;
+						this.drawOnMinimap(null, anchorX, local76, local340, arg5, arg9, arg0, arg7, arg4, arg3, arg1, hintMapMarker.playerModelId, arg2, arg6);
 					}
-					if (local245.type == 10 && local245.entity >= 0 && PlayerList.players.length > local245.entity) {
-						@Pc(395) Player player = PlayerList.players[local245.entity];
+					if (hintMapMarker.type == 10 && hintMapMarker.entity >= 0 && PlayerList.players.length > hintMapMarker.entity) {
+						@Pc(395) Player player = PlayerList.players[hintMapMarker.entity];
 						if (player != null) {
 							anchorX = player.xFine / 32 - PlayerList.self.xFine / 32;
 							anchorY = player.zFine / 32 - PlayerList.self.zFine / 32;
-							this.drawOnMinimap(null, anchorY, local76, anchorX, arg5, arg9, arg0, arg7, arg4, arg3, arg1, local245.playerModelId, arg2, arg6);
+							this.drawOnMinimap(null, anchorY, local76, anchorX, arg5, arg9, arg0, arg7, arg4, arg3, arg1, hintMapMarker.playerModelId, arg2, arg6);
 						}
 					}
 				}
 			}
 		}
+
+		// Transform player model
 		this.method2687(local76);
 		this.method2685(local76, arg0);
 		model = null;
@@ -483,6 +491,8 @@ public final class Player extends PathingEntity {
 				}
 			}
 		}
+
+		// Render player model
 		if (GlRenderer.enabled) {
 			local76.pickable = true;
 			local76.render(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, this.particleSystem);

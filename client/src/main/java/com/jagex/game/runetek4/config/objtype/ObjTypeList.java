@@ -34,23 +34,26 @@ public final class ObjTypeList {
 	public static Js5 modelArchive;
 
 	@OriginalMember(owner = "client!tg", name = "f", descriptor = "Z")
-	public static boolean aBoolean276;
+	public static boolean allowMembers;
 
 	@OriginalMember(owner = "client!wa", name = "X", descriptor = "[Lclient!na;")
-	public static JString[] aClass100Array87 = null;
+	public static JString[] defaultOps = null;
 
 	@OriginalMember(owner = "client!ld", name = "g", descriptor = "[Lclient!na;")
-	public static JString[] aClass100Array104 = null;
+	public static JString[] defaultIops = null;
 
 	@OriginalMember(owner = "client!nd", name = "n", descriptor = "Lclient!ve;")
 	public static Js5 archive;
 
 	@OriginalMember(owner = "client!fk", name = "a", descriptor = "(IB)Lclient!h;")
     public static ObjType get(@OriginalArg(0) int id) {
+		// Get from memory cache, if present
         @Pc(6) ObjType objType = (ObjType) types.get(id);
         if (objType != null) {
             return objType;
         }
+
+		// Otherwise, load from file cache
         @Pc(25) byte[] bytes = archive.getfile(getGroupId(id), getFileId(id));
         objType = new ObjType();
         objType.id = id;
@@ -65,26 +68,30 @@ public final class ObjTypeList {
         if (objType.lentTemplate != -1) {
             objType.generateLent(get(objType.lentTemplate), get(objType.lentLink));
         }
-        if (!aBoolean276 && objType.members) {
+
+		// Override object with "Members Item" template if needed
+        if (!allowMembers && objType.members) {
             objType.name = LocalizedText.MEMBERS_OBJECT;
             objType.team = 0;
-            objType.iop = aClass100Array104;
+            objType.iop = defaultIops;
             objType.stockMarket = false;
-            objType.op = aClass100Array87;
+            objType.op = defaultOps;
         }
+
+		// Persist to memory cache for later use
         types.put(objType, id);
         return objType;
     }
 
 	@OriginalMember(owner = "client!th", name = "a", descriptor = "(ZBLclient!ve;Lclient!dd;Lclient!ve;)V")
 	public static void init(@OriginalArg(2) Js5 arg0, @OriginalArg(3) SoftwareFont arg1, @OriginalArg(4) Js5 arg2) {
-		aBoolean276 = true;
+		allowMembers = true;
 		modelArchive = arg2;
 		archive = arg0;
 		@Pc(23) int local23 = archive.capacity() - 1;
 		capacity = archive.getGroupCapacity(local23) + local23 * 256;
-		aClass100Array104 = new JString[] { null, null, null, null, LocalizedText.DROP};
-		aClass100Array87 = new JString[] { null, null, LocalizedText.TAKE, null, null };
+		defaultIops = new JString[] { null, null, null, null, LocalizedText.DROP};
+		defaultOps = new JString[] { null, null, LocalizedText.TAKE, null, null };
 		font = arg1;
 	}
 
@@ -111,8 +118,8 @@ public final class ObjTypeList {
 
 	@OriginalMember(owner = "client!al", name = "a", descriptor = "(ZI)V")
 	public static void setAllowMembers(@OriginalArg(0) boolean arg0) {
-		if (arg0 != aBoolean276) {
-			aBoolean276 = arg0;
+		if (arg0 != allowMembers) {
+			allowMembers = arg0;
 			clear();
 		}
 	}

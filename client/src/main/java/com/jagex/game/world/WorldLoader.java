@@ -160,7 +160,7 @@ public class WorldLoader {
                         @Pc(154) CollisionMap collisionMap = null;
                         if (!underWater) {
                             @Pc(159) int collisionPlane = plane;
-                            if ((SceneGraph.renderFlags[1][worldX][worldZ] & 0x2) == 2) {
+                            if ((SceneGraph.tileRenderFlags[1][worldX][worldZ] & 0x2) == 2) {
                                 collisionPlane = plane - 1;
                             }
                             if (collisionPlane >= 0) {
@@ -612,7 +612,7 @@ public class WorldLoader {
         for (index = 0; index < 4; index++) {
             for (chunkX = 0; chunkX < 104; chunkX++) {
                 for (chunkZ = 0; chunkZ < 104; chunkZ++) {
-                    SceneGraph.renderFlags[index][chunkX][chunkZ] = 0;
+                    SceneGraph.tileRenderFlags[index][chunkX][chunkZ] = 0;
                 }
             }
         }
@@ -662,7 +662,7 @@ public class WorldLoader {
         ClientProt.ping(true);
         SceneGraph.buildTiles(PathFinder.collisionMaps, false);
         if (GlRenderer.enabled) {
-            LightingManager.method2395();
+            LightingManager.calculateLightRadiuses();
         }
         ClientProt.ping(true);
         index = SceneGraph.firstVisibleLevel;
@@ -707,7 +707,7 @@ public class WorldLoader {
         }
         for (chunkX = 0; chunkX < 104; chunkX++) {
             for (chunkZ = 0; chunkZ < 104; chunkZ++) {
-                Protocol.sortObjStacks(chunkX, chunkZ);
+                Protocol.spawnGroundObject(chunkX, chunkZ);
             }
         }
         ClientScriptRunner.method2218();

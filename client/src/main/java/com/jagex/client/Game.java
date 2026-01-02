@@ -155,7 +155,7 @@ public class Game {
         }
         if (Mouse.clickButton != 0) {
             @Pc(411) long timeSinceLastClick = (Mouse.clickTime - Mouse.prevClickTime) / 50L;
-            mouseSampleCount = Mouse.mouseClickY;
+            mouseSampleCount = Mouse.clickY;
             if (mouseSampleCount < 0) {
                 mouseSampleCount = 0;
             } else if (mouseSampleCount > 65535) {
@@ -164,7 +164,7 @@ public class Game {
             if (timeSinceLastClick > 32767L) {
                 timeSinceLastClick = 32767L;
             }
-            i = Mouse.mouseClickX;
+            i = Mouse.clickX;
             Mouse.prevClickTime = Mouse.clickTime;
             @Pc(437) byte button = 0;
             if (i < 0) {
@@ -517,8 +517,8 @@ public class Game {
                                                     Protocol.outboundBuffer.p2_alt2(MiniMenu.clickTileZ + Camera.sceneBaseTileZ);
                                                     Crosshair.CrosshairMode = 1;
                                                     Crosshair.CrosshairCycle = 0;
-                                                    Crosshair.y = Mouse.mouseClickY;
-                                                    Crosshair.x = Mouse.mouseClickX;
+                                                    Crosshair.y = Mouse.clickY;
+                                                    Crosshair.x = Mouse.clickX;
                                                 }
                                                 MiniMenu.useItemOnTileMode = 0;
                                             } else if (Protocol.walkRequestState == 2) {
@@ -528,16 +528,16 @@ public class Game {
                                                     Protocol.outboundBuffer.p2(MiniMenu.clickTileX + Camera.sceneBaseTileX);
                                                     Crosshair.CrosshairCycle = 0;
                                                     Crosshair.CrosshairMode = 1;
-                                                    Crosshair.x = Mouse.mouseClickX;
-                                                    Crosshair.y = Mouse.mouseClickY;
+                                                    Crosshair.x = Mouse.clickX;
+                                                    Crosshair.y = Mouse.clickY;
                                                 }
                                                 Protocol.walkRequestState = 0;
                                             } else if (MiniMenu.clickTileX != -1 && MiniMenu.useItemOnTileMode == 0 && Protocol.walkRequestState == 0) {
                                                 @Pc(1871) boolean success = PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 0, true, 0, MiniMenu.clickTileX, 0, 0, 0, MiniMenu.clickTileZ, PlayerList.self.movementQueueX[0]);
                                                 if (success) {
-                                                    Crosshair.y = Mouse.mouseClickY;
+                                                    Crosshair.y = Mouse.clickY;
                                                     Crosshair.CrosshairCycle = 0;
-                                                    Crosshair.x = Mouse.mouseClickX;
+                                                    Crosshair.x = Mouse.clickX;
                                                     Crosshair.CrosshairMode = 1;
                                                 }
                                             }
@@ -736,8 +736,8 @@ public class Game {
         SceneGraph.centralZoneX = 0;
         SceneGraph.centralZoneZ = 0;
         Camera.sceneBaseTileX = 0;
-        for (i = 0; i < MiniMap.hintArrows.length; i++) {
-            MiniMap.hintArrows[i] = null;
+        for (i = 0; i < MiniMap.hintMapMarkers.length; i++) {
+            MiniMap.hintMapMarkers[i] = null;
         }
         PlayerList.playerCount = 0;
         NpcList.npcCount = 0;

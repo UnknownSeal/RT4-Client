@@ -23,7 +23,7 @@ public class SceneCamera {
             for (local64 = cameraTileX - 4; local64 <= cameraTileX + 4; local64++) {
                 for (@Pc(73) int tileZ = cameraTileZ - 4; tileZ <= cameraTileZ + 4; tileZ++) {
                     @Pc(80) int checkPlane = Player.currentLevel;
-                    if (checkPlane < 3 && (SceneGraph.renderFlags[1][local64][tileZ] & 0x2) == 2) {
+                    if (checkPlane < 3 && (SceneGraph.tileRenderFlags[1][local64][tileZ] & 0x2) == 2) {
                         checkPlane++;
                     }
                     @Pc(117) int heightDifference = (SceneGraph.tileSettings[checkPlane][local64][tileZ] & 0xFF) * 8 + cameraBaseHeight - SceneGraph.tileHeights[checkPlane][local64][tileZ];

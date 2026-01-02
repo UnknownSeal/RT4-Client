@@ -3,6 +3,7 @@ package com.jagex.client;
 import java.awt.*;
 import java.io.IOException;
 import java.net.Socket;
+import java.nio.charset.StandardCharsets;
 import java.util.GregorianCalendar;
 import java.util.Random;
 
@@ -122,6 +123,7 @@ import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
+import static com.jagex.core.constants.MainloadStates.*;
 import static com.jagex.game.camera.CameraMode.MODE_ORBITAL;
 
 @OriginalClass("client!client")
@@ -417,6 +419,7 @@ public final class Client extends GameShell {
 	@OriginalMember(owner = "client!client", name = "main", descriptor = "([Ljava/lang/String;)V")
 	public static void main(@OriginalArg(0) String[] arg0) {
 		try {
+			// Use default command-line arguments if none provided
 			if (arg0.length != 4) {
 				arg0 = new String[4];
 				arg0[0] = "0";
@@ -426,8 +429,14 @@ public final class Client extends GameShell {
 				// Static131.method2577("argument count");
 			}
 			@Pc(15) int local15 = -1;
+
+			// Get world from first arg
 			worldListId = Integer.parseInt(arg0[0]);
+
+			// Set mode to WIP so certain production validations won't trigger
 			modeWhere = ModeWhere.WIP;
+
+			// Get run mode from second arg
 			if (arg0[1].equals("live")) {
 				modeWhat = ModeWhat.LIVE;
 			} else if (arg0[1].equals("rc")) {
@@ -438,8 +447,10 @@ public final class Client extends GameShell {
 				Game.printHelp("modewhat");
 			}
 			advertSuppressed = false;
+
+			// Get language from third arg
 			try {
-				@Pc(63) byte[] local63 = arg0[2].getBytes("ISO-8859-1");
+				@Pc(63) byte[] local63 = arg0[2].getBytes(StandardCharsets.ISO_8859_1);
 				local15 = LangUtils.method2053(JString.decodeString(local63, local63.length, 0));
 			} catch (@Pc(74) Exception ignored) {
 			}
@@ -453,8 +464,16 @@ public final class Client extends GameShell {
 				Game.printHelp("language");
 			}
 			LocalizedText.setLanguage(language);
+
+			// This parameter has no function in the standalone Java client,
+			// but originally it served to indicate whether javascript was enabled/disabled
+			// on the user's browser.
 			javaScript = false;
+
+			// Unclear what objectTag does
 			objectTag = false;
+
+
 			if (arg0[3].equals("game0")) {
 				game = 0;
 			} else if (arg0[3].equals("game1")) {
@@ -462,6 +481,8 @@ public final class Client extends GameShell {
 			} else {
 				Game.printHelp("game");
 			}
+
+
 			country = 0;
 			haveIe6 = false;
 			affiliate = 0;
@@ -469,6 +490,7 @@ public final class Client extends GameShell {
 			@Pc(146) Client c = new Client();
 			instance = c;
 			c.startApplication(modeWhat + 32, "runescape");
+			//TODO set relative location and a reasonable default size
 			GameShell.frame.setLocation(40, 40);
 		} catch (@Pc(167) Exception local167) {
 			TracingException.report(null, local167);
@@ -651,8 +673,8 @@ public final class Client extends GameShell {
 		LoginManager.idleNetCycles = 0;
 		Protocol.inboundBuffer.offset = 0;
 		@Pc(3506) int i;
-		for (i = 0; i < MiniMap.hintArrows.length; i++) {
-			MiniMap.hintArrows[i] = null;
+		for (i = 0; i < MiniMap.hintMapMarkers.length; i++) {
+			MiniMap.hintMapMarkers[i] = null;
 		}
 		MiniMenu.menuActionRow = 0;
 		MiniMenu.open = false;
@@ -926,7 +948,7 @@ public final class Client extends GameShell {
 			GameShell.fullredraw = false;
 		}
 		if (local158) {
-			GameShell.fillBlackBorders();
+			GameShell.drawMargins();
 		}
 		if (GlRenderer.enabled) {
 			for (local80 = 0; local80 < 100; local80++) {
@@ -965,8 +987,12 @@ public final class Client extends GameShell {
 			for (local80 = 0; local80 < InterfaceManager.rectangles; local80++) {
 				InterfaceManager.rectangleRedraw[local80] = false;
 			}
+
+		// Load login screen
 		} else {
 			@Pc(388) Graphics local388;
+
+			// Partial redraw if possible, for performance
 			if ((gameState == 30 || gameState == 10) && Cheat.rectDebug == 0 && !local158) {
 				try {
 					local388 = GameShell.canvas.getGraphics();
@@ -979,6 +1005,8 @@ public final class Client extends GameShell {
 				} catch (@Pc(423) Exception local423) {
 					GameShell.canvas.repaint();
 				}
+
+			// Full redraw
 			} else if (gameState != 0) {
 				try {
 					local388 = GameShell.canvas.getGraphics();
@@ -1451,7 +1479,7 @@ public final class Client extends GameShell {
 			}
 		}
 		@Pc(43) int i;
-		if (mainLoadState == 0) {
+		if (mainLoadState == LOADSTATE_0_INIT) {
 			@Pc(34) Runtime runtime = Runtime.getRuntime();
 			i = (int) (0L / 1024L);
 			@Pc(46) long now = SystemTimer.safetime();
@@ -1467,21 +1495,21 @@ public final class Client extends GameShell {
 				mainLoadSecondaryText = LocalizedText.MAINLOAD0;
 			} else {
 				mainLoadSecondaryText = LocalizedText.MAINLOAD0B;
-				mainLoadState = 10;
+				mainLoadState = LOADSTATE_10_LOAD_GAMEWORLD;
 				mainLoadPercentage = 5;
 			}
 			return;
 		}
 		@Pc(98) int percentage;
-		if (mainLoadState == 10) {
-			LightingManager.method2392();
+		if (mainLoadState == LOADSTATE_10_LOAD_GAMEWORLD) {
+			LightingManager.setSize();
 			for (percentage = 0; percentage < 4; percentage++) {
 				PathFinder.collisionMaps[percentage] = new CollisionMap(104, 104);
 			}
 			mainLoadPercentage = 10;
-			mainLoadState = 30;
+			mainLoadState = LOADSTATE_30_INIT_NETWORK;
 			mainLoadSecondaryText = LocalizedText.MAINLOAD10B;
-		} else if (mainLoadState == 30) {
+		} else if (mainLoadState == LOADSTATE_30_INIT_NETWORK) {
 			if (js5MasterIndex == null) {
 				js5MasterIndex = new Js5MasterIndex(js5NetQueue, js5CacheQueue);
 			}
@@ -1516,12 +1544,12 @@ public final class Client extends GameShell {
 				js5Archive27 = createJs5(false, true, true, 27);
 				mainLoadPercentage = 15;
 				mainLoadSecondaryText = LocalizedText.MAINLOAD30B;
-				mainLoadState = 40;
+				mainLoadState = LOADSTATE_40_CHECK_UPDATES;
 			} else {
 				mainLoadSecondaryText = LocalizedText.MAINLOAD30;
 				mainLoadPercentage = 12;
 			}
-		} else if (mainLoadState == 40) {
+		} else if (mainLoadState == LOADSTATE_40_CHECK_UPDATES) {
 			percentage = 0;
 			for (i = 0; i < 28; i++) {
 				percentage += js5Providers[i].getIndexPercentageComplete() * JS5_ARCHIVE_WEIGHTS[i] / 100;
@@ -1532,14 +1560,14 @@ public final class Client extends GameShell {
 				Sprites.init(js5Archive8);
 				TitleScreen.init(js5Archive8);
 				Flames.init(js5Archive8);
-				mainLoadState = 45;
+				mainLoadState = LOADSTATE_45_LOAD_SOUND;
 			} else {
 				if (percentage != 0) {
 					mainLoadSecondaryText = JString.concatenate(new JString[] { LocalizedText.CHECKING_FOR_UPDATES, JString.parseInt(percentage), JString.PERCENT_SIGN});
 				}
 				mainLoadPercentage = 20;
 			}
-		} else if (mainLoadState == 45) {
+		} else if (mainLoadState == LOADSTATE_45_LOAD_SOUND) {
 			AudioChannel.init(Preferences.stereo);
 			musicStream = new MidiPcmStream();
 			musicStream.init();
@@ -1552,37 +1580,37 @@ public final class Client extends GameShell {
 			pcmResampler = new PcmResampler(22050, AudioChannel.sampleRate);
 			MusicPlayer.titleSong = js5Archive6.getGroupId(TITLE_SONG);
 			mainLoadPercentage = 30;
-			mainLoadState = 50;
+			mainLoadState = LOADSTATE_50_LOAD_FONTS;
 			mainLoadSecondaryText = LocalizedText.MAINLOAD45B;
-		} else if (mainLoadState == 50) {
+		} else if (mainLoadState == LOADSTATE_50_LOAD_FONTS) {
 			percentage = Fonts.getReady(js5Archive8, js5Archive13);
 			i = Fonts.getTotal();
 			if (percentage >= i) {
 				mainLoadSecondaryText = LocalizedText.MAINLOAD50B;
 				mainLoadPercentage = 35;
-				mainLoadState = 60;
+				mainLoadState = LOADSTATE_60_LOAD_TITLE;
 			} else {
 				mainLoadSecondaryText = JString.concatenate(new JString[] { LocalizedText.MAINLOAD50, JString.parseInt(percentage * 100 / i), JString.PERCENT_SIGN});
 				mainLoadPercentage = 35;
 			}
-		} else if (mainLoadState == 60) {
+		} else if (mainLoadState == LOADSTATE_60_LOAD_TITLE) {
 			percentage = TitleScreen.getReady(js5Archive8);
 			i = TitleScreen.getTotal();
 			if (i <= percentage) {
 				mainLoadSecondaryText = LocalizedText.MAINLOAD60B;
-				mainLoadState = 65;
+				mainLoadState = LOADSTATE_65_OPEN_TITLE;
 				mainLoadPercentage = 40;
 			} else {
 				mainLoadSecondaryText = JString.concatenate(new JString[] { LocalizedText.MAINLOAD60, JString.parseInt(percentage * 100 / i), JString.PERCENT_SIGN});
 				mainLoadPercentage = 40;
 			}
-		} else if (mainLoadState == 65) {
+		} else if (mainLoadState == LOADSTATE_65_OPEN_TITLE) {
 			Fonts.load(js5Archive13, js5Archive8);
 			mainLoadPercentage = 45;
 			mainLoadSecondaryText = LocalizedText.MAINLOAD65B;
 			processGameStatus(5);
-			mainLoadState = 70;
-		} else if (mainLoadState == 70) {
+			mainLoadState = LOADSTATE_70_LOAD_CONFIG;
+		} else if (mainLoadState == LOADSTATE_70_LOAD_CONFIG) {
 			js5Archive2.fetchAll();
 			percentage = js5Archive2.getPercentageComplete();
 			js5Archive16.fetchAll();
@@ -1630,12 +1658,12 @@ public final class Client extends GameShell {
 				mainLoadPercentage = 50;
 				mainLoadSecondaryText = LocalizedText.MAINLOAD70B;
 				Equipment.init();
-				mainLoadState = 80;
+				mainLoadState = LOADSTATE_80_LOAD_SPRITES;
 			} else {
 				mainLoadSecondaryText = JString.concatenate(new JString[] { LocalizedText.MAINLOAD70, JString.parseInt(percentage / 11), JString.PERCENT_SIGN});
 				mainLoadPercentage = 50;
 			}
-		} else if (mainLoadState == 80) {
+		} else if (mainLoadState == LOADSTATE_80_LOAD_SPRITES) {
 			percentage = Sprites.getReady(js5Archive8);
 			i = Sprites.total();
 			if (i > percentage) {
@@ -1643,11 +1671,11 @@ public final class Client extends GameShell {
 				mainLoadPercentage = 60;
 			} else {
 				Sprites.load(js5Archive8);
-				mainLoadState = 90;
+				mainLoadState = LOADSTATE_90_LOAD_TEXTURES;
 				mainLoadPercentage = 60;
 				mainLoadSecondaryText = LocalizedText.MAINLOAD80B;
 			}
-		} else if (mainLoadState == 90) {
+		} else if (mainLoadState == LOADSTATE_90_LOAD_TEXTURES) {
 			if (js5Archive26.fetchAll()) {
 				@Pc(951) Js5TextureProvider textureProvider = new Js5TextureProvider(js5Archive9, js5Archive26, js5Archive8, 20, !Preferences.highDetailTextures);
 				Rasterizer.unpackTextures(textureProvider);
@@ -1664,34 +1692,34 @@ public final class Client extends GameShell {
 					Rasterizer.setBrightness(0.6F);
 				}
 				mainLoadSecondaryText = LocalizedText.MAINLOAD90B;
-				mainLoadState = 100;
+				mainLoadState = LOADSTATE_100_LOAD_FLAMES;
 				mainLoadPercentage = 70;
 			} else {
 				mainLoadSecondaryText = JString.concatenate(new JString[] { LocalizedText.MAINLOAD90, JString.parseInt(js5Archive26.getPercentageComplete()), JString.PERCENT_SIGN});
 				mainLoadPercentage = 70;
 			}
-		} else if (mainLoadState == 100) {
+		} else if (mainLoadState == LOADSTATE_100_LOAD_FLAMES) {
 			if (Flames.isReady(js5Archive8)) {
-				mainLoadState = 110;
+				mainLoadState = LOADSTATE_110_INIT_MOUSE;
 			}
-		} else if (mainLoadState == 110) {
+		} else if (mainLoadState == LOADSTATE_110_INIT_MOUSE) {
 			MouseCapturer.instance = new MouseCapturer();
 			GameShell.signLink.startThread(10, MouseCapturer.instance);
 			mainLoadSecondaryText = LocalizedText.MAINLOAD110B;
 			mainLoadPercentage = 75;
-			mainLoadState = 120;
-		} else if (mainLoadState == 120) {
+			mainLoadState = LOADSTATE_120_LOAD_HUFFMAN;
+		} else if (mainLoadState == LOADSTATE_120_LOAD_HUFFMAN) {
 			if (js5Archive10.isFileReady(JString.EMPTY, HUFFMAN_GROUP)) {
 				@Pc(1060) Huffman codec = new Huffman(js5Archive10.fetchFile(JString.EMPTY, HUFFMAN_GROUP));
 				WordPack.init(codec);
 				mainLoadSecondaryText = LocalizedText.MAINLOAD120B;
-				mainLoadState = 130;
+				mainLoadState = LOADSTATE_130_LOAD_REMAINING_ARCHIVES;
 				mainLoadPercentage = 80;
 			} else {
 				mainLoadSecondaryText = JString.concatenate(new JString[] { LocalizedText.MAINLOAD120, aClass100_899 });
 				mainLoadPercentage = 80;
 			}
-		} else if (mainLoadState == 130) {
+		} else if (mainLoadState == LOADSTATE_130_LOAD_REMAINING_ARCHIVES) {
 			if (!js5Archive3.fetchAll()) {
 				mainLoadSecondaryText = JString.concatenate(new JString[] { LocalizedText.MAINLOAD130, JString.parseInt(js5Archive3.getPercentageComplete() * 3 / 4), JString.PERCENT_SIGN});
 				mainLoadPercentage = 85;
@@ -1705,12 +1733,12 @@ public final class Client extends GameShell {
 				MapList.init(Sprites.mapfunctions, js5Archive23);
 				mainLoadPercentage = 95;
 				mainLoadSecondaryText = LocalizedText.MAINLOAD130B;
-				mainLoadState = 135;
+				mainLoadState = LOADSTATE_135_FETCH_WORLDLIST;
 			} else {
 				mainLoadSecondaryText = JString.concatenate(new JString[] { LocalizedText.MAINLOAD130, JString.parseInt(js5Archive23.method4478(DETAILS) / 10 + 90), JString.PERCENT_SIGN});
 				mainLoadPercentage = 85;
 			}
-		} else if (mainLoadState == 135) {
+		} else if (mainLoadState == LOADSTATE_135_FETCH_WORLDLIST) {
 			percentage = WorldList.fetch();
 			if (percentage == -1) {
 				mainLoadPercentage = 95;
@@ -1720,13 +1748,13 @@ public final class Client extends GameShell {
 				processGameStatus(1000);
 			} else if (WorldList.loaded) {
 				mainLoadSecondaryText = LocalizedText.MAINLOAD135B;
-				mainLoadState = 140;
+				mainLoadState = LOADSTATE_140_CLEANUP_NAMES;
 				mainLoadPercentage = 96;
 			} else {
 				this.error("worldlistio_" + percentage);
 				processGameStatus(1000);
 			}
-		} else if (mainLoadState == 140) {
+		} else if (mainLoadState == LOADSTATE_140_CLEANUP_NAMES) {
 			LoginManager.loginScreenId = js5Archive3.getGroupId(LOGINSCREEN);
 			js5Archive5.discardNames(false);
 			js5Archive6.discardNames(true);
@@ -1736,9 +1764,9 @@ public final class Client extends GameShell {
 			js5Archive3.discardNames(true);
 			mainLoadPercentage = 97;
 			mainLoadSecondaryText = LocalizedText.MAINLOAD140;
-			mainLoadState = 150;
+			mainLoadState = LOADSTATE_150_INIT_DISPLAY_SETTINGS;
 			clean = true;
-		} else if (mainLoadState == 150) {
+		} else if (mainLoadState == LOADSTATE_150_INIT_DISPLAY_SETTINGS) {
 			MaterialManager.method2807();
 			if (Preferences.safeMode) {
 				Preferences.windowMode = 0;
@@ -1750,9 +1778,9 @@ public final class Client extends GameShell {
 			Preferences.save(GameShell.signLink);
 			DisplayMode.setWindowMode(false, Preferences.favoriteWorlds, -1, -1);
 			mainLoadPercentage = 100;
-			mainLoadState = 160;
+			mainLoadState = LOADSTATE_160_INIT_LOGIN_SCREEN;
 			mainLoadSecondaryText = LocalizedText.MAINLOAD150B;
-		} else if (mainLoadState == 160) {
+		} else if (mainLoadState == LOADSTATE_160_INIT_LOGIN_SCREEN) {
 			InterfaceManager.initializeLoginScreen(true);
 		}
 	}

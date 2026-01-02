@@ -173,11 +173,11 @@ public abstract class GameShell extends Canvas implements Runnable, FocusListene
 		if (InterfaceManager.topLevelInterface != -1) {
 			InterfaceManager.updateInterfaceLayout(true);
 		}
-		fillBlackBorders();
+		drawMargins();
 	}
 
 	@OriginalMember(owner = "runetek4.client!l", name = "b", descriptor = "(I)V")
-	public static void fillBlackBorders() {
+	public static void drawMargins() {
 		@Pc(7) int currentTopMargin = topMargin;
 		@Pc(9) int currentLeftMargin = leftMargin;
 		@Pc(16) int bottomBorderHeight = frameHeight - canvasHeight - currentTopMargin;
@@ -186,20 +186,22 @@ public abstract class GameShell extends Canvas implements Runnable, FocusListene
 			return;
 		}
 		try {
-			@Pc(46) Container activeContainer;
+			@Pc(46) Container currentFrame;
 			if (fullScreenFrame != null) {
-				activeContainer = fullScreenFrame;
+				currentFrame = fullScreenFrame;
 			} else {
-				activeContainer = frame;
+				currentFrame = frame;
 			}
 			@Pc(59) int insetsTop = 0;
 			@Pc(61) int insetsLeft = 0;
-			if (frame == activeContainer) {
+			if (frame == currentFrame) {
 				@Pc(68) Insets insets = frame.getInsets();
 				insetsLeft = insets.left;
 				insetsTop = insets.top;
 			}
-			@Pc(77) Graphics graphics = activeContainer.getGraphics();
+
+			// Fill in margins between frame and canvas with black
+			@Pc(77) Graphics graphics = currentFrame.getGraphics();
 			graphics.setColor(Color.black);
 			if (currentLeftMargin > 0) {
 				graphics.fillRect(insetsLeft, insetsTop, currentLeftMargin, frameHeight);
@@ -420,6 +422,7 @@ public abstract class GameShell extends Canvas implements Runnable, FocusListene
 			partialRedraws -= 50;
 			canvas.setSize(canvasWidth, canvasHeight);
 			canvas.setVisible(true);
+			//TODO check if getCurrentDevice() is null before setting canvas scale, otherwise nullpointerexception might occur
 			canvasScale = getCurrentDevice().getDefaultConfiguration().getDefaultTransform().getScaleX();
 			if (frame != null && fullScreenFrame == null) {
 				@Pc(84) Insets insets = frame.getInsets();
@@ -439,6 +442,7 @@ public abstract class GameShell extends Canvas implements Runnable, FocusListene
 	public final void run() {
 		try {
 			if (SignLink.javaVendor != null) {
+				// Java version validation
 				@Pc(12) String javaVendor = SignLink.javaVendor.toLowerCase();
 				if (javaVendor.indexOf("sun") != -1 || javaVendor.indexOf("apple") != -1) {
 					@Pc(24) String javaVersion = SignLink.javaVersion;
@@ -469,9 +473,13 @@ public abstract class GameShell extends Canvas implements Runnable, FocusListene
 				}
 			}
 			getMaxMemory();
+
+			// Initialization
 			this.addCanvas();
 			SoftwareRenderer.frameBuffer = FrameBuffer.create(canvasHeight, canvasWidth, canvas);
 			this.mainInit();
+
+			// Establish game loop timer
 			tickScheduler = TickScheduler.create();
 			while (killtime == 0L || killtime > SystemTimer.safetime()) {
 				scheduledTicks = tickScheduler.sleep(minimumDelay, VARIABLE_RENDER_RATE);

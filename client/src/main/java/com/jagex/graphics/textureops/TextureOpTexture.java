@@ -60,8 +60,11 @@ public final class TextureOpTexture extends TextureOp {
 
 	@OriginalMember(owner = "runetek4.client!ui", name = "a", descriptor = "(Z)Z")
 	private boolean loadTexture() {
+		// Do nothing if texture already loaded
 		if (this.pixels != null) {
 			return true;
+
+			// Do nothing if texture invalid
 		} else if (this.textureId < 0) {
 			return false;
 		} else {

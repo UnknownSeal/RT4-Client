@@ -176,7 +176,10 @@ public class WorldList {
         @Pc(3) GameWorld world = ClientScriptRunner.getWorld(id);
         if (world == null) {
             return false;
-        } else if (SignLink.anInt5928 == 1 || SignLink.anInt5928 == 2 || Client.modeWhere == ModeWhere.WIP) {
+        }
+
+        // Handle world hop if user is running standalone java client
+        else if (SignLink.anInt5928 == 1 || SignLink.anInt5928 == 2 || Client.modeWhere == ModeWhere.WIP) {
             @Pc(31) byte[] local31 = world.hostname.encode();
             Client.hostname = new String(local31, 0, local31.length);
             Player.worldId = world.id;
@@ -186,7 +189,10 @@ public class WorldList {
                 Client.alternatePort = Player.worldId + 50000;
             }
             return true;
-        } else {
+        }
+
+        // Handle world hop if user is running client in browser
+        else {
 //            @Pc(62) JString port = aClass100_230;
 //            if (client.modeWhere != 0) {
 //                port = JString.concatenate(new JString[] { aClass100_193, JString.parseInt(world.id + 7000) });

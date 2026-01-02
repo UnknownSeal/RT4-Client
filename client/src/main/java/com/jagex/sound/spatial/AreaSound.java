@@ -21,7 +21,7 @@ public final class AreaSound extends Node {
 	public int minZFine;
 
 	@OriginalMember(owner = "client!fl", name = "t", descriptor = "I")
-	public int bgsound_mindelay;
+	public int minInterval;
 
 	@OriginalMember(owner = "client!fl", name = "v", descriptor = "Lclient!b;")
 	public SoundPcmStream primaryStream;
@@ -45,7 +45,7 @@ public final class AreaSound extends Node {
 	public Npc npc;
 
 	@OriginalMember(owner = "client!fl", name = "K", descriptor = "I")
-	public int bgsound_maxdelay;
+	public int maxInterval;
 
 	@OriginalMember(owner = "client!fl", name = "L", descriptor = "I")
 	public int minXFine;
@@ -54,57 +54,57 @@ public final class AreaSound extends Node {
 	public Player player;
 
 	@OriginalMember(owner = "client!fl", name = "N", descriptor = "I")
-	public int bgsound_range;
+	public int radius;
 
 	@OriginalMember(owner = "client!fl", name = "O", descriptor = "Z")
 	public boolean multiLocOrNpc;
 
 	@OriginalMember(owner = "client!fl", name = "R", descriptor = "I")
-	public int bgsound;
+	public int sound;
 
 	@OriginalMember(owner = "client!fl", name = "T", descriptor = "[I")
-	public int[] bgsound_random;
+	public int[] sounds;
 
 	@OriginalMember(owner = "client!fl", name = "G", descriptor = "I")
 	public int movementSpeed = 0;
 
 	@OriginalMember(owner = "client!fl", name = "c", descriptor = "(I)V")
 	public void update() {
-		@Pc(8) int prevSound = this.bgsound;
+		@Pc(8) int prevSound = this.sound;
 		if (this.locType != null) {
 			@Pc(17) LocType locType = this.locType.getMultiLoc();
 			if (locType == null) {
-				this.bgsound = -1;
-				this.bgsound_random = null;
-				this.bgsound_maxdelay = 0;
-				this.bgsound_range = 0;
-				this.bgsound_mindelay = 0;
+				this.sound = -1;
+				this.sounds = null;
+				this.maxInterval = 0;
+				this.radius = 0;
+				this.minInterval = 0;
 			} else {
-				this.bgsound_maxdelay = locType.bgsound_maxdelay;
-				this.bgsound = locType.bgsound_sound;
-				this.bgsound_mindelay = locType.bgsound_mindelay;
-				this.bgsound_range = locType.bgsound_range * 128;
-				this.bgsound_random = locType.bgsound_random;
+				this.maxInterval = locType.bgsoundmax;
+				this.sound = locType.bgsound;
+				this.minInterval = locType.bgsoundmin;
+				this.radius = locType.bgsoundrange * 128;
+				this.sounds = locType.bgsounds;
 			}
 		} else if (this.npc != null) {
-			@Pc(92) int bgsound = Npc.getSound(this.npc);
-			if (prevSound != bgsound) {
+			@Pc(92) int sound = Npc.getSound(this.npc);
+			if (prevSound != sound) {
 				@Pc(100) NpcType npcType = this.npc.type;
-				this.bgsound = bgsound;
+				this.sound = sound;
 				if (npcType.multinpc != null) {
 					npcType = npcType.getMultiNPC();
 				}
 				if (npcType == null) {
-					this.bgsound_range = 0;
+					this.radius = 0;
 				} else {
-					this.bgsound_range = npcType.bgsound_range * 128;
+					this.radius = npcType.soundRadius * 128;
 				}
 			}
 		} else if (this.player != null) {
-			this.bgsound = Player.getSound(this.player);
-			this.bgsound_range = this.player.soundRadius * 128;
+			this.sound = Player.getSound(this.player);
+			this.radius = this.player.soundRadius * 128;
 		}
-		if (this.bgsound != prevSound && this.primaryStream != null) {
+		if (this.sound != prevSound && this.primaryStream != null) {
 			Client.soundStream.removeSubStream(this.primaryStream);
 			this.primaryStream = null;
 		}

@@ -58,84 +58,84 @@ public final class AnimFrame {
 	public final byte[] flags;
 
 	@OriginalMember(owner = "client!ne", name = "<init>", descriptor = "([BLclient!jm;)V")
-	public AnimFrame(@OriginalArg(0) byte[] arg0, @OriginalArg(1) AnimBase arg1) {
-		this.animBase = arg1;
-		@Pc(21) Packet local21 = new Packet(arg0);
-		@Pc(26) Packet local26 = new Packet(arg0);
-		local21.offset = 2;
-		@Pc(33) int local33 = local21.g1();
-		@Pc(35) int local35 = 0;
-		@Pc(37) int local37 = -1;
-		@Pc(39) int local39 = -1;
-		local26.offset = local21.offset + local33;
-		@Pc(47) int local47;
-		for (local47 = 0; local47 < local33; local47++) {
-			@Pc(56) int local56 = this.animBase.types[local47];
-			if (local56 == 0) {
-				local37 = local47;
+	public AnimFrame(@OriginalArg(0) byte[] arg0, @OriginalArg(1) AnimBase base) {
+		this.animBase = base;
+		@Pc(21) Packet headerBuffer = new Packet(arg0);
+		@Pc(26) Packet buffer = new Packet(arg0);
+		headerBuffer.offset = 2;
+		@Pc(33) int headerLen = headerBuffer.g1();
+		@Pc(35) int len = 0;
+		@Pc(37) int prevOriginIndex = -1;
+		@Pc(39) int prevUsedOriginIndex = -1;
+		buffer.offset = headerBuffer.offset + headerLen;
+		@Pc(47) int i;
+		for (i = 0; i < headerLen; i++) {
+			@Pc(56) int type = this.animBase.types[i];
+			if (type == 0) {
+				prevOriginIndex = i;
 			}
-			@Pc(64) int local64 = local21.g1();
-			if (local64 > 0) {
-				if (local56 == 0) {
-					local39 = local47;
+			@Pc(64) int attributes = headerBuffer.g1();
+			if (attributes > 0) {
+				if (type == 0) {
+					prevUsedOriginIndex = i;
 				}
-				tempIndices[local35] = (short) local47;
-				@Pc(77) short local77 = 0;
-				if (local56 == 3) {
-					local77 = 128;
+				tempIndices[len] = (short) i;
+				@Pc(77) short defaultValue = 0;
+				if (type == 3) {
+					defaultValue = 128;
 				}
-				if ((local64 & 0x1) == 0) {
-					tempX[local35] = local77;
+				if ((attributes & 0x1) == 0) {
+					tempX[len] = defaultValue;
 				} else {
-					tempX[local35] = (short) local26.gSmart1or2s();
+					tempX[len] = (short) buffer.gSmart1or2s();
 				}
-				if ((local64 & 0x2) == 0) {
-					tempY[local35] = local77;
+				if ((attributes & 0x2) == 0) {
+					tempY[len] = defaultValue;
 				} else {
-					tempY[local35] = (short) local26.gSmart1or2s();
+					tempY[len] = (short) buffer.gSmart1or2s();
 				}
-				if ((local64 & 0x4) == 0) {
-					tempZ[local35] = local77;
+				if ((attributes & 0x4) == 0) {
+					tempZ[len] = defaultValue;
 				} else {
-					tempZ[local35] = (short) local26.gSmart1or2s();
+					tempZ[len] = (short) buffer.gSmart1or2s();
 				}
-				tempFlags[local35] = (byte) (local64 >>> 3 & 0x3);
-				if (local56 == 2) {
-					tempX[local35] = (short) (((tempX[local35] & 0xFF) << 3) + (tempX[local35] >> 8 & 0x7));
-					tempY[local35] = (short) (((tempY[local35] & 0xFF) << 3) + (tempY[local35] >> 8 & 0x7));
-					tempZ[local35] = (short) (((tempZ[local35] & 0xFF) << 3) + (tempZ[local35] >> 8 & 0x7));
+				tempFlags[len] = (byte) (attributes >>> 3 & 0x3);
+				if (type == 2) {
+					tempX[len] = (short) (((tempX[len] & 0xFF) << 3) + (tempX[len] >> 8 & 0x7));
+					tempY[len] = (short) (((tempY[len] & 0xFF) << 3) + (tempY[len] >> 8 & 0x7));
+					tempZ[len] = (short) (((tempZ[len] & 0xFF) << 3) + (tempZ[len] >> 8 & 0x7));
 				}
-				tempPrevOriginIndices[local35] = -1;
-				if (local56 == 1 || local56 == 2 || local56 == 3) {
-					if (local37 > local39) {
-						tempPrevOriginIndices[local35] = (short) local37;
-						local39 = local37;
+				tempPrevOriginIndices[len] = -1;
+				if (type == 1 || type == 2 || type == 3) {
+					if (prevOriginIndex > prevUsedOriginIndex) {
+						tempPrevOriginIndices[len] = (short) prevOriginIndex;
+						prevUsedOriginIndex = prevOriginIndex;
 					}
-				} else if (local56 == 5) {
+				} else if (type == 5) {
 					this.transformsAlpha = true;
-				} else if (local56 == 7) {
+				} else if (type == 7) {
 					this.transformsColor = true;
 				}
-				local35++;
+				len++;
 			}
 		}
-		if (local26.offset != arg0.length) {
+		if (buffer.offset != arg0.length) {
 			throw new RuntimeException();
 		}
-		this.length = local35;
-		this.indices = new short[local35];
-		this.x = new short[local35];
-		this.y = new short[local35];
-		this.z = new short[local35];
-		this.prevOriginIndices = new short[local35];
-		this.flags = new byte[local35];
-		for (local47 = 0; local47 < local35; local47++) {
-			this.indices[local47] = tempIndices[local47];
-			this.x[local47] = tempX[local47];
-			this.y[local47] = tempY[local47];
-			this.z[local47] = tempZ[local47];
-			this.prevOriginIndices[local47] = tempPrevOriginIndices[local47];
-			this.flags[local47] = tempFlags[local47];
+		this.length = len;
+		this.indices = new short[len];
+		this.x = new short[len];
+		this.y = new short[len];
+		this.z = new short[len];
+		this.prevOriginIndices = new short[len];
+		this.flags = new byte[len];
+		for (i = 0; i < len; i++) {
+			this.indices[i] = tempIndices[i];
+			this.x[i] = tempX[i];
+			this.y[i] = tempY[i];
+			this.z[i] = tempZ[i];
+			this.prevOriginIndices[i] = tempPrevOriginIndices[i];
+			this.flags[i] = tempFlags[i];
 		}
 	}
 }

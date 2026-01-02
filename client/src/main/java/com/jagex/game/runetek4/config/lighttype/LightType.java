@@ -10,16 +10,16 @@ import com.jagex.core.io.Packet;
 public final class LightType {
 
 	@OriginalMember(owner = "client!ic", name = "g", descriptor = "I")
-	public int anInt2867 = 2048;
+	public int alphaMin = 2048;
 
 	@OriginalMember(owner = "client!ic", name = "c", descriptor = "I")
-	public int anInt2865 = 0;
+	public int flickerType = 0;
 
 	@OriginalMember(owner = "client!ic", name = "o", descriptor = "I")
-	public int anInt2872 = 0;
+	public int alphaMax = 0;
 
 	@OriginalMember(owner = "client!ic", name = "p", descriptor = "I")
-	public int anInt2873 = 2048;
+	public int lightType = 2048;
 
 	@OriginalMember(owner = "client!ic", name = "a", descriptor = "(ILclient!wa;I)V")
 	public void decode(@OriginalArg(1) Packet packet) {
@@ -35,13 +35,13 @@ public final class LightType {
 	@OriginalMember(owner = "client!ic", name = "a", descriptor = "(ILclient!wa;IZ)V")
 	private void decode(@OriginalArg(0) int code, @OriginalArg(1) Packet packet) {
 		if (code == 1) {
-			this.anInt2865 = packet.g1();
+			this.flickerType = packet.g1();
 		} else if (code == 2) {
-			this.anInt2873 = packet.g2();
+			this.lightType = packet.g2();
 		} else if (code == 3) {
-			this.anInt2867 = packet.g2();
+			this.alphaMin = packet.g2();
 		} else if (code == 4) {
-			this.anInt2872 = packet.g2s();
+			this.alphaMax = packet.g2s();
 		}
 	}
 }

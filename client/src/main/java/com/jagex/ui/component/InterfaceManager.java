@@ -290,7 +290,7 @@ public class InterfaceManager {
             topLevelInterface = LoginManager.loginScreenId;
             updateInterfaceLayout(false);
             ClientScriptRunner.method1807();
-            ClientScriptRunner.executeOnLoad(topLevelInterface);
+            ClientScriptRunner.runHooks(topLevelInterface);
         }
         defaultCursor = -1;
         setCursor(ClientScriptRunner.anInt5794);
@@ -835,7 +835,7 @@ public class InterfaceManager {
                             mousePressed = true;
                         }
                         @Pc(221) boolean mouseClicked = false;
-                        if (Mouse.clickButton == 1 && Mouse.mouseClickX >= effectiveClipLeft && Mouse.mouseClickY >= effectiveClipTop && Mouse.mouseClickX < effectiveClipRight && Mouse.mouseClickY < effectiveClipBottom) {
+                        if (Mouse.clickButton == 1 && Mouse.clickX >= effectiveClipLeft && Mouse.clickY >= effectiveClipTop && Mouse.clickX < effectiveClipRight && Mouse.clickY < effectiveClipBottom) {
                             mouseClicked = true;
                         }
                         @Pc(243) int hotkeyIndex;
@@ -864,7 +864,7 @@ public class InterfaceManager {
                             }
                         }
                         if (mouseClicked) {
-                            dragTryPickup(Mouse.mouseClickY - componentY, Mouse.mouseClickX - componentX, component);
+                            dragTryPickup(Mouse.clickY - componentY, Mouse.clickX - componentX, component);
                         }
                         if (dragSource != null && dragSource != component && mouseOver && getServerActiveProperties(component).isDragTarget()) {
                             dragTarget = component;
@@ -898,8 +898,8 @@ public class InterfaceManager {
                                 }
                                 if (component.clientcode == ComponentClientCode.MINIMAP) {
                                     if (mouseClicked) {
-                                        anInt5 = Mouse.mouseClickX - componentX;
-                                        MiniMenu.anInt2878 = Mouse.mouseClickY - componentY;
+                                        anInt5 = Mouse.clickX - componentX;
+                                        MiniMenu.anInt2878 = Mouse.clickY - componentY;
                                     }
                                     continue;
                                 }
@@ -907,8 +907,8 @@ public class InterfaceManager {
                                     WorldMap.component = component;
                                     if (mouseClicked) {
                                         if (Keyboard.pressedKeys[82] && LoginManager.staffModLevel > 0) {
-                                            hotkeyIndex = (int) ((double) (Mouse.mouseClickX - componentX - component.width / 2) * 2.0D / (double) WorldMap.zoom);
-                                            skill = (int) ((double) (Mouse.mouseClickY - componentY - component.height / 2) * 2.0D / (double) WorldMap.zoom);
+                                            hotkeyIndex = (int) ((double) (Mouse.clickX - componentX - component.width / 2) * 2.0D / (double) WorldMap.zoom);
+                                            skill = (int) ((double) (Mouse.clickY - componentY - component.height / 2) * 2.0D / (double) WorldMap.zoom);
                                             cooldownDelay = WorldMap.displayX + hotkeyIndex;
                                             @Pc(516) int local516 = WorldMap.displayZ + skill;
                                             @Pc(520) int local520 = cooldownDelay + WorldMap.originX;
@@ -956,8 +956,8 @@ public class InterfaceManager {
                                     request = new HookRequest();
                                     request.shouldExecute = true;
                                     request.source = component;
-                                    request.mouseX = Mouse.mouseClickX - componentX;
-                                    request.mouseY = Mouse.mouseClickY - componentY;
+                                    request.mouseX = Mouse.clickX - componentX;
+                                    request.mouseY = Mouse.clickY - componentY;
                                     request.arguments = component.onClick;
                                     lowPriorityRequests.push(request);
                                 }
@@ -1494,8 +1494,8 @@ public class InterfaceManager {
                                 }
                                 clipRight2 = ClientScriptRunner.scriptMouseX - renderX;
                                 clipBottom2 = ClientScriptRunner.scriptMouseY - renderY;
-                                temp = child.compassPixelOffsets[clipBottom2];
-                                if (clipRight2 < temp || clipRight2 > temp + child.compassPixelWidths[clipBottom2]) {
+                                temp = child.spriteHorizontalOffsets[clipBottom2];
+                                if (clipRight2 < temp || clipRight2 > temp + child.spriteHorizontalLengths[clipBottom2]) {
                                     continue;
                                 }
                                 clipBottom2 -= child.height / 2;
@@ -1951,7 +1951,7 @@ public class InterfaceManager {
                                                 }
                                             } else if (child.modelType == 5) {
                                                 if (child.modelId == -1) {
-                                                    local2589 = PlayerAppearance.DEFAULT.createAnimatedBodyModel(null, -1, null, null, 0, -1, 0, -1, -1);
+                                                    local2589 = PlayerAppearance.DEFAULT.getPlayerModel(null, -1, null, null, 0, -1, 0, -1, -1);
                                                 } else {
                                                     colorValue = child.modelId & 0x7FF;
                                                     if (colorValue == PlayerList.localPid) {
@@ -1960,7 +1960,7 @@ public class InterfaceManager {
                                                     @Pc(2751) Player local2751 = PlayerList.players[colorValue];
                                                     @Pc(2760) SeqType local2760 = clipBottom2 == -1 ? null : SeqTypeList.get(clipBottom2);
                                                     if (local2751 != null && (int) local2751.username.encode37() << 11 == (child.modelId & 0xFFFFF800)) {
-                                                        local2589 = local2751.playerModel.createAnimatedBodyModel(null, -1, null, local2760, 0, -1, 0, child.animationId, 0);
+                                                        local2589 = local2751.playerModel.getPlayerModel(null, -1, null, local2760, 0, -1, 0, child.animationId, 0);
                                                     }
                                                 }
                                             } else if (clipBottom2 == -1) {

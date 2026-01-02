@@ -456,8 +456,8 @@ public class MiniMenu {
                 PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, player.movementQueueX[0], 1, 0, 2, player.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
                 Crosshair.CrosshairMode = 2;
                 Crosshair.CrosshairCycle = 0;
-                Crosshair.x = Mouse.mouseClickX;
-                Crosshair.y = Mouse.mouseClickY;
+                Crosshair.x = Mouse.clickX;
+                Crosshair.y = Mouse.clickY;
                 Protocol.outboundBuffer.pIsaac1(ClientProt.OPPLAYER6);
                 Protocol.outboundBuffer.p2_alt3(keyInt);
             }
@@ -486,10 +486,10 @@ public class MiniMenu {
             npc = NpcList.npcs[keyInt];
             if (npc != null) {
                 PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, npc.movementQueueX[0], 1, 0, 2, npc.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
-                Crosshair.x = Mouse.mouseClickX;
+                Crosshair.x = Mouse.clickX;
                 Crosshair.CrosshairMode = 2;
                 Crosshair.CrosshairCycle = 0;
-                Crosshair.y = Mouse.mouseClickY;
+                Crosshair.y = Mouse.clickY;
                 Protocol.outboundBuffer.pIsaac1(ClientProt.OPNPC4);
                 Protocol.outboundBuffer.p2(keyInt);
             }
@@ -498,10 +498,10 @@ public class MiniMenu {
             npc = NpcList.npcs[keyInt];
             if (npc != null) {
                 PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, npc.movementQueueX[0], 1, 0, 2, npc.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
-                Crosshair.x = Mouse.mouseClickX;
+                Crosshair.x = Mouse.clickX;
                 Crosshair.CrosshairCycle = 0;
                 Crosshair.CrosshairMode = 2;
-                Crosshair.y = Mouse.mouseClickY;
+                Crosshair.y = Mouse.clickY;
                 Protocol.outboundBuffer.pIsaac1(ClientProt.OPNPC1);
                 Protocol.outboundBuffer.p2_alt1(keyInt);
             }
@@ -510,9 +510,9 @@ public class MiniMenu {
             player = PlayerList.players[keyInt];
             if (player != null) {
                 PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, player.movementQueueX[0], 1, 0, 2, player.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
-                Crosshair.x = Mouse.mouseClickX;
+                Crosshair.x = Mouse.clickX;
                 Crosshair.CrosshairMode = 2;
-                Crosshair.y = Mouse.mouseClickY;
+                Crosshair.y = Mouse.clickY;
                 Crosshair.CrosshairCycle = 0;
                 Protocol.outboundBuffer.pIsaac1(ClientProt.OPPLAYER4);
                 Protocol.outboundBuffer.p2_alt1(keyInt);
@@ -543,10 +543,10 @@ public class MiniMenu {
             npc = NpcList.npcs[keyInt];
             if (npc != null) {
                 PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, npc.movementQueueX[0], 1, 0, 2, npc.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
-                Crosshair.x = Mouse.mouseClickX;
+                Crosshair.x = Mouse.clickX;
                 Crosshair.CrosshairMode = 2;
                 Crosshair.CrosshairCycle = 0;
-                Crosshair.y = Mouse.mouseClickY;
+                Crosshair.y = Mouse.clickY;
                 Protocol.outboundBuffer.pIsaac1(ClientProt.OPNPCT);
                 Protocol.outboundBuffer.p4_alt1(useWithComponentId);
                 Protocol.outboundBuffer.p2_alt2(useWithSlot);
@@ -564,10 +564,10 @@ public class MiniMenu {
                     PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, param1, 1, 0, 2, param2, PlayerList.self.movementQueueX[0]);
                 }
             }
-            Crosshair.x = Mouse.mouseClickX;
+            Crosshair.x = Mouse.clickX;
             Crosshair.CrosshairCycle = 0;
             Crosshair.CrosshairMode = 2;
-            Crosshair.y = Mouse.mouseClickY;
+            Crosshair.y = Mouse.clickY;
             Protocol.outboundBuffer.pIsaac1(ClientProt.OPOBJSTACK1);
             Protocol.outboundBuffer.p2_alt1(Camera.sceneBaseTileX + param1);
             Protocol.outboundBuffer.p2(keyInt);
@@ -582,8 +582,8 @@ public class MiniMenu {
         }
         if (actionCode == OBJ_EXAMINE) {
             Crosshair.CrosshairMode = 2;
-            Crosshair.x = Mouse.mouseClickX;
-            Crosshair.y = Mouse.mouseClickY;
+            Crosshair.x = Mouse.clickX;
+            Crosshair.y = Mouse.clickY;
             Crosshair.CrosshairCycle = 0;
             Protocol.outboundBuffer.pIsaac1(ClientProt.OPOBJ_EXAMINE);
             Protocol.outboundBuffer.p2_alt3(keyInt);
@@ -625,8 +625,8 @@ public class MiniMenu {
         if (actionCode == NPC_EXAMINE) {
             Crosshair.CrosshairCycle = 0;
             Crosshair.CrosshairMode = 2;
-            Crosshair.y = Mouse.mouseClickY;
-            Crosshair.x = Mouse.mouseClickX;
+            Crosshair.y = Mouse.clickY;
+            Crosshair.x = Mouse.clickX;
             npc = NpcList.npcs[keyInt];
             if (npc != null) {
                 @Pc(884) NpcType npcType = npc.type;
@@ -664,8 +664,8 @@ public class MiniMenu {
             if (player != null) {
                 PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, player.movementQueueX[0], 1, 0, 2, player.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
                 Crosshair.CrosshairMode = 2;
-                Crosshair.y = Mouse.mouseClickY;
-                Crosshair.x = Mouse.mouseClickX;
+                Crosshair.y = Mouse.clickY;
+                Crosshair.x = Mouse.clickX;
                 Crosshair.CrosshairCycle = 0;
                 Protocol.outboundBuffer.pIsaac1(ClientProt.OPPLAYER3);
                 Protocol.outboundBuffer.p2_alt1(keyInt);
@@ -707,8 +707,8 @@ public class MiniMenu {
                 PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, player.movementQueueX[0], 1, 0, 2, player.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
                 Crosshair.CrosshairCycle = 0;
                 Crosshair.CrosshairMode = 2;
-                Crosshair.y = Mouse.mouseClickY;
-                Crosshair.x = Mouse.mouseClickX;
+                Crosshair.y = Mouse.clickY;
+                Crosshair.x = Mouse.clickX;
                 Protocol.outboundBuffer.pIsaac1(ClientProt.OPPLAYER7);
                 Protocol.outboundBuffer.p2_alt3(keyInt);
             }
@@ -735,9 +735,9 @@ public class MiniMenu {
                 }
             }
             Crosshair.CrosshairMode = 2;
-            Crosshair.x = Mouse.mouseClickX;
+            Crosshair.x = Mouse.clickX;
             Crosshair.CrosshairCycle = 0;
-            Crosshair.y = Mouse.mouseClickY;
+            Crosshair.y = Mouse.clickY;
             Protocol.outboundBuffer.pIsaac1(ClientProt.OPOBJ2);
             Protocol.outboundBuffer.p2(keyInt);
             Protocol.outboundBuffer.p2_alt1(Camera.sceneBaseTileX + param1);
@@ -749,8 +749,8 @@ public class MiniMenu {
                 PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, npc.movementQueueX[0], 1, 0, 2, npc.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
                 Crosshair.CrosshairMode = 2;
                 Crosshair.CrosshairCycle = 0;
-                Crosshair.y = Mouse.mouseClickY;
-                Crosshair.x = Mouse.mouseClickX;
+                Crosshair.y = Mouse.clickY;
+                Crosshair.x = Mouse.clickX;
                 Protocol.outboundBuffer.pIsaac1(ClientProt.OPPLAYERT);
                 Protocol.outboundBuffer.p2_alt2(keyInt);
             }
@@ -778,10 +778,10 @@ public class MiniMenu {
             player = PlayerList.players[keyInt];
             if (player != null) {
                 PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, player.movementQueueX[0], 1, 0, 2, player.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
-                Crosshair.y = Mouse.mouseClickY;
+                Crosshair.y = Mouse.clickY;
                 Crosshair.CrosshairCycle = 0;
                 Crosshair.CrosshairMode = 2;
-                Crosshair.x = Mouse.mouseClickX;
+                Crosshair.x = Mouse.clickX;
                 Protocol.outboundBuffer.pIsaac1(ClientProt.OPPLAYER2);
                 Protocol.outboundBuffer.p2_alt3(keyInt);
             }
@@ -801,8 +801,8 @@ public class MiniMenu {
                 PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, player.movementQueueX[0], 1, 0, 2, player.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
                 Crosshair.CrosshairCycle = 0;
                 Crosshair.CrosshairMode = 2;
-                Crosshair.x = Mouse.mouseClickX;
-                Crosshair.y = Mouse.mouseClickY;
+                Crosshair.x = Mouse.clickX;
+                Crosshair.y = Mouse.clickY;
                 Protocol.outboundBuffer.pIsaac1(ClientProt.OPOBJSTACK5);
                 Protocol.outboundBuffer.p2_alt2(useWithSlot);
                 Protocol.outboundBuffer.p4_alt1(useWithComponentId);
@@ -818,9 +818,9 @@ public class MiniMenu {
                     PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, param1, 1, 0, 2, param2, PlayerList.self.movementQueueX[0]);
                 }
             }
-            Crosshair.x = Mouse.mouseClickX;
+            Crosshair.x = Mouse.clickX;
             Crosshair.CrosshairMode = 2;
-            Crosshair.y = Mouse.mouseClickY;
+            Crosshair.y = Mouse.clickY;
             Crosshair.CrosshairCycle = 0;
             Protocol.outboundBuffer.pIsaac1(ClientProt.OPOBJSTACK3);
             Protocol.outboundBuffer.p2_alt1(param2 + Camera.sceneBaseTileZ);
@@ -840,9 +840,9 @@ public class MiniMenu {
             npc = NpcList.npcs[keyInt];
             if (npc != null) {
                 PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, npc.movementQueueX[0], 1, 0, 2, npc.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
-                Crosshair.y = Mouse.mouseClickY;
+                Crosshair.y = Mouse.clickY;
                 Crosshair.CrosshairMode = 2;
-                Crosshair.x = Mouse.mouseClickX;
+                Crosshair.x = Mouse.clickX;
                 Crosshair.CrosshairCycle = 0;
                 Protocol.outboundBuffer.pIsaac1(ClientProt.OPOBJSTACKT);
                 Protocol.outboundBuffer.p2_alt1(keyInt);
@@ -867,8 +867,8 @@ public class MiniMenu {
                 PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, npc.movementQueueX[0], 1, 0, 2, npc.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
                 Crosshair.CrosshairMode = 2;
                 Crosshair.CrosshairCycle = 0;
-                Crosshair.y = Mouse.mouseClickY;
-                Crosshair.x = Mouse.mouseClickX;
+                Crosshair.y = Mouse.clickY;
+                Crosshair.x = Mouse.clickX;
                 Protocol.outboundBuffer.pIsaac1(ClientProt.RESUME_PAUSEBUTTON);
                 Protocol.outboundBuffer.p4_alt3(MiniMap.anInt5062);
                 Protocol.outboundBuffer.p2_alt1(InterfaceManager.anInt4370);
@@ -891,9 +891,9 @@ public class MiniMenu {
             if (!pathFound) {
                 PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, param1, 1, 0, 2, param2, PlayerList.self.movementQueueX[0]);
             }
-            Crosshair.x = Mouse.mouseClickX;
+            Crosshair.x = Mouse.clickX;
             Crosshair.CrosshairCycle = 0;
-            Crosshair.y = Mouse.mouseClickY;
+            Crosshair.y = Mouse.clickY;
             Crosshair.CrosshairMode = 2;
             Protocol.outboundBuffer.pIsaac1(ClientProt.OPOBJSTACK4);
             Protocol.outboundBuffer.p2_alt3(param1 + Camera.sceneBaseTileX);
@@ -905,9 +905,9 @@ public class MiniMenu {
         }
         if (actionCode == LOC_ACTION_EXAMINE) {
             Crosshair.CrosshairCycle = 0;
-            Crosshair.x = Mouse.mouseClickX;
+            Crosshair.x = Mouse.clickX;
             Crosshair.CrosshairMode = 2;
-            Crosshair.y = Mouse.mouseClickY;
+            Crosshair.y = Mouse.clickY;
             Protocol.outboundBuffer.pIsaac1(ClientProt.OPLOC6);
             Protocol.outboundBuffer.p2_alt3(keyInt);
         }
@@ -939,9 +939,9 @@ public class MiniMenu {
             if (player != null) {
                 PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, player.movementQueueX[0], 1, 0, 2, player.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
                 Crosshair.CrosshairCycle = 0;
-                Crosshair.y = Mouse.mouseClickY;
+                Crosshair.y = Mouse.clickY;
                 Crosshair.CrosshairMode = 2;
-                Crosshair.x = Mouse.mouseClickX;
+                Crosshair.x = Mouse.clickX;
                 Protocol.outboundBuffer.pIsaac1(ClientProt.TELEPORT);
                 Protocol.outboundBuffer.p2_alt3(keyInt);
                 Protocol.outboundBuffer.p2(anInt4997);
@@ -968,8 +968,8 @@ public class MiniMenu {
                 }
             }
             Crosshair.CrosshairMode = 2;
-            Crosshair.y = Mouse.mouseClickY;
-            Crosshair.x = Mouse.mouseClickX;
+            Crosshair.y = Mouse.clickY;
+            Crosshair.x = Mouse.clickX;
             Crosshair.CrosshairCycle = 0;
             Protocol.outboundBuffer.pIsaac1(ClientProt.OPOBJSTACK2);
             Protocol.outboundBuffer.p2_alt2(param1 + Camera.sceneBaseTileX);
@@ -998,8 +998,8 @@ public class MiniMenu {
             if (player != null) {
                 PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, player.movementQueueX[0], 1, 0, 2, player.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
                 Crosshair.CrosshairMode = 2;
-                Crosshair.y = Mouse.mouseClickY;
-                Crosshair.x = Mouse.mouseClickX;
+                Crosshair.y = Mouse.clickY;
+                Crosshair.x = Mouse.clickX;
                 Crosshair.CrosshairCycle = 0;
                 Protocol.outboundBuffer.pIsaac1(ClientProt.OPPLAYER5);
                 Protocol.outboundBuffer.p2_alt2(keyInt);
@@ -1040,8 +1040,8 @@ public class MiniMenu {
             if (player != null) {
                 PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, player.movementQueueX[0], 1, 0, 2, player.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
                 Crosshair.CrosshairCycle = 0;
-                Crosshair.x = Mouse.mouseClickX;
-                Crosshair.y = Mouse.mouseClickY;
+                Crosshair.x = Mouse.clickX;
+                Crosshair.y = Mouse.clickY;
                 Crosshair.CrosshairMode = 2;
                 Protocol.outboundBuffer.pIsaac1(ClientProt.OPPLAYER1);
                 Protocol.outboundBuffer.p2_alt3(keyInt);
@@ -1061,8 +1061,8 @@ public class MiniMenu {
             if (!pathFound) {
                 PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, param1, 1, 0, 2, param2, PlayerList.self.movementQueueX[0]);
             }
-            Crosshair.y = Mouse.mouseClickY;
-            Crosshair.x = Mouse.mouseClickX;
+            Crosshair.y = Mouse.clickY;
+            Crosshair.x = Mouse.clickX;
             Crosshair.CrosshairMode = 2;
             Crosshair.CrosshairCycle = 0;
             Protocol.outboundBuffer.pIsaac1(ClientProt.RESUME_COUNTDIALOG);
@@ -1095,10 +1095,10 @@ public class MiniMenu {
             player = PlayerList.players[keyInt];
             if (player != null) {
                 PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, player.movementQueueX[0], 1, 0, 2, player.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
-                Crosshair.y = Mouse.mouseClickY;
+                Crosshair.y = Mouse.clickY;
                 Crosshair.CrosshairCycle = 0;
                 Crosshair.CrosshairMode = 2;
-                Crosshair.x = Mouse.mouseClickX;
+                Crosshair.x = Mouse.clickX;
                 Protocol.outboundBuffer.pIsaac1(ClientProt.OPPLAYER_ACTION_ALT);
                 Protocol.outboundBuffer.p2(keyInt);
             }
@@ -1112,9 +1112,9 @@ public class MiniMenu {
                     PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, param1, 1, 0, 2, param2, PlayerList.self.movementQueueX[0]);
                 }
             }
-            Crosshair.y = Mouse.mouseClickY;
+            Crosshair.y = Mouse.clickY;
             Crosshair.CrosshairCycle = 0;
-            Crosshair.x = Mouse.mouseClickX;
+            Crosshair.x = Mouse.clickX;
             Crosshair.CrosshairMode = 2;
             Protocol.outboundBuffer.pIsaac1(ClientProt.OPOBJSTACK_ACTION2_ALT);
             Protocol.outboundBuffer.p2(keyInt);
@@ -1125,9 +1125,9 @@ public class MiniMenu {
             npc = NpcList.npcs[keyInt];
             if (npc != null) {
                 PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, npc.movementQueueX[0], 1, 0, 2, npc.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
-                Crosshair.x = Mouse.mouseClickX;
+                Crosshair.x = Mouse.clickX;
                 Crosshair.CrosshairCycle = 0;
-                Crosshair.y = Mouse.mouseClickY;
+                Crosshair.y = Mouse.clickY;
                 Crosshair.CrosshairMode = 2;
                 Protocol.outboundBuffer.pIsaac1(ClientProt.OPNPC_ACTION2_ALT);
                 Protocol.outboundBuffer.p2_alt3(keyInt);
@@ -1585,7 +1585,7 @@ public class MiniMenu {
     @OriginalMember(owner = "client!ej", name = "h", descriptor = "(I)V")
     public static void processMenuActions() {
         if (menuState == 2) {
-            if (ClientScriptRunner.scriptMouseX == Mouse.lastClickX && ClientScriptRunner.scriptMouseY == Mouse.lastClickY) {
+            if (ClientScriptRunner.scriptMouseX == Mouse.anInt5850 && ClientScriptRunner.scriptMouseY == Mouse.anInt5895) {
                 menuState = 0;
                 if (Cheat.shiftClick && Keyboard.pressedKeys[Keyboard.KEY_SHIFT] && menuActionRow > 2) {
                     doAction(menuActionRow - 2);
@@ -1593,7 +1593,7 @@ public class MiniMenu {
                     doAction(menuActionRow - 1);
                 }
             }
-        } else if (ClientScriptRunner.scriptMouseX == Mouse.mouseClickX && ClientScriptRunner.scriptMouseY == Mouse.mouseClickY) {
+        } else if (ClientScriptRunner.scriptMouseX == Mouse.clickX && ClientScriptRunner.scriptMouseY == Mouse.clickY) {
             menuState = 0;
             if (Cheat.shiftClick && Keyboard.pressedKeys[Keyboard.KEY_SHIFT] && menuActionRow > 2) {
                 doAction(menuActionRow - 2);
@@ -1601,9 +1601,9 @@ public class MiniMenu {
                 doAction(menuActionRow - 1);
             }
         } else {
-            Mouse.lastClickY = Mouse.mouseClickY;
+            Mouse.anInt5895 = Mouse.clickY;
             menuState = 2;
-            Mouse.lastClickX = Mouse.mouseClickX;
+            Mouse.anInt5850 = Mouse.clickX;
         }
     }
 

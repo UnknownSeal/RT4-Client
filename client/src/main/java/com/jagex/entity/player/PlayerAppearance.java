@@ -249,7 +249,8 @@ public final class PlayerAppearance {
 	}
 
 	@OriginalMember(owner = "client!hh", name = "a", descriptor = "([Lclient!ub;ILclient!tk;Lclient!tk;IIIIZII)Lclient!ak;")
-	public final Model createAnimatedBodyModel(@OriginalArg(0) PathingEntityAnimation[] animationStates, @OriginalArg(1) int tweenFrame, @OriginalArg(2) SeqType primarySequence, @OriginalArg(3) SeqType weaponSequence, @OriginalArg(4) int primaryFrame2, @OriginalArg(5) int primaryFrame1, @OriginalArg(7) int weaponFrame2, @OriginalArg(9) int weaponFrame1, @OriginalArg(10) int primaryTweenFrame) {
+	public final Model getPlayerModel(@OriginalArg(0) PathingEntityAnimation[] animationStates, @OriginalArg(1) int tweenFrame, @OriginalArg(2) SeqType primarySequence, @OriginalArg(3) SeqType weaponSequence, @OriginalArg(4) int primaryFrame2, @OriginalArg(5) int primaryFrame1, @OriginalArg(7) int weaponFrame2, @OriginalArg(9) int weaponFrame1, @OriginalArg(10) int primaryTweenFrame) {
+		// If player is being rendered as an NPC, then render that NPC instead
 		if (this.npcId != -1) {
 			return NpcTypeList.get(this.npcId).getBodyModel(animationStates, primaryFrame1, primaryTweenFrame, tweenFrame, weaponFrame2, weaponFrame1, primarySequence, primaryFrame2, weaponSequence);
 		}

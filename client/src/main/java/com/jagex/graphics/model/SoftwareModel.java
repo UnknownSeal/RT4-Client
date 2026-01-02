@@ -754,7 +754,7 @@ public final class SoftwareModel extends Model {
 		@Pc(24) int b = sceneY * sinCameraPitch + a * cosCameraPitch >> 16;
 		@Pc(38) int c = b + (this.lengthXZ * cosCameraPitch + this.maxY * sinCameraPitch >> 16);
 		@Pc(53) int d = b + (-this.lengthXZ * cosCameraPitch + this.minY * sinCameraPitch >> 16);
-		if (c <= 50 || d >= 3500) {
+		if (c <= 50 || d >= 3500) { // near and far clip
 			return;
 		}
 		@Pc(71) int e = sceneZ * sinCameraYaw + sceneX * cosCameraYaw >> 16;

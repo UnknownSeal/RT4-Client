@@ -5,7 +5,7 @@ import org.openrs2.deob.annotation.OriginalMember;
 
 // MapMarker
 @OriginalClass("runetek4.client!nc")
-public final class HintArrow {
+public final class MapMarker {
 
 	@OriginalMember(owner = "runetek4.client!nc", name = "b", descriptor = "I")
 	public int anInt4045;

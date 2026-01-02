@@ -120,8 +120,10 @@ public final class Component {
 	@OriginalMember(owner = "client!be", name = "fb", descriptor = "[Ljava/lang/Object;")
 	public Object[] onDialogAbort;
 
+	// Each item in the array corresponds to a row in a sprite.
+	// Each value is the index of the first renderable pixel in that row.
 	@OriginalMember(owner = "client!be", name = "gb", descriptor = "[I")
-	public int[] compassPixelOffsets;
+	public int[] spriteHorizontalOffsets;
 
 	@OriginalMember(owner = "client!be", name = "kb", descriptor = "[I")
 	public int[] varcTriggers;
@@ -192,8 +194,10 @@ public final class Component {
 	@OriginalMember(owner = "client!be", name = "Nc", descriptor = "[I")
 	public int[] varpTriggers;
 
+	// Each item in the array corresponds to a row in a sprite.
+	// Each value is the number of renderable pixels in that row.
 	@OriginalMember(owner = "client!be", name = "Tc", descriptor = "[I")
-	public int[] compassPixelWidths;
+	public int[] spriteHorizontalLengths;
 
 	@OriginalMember(owner = "client!be", name = "Xc", descriptor = "[Ljava/lang/Object;")
 	public Object[] onDragStart;
@@ -575,7 +579,7 @@ public final class Component {
 
 	@OriginalMember(owner = "client!be", name = "a", descriptor = "(I)Z")
 	public boolean graphic() {
-		if (this.compassPixelOffsets != null) {
+		if (this.spriteHorizontalOffsets != null) {
 			return true;
 		}
 		@Pc(18) SoftwareIndexedSprite local18 = SpriteLoader.loadSoftwareIndexedSprite(this.graphic, InterfaceManager.gameImageJs5);
@@ -583,8 +587,8 @@ public final class Component {
 			return false;
 		}
 		local18.trim();
-		this.compassPixelOffsets = new int[local18.height];
-		this.compassPixelWidths = new int[local18.height];
+		this.spriteHorizontalOffsets = new int[local18.height];
+		this.spriteHorizontalLengths = new int[local18.height];
 		for (@Pc(37) int local37 = 0; local37 < local18.height; local37++) {
 			@Pc(47) int local47 = 0;
 			@Pc(50) int local50 = local18.width;
@@ -601,8 +605,8 @@ public final class Component {
 					break;
 				}
 			}
-			this.compassPixelOffsets[local37] = local47;
-			this.compassPixelWidths[local37] = local50 - local47;
+			this.spriteHorizontalOffsets[local37] = local47;
+			this.spriteHorizontalLengths[local37] = local50 - local47;
 		}
 		return true;
 	}

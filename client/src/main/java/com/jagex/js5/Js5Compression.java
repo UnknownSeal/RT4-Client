@@ -29,6 +29,7 @@ public class Js5Compression {
         } else {
             @Pc(65) int unpackedLength = packet.g4();
             if (unpackedLength < 0 || MAX_LENGTH != 0 && unpackedLength > MAX_LENGTH) {
+                // return new byte[4]; instead should prevent crash from missing XTEA
                 throw new RuntimeException("ctype=" + type + " clen=" + len + " ulen=" + unpackedLength + " maxsize=" + MAX_LENGTH);
             }
             @Pc(85) byte[] bytes = new byte[unpackedLength];

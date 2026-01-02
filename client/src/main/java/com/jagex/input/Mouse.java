@@ -29,31 +29,31 @@ public final class Mouse implements MouseListener, MouseMotionListener, FocusLis
 	public static int lastMouseX = 0;
 
     @OriginalMember(owner = "client!em", name = "y", descriptor = "I")
-    public static int mouseClickY = 0;
+    public static int clickY = 0;
 
 	@OriginalMember(owner = "client!ah", name = "s", descriptor = "I")
-	public static int mouseClickX = 0;
+	public static int clickX = 0;
 
 	@OriginalMember(owner = "client!bl", name = "Q", descriptor = "I")
 	public static int pressedButton = 0;
 
     @OriginalMember(owner = "runetek4.client!wl", name = "u", descriptor = "I")
-    public static int lastClickY = 0;
+    public static int anInt5895 = 0;
 
 	@OriginalMember(owner = "runetek4.client!wi", name = "W", descriptor = "I")
-	public static int lastClickX = 0;
+	public static int anInt5850 = 0;
 
 	@OriginalMember(owner = "runetek4.client!he", name = "bb", descriptor = "Lclient!ug;")
 	public static Mouse instance = new Mouse();
 
 	@OriginalMember(owner = "runetek4.client!he", name = "Y", descriptor = "I")
-	public static volatile int anInt2467 = 0;
+	public static volatile int idleLoops = 0;
 
 	@OriginalMember(owner = "runetek4.client!ra", name = "jb", descriptor = "J")
-	public static volatile long aLong161 = 0L;
+	public static volatile long lastClickTime = 0L;
 
 	@OriginalMember(owner = "client!ck", name = "k", descriptor = "I")
-	public static volatile int anInt1034 = 0;
+	public static volatile int lastClickX = 0;
 
 	@OriginalMember(owner = "client!eg", name = "w", descriptor = "I")
 	public static volatile int anInt1759 = 0;
@@ -71,13 +71,13 @@ public final class Mouse implements MouseListener, MouseMotionListener, FocusLis
 	public static volatile int currentMouseX = -1;
 
 	@OriginalMember(owner = "runetek4.client!sa", name = "Y", descriptor = "I")
-	public static volatile int anInt4973 = 0;
+	public static volatile int lastClickY = 0;
 
 	@OriginalMember(owner = "runetek4.client!dl", name = "a", descriptor = "(II)V")
 	public static void setIdleLoops(@OriginalArg(1) int loops) {
 		@Pc(10) Mouse mouse = instance;
 		synchronized (instance) {
-			anInt2467 = loops;
+			idleLoops = loops;
 		}
 	}
 
@@ -114,24 +114,24 @@ public final class Mouse implements MouseListener, MouseMotionListener, FocusLis
             lastMouseX = currentMouseX;
             lastMouseY = currentMouseY;
             clickButton = anInt1313;
-            mouseClickX = anInt1034;
-            anInt2467++;
-            mouseClickY = anInt4973;
-            clickTime = aLong161;
+            clickX = lastClickX;
+            idleLoops++;
+            clickY = lastClickY;
+            clickTime = lastClickTime;
             anInt1313 = 0;
         }
     }
 
 	@OriginalMember(owner = "runetek4.client!lc", name = "a", descriptor = "(B)I")
 	public static int getIdleLoops() {
-		return anInt2467;
+		return idleLoops;
 	}
 
 	@OriginalMember(owner = "runetek4.client!ug", name = "mouseMoved", descriptor = "(Ljava/awt/event/MouseEvent;)V")
 	@Override
 	public final synchronized void mouseMoved(@OriginalArg(0) MouseEvent event) {
 		if (instance != null) {
-			anInt2467 = 0;
+			idleLoops = 0;
 			currentMouseX = event.getX();
 			currentMouseY = event.getY();
 		}
@@ -149,7 +149,7 @@ public final class Mouse implements MouseListener, MouseMotionListener, FocusLis
 	@Override
 	public final synchronized void mouseDragged(@OriginalArg(0) MouseEvent event) {
 		if (instance != null) {
-			anInt2467 = 0;
+			idleLoops = 0;
 			currentMouseX = event.getX();
 			currentMouseY = event.getY();
 		}
@@ -159,7 +159,7 @@ public final class Mouse implements MouseListener, MouseMotionListener, FocusLis
 	@Override
 	public final synchronized void mouseReleased(@OriginalArg(0) MouseEvent event) {
 		if (instance != null) {
-			anInt2467 = 0;
+			idleLoops = 0;
 			anInt1759 = 0;
 			@Pc(14) int local14 = event.getModifiers();
 			// TODO why is this here?
@@ -192,10 +192,10 @@ public final class Mouse implements MouseListener, MouseMotionListener, FocusLis
 	@Override
 	public final synchronized void mousePressed(@OriginalArg(0) MouseEvent event) {
 		if (instance != null) {
-			anInt2467 = 0;
-			anInt1034 = event.getX();
-			anInt4973 = event.getY();
-			aLong161 = SystemTimer.safetime();
+			idleLoops = 0;
+			lastClickX = event.getX();
+			lastClickY = event.getY();
+			lastClickTime = SystemTimer.safetime();
 			if ((event.getModifiersEx() & MouseEvent.BUTTON3_DOWN_MASK) == 0) {
 				anInt1313 = 1;
 				anInt1759 = 1;
@@ -221,7 +221,7 @@ public final class Mouse implements MouseListener, MouseMotionListener, FocusLis
 	@Override
 	public final synchronized void mouseExited(@OriginalArg(0) MouseEvent event) {
 		if (instance != null) {
-			anInt2467 = 0;
+			idleLoops = 0;
 			currentMouseX = -1;
 			currentMouseY = -1;
 		}
@@ -231,7 +231,7 @@ public final class Mouse implements MouseListener, MouseMotionListener, FocusLis
 	@Override
 	public final synchronized void mouseEntered(@OriginalArg(0) MouseEvent event) {
 		if (instance != null) {
-			anInt2467 = 0;
+			idleLoops = 0;
 			currentMouseX = event.getX();
 			currentMouseY = event.getY();
 		}

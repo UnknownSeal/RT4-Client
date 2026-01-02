@@ -188,7 +188,7 @@ public final class Js5NetQueue {
 							this.current.blockPosition = 8;
 							this.inPacket.offset = 0;
 						} else if (this.current.blockPosition != 0) {
-							throw new IOException();
+							throw new IOException("BlockPosition is not 0");
 						} else if (this.inPacket.data[0] == -1) {
 							this.current.blockPosition = 1;
 							this.inPacket.offset = 0;
@@ -199,11 +199,12 @@ public final class Js5NetQueue {
 				}
 			}
 			return true;
-		} catch (@Pc(644) IOException ioException) {
+		} catch (@Pc(644) IOException exception) {
 			try {
 				this.updateServerSocket.closeGracefully();
 			} catch (@Pc(650) Exception ignored) {
 			}
+			exception.printStackTrace();
 			this.response = Js5ResponseCode.CONNECTED;
 			this.errors++;
 			this.updateServerSocket = null;
@@ -221,11 +222,12 @@ public final class Js5NetQueue {
 			this.outPacket.p1(Js5RequestCode.DISCONNECTED);
 			this.outPacket.p3(0);
 			this.updateServerSocket.write(4, this.outPacket.data);
-		} catch (@Pc(39) IOException local39) {
+		} catch (@Pc(39) IOException exception) {
 			try {
 				this.updateServerSocket.closeGracefully();
 			} catch (@Pc(45) Exception ignored) {
 			}
+			exception.printStackTrace();
 			this.errors++;
 			this.response = Js5ResponseCode.CONNECTED;
 			this.updateServerSocket = null;
@@ -247,11 +249,12 @@ public final class Js5NetQueue {
 			this.outPacket.p1(loggedIn ? Js5RequestCode.LOGGED_IN : Js5RequestCode.LOGGED_OUT);
 			this.outPacket.p3(0);
 			this.updateServerSocket.write(4, this.outPacket.data);
-		} catch (@Pc(42) IOException local42) {
+		} catch (@Pc(42) IOException exception) {
 			try {
 				this.updateServerSocket.closeGracefully();
 			} catch (@Pc(48) Exception ignored) {
 			}
+			exception.printStackTrace();
 			this.errors++;
 			this.response = Js5ResponseCode.CONNECTED;
 			this.updateServerSocket = null;
@@ -292,11 +295,12 @@ public final class Js5NetQueue {
 								this.outPacket.p1(this.encryptionKey);
 								this.outPacket.p2(0);
 								this.updateServerSocket.write(4, this.outPacket.data);
-							} catch (@Pc(107) IOException local107) {
+							} catch (@Pc(107) IOException exception) {
 								try {
 									this.updateServerSocket.closeGracefully();
 								} catch (@Pc(113) Exception ignored) {
 								}
+								exception.printStackTrace();
 								this.response = Js5ResponseCode.CONNECTED;
 								this.errors++;
 								this.updateServerSocket = null;
@@ -372,11 +376,12 @@ public final class Js5NetQueue {
 			this.outPacket.p1(Js5RequestCode.CONNECTED);
 			this.outPacket.p3(3);
 			this.updateServerSocket.write(4, this.outPacket.data);
-		} catch (@Pc(37) IOException local37) {
+		} catch (@Pc(37) IOException exception) {
 			try {
 				this.updateServerSocket.closeGracefully();
 			} catch (@Pc(43) Exception ignored) {
 			}
+			exception.printStackTrace();
 			this.errors++;
 			this.updateServerSocket = null;
 			this.response = Js5ResponseCode.CONNECTED;

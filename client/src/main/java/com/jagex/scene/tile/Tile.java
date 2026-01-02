@@ -65,21 +65,21 @@ public final class Tile extends Node {
 	public final int[] layerCollisionFlags = new int[5];
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "H", descriptor = "I")
-	public final int plane;
+	public final int z;
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "W", descriptor = "I")
-	public int sceneX;
+	public int level;
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "Q", descriptor = "I")
-	public final int localX;
+	public final int plane;
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "R", descriptor = "I")
-	public final int localZ;
+	public final int x;
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "<init>", descriptor = "(III)V")
-	public Tile(@OriginalArg(0) int localX, @OriginalArg(1) int localZ, @OriginalArg(2) int plane) {
-		this.plane = plane;
-		this.localX = this.sceneX = localX;
-		this.localZ = localZ;
+	public Tile(@OriginalArg(0) int level, @OriginalArg(1) int x, @OriginalArg(2) int z) {
+		this.z = z;
+		this.plane = this.level = level;
+		this.x = x;
 	}
 }

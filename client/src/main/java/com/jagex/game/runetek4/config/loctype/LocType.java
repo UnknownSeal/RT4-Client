@@ -93,7 +93,7 @@ public final class LocType {
 	public int id;
 
 	@OriginalMember(owner = "client!pb", name = "wb", descriptor = "[I")
-	public int[] bgsound_random;
+	public int[] bgsounds;
 
 	@OriginalMember(owner = "client!pb", name = "e", descriptor = "I")
 	public int width = 1;
@@ -123,7 +123,7 @@ public final class LocType {
 	public int cursor1op = -1;
 
 	@OriginalMember(owner = "client!pb", name = "R", descriptor = "I")
-	public int bgsound_maxdelay = 0;
+	public int bgsoundmax = 0;
 
 	@OriginalMember(owner = "client!pb", name = "S", descriptor = "I")
 	public int mapsceneicon = -1;
@@ -141,7 +141,7 @@ public final class LocType {
 	private int xoff = 0;
 
 	@OriginalMember(owner = "client!pb", name = "W", descriptor = "I")
-	public int bgsound_mindelay = 0;
+	public int bgsoundmin = 0;
 
 	@OriginalMember(owner = "client!pb", name = "h", descriptor = "I")
 	public int mapelement = -1;
@@ -210,7 +210,7 @@ public final class LocType {
 	private int yoff = 0;
 
 	@OriginalMember(owner = "client!pb", name = "k", descriptor = "I")
-	public int bgsound_range = 0;
+	public int bgsoundrange = 0;
 
 	@OriginalMember(owner = "client!pb", name = "p", descriptor = "I")
 	private int contrast = 0;
@@ -222,7 +222,7 @@ public final class LocType {
 	public boolean hasAnimation = false;
 
 	@OriginalMember(owner = "client!pb", name = "O", descriptor = "I")
-	public int bgsound_sound = -1;
+	public int bgsound = -1;
 
 	@OriginalMember(owner = "client!pb", name = "ub", descriptor = "I")
 	public int blockwalk = 2;
@@ -397,16 +397,16 @@ public final class LocType {
 			}
 			this.multiloc[length + 1] = defaultId;
 		} else if (opcode == 78) {
-			this.bgsound_sound = packet.g2();
-			this.bgsound_range = packet.g1();
+			this.bgsound = packet.g2();
+			this.bgsoundrange = packet.g1();
 		} else if (opcode == 79) {
-			this.bgsound_mindelay = packet.g2();
-			this.bgsound_maxdelay = packet.g2();
-			this.bgsound_range = packet.g1();
+			this.bgsoundmin = packet.g2();
+			this.bgsoundmax = packet.g2();
+			this.bgsoundrange = packet.g1();
 			int length = packet.g1();
-			this.bgsound_random = new int[length];
+			this.bgsounds = new int[length];
 			for (int index = 0; index < length; index++) {
-				this.bgsound_random[index] = packet.g2();
+				this.bgsounds[index] = packet.g2();
 			}
 		} else if (opcode == 81) {
 			this.hillchange = 2;
@@ -636,12 +636,12 @@ public final class LocType {
 	@OriginalMember(owner = "client!pb", name = "d", descriptor = "(I)Z")
 	public boolean hasBackgroundSound() {
 		if (this.multiloc == null) {
-			return this.bgsound_sound != -1 || this.bgsound_random != null;
+			return this.bgsound != -1 || this.bgsounds != null;
 		}
 		for (@Pc(44) int i = 0; i < this.multiloc.length; i++) {
 			if (this.multiloc[i] != -1) {
 				@Pc(70) LocType locType = LocTypeList.get(this.multiloc[i]);
-				if (locType.bgsound_sound != -1 || locType.bgsound_random != null) {
+				if (locType.bgsound != -1 || locType.bgsounds != null) {
 					return true;
 				}
 			}

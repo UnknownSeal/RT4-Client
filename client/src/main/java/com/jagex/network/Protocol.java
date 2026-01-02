@@ -53,7 +53,7 @@ import com.jagex.ui.social.ClanMember;
 import com.jagex.core.utils.string.JString;
 import com.jagex.core.utils.string.LocalizedText;
 import com.jagex.game.compression.huffman.WordPack;
-import com.jagex.game.map.HintArrow;
+import com.jagex.game.map.MapMarker;
 import com.jagex.network.security.ReflectionCheck;
 import com.jagex.entity.loc.Loc;
 import com.jagex.entity.loc.ObjStack;
@@ -739,7 +739,7 @@ public class Protocol {
                         InterfaceManager.topLevelInterface = parent;
                         InterfaceManager.resetComponentAnimations(parent);
                         InterfaceManager.updateInterfaceLayout(false);
-                        ClientScriptRunner.executeOnLoad(InterfaceManager.topLevelInterface);
+                        ClientScriptRunner.runHooks(InterfaceManager.topLevelInterface);
                         for (slot = 0; slot < MAX_COMPONENT_REDRAW_SLOTS; slot++) {
                             InterfaceManager.componentNeedsRedraw[slot] = true;
                         }
@@ -1024,7 +1024,7 @@ public class Protocol {
                             for (param1 = SceneGraph.currentChunkZ; param1 < SceneGraph.currentChunkZ + ZONE_SIZE; param1++) {
                                 if (SceneGraph.objStacks[Player.currentLevel][ii][param1] != null) {
                                     SceneGraph.objStacks[Player.currentLevel][ii][param1] = null;
-                                    sortObjStacks(ii, param1);
+                                    spawnGroundObject(ii, param1);
                                 }
                             }
                         }
@@ -1433,7 +1433,7 @@ public class Protocol {
                                 // Dsiplay hint arrow poiting on location/entity
                                 // Can target entities, players and coordinates
                                 ii = inboundBuffer.g1();
-                                @Pc(4084) HintArrow marker = new HintArrow();
+                                @Pc(4084) MapMarker marker = new MapMarker();
                                 param1 = ii >> MAP_MARKER_PARAM_SHIFT;
                                 marker.type = ii & MAP_MARKER_TYPE_MASK;
                                 marker.anInt4048 = inboundBuffer.g1();
@@ -1471,7 +1471,7 @@ public class Protocol {
                                     if (marker.playerModelId == INVALID_ID_U16) {
                                         marker.playerModelId = -1;
                                     }
-                                    MiniMap.hintArrows[param1] = marker;
+                                    MiniMap.hintMapMarkers[param1] = marker;
                                 }
                                 currentOpcode = -1;
                                 return true;
@@ -2061,38 +2061,38 @@ public class Protocol {
     }
 
     @OriginalMember(owner = "client!rm", name = "a", descriptor = "(IBI)V")
-    public static void sortObjStacks(@OriginalArg(2) int x, @OriginalArg(0) int z) {
+    public static void spawnGroundObject(@OriginalArg(2) int x, @OriginalArg(0) int z) {
         @Pc(9) LinkedList objStacks = SceneGraph.objStacks[Player.currentLevel][x][z];
 
         if (objStacks == null) {
             SceneGraph.removeGroundObjects(Player.currentLevel, x, z);
             return;
         }
-        @Pc(28) int topCost = MIN_COST_VALUE;
-        @Pc(30) ClientObj topObj = null;
+        @Pc(28) int cheapestCost = MIN_COST_VALUE;
+        @Pc(30) ClientObj cheapestObj = null;
 
-        @Pc(35) ClientObj objIterator;
-        for (objIterator = (ClientObj) objStacks.head(); objIterator != null; objIterator = (ClientObj) objStacks.next()) {
-            @Pc(44) ObjType objType = ObjTypeList.get(objIterator.value.id);
+        @Pc(35) ClientObj obj;
+        for (obj = (ClientObj) objStacks.head(); obj != null; obj = (ClientObj) objStacks.next()) {
+            @Pc(44) ObjType objType = ObjTypeList.get(obj.value.id);
             @Pc(47) int cost = objType.cost;
             if (objType.stackable == STACKABLE_FLAG) {
-                cost *= objIterator.value.count + 1;
+                cost *= obj.value.count + 1;
             }
-            if (topCost < cost) {
-                topCost = cost;
-                topObj = objIterator;
+            if (cheapestCost < cost) {
+                cheapestCost = cost;
+                cheapestObj = obj;
             }
         }
-        if (topObj == null) {
+        if (cheapestObj == null) {
             SceneGraph.removeGroundObjects(Player.currentLevel, x, z);
             return;
         }
-        objStacks.add(topObj);
+        objStacks.add(cheapestObj);
         @Pc(89) ObjStack secondStack = null;
         @Pc(91) ObjStack thirdStack = null;
-        for (objIterator = (ClientObj) objStacks.head(); objIterator != null; objIterator = (ClientObj) objStacks.next()) {
-            @Pc(103) ObjStack objStack = objIterator.value;
-            if (objStack.id != topObj.value.id) {
+        for (obj = (ClientObj) objStacks.head(); obj != null; obj = (ClientObj) objStacks.next()) {
+            @Pc(103) ObjStack objStack = obj.value;
+            if (objStack.id != cheapestObj.value.id) {
                 if (secondStack == null) {
                     secondStack = objStack;
                 }
@@ -2102,7 +2102,7 @@ public class Protocol {
             }
         }
         @Pc(152) long coordHash = (long) ((z << COORD_HASH_SHIFT) + x + COORD_HASH_OFFSET);
-        SceneGraph.setObjStack(Player.currentLevel, x, z, SceneGraph.getTileHeight(Player.currentLevel, x * TILE_SIZE + TILE_CENTER_OFFSET, z * TILE_SIZE + TILE_CENTER_OFFSET), topObj.value, coordHash, secondStack, thirdStack);
+        SceneGraph.setObjStack(Player.currentLevel, x, z, SceneGraph.getTileHeight(Player.currentLevel, x * TILE_SIZE + TILE_CENTER_OFFSET, z * TILE_SIZE + TILE_CENTER_OFFSET), cheapestObj.value, coordHash, secondStack, thirdStack);
     }
 
     @OriginalMember(owner = "client!g", name = "b", descriptor = "(B)V")
@@ -2154,7 +2154,7 @@ public class Protocol {
                 }
 
                 SceneGraph.objStacks[Player.currentLevel][local19][local27].push(new ClientObj(objStack));
-                sortObjStacks(local19, local27); // Render the object
+                spawnGroundObject(local19, local27); // Render the object
             }
         } else {
             @Pc(218) int startHeight;
@@ -2323,7 +2323,7 @@ public class Protocol {
                                     break;
                                 }
                             }
-                            sortObjStacks(x, z);
+                            spawnGroundObject(x, z);
                         }
                     }
                 } else if (currentOpcode == ZONE_OBJ_ADD_PRIVATE) {
@@ -2351,7 +2351,7 @@ public class Protocol {
                         }
 
                         SceneGraph.objStacks[Player.currentLevel][x][z].push(new ClientObj(objStack));
-                        sortObjStacks(x, z); // Render the object
+                        spawnGroundObject(x, z); // Render the object
                     }
                 } else if (currentOpcode == ZONE_MAP_PROJANIM) {
                     // Zone_MAP_PROJANIM
@@ -2545,7 +2545,7 @@ public class Protocol {
                             if (objStackList.head() == null) {
                                 SceneGraph.objStacks[Player.currentLevel][local23][local19] = null;
                             }
-                            sortObjStacks(local23, local19);
+                            spawnGroundObject(local23, local19);
                         }
                     }
                 }
@@ -3293,7 +3293,7 @@ public class Protocol {
         if (component != null) {
             InterfaceManager.calculateLayerDimensions(component, false);
         }
-        ClientScriptRunner.executeOnLoad(interfaceId);
+        ClientScriptRunner.runHooks(interfaceId);
         if (InterfaceManager.topLevelInterface != -1) {
             InterfaceManager.runScripts(1, InterfaceManager.topLevelInterface);
         }
@@ -3323,8 +3323,8 @@ public class Protocol {
                             InterfaceManager.redraw(InterfaceManager.clickedInventoryComponent);
                         }
                         InterfaceManager.clickedInventoryComponent = InterfaceList.list(componentId);
-                        InterfaceManager.clickedInventoryComponentX = Mouse.mouseClickX;
-                        InterfaceManager.clickedInventoryComponentY = Mouse.mouseClickY;
+                        InterfaceManager.clickedInventoryComponentX = Mouse.clickX;
+                        InterfaceManager.clickedInventoryComponentY = Mouse.clickY;
                         InterfaceManager.selectedInventorySlot = componentSlot;
                         InterfaceManager.redraw(InterfaceManager.clickedInventoryComponent);
                         return;
@@ -3357,8 +3357,8 @@ public class Protocol {
         menuX = InterfaceManager.menuX;
         componentSlot = InterfaceManager.menuY;
         componentId = InterfaceManager.menuWidth;
-        @Pc(265) int mouseClickX = Mouse.mouseClickX;
-        @Pc(267) int mouseClickY = Mouse.mouseClickY;
+        @Pc(265) int mouseClickX = Mouse.clickX;
+        @Pc(267) int mouseClickY = Mouse.clickY;
         @Pc(269) int selectedRow = -1;
         for (@Pc(271) int rowIndex = 0; rowIndex < MiniMenu.menuActionRow; rowIndex++) {
             @Pc(289) int rowYPosition;

@@ -768,10 +768,10 @@ public class PathFinder {
         }
 
         // Set crosshair at click position
-        Crosshair.y = Mouse.mouseClickY;
+        Crosshair.y = Mouse.clickY;
         Crosshair.CrosshairCycle = 0;
         Crosshair.CrosshairMode = 2;
-        Crosshair.x = Mouse.mouseClickX;
+        Crosshair.x = Mouse.clickX;
         return true;
     }
 }

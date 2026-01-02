@@ -256,7 +256,7 @@ public final class DisplayMode {
 					SoftwareRenderer.frameBuffer.draw(graphics);
 				} catch (@Pc(277) Exception ignored) {
 				}
-				GameShell.fillBlackBorders();
+				GameShell.drawMargins();
 				if (windowMode == 0) {
 					SoftwareRenderer.frameBuffer = FrameBuffer.create(503, 765, GameShell.canvas);
 				} else {

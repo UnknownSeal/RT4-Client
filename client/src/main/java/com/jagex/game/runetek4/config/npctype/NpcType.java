@@ -177,7 +177,7 @@ public final class NpcType {
 	public int cursor1Op = -1;
 
 	@OriginalMember(owner = "client!me", name = "gb", descriptor = "I")
-	public int bgsound_range = 0;
+	public int soundRadius = 0;
 
 	@OriginalMember(owner = "client!me", name = "E", descriptor = "I")
 	private int resizev = 128;
@@ -361,7 +361,7 @@ public final class NpcType {
 			if (this.bgsound_run == 65535) {
 				this.bgsound_run = -1;
 			}
-			this.bgsound_range = packet.g1();
+			this.soundRadius = packet.g1();
 		} else if (opcode == 135) {
 			this.cursor1Op = packet.g1();
 			this.cursor1 = packet.g2();
