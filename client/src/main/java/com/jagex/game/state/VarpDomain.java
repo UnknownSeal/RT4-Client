@@ -27,7 +27,7 @@ public class VarpDomain {
     @OriginalMember(owner = "runetek4.client!ea", name = "s", descriptor = "[I")
     public static final int[] varbitMasks = new int[32];
     @OriginalMember(owner = "client!fi", name = "n", descriptor = "I")
-    public static int updatedVarpsWriterIndex = 0;
+    public static int varpUpdateCount = 0;
     @OriginalMember(owner = "runetek4.client!qc", name = "K", descriptor = "Lclient!sc;")
     public static IterableHashTable pendingUpdates = new IterableHashTable(16);
     @OriginalMember(owner = "client!ge", name = "m", descriptor = "I")
@@ -82,7 +82,7 @@ public class VarpDomain {
     }
 
     @OriginalMember(owner = "runetek4.client!qg", name = "a", descriptor = "(IZI)V")
-    public static void setVarbitClient(@OriginalArg(0) int arg0, @OriginalArg(2) int value) {
+    public static void setVarbitValue(@OriginalArg(0) int arg0, @OriginalArg(2) int value) {
         @Pc(7) VarbitType type = VarBitTypeList.get(arg0);
         @Pc(10) int end = type.endBit;
         @Pc(16) int start = type.startBit;
@@ -92,7 +92,7 @@ public class VarpDomain {
             value = 0;
         }
         mask <<= start;
-        setVarpClient(varp, mask & value << start | activeVarps[varp] & ~mask);
+        setVarpValueInt(varp, mask & value << start | activeVarps[varp] & ~mask);
     }
 
     @OriginalMember(owner = "client!cn", name = "a", descriptor = "(ZI)I")
@@ -113,7 +113,7 @@ public class VarpDomain {
     }
 
     @OriginalMember(owner = "runetek4.client!li", name = "a", descriptor = "(III)V")
-    public static void setVarpClient(@OriginalArg(0) int id, @OriginalArg(2) int value) {
+    public static void setVarpValueInt(@OriginalArg(0) int id, @OriginalArg(2) int value) {
         activeVarps[id] = value;
         @Pc(21) LongNode node = (LongNode) pendingUpdates.get((long) id);
         if (node == null) {

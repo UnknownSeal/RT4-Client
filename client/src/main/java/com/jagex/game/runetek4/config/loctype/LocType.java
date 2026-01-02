@@ -144,7 +144,7 @@ public final class LocType {
 	public int bgsound_mindelay = 0;
 
 	@OriginalMember(owner = "client!pb", name = "h", descriptor = "I")
-	public int mapfunction = -1;
+	public int mapelement = -1;
 
 	@OriginalMember(owner = "client!pb", name = "L", descriptor = "Z")
 	public boolean aBoolean214 = false;
@@ -343,7 +343,7 @@ public final class LocType {
 				this.recol_d_palette[index] = packet.g1s();
 			}
 		} else if (opcode == 60) {
-			this.mapfunction = packet.g2();
+			this.mapelement = packet.g2();
 		} else if (opcode == 62) {
 			this.mirror = true;
 		} else if (opcode == 64) {

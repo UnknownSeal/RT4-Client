@@ -1,4 +1,4 @@
-package com.jagex.core.buffer;
+package com.jagex.sound.midi;
 
 import com.jagex.game.state.VarpDomain;
 import com.jagex.core.datastruct.Node;
@@ -8,10 +8,10 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("runetek4.client!ea")
-public final class ByteArrayNode extends Node {
+public final class MidiProgramNode extends Node {
 
 	@OriginalMember(owner = "runetek4.client!ea", name = "t", descriptor = "[B")
-	public final byte[] value;
+	public final byte[] notes;
 
 	static {
 		@Pc(10) int local10 = 2;
@@ -22,7 +22,7 @@ public final class ByteArrayNode extends Node {
 	}
 
 	@OriginalMember(owner = "runetek4.client!ea", name = "<init>", descriptor = "([B)V")
-	public ByteArrayNode(@OriginalArg(0) byte[] arg0) {
-		this.value = arg0;
+	public MidiProgramNode(@OriginalArg(0) byte[] arg0) {
+		this.notes = arg0;
 	}
 }

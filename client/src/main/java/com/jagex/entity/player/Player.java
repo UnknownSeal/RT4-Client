@@ -22,7 +22,7 @@ import com.jagex.game.inventory.Equipment;
 import com.jagex.graphics.gl.GlRenderer;
 import com.jagex.scene.Camera;
 import com.jagex.core.utils.string.JString;
-import com.jagex.game.map.MapMarker;
+import com.jagex.game.map.HintArrow;
 import com.jagex.graphics.model.Model;
 import com.jagex.graphics.model.SoftwareModel;
 import com.jagex.graphics.lighting.ShadowModelList;
@@ -87,7 +87,7 @@ public final class Player extends PathingEntity {
 	public static long name37;
 
 	@OriginalMember(owner = "client!e", name = "Bc", descriptor = "Lclient!hh;")
-	public PlayerAppearance appearance;
+	public PlayerAppearance playerModel;
 
 	@OriginalMember(owner = "client!e", name = "Mc", descriptor = "Lclient!na;")
 	public JString username;
@@ -259,7 +259,7 @@ public final class Player extends PathingEntity {
 	@OriginalMember(owner = "client!e", name = "c", descriptor = "(B)I")
 	@Override
 	public int getSize() {
-		return this.appearance == null || this.appearance.npcId == -1 ? super.getSize() : NpcTypeList.get(this.appearance.npcId).size;
+		return this.playerModel == null || this.playerModel.npcId == -1 ? super.getSize() : NpcTypeList.get(this.playerModel.npcId).size;
 	}
 
 	@OriginalMember(owner = "client!e", name = "b", descriptor = "(I)I")
@@ -353,11 +353,11 @@ public final class Player extends PathingEntity {
 				AreaSoundManager.updatePlayerAreaSound(this);
 			}
 		}
-		if (this.appearance == null) {
-			this.appearance = new PlayerAppearance();
+		if (this.playerModel == null) {
+			this.playerModel = new PlayerAppearance();
 		}
-		local175 = this.appearance.npcId;
-		this.appearance.set(bodyColors, npcTransformId, genderFlag == 1, equipmentIds, this.anInt3365);
+		local175 = this.playerModel.npcId;
+		this.playerModel.set(bodyColors, npcTransformId, genderFlag == 1, equipmentIds, this.anInt3365);
 		if (local175 != npcTransformId) {
 			this.xFine = this.movementQueueX[0] * 128 + this.getSize() * 64;
 			this.zFine = this.movementQueueZ[0] * 128 + this.getSize() * 64;
@@ -370,12 +370,12 @@ public final class Player extends PathingEntity {
 	@OriginalMember(owner = "client!e", name = "a", descriptor = "(IIIIIIIIJILclient!ga;)V")
 	@Override
 	public void render(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) long arg8, @OriginalArg(9) int arg9, @OriginalArg(10) ParticleSystem arg10) {
-		if (this.appearance == null) {
+		if (this.playerModel == null) {
 			return;
 		}
 		@Pc(25) SeqType local25 = this.primarySeqId != -1 && this.animationDelay == 0 ? SeqTypeList.get(this.primarySeqId) : null;
 		@Pc(54) SeqType local54 = this.movementSeqId == -1 || this.lowMemory || this.movementSeqId == this.getBasType().readyanim && local25 != null ? null : SeqTypeList.get(this.movementSeqId);
-		@Pc(76) Model local76 = this.appearance.createAnimatedBodyModel(this.layeredAnimations, this.animationDirection, local54, local25, this.anInt3396, this.anInt3388, this.animationFrame, this.animationFrameDelay, this.anInt3407);
+		@Pc(76) Model local76 = this.playerModel.createAnimatedBodyModel(this.layeredAnimations, this.animationDirection, local54, local25, this.anInt3396, this.anInt3388, this.animationFrame, this.animationFrameDelay, this.anInt3407);
 		@Pc(79) int local79 = PlayerAppearance.getModelCacheSize();
 		if (GlRenderer.enabled && GameShell.maxMemory < 96 && local79 > 50) {
 			GlRenderer.updateOpenGLModelBuffers();
@@ -397,7 +397,7 @@ public final class Player extends PathingEntity {
 		}
 		this.minY = local76.getMinY();
 		@Pc(184) Model model;
-		if (Preferences.characterShadowsOn && (this.appearance.npcId == -1 || NpcTypeList.get(this.appearance.npcId).spotshadow)) {
+		if (Preferences.characterShadowsOn && (this.playerModel.npcId == -1 || NpcTypeList.get(this.playerModel.npcId).spotshadow)) {
 			model = ShadowModelList.method1043(160, this.seqStretches, local54 == null ? local25 : local54, this.xFine, 0, this.zFine, 0, 1, local76, arg0, local54 == null ? this.animationFrameDelay : this.anInt3407, this.groundHeight, 240);
 			if (GlRenderer.enabled) {
 				@Pc(188) float local188 = GlRenderer.method4179();
@@ -412,13 +412,13 @@ public final class Player extends PathingEntity {
 			}
 		}
 		if (PlayerList.self == this) {
-			for (local102 = MiniMap.hintMapMarkers.length - 1; local102 >= 0; local102--) {
-				@Pc(245) MapMarker local245 = MiniMap.hintMapMarkers[local102];
+			for (local102 = MiniMap.hintArrows.length - 1; local102 >= 0; local102--) {
+				@Pc(245) HintArrow local245 = MiniMap.hintArrows[local102];
 				if (local245 != null && local245.playerModelId != -1) {
 					@Pc(291) int anchorX;
 					@Pc(302) int anchorY;
-					if (local245.type == 1 && local245.actorTargetId >= 0 && NpcList.npcs.length > local245.actorTargetId) {
-						@Pc(278) Npc npc = NpcList.npcs[local245.actorTargetId];
+					if (local245.type == 1 && local245.entity >= 0 && NpcList.npcs.length > local245.entity) {
+						@Pc(278) Npc npc = NpcList.npcs[local245.entity];
 						if (npc != null) {
 							anchorX = npc.xFine / 32 - PlayerList.self.xFine / 32;
 							anchorY = npc.zFine / 32 - PlayerList.self.zFine / 32;
@@ -430,8 +430,8 @@ public final class Player extends PathingEntity {
 						anchorX = (local245.anInt4046 - Camera.sceneBaseTileZ) * 4 + 2 - PlayerList.self.zFine / 32;
 						this.drawOnMinimap(null, anchorX, local76, local340, arg5, arg9, arg0, arg7, arg4, arg3, arg1, local245.playerModelId, arg2, arg6);
 					}
-					if (local245.type == 10 && local245.actorTargetId >= 0 && PlayerList.players.length > local245.actorTargetId) {
-						@Pc(395) Player player = PlayerList.players[local245.actorTargetId];
+					if (local245.type == 10 && local245.entity >= 0 && PlayerList.players.length > local245.entity) {
+						@Pc(395) Player player = PlayerList.players[local245.entity];
 						if (player != null) {
 							anchorX = player.xFine / 32 - PlayerList.self.xFine / 32;
 							anchorY = player.zFine / 32 - PlayerList.self.zFine / 32;
@@ -540,7 +540,7 @@ public final class Player extends PathingEntity {
 	@OriginalMember(owner = "client!e", name = "a", descriptor = "(B)Z")
 	@Override
 	public boolean isVisible() {
-		return this.appearance != null;
+		return this.playerModel != null;
 	}
 
 	@OriginalMember(owner = "client!e", name = "e", descriptor = "(I)Lclient!na;")

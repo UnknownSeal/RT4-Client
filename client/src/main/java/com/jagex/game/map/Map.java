@@ -37,7 +37,7 @@ public final class Map extends Node2 {
 	public final int originZ;
 
 	@OriginalMember(owner = "runetek4.client!bn", name = "bb", descriptor = "Lclient!na;")
-	public final JString group;
+	public final JString id;
 
 	@OriginalMember(owner = "runetek4.client!bn", name = "Q", descriptor = "Lclient!na;")
 	public final JString name;
@@ -53,7 +53,7 @@ public final class Map extends Node2 {
 		this.originZ = originZ;
 		this.backgroundColor = backgroundColor;
 		this.valid = valid;
-		this.group = group;
+		this.id = group;
 		this.name = name;
 		this.defaultZoom = defaultZoom;
 		this.originX = originX;

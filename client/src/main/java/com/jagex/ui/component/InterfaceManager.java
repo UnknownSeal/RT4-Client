@@ -8,6 +8,8 @@ import com.jagex.cache.media.Font;
 import com.jagex.entity.player.PlayerAppearance;
 import com.jagex.entity.player.PlayerList;
 import com.jagex.entity.player.PlayerSkillXpTable;
+import com.jagex.game.runetek4.config.paramtype.ParamType;
+import com.jagex.game.runetek4.config.paramtype.ParamTypeList;
 import com.jagex.graphics.effects.Flames;
 import com.jagex.graphics.gl.GlCleaner;
 import com.jagex.graphics.model.Model;
@@ -28,10 +30,9 @@ import com.jagex.game.runetek4.config.seqtype.SeqTypeList;
 import com.jagex.core.datastruct.key.IterableHashTable;
 import com.jagex.core.datastruct.key.HashTableIterator;
 import com.jagex.core.datastruct.LinkedList;
-import com.jagex.core.io.Packet;
 import com.jagex.game.runetek4.config.bastype.cursor.CursorType;
 import com.jagex.entity.player.Player;
-import com.jagex.game.inventory.Inv;
+import com.jagex.game.inventory.ClientInventory;
 import com.jagex.game.state.VarcDomain;
 import com.jagex.game.state.VarpDomain;
 import com.jagex.graphics.gl.GlRaster;
@@ -56,7 +57,7 @@ import com.jagex.graphics.raster.SoftwareRenderer;
 import com.jagex.clientscript.ClientScriptRunner;
 import com.jagex.ui.social.FriendList;
 import com.jagex.game.stockmarket.StockMarketManager;
-import com.jagex.ui.events.ComponentEvent;
+import com.jagex.ui.events.HookRequest;
 import com.jagex.core.utils.debug.Cheat;
 import com.jagex.game.world.WorldMap;
 import com.jagex.core.utils.string.StringUtils;
@@ -71,6 +72,32 @@ import static com.jagex.network.ClientProt.CLOSE_MODAL;
 
 public class InterfaceManager {
 
+    @OriginalMember(owner = "runetek4.client!pf", name = "r", descriptor = "[I")
+    public static final int[] cursors = new int[500];
+    @OriginalMember(owner = "runetek4.client!uj", name = "C", descriptor = "[Lclient!na;")
+    public static final JString[] ops = new JString[500];
+    @OriginalMember(owner = "runetek4.client!t", name = "v", descriptor = "[Lclient!na;")
+    public static final JString[] opBases = new JString[500];
+    @OriginalMember(owner = "runetek4.client!d", name = "eb", descriptor = "[S")
+    public static final short[] actions = new short[500];
+    @OriginalMember(owner = "client!aj", name = "R", descriptor = "Lclient!na;")
+    public static final JString COLOR_LIGHT_ORANGE = JString.parse("<col=ff9040>");
+    @OriginalMember(owner = "runetek4.client!pl", name = "e", descriptor = "[I")
+    public static final int[] intArgs1 = new int[500];
+    @OriginalMember(owner = "client!df", name = "l", descriptor = "Lclient!na;")
+    public static final JString COLOR_LIMEGREEN = JString.parse("<col=00ff00>");
+    @OriginalMember(owner = "runetek4.client!sc", name = "g", descriptor = "Lclient!na;")
+    public static final JString COLOR_LIGHT_ORANGE_ARROW = JString.parse(" )2> <col=ff9040>");
+    @OriginalMember(owner = "runetek4.client!mi", name = "U", descriptor = "[J")
+    public static final long[] keys = new long[500];
+    @OriginalMember(owner = "client!ef", name = "c", descriptor = "[I")
+    public static final int[] intArgs2 = new int[500];
+    @OriginalMember(owner = "runetek4.client!r", name = "d", descriptor = "Z")
+    public static final boolean aBoolean237 = false;
+    @OriginalMember(owner = "client!cb", name = "fb", descriptor = "Lclient!na;")
+    public static final JString COLON_SEPARATOR = JString.parse(": ");
+    @OriginalMember(owner = "runetek4.client!qf", name = "R", descriptor = "Lclient!na;")
+    public static final JString ARROW_SEPARATOR = JString.parse(" )2> ");
     private static final int ROOT = 0xABCDABCD;
 
     @OriginalMember(owner = "runetek4.client!sg", name = "q", descriptor = "[I")
@@ -101,12 +128,14 @@ public class InterfaceManager {
     public static final JString aClass100_903 = JString.parse("Hidden)2");
     @OriginalMember(owner = "runetek4.client!sc", name = "z", descriptor = "[Z")
     public static final boolean[] componentRedrawPrevious = new boolean[100];
+    private static final int TARGET_MASK_OBJ = 0x10;
+    private static final int TARGET_MASK_COMPONENT = 0x20;
     @OriginalMember(owner = "client!je", name = "fb", descriptor = "I")
     public static int transmitTimer = 1;
     @OriginalMember(owner = "runetek4.client!md", name = "W", descriptor = "I")
     public static int topLevelInterface = -1;
     @OriginalMember(owner = "client!je", name = "T", descriptor = "Lclient!sc;")
-    public static IterableHashTable openInterfaces = new IterableHashTable(8);
+    public static IterableHashTable subInterfaces = new IterableHashTable(8);
     @OriginalMember(owner = "runetek4.client!ve", name = "w", descriptor = "Z")
     public static boolean hasScrollbar = false;
     @OriginalMember(owner = "client!bn", name = "V", descriptor = "I")
@@ -135,8 +164,6 @@ public class InterfaceManager {
     public static Js5 gameInterfaceJs5;
     @OriginalMember(owner = "runetek4.client!qh", name = "g", descriptor = "Lclient!ve;")
     public static Js5 aClass153_85;
-    @OriginalMember(owner = "runetek4.client!th", name = "j", descriptor = "[[Lclient!be;")
-    public static Component[][] cachedComponents;
     @OriginalMember(owner = "runetek4.client!sc", name = "m", descriptor = "[Z")
     public static boolean[] loadedComponents;
     @OriginalMember(owner = "runetek4.client!ra", name = "J", descriptor = "I")
@@ -146,7 +173,7 @@ public class InterfaceManager {
     @OriginalMember(owner = "runetek4.client!nf", name = "h", descriptor = "Lclient!be;")
     public static Component mouseOverInventoryComponent;
     @OriginalMember(owner = "client!ef", name = "r", descriptor = "Lclient!be;")
-    public static Component targetComponent = null;
+    public static Component dragTarget = null;
     @OriginalMember(owner = "client!bn", name = "O", descriptor = "I")
     public static int menuWidth;
     @OriginalMember(owner = "client!bc", name = "X", descriptor = "I")
@@ -193,6 +220,34 @@ public class InterfaceManager {
     public static Component dragSource = null;
     @OriginalMember(owner = "runetek4.client!km", name = "pc", descriptor = "Z")
     public static boolean isDragging = false;
+    @OriginalMember(owner = "runetek4.client!ac", name = "p", descriptor = "Lclient!be;")
+    public static Component dragLayer = null;
+    @OriginalMember(owner = "runetek4.client!nb", name = "d", descriptor = "I")
+    public static int dragStartY = 0;
+    @OriginalMember(owner = "runetek4.client!re", name = "y", descriptor = "I")
+    public static int dragTicks;
+    @OriginalMember(owner = "runetek4.client!vd", name = "C", descriptor = "I")
+    public static int anInt5014 = 0;
+    @OriginalMember(owner = "runetek4.client!th", name = "n", descriptor = "Z")
+    public static boolean targetMode = false;
+    @OriginalMember(owner = "runetek4.client!u", name = "i", descriptor = "I")
+    public static int useWithCursor;
+    @OriginalMember(owner = "runetek4.client!hn", name = "W", descriptor = "Lclient!na;")
+    public static JString aClass100_545 = null;
+    @OriginalMember(owner = "runetek4.client!p", name = "e", descriptor = "I")
+    public static int anInt4370;
+    @OriginalMember(owner = "runetek4.client!cl", name = "Y", descriptor = "I")
+    public static int defaultCursor = -1;
+    @OriginalMember(owner = "client!ck", name = "D", descriptor = "Lclient!na;")
+    public static JString aClass100_203 = null;
+    @OriginalMember(owner = "client!gd", name = "i", descriptor = "Lclient!na;")
+    public static JString aClass100_466 = null;
+    @OriginalMember(owner = "runetek4.client!wf", name = "f", descriptor = "I")
+    public static int useWithMask;
+    @OriginalMember(owner = "client!bh", name = "t", descriptor = "I")
+    public static int mouseInvInterfaceIndex = 0;
+    @OriginalMember(owner = "runetek4.client!jg", name = "b", descriptor = "I")
+    public static int useWithParam;
 
     @OriginalMember(owner = "client!gg", name = "c", descriptor = "(II)V")
     public static void setCursor(@OriginalArg(0) int cursorId) {
@@ -226,18 +281,18 @@ public class InterfaceManager {
             if (topLevelInterface != -1) {
                 resetComponent(topLevelInterface);
             }
-            for (@Pc(18) SubInterface SubInterface = (SubInterface) openInterfaces.head(); SubInterface != null; SubInterface = (SubInterface) openInterfaces.next()) {
+            for (@Pc(18) SubInterface SubInterface = (SubInterface) subInterfaces.head(); SubInterface != null; SubInterface = (SubInterface) subInterfaces.next()) {
                 closeInterface(true, SubInterface);
             }
             topLevelInterface = -1;
-            openInterfaces = new IterableHashTable(8);
+            subInterfaces = new IterableHashTable(8);
             createComponentMemoryBuffer();
             topLevelInterface = LoginManager.loginScreenId;
             updateInterfaceLayout(false);
             ClientScriptRunner.method1807();
-            runInterfaceInitScripts(topLevelInterface);
+            ClientScriptRunner.executeOnLoad(topLevelInterface);
         }
-        MiniMenu.defaultCursor = -1;
+        defaultCursor = -1;
         setCursor(ClientScriptRunner.anInt5794);
         PlayerList.self = new Player();
         PlayerList.self.zFine = 3000;
@@ -264,21 +319,21 @@ public class InterfaceManager {
             return;
         }
         gameInterfaceJs5.discardUnpacked(componentId);
-        if (cachedComponents[componentId] == null) {
+        if (InterfaceList.interfaces[componentId] == null) {
             return;
         }
         @Pc(27) boolean canDeleteFromCache = true;
-        for (@Pc(29) int childComponentIndex = 0; childComponentIndex < cachedComponents[componentId].length; childComponentIndex++) {
-            if (cachedComponents[componentId][childComponentIndex] != null) {
-                if (cachedComponents[componentId][childComponentIndex].type == 2) {
+        for (@Pc(29) int childComponentIndex = 0; childComponentIndex < InterfaceList.interfaces[componentId].length; childComponentIndex++) {
+            if (InterfaceList.interfaces[componentId][childComponentIndex] != null) {
+                if (InterfaceList.interfaces[componentId][childComponentIndex].type == 2) {
                     canDeleteFromCache = false;
                 } else {
-                    cachedComponents[componentId][childComponentIndex] = null;
+                    InterfaceList.interfaces[componentId][childComponentIndex] = null;
                 }
             }
         }
         if (canDeleteFromCache) {
-            cachedComponents[componentId] = null;
+            InterfaceList.interfaces[componentId] = null;
         }
         loadedComponents[componentId] = false;
     }
@@ -292,19 +347,19 @@ public class InterfaceManager {
             resetComponent(componentId);
         }
         clearInterfaceProperties(componentId);
-        @Pc(32) Component parentComponent = getComponent(parentComponentId);
+        @Pc(32) Component parentComponent = InterfaceList.list(parentComponentId);
         if (parentComponent != null) {
             redraw(parentComponent);
         }
         @Pc(41) int totalMenuActions = MiniMenu.menuActionRow;
         @Pc(43) int maxWidth;
         for (maxWidth = 0; maxWidth < totalMenuActions; maxWidth++) {
-            if (shouldRemoveMenuAction(MiniMenu.actions[maxWidth])) {
+            if (shouldRemoveMenuAction(actions[maxWidth])) {
                 MiniMenu.removeActionRow(maxWidth);
             }
         }
         if (MiniMenu.menuActionRow == 1) {
-            ClientScriptRunner.menuVisible = false;
+            MiniMenu.open = false;
             redrawScreen(menuX, menuWidth, menuY, menuHeight);
         } else {
             redrawScreen(menuX, menuWidth, menuY, menuHeight);
@@ -325,7 +380,7 @@ public class InterfaceManager {
 
     @OriginalMember(owner = "runetek4.client!eb", name = "d", descriptor = "(I)V")
     public static void createComponentMemoryBuffer() {
-        cachedComponents = new Component[gameInterfaceJs5.capacity()][];
+        InterfaceList.interfaces = new Component[gameInterfaceJs5.capacity()][];
         loadedComponents = new boolean[gameInterfaceJs5.capacity()];
     }
 
@@ -362,31 +417,14 @@ public class InterfaceManager {
 
     @OriginalMember(owner = "runetek4.client!eg", name = "a", descriptor = "(IIIIIIII)V")
     public static void renderInterface(@OriginalArg(0) int x, @OriginalArg(1) int y, @OriginalArg(3) int clipY, @OriginalArg(4) int width, @OriginalArg(5) int interfaceId, @OriginalArg(6) int clipX, @OriginalArg(7) int height) {
-        if (load(interfaceId)) {
-            processComponents(cachedComponents[interfaceId], -1, clipX, y, width, height, x, clipY);
+        if (InterfaceList.load(interfaceId)) {
+            logicComponentList(InterfaceList.interfaces[interfaceId], -1, clipX, y, width, height, x, clipY);
         }
-    }
-
-    @OriginalMember(owner = "runetek4.client!af", name = "a", descriptor = "(BI)Lclient!be;")
-    public static Component getComponent(@OriginalArg(1) int packedId) {
-        @Pc(7) int interfaceId = packedId >> 16;
-        @Pc(18) int componentId = packedId & 0xFFFF;
-        if (cachedComponents[interfaceId] == null || cachedComponents[interfaceId][componentId] == null) {
-            @Pc(33) boolean success = load(interfaceId);
-            if (!success) {
-                return null;
-            }
-            // todo: this should not be necessary, data/server-related?
-            if (cachedComponents.length <= interfaceId || cachedComponents[interfaceId].length <= componentId) {
-                return null;
-            }
-        }
-        return cachedComponents[interfaceId][componentId];
     }
 
     @OriginalMember(owner = "runetek4.client!runetek4.client", name = "b", descriptor = "(Lclient!be;)Lclient!bf;")
     public static ServerActiveProperties getServerActiveProperties(@OriginalArg(0) Component component) {
-        @Pc(13) ServerActiveProperties serverProperties = (ServerActiveProperties) properties.get(((long) component.id << 32) + (long) component.createdComponentId);
+        @Pc(13) ServerActiveProperties serverProperties = (ServerActiveProperties) properties.get(((long) component.slot << 32) + (long) component.id);
         return serverProperties == null ? component.properties : serverProperties;
     }
 
@@ -410,18 +448,6 @@ public class InterfaceManager {
         return component.hidden;
     }
 
-    @OriginalMember(owner = "runetek4.client!qf", name = "a", descriptor = "(BII)Lclient!be;")
-    public static Component getCreatedComponent(@OriginalArg(1) int parentId, @OriginalArg(2) int childIndex) {
-        @Pc(7) Component parentComponent = getComponent(parentId);
-        if (childIndex == -1) {
-            return parentComponent;
-        } else if (parentComponent == null || parentComponent.createdComponents == null || parentComponent.createdComponents.length <= childIndex) {
-            return null;
-        } else {
-            return parentComponent.createdComponents[childIndex];
-        }
-    }
-
     @OriginalMember(owner = "runetek4.client!kf", name = "a", descriptor = "(IIBII)V")
     public static void redrawScreen(@OriginalArg(0) int x, @OriginalArg(1) int width, @OriginalArg(3) int y, @OriginalArg(4) int height) {
         for (@Pc(12) int rectangleIndex = 0; rectangleIndex < rectangles; rectangleIndex++) {
@@ -442,61 +468,27 @@ public class InterfaceManager {
         aClass153_64 = fontsJs5;
         gameInterfaceJs5 = interfacesJs5;
         aClass153_85 = spritesJs5;
-        cachedComponents = new Component[gameInterfaceJs5.capacity()][];
+        InterfaceList.interfaces = new Component[gameInterfaceJs5.capacity()][];
         loadedComponents = new boolean[gameInterfaceJs5.capacity()];
-    }
-
-    @OriginalMember(owner = "runetek4.client!tm", name = "b", descriptor = "(II)Z")
-    public static boolean load(@OriginalArg(0) int interfaceId) {
-        if (loadedComponents[interfaceId]) {
-            return true;
-        } else if (gameInterfaceJs5.isGroupReady(interfaceId)) {
-            @Pc(25) int componentCount = gameInterfaceJs5.getGroupCapacity(interfaceId);
-            if (componentCount == 0) {
-                loadedComponents[interfaceId] = true;
-                return true;
-            }
-            if (cachedComponents[interfaceId] == null) {
-                cachedComponents[interfaceId] = new Component[componentCount];
-            }
-            for (@Pc(46) int componentIndex = 0; componentIndex < componentCount; componentIndex++) {
-                if (cachedComponents[interfaceId][componentIndex] == null) {
-                    @Pc(62) byte[] componentData = gameInterfaceJs5.getfile(interfaceId, componentIndex);
-                    if (componentData != null) {
-                        @Pc(74) Component component = cachedComponents[interfaceId][componentIndex] = new Component();
-                        component.id = componentIndex + (interfaceId << 16);
-                        if (componentData[0] == -1) {
-                            component.decodeIf3(new Packet(componentData));
-                        } else {
-                            component.decodeIf1(new Packet(componentData));
-                        }
-                    }
-                }
-            }
-            loadedComponents[interfaceId] = true;
-            return true;
-        } else {
-            return false;
-        }
     }
 
     @OriginalMember(owner = "runetek4.client!i", name = "i", descriptor = "(Z)V")
     public static void redrawActiveInterfaces() {
-        for (@Pc(6) SubInterface subInterface = (SubInterface) openInterfaces.head(); subInterface != null; subInterface = (SubInterface) openInterfaces.next()) {
+        for (@Pc(6) SubInterface subInterface = (SubInterface) subInterfaces.head(); subInterface != null; subInterface = (SubInterface) subInterfaces.next()) {
             @Pc(14) int interfaceId = subInterface.interfaceId;
-            if (load(interfaceId)) {
+            if (InterfaceList.load(interfaceId)) {
                 @Pc(21) boolean isIf3Format = true;
-                @Pc(25) Component[] components = cachedComponents[interfaceId];
+                @Pc(25) Component[] components = InterfaceList.interfaces[interfaceId];
                 @Pc(27) int local27;
                 for (local27 = 0; local27 < components.length; local27++) {
                     if (components[local27] != null) {
-                        isIf3Format = components[local27].if3;
+                        isIf3Format = components[local27].hasOpKey;
                         break;
                     }
                 }
                 if (!isIf3Format) {
                     local27 = (int) subInterface.key;
-                    @Pc(60) Component parentComponent = getComponent(local27);
+                    @Pc(60) Component parentComponent = InterfaceList.list(local27);
                     if (parentComponent != null) {
                         redraw(parentComponent);
                     }
@@ -507,7 +499,7 @@ public class InterfaceManager {
 
     @OriginalMember(owner = "runetek4.client!qj", name = "a", descriptor = "(Lclient!be;BI)Lclient!na;")
     public static JString getOp(@OriginalArg(0) Component component, @OriginalArg(2) int opIndex) {
-        if (!getServerActiveProperties(component).isButtonEnabled(opIndex) && component.onOptionClick == null) {
+        if (!getServerActiveProperties(component).isButtonEnabled(opIndex) && component.onOp == null) {
             return null;
         } else if (component.ops == null || component.ops.length <= opIndex || component.ops[opIndex] == null || component.ops[opIndex].trim().length() == 0) {
             return Cheat.testOpacity ? JString.concatenate(new JString[] {aClass100_903, JString.parseInt(opIndex) }) : null;
@@ -518,10 +510,10 @@ public class InterfaceManager {
 
     @OriginalMember(owner = "runetek4.client!gg", name = "e", descriptor = "(II)V")
     public static void resetComponentAnimations(@OriginalArg(0) int interfaceId) {
-        if (!load(interfaceId)) {
+        if (!InterfaceList.load(interfaceId)) {
             return;
         }
-        @Pc(15) Component[] components = cachedComponents[interfaceId];
+        @Pc(15) Component[] components = InterfaceList.interfaces[interfaceId];
         for (@Pc(17) int componentIndex = 0; componentIndex < components.length; componentIndex++) {
             @Pc(29) Component component = components[componentIndex];
             if (component != null) {
@@ -534,8 +526,8 @@ public class InterfaceManager {
 
     @OriginalMember(owner = "runetek4.client!ta", name = "a", descriptor = "(IZIII)V")
     public static void updateInterfaceLayoutImpl(@OriginalArg(0) int canvasHeight, @OriginalArg(1) boolean fullUpdate, @OriginalArg(3) int interfaceId, @OriginalArg(4) int canvasWidth) {
-        if (load(interfaceId)) {
-            updateComponentLayout(-1, fullUpdate, canvasWidth, canvasHeight, cachedComponents[interfaceId]);
+        if (InterfaceList.load(interfaceId)) {
+            updateComponentLayout(-1, fullUpdate, canvasWidth, canvasHeight, InterfaceList.interfaces[interfaceId]);
         }
     }
 
@@ -546,11 +538,11 @@ public class InterfaceManager {
             if (component != null && component.layer == parentId) {
                 calculateComponentSize(canvasHeight, canvasWidth, component, fullUpdate);
                 calculateComponentPosition(component, canvasHeight, canvasWidth);
-                if (component.scrollMaxH - component.width < component.scrollX) {
-                    component.scrollX = component.scrollMaxH - component.width;
+                if (component.scrollWidth - component.width < component.scrollX) {
+                    component.scrollX = component.scrollWidth - component.width;
                 }
-                if (component.scrollY > component.scrollMaxV - component.height) {
-                    component.scrollY = component.scrollMaxV - component.height;
+                if (component.scrollY > component.scrollHeight - component.height) {
+                    component.scrollY = component.scrollHeight - component.height;
                 }
                 if (component.scrollY < 0) {
                     component.scrollY = 0;
@@ -559,21 +551,21 @@ public class InterfaceManager {
                     component.scrollX = 0;
                 }
                 if (component.type == 0) {
-                    updateContainerLayout(component, fullUpdate);
+                    calculateLayerDimensions(component, fullUpdate);
                 }
             }
         }
     }
 
     @OriginalMember(owner = "client!bg", name = "a", descriptor = "(Lclient!be;ZI)V")
-    public static void updateContainerLayout(@OriginalArg(0) Component container, @OriginalArg(1) boolean fullUpdate) {
-        @Pc(20) int contentWidth = container.scrollMaxH == 0 ? container.width : container.scrollMaxH;
-        @Pc(32) int contentHeight = container.scrollMaxV == 0 ? container.height : container.scrollMaxV;
-        updateComponentLayout(container.id, fullUpdate, contentWidth, contentHeight, cachedComponents[container.id >> 16]);
-        if (container.createdComponents != null) {
-            updateComponentLayout(container.id, fullUpdate, contentWidth, contentHeight, container.createdComponents);
+    public static void calculateLayerDimensions(@OriginalArg(0) Component container, @OriginalArg(1) boolean fullUpdate) {
+        @Pc(20) int contentWidth = container.scrollWidth == 0 ? container.width : container.scrollWidth;
+        @Pc(32) int contentHeight = container.scrollHeight == 0 ? container.height : container.scrollHeight;
+        updateComponentLayout(container.slot, fullUpdate, contentWidth, contentHeight, InterfaceList.interfaces[container.slot >> 16]);
+        if (container.staticComponents != null) {
+            updateComponentLayout(container.slot, fullUpdate, contentWidth, contentHeight, container.staticComponents);
         }
-        @Pc(66) SubInterface subInterface = (SubInterface) openInterfaces.get((long) container.id);
+        @Pc(66) SubInterface subInterface = (SubInterface) subInterfaces.get((long) container.slot);
         if (subInterface != null) {
             updateInterfaceLayoutImpl(contentHeight, fullUpdate, subInterface.interfaceId, contentWidth);
         }
@@ -632,7 +624,7 @@ public class InterfaceManager {
             specialComponent = component;
         }
         if (triggerEvents && component.onResize != null && (oldWidth != component.width || component.height != oldHeight)) {
-            @Pc(305) ComponentEvent resizeEvent = new ComponentEvent();
+            @Pc(305) HookRequest resizeEvent = new HookRequest();
             resizeEvent.arguments = component.onResize;
             resizeEvent.source = component;
             lowPriorityRequests.push(resizeEvent);
@@ -682,23 +674,6 @@ public class InterfaceManager {
         }
     }
 
-    @OriginalMember(owner = "client!fn", name = "c", descriptor = "(II)V")
-    public static void runInterfaceInitScripts(@OriginalArg(0) int interfaceId) {
-        if (interfaceId == -1 || !load(interfaceId)) {
-            return;
-        }
-        @Pc(31) Component[] components = cachedComponents[interfaceId];
-        for (@Pc(33) int componentIndex = 0; componentIndex < components.length; componentIndex++) {
-            @Pc(41) Component component = components[componentIndex];
-            if (component.onInterfaceOpen != null) {
-                @Pc(50) ComponentEvent initEvent = new ComponentEvent();
-                initEvent.arguments = component.onInterfaceOpen;
-                initEvent.source = component;
-                ClientScriptRunner.run(2000000, initEvent);
-            }
-        }
-    }
-
     @OriginalMember(owner = "runetek4.client!aa", name = "a", descriptor = "(SI)Z")
     public static boolean shouldRemoveMenuAction(@OriginalArg(0) short actionId) {
         if (actionId == 47 || actionId == 5 || actionId == 43 || actionId == 35 || actionId == 58 || actionId == 22 || actionId == 40 || actionId == 3) {
@@ -723,21 +698,21 @@ public class InterfaceManager {
 
     @OriginalMember(owner = "client!ed", name = "a", descriptor = "(III)V")
     public static void runScripts(@OriginalArg(1) int triggerId, @OriginalArg(2) int interfaceId) {
-        if (load(interfaceId)) {
-            runComponentScripts(cachedComponents[interfaceId], triggerId);
+        if (InterfaceList.load(interfaceId)) {
+            runComponentScripts(InterfaceList.interfaces[interfaceId], triggerId);
         }
     }
 
     @OriginalMember(owner = "runetek4.client!wl", name = "a", descriptor = "(Lclient!be;I)Lclient!be;")
     public static Component getParentComponent(@OriginalArg(0) Component component) {
         if (component.layer != -1) {
-            return getComponent(component.layer);
+            return InterfaceList.list(component.layer);
         }
-        @Pc(28) int interfaceId = component.id >>> 16;
-        @Pc(33) HashTableIterator interfaceIterator = new HashTableIterator(openInterfaces);
+        @Pc(28) int interfaceId = component.slot >>> 16;
+        @Pc(33) HashTableIterator interfaceIterator = new HashTableIterator(subInterfaces);
         for (@Pc(38) SubInterface subInterface = (SubInterface) interfaceIterator.method2701(); subInterface != null; subInterface = (SubInterface) interfaceIterator.method2700()) {
             if (interfaceId == subInterface.interfaceId) {
-                return getComponent((int) subInterface.key);
+                return InterfaceList.list((int) subInterface.key);
             }
         }
         return null;
@@ -765,49 +740,49 @@ public class InterfaceManager {
             @Pc(23) Component component = components[componentIndex];
             if (component != null) {
                 if (component.type == 0) {
-                    if (component.createdComponents != null) {
-                        runComponentScripts(component.createdComponents, triggerId);
+                    if (component.staticComponents != null) {
+                        runComponentScripts(component.staticComponents, triggerId);
                     }
-                    @Pc(49) SubInterface subInterface = (SubInterface) openInterfaces.get((long) component.id);
+                    @Pc(49) SubInterface subInterface = (SubInterface) subInterfaces.get((long) component.slot);
                     if (subInterface != null) {
                         runScripts(triggerId, subInterface.interfaceId);
                     }
                 }
-                @Pc(72) ComponentEvent scriptEvent;
+                @Pc(72) HookRequest scriptEvent;
                 if (triggerId == 0 && component.onDialogAbort != null) {
-                    scriptEvent = new ComponentEvent();
+                    scriptEvent = new HookRequest();
                     scriptEvent.arguments = component.onDialogAbort;
                     scriptEvent.source = component;
-                    ClientScriptRunner.run(scriptEvent);
+                    ClientScriptRunner.executeScript(scriptEvent);
                 }
-                if (triggerId == 1 && component.onComponentsOpenClose != null) {
-                    if (component.createdComponentId >= 0) {
-                        @Pc(103) Component parentComponent = getComponent(component.id);
-                        if (parentComponent == null || parentComponent.createdComponents == null || component.createdComponentId >= parentComponent.createdComponents.length || parentComponent.createdComponents[component.createdComponentId] != component) {
+                if (triggerId == 1 && component.onSubChange != null) {
+                    if (component.id >= 0) {
+                        @Pc(103) Component parentComponent = InterfaceList.list(component.slot);
+                        if (parentComponent == null || parentComponent.staticComponents == null || component.id >= parentComponent.staticComponents.length || parentComponent.staticComponents[component.id] != component) {
                             continue;
                         }
                     }
-                    scriptEvent = new ComponentEvent();
-                    scriptEvent.arguments = component.onComponentsOpenClose;
+                    scriptEvent = new HookRequest();
+                    scriptEvent.arguments = component.onSubChange;
                     scriptEvent.source = component;
-                    ClientScriptRunner.run(scriptEvent);
+                    ClientScriptRunner.executeScript(scriptEvent);
                 }
             }
         }
     }
 
     @OriginalMember(owner = "client!runetek4.client", name = "a", descriptor = "([Lclient!be;IIIIIII)V")
-    public static void processComponents(@OriginalArg(0) Component[] components, @OriginalArg(1) int parentId, @OriginalArg(2) int clipLeft, @OriginalArg(3) int clipTop, @OriginalArg(4) int clipRight, @OriginalArg(5) int clipBottom, @OriginalArg(6) int offsetX, @OriginalArg(7) int offsetY) {
-        for (@Pc(1) int componentIndex = 0; componentIndex < components.length; componentIndex++) {
-            @Pc(9) Component component = components[componentIndex];
-            if (component != null && component.layer == parentId && (!component.if3 || component.type == 0 || component.interactive || getServerActiveProperties(component).events != 0 || component == ClientScriptRunner.containerComponent || component.clientcode == 1338) && (!component.if3 || !isHidden(component))) {
+    public static void logicComponentList(@OriginalArg(0) Component[] components, @OriginalArg(1) int parentId, @OriginalArg(2) int clipLeft, @OriginalArg(3) int clipTop, @OriginalArg(4) int clipRight, @OriginalArg(5) int clipBottom, @OriginalArg(6) int offsetX, @OriginalArg(7) int offsetY) {
+        for (@Pc(1) int i = 0; i < components.length; i++) {
+            @Pc(9) Component component = components[i];
+            if (component != null && component.layer == parentId && (!component.hasOpKey || component.type == 0 || component.interactive || getServerActiveProperties(component).events != 0 || component == dragLayer || component.clientcode == 1338) && (!component.hasOpKey || !isHidden(component))) {
                 @Pc(50) int componentX = component.x + offsetX;
                 @Pc(55) int componentY = component.y + offsetY;
                 @Pc(61) int effectiveClipLeft;
                 @Pc(63) int effectiveClipTop;
                 @Pc(65) int effectiveClipRight;
                 @Pc(67) int effectiveClipBottom;
-                if (component.type == 2) {
+                if (component.type == Component.TYPE_INVENTORY) {
                     effectiveClipLeft = clipLeft;
                     effectiveClipTop = clipTop;
                     effectiveClipRight = clipRight;
@@ -815,7 +790,7 @@ public class InterfaceManager {
                 } else {
                     @Pc(73) int componentRight = componentX + component.width;
                     @Pc(78) int componentBottom = componentY + component.height;
-                    if (component.type == 9) {
+                    if (component.type == Component.TYPE_LINE) {
                         componentRight++;
                         componentBottom++;
                     }
@@ -829,26 +804,26 @@ public class InterfaceManager {
                     lastMouseX = componentX;
                     lastMouseY = componentY;
                 }
-                if (!component.if3 || effectiveClipLeft < effectiveClipRight && effectiveClipTop < effectiveClipBottom) {
-                    if (component.type == 0) {
-                        if (!component.if3 && isHidden(component) && previousMouseOverComponent != component) {
+                if (!component.hasOpKey || effectiveClipLeft < effectiveClipRight && effectiveClipTop < effectiveClipBottom) {
+                    if (component.type == Component.TYPE_LAYER) {
+                        if (!component.hasOpKey && isHidden(component) && previousMouseOverComponent != component) {
                             continue;
                         }
                         if (component.noClickThrough && Mouse.lastMouseX >= effectiveClipLeft && Mouse.lastMouseY >= effectiveClipTop && Mouse.lastMouseX < effectiveClipRight && Mouse.lastMouseY < effectiveClipBottom) {
-                            for (@Pc(164) ComponentEvent local164 = (ComponentEvent) lowPriorityRequests.head(); local164 != null; local164 = (ComponentEvent) lowPriorityRequests.next()) {
-                                if (local164.shouldExecute) {
-                                    local164.unlink();
-                                    local164.source.mouseHover = false;
+                            for (@Pc(164) HookRequest hook = (HookRequest) lowPriorityRequests.head(); hook != null; hook = (HookRequest) lowPriorityRequests.next()) {
+                                if (hook.shouldExecute) {
+                                    hook.unlink();
+                                    hook.source.mouseHover = false;
                                 }
                             }
-                            if (ClientScriptRunner.dragTime == 0) {
+                            if (dragTicks == 0) {
                                 dragSource = null;
-                                ClientScriptRunner.containerComponent = null;
+                                dragLayer = null;
                             }
                             worldMapState = 0;
                         }
                     }
-                    if (component.if3) {
+                    if (component.hasOpKey) {
                         @Pc(207) boolean mouseOver;
                         if (Mouse.lastMouseX >= effectiveClipLeft && Mouse.lastMouseY >= effectiveClipTop && Mouse.lastMouseX < effectiveClipRight && Mouse.lastMouseY < effectiveClipBottom) {
                             mouseOver = true;
@@ -871,7 +846,7 @@ public class InterfaceManager {
                                     if (component.hotkeyCooldowns == null || Client.loop >= component.hotkeyCooldowns[hotkeyIndex]) {
                                         @Pc(279) byte modifierMask = component.hotkeyModifiers[hotkeyIndex];
                                         if (modifierMask == 0 || ((modifierMask & 0x2) == 0 || Keyboard.pressedKeys[86]) && ((modifierMask & 0x1) == 0 || Keyboard.pressedKeys[82]) && ((modifierMask & 0x4) == 0 || Keyboard.pressedKeys[81])) {
-                                            ClientProt.method4512(JString.EMPTY, -1, hotkeyIndex + 1, component.id);
+                                            ifButtonXSend(JString.EMPTY, -1, hotkeyIndex + 1, component.slot);
                                             cooldownDelay = component.hotkeyDelays[hotkeyIndex];
                                             if (component.hotkeyCooldowns == null) {
                                                 component.hotkeyCooldowns = new int[component.hotkeys.length];
@@ -889,82 +864,82 @@ public class InterfaceManager {
                             }
                         }
                         if (mouseClicked) {
-                            ClientScriptRunner.startComponentDrag(Mouse.mouseClickY - componentY, Mouse.mouseClickX - componentX, component);
+                            dragTryPickup(Mouse.mouseClickY - componentY, Mouse.mouseClickX - componentX, component);
                         }
                         if (dragSource != null && dragSource != component && mouseOver && getServerActiveProperties(component).isDragTarget()) {
-                            targetComponent = component;
+                            dragTarget = component;
                         }
-                        if (component == ClientScriptRunner.containerComponent) {
+                        if (component == dragLayer) {
                             dragActive = true;
                             ClientScriptRunner.minX = componentX;
                             minY = componentY;
                         }
                         if (component.interactive || component.clientcode != 0) {
-                            @Pc(399) ComponentEvent request;
-                            if (mouseOver && MouseWheel.wheelRotation != 0 && component.onScroll != null) {
-                                request = new ComponentEvent();
+                            @Pc(399) HookRequest request;
+                            if (mouseOver && MouseWheel.wheelRotation != 0 && component.onScrollWheel != null) {
+                                request = new HookRequest();
                                 request.shouldExecute = true;
                                 request.source = component;
                                 request.mouseY = MouseWheel.wheelRotation;
-                                request.arguments = component.onScroll;
+                                request.arguments = component.onScrollWheel;
                                 lowPriorityRequests.push(request);
                             }
-                            if (dragSource != null || clickedInventoryComponent != null || ClientScriptRunner.menuVisible || component.clientcode != 1400 && worldMapState > 0) {
+                            if (dragSource != null || clickedInventoryComponent != null || MiniMenu.open || component.clientcode != 1400 && worldMapState > 0) {
                                 mouseClicked = false;
                                 mousePressed = false;
                                 mouseOver = false;
                             }
                             @Pc(508) int skill;
                             if (component.clientcode != 0) {
-                                if (component.clientcode == 1337) {
+                                if (component.clientcode == ComponentClientCode.SCENE) {
                                     specialComponent = component;
                                     redraw(component);
                                     continue;
                                 }
-                                if (component.clientcode == 1338) {
+                                if (component.clientcode == ComponentClientCode.MINIMAP) {
                                     if (mouseClicked) {
                                         anInt5 = Mouse.mouseClickX - componentX;
                                         MiniMenu.anInt2878 = Mouse.mouseClickY - componentY;
                                     }
                                     continue;
                                 }
-                                if (component.clientcode == 1400) {
+                                if (component.clientcode == ComponentClientCode.WORLD_MAP) {
                                     WorldMap.component = component;
                                     if (mouseClicked) {
                                         if (Keyboard.pressedKeys[82] && LoginManager.staffModLevel > 0) {
                                             hotkeyIndex = (int) ((double) (Mouse.mouseClickX - componentX - component.width / 2) * 2.0D / (double) WorldMap.zoom);
                                             skill = (int) ((double) (Mouse.mouseClickY - componentY - component.height / 2) * 2.0D / (double) WorldMap.zoom);
-                                            cooldownDelay = WorldMap.anInt435 + hotkeyIndex;
-                                            @Pc(516) int local516 = WorldMap.anInt919 + skill;
+                                            cooldownDelay = WorldMap.displayX + hotkeyIndex;
+                                            @Pc(516) int local516 = WorldMap.displayZ + skill;
                                             @Pc(520) int local520 = cooldownDelay + WorldMap.originX;
-                                            @Pc(528) int local528 = WorldMap.length + WorldMap.originZ - local516 - 1;
+                                            @Pc(528) int local528 = WorldMap.areaHeight + WorldMap.originZ - local516 - 1;
                                             Cheat.teleport(local520, local528, 0);
                                             closeModal();
                                             continue;
                                         }
                                         worldMapState = 1;
                                         ClientScriptRunner.dragStartX = Mouse.lastMouseX;
-                                        ClientScriptRunner.dragStartY = Mouse.lastMouseY;
+                                        dragStartY = Mouse.lastMouseY;
                                         continue;
                                     }
                                     if (mousePressed && worldMapState > 0) {
-                                        if (worldMapState == 1 && (ClientScriptRunner.dragStartX != Mouse.lastMouseX || ClientScriptRunner.dragStartY != Mouse.lastMouseY)) {
-                                            anInt4620 = WorldMap.anInt435;
-                                            anInt1885 = WorldMap.anInt919;
+                                        if (worldMapState == 1 && (ClientScriptRunner.dragStartX != Mouse.lastMouseX || dragStartY != Mouse.lastMouseY)) {
+                                            anInt4620 = WorldMap.displayX;
+                                            anInt1885 = WorldMap.displayZ;
                                             worldMapState = 2;
                                         }
                                         if (worldMapState == 2) {
                                             WorldMap.method1964(anInt4620 + (int) ((double) (ClientScriptRunner.dragStartX - Mouse.lastMouseX) * 2.0D / (double) WorldMap.targetZoom));
-                                            WorldMap.method4641(anInt1885 + (int) ((double) (ClientScriptRunner.dragStartY - Mouse.lastMouseY) * 2.0D / (double) WorldMap.targetZoom));
+                                            WorldMap.method4641(anInt1885 + (int) ((double) (dragStartY - Mouse.lastMouseY) * 2.0D / (double) WorldMap.targetZoom));
                                         }
                                         continue;
                                     }
                                     worldMapState = 0;
                                     continue;
                                 }
-                                if (component.clientcode == 1401) {
+                                if (component.clientcode == ComponentClientCode.WORLD_MAP_OVERVIEW) {
                                     if (mousePressed) {
-                                        WorldMap.method2387(component.width, Mouse.lastMouseY - componentY, Mouse.lastMouseX - componentX, component.height);
+                                        WorldMap.clickedOverview(component.width, Mouse.lastMouseY - componentY, Mouse.lastMouseX - componentX, component.height);
                                     }
                                     continue;
                                 }
@@ -977,29 +952,29 @@ public class InterfaceManager {
                             }
                             if (!component.mousePressed && mouseClicked) {
                                 component.mousePressed = true;
-                                if (component.onClickRepeat != null) {
-                                    request = new ComponentEvent();
+                                if (component.onClick != null) {
+                                    request = new HookRequest();
                                     request.shouldExecute = true;
                                     request.source = component;
                                     request.mouseX = Mouse.mouseClickX - componentX;
                                     request.mouseY = Mouse.mouseClickY - componentY;
-                                    request.arguments = component.onClickRepeat;
+                                    request.arguments = component.onClick;
                                     lowPriorityRequests.push(request);
                                 }
                             }
-                            if (component.mousePressed && mousePressed && component.onDrag != null) {
-                                request = new ComponentEvent();
+                            if (component.mousePressed && mousePressed && component.onClickRepeat != null) {
+                                request = new HookRequest();
                                 request.shouldExecute = true;
                                 request.source = component;
                                 request.mouseX = Mouse.lastMouseX - componentX;
                                 request.mouseY = Mouse.lastMouseY - componentY;
-                                request.arguments = component.onDrag;
+                                request.arguments = component.onClickRepeat;
                                 lowPriorityRequests.push(request);
                             }
                             if (component.mousePressed && !mousePressed) {
                                 component.mousePressed = false;
                                 if (component.onRelease != null) {
-                                    request = new ComponentEvent();
+                                    request = new HookRequest();
                                     request.shouldExecute = true;
                                     request.source = component;
                                     request.mouseX = Mouse.lastMouseX - componentX;
@@ -1009,7 +984,7 @@ public class InterfaceManager {
                                 }
                             }
                             if (mousePressed && component.onHold != null) {
-                                request = new ComponentEvent();
+                                request = new HookRequest();
                                 request.shouldExecute = true;
                                 request.source = component;
                                 request.mouseX = Mouse.lastMouseX - componentX;
@@ -1020,7 +995,7 @@ public class InterfaceManager {
                             if (!component.mouseHover && mouseOver) {
                                 component.mouseHover = true;
                                 if (component.onMouseOver != null) {
-                                    request = new ComponentEvent();
+                                    request = new HookRequest();
                                     request.shouldExecute = true;
                                     request.source = component;
                                     request.mouseX = Mouse.lastMouseX - componentX;
@@ -1030,7 +1005,7 @@ public class InterfaceManager {
                                 }
                             }
                             if (component.mouseHover && mouseOver && component.onMouseRepeat != null) {
-                                request = new ComponentEvent();
+                                request = new HookRequest();
                                 request.shouldExecute = true;
                                 request.source = component;
                                 request.mouseX = Mouse.lastMouseX - componentX;
@@ -1041,7 +1016,7 @@ public class InterfaceManager {
                             if (component.mouseHover && !mouseOver) {
                                 component.mouseHover = false;
                                 if (component.onMouseLeave != null) {
-                                    request = new ComponentEvent();
+                                    request = new HookRequest();
                                     request.shouldExecute = true;
                                     request.source = component;
                                     request.mouseX = Mouse.lastMouseX - componentX;
@@ -1051,24 +1026,24 @@ public class InterfaceManager {
                                 }
                             }
                             if (component.onTimer != null) {
-                                request = new ComponentEvent();
+                                request = new HookRequest();
                                 request.source = component;
                                 request.arguments = component.onTimer;
                                 highPriorityRequests.push(request);
                             }
-                            @Pc(966) ComponentEvent request2;
-                            if (component.onVarcTransmit != null && VarcDomain.updatedVarcsWriterIndex > component.updatedVarcsReaderIndex) {
-                                if (component.varcTriggers == null || VarcDomain.updatedVarcsWriterIndex - component.updatedVarcsReaderIndex > 32) {
-                                    request = new ComponentEvent();
+                            @Pc(966) HookRequest request2;
+                            if (component.onVarcTransmit != null && VarcDomain.varcUpdateCount > component.lastVarcUpdate) {
+                                if (component.varcTriggers == null || VarcDomain.varcUpdateCount - component.lastVarcUpdate > 32) {
+                                    request = new HookRequest();
                                     request.source = component;
                                     request.arguments = component.onVarcTransmit;
                                     lowPriorityRequests.push(request);
                                 } else {
-                                    label563: for (hotkeyIndex = component.updatedVarcsReaderIndex; hotkeyIndex < VarcDomain.updatedVarcsWriterIndex; hotkeyIndex++) {
+                                    label563: for (hotkeyIndex = component.lastVarcUpdate; hotkeyIndex < VarcDomain.varcUpdateCount; hotkeyIndex++) {
                                         skill = VarcDomain.updatedVarcs[hotkeyIndex & 0x1F];
                                         for (cooldownDelay = 0; cooldownDelay < component.varcTriggers.length; cooldownDelay++) {
                                             if (component.varcTriggers[cooldownDelay] == skill) {
-                                                request2 = new ComponentEvent();
+                                                request2 = new HookRequest();
                                                 request2.source = component;
                                                 request2.arguments = component.onVarcTransmit;
                                                 lowPriorityRequests.push(request2);
@@ -1077,20 +1052,20 @@ public class InterfaceManager {
                                         }
                                     }
                                 }
-                                component.updatedVarcsReaderIndex = VarcDomain.updatedVarcsWriterIndex;
+                                component.lastVarcUpdate = VarcDomain.varcUpdateCount;
                             }
-                            if (component.onVarcstrTransmit != null && VarcDomain.updatedVarcstrsWriterIndex > component.updatedVarcstrsReaderIndex) {
-                                if (component.varcstrTriggers == null || VarcDomain.updatedVarcstrsWriterIndex - component.updatedVarcstrsReaderIndex > 32) {
-                                    request = new ComponentEvent();
+                            if (component.onVarcstrTransmit != null && VarcDomain.varcstrUpdateCount > component.lastVarcstrUpdate) {
+                                if (component.varcstrTriggers == null || VarcDomain.varcstrUpdateCount - component.lastVarcstrUpdate > 32) {
+                                    request = new HookRequest();
                                     request.source = component;
                                     request.arguments = component.onVarcstrTransmit;
                                     lowPriorityRequests.push(request);
                                 } else {
-                                    label539: for (hotkeyIndex = component.updatedVarcstrsReaderIndex; hotkeyIndex < VarcDomain.updatedVarcstrsWriterIndex; hotkeyIndex++) {
+                                    label539: for (hotkeyIndex = component.lastVarcstrUpdate; hotkeyIndex < VarcDomain.varcstrUpdateCount; hotkeyIndex++) {
                                         skill = VarcDomain.updatedVarcstrs[hotkeyIndex & 0x1F];
                                         for (cooldownDelay = 0; cooldownDelay < component.varcstrTriggers.length; cooldownDelay++) {
                                             if (component.varcstrTriggers[cooldownDelay] == skill) {
-                                                request2 = new ComponentEvent();
+                                                request2 = new HookRequest();
                                                 request2.source = component;
                                                 request2.arguments = component.onVarcstrTransmit;
                                                 lowPriorityRequests.push(request2);
@@ -1099,20 +1074,20 @@ public class InterfaceManager {
                                         }
                                     }
                                 }
-                                component.updatedVarcstrsReaderIndex = VarcDomain.updatedVarcstrsWriterIndex;
+                                component.lastVarcstrUpdate = VarcDomain.varcstrUpdateCount;
                             }
-                            if (component.onVarpTransmit != null && VarpDomain.updatedVarpsWriterIndex > component.updatedVarpsReaderIndex) {
-                                if (component.varpTriggers == null || VarpDomain.updatedVarpsWriterIndex - component.updatedVarpsReaderIndex > 32) {
-                                    request = new ComponentEvent();
+                            if (component.onVarpTransmit != null && VarpDomain.varpUpdateCount > component.lastVarpUpdate) {
+                                if (component.varpTriggers == null || VarpDomain.varpUpdateCount - component.lastVarpUpdate > 32) {
+                                    request = new HookRequest();
                                     request.source = component;
                                     request.arguments = component.onVarpTransmit;
                                     lowPriorityRequests.push(request);
                                 } else {
-                                    label515: for (hotkeyIndex = component.updatedVarpsReaderIndex; hotkeyIndex < VarpDomain.updatedVarpsWriterIndex; hotkeyIndex++) {
+                                    label515: for (hotkeyIndex = component.lastVarpUpdate; hotkeyIndex < VarpDomain.varpUpdateCount; hotkeyIndex++) {
                                         skill = VarpDomain.updatedVarps[hotkeyIndex & 0x1F];
                                         for (cooldownDelay = 0; cooldownDelay < component.varpTriggers.length; cooldownDelay++) {
                                             if (component.varpTriggers[cooldownDelay] == skill) {
-                                                request2 = new ComponentEvent();
+                                                request2 = new HookRequest();
                                                 request2.source = component;
                                                 request2.arguments = component.onVarpTransmit;
                                                 lowPriorityRequests.push(request2);
@@ -1121,20 +1096,20 @@ public class InterfaceManager {
                                         }
                                     }
                                 }
-                                component.updatedVarpsReaderIndex = VarpDomain.updatedVarpsWriterIndex;
+                                component.lastVarpUpdate = VarpDomain.varpUpdateCount;
                             }
-                            if (component.onInvTransmit != null && Inv.updatedInventoriesWriterIndex > component.updatedInventoriesReaderIndex) {
-                                if (component.inventoryTriggers == null || Inv.updatedInventoriesWriterIndex - component.updatedInventoriesReaderIndex > 32) {
-                                    request = new ComponentEvent();
+                            if (component.onInvTransmit != null && ClientInventory.updateCount > component.lastInvUpdate) {
+                                if (component.inventoryTriggers == null || ClientInventory.updateCount - component.lastInvUpdate > 32) {
+                                    request = new HookRequest();
                                     request.source = component;
                                     request.arguments = component.onInvTransmit;
                                     lowPriorityRequests.push(request);
                                 } else {
-                                    label491: for (hotkeyIndex = component.updatedInventoriesReaderIndex; hotkeyIndex < Inv.updatedInventoriesWriterIndex; hotkeyIndex++) {
-                                        skill = Inv.updatedInventories[hotkeyIndex & 0x1F];
+                                    label491: for (hotkeyIndex = component.lastInvUpdate; hotkeyIndex < ClientInventory.updateCount; hotkeyIndex++) {
+                                        skill = ClientInventory.updates[hotkeyIndex & 0x1F];
                                         for (cooldownDelay = 0; cooldownDelay < component.inventoryTriggers.length; cooldownDelay++) {
                                             if (component.inventoryTriggers[cooldownDelay] == skill) {
-                                                request2 = new ComponentEvent();
+                                                request2 = new HookRequest();
                                                 request2.source = component;
                                                 request2.arguments = component.onInvTransmit;
                                                 lowPriorityRequests.push(request2);
@@ -1143,20 +1118,20 @@ public class InterfaceManager {
                                         }
                                     }
                                 }
-                                component.updatedInventoriesReaderIndex = Inv.updatedInventoriesWriterIndex;
+                                component.lastInvUpdate = ClientInventory.updateCount;
                             }
-                            if (component.onStatTransmit != null && PlayerSkillXpTable.updatedStatsWriterIndex > component.updatedStatsReaderIndex) {
-                                if (component.statTriggers == null || PlayerSkillXpTable.updatedStatsWriterIndex - component.updatedStatsReaderIndex > 32) {
-                                    request = new ComponentEvent();
+                            if (component.onStatTransmit != null && Component.statUpdateCount > component.lastStatUpdate) {
+                                if (component.statTriggers == null || Component.statUpdateCount - component.lastStatUpdate > 32) {
+                                    request = new HookRequest();
                                     request.source = component;
                                     request.arguments = component.onStatTransmit;
                                     lowPriorityRequests.push(request);
                                 } else {
-                                    label467: for (hotkeyIndex = component.updatedStatsReaderIndex; hotkeyIndex < PlayerSkillXpTable.updatedStatsWriterIndex; hotkeyIndex++) {
+                                    label467: for (hotkeyIndex = component.lastStatUpdate; hotkeyIndex < Component.statUpdateCount; hotkeyIndex++) {
                                         skill = PlayerSkillXpTable.updatedStats[hotkeyIndex & 0x1F];
                                         for (cooldownDelay = 0; cooldownDelay < component.statTriggers.length; cooldownDelay++) {
                                             if (component.statTriggers[cooldownDelay] == skill) {
-                                                request2 = new ComponentEvent();
+                                                request2 = new HookRequest();
                                                 request2.source = component;
                                                 request2.arguments = component.onStatTransmit;
                                                 lowPriorityRequests.push(request2);
@@ -1165,34 +1140,34 @@ public class InterfaceManager {
                                         }
                                     }
                                 }
-                                component.updatedStatsReaderIndex = PlayerSkillXpTable.updatedStatsWriterIndex;
+                                component.lastStatUpdate = Component.statUpdateCount;
                             }
-                            if (ChatHistory.transmitAt > component.lastTransmitTimer && component.onMsg != null) {
-                                request = new ComponentEvent();
+                            if (ChatHistory.transmitAt > component.lastTransmitTimer && component.onChatTransmit != null) {
+                                request = new HookRequest();
                                 request.source = component;
-                                request.arguments = component.onMsg;
+                                request.arguments = component.onChatTransmit;
                                 lowPriorityRequests.push(request);
                             }
                             if (FriendList.transmitAt > component.lastTransmitTimer && component.onFriendTransmit != null) {
-                                request = new ComponentEvent();
+                                request = new HookRequest();
                                 request.source = component;
                                 request.arguments = component.onFriendTransmit;
                                 lowPriorityRequests.push(request);
                             }
                             if (ClanChat.transmitAt > component.lastTransmitTimer && component.onClanTransmit != null) {
-                                request = new ComponentEvent();
+                                request = new HookRequest();
                                 request.source = component;
                                 request.arguments = component.onClanTransmit;
                                 lowPriorityRequests.push(request);
                             }
                             if (StockMarketManager.transmitAt > component.lastTransmitTimer && component.onStockTransmit != null) {
-                                request = new ComponentEvent();
+                                request = new HookRequest();
                                 request.source = component;
                                 request.arguments = component.onStockTransmit;
                                 lowPriorityRequests.push(request);
                             }
                             if (miscTransmitAt > component.lastTransmitTimer && component.onMiscTransmit != null) {
-                                request = new ComponentEvent();
+                                request = new HookRequest();
                                 request.source = component;
                                 request.arguments = component.onMiscTransmit;
                                 lowPriorityRequests.push(request);
@@ -1200,7 +1175,7 @@ public class InterfaceManager {
                             component.lastTransmitTimer = transmitTimer;
                             if (component.onKey != null) {
                                 for (hotkeyIndex = 0; hotkeyIndex < keyQueueSize; hotkeyIndex++) {
-                                    @Pc(1430) ComponentEvent local1430 = new ComponentEvent();
+                                    @Pc(1430) HookRequest local1430 = new HookRequest();
                                     local1430.source = component;
                                     local1430.keyCode = keyCodes[hotkeyIndex];
                                     local1430.keyChar = keyChars[hotkeyIndex];
@@ -1208,15 +1183,15 @@ public class InterfaceManager {
                                     lowPriorityRequests.push(local1430);
                                 }
                             }
-                            if (Camera.shouldReverse && component.onMinimapUnlock != null) {
-                                request = new ComponentEvent();
+                            if (Camera.splineFinished && component.onCamFinished != null) {
+                                request = new HookRequest();
                                 request.source = component;
-                                request.arguments = component.onMinimapUnlock;
+                                request.arguments = component.onCamFinished;
                                 lowPriorityRequests.push(request);
                             }
                         }
                     }
-                    if (!component.if3 && dragSource == null && clickedInventoryComponent == null && !ClientScriptRunner.menuVisible) {
+                    if (!component.hasOpKey && dragSource == null && clickedInventoryComponent == null && !MiniMenu.open) {
                         if ((component.anInt470 >= 0 || component.overColor != 0) && Mouse.lastMouseX >= effectiveClipLeft && Mouse.lastMouseY >= effectiveClipTop && Mouse.lastMouseX < effectiveClipRight && Mouse.lastMouseY < effectiveClipBottom) {
                             if (component.anInt470 >= 0) {
                                 previousMouseOverComponent = components[component.anInt470];
@@ -1227,16 +1202,16 @@ public class InterfaceManager {
                         if (component.type == 8 && Mouse.lastMouseX >= effectiveClipLeft && Mouse.lastMouseY >= effectiveClipTop && Mouse.lastMouseX < effectiveClipRight && Mouse.lastMouseY < effectiveClipBottom) {
                             Protocol.dragHoverComponent = component;
                         }
-                        if (component.scrollMaxV > component.height) {
-                            handleScrollbar(Mouse.lastMouseY, component.height, component, Mouse.lastMouseX, componentX + component.width, componentY, component.scrollMaxV);
+                        if (component.scrollHeight > component.height) {
+                            handleScrollbar(Mouse.lastMouseY, component.height, component, Mouse.lastMouseX, componentX + component.width, componentY, component.scrollHeight);
                         }
                     }
                     if (component.type == 0) {
-                        processComponents(components, component.id, effectiveClipLeft, effectiveClipTop, effectiveClipRight, effectiveClipBottom, componentX - component.scrollX, componentY - component.scrollY);
-                        if (component.createdComponents != null) {
-                            processComponents(component.createdComponents, component.id, effectiveClipLeft, effectiveClipTop, effectiveClipRight, effectiveClipBottom, componentX - component.scrollX, componentY - component.scrollY);
+                        logicComponentList(components, component.slot, effectiveClipLeft, effectiveClipTop, effectiveClipRight, effectiveClipBottom, componentX - component.scrollX, componentY - component.scrollY);
+                        if (component.staticComponents != null) {
+                            logicComponentList(component.staticComponents, component.slot, effectiveClipLeft, effectiveClipTop, effectiveClipRight, effectiveClipBottom, componentX - component.scrollX, componentY - component.scrollY);
                         }
-                        @Pc(1595) SubInterface subInterface = (SubInterface) openInterfaces.get((long) component.id);
+                        @Pc(1595) SubInterface subInterface = (SubInterface) subInterfaces.get((long) component.slot);
                         if (subInterface != null) {
                             renderInterface(componentX, effectiveClipTop, componentY, effectiveClipRight, subInterface.interfaceId, effectiveClipLeft, effectiveClipBottom);
                         }
@@ -1295,8 +1270,8 @@ public class InterfaceManager {
 
     @OriginalMember(owner = "runetek4.client!hh", name = "a", descriptor = "(II)V")
     public static void updateInterfaceState(@OriginalArg(1) int interfaceId) {
-        if (load(interfaceId)) {
-            updateComponentState(-1, cachedComponents[interfaceId]);
+        if (InterfaceList.load(interfaceId)) {
+            updateComponentState(-1, InterfaceList.interfaces[interfaceId]);
         }
     }
 
@@ -1307,7 +1282,7 @@ public class InterfaceManager {
             return null;
         }
         for (@Pc(10) int level = 0; level < dragDepth; level++) {
-            component = getComponent(component.layer);
+            component = InterfaceList.list(component.layer);
             if (component == null) {
                 return null;
             }
@@ -1319,16 +1294,16 @@ public class InterfaceManager {
     public static void updateComponentState(@OriginalArg(1) int parentId, @OriginalArg(2) Component[] components) {
         for (@Pc(7) int componentIndex = 0; componentIndex < components.length; componentIndex++) {
             @Pc(15) Component component = components[componentIndex];
-            if (component != null && component.layer == parentId && (!component.if3 || !isHidden(component))) {
+            if (component != null && component.layer == parentId && (!component.hasOpKey || !isHidden(component))) {
                 if (component.type == 0) {
-                    if (!component.if3 && isHidden(component) && component != previousMouseOverComponent) {
+                    if (!component.hasOpKey && isHidden(component) && component != previousMouseOverComponent) {
                         continue;
                     }
-                    updateComponentState(component.id, components);
-                    if (component.createdComponents != null) {
-                        updateComponentState(component.id, component.createdComponents);
+                    updateComponentState(component.slot, components);
+                    if (component.staticComponents != null) {
+                        updateComponentState(component.slot, component.staticComponents);
                     }
-                    @Pc(73) SubInterface subInterface = (SubInterface) openInterfaces.get((long) component.id);
+                    @Pc(73) SubInterface subInterface = (SubInterface) subInterfaces.get((long) component.slot);
                     if (subInterface != null) {
                         updateInterfaceState(subInterface.interfaceId);
                     }
@@ -1367,7 +1342,7 @@ public class InterfaceManager {
                             }
                         }
                     }
-                    if (component.modelRotationSpeed != 0 && !component.if3) {
+                    if (component.modelRotationSpeed != 0 && !component.hasOpKey) {
                         @Pc(239) int xRotationRate = component.modelRotationSpeed >> 16;
                         @Pc(243) int xRotationDelta = xRotationRate * Protocol.sceneDelta;
                         sequenceId = component.modelRotationSpeed << 16 >> 16;
@@ -1384,7 +1359,7 @@ public class InterfaceManager {
     @OriginalMember(owner = "client!mc", name = "f", descriptor = "(B)V")
     public static void closeModal() {
         Protocol.outboundBuffer.pIsaac1(CLOSE_MODAL);
-        for (@Pc(18) SubInterface subInterface = (SubInterface) openInterfaces.head(); subInterface != null; subInterface = (SubInterface) openInterfaces.next()) {
+        for (@Pc(18) SubInterface subInterface = (SubInterface) subInterfaces.head(); subInterface != null; subInterface = (SubInterface) subInterfaces.next()) {
             if (subInterface.modalType == 0) {
                 closeInterface(true, subInterface);
             }
@@ -1418,12 +1393,12 @@ public class InterfaceManager {
                 }
                 child.lastUpdate = Client.loop;
                 child.rectangle = rectangle;
-                if (!child.if3 || !isHidden(child)) {
+                if (!child.hasOpKey || !isHidden(child)) {
                     if (child.clientcode > 0) {
                         updateGenderDependentComponents(child);
                     }
                     @Pc(114) int renderY = offsetY + child.y;
-                    @Pc(117) int transparency = child.alpha;
+                    @Pc(117) int transparency = child.transparency;
                     @Pc(123) int renderX = child.x + offsetX;
                     if (Cheat.testOpacity && (getServerActiveProperties(child).events != 0 || child.type == Component.TYPE_LAYER) && transparency > 127) {
                         transparency = 127;
@@ -1440,20 +1415,20 @@ public class InterfaceManager {
                         if (isDragging && dragActive) {
                             clipTop2 = Mouse.lastMouseY;
                             clipLeft2 = Mouse.lastMouseX;
-                            clipTop2 -= ClientScriptRunner.dragStartY;
+                            clipTop2 -= dragStartY;
                             if (clipTop2 < minY) {
                                 clipTop2 = minY;
                             }
-                            if (clipTop2 + child.height > ClientScriptRunner.containerComponent.height + minY) {
-                                clipTop2 = ClientScriptRunner.containerComponent.height + minY - child.height;
+                            if (clipTop2 + child.height > dragLayer.height + minY) {
+                                clipTop2 = dragLayer.height + minY - child.height;
                             }
                             renderY = clipTop2;
                             clipLeft2 -= ClientScriptRunner.dragStartX;
                             if (ClientScriptRunner.minX > clipLeft2) {
                                 clipLeft2 = ClientScriptRunner.minX;
                             }
-                            if (ClientScriptRunner.containerComponent.width + ClientScriptRunner.minX < child.width + clipLeft2) {
-                                clipLeft2 = ClientScriptRunner.containerComponent.width + ClientScriptRunner.minX - child.width;
+                            if (dragLayer.width + ClientScriptRunner.minX < child.width + clipLeft2) {
+                                clipLeft2 = dragLayer.width + ClientScriptRunner.minX - child.width;
                             }
                             renderX = clipLeft2;
                         }
@@ -1482,7 +1457,7 @@ public class InterfaceManager {
                         clipBottom3 = clipBottom <= clipBottom2 ? clipBottom : clipBottom2;
                         clipRight3 = clipRight2 >= clipRight ? clipRight : clipRight2;
                     }
-                    if (!child.if3 || clipRight3 > clipLeft2 && clipTop2 < clipBottom3) {
+                    if (!child.hasOpKey || clipRight3 > clipLeft2 && clipTop2 < clipBottom3) {
                         @Pc(468) int temp;
                         @Pc(503) int tempValue;
                         @Pc(514) int colorValue;
@@ -1514,7 +1489,7 @@ public class InterfaceManager {
                                 } else {
                                     SoftwareRenderer.setClip(clipLeft, clipTop, clipRight, clipBottom);
                                 }
-                                if (MiniMap.state != 0 && MiniMap.state != 3 || ClientScriptRunner.menuVisible || clipLeft2 > ClientScriptRunner.scriptMouseX || ClientScriptRunner.scriptMouseY < clipTop2 || ClientScriptRunner.scriptMouseX >= clipRight3 || clipBottom3 <= ClientScriptRunner.scriptMouseY) {
+                                if (MiniMap.toggle != 0 && MiniMap.toggle != 3 || MiniMenu.open || clipLeft2 > ClientScriptRunner.scriptMouseX || ClientScriptRunner.scriptMouseY < clipTop2 || ClientScriptRunner.scriptMouseX >= clipRight3 || clipBottom3 <= ClientScriptRunner.scriptMouseY) {
                                     continue;
                                 }
                                 clipRight2 = ClientScriptRunner.scriptMouseX - renderX;
@@ -1534,12 +1509,12 @@ public class InterfaceManager {
                                 dragOffsetY = clipBottom2 * colorValue + clipRight2 * gpuMemory >> 11;
                                 tileX = PlayerList.self.xFine + dragOffsetY >> 7;
                                 tileZ = PlayerList.self.zFine - objId >> 7;
-                                if (MiniMenu.useWithActive && (MiniMenu.useWithMask & 0x40) != 0) {
-                                    @Pc(583) Component local583 = getCreatedComponent(MiniMenu.useWithComponentId, MiniMenu.useWithSlot);
+                                if (targetMode && (useWithMask & 0x40) != 0) {
+                                    @Pc(583) Component local583 = InterfaceList.getComponent(MiniMenu.useWithComponentId, MiniMenu.useWithSlot);
                                     if (local583 == null) {
-                                        MiniMenu.handleUseWith();
+                                        endTargetMode();
                                     } else {
-                                        MiniMenu.addActionRow(MiniMenu.useWithCursor, 1L, MiniMenu.aClass100_961, tileX, (short) 11, MiniMenu.aClass100_545, tileZ);
+                                        MiniMenu.addActionRow(useWithCursor, 1L, MiniMenu.aClass100_961, tileX, (short) 11, aClass100_545, tileZ);
                                     }
                                     continue;
                                 }
@@ -1639,42 +1614,42 @@ public class InterfaceManager {
                                 continue;
                             }
                         }
-                        if (!ClientScriptRunner.menuVisible) {
+                        if (!MiniMenu.open) {
                             if (child.type == Component.TYPE_LAYER && child.noClickThrough && ClientScriptRunner.scriptMouseX >= clipLeft2 && ClientScriptRunner.scriptMouseY >= clipTop2 && ClientScriptRunner.scriptMouseX < clipRight3 && clipBottom3 > ClientScriptRunner.scriptMouseY && !Cheat.testOpacity) {
                                 MiniMenu.menuActionRow = 1;
-                                MiniMenu.cursors[0] = MiniMenu.defaultCursor;
-                                MiniMenu.ops[0] = LocalizedText.CANCEL;
-                                MiniMenu.opBases[0] = JString.EMPTY;
-                                MiniMenu.actions[0] = 1005;
+                                cursors[0] = defaultCursor;
+                                ops[0] = LocalizedText.CANCEL;
+                                opBases[0] = JString.EMPTY;
+                                actions[0] = 1005;
                             }
                             if (clipLeft2 <= ClientScriptRunner.scriptMouseX && clipTop2 <= ClientScriptRunner.scriptMouseY && clipRight3 > ClientScriptRunner.scriptMouseX && clipBottom3 > ClientScriptRunner.scriptMouseY) {
-                                MiniMenu.addMiniMenuOptions(ClientScriptRunner.scriptMouseY - renderY, -renderX + ClientScriptRunner.scriptMouseX, child);
+                                addMiniMenuOptions(ClientScriptRunner.scriptMouseY - renderY, -renderX + ClientScriptRunner.scriptMouseX, child);
                             }
                         }
                         if (child.type == Component.TYPE_LAYER) {
-                            if (!child.if3 && isHidden(child) && previousMouseOverComponent != child) {
+                            if (!child.hasOpKey && isHidden(child) && previousMouseOverComponent != child) {
                                 continue;
                             }
-                            if (!child.if3) {
-                                if (child.scrollMaxV - child.height < child.scrollY) {
-                                    child.scrollY = child.scrollMaxV - child.height;
+                            if (!child.hasOpKey) {
+                                if (child.scrollHeight - child.height < child.scrollY) {
+                                    child.scrollY = child.scrollHeight - child.height;
                                 }
                                 if (child.scrollY < 0) {
                                     child.scrollY = 0;
                                 }
                             }
-                            draw(clipLeft2, renderY - child.scrollY, -child.scrollX + renderX, children, clipRight3, child.id, clipTop2, clipBottom3, rectangle);
-                            if (child.createdComponents != null) {
-                                draw(clipLeft2, renderY - child.scrollY, -child.scrollX + renderX, child.createdComponents, clipRight3, child.id, clipTop2, clipBottom3, rectangle);
+                            draw(clipLeft2, renderY - child.scrollY, -child.scrollX + renderX, children, clipRight3, child.slot, clipTop2, clipBottom3, rectangle);
+                            if (child.staticComponents != null) {
+                                draw(clipLeft2, renderY - child.scrollY, -child.scrollX + renderX, child.staticComponents, clipRight3, child.slot, clipTop2, clipBottom3, rectangle);
                             }
-                            @Pc(1186) SubInterface local1186 = (SubInterface) openInterfaces.get((long) child.id);
+                            @Pc(1186) SubInterface local1186 = (SubInterface) subInterfaces.get((long) child.slot);
                             if (local1186 != null) {
-                                if (local1186.modalType == 0 && !ClientScriptRunner.menuVisible && ClientScriptRunner.scriptMouseX >= clipLeft2 && clipTop2 <= ClientScriptRunner.scriptMouseY && clipRight3 > ClientScriptRunner.scriptMouseX && ClientScriptRunner.scriptMouseY < clipBottom3 && !Cheat.testOpacity) {
-                                    MiniMenu.ops[0] = LocalizedText.CANCEL;
+                                if (local1186.modalType == 0 && !MiniMenu.open && ClientScriptRunner.scriptMouseX >= clipLeft2 && clipTop2 <= ClientScriptRunner.scriptMouseY && clipRight3 > ClientScriptRunner.scriptMouseX && ClientScriptRunner.scriptMouseY < clipBottom3 && !Cheat.testOpacity) {
+                                    ops[0] = LocalizedText.CANCEL;
                                     MiniMenu.menuActionRow = 1;
-                                    MiniMenu.cursors[0] = MiniMenu.defaultCursor;
-                                    MiniMenu.actions[0] = 1005;
-                                    MiniMenu.opBases[0] = JString.EMPTY;
+                                    cursors[0] = defaultCursor;
+                                    actions[0] = 1005;
+                                    opBases[0] = JString.EMPTY;
                                 }
                                 ClientScriptRunner.renderOrInvalidateComponent(local1186.interfaceId, clipLeft2, clipRight3, renderX, rectangle, clipBottom3, clipTop2, renderY);
                             }
@@ -1686,8 +1661,8 @@ public class InterfaceManager {
                             }
                         }
                         if (componentRedrawPrevious[rectangle] || Cheat.rectDebug > 1) {
-                            if (child.type == 0 && !child.if3 && child.scrollMaxV > child.height) {
-                                drawScrollbar(child.scrollY, child.scrollMaxV, child.width + renderX, renderY, child.height);
+                            if (child.type == 0 && !child.hasOpKey && child.scrollHeight > child.height) {
+                                drawScrollbar(child.scrollY, child.scrollHeight, child.width + renderX, renderY, child.height);
                             }
                             if (child.type != 1) {
                                 if (child.type == Component.TYPE_INVENTORY) {
@@ -1704,10 +1679,10 @@ public class InterfaceManager {
                                                 objId = child.invSlotObjId[clipRight2] - 1;
                                                 if (clipLeft < tempValue + 32 && tempValue < clipRight && clipTop < colorValue + 32 && colorValue < clipBottom || child == clickedInventoryComponent && selectedInventorySlot == clipRight2) {
                                                     @Pc(1476) Sprite sprite;
-                                                    if (MiniMenu.anInt5014 == 1 && MiniMenu.anInt4370 == clipRight2 && child.id == MiniMap.anInt5062) {
-                                                        sprite = Inv.getObjectSprite(2, objId, child.objDrawText, child.invSlotObjCount[clipRight2], 0);
+                                                    if (anInt5014 == 1 && anInt4370 == clipRight2 && child.slot == MiniMap.anInt5062) {
+                                                        sprite = ClientInventory.getObjectSprite(2, objId, child.objDrawText, child.invSlotObjCount[clipRight2], 0);
                                                     } else {
-                                                        sprite = Inv.getObjectSprite(1, objId, child.objDrawText, child.invSlotObjCount[clipRight2], 3153952);
+                                                        sprite = ClientInventory.getObjectSprite(1, objId, child.objDrawText, child.invSlotObjCount[clipRight2], 3153952);
                                                     }
                                                     if (Rasterizer.textureHasTransparency) {
                                                         componentNeedsRedraw[rectangle] = true;
@@ -1753,13 +1728,13 @@ public class InterfaceManager {
                                                                 clickedInventoryComponentY += local1611;
                                                                 redraw(local1571);
                                                             }
-                                                            if (bottom < dragOffsetY + colorValue + 32 && local1571.scrollY < local1571.scrollMaxV - local1571.height) {
+                                                            if (bottom < dragOffsetY + colorValue + 32 && local1571.scrollY < local1571.scrollHeight - local1571.height) {
                                                                 local1611 = (colorValue + dragOffsetY + 32 - bottom) * Protocol.sceneDelta / 3;
                                                                 if (local1611 > Protocol.sceneDelta * 10) {
                                                                     local1611 = Protocol.sceneDelta * 10;
                                                                 }
-                                                                if (local1571.scrollMaxV - local1571.scrollY - local1571.height < local1611) {
-                                                                    local1611 = local1571.scrollMaxV - local1571.height - local1571.scrollY;
+                                                                if (local1571.scrollHeight - local1571.scrollY - local1571.height < local1611) {
+                                                                    local1611 = local1571.scrollHeight - local1571.height - local1571.scrollY;
                                                                 }
                                                                 local1571.scrollY += local1611;
                                                                 clickedInventoryComponentY -= local1611;
@@ -1838,34 +1813,34 @@ public class InterfaceManager {
                                                     clipBottom2 = child.overColor;
                                                 }
                                             }
-                                            if (child.if3 && child.objId != -1) {
-                                                @Pc(1989) ObjType local1989 = ObjTypeList.get(child.objId);
+                                            if (child.hasOpKey && child.invObject != -1) {
+                                                @Pc(1989) ObjType local1989 = ObjTypeList.get(child.invObject);
                                                 local1934 = local1989.name;
                                                 if (local1934 == null) {
                                                     local1934 = MiniMenu.NULL;
                                                 }
-                                                if ((local1989.stackable == 1 || child.objCount != 1) && child.objCount != -1) {
-                                                    local1934 = JString.concatenate(new JString[] { MiniMenu.COLOR_LIGHT_ORANGE, local1934, JString.aClass100_375, StringUtils.formatNumber(child.objCount) });
+                                                if ((local1989.stackable == 1 || child.invCount != 1) && child.invCount != -1) {
+                                                    local1934 = JString.concatenate(new JString[] { COLOR_LIGHT_ORANGE, local1934, JString.aClass100_375, StringUtils.formatNumber(child.invCount) });
                                                 }
                                             }
                                             if (ClientScriptRunner.modalBackgroundComponent == child) {
                                                 clipBottom2 = child.color;
                                                 local1934 = LocalizedText.PLEASEWAIT;
                                             }
-                                            if (!child.if3) {
+                                            if (!child.hasOpKey) {
                                                 local1934 = JString.processStringTokens(child, local1934);
                                             }
-                                            local1921.drawInterfaceText(local1934, renderX, renderY, child.width, child.height, clipBottom2, child.shadowed ? 0 : -1, child.halign, child.valign, child.vpadding);
+                                            local1921.drawInterfaceText(local1934, renderX, renderY, child.width, child.height, clipBottom2, child.textShadow ? 0 : -1, child.halign, child.valign, child.vpadding);
                                         } else if (Component.aBoolean72) {
                                             redraw(child);
                                         }
                                     } else if (child.type == Component.TYPE_GRAPHIC) {
                                         @Pc(2094) Sprite sprite;
-                                        if (child.if3) {
-                                            if (child.objId == -1) {
+                                        if (child.hasOpKey) {
+                                            if (child.invObject == -1) {
                                                 sprite = child.method489(false);
                                             } else {
-                                                sprite = Inv.getObjectSprite(child.outlineThickness, child.objId, child.objDrawText, child.objCount, child.shadowColor);
+                                                sprite = ClientInventory.getObjectSprite(child.outlineThickness, child.invObject, child.objDrawText, child.invCount, child.graphicShadow);
                                             }
                                             if (sprite != null) {
                                                 clipBottom2 = sprite.innerWidth;
@@ -1962,10 +1937,10 @@ public class InterfaceManager {
                                                 clipBottom2 = child.modelSeqId;
                                             }
                                             tempValue = 0;
-                                            if (child.objId != -1) {
-                                                local2611 = ObjTypeList.get(child.objId);
+                                            if (child.invObject != -1) {
+                                                local2611 = ObjTypeList.get(child.invObject);
                                                 if (local2611 != null) {
-                                                    local2611 = local2611.getMeshAddress(child.objCount);
+                                                    local2611 = local2611.getMeshAddress(child.invCount);
                                                     @Pc(2630) SeqType local2630 = clipBottom2 == -1 ? null : SeqTypeList.get(clipBottom2);
                                                     local2589 = local2611.getModel(child.animationFrame, child.animationDelay, local2630, 1, child.animationId);
                                                     if (local2589 == null) {
@@ -1985,17 +1960,17 @@ public class InterfaceManager {
                                                     @Pc(2751) Player local2751 = PlayerList.players[colorValue];
                                                     @Pc(2760) SeqType local2760 = clipBottom2 == -1 ? null : SeqTypeList.get(clipBottom2);
                                                     if (local2751 != null && (int) local2751.username.encode37() << 11 == (child.modelId & 0xFFFFF800)) {
-                                                        local2589 = local2751.appearance.createAnimatedBodyModel(null, -1, null, local2760, 0, -1, 0, child.animationId, 0);
+                                                        local2589 = local2751.playerModel.createAnimatedBodyModel(null, -1, null, local2760, 0, -1, 0, child.animationId, 0);
                                                     }
                                                 }
                                             } else if (clipBottom2 == -1) {
-                                                local2589 = child.method488(-1, null, -1, 0, local2587, PlayerList.self.appearance);
+                                                local2589 = child.method488(-1, null, -1, 0, local2587, PlayerList.self.playerModel);
                                                 if (local2589 == null && Component.aBoolean72) {
                                                     redraw(child);
                                                 }
                                             } else {
                                                 @Pc(2689) SeqType local2689 = SeqTypeList.get(clipBottom2);
-                                                local2589 = child.method488(child.animationFrame, local2689, child.animationId, child.animationDelay, local2587, PlayerList.self.appearance);
+                                                local2589 = child.method488(child.animationFrame, local2689, child.animationId, child.animationDelay, local2587, PlayerList.self.playerModel);
                                                 if (local2589 == null && Component.aBoolean72) {
                                                     redraw(child);
                                                 }
@@ -2035,7 +2010,7 @@ public class InterfaceManager {
                                                     }
                                                     tileX = MathUtils.sin[child.modelXAngle] * child.modelZoom >> 16;
                                                     tileZ = child.modelZoom * MathUtils.cos[child.modelXAngle] >> 16;
-                                                    if (child.if3) {
+                                                    if (child.hasOpKey) {
                                                         local2589.setCamera(child.modelYAngle, child.modelYOffset, child.modelXAngle, child.modelXOffset, child.modelZOffset + tileX + tempValue, child.modelZOffset + tileZ, -1L);
                                                     } else {
                                                         local2589.setCamera(child.modelYAngle, 0, child.modelXAngle, 0, tileX, tileZ, -1L);
@@ -2047,7 +2022,7 @@ public class InterfaceManager {
                                                     Rasterizer.setBounds(dragOffsetY, objId);
                                                     tileX = MathUtils.sin[child.modelXAngle] * child.modelZoom >> 16;
                                                     tileZ = child.modelZoom * MathUtils.cos[child.modelXAngle] >> 16;
-                                                    if (!child.if3) {
+                                                    if (!child.hasOpKey) {
                                                         local2589.setCamera(child.modelYAngle, 0, child.modelXAngle, 0, tileX, tileZ, -1L);
                                                     } else if (child.modelOrtho) {
                                                         ((SoftwareModel) local2589).method4591(child.modelYAngle, child.modelYOffset, child.modelXAngle, child.modelXOffset, child.modelZOffset + tempValue + tileX, tileZ + child.modelZOffset, child.modelZoom);
@@ -2073,18 +2048,18 @@ public class InterfaceManager {
                                                             local2611 = ObjTypeList.get(child.invSlotObjId[clipBottom2] - 1);
                                                             @Pc(3159) JString local3159;
                                                             if (local2611.stackable != 1 && child.invSlotObjCount[clipBottom2] == 1) {
-                                                                local3159 = JString.concatenate(new JString[] { MiniMenu.COLOR_LIGHT_ORANGE, local2611.name, JString.aClass100_978 });
+                                                                local3159 = JString.concatenate(new JString[] { COLOR_LIGHT_ORANGE, local2611.name, JString.aClass100_978 });
                                                             } else {
-                                                                local3159 = JString.concatenate(new JString[] { MiniMenu.COLOR_LIGHT_ORANGE, local2611.name, JString.aClass100_375, StringUtils.formatNumber(child.invSlotObjCount[clipBottom2]) });
+                                                                local3159 = JString.concatenate(new JString[] { COLOR_LIGHT_ORANGE, local2611.name, JString.aClass100_375, StringUtils.formatNumber(child.invSlotObjCount[clipBottom2]) });
                                                             }
                                                             dragOffsetY = renderX + tempValue * (child.invMarginX + 115);
                                                             objId = (child.invMarginY + 12) * temp + renderY;
                                                             if (child.halign == 0) {
-                                                                local1921.renderLeft(local3159, dragOffsetY, objId, child.color, child.shadowed ? 0 : -1);
+                                                                local1921.renderLeft(local3159, dragOffsetY, objId, child.color, child.textShadow ? 0 : -1);
                                                             } else if (child.halign == 1) {
-                                                                local1921.renderCenter(local3159, dragOffsetY + 57, objId, child.color, child.shadowed ? 0 : -1);
+                                                                local1921.renderCenter(local3159, dragOffsetY + 57, objId, child.color, child.textShadow ? 0 : -1);
                                                             } else {
-                                                                local1921.renderRight(local3159, dragOffsetY + 115 - 1, objId, child.color, child.shadowed ? 0 : -1);
+                                                                local1921.renderRight(local3159, dragOffsetY + 115 - 1, objId, child.color, child.textShadow ? 0 : -1);
                                                             }
                                                         }
                                                         clipBottom2++;
@@ -2187,23 +2162,23 @@ public class InterfaceManager {
         @Pc(16) int contentType = component.clientcode;
         if (contentType == 324) {
             if (ClientScriptRunner.defaultSpriteId == -1) {
-                ClientScriptRunner.defaultSpriteId = component.spriteId;
+                ClientScriptRunner.defaultSpriteId = component.graphic;
                 ClientScriptRunner.alternateSpriteId = component.activeSpriteId;
             }
             if (PlayerAppearance.DEFAULT.gender) {
-                component.spriteId = ClientScriptRunner.defaultSpriteId;
+                component.graphic = ClientScriptRunner.defaultSpriteId;
             } else {
-                component.spriteId = ClientScriptRunner.alternateSpriteId;
+                component.graphic = ClientScriptRunner.alternateSpriteId;
             }
         } else if (contentType == 325) {
             if (ClientScriptRunner.defaultSpriteId == -1) {
                 ClientScriptRunner.alternateSpriteId = component.activeSpriteId;
-                ClientScriptRunner.defaultSpriteId = component.spriteId;
+                ClientScriptRunner.defaultSpriteId = component.graphic;
             }
             if (PlayerAppearance.DEFAULT.gender) {
-                component.spriteId = ClientScriptRunner.alternateSpriteId;
+                component.graphic = ClientScriptRunner.alternateSpriteId;
             } else {
-                component.spriteId = ClientScriptRunner.defaultSpriteId;
+                component.graphic = ClientScriptRunner.defaultSpriteId;
             }
         } else if (contentType == 327) {
             component.modelXAngle = 150;
@@ -2258,5 +2233,295 @@ public class InterfaceManager {
         GlRaster.method1176(x + 14, y - -thumbY + 17, thumbHeight - 1, ClientScriptRunner.COLOR_DARK_RED);
         GlRaster.method1174(x, thumbHeight + y + thumbY + 15, 16, ClientScriptRunner.COLOR_DARK_RED);
         GlRaster.method1174(x + 1, y + 14 - -thumbY + thumbHeight, 15, ClientScriptRunner.COLOR_DARK_RED);
+    }
+
+    //TODO move somewhere else
+    @OriginalMember(owner = "client!da", name = "a", descriptor = "(IIILclient!be;)V")
+    public static void dragTryPickup(@OriginalArg(0) int startY, @OriginalArg(1) int startX, @OriginalArg(3) Component component) {
+        if (dragSource != null || MiniMenu.open || (component == null || getWidgetContainer(component) == null)) {
+            return;
+        }
+        dragSource = component;
+        dragLayer = getWidgetContainer(component);
+        ClientScriptRunner.dragStartX = startX;
+        isDragging = false;
+        dragTicks = 0;
+        dragStartY = startY;
+    }
+
+    //TODO move somewhere else
+    @OriginalMember(owner = "client!ha", name = "a", descriptor = "(ILclient!be;)Lclient!be;")
+    public static Component getWidgetContainer(@OriginalArg(1) Component component) {
+        @Pc(12) Component container = canAcceptDrop(component);
+        if (container == null) {
+            container = component.parent;
+        }
+        return container;
+    }
+
+    @OriginalMember(owner = "client!vg", name = "a", descriptor = "(Lclient!na;IIBI)V")
+    public static void ifButtonXSend(@OriginalArg(0) JString arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int opcode, @OriginalArg(4) int arg3) {
+        @Pc(8) Component button = InterfaceList.getComponent(arg3, arg1);
+        if (button == null) {
+            return;
+        }
+        if (button.onOp != null) {
+            @Pc(19) HookRequest hook = new HookRequest();
+            hook.arguments = button.onOp;
+            hook.source = button;
+            hook.opBase = arg0;
+            hook.op = opcode;
+            ClientScriptRunner.executeScript(hook);
+        }
+        @Pc(37) boolean local37 = true;
+        if (button.clientcode > 0) {
+            local37 = MiniMenu.shouldTriggerIdleTimeout(button);
+        }
+        if (!local37 || !getServerActiveProperties(button).isButtonEnabled(opcode - 1)) {
+            return;
+        }
+        if (opcode == 1) {
+            Protocol.outboundBuffer.pIsaac1(ClientProt.IF_BUTTON1);
+            Protocol.outboundBuffer.p4(arg3);
+            Protocol.outboundBuffer.p2(arg1);
+        }
+        if (opcode == 2) {
+            Protocol.outboundBuffer.pIsaac1(ClientProt.IF_BUTTON2);
+            Protocol.outboundBuffer.p4(arg3);
+            Protocol.outboundBuffer.p2(arg1);
+        }
+        if (opcode == 3) {
+            Protocol.outboundBuffer.pIsaac1(ClientProt.IF_BUTTON3);
+            Protocol.outboundBuffer.p4(arg3);
+            Protocol.outboundBuffer.p2(arg1);
+        }
+        if (opcode == 4) {
+            Protocol.outboundBuffer.pIsaac1(ClientProt.IF_BUTTON4);
+            Protocol.outboundBuffer.p4(arg3);
+            Protocol.outboundBuffer.p2(arg1);
+        }
+        if (opcode == 5) {
+            Protocol.outboundBuffer.pIsaac1(ClientProt.IF_BUTTON5);
+            Protocol.outboundBuffer.p4(arg3);
+            Protocol.outboundBuffer.p2(arg1);
+        }
+        if (opcode == 6) {
+            Protocol.outboundBuffer.pIsaac1(ClientProt.IF_BUTTON6);
+            Protocol.outboundBuffer.p4(arg3);
+            Protocol.outboundBuffer.p2(arg1);
+        }
+        if (opcode == 7) {
+            Protocol.outboundBuffer.pIsaac1(ClientProt.IF_BUTTON7);
+            Protocol.outboundBuffer.p4(arg3);
+            Protocol.outboundBuffer.p2(arg1);
+        }
+        if (opcode == 8) {
+            Protocol.outboundBuffer.pIsaac1(ClientProt.IF_BUTTON8);
+            Protocol.outboundBuffer.p4(arg3);
+            Protocol.outboundBuffer.p2(arg1);
+        }
+        if (opcode == 9) {
+            Protocol.outboundBuffer.pIsaac1(ClientProt.IF_BUTTON9);
+            Protocol.outboundBuffer.p4(arg3);
+            Protocol.outboundBuffer.p2(arg1);
+        }
+        if (opcode == 10) {
+            Protocol.outboundBuffer.pIsaac1(ClientProt.IF_BUTTON10);
+            Protocol.outboundBuffer.p4(arg3);
+            Protocol.outboundBuffer.p2(arg1);
+        }
+    }
+
+    @OriginalMember(owner = "runetek4.client!ec", name = "a", descriptor = "(B)V")
+    public static void endTargetMode() {
+        if (!targetMode) {
+            return;
+        }
+        @Pc(19) Component component = InterfaceList.getComponent(MiniMenu.useWithComponentId, MiniMenu.useWithSlot);
+        if (component != null && component.onTargetLeave != null) {
+            @Pc(29) HookRequest local29 = new HookRequest();
+            local29.arguments = component.onTargetLeave;
+            local29.source = component;
+            ClientScriptRunner.executeScript(local29);
+        }
+        targetMode = false;
+        defaultCursor = -1;
+        redraw(component);
+    }
+
+    @OriginalMember(owner = "runetek4.client!va", name = "a", descriptor = "(IZILclient!be;)V")
+    public static void addMiniMenuOptions(@OriginalArg(0) int mouseY, @OriginalArg(2) int mouseX, @OriginalArg(3) Component component) {
+        if (component.buttonType == 1) {
+            MiniMenu.addActionRow(-1, 0L, JString.EMPTY, 0, (short) 8, component.option, component.slot);
+        }
+        @Pc(47) JString targetVerb;
+        if (component.buttonType == 2 && !targetMode) {
+            targetVerb = MiniMap.getTargetVerb(component);
+            if (targetVerb != null) {
+                MiniMenu.addActionRow(-1, 0L, JString.concatenate(new JString[] {COLOR_LIMEGREEN, component.optionSuffix}), -1, (short) 32, targetVerb, component.slot);
+            }
+        }
+        if (component.buttonType == 3) {
+            MiniMenu.addActionRow(-1, 0L, JString.EMPTY, 0, (short) 28, LocalizedText.CLOSE, component.slot);
+        }
+        if (component.buttonType == 4) {
+            MiniMenu.addActionRow(-1, 0L, JString.EMPTY, 0, (short) 59, component.option, component.slot);
+        }
+        if (component.buttonType == 5) {
+            MiniMenu.addActionRow(-1, 0L, JString.EMPTY, 0, (short) 51, component.option, component.slot);
+        }
+        if (component.buttonType == 6 && ClientScriptRunner.modalBackgroundComponent == null) {
+            MiniMenu.addActionRow(-1, 0L, JString.EMPTY, -1, (short) 41, component.option, component.slot);
+        }
+        @Pc(173) int row;
+        @Pc(171) int slotIndex;
+        if (component.type == 2) {
+            slotIndex = 0;
+            for (row = 0; row < component.baseHeight; row++) {
+                for (@Pc(183) int col = 0; col < component.baseWidth; col++) {
+                    @Pc(195) int slotX = (component.invMarginX + 32) * col;
+                    @Pc(202) int slotY = (component.invMarginY + 32) * row;
+                    if (slotIndex < 20) {
+                        slotY += component.invOffsetY[slotIndex];
+                        slotX += component.invOffsetX[slotIndex];
+                    }
+                    if (mouseX >= slotX && slotY <= mouseY && slotX + 32 > mouseX && slotY + 32 > mouseY) {
+                        mouseOverInventoryComponent = component;
+                        mouseInvInterfaceIndex = slotIndex;
+                        if (component.invSlotObjId[slotIndex] > 0) {
+                            @Pc(267) ServerActiveProperties serverProps = getServerActiveProperties(component);
+                            @Pc(276) ObjType objType = ObjTypeList.get(component.invSlotObjId[slotIndex] - 1);
+                            if (anInt5014 == 1 && serverProps.isObjOpsEnabled()) {
+                                if (MiniMap.anInt5062 != component.slot || anInt4370 != slotIndex) {
+                                    MiniMenu.addActionRow(-1, (long) objType.id, JString.concatenate(new JString[] { aClass100_203, COLOR_LIGHT_ORANGE_ARROW, objType.name}), slotIndex, (short) 40, LocalizedText.USE, component.slot);
+                                }
+                            } else if (targetMode && serverProps.isObjOpsEnabled()) {
+                                @Pc(596) ParamType paramType = useWithParam == -1 ? null : ParamTypeList.get(useWithParam);
+                                if ((useWithMask & TARGET_MASK_OBJ) != 0 && (paramType == null || objType.getParam(paramType.defaultInt, useWithParam) != paramType.defaultInt)) {
+                                    MiniMenu.addActionRow(useWithCursor, (long) objType.id, JString.concatenate(new JString[] { aClass100_466, COLOR_LIGHT_ORANGE_ARROW, objType.name}), slotIndex, (short) 3, aClass100_545, component.slot);
+                                }
+                            } else {
+                                @Pc(296) JString[] objOps = objType.iop;
+                                if (aBoolean237) {
+                                    objOps = annotateOps(objOps);
+                                }
+                                @Pc(309) int opIndex;
+                                @Pc(334) byte actionId;
+                                if (serverProps.isObjOpsEnabled()) {
+                                    for (opIndex = 4; opIndex >= 3; opIndex--) {
+                                        if (objOps != null && objOps[opIndex] != null) {
+                                            if (opIndex == 3) {
+                                                actionId = 35;
+                                            } else {
+                                                actionId = 58;
+                                            }
+                                            MiniMenu.addActionRow(-1, (long) objType.id, JString.concatenate(new JString[] {COLOR_LIGHT_ORANGE, objType.name}), slotIndex, actionId, objOps[opIndex], component.slot);
+                                        }
+                                    }
+                                }
+                                if (serverProps.isObjUseEnabled()) {
+                                    MiniMenu.addActionRow(MiniMap.anInt4075, (long) objType.id, JString.concatenate(new JString[] {COLOR_LIGHT_ORANGE, objType.name}), slotIndex, (short) 22, LocalizedText.USE, component.slot);
+                                }
+                                if (serverProps.isObjOpsEnabled() && objOps != null) {
+                                    for (opIndex = 2; opIndex >= 0; opIndex--) {
+                                        if (objOps[opIndex] != null) {
+                                            actionId = 0;
+                                            if (opIndex == 0) {
+                                                actionId = 47;
+                                            }
+                                            if (opIndex == 1) {
+                                                actionId = 5;
+                                            }
+                                            if (opIndex == 2) {
+                                                actionId = 43;
+                                            }
+                                            MiniMenu.addActionRow(-1, (long) objType.id, JString.concatenate(new JString[] {COLOR_LIGHT_ORANGE, objType.name}), slotIndex, actionId, objOps[opIndex], component.slot);
+                                        }
+                                    }
+                                }
+                                objOps = component.invOptions;
+                                if (aBoolean237) {
+                                    objOps = annotateOps(objOps);
+                                }
+                                if (objOps != null) {
+                                    for (opIndex = 4; opIndex >= 0; opIndex--) {
+                                        if (objOps[opIndex] != null) {
+                                            actionId = 0;
+                                            if (opIndex == 0) {
+                                                actionId = 25;
+                                            }
+                                            if (opIndex == 1) {
+                                                actionId = 23;
+                                            }
+                                            if (opIndex == 2) {
+                                                actionId = 48;
+                                            }
+                                            if (opIndex == 3) {
+                                                actionId = 7;
+                                            }
+                                            if (opIndex == 4) {
+                                                actionId = 13;
+                                            }
+                                            MiniMenu.addActionRow(-1, (long) objType.id, JString.concatenate(new JString[] {COLOR_LIGHT_ORANGE, objType.name}), slotIndex, actionId, objOps[opIndex], component.slot);
+                                        }
+                                    }
+                                }
+                                MiniMenu.addActionRow(MiniMap.anInt5073, (long) objType.id, JString.concatenate(new JString[] {COLOR_LIGHT_ORANGE, objType.name}), slotIndex, (short) 1006, LocalizedText.EXAMINE, component.slot);
+                            }
+                        }
+                    }
+                    slotIndex++;
+                }
+            }
+        }
+        if (!component.hasOpKey) {
+            return;
+        }
+        if (!targetMode) {
+            for (slotIndex = 9; slotIndex >= 5; slotIndex--) {
+                @Pc(765) JString componentOp = getOp(component, slotIndex);
+                if (componentOp != null) {
+                    MiniMenu.addActionRow(getOpCursor(slotIndex, component), (long) (slotIndex + 1), component.opBase, component.id, (short) 1003, componentOp, component.slot);
+                }
+            }
+            targetVerb = MiniMap.getTargetVerb(component);
+            if (targetVerb != null) {
+                MiniMenu.addActionRow(-1, 0L, component.opBase, component.id, (short) 32, targetVerb, component.slot);
+            }
+            for (row = 4; row >= 0; row--) {
+                @Pc(828) JString componentOp = getOp(component, row);
+                if (componentOp != null) {
+                    MiniMenu.addActionRow(getOpCursor(row, component), (long) (row + 1), component.opBase, component.id, (short) 9, componentOp, component.slot);
+                }
+            }
+            if (getServerActiveProperties(component).isResumePauseButtonEnabled()) {
+                MiniMenu.addActionRow(-1, 0L, JString.EMPTY, component.id, (short) 41, LocalizedText.CONTINUE, component.slot);
+            }
+        } else if (getServerActiveProperties(component).isUseTarget() && (useWithMask & TARGET_MASK_COMPONENT) != 0) {
+            MiniMenu.addActionRow(useWithCursor, 0L, JString.concatenate(new JString[] { aClass100_466, ARROW_SEPARATOR, component.opBase}), component.id, (short) 12, aClass100_545, component.slot);
+        }
+    }
+
+    @OriginalMember(owner = "runetek4.client!wk", name = "a", descriptor = "(I[Lclient!na;)[Lclient!na;")
+    public static JString[] annotateOps(@OriginalArg(1) JString[] ops) {
+        @Pc(8) JString[] annotatedOps = new JString[5];
+        for (@Pc(15) int i = 0; i < 5; i++) {
+            annotatedOps[i] = JString.concatenate(new JString[] { JString.parseInt(i), COLON_SEPARATOR});
+            if (ops != null && ops[i] != null) {
+                annotatedOps[i] = JString.concatenate(new JString[] { annotatedOps[i], ops[i] });
+            }
+        }
+        return annotatedOps;
+    }
+
+    @OriginalMember(owner = "client!aj", name = "a", descriptor = "(BILclient!be;)I")
+    public static int getOpCursor(@OriginalArg(1) int opIndex, @OriginalArg(2) Component component) {
+        if (!getServerActiveProperties(component).isButtonEnabled(opIndex) && component.onOp == null) {
+            return -1;
+        } else if (component.opCursors == null || opIndex >= component.opCursors.length) {
+            return -1;
+        } else {
+            return component.opCursors[opIndex];
+        }
     }
 }

@@ -490,10 +490,10 @@ public abstract class Font extends Node2 {
 	}
 
 	@OriginalMember(owner = "client!rk", name = "b", descriptor = "(Lclient!na;IIII)V")
-	public final void renderRight(@OriginalArg(0) JString arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
-		if (arg0 != null) {
-			this.setEffects(arg3, arg4);
-			this.drawBasicString(arg0, arg1 - this.getStringWidth(arg0), arg2);
+	public final void renderRight(@OriginalArg(0) JString text, @OriginalArg(1) int x, @OriginalArg(2) int arg2, @OriginalArg(3) int color, @OriginalArg(4) int shadow) {
+		if (text != null) {
+			this.setEffects(color, shadow);
+			this.drawBasicString(text, x - this.getStringWidth(text), arg2);
 		}
 	}
 
@@ -784,10 +784,10 @@ public abstract class Font extends Node2 {
 	}
 
 	@OriginalMember(owner = "client!rk", name = "c", descriptor = "(Lclient!na;IIII)V")
-	public final void renderCenter(@OriginalArg(0) JString arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
-		if (arg0 != null) {
-			this.setEffects(arg3, arg4);
-			this.drawBasicString(arg0, arg1 - this.getStringWidth(arg0) / 2, arg2);
+	public final void renderCenter(@OriginalArg(0) JString text, @OriginalArg(1) int x, @OriginalArg(2) int arg2, @OriginalArg(3) int color, @OriginalArg(4) int shadow) {
+		if (text != null) {
+			this.setEffects(color, shadow);
+			this.drawBasicString(text, x - this.getStringWidth(text) / 2, arg2);
 		}
 	}
 

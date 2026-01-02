@@ -1,6 +1,5 @@
 package com.jagex.network;
 
-import com.jagex.ui.component.Component;
 import com.jagex.entity.player.PlayerList;
 import com.jagex.scene.Camera;
 import com.jagex.ui.chat.ChatHistory;
@@ -14,10 +13,6 @@ import com.jagex.graphics.core.DisplayMode;
 import com.jagex.input.Keyboard;
 import com.jagex.core.utils.string.JString;
 import com.jagex.core.utils.string.LocalizedText;
-import com.jagex.clientscript.ClientScriptRunner;
-import com.jagex.ui.component.InterfaceManager;
-import com.jagex.ui.component.MiniMenu;
-import com.jagex.ui.events.ComponentEvent;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -166,79 +161,6 @@ public class ClientProt {
         Protocol.outboundBuffer.p2(GameShell.canvasWidth);
         Protocol.outboundBuffer.p2(GameShell.canvasHeight);
         Protocol.outboundBuffer.p1(Preferences.antiAliasingMode);
-    }
-
-    @OriginalMember(owner = "client!vg", name = "a", descriptor = "(Lclient!na;IIBI)V")
-    public static void method4512(@OriginalArg(0) JString arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int type, @OriginalArg(4) int arg3) {
-        @Pc(8) Component local8 = InterfaceManager.getCreatedComponent(arg3, arg1);
-        if (local8 == null) {
-            return;
-        }
-        if (local8.onOptionClick != null) {
-            @Pc(19) ComponentEvent local19 = new ComponentEvent();
-            local19.arguments = local8.onOptionClick;
-            local19.source = local8;
-            local19.opBase = arg0;
-            local19.op = type;
-            ClientScriptRunner.run(local19);
-        }
-        @Pc(37) boolean local37 = true;
-        if (local8.clientcode > 0) {
-            local37 = MiniMenu.shouldTriggerIdleTimeout(local8);
-        }
-        if (!local37 || !InterfaceManager.getServerActiveProperties(local8).isButtonEnabled(type - 1)) {
-            return;
-        }
-        if (type == 1) {
-            Protocol.outboundBuffer.pIsaac1(IF_BUTTON1);
-            Protocol.outboundBuffer.p4(arg3);
-            Protocol.outboundBuffer.p2(arg1);
-        }
-        if (type == 2) {
-            Protocol.outboundBuffer.pIsaac1(IF_BUTTON2);
-            Protocol.outboundBuffer.p4(arg3);
-            Protocol.outboundBuffer.p2(arg1);
-        }
-        if (type == 3) {
-            Protocol.outboundBuffer.pIsaac1(IF_BUTTON3);
-            Protocol.outboundBuffer.p4(arg3);
-            Protocol.outboundBuffer.p2(arg1);
-        }
-        if (type == 4) {
-            Protocol.outboundBuffer.pIsaac1(IF_BUTTON4);
-            Protocol.outboundBuffer.p4(arg3);
-            Protocol.outboundBuffer.p2(arg1);
-        }
-        if (type == 5) {
-            Protocol.outboundBuffer.pIsaac1(IF_BUTTON5);
-            Protocol.outboundBuffer.p4(arg3);
-            Protocol.outboundBuffer.p2(arg1);
-        }
-        if (type == 6) {
-            Protocol.outboundBuffer.pIsaac1(IF_BUTTON6);
-            Protocol.outboundBuffer.p4(arg3);
-            Protocol.outboundBuffer.p2(arg1);
-        }
-        if (type == 7) {
-            Protocol.outboundBuffer.pIsaac1(IF_BUTTON7);
-            Protocol.outboundBuffer.p4(arg3);
-            Protocol.outboundBuffer.p2(arg1);
-        }
-        if (type == 8) {
-            Protocol.outboundBuffer.pIsaac1(IF_BUTTON8);
-            Protocol.outboundBuffer.p4(arg3);
-            Protocol.outboundBuffer.p2(arg1);
-        }
-        if (type == 9) {
-            Protocol.outboundBuffer.pIsaac1(IF_BUTTON9);
-            Protocol.outboundBuffer.p4(arg3);
-            Protocol.outboundBuffer.p2(arg1);
-        }
-        if (type == 10) {
-            Protocol.outboundBuffer.pIsaac1(IF_BUTTON10);
-            Protocol.outboundBuffer.p4(arg3);
-            Protocol.outboundBuffer.p2(arg1);
-        }
     }
 
     @OriginalMember(owner = "client!pi", name = "c", descriptor = "(III)V")

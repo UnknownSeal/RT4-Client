@@ -16,7 +16,7 @@ import com.jagex.core.io.PacketBit;
 import com.jagex.entity.npc.NpcList;
 import com.jagex.entity.player.Player;
 import com.jagex.entity.player.PlayerList;
-import com.jagex.game.inventory.Inv;
+import com.jagex.game.inventory.ClientInventory;
 import com.jagex.game.world.WorldLoader;
 import com.jagex.graphics.gl.GlRaster;
 import com.jagex.graphics.gl.GlRenderer;
@@ -200,7 +200,7 @@ public class LoginManager {
 
     @OriginalMember(owner = "runetek4.client!ha", name = "a", descriptor = "(I)V")
     public static void method1841() {
-        if (!ClientScriptRunner.menuVisible) {
+        if (!MiniMenu.open) {
             if (MiniMenu.menuState != 0) {
                 ClientScriptRunner.scriptMouseX = Mouse.lastClickX;
                 ClientScriptRunner.scriptMouseY = Mouse.lastClickY;
@@ -212,10 +212,10 @@ public class LoginManager {
                 ClientScriptRunner.scriptMouseY = Mouse.mouseClickY;
             }
             MiniMenu.menuActionRow = 1;
-            MiniMenu.ops[0] = LocalizedText.CANCEL;
-            MiniMenu.opBases[0] = JString.EMPTY;
-            MiniMenu.actions[0] = 1005;
-            MiniMenu.cursors[0] = MiniMenu.defaultCursor;
+            InterfaceManager.ops[0] = LocalizedText.CANCEL;
+            InterfaceManager.opBases[0] = JString.EMPTY;
+            InterfaceManager.actions[0] = 1005;
+            InterfaceManager.cursors[0] = InterfaceManager.defaultCursor;
         }
         if (InterfaceManager.topLevelInterface != -1) {
             InterfaceManager.updateInterfaceState(InterfaceManager.topLevelInterface);
@@ -246,7 +246,7 @@ public class LoginManager {
             SoftwareRenderer.resetBounds();
         }
         MiniMenu.sortMenuActions();
-        if (ClientScriptRunner.menuVisible) {
+        if (MiniMenu.open) {
             if (InterfaceManager.hasScrollbar) {
                 MiniMenu.drawContextMenu();
             } else {
@@ -257,7 +257,7 @@ public class LoginManager {
         } else if (ClientScriptRunner.anInt2503 != -1) {
             MiniMenu.drawMenuText(null, InterfaceManager.anInt5574, ClientScriptRunner.anInt2503);
         }
-        componentIndex = ClientScriptRunner.menuVisible ? -1 : MiniMenu.getShiftClickOption();
+        componentIndex = MiniMenu.open ? -1 : MiniMenu.getShiftClickOption();
         if (componentIndex == -1) {
             componentIndex = ClientScriptRunner.anInt5794;
         }
@@ -754,12 +754,12 @@ public class LoginManager {
     public static void reconnect() {
         Protocol.outboundBuffer.offset = 0;
         Protocol.secondLastOpcode = -1;
-        ClientScriptRunner.menuVisible = false;
+        MiniMenu.open = false;
         Protocol.packetSize = 0;
         flagSceneTileX = 0;
         MiniMenu.menuActionRow = 0;
         Protocol.previousOpcode = -1;
-        MiniMap.state = 0;
+        MiniMap.toggle = 0;
         Player.systemUpdateTimer = 0;
         Protocol.thirdLastOpcode = -1;
         Protocol.inboundBuffer.offset = 0;
@@ -776,7 +776,7 @@ public class LoginManager {
                 NpcList.npcs[i].faceEntity = -1;
             }
         }
-        Inv.clear();
+        ClientInventory.clear();
         Camera.mode = MODE_DEFAULT;
         Client.processGameStatus(30);
         for (i = 0; i < 100; i++) {

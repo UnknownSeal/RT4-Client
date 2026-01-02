@@ -15,7 +15,7 @@ public final class CacheArchive {
 		InterfaceManager.dragChildren = null;
 		ClientScriptRunner.renderOrInvalidateComponent(InterfaceManager.topLevelInterface, 0, GameShell.canvasWidth, 0, -1, GameShell.canvasHeight, 0, 0);
 		if (InterfaceManager.dragChildren != null) {
-			InterfaceManager.draw(0, InterfaceManager.dragOffsetY, InterfaceManager.dragOffsetX, InterfaceManager.dragChildren, GameShell.canvasWidth, -1412584499, 0, GameShell.canvasHeight, ClientScriptRunner.containerComponent.rectangle);
+			InterfaceManager.draw(0, InterfaceManager.dragOffsetY, InterfaceManager.dragOffsetX, InterfaceManager.dragChildren, GameShell.canvasWidth, -1412584499, 0, GameShell.canvasHeight, InterfaceManager.dragLayer.rectangle);
 			InterfaceManager.dragChildren = null;
 		}
 	}

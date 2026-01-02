@@ -9,22 +9,22 @@ import org.openrs2.deob.annotation.Pc;
 public final class VorbisResidue {
 
 	@OriginalMember(owner = "runetek4.client!vb", name = "c", descriptor = "I")
-	private final int type = VorbisSound.readBits(16);
+	private final int type = VorbisSound.gbit(16);
 
 	@OriginalMember(owner = "runetek4.client!vb", name = "b", descriptor = "I")
-	private final int begin = VorbisSound.readBits(24);
+	private final int begin = VorbisSound.gbit(24);
 
 	@OriginalMember(owner = "runetek4.client!vb", name = "d", descriptor = "I")
-	private final int end = VorbisSound.readBits(24);
+	private final int end = VorbisSound.gbit(24);
 
 	@OriginalMember(owner = "runetek4.client!vb", name = "e", descriptor = "I")
-	private final int partitionSize = VorbisSound.readBits(24) + 1;
+	private final int partitionSize = VorbisSound.gbit(24) + 1;
 
 	@OriginalMember(owner = "runetek4.client!vb", name = "g", descriptor = "I")
-	private final int classifications = VorbisSound.readBits(6) + 1;
+	private final int classifications = VorbisSound.gbit(6) + 1;
 
 	@OriginalMember(owner = "runetek4.client!vb", name = "a", descriptor = "I")
-	private final int classBook = VorbisSound.readBits(8);
+	private final int classBook = VorbisSound.gbit(8);
 
 	@OriginalMember(owner = "runetek4.client!vb", name = "f", descriptor = "[I")
 	private final int[] books;
@@ -35,21 +35,21 @@ public final class VorbisResidue {
 		@Pc(35) int local35;
 		for (local35 = 0; local35 < this.classifications; local35++) {
 			@Pc(41) int local41 = 0;
-			@Pc(44) int local44 = VorbisSound.readBits(3);
-			@Pc(50) boolean local50 = VorbisSound.readBit() != 0;
+			@Pc(44) int local44 = VorbisSound.gbit(3);
+			@Pc(50) boolean local50 = VorbisSound.g1() != 0;
 			if (local50) {
-				local41 = VorbisSound.readBits(5);
+				local41 = VorbisSound.gbit(5);
 			}
 			local33[local35] = local41 << 3 | local44;
 		}
 		this.books = new int[this.classifications * 8];
 		for (local35 = 0; local35 < this.classifications * 8; local35++) {
-			this.books[local35] = (local33[local35 >> 3] & 0x1 << (local35 & 0x7)) == 0 ? -1 : VorbisSound.readBits(8);
+			this.books[local35] = (local33[local35 >> 3] & 0x1 << (local35 & 0x7)) == 0 ? -1 : VorbisSound.gbit(8);
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!vb", name = "a", descriptor = "([FIZ)V")
-	public final void synthesize(@OriginalArg(0) float[] arg0, @OriginalArg(1) int arg1, @OriginalArg(2) boolean arg2) {
+	public final void decode(@OriginalArg(0) float[] arg0, @OriginalArg(1) int arg1, @OriginalArg(2) boolean arg2) {
 		@Pc(1) int local1;
 		for (local1 = 0; local1 < arg1; local1++) {
 			arg0[local1] = 0.0F;

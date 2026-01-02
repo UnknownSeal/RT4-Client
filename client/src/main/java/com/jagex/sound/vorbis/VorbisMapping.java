@@ -21,21 +21,21 @@ public final class VorbisMapping {
 
 	@OriginalMember(owner = "runetek4.client!uk", name = "<init>", descriptor = "()V")
 	public VorbisMapping() {
-		VorbisSound.readBits(16);
-		this.submaps = VorbisSound.readBit() == 0 ? 1 : VorbisSound.readBits(4) + 1;
-		if (VorbisSound.readBit() != 0) {
-			VorbisSound.readBits(8);
+		VorbisSound.gbit(16);
+		this.submaps = VorbisSound.g1() == 0 ? 1 : VorbisSound.gbit(4) + 1;
+		if (VorbisSound.g1() != 0) {
+			VorbisSound.gbit(8);
 		}
-		VorbisSound.readBits(2);
+		VorbisSound.gbit(2);
 		if (this.submaps > 1) {
-			this.mux = VorbisSound.readBits(4);
+			this.mux = VorbisSound.gbit(4);
 		}
 		this.submapFloor = new int[this.submaps];
 		this.submapResidue = new int[this.submaps];
 		for (@Pc(42) int local42 = 0; local42 < this.submaps; local42++) {
-			VorbisSound.readBits(8);
-			this.submapFloor[local42] = VorbisSound.readBits(8);
-			this.submapResidue[local42] = VorbisSound.readBits(8);
+			VorbisSound.gbit(8);
+			this.submapFloor[local42] = VorbisSound.gbit(8);
+			this.submapResidue[local42] = VorbisSound.gbit(8);
 		}
 	}
 }

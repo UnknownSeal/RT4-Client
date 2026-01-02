@@ -61,7 +61,7 @@ public class Camera {
     @OriginalMember(owner = "runetek4.client!se", name = "a", descriptor = "I")
     public static int sceneBaseTileX;
     @OriginalMember(owner = "client!bc", name = "I", descriptor = "Z")
-    public static boolean shouldReverse = false;
+    public static boolean splineFinished = false;
     @OriginalMember(owner = "runetek4.client!km", name = "Pc", descriptor = "I")
     public static int renderX;
     @OriginalMember(owner = "runetek4.client!kh", name = "f", descriptor = "I")
@@ -219,14 +219,14 @@ public class Camera {
         if (animationTimer >= 65535) {
             animationTimer = 65535;
             if (animationComplete) {
-                shouldReverse = false;
+                splineFinished = false;
             } else {
-                shouldReverse = true;
+                splineFinished = true;
             }
             animationComplete = true;
         } else {
             animationComplete = false;
-            shouldReverse = false;
+            splineFinished = false;
         }
         @Pc(66) float animationProgress = (float) animationTimer / 65535.0F;
         @Pc(70) int positionSplineIndex = positionKeyframe * 2;

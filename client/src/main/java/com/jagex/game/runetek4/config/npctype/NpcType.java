@@ -90,7 +90,7 @@ public final class NpcType {
 	public int bgsound = -1;
 
 	@OriginalMember(owner = "client!me", name = "I", descriptor = "Z")
-	public boolean active = true;
+	public boolean interactive = true;
 
 	@OriginalMember(owner = "client!me", name = "a", descriptor = "I")
 	public int size = 1;
@@ -114,7 +114,7 @@ public final class NpcType {
 	public int vislevel = -1;
 
 	@OriginalMember(owner = "client!me", name = "Z", descriptor = "Z")
-	public boolean minimap = true;
+	public boolean displayOnMiniMap = true;
 
 	@OriginalMember(owner = "client!me", name = "l", descriptor = "I")
 	public int cursor1 = -1;
@@ -123,7 +123,7 @@ public final class NpcType {
 	private int contrast = 0;
 
 	@OriginalMember(owner = "client!me", name = "V", descriptor = "I")
-	public int miniMapMarkerObjectEntry = -1;
+	public int mapElement = -1;
 
 	@OriginalMember(owner = "client!me", name = "C", descriptor = "I")
 	private int resizeh = 128;
@@ -261,7 +261,7 @@ public final class NpcType {
 				this.heads[index] = packet.g2();
 			}
 		} else if (opcode == 93) {
-			this.minimap = false;
+			this.displayOnMiniMap = false;
 		} else if (opcode == 95) {
 			this.vislevel = packet.g2();
 		} else if (opcode == 97) {
@@ -306,7 +306,7 @@ public final class NpcType {
 			}
 			this.multinpc[length + 1] = defaultId;
 		} else if (opcode == 107) {
-			this.active = false;
+			this.interactive = false;
 		} else if (opcode == 109) {
 			this.walksmoothing = false;
 		} else if (opcode == 111) {
@@ -339,7 +339,7 @@ public final class NpcType {
 		} else if (opcode == 125) {
 			this.respawndir = packet.g1s();
 		} else if (opcode == 126) {
-			this.miniMapMarkerObjectEntry = packet.g2();
+			this.mapElement = packet.g2();
 		} else if (opcode == 127) {
 			this.nas = packet.g2();
 		} else if (opcode == 128) {

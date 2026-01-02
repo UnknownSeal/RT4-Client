@@ -41,7 +41,7 @@ import com.jagex.core.io.Packet;
 import com.jagex.core.io.PacketBit;
 import com.jagex.game.runetek4.config.bastype.BasType;
 import com.jagex.game.runetek4.config.quickchatcattype.QuickChatPhraseType;
-import com.jagex.game.inventory.Inv;
+import com.jagex.game.inventory.ClientInventory;
 import com.jagex.game.locs.LocToEntityAttachment;
 import com.jagex.game.locs.LocChangeRequest;
 import com.jagex.game.state.VarpDomain;
@@ -53,7 +53,7 @@ import com.jagex.ui.social.ClanMember;
 import com.jagex.core.utils.string.JString;
 import com.jagex.core.utils.string.LocalizedText;
 import com.jagex.game.compression.huffman.WordPack;
-import com.jagex.game.map.MapMarker;
+import com.jagex.game.map.HintArrow;
 import com.jagex.network.security.ReflectionCheck;
 import com.jagex.entity.loc.Loc;
 import com.jagex.entity.loc.ObjStack;
@@ -66,7 +66,7 @@ import com.jagex.ui.social.IgnoreList;
 import com.jagex.ui.sprite.Sprites;
 import com.jagex.game.stockmarket.StockMarketManager;
 import com.jagex.game.stockmarket.StockMarketOffer;
-import com.jagex.ui.events.ComponentEvent;
+import com.jagex.ui.events.HookRequest;
 import com.jagex.core.utils.data.Base37;
 import com.jagex.core.utils.math.MathUtils;
 import com.jagex.sign.SignLink;
@@ -383,9 +383,9 @@ public class Protocol {
             }
             scriptArgs[0] = Integer.valueOf(inboundBuffer.g4());
             if (setVerifyID(scriptId)) {
-                @Pc(226) ComponentEvent request = new ComponentEvent();
+                @Pc(226) HookRequest request = new HookRequest();
                 request.arguments = scriptArgs;
-                ClientScriptRunner.run(request);
+                ClientScriptRunner.executeScript(request);
             }
             currentOpcode = -1;
             return true;
@@ -739,7 +739,7 @@ public class Protocol {
                         InterfaceManager.topLevelInterface = parent;
                         InterfaceManager.resetComponentAnimations(parent);
                         InterfaceManager.updateInterfaceLayout(false);
-                        InterfaceManager.runInterfaceInitScripts(InterfaceManager.topLevelInterface);
+                        ClientScriptRunner.executeOnLoad(InterfaceManager.topLevelInterface);
                         for (slot = 0; slot < MAX_COMPONENT_REDRAW_SLOTS; slot++) {
                             InterfaceManager.componentNeedsRedraw[slot] = true;
                         }
@@ -773,7 +773,7 @@ public class Protocol {
                     // Reset varbits and trigger interface redraw
                     VarpDomain.resetVarBits();
                     InterfaceManager.redrawActiveInterfaces();
-                    VarpDomain.updatedVarpsWriterIndex += 32;
+                    VarpDomain.varpUpdateCount += 32;
                     currentOpcode = -1;
                     return true;
                 } else if (currentOpcode == CAM_LOOKAT) {
@@ -823,7 +823,7 @@ public class Protocol {
                                     activeProperties1 = new ServerActiveProperties(activeProperties2.events, ii);
                                     activeProperties2.unlink();
                                 } else if (i == -1) {
-                                    activeProperties1 = new ServerActiveProperties(InterfaceManager.getComponent(param1).properties.events, ii);
+                                    activeProperties1 = new ServerActiveProperties(InterfaceList.list(param1).properties.events, ii);
                                 } else {
                                     activeProperties1 = new ServerActiveProperties(0, ii);
                                 }
@@ -963,7 +963,7 @@ public class Protocol {
                                 PlayerSkillXpTable.baseLevels[i2] = slot + 2;
                             }
                         }
-                        PlayerSkillXpTable.updatedStats[PlayerSkillXpTable.updatedStatsWriterIndex++ & CIRCULAR_BUFFER_MASK] = i2;
+                        PlayerSkillXpTable.updatedStats[Component.statUpdateCount++ & CIRCULAR_BUFFER_MASK] = i2;
                         currentOpcode = -1;
                         return true;
                     } else if (currentOpcode == ZONE_MAP_PROJANIM_SPECIFIC || currentOpcode == ZONE_MAP_PROJANIM_SMALL || currentOpcode == ZONE_SOUND_AREA || currentOpcode == ZONE_OBJ_COUNT || currentOpcode == ZONE_LOC_ATTACH || currentOpcode == ZONE_OBJ_ADD_PRIVATE || currentOpcode == ZONE_MAP_ANIM || currentOpcode == ZONE_MAP_PROJANIM || currentOpcode == ZONE_OBJ_DEL || currentOpcode == ZONE_OBJ_ADD || currentOpcode == ZONE_LOC_MERGE || currentOpcode == ZONE_LOC_DEL || currentOpcode == ZONE_LOC_ADD_CHANGE) {
@@ -976,7 +976,7 @@ public class Protocol {
                         int verifyID = inboundBuffer.g2();
                         param1 = inboundBuffer.g4();
                         if (setVerifyID(verifyID)) {
-                            @Pc(2441) SubInterface subInterface = (SubInterface) InterfaceManager.openInterfaces.get((long) param1);
+                            @Pc(2441) SubInterface subInterface = (SubInterface) InterfaceManager.subInterfaces.get((long) param1);
                             if (subInterface != null) {
                                 InterfaceManager.closeInterface(true, subInterface);
                             }
@@ -1038,7 +1038,7 @@ public class Protocol {
                     } else if (currentOpcode == INV_RESET_COMPONENT) {
                         // Clear all item in interface inventory component
                         ii = inboundBuffer.p4rme();
-                        @Pc(2666) Component component = InterfaceManager.getComponent(ii);
+                        @Pc(2666) Component component = InterfaceList.list(ii);
                         for (i2 = 0; i2 < component.invSlotObjId.length; i2++) {
                             component.invSlotObjId[i2] = -1;
                             component.invSlotObjId[i2] = 0;
@@ -1061,7 +1061,7 @@ public class Protocol {
                         return true;
                     } else if (currentOpcode == MINIMAP_STATE) {
                         // Set minimap visibility state
-                        MiniMap.state = inboundBuffer.g1();
+                        MiniMap.toggle = inboundBuffer.g1();
                         currentOpcode = -1;
                         return true;
                     } else if (currentOpcode == PLAYER_TELEPORT) {
@@ -1172,7 +1172,7 @@ public class Protocol {
                                 if (VarpDomain.serverVarps[ii] != VarpDomain.activeVarps[ii]) {
                                     VarpDomain.activeVarps[ii] = VarpDomain.serverVarps[ii];
                                     VarpDomain.refreshMagicVarp(ii);
-                                    VarpDomain.updatedVarps[VarpDomain.updatedVarpsWriterIndex++ & CIRCULAR_BUFFER_MASK] = ii;
+                                    VarpDomain.updatedVarps[VarpDomain.varpUpdateCount++ & CIRCULAR_BUFFER_MASK] = ii;
                                 }
                             }
                             currentOpcode = -1;
@@ -1241,23 +1241,23 @@ public class Protocol {
                                 int verifyID = inboundBuffer.g2_alt2();
                                 i2 = inboundBuffer.g4rme();
                                 if (setVerifyID(verifyID)) {
-                                    @Pc(3449) SubInterface newSubInterface = (SubInterface) InterfaceManager.openInterfaces.get((long) ii);
-                                    oldSubInterface = (SubInterface) InterfaceManager.openInterfaces.get((long) i2);
+                                    @Pc(3449) SubInterface newSubInterface = (SubInterface) InterfaceManager.subInterfaces.get((long) ii);
+                                    oldSubInterface = (SubInterface) InterfaceManager.subInterfaces.get((long) i2);
                                     if (oldSubInterface != null) {
                                         InterfaceManager.closeInterface(newSubInterface == null || oldSubInterface.interfaceId != newSubInterface.interfaceId, oldSubInterface);
                                     }
                                     if (newSubInterface != null) {
                                         newSubInterface.unlink();
-                                        InterfaceManager.openInterfaces.put(newSubInterface, (long) i2);
+                                        InterfaceManager.subInterfaces.put(newSubInterface, (long) i2);
                                     }
-                                    @Pc(3490) Component component = InterfaceManager.getComponent(ii);
+                                    @Pc(3490) Component component = InterfaceList.list(ii);
                                     if (component != null) {
                                         InterfaceManager.redraw(component);
                                     }
-                                    component = InterfaceManager.getComponent(i2);
+                                    component = InterfaceList.list(i2);
                                     if (component != null) {
                                         InterfaceManager.redraw(component);
-                                        InterfaceManager.updateContainerLayout(component, true);
+                                        InterfaceManager.calculateLayerDimensions(component, true);
                                     }
                                     if (InterfaceManager.topLevelInterface != -1) {
                                         InterfaceManager.runScripts(1, InterfaceManager.topLevelInterface);
@@ -1332,8 +1332,8 @@ public class Protocol {
                             } else if (currentOpcode == INV_DELETE) {
                                 // remove item from inventory
                                 ii = inboundBuffer.g2_al1();
-                                Inv.delete(ii);
-                                Inv.updatedInventories[Inv.updatedInventoriesWriterIndex++ & CIRCULAR_BUFFER_MASK] = ii & INVENTORY_ID_MASK;
+                                ClientInventory.delete(ii);
+                                ClientInventory.updates[ClientInventory.updateCount++ & CIRCULAR_BUFFER_MASK] = ii & INVENTORY_ID_MASK;
                                 currentOpcode = -1;
                                 return true;
                             } else if (currentOpcode == NPC_ANIM) {
@@ -1405,7 +1405,7 @@ public class Protocol {
                                 int verifyID = inboundBuffer.g2_alt2();
                                 int interfaceID = inboundBuffer.g2();
                                 if (setVerifyID(verifyID)) {
-                                    SubInterface SubInterface = (SubInterface) InterfaceManager.openInterfaces.get(windowID);
+                                    SubInterface SubInterface = (SubInterface) InterfaceManager.subInterfaces.get(windowID);
                                     if (SubInterface != null) {
                                         InterfaceManager.closeInterface(interfaceID != SubInterface.interfaceId, SubInterface);
                                     }
@@ -1433,13 +1433,13 @@ public class Protocol {
                                 // Dsiplay hint arrow poiting on location/entity
                                 // Can target entities, players and coordinates
                                 ii = inboundBuffer.g1();
-                                @Pc(4084) MapMarker marker = new MapMarker();
+                                @Pc(4084) HintArrow marker = new HintArrow();
                                 param1 = ii >> MAP_MARKER_PARAM_SHIFT;
                                 marker.type = ii & MAP_MARKER_TYPE_MASK;
                                 marker.anInt4048 = inboundBuffer.g1();
                                 if (marker.anInt4048 >= 0 && marker.anInt4048 < Sprites.headhints.length) {
                                     if (marker.type == MAP_MARKER_NPC || marker.type == MAP_MARKER_PLAYER) {
-                                        marker.actorTargetId = inboundBuffer.g2();
+                                        marker.entity = inboundBuffer.g2();
                                         inboundBuffer.offset += 3;
                                     } else if (marker.type >= MAP_MARKER_COORD_MIN && marker.type <= MAP_MARKER_COORD_MAX) {
                                         if (marker.type == 2) {
@@ -1471,7 +1471,7 @@ public class Protocol {
                                     if (marker.playerModelId == INVALID_ID_U16) {
                                         marker.playerModelId = -1;
                                     }
-                                    MiniMap.hintMapMarkers[param1] = marker;
+                                    MiniMap.hintArrows[param1] = marker;
                                 }
                                 currentOpcode = -1;
                                 return true;
@@ -1635,8 +1635,8 @@ public class Protocol {
                                 param1 = inboundBuffer.g4rme();
                                 if (setVerifyID(verifyID)) {
                                     i2 = 0;
-                                    if (PlayerList.self.appearance != null) {
-                                        i2 = PlayerList.self.appearance.getHeadModelId();
+                                    if (PlayerList.self.playerModel != null) {
+                                        i2 = PlayerList.self.playerModel.getHeadModelId();
                                     }
                                     DelayedStateChange.interfaceSetModel(-1, 3, param1, i2);
                                 }
@@ -1672,7 +1672,7 @@ public class Protocol {
                                     if (ii < 0) {
                                         component = null;
                                     } else {
-                                        component = InterfaceManager.getComponent(ii);
+                                        component = InterfaceList.list(ii);
                                     }
                                     while (inboundBuffer.offset < packetSize) {
                                         slot = inboundBuffer.gSmart1or2();
@@ -1688,13 +1688,13 @@ public class Protocol {
                                             component.invSlotObjId[slot] = count;
                                             component.invSlotObjCount[slot] = i;
                                         }
-                                        Inv.update(count - 1, slot, i, param1);
+                                        ClientInventory.setSlot(count - 1, slot, i, param1);
                                     }
                                     if (component != null) {
                                         InterfaceManager.redraw(component);
                                     }
                                     InterfaceManager.redrawActiveInterfaces();
-                                    Inv.updatedInventories[Inv.updatedInventoriesWriterIndex++ & CIRCULAR_BUFFER_MASK] = param1 & INVENTORY_ID_MASK;
+                                    ClientInventory.updates[ClientInventory.updateCount++ & CIRCULAR_BUFFER_MASK] = param1 & INVENTORY_ID_MASK;
                                     currentOpcode = -1;
                                     return true;
                                 } else if (currentOpcode == CAM_RESET) {
@@ -1761,7 +1761,7 @@ public class Protocol {
                                                 activeProperties1 = new ServerActiveProperties(count, activeProperties2.targetParam);
                                                 activeProperties2.unlink();
                                             } else if (i == -1) {
-                                                activeProperties1 = new ServerActiveProperties(count, InterfaceManager.getComponent(i2).properties.targetParam);
+                                                activeProperties1 = new ServerActiveProperties(count, InterfaceList.list(i2).properties.targetParam);
                                             } else {
                                                 activeProperties1 = new ServerActiveProperties(count, -1);
                                             }
@@ -1856,9 +1856,9 @@ public class Protocol {
                                     }
                                     int verifyID = inboundBuffer.g2_al1();
                                     if (setVerifyID(verifyID)) {
-                                        @Pc(5603) Component com = InterfaceManager.getComponent(param1);
+                                        @Pc(5603) Component com = InterfaceList.list(param1);
                                         @Pc(5615) ObjType obj;
-                                        if (com.if3) {
+                                        if (com.hasOpKey) {
                                             DelayedStateChange.interfaceSetObject(param1, ii, i2);
                                             obj = ObjTypeList.get(i2);
                                             DelayedStateChange.interfaceSetModelAngle(obj.zoom2d, param1, obj.yan2d, obj.xan2d);
@@ -1887,7 +1887,7 @@ public class Protocol {
                                         param1 += INVENTORY_PARAM_OFFSET;
                                     }
                                     if (ii >= 0) {
-                                        component = InterfaceManager.getComponent(ii);
+                                        component = InterfaceList.list(ii);
                                     } else {
                                         component = null;
                                     }
@@ -1897,7 +1897,7 @@ public class Protocol {
                                             component.invSlotObjCount[slot] = 0;
                                         }
                                     }
-                                    Inv.clearInventory(param1);
+                                    ClientInventory.clearInventory(param1);
                                     slot = inboundBuffer.g2();
                                     for (count = 0; count < slot; count++) {
                                         i = inboundBuffer.g1_alt3();
@@ -1909,13 +1909,13 @@ public class Protocol {
                                             component.invSlotObjId[count] = chatFlags;
                                             component.invSlotObjCount[count] = i;
                                         }
-                                        Inv.update(chatFlags - 1, count, i, param1);
+                                        ClientInventory.setSlot(chatFlags - 1, count, i, param1);
                                     }
                                     if (component != null) {
                                         InterfaceManager.redraw(component);
                                     }
                                     InterfaceManager.redrawActiveInterfaces();
-                                    Inv.updatedInventories[Inv.updatedInventoriesWriterIndex++ & CIRCULAR_BUFFER_MASK] = param1 & INVENTORY_ID_MASK;
+                                    ClientInventory.updates[ClientInventory.updateCount++ & CIRCULAR_BUFFER_MASK] = param1 & INVENTORY_ID_MASK;
                                     currentOpcode = -1;
                                     return true;
                                 } else if (currentOpcode == COOKIE_STORE) {
@@ -2704,7 +2704,7 @@ public class Protocol {
 
             @Pc(35) boolean quickChat = (chatFlags & QUICKCHAT_FLAG) != 0;
 
-            if (player.username != null && player.appearance != null) {
+            if (player.username != null && player.playerModel != null) {
                 @Pc(48) long encodedUsername = player.username.encode37();
                 @Pc(50) boolean ignored = false;
                 if (staffModLevel <= 1) {
@@ -3258,9 +3258,9 @@ public class Protocol {
         @Pc(9) SubInterface subInterface = new SubInterface();
         subInterface.modalType = modalType;
         subInterface.interfaceId = interfaceId;
-        InterfaceManager.openInterfaces.put(subInterface, windowId);
+        InterfaceManager.subInterfaces.put(subInterface, windowId);
         InterfaceManager.resetComponentAnimations(interfaceId);
-        @Pc(28) Component component = InterfaceManager.getComponent(windowId);
+        @Pc(28) Component component = InterfaceList.list(windowId);
         if (component != null) {
             InterfaceManager.redraw(component);
         }
@@ -3271,12 +3271,12 @@ public class Protocol {
         @Pc(45) int initialMenuSize = MiniMenu.menuActionRow;
         @Pc(53) int menuIndex;
         for (menuIndex = 0; menuIndex < initialMenuSize; menuIndex++) {
-            if (InterfaceManager.shouldRemoveMenuAction(MiniMenu.actions[menuIndex])) {
+            if (InterfaceManager.shouldRemoveMenuAction(InterfaceManager.actions[menuIndex])) {
                 MiniMenu.removeActionRow(menuIndex);
             }
         }
         if (MiniMenu.menuActionRow == MOUSE_BUTTON_LEFT) {
-            ClientScriptRunner.menuVisible = false;
+            MiniMenu.open = false;
             InterfaceManager.redrawScreen(InterfaceManager.menuX, InterfaceManager.menuWidth, InterfaceManager.menuY, InterfaceManager.menuHeight);
         } else {
             InterfaceManager.redrawScreen(InterfaceManager.menuX, InterfaceManager.menuWidth, InterfaceManager.menuY, InterfaceManager.menuHeight);
@@ -3291,9 +3291,9 @@ public class Protocol {
             InterfaceManager.menuHeight = MiniMenu.menuActionRow * MENU_OPTION_ROW_HEIGHT + (InterfaceManager.hasScrollbar ? MENU_HEIGHT_WITH_SCROLLBAR : MENU_HEIGHT_NO_SCROLLBAR);
         }
         if (component != null) {
-            InterfaceManager.updateContainerLayout(component, false);
+            InterfaceManager.calculateLayerDimensions(component, false);
         }
-        InterfaceManager.runInterfaceInitScripts(interfaceId);
+        ClientScriptRunner.executeOnLoad(interfaceId);
         if (InterfaceManager.topLevelInterface != -1) {
             InterfaceManager.runScripts(1, InterfaceManager.topLevelInterface);
         }
@@ -3308,13 +3308,13 @@ public class Protocol {
         @Pc(20) int clickButton = Mouse.clickButton;
         @Pc(93) int componentSlot;
         @Pc(99) int componentId;
-        if (!ClientScriptRunner.menuVisible) {
+        if (!MiniMenu.open) {
             if (clickButton == 1 && MiniMenu.menuActionRow > 0) {
-                @Pc(37) short actionType = MiniMenu.actions[MiniMenu.menuActionRow - 1];
+                @Pc(37) short actionType = InterfaceManager.actions[MiniMenu.menuActionRow - 1];
                 if (actionType == MENU_ACTION_EXAMINE_ITEM || actionType == MENU_ACTION_ITEM_OPT_1 || actionType == MENU_ACTION_ITEM_OPT_2 || actionType == MENU_ACTION_ITEM_OPT_3 || actionType == MENU_ACTION_ITEM_OPT_4 || actionType == MENU_ACTION_ITEM_OPT_5 || actionType == MENU_ACTION_USE_ITEM || actionType == MENU_ACTION_43 || actionType == MENU_ACTION_35 || actionType == MENU_ACTION_58 || actionType == MENU_ACTION_CANCEL || actionType == MENU_ACTION_CONTINUE) {
-                    componentSlot = MiniMenu.intArgs1[MiniMenu.menuActionRow - 1];
-                    componentId = MiniMenu.intArgs2[MiniMenu.menuActionRow - 1];
-                    @Pc(103) Component component = InterfaceManager.getComponent(componentId);
+                    componentSlot = InterfaceManager.intArgs1[MiniMenu.menuActionRow - 1];
+                    componentId = InterfaceManager.intArgs2[MiniMenu.menuActionRow - 1];
+                    @Pc(103) Component component = InterfaceList.list(componentId);
                     @Pc(106) ServerActiveProperties activeProperties = InterfaceManager.getServerActiveProperties(component);
                     if (activeProperties.isObjSwapEnabled() || activeProperties.isObjReplaceEnabled()) {
                         InterfaceManager.lastItemDragTime = 0;
@@ -3322,7 +3322,7 @@ public class Protocol {
                         if (InterfaceManager.clickedInventoryComponent != null) {
                             InterfaceManager.redraw(InterfaceManager.clickedInventoryComponent);
                         }
-                        InterfaceManager.clickedInventoryComponent = InterfaceManager.getComponent(componentId);
+                        InterfaceManager.clickedInventoryComponent = InterfaceList.list(componentId);
                         InterfaceManager.clickedInventoryComponentX = Mouse.mouseClickX;
                         InterfaceManager.clickedInventoryComponentY = Mouse.mouseClickY;
                         InterfaceManager.selectedInventorySlot = componentSlot;
@@ -3347,7 +3347,7 @@ public class Protocol {
             componentSlot = Mouse.lastMouseY;
             menuX = Mouse.lastMouseX;
             if (menuX < InterfaceManager.menuX - MENU_BOUNDS_PADDING || menuX > InterfaceManager.menuWidth + InterfaceManager.menuX + MENU_BOUNDS_PADDING || InterfaceManager.menuY - MENU_BOUNDS_PADDING > componentSlot || componentSlot > InterfaceManager.menuHeight + InterfaceManager.menuY + MENU_BOUNDS_PADDING) {
-                ClientScriptRunner.menuVisible = false;
+                MiniMenu.open = false;
                 InterfaceManager.redrawScreen(InterfaceManager.menuX, InterfaceManager.menuWidth, InterfaceManager.menuY, InterfaceManager.menuHeight);
             }
         }
@@ -3374,7 +3374,7 @@ public class Protocol {
         if (selectedRow != -1) {
             MiniMenu.doAction(selectedRow);
         }
-        ClientScriptRunner.menuVisible = false;
+        MiniMenu.open = false;
         InterfaceManager.redrawScreen(InterfaceManager.menuX, InterfaceManager.menuWidth, InterfaceManager.menuY, InterfaceManager.menuHeight);
     }
 }

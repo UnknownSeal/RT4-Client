@@ -545,10 +545,10 @@ public class WorldLoader {
             }
         }
         if (mapElementList == null) {
-            if (map == null || !Client.js5Archive23.isGroupNameValid(JString.concatenate(new JString[] { map.group, labels}))) {
+            if (map == null || !Client.js5Archive23.isGroupNameValid(JString.concatenate(new JString[] { map.id, labels}))) {
                 mapElementList = new MapElementList(0);
-            } else if (Client.js5Archive23.isGroupReady(JString.concatenate(new JString[] { map.group, labels}))) {
-                mapElementList = MapElementList.create(JString.concatenate(new JString[] { map.group, labels}), Client.js5Archive23);
+            } else if (Client.js5Archive23.isGroupReady(JString.concatenate(new JString[] { map.id, labels}))) {
+                mapElementList = MapElementList.create(JString.concatenate(new JString[] { map.id, labels}), Client.js5Archive23);
             } else {
                 fileExists = false;
                 mapFilesMissingCount++;

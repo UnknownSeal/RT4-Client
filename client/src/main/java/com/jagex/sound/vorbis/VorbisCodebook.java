@@ -29,41 +29,41 @@ public final class VorbisCodebook {
 
 	@OriginalMember(owner = "client!ji", name = "<init>", descriptor = "()V")
 	public VorbisCodebook() {
-		VorbisSound.readBits(24);
-		this.dimensions = VorbisSound.readBits(16);
-		this.entries = VorbisSound.readBits(24);
+		VorbisSound.gbit(24);
+		this.dimensions = VorbisSound.gbit(16);
+		this.entries = VorbisSound.gbit(24);
 		this.lengths = new int[this.entries];
-		@Pc(23) boolean local23 = VorbisSound.readBit() != 0;
+		@Pc(23) boolean local23 = VorbisSound.g1() != 0;
 		@Pc(27) int maptype;
 		@Pc(32) int local32;
 		@Pc(46) int local46;
 		if (local23) {
 			maptype = 0;
-			local32 = VorbisSound.readBits(5) + 1;
+			local32 = VorbisSound.gbit(5) + 1;
 			while (maptype < this.entries) {
-				@Pc(44) int local44 = VorbisSound.readBits(IntMath.bitCount(this.entries - maptype));
+				@Pc(44) int local44 = VorbisSound.gbit(IntMath.bitCount(this.entries - maptype));
 				for (local46 = 0; local46 < local44; local46++) {
 					this.lengths[maptype++] = local32;
 				}
 				local32++;
 			}
 		} else {
-			@Pc(66) boolean local66 = VorbisSound.readBit() != 0;
+			@Pc(66) boolean local66 = VorbisSound.g1() != 0;
 			for (local32 = 0; local32 < this.entries; local32++) {
-				if (local66 && VorbisSound.readBit() == 0) {
+				if (local66 && VorbisSound.g1() == 0) {
 					this.lengths[local32] = 0;
 				} else {
-					this.lengths[local32] = VorbisSound.readBits(5) + 1;
+					this.lengths[local32] = VorbisSound.gbit(5) + 1;
 				}
 			}
 		}
 		this.createEntryTree();
-		maptype = VorbisSound.readBits(4);
+		maptype = VorbisSound.gbit(4);
 		if (maptype > 0) {
-			@Pc(103) float local103 = VorbisSound.float32Unpack(VorbisSound.readBits(32));
-			@Pc(107) float local107 = VorbisSound.float32Unpack(VorbisSound.readBits(32));
-			local46 = VorbisSound.readBits(4) + 1;
-			@Pc(118) boolean q_sequencecap = VorbisSound.readBit() != 0;
+			@Pc(103) float local103 = VorbisSound.float32Unpack(VorbisSound.gbit(32));
+			@Pc(107) float local107 = VorbisSound.float32Unpack(VorbisSound.gbit(32));
+			local46 = VorbisSound.gbit(4) + 1;
+			@Pc(118) boolean q_sequencecap = VorbisSound.g1() != 0;
 
 			@Pc(127) int quantvals;
 			if (maptype == 1) {
@@ -74,7 +74,7 @@ public final class VorbisCodebook {
 			this.multiplicands = new int[quantvals];
 			@Pc(140) int local140;
 			for (local140 = 0; local140 < quantvals; local140++) {
-				this.multiplicands[local140] = VorbisSound.readBits(local46);
+				this.multiplicands[local140] = VorbisSound.gbit(local46);
 			}
 			this.valueVector = new float[this.entries][this.dimensions];
 			@Pc(169) float local169;
@@ -206,7 +206,7 @@ public final class VorbisCodebook {
 	@OriginalMember(owner = "client!ji", name = "c", descriptor = "()I")
 	public int decodeScalar() {
 		@Pc(1) int index;
-		for (index = 0; this.entryTree[index] >= 0; index = VorbisSound.readBit() == 0 ? index + 1 : this.entryTree[index]) {
+		for (index = 0; this.entryTree[index] >= 0; index = VorbisSound.g1() == 0 ? index + 1 : this.entryTree[index]) {
 		}
 		return ~this.entryTree[index];
 	}

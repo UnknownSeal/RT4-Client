@@ -229,7 +229,7 @@ public final class PlayerAppearance {
 	}
 
 	@OriginalMember(owner = "client!hh", name = "a", descriptor = "(IZI)V")
-	public final void setColor(@OriginalArg(0) int i, @OriginalArg(2) int color) {
+	public final void setBaseColour(@OriginalArg(0) int i, @OriginalArg(2) int color) {
 		this.colors[i] = color;
 		this.updateChecksum();
 	}
@@ -240,7 +240,7 @@ public final class PlayerAppearance {
 	}
 
 	@OriginalMember(owner = "client!hh", name = "a", descriptor = "(III)V")
-	public final void setIdentikit(@OriginalArg(0) int arg0, @OriginalArg(1) int identikit) {
+	public final void setIDKPart(@OriginalArg(0) int arg0, @OriginalArg(1) int identikit) {
 		@Pc(7) int part = BASE_PART_MAP[arg0];
 		if (0 != this.identikit[part] && IDKTypeList.get(identikit) != null) {
 			this.identikit[part] = identikit | Integer.MIN_VALUE;

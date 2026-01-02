@@ -7,7 +7,7 @@ import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 
 @OriginalClass("runetek4.client!jl")
-public final class ComponentEvent extends Node {
+public final class HookRequest extends Node {
 
 	@OriginalMember(owner = "runetek4.client!jl", name = "q", descriptor = "Lclient!be;")
 	public Component target;

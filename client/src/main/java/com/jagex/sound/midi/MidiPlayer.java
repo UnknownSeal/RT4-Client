@@ -1,6 +1,5 @@
 package com.jagex.sound.midi;
 
-import com.jagex.sound.streaming.Song;
 import com.jagex.sound.core.SoundBank;
 
 import com.jagex.js5.Js5;
@@ -38,7 +37,7 @@ public class MidiPlayer {
     public static Js5 synthArchive;
 
     @OriginalMember(owner = "client!le", name = "c", descriptor = "Lclient!rf;")
-    public static Song song;
+    public static MidiSong song;
 
     @OriginalMember(owner = "client!nj", name = "g", descriptor = "Lclient!ve;")
 	public static Js5 songArchive;
@@ -57,7 +56,7 @@ public class MidiPlayer {
         try {
             if (state == 2) {
                 if (song == null) {
-                    song = Song.create(songArchive, songGroupId, songFileId);
+                    song = MidiSong.create(songArchive, songGroupId, songFileId);
                     if (song == null) {
                         return false;
                     }

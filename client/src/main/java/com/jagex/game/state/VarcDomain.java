@@ -17,8 +17,8 @@ public class VarcDomain {
     public static final JString[] varcstrs = new JString[1000];
 
     @OriginalMember(owner = "runetek4.client!ac", name = "o", descriptor = "I")
-    public static int updatedVarcsWriterIndex = 0;
+    public static int varcUpdateCount = 0;
 
     @OriginalMember(owner = "client!fl", name = "B", descriptor = "I")
-    public static int updatedVarcstrsWriterIndex = 0;
+    public static int varcstrUpdateCount = 0;
 }

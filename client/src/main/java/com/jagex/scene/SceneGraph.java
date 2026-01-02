@@ -5727,7 +5727,7 @@ public class SceneGraph {
             SoftwareRenderer.setClip(x, y, width + x, height + y);
             Rasterizer.prepare();
         }
-        if (ClientScriptRunner.menuVisible || ClientScriptRunner.scriptMouseX < x || ClientScriptRunner.scriptMouseX >= width + x || y > ClientScriptRunner.scriptMouseY || height + y <= ClientScriptRunner.scriptMouseY) {
+        if (MiniMenu.open || ClientScriptRunner.scriptMouseX < x || ClientScriptRunner.scriptMouseX >= width + x || y > ClientScriptRunner.scriptMouseY || height + y <= ClientScriptRunner.scriptMouseY) {
             RawModel.allowInput = false;
             MiniMenu.pickedEntityCount = 0;
         } else {
@@ -5789,7 +5789,7 @@ public class SceneGraph {
             }
             Fonts.drawTextOnScreen(false, LocalizedText.LOADING);
         }
-        if (!skipEntityUpdates && !ClientScriptRunner.aBoolean43 && !ClientScriptRunner.menuVisible && x <= ClientScriptRunner.scriptMouseX && width + x > ClientScriptRunner.scriptMouseX && y <= ClientScriptRunner.scriptMouseY && height + y > ClientScriptRunner.scriptMouseY) {
+        if (!skipEntityUpdates && !ClientScriptRunner.aBoolean43 && !MiniMenu.open && x <= ClientScriptRunner.scriptMouseX && width + x > ClientScriptRunner.scriptMouseX && y <= ClientScriptRunner.scriptMouseY && height + y > ClientScriptRunner.scriptMouseY) {
             MiniMenu.populateMenuEntries(y, width, height, x, ClientScriptRunner.scriptMouseY, ClientScriptRunner.scriptMouseX);
         }
     }

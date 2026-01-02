@@ -22,22 +22,29 @@ import com.jagex.core.datastruct.key.IterableHashTable;
 import com.jagex.core.datastruct.Node;
 
 @OriginalClass("client!qe")
-public final class Inv extends Node {
+public final class ClientInventory extends Node {
 
 	@OriginalMember(owner = "client!cb", name = "I", descriptor = "[I")
-	public static final int[] updatedInventories = new int[32];
+	public static final int[] updates = new int[32];
+
 	@OriginalMember(owner = "runetek4.client!kl", name = "u", descriptor = "Lclient!na;")
 	public static final JString COLOR_WHITE = JString.parse("<col=ffffff>");
+
 	@OriginalMember(owner = "runetek4.client!ol", name = "Y", descriptor = "Lclient!na;")
 	public static final JString COLOR_SPRING_GREEN = JString.parse("<col=00ff80>");
+
 	@OriginalMember(owner = "runetek4.client!ib", name = "g", descriptor = "Lclient!na;")
 	public static final JString COLOR_YELLOW = JString.parse("<col=ffff00>");
+
 	@OriginalMember(owner = "runetek4.client!jj", name = "m", descriptor = "Lclient!na;")
 	public static final JString aClass100_594 = JString.parse("<)4col>");
+
 	@OriginalMember(owner = "client!bj", name = "v", descriptor = "Lclient!sc;")
-	public static IterableHashTable objectContainerCache = new IterableHashTable(32);
+	public static IterableHashTable recentUse = new IterableHashTable(32);
+
     @OriginalMember(owner = "runetek4.client!ii", name = "c", descriptor = "I")
-    public static int updatedInventoriesWriterIndex = 0;
+    public static int updateCount = 0;
+
     @OriginalMember(owner = "client!qe", name = "p", descriptor = "[I")
 	public int[] invSlotObjId = new int[] { -1 };
 
@@ -45,11 +52,11 @@ public final class Inv extends Node {
 	public int[] invSlotObjCount = new int[] { 0 };
 
 	@OriginalMember(owner = "client!wl", name = "a", descriptor = "(IIIIB)V")
-	public static void update(@OriginalArg(0) int objectId, @OriginalArg(1) int slotIndex, @OriginalArg(2) int count, @OriginalArg(3) int inventoryId) {
-		@Pc(12) Inv inventory = (Inv) objectContainerCache.get((long) inventoryId);
+	public static void setSlot(@OriginalArg(0) int objectId, @OriginalArg(1) int slotIndex, @OriginalArg(2) int count, @OriginalArg(3) int inventoryId) {
+		@Pc(12) ClientInventory inventory = (ClientInventory) recentUse.get((long) inventoryId);
 		if (inventory == null) {
-			inventory = new Inv();
-			objectContainerCache.put(inventory, (long) inventoryId);
+			inventory = new ClientInventory();
+			recentUse.put(inventory, (long) inventoryId);
 		}
 		if (inventory.invSlotObjId.length <= slotIndex) {
 			@Pc(39) int[] newObjectIds = new int[slotIndex + 1];
@@ -71,7 +78,7 @@ public final class Inv extends Node {
 
 	@OriginalMember(owner = "client!wj", name = "a", descriptor = "(BII)I")
 	public static int getSlotTotal(@OriginalArg(1) int inventoryId, @OriginalArg(2) int slot) {
-		@Pc(8) Inv inv = (Inv) objectContainerCache.get(inventoryId);
+		@Pc(8) ClientInventory inv = (ClientInventory) recentUse.get(inventoryId);
 		if (inv == null) {
 			return 0;
 		} else if (slot == -1) {
@@ -92,7 +99,7 @@ public final class Inv extends Node {
 		if (inventoryId < 0) {
 			return 0;
 		}
-		@Pc(17) Inv inv = (Inv) objectContainerCache.get((long) inventoryId);
+		@Pc(17) ClientInventory inv = (ClientInventory) recentUse.get((long) inventoryId);
 		if (inv == null) {
 			return InvTypeList.get(inventoryId).size;
 		}
@@ -107,7 +114,7 @@ public final class Inv extends Node {
 
 	@OriginalMember(owner = "runetek4.client!hn", name = "f", descriptor = "(B)V")
 	public static void clear() {
-		objectContainerCache = new IterableHashTable(32);
+		recentUse = new IterableHashTable(32);
 	}
 
     @OriginalMember(owner = "runetek4.client!pf", name = "a", descriptor = "(IIZIII)Lclient!qf;")
@@ -128,7 +135,7 @@ public final class Inv extends Node {
 
 	@OriginalMember(owner = "client!bm", name = "a", descriptor = "(III)I")
 	public static int getItemCount(@OriginalArg(1) int inventoryId, @OriginalArg(2) int slotIndex) {
-		@Pc(10) Inv inventory = (Inv) objectContainerCache.get((long) inventoryId);
+		@Pc(10) ClientInventory inventory = (ClientInventory) recentUse.get((long) inventoryId);
 		if (inventory == null) {
 			return 0;
 		} else if (slotIndex >= 0 && slotIndex < inventory.invSlotObjCount.length) {
@@ -140,7 +147,7 @@ public final class Inv extends Node {
 
 	@OriginalMember(owner = "client!be", name = "a", descriptor = "(III)I")
 	public static int getItemType(@OriginalArg(0) int inventoryId, @OriginalArg(2) int slotIndex) {
-		@Pc(10) Inv inventory = (Inv) objectContainerCache.get(inventoryId);
+		@Pc(10) ClientInventory inventory = (ClientInventory) recentUse.get(inventoryId);
 		if (inventory == null) {
 			return -1;
 		} else if (slotIndex >= 0 && slotIndex < inventory.invSlotObjId.length) {
@@ -152,7 +159,7 @@ public final class Inv extends Node {
 
 	@OriginalMember(owner = "client!bc", name = "d", descriptor = "(II)V")
 	public static void delete(@OriginalArg(0) int inventoryId) {
-		@Pc(14) Inv inventory = (Inv) objectContainerCache.get((long) inventoryId);
+		@Pc(14) ClientInventory inventory = (ClientInventory) recentUse.get((long) inventoryId);
 		if (inventory != null) {
 			inventory.unlink();
 		}
@@ -247,7 +254,7 @@ public final class Inv extends Node {
 
     @OriginalMember(owner = "client!bd", name = "a", descriptor = "(BI)V")
     public static void clearInventory(@OriginalArg(1) int inventoryId) {
-        @Pc(8) Inv inventory = (Inv) objectContainerCache.get(inventoryId);
+        @Pc(8) ClientInventory inventory = (ClientInventory) recentUse.get(inventoryId);
         if (inventory != null) {
             for (@Pc(24) int slotIndex = 0; slotIndex < inventory.invSlotObjId.length; slotIndex++) {
                 inventory.invSlotObjId[slotIndex] = -1;
@@ -258,7 +265,7 @@ public final class Inv extends Node {
 
 	@OriginalMember(owner = "runetek4.client!od", name = "a", descriptor = "(IZII)I")
 	public static int getTotalParam(@OriginalArg(1) boolean multiplyByCount, @OriginalArg(2) int inventoryId, @OriginalArg(3) int paramId) {
-		@Pc(19) Inv inventory = (Inv) objectContainerCache.get((long) inventoryId);
+		@Pc(19) ClientInventory inventory = (ClientInventory) recentUse.get((long) inventoryId);
 		if (inventory == null) {
 			return 0;
 		}

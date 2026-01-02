@@ -1,5 +1,6 @@
 package com.jagex.ui.component;
 
+import com.jagex.core.constants.HintArrowType;
 import com.jagex.entity.player.PlayerList;
 import com.jagex.game.world.WorldLoader;
 import com.jagex.scene.Camera;
@@ -24,7 +25,7 @@ import com.jagex.graphics.gl.GlRenderer;
 import com.jagex.ui.sprite.GlSprite;
 import com.jagex.graphics.font.Fonts;
 import com.jagex.core.utils.string.JString;
-import com.jagex.game.map.MapMarker;
+import com.jagex.game.map.HintArrow;
 import com.jagex.graphics.raster.SoftwareRenderer;
 import com.jagex.scene.SceneGraph;
 import com.jagex.scene.tile.PlainTile;
@@ -50,7 +51,7 @@ public class MiniMap {
     public static final int[][] TILE_SHAPE_PATTERNS = new int[][] { { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 0, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1 }, { 1, 1, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 }, { 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1 }, { 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0 }, { 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1 }, { 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1 } };
 
     @OriginalMember(owner = "runetek4.client!ld", name = "b", descriptor = "[Lclient!nc;")
-    public static final MapMarker[] hintMapMarkers = new MapMarker[4];
+    public static final HintArrow[] hintArrows = new HintArrow[4];
 
     @OriginalMember(owner = "runetek4.client!qc", name = "ab", descriptor = "[I")
     public static final int[] locId = new int[1000];
@@ -68,7 +69,7 @@ public class MiniMap {
     public static Sprite sprite;
 
     @OriginalMember(owner = "runetek4.client!wb", name = "d", descriptor = "I")
-    public static int state = 0;
+    public static int toggle = 0;
 
     @OriginalMember(owner = "runetek4.client!we", name = "w", descriptor = "I")
     public static int minimapZoom = 0;
@@ -101,7 +102,7 @@ public class MiniMap {
     public static int anInt5073 = -1;
 
     @OriginalMember(owner = "runetek4.client!em", name = "a", descriptor = "(Lclient!be;Lclient!qf;IIIBI)V")
-    public static void drawOnMinimap(@OriginalArg(0) Component component, @OriginalArg(1) Sprite sprite, @OriginalArg(2) int worldX, @OriginalArg(3) int worldZ, @OriginalArg(4) int offsetY, @OriginalArg(6) int offsetX) {
+    public static void drawMapElement(@OriginalArg(0) Component component, @OriginalArg(1) Sprite sprite, @OriginalArg(2) int worldX, @OriginalArg(3) int worldZ, @OriginalArg(4) int offsetY, @OriginalArg(6) int offsetX) {
         if (sprite == null) {
             return;
         }
@@ -132,7 +133,7 @@ public class MiniMap {
         } else {
             SoftwareRenderer.setClip(x, y, x + component.width, y + component.height);
         }
-        if (state != 2 && state != 5 && sprite != null) {
+        if (toggle != 2 && toggle != 5 && sprite != null) {
             @Pc(48) int angle = minimapAnticheatAngle + Camera.orbitCameraYaw & 0x7FF;
             @Pc(57) int anchorX = PlayerList.self.xFine / 32 + 48;
             @Pc(67) int anchorY = 464 - PlayerList.self.zFine / 32;
@@ -147,7 +148,7 @@ public class MiniMap {
             @Pc(154) int relativeZ;
             @Pc(231) int npcX;
             @Pc(200) int npcZ;
-            @Pc(239) int local239;
+            @Pc(239) int j;
             @Pc(271) int local271;
             if (WorldLoader.mapElementList != null) {
                 for (@Pc(117) int local117 = 0; local117 < WorldLoader.mapElementList.anInt5074; local117++) {
@@ -167,8 +168,8 @@ public class MiniMap {
                             font = Fonts.b12Full;
                         }
                         npcX = scaledSin * flagZ + scaledCos * flagX >> 16;
-                        local239 = font.getMaxLineWidth(WorldLoader.mapElementList.text[local117], 100);
-                        @Pc(245) int textX = npcX - local239 / 2;
+                        j = font.getMaxLineWidth(WorldLoader.mapElementList.text[local117], 100);
+                        @Pc(245) int textX = npcX - j / 2;
                         if (textX >= -component.width && textX <= component.width && npcZ >= -component.height && npcZ <= component.height) {
                             local271 = 16777215;
                             if (WorldLoader.mapElementList.anIntArray444[local117] != -1) {
@@ -179,7 +180,7 @@ public class MiniMap {
                             } else {
                                 SoftwareRenderer.setClippingMask(component.compassPixelOffsets, component.compassPixelWidths);
                             }
-                            font.renderParagraphAlpha(WorldLoader.mapElementList.text[local117], x + textX + component.width / 2, y + component.height / 2 + -npcZ, local239, 50, local271, 0, 1, 0, 0);
+                            font.renderParagraphAlpha(WorldLoader.mapElementList.text[local117], x + textX + component.width / 2, y + component.height / 2 + -npcZ, j, 50, local271, 0, 1, 0, 0);
                             if (GlRenderer.enabled) {
                                 GlFont.method1173();
                             } else {
@@ -195,11 +196,11 @@ public class MiniMap {
                 @Pc(382) LocType locType = LocTypeList.get(locId[flagX]);
                 if (locType.multiloc != null) {
                     locType = locType.getMultiLoc();
-                    if (locType == null || locType.mapfunction == -1) {
+                    if (locType == null || locType.mapelement == -1) {
                         continue;
                     }
                 }
-                drawOnMinimap(component, Sprites.mapfuncs[locType.mapfunction], relativeX, flagZ, y, x);
+                drawMapElement(component, Sprites.mapfuncs[locType.mapelement], relativeX, flagZ, y, x);
             }
             for (flagX = 0; flagX < 104; flagX++) {
                 for (flagZ = 0; flagZ < 104; flagZ++) {
@@ -207,7 +208,7 @@ public class MiniMap {
                     if (objStack != null) {
                         relativeZ = flagX * 4 + 2 - PlayerList.self.xFine / 32;
                         npcX = flagZ * 4 + 2 - PlayerList.self.zFine / 32;
-                        drawOnMinimap(component, Sprites.mapdots[0], npcX, relativeZ, y, x);
+                        drawMapElement(component, Sprites.mapdots[0], npcX, relativeZ, y, x);
                     }
                 }
             }
@@ -218,13 +219,13 @@ public class MiniMap {
                     if (npcType != null && npcType.multinpc != null) {
                         npcType = npcType.getMultiNPC();
                     }
-                    if (npcType != null && npcType.minimap && npcType.active) {
+                    if (npcType != null && npcType.displayOnMiniMap && npcType.interactive) {
                         relativeZ = npc.xFine / 32 - PlayerList.self.xFine / 32;
                         npcX = npc.zFine / 32 - PlayerList.self.zFine / 32;
-                        if (npcType.miniMapMarkerObjectEntry == -1) {
-                            drawOnMinimap(component, Sprites.mapdots[1], npcX, relativeZ, y, x);
+                        if (npcType.mapElement == -1) {
+                            drawMapElement(component, Sprites.mapdots[1], npcX, relativeZ, y, x);
                         } else {
-                            drawOnMinimap(component, Sprites.mapfuncs[npcType.miniMapMarkerObjectEntry], npcX, relativeZ, y, x);
+                            drawMapElement(component, Sprites.mapfuncs[npcType.mapElement], npcX, relativeZ, y, x);
                         }
                     }
                 }
@@ -236,8 +237,8 @@ public class MiniMap {
                     relativeX = player.xFine / 32 - PlayerList.self.xFine / 32;
                     @Pc(624) long name = player.username.encode37();
                     @Pc(626) boolean isFriend = false;
-                    for (local239 = 0; local239 < FriendList.friendCount; local239++) {
-                        if (name == FriendList.encodedUsernames[local239] && FriendList.friendWorlds[local239] != 0) {
+                    for (j = 0; j < FriendList.friendCount; j++) {
+                        if (name == FriendList.encodedUsernames[j] && FriendList.friendWorlds[j] != 0) {
                             isFriend = true;
                             break;
                         }
@@ -254,39 +255,39 @@ public class MiniMap {
                         isTeammate = true;
                     }
                     if (isFriend) {
-                        drawOnMinimap(component, Sprites.mapdots[3], relativeZ, relativeX, y, x);
+                        drawMapElement(component, Sprites.mapdots[3], relativeZ, relativeX, y, x);
                     } else if (isClanMember) {
-                        drawOnMinimap(component, Sprites.mapdots[5], relativeZ, relativeX, y, x);
+                        drawMapElement(component, Sprites.mapdots[5], relativeZ, relativeX, y, x);
                     } else if (isTeammate) {
-                        drawOnMinimap(component, Sprites.mapdots[4], relativeZ, relativeX, y, x);
+                        drawMapElement(component, Sprites.mapdots[4], relativeZ, relativeX, y, x);
                     } else {
-                        drawOnMinimap(component, Sprites.mapdots[2], relativeZ, relativeX, y, x);
+                        drawMapElement(component, Sprites.mapdots[2], relativeZ, relativeX, y, x);
                     }
                 }
             }
-            @Pc(756) MapMarker[] markers = hintMapMarkers;
-            for (flagZ = 0; flagZ < markers.length; flagZ++) {
-                @Pc(770) MapMarker marker = markers[flagZ];
-                if (marker != null && marker.type != 0 && Client.loop % 20 < 10) {
-                    if (marker.type == 1 && marker.actorTargetId >= 0 && marker.actorTargetId < NpcList.npcs.length) {
-                        @Pc(804) Npc npc = NpcList.npcs[marker.actorTargetId];
+            @Pc(756) HintArrow[] hintArrows = MiniMap.hintArrows;
+            for (flagZ = 0; flagZ < hintArrows.length; flagZ++) {
+                @Pc(770) HintArrow hintArrow = hintArrows[flagZ];
+                if (hintArrow != null && hintArrow.type != HintArrowType.CLEAR && Client.loop % 20 < 10) {
+                    if (hintArrow.type == HintArrowType.NPC && hintArrow.entity >= 0 && hintArrow.entity < NpcList.npcs.length) {
+                        @Pc(804) Npc npc = NpcList.npcs[hintArrow.entity];
                         if (npc != null) {
                             npcX = npc.xFine / 32 - PlayerList.self.xFine / 32;
                             npcZ = npc.zFine / 32 - PlayerList.self.zFine / 32;
-                            drawMinimapMark(marker.anInt4048, y, x, npcX, npcZ, component);
+                            drawMinimapMark(hintArrow.anInt4048, y, x, npcX, npcZ, component);
                         }
                     }
-                    if (marker.type == 2) {
-                        relativeZ = (marker.targetX - Camera.sceneBaseTileX) * 4 + 2 - PlayerList.self.xFine / 32;
-                        npcX = (-Camera.sceneBaseTileZ + marker.anInt4046) * 4 + 2 - PlayerList.self.zFine / 32;
-                        drawMinimapMark(marker.anInt4048, y, x, relativeZ, npcX, component);
+                    if (hintArrow.type == HintArrowType.TILE_CENTRE) {
+                        relativeZ = (hintArrow.targetX - Camera.sceneBaseTileX) * 4 + 2 - PlayerList.self.xFine / 32;
+                        npcX = (-Camera.sceneBaseTileZ + hintArrow.anInt4046) * 4 + 2 - PlayerList.self.zFine / 32;
+                        drawMinimapMark(hintArrow.anInt4048, y, x, relativeZ, npcX, component);
                     }
-                    if (marker.type == 10 && marker.actorTargetId >= 0 && PlayerList.players.length > marker.actorTargetId) {
-                        @Pc(905) Player player = PlayerList.players[marker.actorTargetId];
+                    if (hintArrow.type == HintArrowType.PLAYER && hintArrow.entity >= 0 && PlayerList.players.length > hintArrow.entity) {
+                        @Pc(905) Player player = PlayerList.players[hintArrow.entity];
                         if (player != null) {
                             npcZ = player.zFine / 32 - PlayerList.self.zFine / 32;
                             npcX = player.xFine / 32 - PlayerList.self.xFine / 32;
-                            drawMinimapMark(marker.anInt4048, y, x, npcX, npcZ, component);
+                            drawMinimapMark(hintArrow.anInt4048, y, x, npcX, npcZ, component);
                         }
                     }
                 }
@@ -294,7 +295,7 @@ public class MiniMap {
             if (LoginManager.flagSceneTileX != 0) {
                 flagX = LoginManager.flagSceneTileX * 4 + 2 - PlayerList.self.xFine / 32;
                 flagZ = LoginManager.flagSceneTileZ * 4 + 2 - PlayerList.self.zFine / 32;
-                drawOnMinimap(component, Sprites.mapflags, flagZ, flagX, y, x);
+                drawMapElement(component, Sprites.mapflags, flagZ, flagX, y, x);
             }
             if (GlRenderer.enabled) {
                 GlRaster.fillRect(x + component.width / 2 - 1, y + -1 - -(component.height / 2), 3, 3, 16777215);
@@ -407,14 +408,14 @@ public class MiniMap {
                     @Pc(169) long locationKey = SceneGraph.getGroundDecorKey(Player.currentLevel, local37 + 0, local76);
                     if (locationKey != 0L) {
                         @Pc(184) LocType locType = LocTypeList.get((int) (locationKey >>> 32) & Integer.MAX_VALUE);
-                        @Pc(187) int mapFunction = locType.mapfunction;
+                        @Pc(187) int mapFunction = locType.mapelement;
                         @Pc(194) int adjustedX;
                         if (locType.multiloc != null) {
                             for (adjustedX = 0; adjustedX < locType.multiloc.length; adjustedX++) {
                                 if (locType.multiloc[adjustedX] != -1) {
                                     @Pc(216) LocType local216 = LocTypeList.get(locType.multiloc[adjustedX]);
-                                    if (local216.mapfunction >= 0) {
-                                        mapFunction = local216.mapfunction;
+                                    if (local216.mapelement >= 0) {
+                                        mapFunction = local216.mapelement;
                                         break;
                                     }
                                 }
@@ -502,7 +503,7 @@ public class MiniMap {
         }
         @Pc(30) int radius = Math.min(component.width / 2, component.height / 2);
         if (radius * radius >= distanceSquared) {
-            drawOnMinimap(component, Sprites.mapmarkhints[markType], mapY, mapX, y, z);
+            drawMapElement(component, Sprites.mapmarkhints[markType], mapY, mapX, y, z);
             return;
         }
         radius -= 10;
@@ -527,10 +528,10 @@ public class MiniMap {
     public static JString getTargetVerb(@OriginalArg(0) Component component) {
         if (InterfaceManager.getServerActiveProperties(component).getTargetMask() == 0) {
             return null;
-        } else if (component.optionCircumfix == null || component.optionCircumfix.trim().length() == 0) {
+        } else if (component.targetVerb == null || component.targetVerb.trim().length() == 0) {
             return Cheat.testOpacity ? HIDDEN_USE : null;
         } else {
-            return component.optionCircumfix;
+            return component.targetVerb;
         }
     }
 
@@ -573,9 +574,9 @@ public class MiniMap {
     @OriginalMember(owner = "runetek4.client!t", name = "a", descriptor = "(IIIZIII)V")
     public static void renderOverheadHints(@OriginalArg(0) int cameraX, @OriginalArg(1) int screenX, @OriginalArg(2) int cameraY, @OriginalArg(4) int cameraZ, @OriginalArg(5) int cameraPlane, @OriginalArg(6) int screenY) {
         @Pc(3) int index = 0;
-        @Pc(5) MapMarker[] markers = hintMapMarkers;
+        @Pc(5) HintArrow[] markers = hintArrows;
         while (markers.length > index) {
-            @Pc(17) MapMarker marker = markers[index];
+            @Pc(17) HintArrow marker = markers[index];
             if (marker != null && marker.type == 2) {
                 ClientScriptRunner.calculateScreenCoordinates(cameraX >> 1, cameraPlane, (marker.anInt4046 - Camera.sceneBaseTileZ << 7) + marker.anInt4047, marker.anInt4050 * 2, cameraY >> 1, marker.anInt4045 + (marker.targetX - Camera.sceneBaseTileX << 7), cameraZ);
                 if (ClientScriptRunner.overheadScreenX > -1 && Client.loop % 20 < 10) {
@@ -716,7 +717,7 @@ public class MiniMap {
         if (GlRenderer.enabled) {
             GlRaster.setClip(x, y, component.width + x, component.height + y);
         }
-        if (state >= 3) {
+        if (toggle >= 3) {
             if (GlRenderer.enabled) {
                 @Pc(44) Sprite sprite = component.method489(false);
                 if (sprite != null) {

@@ -23,9 +23,6 @@ public class PlayerSkillXpTable {
     @OriginalMember(owner = "runetek4.client!ud", name = "T", descriptor = "[I")
     public static final int[] updatedStats = new int[32];
 
-    @OriginalMember(owner = "runetek4.client!ha", name = "m", descriptor = "I")
-    public static int updatedStatsWriterIndex = 0;
-
     static {
         @Pc(4) int experience = 0;
         for (@Pc(6) int i = 0; i < 99; i++) {

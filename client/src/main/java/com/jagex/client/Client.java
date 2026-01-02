@@ -77,7 +77,7 @@ import com.jagex.graphics.font.FontMetricsList;
 import com.jagex.graphics.font.Fonts;
 import com.jagex.entity.loc.LocEntity;
 import com.jagex.game.runetek4.config.loctype.LocType;
-import com.jagex.ui.component.SubInterface;
+import com.jagex.ui.component.*;
 import com.jagex.core.utils.string.JString;
 import com.jagex.core.utils.string.LocalizedText;
 import com.jagex.game.compression.huffman.WordPack;
@@ -91,15 +91,14 @@ import com.jagex.graphics.render.MaterialManager;
 import com.jagex.scene.SceneGraph;
 import com.jagex.clientscript.ClientScriptList;
 import com.jagex.clientscript.ClientScriptRunner;
+import com.jagex.ui.component.Component;
 import com.jagex.ui.social.FriendList;
 import com.jagex.ui.sprite.Sprites;
 import com.jagex.game.stockmarket.StockMarketManager;
 import com.jagex.game.stockmarket.StockMarketOffer;
-import com.jagex.ui.component.MiniMap;
-import com.jagex.game.inventory.Inv;
+import com.jagex.game.inventory.ClientInventory;
 import com.jagex.game.DelayedStateChange;
 import com.jagex.game.runetek4.config.bastype.BasTypeList;
-import com.jagex.ui.component.Component;
 import com.jagex.game.runetek4.config.flotype.FloorOverlayTypeList;
 import com.jagex.input.Keyboard;
 import com.jagex.input.MouseCapturer;
@@ -111,9 +110,7 @@ import com.jagex.input.MouseWheel;
 import com.jagex.js5.index.Js5MasterIndex;
 import com.jagex.js5.network.Js5CachedResourceProvider;
 import com.jagex.graphics.raster.Rasterizer;
-import com.jagex.ui.component.InterfaceManager;
-import com.jagex.ui.component.MiniMenu;
-import com.jagex.ui.events.ComponentEvent;
+import com.jagex.ui.events.HookRequest;
 import com.jagex.core.utils.string.LangUtils;
 import com.jagex.sign.SignLink;
 import com.jagex.core.utils.debug.Cheat;
@@ -606,7 +603,7 @@ public final class Client extends GameShell {
 		GlModel.method4120();
 		ShadowManager.method4203();
 		Sprites.clear();
-		WorldMap.clear(false);
+		WorldMap.reset(false);
 		TitleScreen.clear();
 		for (@Pc(39) int local39 = 0; local39 < 2048; local39++) {
 			@Pc(46) Player player = PlayerList.players[local39];
@@ -654,24 +651,24 @@ public final class Client extends GameShell {
 		LoginManager.idleNetCycles = 0;
 		Protocol.inboundBuffer.offset = 0;
 		@Pc(3506) int i;
-		for (i = 0; i < MiniMap.hintMapMarkers.length; i++) {
-			MiniMap.hintMapMarkers[i] = null;
+		for (i = 0; i < MiniMap.hintArrows.length; i++) {
+			MiniMap.hintArrows[i] = null;
 		}
 		MiniMenu.menuActionRow = 0;
-		ClientScriptRunner.menuVisible = false;
+		MiniMenu.open = false;
 		Mouse.setIdleLoops(0);
 		for (i = 0; i < 100; i++) {
 			ChatHistory.messages[i] = null;
 		}
-		MiniMenu.anInt5014 = 0;
+		InterfaceManager.anInt5014 = 0;
 		Camera.cameraAnticheatOffsetX = (int) (Math.random() * 100.0D) - 50;
 		LoginManager.flagSceneTileZ = 0;
 		Camera.orbitCameraYaw = (int) (Math.random() * 20.0D) - 10 & 0x7FF;
 		LightingManager.anInt2875 = -1;
 		PlayerList.playerCount = 0;
-		MiniMap.state = 0;
+		MiniMap.toggle = 0;
 		Camera.cameraAnticheatOffsetZ = (int) (Math.random() * 110.0D) - 55;
-		MiniMenu.useWithActive = false;
+		InterfaceManager.targetMode = false;
 		MiniMap.minimapZoom = (int) (Math.random() * 30.0D) - 20;
 		SoundPlayer.size = 0;
 		LoginManager.flagSceneTileX = 0;
@@ -719,14 +716,14 @@ public final class Client extends GameShell {
 		if (InterfaceManager.topLevelInterface != -1) {
 			InterfaceManager.resetComponent(InterfaceManager.topLevelInterface);
 		}
-		for (@Pc(3755) SubInterface local3755 = (SubInterface) InterfaceManager.openInterfaces.head(); local3755 != null; local3755 = (SubInterface) InterfaceManager.openInterfaces.next()) {
+		for (@Pc(3755) SubInterface local3755 = (SubInterface) InterfaceManager.subInterfaces.head(); local3755 != null; local3755 = (SubInterface) InterfaceManager.subInterfaces.next()) {
 			InterfaceManager.closeInterface(true, local3755);
 		}
 		InterfaceManager.topLevelInterface = -1;
-		InterfaceManager.openInterfaces = new IterableHashTable(8);
+		InterfaceManager.subInterfaces = new IterableHashTable(8);
 		InterfaceManager.createComponentMemoryBuffer();
 		ClientScriptRunner.modalBackgroundComponent = null;
-		ClientScriptRunner.menuVisible = false;
+		MiniMenu.open = false;
 		MiniMenu.menuActionRow = 0;
 		PlayerAppearance.DEFAULT.set(new int[] { 0, 0, 0, 0, 0 }, -1, false, null, -1);
 		for (i = 0; i < 8; i++) {
@@ -734,7 +731,7 @@ public final class Client extends GameShell {
 			Player.secondaryOptions[i] = false;
 			Player.cursors[i] = -1;
 		}
-		Inv.clear();
+		ClientInventory.clear();
 		ClientScriptRunner.aBoolean43 = true;
 		for (i = 0; i < 100; i++) {
 			InterfaceManager.componentNeedsRedraw[i] = true;
@@ -855,7 +852,7 @@ public final class Client extends GameShell {
 			WorldLoader.loadingScreenState = 0;
 			anInt1196 = 1;
 			WorldLoader.mapFilesMissingCount = 0;
-			WorldMap.clear(true);
+			WorldMap.reset(true);
 		}
 		if (statusCode == 25 || statusCode == 10) {
 			//topBannerRefresh();
@@ -1288,19 +1285,19 @@ public final class Client extends GameShell {
 			}
 		}
 		while (true) {
-			@Pc(374) ComponentEvent priorityRequest;
+			@Pc(374) HookRequest priorityRequest;
 			@Pc(379) Component prioritySource;
 			@Pc(387) Component priorityComponent;
 			do {
-				priorityRequest = (ComponentEvent) InterfaceManager.highPriorityRequests.removeHead();
+				priorityRequest = (HookRequest) InterfaceManager.highPriorityRequests.removeHead();
 				if (priorityRequest == null) {
 					while (true) {
 						do {
-							priorityRequest = (ComponentEvent) InterfaceManager.mediumPriorityRequests.removeHead();
+							priorityRequest = (HookRequest) InterfaceManager.mediumPriorityRequests.removeHead();
 							if (priorityRequest == null) {
 								while (true) {
 									do {
-										priorityRequest = (ComponentEvent) InterfaceManager.lowPriorityRequests.removeHead();
+										priorityRequest = (HookRequest) InterfaceManager.lowPriorityRequests.removeHead();
 										if (priorityRequest == null) {
 											if (InterfaceManager.dragSource != null) {
 												ClientScriptRunner.handleComponentDrag();
@@ -1319,30 +1316,30 @@ public final class Client extends GameShell {
 											return;
 										}
 										prioritySource = priorityRequest.source;
-										if (prioritySource.createdComponentId < 0) {
+										if (prioritySource.id < 0) {
 											break;
 										}
-										priorityComponent = InterfaceManager.getComponent(prioritySource.layer);
-									} while (priorityComponent == null || priorityComponent.createdComponents == null || priorityComponent.createdComponents.length <= prioritySource.createdComponentId || prioritySource != priorityComponent.createdComponents[prioritySource.createdComponentId]);
-									ClientScriptRunner.run(priorityRequest);
+										priorityComponent = InterfaceList.list(prioritySource.layer);
+									} while (priorityComponent == null || priorityComponent.staticComponents == null || priorityComponent.staticComponents.length <= prioritySource.id || prioritySource != priorityComponent.staticComponents[prioritySource.id]);
+									ClientScriptRunner.executeScript(priorityRequest);
 								}
 							}
 							prioritySource = priorityRequest.source;
-							if (prioritySource.createdComponentId < 0) {
+							if (prioritySource.id < 0) {
 								break;
 							}
-							priorityComponent = InterfaceManager.getComponent(prioritySource.layer);
-						} while (priorityComponent == null || priorityComponent.createdComponents == null || prioritySource.createdComponentId >= priorityComponent.createdComponents.length || prioritySource != priorityComponent.createdComponents[prioritySource.createdComponentId]);
-						ClientScriptRunner.run(priorityRequest);
+							priorityComponent = InterfaceList.list(prioritySource.layer);
+						} while (priorityComponent == null || priorityComponent.staticComponents == null || prioritySource.id >= priorityComponent.staticComponents.length || prioritySource != priorityComponent.staticComponents[prioritySource.id]);
+						ClientScriptRunner.executeScript(priorityRequest);
 					}
 				}
 				prioritySource = priorityRequest.source;
-				if (prioritySource.createdComponentId < 0) {
+				if (prioritySource.id < 0) {
 					break;
 				}
-				priorityComponent = InterfaceManager.getComponent(prioritySource.layer);
-			} while (priorityComponent == null || priorityComponent.createdComponents == null || priorityComponent.createdComponents.length <= prioritySource.createdComponentId || prioritySource != priorityComponent.createdComponents[prioritySource.createdComponentId]);
-			ClientScriptRunner.run(priorityRequest);
+				priorityComponent = InterfaceList.list(prioritySource.layer);
+			} while (priorityComponent == null || priorityComponent.staticComponents == null || priorityComponent.staticComponents.length <= prioritySource.id || prioritySource != priorityComponent.staticComponents[prioritySource.id]);
+			ClientScriptRunner.executeScript(priorityRequest);
 		}
 	}
 

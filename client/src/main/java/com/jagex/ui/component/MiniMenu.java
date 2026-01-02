@@ -39,7 +39,7 @@ import com.jagex.scene.SceneGraph;
 import com.jagex.clientscript.ClientScriptRunner;
 import com.jagex.ui.sprite.SoftwareAlphaSprite;
 import com.jagex.ui.sprite.Sprites;
-import com.jagex.ui.events.ComponentEvent;
+import com.jagex.ui.events.HookRequest;
 import com.jagex.core.utils.ArrayUtils;
 import com.jagex.core.utils.debug.Cheat;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -49,28 +49,8 @@ import org.openrs2.deob.annotation.Pc;
 public class MiniMenu {
     @OriginalMember(owner = "runetek4.client!se", name = "m", descriptor = "Lclient!na;")
     public static final JString aClass100_961 = JString.parse(" )2>");
-    @OriginalMember(owner = "runetek4.client!pf", name = "r", descriptor = "[I")
-    public static final int[] cursors = new int[500];
-    @OriginalMember(owner = "runetek4.client!uj", name = "C", descriptor = "[Lclient!na;")
-    public static final JString[] ops = new JString[500];
-    @OriginalMember(owner = "runetek4.client!t", name = "v", descriptor = "[Lclient!na;")
-    public static final JString[] opBases = new JString[500];
-    @OriginalMember(owner = "runetek4.client!d", name = "eb", descriptor = "[S")
-    public static final short[] actions = new short[500];
     @OriginalMember(owner = "runetek4.client!hd", name = "l", descriptor = "Lclient!na;")
     public static final JString NULL = JString.parse("null");
-    @OriginalMember(owner = "client!aj", name = "R", descriptor = "Lclient!na;")
-    public static final JString COLOR_LIGHT_ORANGE = JString.parse("<col=ff9040>");
-    @OriginalMember(owner = "runetek4.client!pl", name = "e", descriptor = "[I")
-    public static final int[] intArgs1 = new int[500];
-    @OriginalMember(owner = "client!df", name = "l", descriptor = "Lclient!na;")
-    public static final JString COLOR_LIMEGREEN = JString.parse("<col=00ff00>");
-    @OriginalMember(owner = "runetek4.client!sc", name = "g", descriptor = "Lclient!na;")
-    public static final JString COLOR_LIGHT_ORANGE_ARROW = JString.parse(" )2> <col=ff9040>");
-    @OriginalMember(owner = "runetek4.client!mi", name = "U", descriptor = "[J")
-    public static final long[] keys = new long[500];
-    @OriginalMember(owner = "client!ef", name = "c", descriptor = "[I")
-    public static final int[] intArgs2 = new int[500];
     @OriginalMember(owner = "runetek4.client!nm", name = "bb", descriptor = "Lclient!na;")
     public static final JString COLOR_RED = JString.parse("<col=ff0000>");
     @OriginalMember(owner = "client!fb", name = "p", descriptor = "Lclient!na;")
@@ -87,16 +67,10 @@ public class MiniMenu {
     public static final JString COLOR_YELLOW2 = JString.parse("<col=ffff00>");
     @OriginalMember(owner = "runetek4.client!vg", name = "f", descriptor = "Lclient!na;")
     public static final JString COLOR_SPRING_GREEN = JString.parse("<col=80ff00>");
-    @OriginalMember(owner = "runetek4.client!r", name = "d", descriptor = "Z")
-    public static final boolean aBoolean237 = false;
     @OriginalMember(owner = "runetek4.client!a", name = "j", descriptor = "Lclient!na;")
     public static final JString COLOR_WHITE_BRACKET = JString.parse("<col=ffffff> )4 ");
-    @OriginalMember(owner = "client!cb", name = "fb", descriptor = "Lclient!na;")
-    public static final JString COLON_SEPARATOR = JString.parse(": ");
     @OriginalMember(owner = "runetek4.client!qf", name = "Q", descriptor = "Lclient!na;")
 	public static final JString YELLOW_ARROW = JString.parse(" )2> <col=ffff00>");
-    @OriginalMember(owner = "runetek4.client!qf", name = "R", descriptor = "Lclient!na;")
-    public static final JString ARROW_SEPARATOR = JString.parse(" )2> ");
     @OriginalMember(owner = "client!fl", name = "V", descriptor = "Lclient!na;")
     public static final JString CLOSE_PARENTHESIS = JString.parse("(Y");
     @OriginalMember(owner = "client!gd", name = "c", descriptor = "Lclient!na;")
@@ -119,26 +93,15 @@ public class MiniMenu {
     public static final int[] textBounds = new int[4];
     @OriginalMember(owner = "runetek4.client!af", name = "l", descriptor = "[S")
     public static final short[] PLAYER_ACTION_IDS = new short[] { 30, 6, 31, 29, 10, 44, 37, 57 };
-    @OriginalMember(owner = "runetek4.client!sk", name = "kb", descriptor = "I")
-    public static int menuActionRow = 0;
-    @OriginalMember(owner = "runetek4.client!vd", name = "C", descriptor = "I")
-    public static int anInt5014 = 0;
-    @OriginalMember(owner = "runetek4.client!th", name = "n", descriptor = "Z")
-    public static boolean useWithActive = false;
+    private static final int MENU_ACTION_BUFFER_SIZE = 500;
     @OriginalMember(owner = "runetek4.client!pk", name = "bb", descriptor = "Lclient!na;")
     public static JString walkText;
     @OriginalMember(owner = "runetek4.client!em", name = "D", descriptor = "I")
     public static int gregorianDateSeed;
     @OriginalMember(owner = "runetek4.client!hj", name = "e", descriptor = "I")
     public static int useWithComponentId;
-    @OriginalMember(owner = "runetek4.client!u", name = "i", descriptor = "I")
-    public static int useWithCursor;
     @OriginalMember(owner = "client!be", name = "Ec", descriptor = "I")
     public static int useWithSlot = -1;
-    @OriginalMember(owner = "runetek4.client!hn", name = "W", descriptor = "Lclient!na;")
-    public static JString aClass100_545 = null;
-    @OriginalMember(owner = "runetek4.client!p", name = "e", descriptor = "I")
-    public static int anInt4370;
     @OriginalMember(owner = "runetek4.client!uf", name = "t", descriptor = "I")
     public static int anInt5444 = 0;
     @OriginalMember(owner = "runetek4.client!v", name = "b", descriptor = "Lclient!be;")
@@ -147,24 +110,14 @@ public class MiniMenu {
     public static int pickedEntityCount = 0;
     @OriginalMember(owner = "runetek4.client!id", name = "k", descriptor = "I")
     public static int anInt2878;
-    @OriginalMember(owner = "runetek4.client!cl", name = "Y", descriptor = "I")
-    public static int defaultCursor = -1;
     @OriginalMember(owner = "runetek4.client!jl", name = "v", descriptor = "I")
     public static int useItemOnTileMode = 0;
-    @OriginalMember(owner = "client!ck", name = "D", descriptor = "Lclient!na;")
-    public static JString aClass100_203 = null;
-    @OriginalMember(owner = "client!gd", name = "i", descriptor = "Lclient!na;")
-    public static JString aClass100_466 = null;
-    @OriginalMember(owner = "runetek4.client!wf", name = "f", descriptor = "I")
-    public static int useWithMask;
     @OriginalMember(owner = "runetek4.client!wf", name = "d", descriptor = "I")
     public static int anInt4997;
     @OriginalMember(owner = "client!fl", name = "P", descriptor = "I")
     public static int inventoryPressTimer = 0;
     @OriginalMember(owner = "runetek4.client!ml", name = "Q", descriptor = "I")
     public static int menuState = 0;
-    @OriginalMember(owner = "client!bh", name = "t", descriptor = "I")
-    public static int mouseInvInterfaceIndex = 0;
 
     /***********************
      *   Action Constants  *
@@ -241,15 +194,12 @@ public class MiniMenu {
     public static final int ACTION_PRIORITY_OFFSET = 2000;
     public static final int EXAMINE_ACTION_THRESHOLD = 1000;
     private static final int MAX_MENU_ACTIONS = 400;
-    private static final int MENU_ACTION_BUFFER_SIZE = 500;
     private static final int COLOR_WHITE = 16777215;
     private static final int COLOR_YELLOW = 16776960;
     private static final int TARGET_MASK_OBJSTACK = 0x1;
     private static final int TARGET_MASK_NPC = 0x2;
     private static final int TARGET_MASK_LOC = 0x4;
     private static final int TARGET_MASK_PLAYER = 0x8;
-    private static final int TARGET_MASK_OBJ = 0x10;
-    private static final int TARGET_MASK_COMPONENT = 0x20;
     private static final int TARGET_MASK_TILE = 0x40;
 
     @OriginalMember(owner = "client!ef", name = "g", descriptor = "I")
@@ -258,14 +208,16 @@ public class MiniMenu {
     public static int targetX = 0;
     @OriginalMember(owner = "runetek4.client!jb", name = "p", descriptor = "I")
     public static int clickTileZ = -1;
-    @OriginalMember(owner = "runetek4.client!jg", name = "b", descriptor = "I")
-    public static int useWithParam;
     @OriginalMember(owner = "runetek4.client!kd", name = "zb", descriptor = "I")
     public static int targetZ = 0;
     @OriginalMember(owner = "runetek4.client!mh", name = "Y", descriptor = "Z")
     public static boolean walkTargetActive = false;
     @OriginalMember(owner = "runetek4.client!mj", name = "i", descriptor = "I")
     public static int targetPlane = 0;
+    @OriginalMember(owner = "runetek4.client!em", name = "z", descriptor = "Z")
+    public static boolean open = false;
+    @OriginalMember(owner = "runetek4.client!sk", name = "kb", descriptor = "I")
+    public static int menuActionRow = 0;
 
     @OriginalMember(owner = "runetek4.client!ud", name = "a", descriptor = "(ILclient!be;)Z")
     public static boolean shouldTriggerIdleTimeout(@OriginalArg(1) Component component) {
@@ -277,204 +229,19 @@ public class MiniMenu {
         }
     }
 
-    @OriginalMember(owner = "runetek4.client!ec", name = "a", descriptor = "(B)V")
-    public static void handleUseWith() {
-        if (!useWithActive) {
-            return;
-        }
-        @Pc(19) Component component = InterfaceManager.getCreatedComponent(useWithComponentId, useWithSlot);
-        if (component != null && component.onUseWith != null) {
-            @Pc(29) ComponentEvent local29 = new ComponentEvent();
-            local29.arguments = component.onUseWith;
-            local29.source = component;
-            ClientScriptRunner.run(local29);
-        }
-        useWithActive = false;
-        defaultCursor = -1;
-        InterfaceManager.redraw(component);
-    }
-
-    @OriginalMember(owner = "runetek4.client!hj", name = "a", descriptor = "(IJBLclient!na;ISLclient!na;I)V")
-    public static void addActionRow(@OriginalArg(0) int cursor, @OriginalArg(1) long key, @OriginalArg(3) JString opBase, @OriginalArg(4) int param1, @OriginalArg(5) short action, @OriginalArg(6) JString op, @OriginalArg(7) int param2) {
-        if (ClientScriptRunner.menuVisible || menuActionRow >= MENU_ACTION_BUFFER_SIZE) {
-            return;
-        }
-        ops[menuActionRow] = op;
-        opBases[menuActionRow] = opBase;
-        cursors[menuActionRow] = cursor == -1 ? defaultCursor : cursor;
-        actions[menuActionRow] = action;
-        keys[menuActionRow] = key;
-        intArgs1[menuActionRow] = param1;
-        intArgs2[menuActionRow] = param2;
-        menuActionRow++;
-    }
-
-    @OriginalMember(owner = "runetek4.client!va", name = "a", descriptor = "(IZILclient!be;)V")
-    public static void addMiniMenuOptions(@OriginalArg(0) int mouseY, @OriginalArg(2) int mouseX, @OriginalArg(3) Component component) {
-        if (component.buttonType == 1) {
-            addActionRow(-1, 0L, JString.EMPTY, 0, (short) 8, component.option, component.id);
-        }
-        @Pc(47) JString targetVerb;
-        if (component.buttonType == 2 && !useWithActive) {
-            targetVerb = MiniMap.getTargetVerb(component);
-            if (targetVerb != null) {
-                addActionRow(-1, 0L, JString.concatenate(new JString[] {COLOR_LIMEGREEN, component.optionSuffix}), -1, (short) 32, targetVerb, component.id);
-            }
-        }
-        if (component.buttonType == 3) {
-            addActionRow(-1, 0L, JString.EMPTY, 0, (short) 28, LocalizedText.CLOSE, component.id);
-        }
-        if (component.buttonType == 4) {
-            addActionRow(-1, 0L, JString.EMPTY, 0, (short) 59, component.option, component.id);
-        }
-        if (component.buttonType == 5) {
-            addActionRow(-1, 0L, JString.EMPTY, 0, (short) 51, component.option, component.id);
-        }
-        if (component.buttonType == 6 && ClientScriptRunner.modalBackgroundComponent == null) {
-            addActionRow(-1, 0L, JString.EMPTY, -1, (short) 41, component.option, component.id);
-        }
-        @Pc(173) int row;
-        @Pc(171) int slotIndex;
-        if (component.type == 2) {
-            slotIndex = 0;
-            for (row = 0; row < component.baseHeight; row++) {
-                for (@Pc(183) int col = 0; col < component.baseWidth; col++) {
-                    @Pc(195) int slotX = (component.invMarginX + 32) * col;
-                    @Pc(202) int slotY = (component.invMarginY + 32) * row;
-                    if (slotIndex < 20) {
-                        slotY += component.invOffsetY[slotIndex];
-                        slotX += component.invOffsetX[slotIndex];
-                    }
-                    if (mouseX >= slotX && slotY <= mouseY && slotX + 32 > mouseX && slotY + 32 > mouseY) {
-                        InterfaceManager.mouseOverInventoryComponent = component;
-                        mouseInvInterfaceIndex = slotIndex;
-                        if (component.invSlotObjId[slotIndex] > 0) {
-                            @Pc(267) ServerActiveProperties serverProps = InterfaceManager.getServerActiveProperties(component);
-                            @Pc(276) ObjType objType = ObjTypeList.get(component.invSlotObjId[slotIndex] - 1);
-                            if (anInt5014 == 1 && serverProps.isObjOpsEnabled()) {
-                                if (MiniMap.anInt5062 != component.id || anInt4370 != slotIndex) {
-                                    addActionRow(-1, (long) objType.id, JString.concatenate(new JString[] { aClass100_203, COLOR_LIGHT_ORANGE_ARROW, objType.name}), slotIndex, (short) 40, LocalizedText.USE, component.id);
-                                }
-                            } else if (useWithActive && serverProps.isObjOpsEnabled()) {
-                                @Pc(596) ParamType paramType = useWithParam == -1 ? null : ParamTypeList.get(useWithParam);
-                                if ((useWithMask & TARGET_MASK_OBJ) != 0 && (paramType == null || objType.getParam(paramType.defaultInt, useWithParam) != paramType.defaultInt)) {
-                                    addActionRow(useWithCursor, (long) objType.id, JString.concatenate(new JString[] { aClass100_466, COLOR_LIGHT_ORANGE_ARROW, objType.name}), slotIndex, (short) 3, aClass100_545, component.id);
-                                }
-                            } else {
-                                @Pc(296) JString[] objOps = objType.iop;
-                                if (aBoolean237) {
-                                    objOps = annotateOps(objOps);
-                                }
-                                @Pc(309) int opIndex;
-                                @Pc(334) byte actionId;
-                                if (serverProps.isObjOpsEnabled()) {
-                                    for (opIndex = 4; opIndex >= 3; opIndex--) {
-                                        if (objOps != null && objOps[opIndex] != null) {
-                                            if (opIndex == 3) {
-                                                actionId = 35;
-                                            } else {
-                                                actionId = 58;
-                                            }
-                                            addActionRow(-1, (long) objType.id, JString.concatenate(new JString[] {COLOR_LIGHT_ORANGE, objType.name}), slotIndex, actionId, objOps[opIndex], component.id);
-                                        }
-                                    }
-                                }
-                                if (serverProps.isObjUseEnabled()) {
-                                    addActionRow(MiniMap.anInt4075, (long) objType.id, JString.concatenate(new JString[] {COLOR_LIGHT_ORANGE, objType.name}), slotIndex, (short) 22, LocalizedText.USE, component.id);
-                                }
-                                if (serverProps.isObjOpsEnabled() && objOps != null) {
-                                    for (opIndex = 2; opIndex >= 0; opIndex--) {
-                                        if (objOps[opIndex] != null) {
-                                            actionId = 0;
-                                            if (opIndex == 0) {
-                                                actionId = 47;
-                                            }
-                                            if (opIndex == 1) {
-                                                actionId = 5;
-                                            }
-                                            if (opIndex == 2) {
-                                                actionId = 43;
-                                            }
-                                            addActionRow(-1, (long) objType.id, JString.concatenate(new JString[] {COLOR_LIGHT_ORANGE, objType.name}), slotIndex, actionId, objOps[opIndex], component.id);
-                                        }
-                                    }
-                                }
-                                objOps = component.invOptions;
-                                if (aBoolean237) {
-                                    objOps = annotateOps(objOps);
-                                }
-                                if (objOps != null) {
-                                    for (opIndex = 4; opIndex >= 0; opIndex--) {
-                                        if (objOps[opIndex] != null) {
-                                            actionId = 0;
-                                            if (opIndex == 0) {
-                                                actionId = 25;
-                                            }
-                                            if (opIndex == 1) {
-                                                actionId = 23;
-                                            }
-                                            if (opIndex == 2) {
-                                                actionId = 48;
-                                            }
-                                            if (opIndex == 3) {
-                                                actionId = 7;
-                                            }
-                                            if (opIndex == 4) {
-                                                actionId = 13;
-                                            }
-                                            addActionRow(-1, (long) objType.id, JString.concatenate(new JString[] {COLOR_LIGHT_ORANGE, objType.name}), slotIndex, actionId, objOps[opIndex], component.id);
-                                        }
-                                    }
-                                }
-                                addActionRow(MiniMap.anInt5073, (long) objType.id, JString.concatenate(new JString[] {COLOR_LIGHT_ORANGE, objType.name}), slotIndex, (short) 1006, LocalizedText.EXAMINE, component.id);
-                            }
-                        }
-                    }
-                    slotIndex++;
-                }
-            }
-        }
-        if (!component.if3) {
-            return;
-        }
-        if (!useWithActive) {
-            for (slotIndex = 9; slotIndex >= 5; slotIndex--) {
-                @Pc(765) JString componentOp = InterfaceManager.getOp(component, slotIndex);
-                if (componentOp != null) {
-                    addActionRow(getOpCursor(slotIndex, component), (long) (slotIndex + 1), component.optionBase, component.createdComponentId, (short) 1003, componentOp, component.id);
-                }
-            }
-            targetVerb = MiniMap.getTargetVerb(component);
-            if (targetVerb != null) {
-                addActionRow(-1, 0L, component.optionBase, component.createdComponentId, (short) 32, targetVerb, component.id);
-            }
-            for (row = 4; row >= 0; row--) {
-                @Pc(828) JString componentOp = InterfaceManager.getOp(component, row);
-                if (componentOp != null) {
-                    addActionRow(getOpCursor(row, component), (long) (row + 1), component.optionBase, component.createdComponentId, (short) 9, componentOp, component.id);
-                }
-            }
-            if (InterfaceManager.getServerActiveProperties(component).isResumePauseButtonEnabled()) {
-                addActionRow(-1, 0L, JString.EMPTY, component.createdComponentId, (short) 41, LocalizedText.CONTINUE, component.id);
-            }
-        } else if (InterfaceManager.getServerActiveProperties(component).isUseTarget() && (useWithMask & TARGET_MASK_COMPONENT) != 0) {
-            addActionRow(useWithCursor, 0L, JString.concatenate(new JString[] { aClass100_466, ARROW_SEPARATOR, component.optionBase}), component.createdComponentId, (short) 12, aClass100_545, component.id);
-        }
-    }
-
     @OriginalMember(owner = "runetek4.client!qe", name = "b", descriptor = "(II)V")
     public static void removeActionRow(@OriginalArg(1) int index) {
         menuActionRow--;
         if (menuActionRow == index) {
             return;
         }
-        ArrayUtils.copy(ops, index + 1, ops, index, menuActionRow - index);
-        ArrayUtils.copy(opBases, index + 1, opBases, index, menuActionRow - index);
-        ArrayUtils.copy(cursors, index + 1, cursors, index, menuActionRow - index);
-        ArrayUtils.copy(actions, index + 1, actions, index, menuActionRow - index);
-        ArrayUtils.copy(keys, index + 1, keys, index, menuActionRow - index);
-        ArrayUtils.copy(intArgs1, index + 1, intArgs1, index, menuActionRow - index);
-        ArrayUtils.copy(intArgs2, index + 1, intArgs2, index, menuActionRow - index);
+        ArrayUtils.copy(InterfaceManager.ops, index + 1, InterfaceManager.ops, index, menuActionRow - index);
+        ArrayUtils.copy(InterfaceManager.opBases, index + 1, InterfaceManager.opBases, index, menuActionRow - index);
+        ArrayUtils.copy(InterfaceManager.cursors, index + 1, InterfaceManager.cursors, index, menuActionRow - index);
+        ArrayUtils.copy(InterfaceManager.actions, index + 1, InterfaceManager.actions, index, menuActionRow - index);
+        ArrayUtils.copy(InterfaceManager.keys, index + 1, InterfaceManager.keys, index, menuActionRow - index);
+        ArrayUtils.copy(InterfaceManager.intArgs1, index + 1, InterfaceManager.intArgs1, index, menuActionRow - index);
+        ArrayUtils.copy(InterfaceManager.intArgs2, index + 1, InterfaceManager.intArgs2, index, menuActionRow - index);
     }
 
     @OriginalMember(owner = "runetek4.client!wl", name = "b", descriptor = "(I)V")
@@ -483,29 +250,29 @@ public class MiniMenu {
         while (!hasSwapped) {
             hasSwapped = true;
             for (@Pc(13) int index = 0; index < menuActionRow - 1; index++) {
-                if (actions[index] < EXAMINE_ACTION_THRESHOLD && actions[index + 1] > EXAMINE_ACTION_THRESHOLD) {
-                    @Pc(41) JString tempOpBase = opBases[index];
+                if (InterfaceManager.actions[index] < EXAMINE_ACTION_THRESHOLD && InterfaceManager.actions[index + 1] > EXAMINE_ACTION_THRESHOLD) {
+                    @Pc(41) JString tempOpBase = InterfaceManager.opBases[index];
                     hasSwapped = false;
-                    opBases[index] = opBases[index + 1];
-                    opBases[index + 1] = tempOpBase;
-                    @Pc(61) JString tempOp = ops[index];
-                    ops[index] = ops[index + 1];
-                    ops[index + 1] = tempOp;
-                    @Pc(79) int tempArg1 = intArgs1[index];
-                    intArgs1[index] = intArgs1[index + 1];
-                    intArgs1[index + 1] = tempArg1;
-                    @Pc(97) int tempArg2 = intArgs2[index];
-                    intArgs2[index] = intArgs2[index + 1];
-                    intArgs2[index + 1] = tempArg2;
-                    @Pc(115) int tempCursor = cursors[index];
-                    cursors[index] = cursors[index + 1];
-                    cursors[index + 1] = tempCursor;
-                    @Pc(133) short tempAction = actions[index];
-                    actions[index] = actions[index + 1];
-                    actions[index + 1] = tempAction;
-                    @Pc(151) long tempKey = keys[index];
-                    keys[index] = keys[index + 1];
-                    keys[index + 1] = tempKey;
+                    InterfaceManager.opBases[index] = InterfaceManager.opBases[index + 1];
+                    InterfaceManager.opBases[index + 1] = tempOpBase;
+                    @Pc(61) JString tempOp = InterfaceManager.ops[index];
+                    InterfaceManager.ops[index] = InterfaceManager.ops[index + 1];
+                    InterfaceManager.ops[index + 1] = tempOp;
+                    @Pc(79) int tempArg1 = InterfaceManager.intArgs1[index];
+                    InterfaceManager.intArgs1[index] = InterfaceManager.intArgs1[index + 1];
+                    InterfaceManager.intArgs1[index + 1] = tempArg1;
+                    @Pc(97) int tempArg2 = InterfaceManager.intArgs2[index];
+                    InterfaceManager.intArgs2[index] = InterfaceManager.intArgs2[index + 1];
+                    InterfaceManager.intArgs2[index + 1] = tempArg2;
+                    @Pc(115) int tempCursor = InterfaceManager.cursors[index];
+                    InterfaceManager.cursors[index] = InterfaceManager.cursors[index + 1];
+                    InterfaceManager.cursors[index + 1] = tempCursor;
+                    @Pc(133) short tempAction = InterfaceManager.actions[index];
+                    InterfaceManager.actions[index] = InterfaceManager.actions[index + 1];
+                    InterfaceManager.actions[index + 1] = tempAction;
+                    @Pc(151) long tempKey = InterfaceManager.keys[index];
+                    InterfaceManager.keys[index] = InterfaceManager.keys[index + 1];
+                    InterfaceManager.keys[index + 1] = tempKey;
                 }
             }
         }
@@ -647,7 +414,7 @@ public class MiniMenu {
 
     @OriginalMember(owner = "client!dm", name = "a", descriptor = "(Lclient!be;III)V")
     public static void drawMenuText(@OriginalArg(0) Component component, @OriginalArg(2) int y, @OriginalArg(3) int x) {
-        if (menuActionRow < 2 && anInt5014 == 0 && !useWithActive) {
+        if (menuActionRow < 2 && InterfaceManager.anInt5014 == 0 && !InterfaceManager.targetMode) {
             return;
         }
         @Pc(24) JString actionText = getActionText();
@@ -660,36 +427,13 @@ public class MiniMenu {
         if (font == null) {
             font = Fonts.b12Full;
         }
-        font.method2878(actionText, x, y, component.width, component.height, component.color, component.shadowColor, component.halign, component.valign, Client.aRandom1, gregorianDateSeed, textBounds);
+        font.method2878(actionText, x, y, component.width, component.height, component.color, component.graphicShadow, component.halign, component.valign, Client.aRandom1, gregorianDateSeed, textBounds);
         InterfaceManager.redrawScreen(textBounds[0], textBounds[2], textBounds[1], textBounds[3]);
-    }
-
-    @OriginalMember(owner = "runetek4.client!wk", name = "a", descriptor = "(I[Lclient!na;)[Lclient!na;")
-    public static JString[] annotateOps(@OriginalArg(1) JString[] ops) {
-        @Pc(8) JString[] annotatedOps = new JString[5];
-        for (@Pc(15) int i = 0; i < 5; i++) {
-            annotatedOps[i] = JString.concatenate(new JString[] { JString.parseInt(i), COLON_SEPARATOR});
-            if (ops != null && ops[i] != null) {
-                annotatedOps[i] = JString.concatenate(new JString[] { annotatedOps[i], ops[i] });
-            }
-        }
-        return annotatedOps;
-    }
-
-    @OriginalMember(owner = "client!aj", name = "a", descriptor = "(BILclient!be;)I")
-    public static int getOpCursor(@OriginalArg(1) int opIndex, @OriginalArg(2) Component component) {
-        if (!InterfaceManager.getServerActiveProperties(component).isButtonEnabled(opIndex) && component.onOptionClick == null) {
-            return -1;
-        } else if (component.opCursors == null || opIndex >= component.opCursors.length) {
-            return -1;
-        } else {
-            return component.opCursors[opIndex];
-        }
     }
 
     @OriginalMember(owner = "runetek4.client!wa", name = "a", descriptor = "(IZ)Lclient!na;")
     public static JString getOp(@OriginalArg(0) int index) {
-        return opBases[index].length() > 0 ? JString.concatenate(new JString[] { ops[index], LocalizedText.MINISEPARATOR, opBases[index] }) : ops[index];
+        return InterfaceManager.opBases[index].length() > 0 ? JString.concatenate(new JString[] { InterfaceManager.ops[index], LocalizedText.MINISEPARATOR, InterfaceManager.opBases[index] }) : InterfaceManager.ops[index];
     }
 
     @OriginalMember(owner = "runetek4.client!i", name = "p", descriptor = "(II)V")
@@ -697,14 +441,14 @@ public class MiniMenu {
         if (menuIndex < 0) {
             return;
         }
-        @Pc(15) int param1 = intArgs1[menuIndex]; // re-used variable. Slot, Xcoord, component id
-        @Pc(19) int param2 = intArgs2[menuIndex]; // re-used variable. Widget ID, Z coord
-        @Pc(23) int actionCode = actions[menuIndex];
+        @Pc(15) int param1 = InterfaceManager.intArgs1[menuIndex]; // re-used variable. Slot, Xcoord, component id
+        @Pc(19) int param2 = InterfaceManager.intArgs2[menuIndex]; // re-used variable. Widget ID, Z coord
+        @Pc(23) int actionCode = InterfaceManager.actions[menuIndex];
         if (actionCode >= ACTION_PRIORITY_OFFSET) {
             actionCode -= ACTION_PRIORITY_OFFSET;
         }
-        @Pc(31) long key = keys[menuIndex];
-        @Pc(36) int keyInt = (int) keys[menuIndex];
+        @Pc(31) long key = InterfaceManager.keys[menuIndex];
+        @Pc(36) int keyInt = (int) InterfaceManager.keys[menuIndex];
         @Pc(43) Player player;
         if (actionCode == PLAYER_FOLLOW_ACTION) {
             player = PlayerList.players[keyInt];
@@ -727,14 +471,14 @@ public class MiniMenu {
         }
         if (actionCode == OBJ_OBJ_ACTION) {
             Protocol.outboundBuffer.pIsaac1(ClientProt.OPOBJ_ON_OBJ);
-            Protocol.outboundBuffer.p2(anInt4370);
+            Protocol.outboundBuffer.p2(InterfaceManager.anInt4370);
             Protocol.outboundBuffer.p4_alt1(param2);
             Protocol.outboundBuffer.p2_alt1(param1);
             Protocol.outboundBuffer.p4_alt1(MiniMap.anInt5062);
             Protocol.outboundBuffer.p2_alt3(anInt4997);
             Protocol.outboundBuffer.p2_alt3(keyInt);
             inventoryPressTimer = 0;
-            pressedInventoryComponent = InterfaceManager.getComponent(param2);
+            pressedInventoryComponent = InterfaceList.list(param2);
             anInt5444 = param1;
         }
         @Pc(192) Npc npc;
@@ -780,7 +524,7 @@ public class MiniMenu {
             Protocol.outboundBuffer.p2_alt2(param1);
             Protocol.outboundBuffer.p4_alt3(param2);
             inventoryPressTimer = 0;
-            pressedInventoryComponent = InterfaceManager.getComponent(param2);
+            pressedInventoryComponent = InterfaceList.list(param2);
             anInt5444 = param1;
         }
         if (actionCode == LOC_ACTION_1) {
@@ -846,7 +590,7 @@ public class MiniMenu {
         }
         @Pc(693) Component component;
         if (actionCode == OBJ_EXAMINE_IN_COMPONENT) {
-            component = InterfaceManager.getComponent(param2);
+            component = InterfaceList.list(param2);
             if (component == null || component.invSlotObjCount[param1] < 100000) {
                 Protocol.outboundBuffer.pIsaac1(ClientProt.OPOBJ_EXAMINE);
                 Protocol.outboundBuffer.p2_alt3(keyInt);
@@ -854,7 +598,7 @@ public class MiniMenu {
                 ChatHistory.addMessage(JString.EMPTY, 0, JString.concatenate(new JString[] { JString.parseInt(component.invSlotObjCount[param1]), MULTIPLY_SYMBOL, ObjTypeList.get(keyInt).name}));
             }
             inventoryPressTimer = 0;
-            pressedInventoryComponent = InterfaceManager.getComponent(param2);
+            pressedInventoryComponent = InterfaceList.list(param2);
             anInt5444 = param1;
         }
         if (actionCode == WALK_HERE) {
@@ -901,7 +645,7 @@ public class MiniMenu {
             Protocol.outboundBuffer.p2_alt2(keyInt);
             Protocol.outboundBuffer.p4_alt1(param2);
             inventoryPressTimer = 0;
-            pressedInventoryComponent = InterfaceManager.getComponent(param2);
+            pressedInventoryComponent = InterfaceList.list(param2);
             anInt5444 = param1;
         }
         if (actionCode == COMPONENT_OBJ_ACTION) {
@@ -912,7 +656,7 @@ public class MiniMenu {
             Protocol.outboundBuffer.p2_alt2(keyInt);
             Protocol.outboundBuffer.p2_alt1(useWithSlot);
             inventoryPressTimer = 0;
-            pressedInventoryComponent = InterfaceManager.getComponent(param2);
+            pressedInventoryComponent = InterfaceList.list(param2);
             anInt5444 = param1;
         }
         if (actionCode == PLAYER_ACTION_3) {
@@ -929,7 +673,7 @@ public class MiniMenu {
         }
         if (actionCode == UNKNOWN_41 && ClientScriptRunner.modalBackgroundComponent == null) {
             sendComponentContinue(param1, param2);
-            ClientScriptRunner.modalBackgroundComponent = InterfaceManager.getCreatedComponent(param2, param1);
+            ClientScriptRunner.modalBackgroundComponent = InterfaceList.getComponent(param2, param1);
             InterfaceManager.redraw(ClientScriptRunner.modalBackgroundComponent);
         }
         if (actionCode == LOC_ACTION_3) {
@@ -945,7 +689,7 @@ public class MiniMenu {
             Protocol.outboundBuffer.p2_alt1(param1);
             Protocol.outboundBuffer.p4_alt1(param2);
             inventoryPressTimer = 0;
-            pressedInventoryComponent = InterfaceManager.getComponent(param2);
+            pressedInventoryComponent = InterfaceList.list(param2);
             anInt5444 = param1;
         }
         if (actionCode == OBJ_LOC_ACTION && PathFinder.findPathToLoc(key, param2, param1)) {
@@ -953,7 +697,7 @@ public class MiniMenu {
             Protocol.outboundBuffer.p2_alt2(Camera.sceneBaseTileX + param1);
             Protocol.outboundBuffer.p2(anInt4997);
             Protocol.outboundBuffer.p2_alt1(param2 + Camera.sceneBaseTileZ);
-            Protocol.outboundBuffer.p2(anInt4370);
+            Protocol.outboundBuffer.p2(InterfaceManager.anInt4370);
             Protocol.outboundBuffer.p4_alt3(MiniMap.anInt5062);
             Protocol.outboundBuffer.p2_alt2((int) (key >>> 32) & Integer.MAX_VALUE);
         }
@@ -970,7 +714,7 @@ public class MiniMenu {
             }
         }
         if (actionCode == UNKNOWN_9 || actionCode == UNKNOWN_1003) {
-            ClientProt.method4512(opBases[menuIndex], param1, keyInt, param2);
+            InterfaceManager.ifButtonXSend(InterfaceManager.opBases[menuIndex], param1, keyInt, param2);
         }
         if (actionCode == OBJ_EQUIP_ACTION) {
             Protocol.outboundBuffer.pIsaac1(ClientProt.OPOBJ_EQUIP);
@@ -978,7 +722,7 @@ public class MiniMenu {
             Protocol.outboundBuffer.p2_alt2(param1);
             Protocol.outboundBuffer.p4rme(param2);
             inventoryPressTimer = 0;
-            pressedInventoryComponent = InterfaceManager.getComponent(param2);
+            pressedInventoryComponent = InterfaceList.list(param2);
             anInt5444 = param1;
         }
         if (actionCode == OBJ_ACTION_2) {
@@ -1012,20 +756,20 @@ public class MiniMenu {
             }
         }
         if (actionCode == PLAYER_ACTION_4) {
-            component = InterfaceManager.getCreatedComponent(param2, param1);
+            component = InterfaceList.getComponent(param2, param1);
             if (component != null) {
-                handleUseWith();
+                InterfaceManager.endTargetMode();
                 @Pc(1493) ServerActiveProperties local1493 = InterfaceManager.getServerActiveProperties(component);
-                startUseWith(param2, param1, local1493.getTargetMask(), local1493.targetParam, component.anInt499, component.anInt484);
-                anInt5014 = 0;
-                aClass100_545 = MiniMap.getTargetVerb(component);
-                if (aClass100_545 == null) {
-                    aClass100_545 = NULL_TEXT;
+                startUseWith(param2, param1, local1493.getTargetMask(), local1493.targetParam, component.targetEnterCursor, component.targetEndCursor);
+                InterfaceManager.anInt5014 = 0;
+                InterfaceManager.aClass100_545 = MiniMap.getTargetVerb(component);
+                if (InterfaceManager.aClass100_545 == null) {
+                    InterfaceManager.aClass100_545 = NULL_TEXT;
                 }
-                if (component.if3) {
-                    aClass100_466 = JString.concatenate(new JString[] { component.optionBase, COLOR_WHITE2});
+                if (component.hasOpKey) {
+                    InterfaceManager.aClass100_466 = JString.concatenate(new JString[] { component.opBase, COLOR_WHITE2});
                 } else {
-                    aClass100_466 = JString.concatenate(new JString[] {COLOR_LIMEGREEN, component.optionSuffix, COLOR_WHITE2});
+                    InterfaceManager.aClass100_466 = JString.concatenate(new JString[] {InterfaceManager.COLOR_LIMEGREEN, component.optionSuffix, COLOR_WHITE2});
                 }
             }
             return;
@@ -1048,7 +792,7 @@ public class MiniMenu {
             Protocol.outboundBuffer.p2_alt3(keyInt);
             Protocol.outboundBuffer.p2_alt3(param1);
             inventoryPressTimer = 0;
-            pressedInventoryComponent = InterfaceManager.getComponent(param2);
+            pressedInventoryComponent = InterfaceList.list(param2);
             anInt5444 = param1;
         }
         if (actionCode == COMPONENT_PLAYER_ACTION) {
@@ -1089,7 +833,7 @@ public class MiniMenu {
             Protocol.outboundBuffer.p2(keyInt);
             Protocol.outboundBuffer.p4rme(param2);
             inventoryPressTimer = 0;
-            pressedInventoryComponent = InterfaceManager.getComponent(param2);
+            pressedInventoryComponent = InterfaceList.list(param2);
             anInt5444 = param1;
         }
         if (actionCode == NPC_ACTION_5) {
@@ -1108,7 +852,7 @@ public class MiniMenu {
         if (actionCode == LOGOUT_ACTION) {
             Protocol.outboundBuffer.pIsaac1(ClientProt.LOGOUT);
             Protocol.outboundBuffer.p4(param2);
-            component = InterfaceManager.getComponent(param2);
+            component = InterfaceList.list(param2);
             if (component.scripts != null && component.scripts[0][0] == 5) {
                 varpId = component.scripts[0][1];
                 if (VarpDomain.activeVarps[varpId] != component.scriptOperand[0]) {
@@ -1127,7 +871,7 @@ public class MiniMenu {
                 Crosshair.x = Mouse.mouseClickX;
                 Protocol.outboundBuffer.pIsaac1(ClientProt.RESUME_PAUSEBUTTON);
                 Protocol.outboundBuffer.p4_alt3(MiniMap.anInt5062);
-                Protocol.outboundBuffer.p2_alt1(anInt4370);
+                Protocol.outboundBuffer.p2_alt1(InterfaceManager.anInt4370);
                 Protocol.outboundBuffer.p2_alt1(keyInt);
                 Protocol.outboundBuffer.p2_alt3(anInt4997);
             }
@@ -1135,7 +879,7 @@ public class MiniMenu {
         if (actionCode == LOGOUT_ACTION_2) {
             Protocol.outboundBuffer.pIsaac1(ClientProt.LOGOUT);
             Protocol.outboundBuffer.p4(param2);
-            component = InterfaceManager.getComponent(param2);
+            component = InterfaceList.list(param2);
             if (component.scripts != null && component.scripts[0][0] == 5) {
                 varpId = component.scripts[0][1];
                 VarpDomain.activeVarps[varpId] = 1 - VarpDomain.activeVarps[varpId];
@@ -1153,7 +897,7 @@ public class MiniMenu {
             Crosshair.CrosshairMode = 2;
             Protocol.outboundBuffer.pIsaac1(ClientProt.OPOBJSTACK4);
             Protocol.outboundBuffer.p2_alt3(param1 + Camera.sceneBaseTileX);
-            Protocol.outboundBuffer.p2_alt1(anInt4370);
+            Protocol.outboundBuffer.p2_alt1(InterfaceManager.anInt4370);
             Protocol.outboundBuffer.p2_alt1(anInt4997);
             Protocol.outboundBuffer.p2_alt1(keyInt);
             Protocol.outboundBuffer.p2_alt3(Camera.sceneBaseTileZ + param2);
@@ -1180,7 +924,7 @@ public class MiniMenu {
             }
         }
         if (actionCode == LOGOUT_3) {
-            component = InterfaceManager.getComponent(param2);
+            component = InterfaceList.list(param2);
             @Pc(2287) boolean shouldProcess = true;
             if (component.clientcode > 0) {
                 shouldProcess = shouldTriggerIdleTimeout(component);
@@ -1201,7 +945,7 @@ public class MiniMenu {
                 Protocol.outboundBuffer.pIsaac1(ClientProt.TELEPORT);
                 Protocol.outboundBuffer.p2_alt3(keyInt);
                 Protocol.outboundBuffer.p2(anInt4997);
-                Protocol.outboundBuffer.p2(anInt4370);
+                Protocol.outboundBuffer.p2(InterfaceManager.anInt4370);
                 Protocol.outboundBuffer.p4_alt3(MiniMap.anInt5062);
             }
         }
@@ -1211,7 +955,7 @@ public class MiniMenu {
             Protocol.outboundBuffer.p2(param1);
             Protocol.outboundBuffer.p2_alt2(keyInt);
             inventoryPressTimer = 0;
-            pressedInventoryComponent = InterfaceManager.getComponent(param2);
+            pressedInventoryComponent = InterfaceList.list(param2);
             anInt5444 = param1;
         }
         if (actionCode == UNKNOWN_24) {
@@ -1246,7 +990,7 @@ public class MiniMenu {
             Protocol.outboundBuffer.p2_alt2(param1);
             Protocol.outboundBuffer.p2_alt1(keyInt);
             inventoryPressTimer = 0;
-            pressedInventoryComponent = InterfaceManager.getComponent(param2);
+            pressedInventoryComponent = InterfaceList.list(param2);
             anInt5444 = param1;
         }
         if (actionCode == PLAYER_ACTION_5) {
@@ -1262,16 +1006,16 @@ public class MiniMenu {
             }
         }
         if (actionCode == UNKNOWN_22) {
-            handleUseWith();
-            component = InterfaceManager.getComponent(param2);
+            InterfaceManager.endTargetMode();
+            component = InterfaceList.list(param2);
             MiniMap.anInt5062 = param2;
-            anInt4370 = param1;
-            anInt5014 = 1;
+            InterfaceManager.anInt4370 = param1;
+            InterfaceManager.anInt5014 = 1;
             anInt4997 = keyInt;
             InterfaceManager.redraw(component);
-            aClass100_203 = JString.concatenate(new JString[] {COLOR_LIGHT_ORANGE, ObjTypeList.get(keyInt).name, COLOR_WHITE2});
-            if (aClass100_203 == null) {
-                aClass100_203 = NULL;
+            InterfaceManager.aClass100_203 = JString.concatenate(new JString[] {InterfaceManager.COLOR_LIGHT_ORANGE, ObjTypeList.get(keyInt).name, COLOR_WHITE2});
+            if (InterfaceManager.aClass100_203 == null) {
+                InterfaceManager.aClass100_203 = NULL;
             }
             return;
         }
@@ -1288,7 +1032,7 @@ public class MiniMenu {
             Protocol.outboundBuffer.p4rme(param2);
             Protocol.outboundBuffer.p2_alt3(keyInt);
             inventoryPressTimer = 0;
-            pressedInventoryComponent = InterfaceManager.getComponent(param2);
+            pressedInventoryComponent = InterfaceList.list(param2);
             anInt5444 = param1;
         }
         if (actionCode == PLAYER_ACTION_1) {
@@ -1309,7 +1053,7 @@ public class MiniMenu {
             Protocol.outboundBuffer.p2_alt1(param1);
             Protocol.outboundBuffer.p2_alt1(keyInt);
             inventoryPressTimer = 0;
-            pressedInventoryComponent = InterfaceManager.getComponent(param2);
+            pressedInventoryComponent = InterfaceList.list(param2);
             anInt5444 = param1;
         }
         if (actionCode == COMPONENT_OBJSTACK_ACTION) {
@@ -1389,12 +1133,12 @@ public class MiniMenu {
                 Protocol.outboundBuffer.p2_alt3(keyInt);
             }
         }
-        if (anInt5014 != 0) {
-            anInt5014 = 0;
-            InterfaceManager.redraw(InterfaceManager.getComponent(MiniMap.anInt5062));
+        if (InterfaceManager.anInt5014 != 0) {
+            InterfaceManager.anInt5014 = 0;
+            InterfaceManager.redraw(InterfaceList.list(MiniMap.anInt5062));
         }
-        if (useWithActive) {
-            handleUseWith();
+        if (InterfaceManager.targetMode) {
+            InterfaceManager.endTargetMode();
         }
         if (pressedInventoryComponent != null && inventoryPressTimer == 0) {
             InterfaceManager.redraw(pressedInventoryComponent);
@@ -1413,7 +1157,7 @@ public class MiniMenu {
         } else if (diff < 0) {
             return COLOR_AMBER;
         } else if (diff > 9) {
-            return COLOR_LIMEGREEN;
+            return InterfaceManager.COLOR_LIMEGREEN;
         } else if (diff > 6) {
             return COLOR_BRIGHT_LIMEGREEN;
         } else if (diff <= 3) {
@@ -1427,19 +1171,19 @@ public class MiniMenu {
     public static void populateMenuEntries(@OriginalArg(0) int startY, @OriginalArg(1) int width, @OriginalArg(2) int height, @OriginalArg(3) int startX, @OriginalArg(4) int endY, @OriginalArg(5) int endX) {
         @Pc(15) int screenMaxY;
         @Pc(47) int worldY;
-        if (anInt5014 == 0) {
+        if (InterfaceManager.anInt5014 == 0) {
             @Pc(13) int screenMinY = Rasterizer.screenUpperY;
             screenMaxY = Rasterizer.screenLowerY;
             @Pc(17) int screenMinX = Rasterizer.screenUpperX;
             @Pc(19) int screenMaxX = Rasterizer.screenLowerX;
             @Pc(33) int worldX = (endX - startX) * (screenMinX - screenMaxX) / width + screenMaxX;
             worldY = screenMaxY + (screenMinY - screenMaxY) * (endY - startY) / height;
-            if (useWithActive && (useWithMask & TARGET_MASK_TILE) != 0) {
-                @Pc(61) Component component = InterfaceManager.getCreatedComponent(useWithComponentId, useWithSlot);
+            if (InterfaceManager.targetMode && (InterfaceManager.useWithMask & TARGET_MASK_TILE) != 0) {
+                @Pc(61) Component component = InterfaceList.getComponent(useWithComponentId, useWithSlot);
                 if (component == null) {
-                    handleUseWith();
+                    InterfaceManager.endTargetMode();
                 } else {
-                    addActionRow(useWithCursor, 0L, aClass100_961, worldX, (short) 11, aClass100_545, worldY);
+                    addActionRow(InterfaceManager.useWithCursor, 0L, aClass100_961, worldX, (short) 11, InterfaceManager.aClass100_545, worldY);
                 }
             } else {
                 if (Client.game == 1) {
@@ -1466,17 +1210,17 @@ public class MiniMenu {
                     if (locType == null) {
                         continue;
                     }
-                    if (anInt5014 == 1) {
-                        addActionRow(MiniMap.anInt4075, key, JString.concatenate(new JString[] {aClass100_203, CYAN_ARROW, locType.name}), worldY, (short) 14, LocalizedText.USE, localZ);
-                    } else if (useWithActive) {
-                        @Pc(363) ParamType paramType = useWithParam == -1 ? null : ParamTypeList.get(useWithParam);
-                        if ((useWithMask & TARGET_MASK_LOC) != 0 && (paramType == null || locType.getParam(paramType.defaultInt, useWithParam) != paramType.defaultInt)) {
-                            addActionRow(useWithCursor, key, JString.concatenate(new JString[] {aClass100_466, CYAN_ARROW, locType.name}), worldY, (short) 38, aClass100_545, localZ);
+                    if (InterfaceManager.anInt5014 == 1) {
+                        addActionRow(MiniMap.anInt4075, key, JString.concatenate(new JString[] {InterfaceManager.aClass100_203, CYAN_ARROW, locType.name}), worldY, (short) 14, LocalizedText.USE, localZ);
+                    } else if (InterfaceManager.targetMode) {
+                        @Pc(363) ParamType paramType = InterfaceManager.useWithParam == -1 ? null : ParamTypeList.get(InterfaceManager.useWithParam);
+                        if ((InterfaceManager.useWithMask & TARGET_MASK_LOC) != 0 && (paramType == null || locType.getParam(paramType.defaultInt, InterfaceManager.useWithParam) != paramType.defaultInt)) {
+                            addActionRow(InterfaceManager.useWithCursor, key, JString.concatenate(new JString[] {InterfaceManager.aClass100_466, CYAN_ARROW, locType.name}), worldY, (short) 38, InterfaceManager.aClass100_545, localZ);
                         }
                     } else {
                         @Pc(228) JString[] locOps = locType.op;
-                        if (aBoolean237) {
-                            locOps = annotateOps(locOps);
+                        if (InterfaceManager.aBoolean237) {
+                            locOps = InterfaceManager.annotateOps(locOps);
                         }
                         if (locOps != null) {
                             for (opIndex = 4; opIndex >= 0; opIndex--) {
@@ -1571,17 +1315,17 @@ public class MiniMenu {
                         for (@Pc(940) ClientObj objNode = (ClientObj) objStack.last(); objNode != null; objNode = (ClientObj) objStack.prev()) {
                             opIndex = objNode.value.id;
                             @Pc(951) ObjType objType = ObjTypeList.get(opIndex);
-                            if (anInt5014 == 1) {
-                                addActionRow(MiniMap.anInt4075, (long) opIndex, JString.concatenate(new JString[] {aClass100_203, COLOR_LIGHT_ORANGE_ARROW, objType.name}), worldY, (short) 33, LocalizedText.USE, localZ);
-                            } else if (useWithActive) {
-                                @Pc(1142) ParamType paramType = useWithParam == -1 ? null : ParamTypeList.get(useWithParam);
-                                if ((useWithMask & TARGET_MASK_OBJSTACK) != 0 && (paramType == null || objType.getParam(paramType.defaultInt, useWithParam) != paramType.defaultInt)) {
-                                    addActionRow(useWithCursor, (long) opIndex, JString.concatenate(new JString[] {aClass100_466, COLOR_LIGHT_ORANGE_ARROW, objType.name}), worldY, (short) 39, aClass100_545, localZ);
+                            if (InterfaceManager.anInt5014 == 1) {
+                                addActionRow(MiniMap.anInt4075, (long) opIndex, JString.concatenate(new JString[] {InterfaceManager.aClass100_203, InterfaceManager.COLOR_LIGHT_ORANGE_ARROW, objType.name}), worldY, (short) 33, LocalizedText.USE, localZ);
+                            } else if (InterfaceManager.targetMode) {
+                                @Pc(1142) ParamType paramType = InterfaceManager.useWithParam == -1 ? null : ParamTypeList.get(InterfaceManager.useWithParam);
+                                if ((InterfaceManager.useWithMask & TARGET_MASK_OBJSTACK) != 0 && (paramType == null || objType.getParam(paramType.defaultInt, InterfaceManager.useWithParam) != paramType.defaultInt)) {
+                                    addActionRow(InterfaceManager.useWithCursor, (long) opIndex, JString.concatenate(new JString[] {InterfaceManager.aClass100_466, InterfaceManager.COLOR_LIGHT_ORANGE_ARROW, objType.name}), worldY, (short) 39, InterfaceManager.aClass100_545, localZ);
                                 }
                             } else {
                                 @Pc(997) JString[] objOps = objType.op;
-                                if (aBoolean237) {
-                                    objOps = annotateOps(objOps);
+                                if (InterfaceManager.aBoolean237) {
+                                    objOps = InterfaceManager.annotateOps(objOps);
                                 }
                                 for (otherEntityX = 4; otherEntityX >= 0; otherEntityX--) {
                                     if (objOps != null && objOps[otherEntityX] != null) {
@@ -1608,10 +1352,10 @@ public class MiniMenu {
                                         if (otherEntityX == 4) {
                                             actionId = 24;
                                         }
-                                        addActionRow(cursor, (long) opIndex, JString.concatenate(new JString[] {COLOR_LIGHT_ORANGE, objType.name}), worldY, actionId, objOps[otherEntityX], localZ);
+                                        addActionRow(cursor, (long) opIndex, JString.concatenate(new JString[] {InterfaceManager.COLOR_LIGHT_ORANGE, objType.name}), worldY, actionId, objOps[otherEntityX], localZ);
                                     }
                                 }
-                                addActionRow(MiniMap.anInt5073, (long) opIndex, JString.concatenate(new JString[] {COLOR_LIGHT_ORANGE, objType.name}), worldY, (short) 1002, LocalizedText.EXAMINE, localZ);
+                                addActionRow(MiniMap.anInt5073, (long) opIndex, JString.concatenate(new JString[] {InterfaceManager.COLOR_LIGHT_ORANGE, objType.name}), worldY, (short) 1002, LocalizedText.EXAMINE, localZ);
                             }
                         }
                     }
@@ -1628,7 +1372,7 @@ public class MiniMenu {
         if (npc.multinpc != null) {
             npc = npc.getMultiNPC();
         }
-        if (npc == null || !npc.active) {
+        if (npc == null || !npc.interactive) {
             return;
         }
         @Pc(35) JString tooltip = npc.name;
@@ -1636,17 +1380,17 @@ public class MiniMenu {
             @Pc(47) JString levelText = Client.game == 1 ? LocalizedText.RATING : LocalizedText.LEVEL;
             tooltip = JString.concatenate(new JString[] { tooltip, getCombatLevelColorTag(npc.vislevel, PlayerList.self.combatLevel), OPEN_PARENTHESIS, levelText, JString.parseInt(npc.vislevel), CLOSE_PARENTHESIS});
         }
-        if (anInt5014 == 1) {
-            addActionRow(MiniMap.anInt4075, (long) npcId, JString.concatenate(new JString[] {aClass100_203, YELLOW_ARROW, tooltip }), localX, (short) 26, LocalizedText.USE, localZ);
-        } else if (useWithActive) {
-            @Pc(378) ParamType paramType = useWithParam == -1 ? null : ParamTypeList.get(useWithParam);
-            if ((useWithMask & TARGET_MASK_NPC) != 0 && (paramType == null || npc.getParam(useWithParam, paramType.defaultInt) != paramType.defaultInt)) {
-                addActionRow(useWithCursor, (long) npcId, JString.concatenate(new JString[] {aClass100_466, YELLOW_ARROW, tooltip }), localX, (short) 45, aClass100_545, localZ);
+        if (InterfaceManager.anInt5014 == 1) {
+            addActionRow(MiniMap.anInt4075, (long) npcId, JString.concatenate(new JString[] {InterfaceManager.aClass100_203, YELLOW_ARROW, tooltip }), localX, (short) 26, LocalizedText.USE, localZ);
+        } else if (InterfaceManager.targetMode) {
+            @Pc(378) ParamType paramType = InterfaceManager.useWithParam == -1 ? null : ParamTypeList.get(InterfaceManager.useWithParam);
+            if ((InterfaceManager.useWithMask & TARGET_MASK_NPC) != 0 && (paramType == null || npc.getParam(InterfaceManager.useWithParam, paramType.defaultInt) != paramType.defaultInt)) {
+                addActionRow(InterfaceManager.useWithCursor, (long) npcId, JString.concatenate(new JString[] {InterfaceManager.aClass100_466, YELLOW_ARROW, tooltip }), localX, (short) 45, InterfaceManager.aClass100_545, localZ);
             }
         } else {
             @Pc(129) JString[] npcOps = npc.op;
-            if (aBoolean237) {
-                npcOps = annotateOps(npcOps);
+            if (InterfaceManager.aBoolean237) {
+                npcOps = InterfaceManager.annotateOps(npcOps);
             }
             @Pc(140) int opIndex;
             if (npcOps != null) {
@@ -1743,9 +1487,9 @@ public class MiniMenu {
             tooltip = JString.concatenate(new JString[] { other.getUsername(), OPEN_PARENTHESIS, LocalizedText.SKILL, JString.parseInt(other.skill), CLOSE_PARENTHESIS});
         }
         @Pc(275) int playerOptionIndex;
-        if (anInt5014 == 1) {
-            addActionRow(MiniMap.anInt4075, (long) playerId, JString.concatenate(new JString[] {aClass100_203, WHITE_ARROW, tooltip }), localX, (short) 1, LocalizedText.USE, localZ);
-        } else if (!useWithActive) {
+        if (InterfaceManager.anInt5014 == 1) {
+            addActionRow(MiniMap.anInt4075, (long) playerId, JString.concatenate(new JString[] {InterfaceManager.aClass100_203, WHITE_ARROW, tooltip }), localX, (short) 1, LocalizedText.USE, localZ);
+        } else if (!InterfaceManager.targetMode) {
             for (playerOptionIndex = 7; playerOptionIndex >= 0; playerOptionIndex--) {
                 if (Player.options[playerOptionIndex] != null) {
                     @Pc(291) short priorityModifier = 0;
@@ -1768,12 +1512,12 @@ public class MiniMenu {
                     addActionRow(Player.cursors[playerOptionIndex], (long) playerId, JString.concatenate(new JString[] {COLOR_WHITE2, tooltip }), localX, finalActionId, Player.options[playerOptionIndex], localZ);
                 }
             }
-        } else if ((useWithMask & TARGET_MASK_PLAYER) != 0) {
-            addActionRow(useWithCursor, (long) playerId, JString.concatenate(new JString[] {aClass100_466, WHITE_ARROW, tooltip }), localX, (short) 15, aClass100_545, localZ);
+        } else if ((InterfaceManager.useWithMask & TARGET_MASK_PLAYER) != 0) {
+            addActionRow(InterfaceManager.useWithCursor, (long) playerId, JString.concatenate(new JString[] {InterfaceManager.aClass100_466, WHITE_ARROW, tooltip }), localX, (short) 15, InterfaceManager.aClass100_545, localZ);
         }
         for (playerOptionIndex = 0; playerOptionIndex < menuActionRow; playerOptionIndex++) {
-            if (actions[playerOptionIndex] == 60) {
-                opBases[playerOptionIndex] = JString.concatenate(new JString[] {COLOR_WHITE2, tooltip });
+            if (InterfaceManager.actions[playerOptionIndex] == 60) {
+                InterfaceManager.opBases[playerOptionIndex] = JString.concatenate(new JString[] {COLOR_WHITE2, tooltip });
                 break;
             }
         }
@@ -1782,10 +1526,10 @@ public class MiniMenu {
     @OriginalMember(owner = "client!bc", name = "f", descriptor = "(B)Lclient!na;")
     public static JString getActionText() {
         @Pc(32) JString actionText;
-        if (anInt5014 == 1 && menuActionRow < 2) {
-            actionText = JString.concatenate(new JString[] { LocalizedText.USE, LocalizedText.MINISEPARATOR, aClass100_203, aClass100_961});
-        } else if (useWithActive && menuActionRow < 2) {
-            actionText = JString.concatenate(new JString[] {aClass100_545, LocalizedText.MINISEPARATOR, aClass100_466, aClass100_961});
+        if (InterfaceManager.anInt5014 == 1 && menuActionRow < 2) {
+            actionText = JString.concatenate(new JString[] { LocalizedText.USE, LocalizedText.MINISEPARATOR, InterfaceManager.aClass100_203, aClass100_961});
+        } else if (InterfaceManager.targetMode && menuActionRow < 2) {
+            actionText = JString.concatenate(new JString[] {InterfaceManager.aClass100_545, LocalizedText.MINISEPARATOR, InterfaceManager.aClass100_466, aClass100_961});
         } else if (Cheat.shiftClick && Keyboard.pressedKeys[81] && menuActionRow > 2) {
             actionText = getOp(menuActionRow - 2);
         } else {
@@ -1812,7 +1556,7 @@ public class MiniMenu {
         if (menuIndex < 0) {
             return false;
         }
-        @Pc(12) int actionCode = actions[menuIndex];
+        @Pc(12) int actionCode = InterfaceManager.actions[menuIndex];
         if (actionCode >= 2000) {
             actionCode -= 2000;
         }
@@ -1821,20 +1565,20 @@ public class MiniMenu {
 
     @OriginalMember(owner = "runetek4.client!ub", name = "b", descriptor = "(IIIIIII)V")
     public static void startUseWith(@OriginalArg(0) int componentId, @OriginalArg(1) int slot, @OriginalArg(2) int targetMask, @OriginalArg(3) int param, @OriginalArg(4) int cursor, @OriginalArg(6) int defaultCursorValue) {
-        @Pc(8) Component component = InterfaceManager.getCreatedComponent(componentId, slot);
-        if (component != null && component.onUse != null) {
-            @Pc(19) ComponentEvent event = new ComponentEvent();
+        @Pc(8) Component component = InterfaceList.getComponent(componentId, slot);
+        if (component != null && component.onTargetEnter != null) {
+            @Pc(19) HookRequest event = new HookRequest();
             event.source = component;
-            event.arguments = component.onUse;
-            ClientScriptRunner.run(event);
+            event.arguments = component.onTargetEnter;
+            ClientScriptRunner.executeScript(event);
         }
         useWithSlot = slot;
-        useWithParam = param;
+        InterfaceManager.useWithParam = param;
         useWithComponentId = componentId;
-        useWithMask = targetMask;
-        useWithActive = true;
-        useWithCursor = cursor;
-        defaultCursor = defaultCursorValue;
+        InterfaceManager.useWithMask = targetMask;
+        InterfaceManager.targetMode = true;
+        InterfaceManager.useWithCursor = cursor;
+        InterfaceManager.defaultCursor = defaultCursorValue;
         InterfaceManager.redraw(component);
     }
 
@@ -1872,6 +1616,21 @@ public class MiniMenu {
 
     @OriginalMember(owner = "runetek4.client!tb", name = "h", descriptor = "(I)I")
     public static int getShiftClickOption() {
-        return Cheat.shiftClick && Keyboard.pressedKeys[81] && menuActionRow > 2 ? cursors[menuActionRow - 2] : cursors[menuActionRow - 1];
+        return Cheat.shiftClick && Keyboard.pressedKeys[81] && menuActionRow > 2 ? InterfaceManager.cursors[menuActionRow - 2] : InterfaceManager.cursors[menuActionRow - 1];
+    }
+
+    @OriginalMember(owner = "runetek4.client!hj", name = "a", descriptor = "(IJBLclient!na;ISLclient!na;I)V")
+    public static void addActionRow(@OriginalArg(0) int cursor, @OriginalArg(1) long key, @OriginalArg(3) JString opBase, @OriginalArg(4) int param1, @OriginalArg(5) short action, @OriginalArg(6) JString op, @OriginalArg(7) int param2) {
+        if (open || menuActionRow >= MENU_ACTION_BUFFER_SIZE) {
+            return;
+        }
+        InterfaceManager.ops[menuActionRow] = op;
+        InterfaceManager.opBases[menuActionRow] = opBase;
+        InterfaceManager.cursors[menuActionRow] = cursor == -1 ? InterfaceManager.defaultCursor : cursor;
+        InterfaceManager.actions[menuActionRow] = action;
+        InterfaceManager.keys[menuActionRow] = key;
+        InterfaceManager.intArgs1[menuActionRow] = param1;
+        InterfaceManager.intArgs2[menuActionRow] = param2;
+        menuActionRow++;
     }
 }

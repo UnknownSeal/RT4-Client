@@ -30,10 +30,10 @@ public final class PreciseSleep {
 				@Pc(46) int local46 = arg0.g1();
 				@Pc(50) int local50 = arg0.g1();
 				@Pc(57) int local57 = local46 * 64 - WorldMap.originX;
-				@Pc(68) int local68 = WorldMap.length + WorldMap.originZ - local50 * 64 - 1;
+				@Pc(68) int local68 = WorldMap.areaHeight + WorldMap.originZ - local50 * 64 - 1;
 				@Pc(146) byte local146;
 				@Pc(96) int local96;
-				if (local57 >= 0 && local68 - 63 >= 0 && WorldMap.width > local57 + 63 && local68 < WorldMap.length) {
+				if (local57 >= 0 && local68 - 63 >= 0 && WorldMap.areaWidth > local57 + 63 && local68 < WorldMap.areaHeight) {
 					local96 = local57 >> 6;
 					@Pc(100) int local100 = local68 >> 6;
 					@Pc(102) int local102 = 0;

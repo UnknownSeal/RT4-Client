@@ -63,7 +63,7 @@ public class WorldMap {
     public static final int randomOffsetZ = (int) (Math.random() * 17.0D) - 8;
 
     @OriginalMember(owner = "client!lf", name = "c", descriptor = "Lclient!ih;")
-    public static final LinkedList mapFunctions = new LinkedList();
+    public static final LinkedList elements = new LinkedList();
 
     @OriginalMember(owner = "client!he", name = "db", descriptor = "Lclient!na;")
     public static final JString EMPTY_STRING = JString.parse("");
@@ -90,16 +90,16 @@ public class WorldMap {
     public static int mapFunctionCount;
 
     @OriginalMember(owner = "client!oi", name = "m", descriptor = "I")
-    public static int length;
+    public static int areaHeight;
 
     @OriginalMember(owner = "client!bn", name = "N", descriptor = "Lclient!be;")
     public static Component component;
 
     @OriginalMember(owner = "client!bc", name = "W", descriptor = "I")
-    public static int anInt435;
+    public static int displayX;
 
     @OriginalMember(owner = "client!cd", name = "u", descriptor = "I")
-    public static int anInt919;
+    public static int displayZ;
 
     @OriginalMember(owner = "client!mh", name = "S", descriptor = "I")
     public static int originX;
@@ -108,7 +108,7 @@ public class WorldMap {
     public static int originZ;
 
     @OriginalMember(owner = "client!wa", name = "ub", descriptor = "Lclient!bn;")
-    public static Map currentMap;
+    public static Map area;
 
     @OriginalMember(owner = "client!gj", name = "r", descriptor = "F")
     public static float zoom;
@@ -117,7 +117,7 @@ public class WorldMap {
     public static float targetZoom;
 
     @OriginalMember(owner = "client!dl", name = "e", descriptor = "I")
-    public static int width;
+    public static int areaWidth;
 
     @OriginalMember(owner = "client!lf", name = "b", descriptor = "[I")
     public static int[] overlayColors;
@@ -177,7 +177,7 @@ public class WorldMap {
     public static int[][][] anIntArrayArrayArray17;
 
     @OriginalMember(owner = "client!mc", name = "Q", descriptor = "Lclient!na;")
-    public static JString preservedMapGroupName;
+    public static JString lastAreaId;
 
     @OriginalMember(owner = "client!mc", name = "S", descriptor = "Lclient!mm;")
     public static SoftwareSprite aClass3_Sub2_Sub1_Sub1_2;
@@ -198,25 +198,25 @@ public class WorldMap {
     public static int[][][] scenery;
 
     @OriginalMember(owner = "client!jb", name = "a", descriptor = "(IZ)V")
-    public static void clear(@OriginalArg(1) boolean preserveMapGroup) {
+    public static void reset(@OriginalArg(1) boolean saveArea) {
         aByteArrayArrayArray8 = null;
         underlayColors = null;
         component = null;
         aByteArrayArrayArray3 = null;
         overlayColors = null;
         aByteArrayArrayArray10 = null;
-        if (preserveMapGroup && currentMap != null) {
-            preservedMapGroupName = currentMap.group;
+        if (saveArea && area != null) {
+            lastAreaId = area.id;
         } else {
-            preservedMapGroupName = null;
+            lastAreaId = null;
         }
         aByteArrayArrayArray7 = null;
         aByteArrayArrayArray12 = null;
         scenery = null;
         anIntArrayArrayArray17 = null;
         loadPercentage = 0;
-        currentMap = null;
-        mapFunctions.clear();
+        area = null;
+        elements.clear();
         labels = null;
         anInt4901 = -1;
         font22 = null;
@@ -264,12 +264,12 @@ public class WorldMap {
             return;
         }
         anInt1176 = (int) ((float) (height * 2) / zoom);
-        ClientScriptRunner.worldMapViewportX = anInt435 - (int) ((float) width / zoom);
-        @Pc(211) int leftBound = anInt435 - (int) ((float) width / zoom);
-        centerX = anInt919 - (int) ((float) height / zoom);
-        ClientScriptRunner.worldMapViewportY = anInt919 - (int) ((float) height / zoom);
-        @Pc(236) int bottomBound = anInt919 + (int) ((float) height / zoom);
-        centerY = (int) ((float) width / zoom) + anInt435;
+        ClientScriptRunner.worldMapViewportX = displayX - (int) ((float) width / zoom);
+        @Pc(211) int leftBound = displayX - (int) ((float) width / zoom);
+        centerX = displayZ - (int) ((float) height / zoom);
+        ClientScriptRunner.worldMapViewportY = displayZ - (int) ((float) height / zoom);
+        @Pc(236) int bottomBound = displayZ + (int) ((float) height / zoom);
+        centerY = (int) ((float) width / zoom) + displayX;
         anInt2387 = (int) ((float) (width * 2) / zoom);
         if (GlRenderer.enabled) {
             if (aClass3_Sub2_Sub1_Sub1_2 == null || aClass3_Sub2_Sub1_Sub1_2.width != width || aClass3_Sub2_Sub1_Sub1_2.height != height) {
@@ -297,6 +297,7 @@ public class WorldMap {
         if (!Cheat.displayFps) {
             return;
         }
+        // Render Debug menu
         @Pc(405) int debugY = y + height - 8;
         @Pc(412) int debugX = x + width - 5;
         Fonts.p12Full.renderRight(JString.concatenate(new JString[] { Cheat.DEBUG_FPS, JString.parseInt(GameShell.fps) }), debugX, debugY, 16776960, -1);
@@ -311,6 +312,7 @@ public class WorldMap {
         debugY = memoryY - 15;
     }
 
+    //TODO Move?
     @OriginalMember(owner = "client!dk", name = "a", descriptor = "(Lclient!wa;Z)V")
     public static void method3998(@OriginalArg(0) Packet arg0) {
         label87: while (true) {
@@ -325,11 +327,11 @@ public class WorldMap {
                 }
                 @Pc(46) int local46 = arg0.g1();
                 @Pc(50) int local50 = arg0.g1();
-                @Pc(62) int local62 = originZ + length - local50 * 64 - 1;
+                @Pc(62) int local62 = originZ + areaHeight - local50 * 64 - 1;
                 @Pc(69) int local69 = local46 * 64 - originX;
                 @Pc(147) byte local147;
                 @Pc(91) int local91;
-                if (local69 >= 0 && local62 - 63 >= 0 && local69 + 63 < width && local62 < length) {
+                if (local69 >= 0 && local62 - 63 >= 0 && local69 + 63 < areaWidth && local62 < areaHeight) {
                     local91 = local69 >> 6;
                     @Pc(95) int local95 = local62 >> 6;
                     @Pc(97) int local97 = 0;
@@ -376,66 +378,66 @@ public class WorldMap {
     public static void method1964(@OriginalArg(0) int arg0) {
         anInt4901 = -1;
         anInt3482 = -1;
-        anInt435 = arg0;
-        method965();
+        displayX = arg0;
+        checkJump();
     }
 
     @OriginalMember(owner = "client!wi", name = "d", descriptor = "(II)V")
     public static void method4641(@OriginalArg(1) int arg0) {
         anInt4901 = -1;
         anInt4901 = -1;
-        anInt919 = arg0;
-        method965();
+        displayZ = arg0;
+        checkJump();
     }
 
     @OriginalMember(owner = "client!je", name = "a", descriptor = "(IIIII)V")
-    public static void method2387(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
-        anInt435 = width * arg2 / arg0;
-        anInt919 = length * arg1 / arg3;
+    public static void clickedOverview(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
+        displayX = areaWidth * arg2 / arg0;
+        displayZ = areaHeight * arg1 / arg3;
         anInt3482 = -1;
         anInt4901 = -1;
-        method965();
+        checkJump();
     }
 
     @OriginalMember(owner = "client!lb", name = "d", descriptor = "(B)V")
     public static void method2720() {
-        if (preservedMapGroupName != null) {
-            method1853(preservedMapGroupName);
-            preservedMapGroupName = null;
+        if (lastAreaId != null) {
+            method1853(lastAreaId);
+            lastAreaId = null;
         }
     }
 
     @OriginalMember(owner = "client!pa", name = "d", descriptor = "(I)V")
     public static void load() {
-        if (currentMap == null) {
+        if (area == null) {
             return;
         }
         if (loadPercentage < 10) {
-            if (!MapList.archive.isGroupReady(currentMap.group)) {
-                loadPercentage = Client.js5Archive23.method4478(currentMap.group) / 10;
+            if (!MapList.archive.isGroupReady(area.id)) {
+                loadPercentage = Client.js5Archive23.method4478(area.id) / 10;
                 return;
             }
             Client.method84();
             loadPercentage = 10;
         }
         if (loadPercentage == 10) {
-            originX = currentMap.displayMinZ >> 6 << 6;
-            originZ = currentMap.displayMinX >> 6 << 6;
-            length = (currentMap.displayMaxX >> 6 << 6) + 64 - originZ;
-            width = (currentMap.displayMaxZ >> 6 << 6) + 64 - originX;
-            if (currentMap.defaultZoom == 37) {
+            originX = area.displayMinZ >> 6 << 6;
+            originZ = area.displayMinX >> 6 << 6;
+            areaHeight = (area.displayMaxX >> 6 << 6) + 64 - originZ;
+            areaWidth = (area.displayMaxZ >> 6 << 6) + 64 - originX;
+            if (area.defaultZoom == 37) {
                 zoom = 3.0F;
                 targetZoom = 3.0F;
-            } else if (currentMap.defaultZoom == 50) {
+            } else if (area.defaultZoom == 50) {
                 zoom = 4.0F;
                 targetZoom = 4.0F;
-            } else if (currentMap.defaultZoom == 75) {
+            } else if (area.defaultZoom == 75) {
                 zoom = 6.0F;
                 targetZoom = 6.0F;
-            } else if (currentMap.defaultZoom == 100) {
+            } else if (area.defaultZoom == 100) {
                 zoom = 8.0F;
                 targetZoom = 8.0F;
-            } else if (currentMap.defaultZoom == 200) {
+            } else if (area.defaultZoom == 200) {
                 zoom = 16.0F;
                 targetZoom = 16.0F;
             } else {
@@ -444,19 +446,19 @@ public class WorldMap {
             }
             @Pc(144) int local144 = (PlayerList.self.xFine >> 7) + Camera.sceneBaseTileX - originX;
             @Pc(153) int local153 = local144 + (int) (Math.random() * 10.0D) - 5;
-            @Pc(168) int local168 = originZ + length - Camera.sceneBaseTileZ - (PlayerList.self.zFine >> 7) - 1;
+            @Pc(168) int local168 = originZ + areaHeight - Camera.sceneBaseTileZ - (PlayerList.self.zFine >> 7) - 1;
             @Pc(177) int local177 = local168 + (int) (Math.random() * 10.0D) - 5;
-            if (local153 >= 0 && width > local153 && local177 >= 0 && local177 < length) {
-                anInt435 = local153;
-                anInt919 = local177;
+            if (local153 >= 0 && areaWidth > local153 && local177 >= 0 && local177 < areaHeight) {
+                displayX = local153;
+                displayZ = local177;
             } else {
-                anInt919 = originZ + length - currentMap.originZ * 64 - 1;
-                anInt435 = currentMap.originX * 64 - originX;
+                displayZ = originZ + areaHeight - area.originZ * 64 - 1;
+                displayX = area.originX * 64 - originX;
             }
-            method965();
+            checkJump();
             overlayColors = new int[FloorOverlayTypeList.capacity + 1];
-            @Pc(235) int local235 = length >> 6;
-            @Pc(239) int local239 = width >> 6;
+            @Pc(235) int local235 = areaHeight >> 6;
+            @Pc(239) int local239 = areaWidth >> 6;
             aByteArrayArrayArray8 = new byte[local239][local235][];
             @Pc(249) int local249 = SceneGraph.randomLightOffsetX >> 2 << 10;
             aByteArrayArrayArray7 = new byte[local239][local235][];
@@ -470,29 +472,29 @@ public class WorldMap {
             loadOverlayColors(local273, local249);
             loadPercentage = 20;
         } else if (loadPercentage == 20) {
-            readUnderlay(new Packet(MapList.archive.fetchFile(UNDERLAY, currentMap.group)));
+            readUnderlay(new Packet(MapList.archive.fetchFile(UNDERLAY, area.id)));
             loadPercentage = 30;
             ClientProt.ping(true);
             GameShell.resetTimer();
         } else if (loadPercentage == 30) {
-            method3998(new Packet(MapList.archive.fetchFile(OVERLAY, currentMap.group)));
+            method3998(new Packet(MapList.archive.fetchFile(OVERLAY, area.id)));
             loadPercentage = 40;
             GameShell.resetTimer();
         } else if (loadPercentage == 40) {
-            PreciseSleep.method3980(new Packet(MapList.archive.fetchFile(OVERLAY2, currentMap.group)));
+            PreciseSleep.method3980(new Packet(MapList.archive.fetchFile(OVERLAY2, area.id)));
             loadPercentage = 50;
             GameShell.resetTimer();
         } else if (loadPercentage == 50) {
-            readLocs(new Packet(MapList.archive.fetchFile(LOC, currentMap.group)));
+            readLocs(new Packet(MapList.archive.fetchFile(LOC, area.id)));
             loadPercentage = 60;
             ClientProt.ping(true);
             GameShell.resetTimer();
         } else if (loadPercentage == 60) {
-            if (MapList.archive.isGroupNameValid(JString.concatenate(new JString[]{currentMap.group, LABELS}))) {
-                if (!MapList.archive.isGroupReady(JString.concatenate(new JString[]{currentMap.group, LABELS}))) {
+            if (MapList.archive.isGroupNameValid(JString.concatenate(new JString[]{area.id, LABELS}))) {
+                if (!MapList.archive.isGroupReady(JString.concatenate(new JString[]{area.id, LABELS}))) {
                     return;
                 }
-                labels = MapElementList.create(JString.concatenate(new JString[]{currentMap.group, LABELS}), MapList.archive);
+                labels = MapElementList.create(JString.concatenate(new JString[]{area.id, LABELS}), MapList.archive);
             } else {
                 labels = new MapElementList(0);
             }
@@ -546,7 +548,7 @@ public class WorldMap {
     public static void readUnderlay(@OriginalArg(1) Packet arg0) {
         @Pc(13) int local13 = randomOffsetX >> 1;
         @Pc(19) int local19 = randomOffsetZ >> 2 << 10;
-        @Pc(23) byte[][] local23 = new byte[width][length];
+        @Pc(23) byte[][] local23 = new byte[areaWidth][areaHeight];
         @Pc(33) int local33;
         @Pc(102) int local102;
         @Pc(114) int local114;
@@ -562,8 +564,8 @@ public class WorldMap {
             @Pc(57) int local57 = arg0.g1();
             @Pc(61) int local61 = arg0.g1();
             @Pc(68) int local68 = local57 * 64 - originX;
-            @Pc(78) int local78 = length + originZ - local61 * 64 - 1;
-            if (local68 >= 0 && local78 - 63 >= 0 && width > local68 + 63 && length > local78) {
+            @Pc(78) int local78 = areaHeight + originZ - local61 * 64 - 1;
+            if (local68 >= 0 && local78 - 63 >= 0 && areaWidth > local68 + 63 && areaHeight > local78) {
                 for (local102 = 0; local102 < 64; local102++) {
                     @Pc(112) byte[] local112 = local23[local68 + local102];
                     for (local114 = 0; local114 < 64; local114++) {
@@ -578,8 +580,8 @@ public class WorldMap {
                 arg0.offset += 4096;
             }
         }
-        @Pc(175) int local175 = width;
-        local33 = length;
+        @Pc(175) int local175 = areaWidth;
+        local33 = areaHeight;
         @Pc(180) int[] local180 = new int[local33];
         @Pc(183) int[] local183 = new int[local33];
         @Pc(186) int[] local186 = new int[local33];
@@ -678,10 +680,10 @@ public class WorldMap {
                 @Pc(42) int local42 = packet.g1();
                 @Pc(46) int local46 = packet.g1();
                 @Pc(53) int mapx = local42 * 64 - originX;
-                @Pc(65) int mapz = originZ + length - local46 * 64 - 1;
+                @Pc(65) int mapz = originZ + areaHeight - local46 * 64 - 1;
                 @Pc(84) int x;
                 @Pc(95) int z;
-                if (mapx >= 0 && mapz - 63 >= 0 && width > mapx + 63 && mapz < length) {
+                if (mapx >= 0 && mapz - 63 >= 0 && areaWidth > mapx + 63 && mapz < areaHeight) {
                     x = mapx >> 6;
                     z = mapz >> 6;
                     @Pc(150) int local150 = 0;
@@ -718,16 +720,16 @@ public class WorldMap {
                                         @Pc(312) LocType type = LocTypeList.get(locId);
                                         if (type.multiloc != null) {
                                             type = type.getMultiLoc();
-                                            if (type == null || type.mapfunction == -1) {
+                                            if (type == null || type.mapelement == -1) {
                                                 continue;
                                             }
                                         }
                                         underlayColors[x][z][(63 - local155 << 6) + local150] = type.id + 1;
                                         @Pc(353) MapFunction mapFunction = new MapFunction();
-                                        mapFunction.id = type.mapfunction;
+                                        mapFunction.id = type.mapelement;
                                         mapFunction.x = mapx;
                                         mapFunction.z = mapz;
-                                        mapFunctions.push(mapFunction);
+                                        elements.push(mapFunction);
                                     }
                                 }
                             }
@@ -760,24 +762,24 @@ public class WorldMap {
     }
 
     @OriginalMember(owner = "client!cn", name = "e", descriptor = "(B)V")
-    public static void method965() {
-        if (anInt435 < 0) {
+    public static void checkJump() {
+        if (displayX < 0) {
             anInt4901 = -1;
-            anInt435 = 0;
+            displayX = 0;
             anInt3482 = -1;
         }
-        if (anInt435 > width) {
+        if (displayX > areaWidth) {
             anInt4901 = -1;
-            anInt435 = width;
+            displayX = areaWidth;
             anInt3482 = -1;
         }
-        if (anInt919 < 0) {
+        if (displayZ < 0) {
             anInt3482 = -1;
             anInt4901 = -1;
-            anInt919 = 0;
+            displayZ = 0;
         }
-        if (length < anInt919) {
-            anInt919 = length;
+        if (areaHeight < displayZ) {
+            displayZ = areaHeight;
             anInt4901 = -1;
             anInt3482 = -1;
         }
@@ -844,7 +846,7 @@ public class WorldMap {
         for (@Pc(11) int local11 = 0; local11 < labels.anInt5074; local11++) {
             if (labels.hasFlag8Set(local11)) {
                 @Pc(32) int local32 = labels.aShortArray73[local11] - originX;
-                @Pc(43) int local43 = originZ + length - labels.aShortArray72[local11] - 1;
+                @Pc(43) int local43 = originZ + areaHeight - labels.aShortArray72[local11] - 1;
                 @Pc(59) int local59 = arg0 + (arg3 - arg0) * (local32 - arg2) / (arg6 - arg2);
                 @Pc(64) int textsize = labels.getLowerTwoBits(local11);
                 @Pc(80) int local80 = (arg7 - arg1) * (local43 - arg5) / (arg4 - arg5) + arg1;
@@ -923,7 +925,7 @@ public class WorldMap {
 
     @OriginalMember(owner = "runetek4.client!af", name = "b", descriptor = "(B)V")
     public static void reset() {
-        clear(false);
+        reset(false);
         System.gc();
         Client.processGameStatus(25);
     }
@@ -935,32 +937,32 @@ public class WorldMap {
             if (targetZoom < zoom) {
                 zoom = targetZoom;
             }
-            method965();
+            checkJump();
         } else if (targetZoom < zoom) {
             zoom = (float) ((double) zoom - (double) zoom / 30.0D);
             if (targetZoom > zoom) {
                 zoom = targetZoom;
             }
-            method965();
+            checkJump();
         }
         if (anInt3482 == -1 || anInt4901 == -1) {
             return;
         }
-        @Pc(60) int local60 = anInt3482 - anInt435;
+        @Pc(60) int local60 = anInt3482 - displayX;
         if (local60 < 2 || local60 > 2) {
             local60 >>= 0x4;
         }
-        @Pc(78) int local78 = anInt4901 - anInt919;
+        @Pc(78) int local78 = anInt4901 - displayZ;
         if (local78 < 2 || local78 > 2) {
             local78 >>= 0x4;
         }
-        anInt919 -= -local78;
-        anInt435 += local60;
+        displayZ -= -local78;
+        displayX += local60;
         if (local60 == 0 && local78 == 0) {
             anInt3482 = -1;
             anInt4901 = -1;
         }
-        method965();
+        checkJump();
     }
 
     @OriginalMember(owner = "client!dh", name = "a", descriptor = "(Lclient!na;I)V")
@@ -988,23 +990,23 @@ public class WorldMap {
         if (local24 < 0) {
             anInt3482 = (int) ((float) component.width / zoom);
         }
-        anInt4901 = length + originZ - arg1 - 1;
+        anInt4901 = areaHeight + originZ - arg1 - 1;
         @Pc(61) int local61 = (int) ((float) component.height / zoom) + anInt4901;
         @Pc(70) int local70 = anInt4901 - (int) ((float) component.height / zoom);
-        if (local33 > width) {
-            anInt3482 = width - (int) ((float) component.width / zoom);
+        if (local33 > areaWidth) {
+            anInt3482 = areaWidth - (int) ((float) component.width / zoom);
         }
         if (local70 < 0) {
             anInt4901 = (int) ((float) component.height / zoom);
         }
-        if (length < local61) {
-            anInt4901 = length - (int) ((float) component.height / zoom);
+        if (areaHeight < local61) {
+            anInt4901 = areaHeight - (int) ((float) component.height / zoom);
         }
     }
 
     @OriginalMember(owner = "runetek4.client!hb", name = "b", descriptor = "(Lclient!na;I)V")
     public static void method1853(@OriginalArg(0) JString arg0) {
-        clear(false);
+        reset(false);
         method4011(arg0);
     }
 
@@ -1059,8 +1061,8 @@ public class WorldMap {
     @OriginalMember(owner = "runetek4.client!kf", name = "a", descriptor = "(Lclient!na;I)V")
     public static void method4011(@OriginalArg(0) JString arg0) {
         for (@Pc(15) Map local15 = (Map) MapList.areas.head(); local15 != null; local15 = (Map) MapList.areas.next()) {
-            if (local15.group.strEquals(arg0)) {
-                currentMap = local15;
+            if (local15.id.strEquals(arg0)) {
+                area = local15;
                 return;
             }
         }
@@ -1070,10 +1072,10 @@ public class WorldMap {
     public static void method2735(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int arg6, @OriginalArg(8) int arg7) {
         @Pc(9) int local9 = arg3 - arg5;
         @Pc(14) int local14 = arg1 - arg2;
-        if (width > arg3) {
+        if (areaWidth > arg3) {
             local9++;
         }
-        if (length > arg1) {
+        if (areaHeight > arg1) {
             local14++;
         }
         @Pc(32) int local32;
@@ -1121,8 +1123,8 @@ public class WorldMap {
                             local270 = local32 + arg5 & 0x3F;
                             local276 = (local260 << 6) + local270;
                             if (local254 < 0 || local185.length - 1 < local254 || local185[local254] == null) {
-                                if (currentMap.backgroundColor != -1) {
-                                    local312 = currentMap.backgroundColor;
+                                if (area.backgroundColor != -1) {
+                                    local312 = area.backgroundColor;
                                 } else if ((local211 + arg2 & 0x4) == (arg5 + local32 & 0x4)) {
                                     local312 = overlayColors[FloorOverlayType.anInt865 + 1];
                                 } else {
@@ -1238,8 +1240,8 @@ public class WorldMap {
                 } else {
                     local47 += arg4;
                     for (@Pc(90) int local90 = 0; local90 < local14; local90++) {
-                        if (currentMap.backgroundColor != -1) {
-                            local104 = currentMap.backgroundColor;
+                        if (area.backgroundColor != -1) {
+                            local104 = area.backgroundColor;
                         } else if ((local32 + arg5 & 0x4) == (local90 + arg2 & 0x4)) {
                             local104 = overlayColors[FloorOverlayType.anInt865 + 1];
                         } else {
@@ -1338,7 +1340,7 @@ public class WorldMap {
 
     @OriginalMember(owner = "runetek4.client!rg", name = "d", descriptor = "(B)Lclient!bn;")
     public static Map getCurrentMap() {
-        return currentMap;
+        return area;
     }
 
     @OriginalMember(owner = "runetek4.client!rg", name = "a", descriptor = "(IIIIIIIII)V")
@@ -1385,15 +1387,15 @@ public class WorldMap {
                                 @Pc(209) int local209 = local116[local163][local203];
                                 if (local209 != 0) {
                                     @Pc(222) LocType local222 = LocTypeList.get(local209 - 1);
-                                    if (!MapList.aBooleanArray130[local222.mapfunction]) {
-                                        if (local11 != -1 && local222.mapfunction == selectedMapFunctionId) {
+                                    if (!MapList.aBooleanArray130[local222.mapelement]) {
+                                        if (local11 != -1 && local222.mapelement == selectedMapFunctionId) {
                                             @Pc(243) MapFunction local243 = new MapFunction();
                                             local243.x = local65;
                                             local243.z = local144;
-                                            local243.id = local222.mapfunction;
+                                            local243.id = local222.mapelement;
                                             mapElementCache.push(local243);
                                         } else {
-                                            MapList.sprites[local222.mapfunction].render(local65 - 7, local144 + -7);
+                                            MapList.sprites[local222.mapelement].render(local65 - 7, local144 + -7);
                                         }
                                     }
                                 }
@@ -1921,7 +1923,7 @@ public class WorldMap {
         if (cachedMapSprite == null || width != cachedMapSprite.width || cachedMapSprite.height != height) {
             @Pc(63) SoftwareSprite mapSprite = new SoftwareSprite(width, height);
             SoftwareRenderer.setSize(mapSprite.pixels, width, height);
-            renderMapToBuffer(width, 0, WorldMap.width, 0, 0, length, height, 0);
+            renderMapToBuffer(width, 0, WorldMap.areaWidth, 0, 0, areaHeight, height, 0);
             if (GlRenderer.enabled) {
                 cachedMapSprite = new GlSprite(mapSprite);
             } else {
@@ -1934,10 +1936,10 @@ public class WorldMap {
             }
         }
         cachedMapSprite.drawPixels(x, y);
-        @Pc(147) int viewportY = height * ClientScriptRunner.worldMapViewportY / length + y;
-        @Pc(153) int viewportHeight = anInt1176 * height / length;
-        @Pc(161) int viewportX = x + width * ClientScriptRunner.worldMapViewportX / WorldMap.width;
-        @Pc(167) int viewportWidth = width * anInt2387 / WorldMap.width;
+        @Pc(147) int viewportY = height * ClientScriptRunner.worldMapViewportY / areaHeight + y;
+        @Pc(153) int viewportHeight = anInt1176 * height / areaHeight;
+        @Pc(161) int viewportX = x + width * ClientScriptRunner.worldMapViewportX / WorldMap.areaWidth;
+        @Pc(167) int viewportWidth = width * anInt2387 / WorldMap.areaWidth;
         @Pc(169) int viewportColor = 16711680;
         if (Client.game == 1) {
             viewportColor = 16777215;
@@ -1958,10 +1960,10 @@ public class WorldMap {
         } else {
             alpha = ClientScriptRunner.mapFunctionFlashTimer * 25;
         }
-        for (@Pc(238) MapFunction mapFunction = (MapFunction) mapFunctions.head(); mapFunction != null; mapFunction = (MapFunction) mapFunctions.next()) {
+        for (@Pc(238) MapFunction mapFunction = (MapFunction) elements.head(); mapFunction != null; mapFunction = (MapFunction) elements.next()) {
             if (mapFunction.id == selectedMapFunctionId) {
-                @Pc(267) int local267 = width * mapFunction.x / WorldMap.width + x;
-                @Pc(258) int local258 = y + mapFunction.z * height / length;
+                @Pc(267) int local267 = width * mapFunction.x / WorldMap.areaWidth + x;
+                @Pc(258) int local258 = y + mapFunction.z * height / areaHeight;
                 if (GlRenderer.enabled) {
                     GlRaster.fillRectAlpha(local267 - 2, local258 - 2, 4, 4, 16776960, alpha);
                 } else {

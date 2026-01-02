@@ -6,8 +6,6 @@ import com.jagex.sound.core.SoundBank;
 import com.jagex.sound.core.SoundPcmStream;
 import com.jagex.sound.pcm.PcmSound;
 
-import com.jagex.sound.streaming.Song;
-import com.jagex.core.buffer.ByteArrayNode;
 import com.jagex.core.datastruct.key.IterableHashTable;
 import com.jagex.js5.Js5;
 
@@ -35,7 +33,7 @@ public final class MidiPcmStream extends PcmStream {
 	private long aLong189;
 
 	@OriginalMember(owner = "client!va", name = "Qb", descriptor = "Lclient!rf;")
-	private Song aClass3_Sub29_2;
+	private MidiSong aClass3_Sub29_2;
 
 	@OriginalMember(owner = "client!va", name = "Rb", descriptor = "I")
 	private int anInt5676;
@@ -104,7 +102,7 @@ public final class MidiPcmStream extends PcmStream {
 	private final int[] channelPortamento = new int[16];
 
 	@OriginalMember(owner = "client!va", name = "K", descriptor = "Lclient!ki;")
-	private final MidiDecoder aClass84_1 = new MidiDecoder();
+	private final MidiSequence aClass84_1 = new MidiSequence();
 
 	@OriginalMember(owner = "client!va", name = "Pb", descriptor = "Lclient!te;")
 	private final MidiNoteStream noteStream = new MidiNoteStream(this);
@@ -119,11 +117,11 @@ public final class MidiPcmStream extends PcmStream {
 	}
 
 	@OriginalMember(owner = "client!va", name = "a", descriptor = "(Lclient!rf;ILclient!ve;Lclient!le;I)Z")
-	public synchronized boolean isSongReady(@OriginalArg(0) Song arg0, @OriginalArg(2) Js5 arg1, @OriginalArg(3) SoundBank arg2) {
-		arg0.createPrograms();
+	public synchronized boolean isSongReady(@OriginalArg(0) MidiSong arg0, @OriginalArg(2) Js5 arg1, @OriginalArg(3) SoundBank arg2) {
+		arg0.computePrograms();
 		@Pc(5) boolean local5 = true;
 		@Pc(20) int[] local20 = new int[] { 22050 };
-		for (@Pc(34) ByteArrayNode local34 = (ByteArrayNode) arg0.programs.head(); local34 != null; local34 = (ByteArrayNode) arg0.programs.next()) {
+		for (@Pc(34) MidiProgramNode local34 = (MidiProgramNode) arg0.programs.head(); local34 != null; local34 = (MidiProgramNode) arg0.programs.next()) {
 			@Pc(40) int local40 = (int) local34.key;
 			@Pc(48) MidiInstrument local48 = (MidiInstrument) this.instruments.get(local40);
 			if (local48 == null) {
@@ -134,12 +132,12 @@ public final class MidiPcmStream extends PcmStream {
 				}
 				this.instruments.put(local48, local40);
 			}
-			if (!local48.isReady(arg2, local20, local34.value)) {
+			if (!local48.isReady(arg2, local20, local34.notes)) {
 				local5 = false;
 			}
 		}
 		if (local5) {
-			arg0.releasePrograms();
+			arg0.resetPrograms();
 		}
 		return local5;
 	}
@@ -160,24 +158,24 @@ public final class MidiPcmStream extends PcmStream {
 
 	@OriginalMember(owner = "runetek4.client!va", name = "d", descriptor = "(I)Z")
 	public synchronized boolean isValid() {
-		return this.aClass84_1.isValid();
+		return this.aClass84_1.isPlaying();
 	}
 
 	@OriginalMember(owner = "client!va", name = "a", descriptor = "(ZLclient!rf;ZB)V")
-	private synchronized void method4416(@OriginalArg(0) boolean arg0, @OriginalArg(1) Song arg1, @OriginalArg(2) boolean arg2) {
+	private synchronized void method4416(@OriginalArg(0) boolean arg0, @OriginalArg(1) MidiSong arg1, @OriginalArg(2) boolean arg2) {
 		this.method4448(arg2);
-		this.aClass84_1.init(arg1.midiBytes);
+		this.aClass84_1.decode(arg1.midiBytes);
 		this.aBoolean293 = arg0;
 		this.aLong189 = 0L;
-		@Pc(24) int local24 = this.aClass84_1.getTrackCount();
+		@Pc(24) int local24 = this.aClass84_1.trackCount();
 		for (@Pc(26) int local26 = 0; local26 < local24; local26++) {
-			this.aClass84_1.loadTrackPosition(local26);
-			this.aClass84_1.addDeltaTime(local26);
-			this.aClass84_1.saveTrackPosition(local26);
+			this.aClass84_1.switchTrack(local26);
+			this.aClass84_1.step(local26);
+			this.aClass84_1.updatePosition(local26);
 		}
-		this.anInt5675 = this.aClass84_1.getNextTrack();
-		this.anInt5674 = this.aClass84_1.times[this.anInt5675];
-		this.aLong188 = this.aClass84_1.getTimeMillis(this.anInt5674);
+		this.anInt5675 = this.aClass84_1.activeTrack();
+		this.anInt5674 = this.aClass84_1.trackDeltas[this.anInt5675];
+		this.aLong188 = this.aClass84_1.delayForDelta(this.anInt5674);
 	}
 
 	@OriginalMember(owner = "client!va", name = "b", descriptor = "(III)V")
@@ -498,15 +496,15 @@ public final class MidiPcmStream extends PcmStream {
 	}
 
 	@OriginalMember(owner = "client!va", name = "a", descriptor = "(ZLclient!rf;I)V")
-	public synchronized void method4431(@OriginalArg(0) boolean arg0, @OriginalArg(1) Song arg1) {
+	public synchronized void method4431(@OriginalArg(0) boolean arg0, @OriginalArg(1) MidiSong arg1) {
 		this.method4416(arg0, arg1, true);
 	}
 
 	@OriginalMember(owner = "client!va", name = "b", descriptor = "([III)V")
 	@Override
 	public synchronized void read(@OriginalArg(0) int[] arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
-		if (this.aClass84_1.isValid()) {
-			@Pc(18) int local18 = this.aClass84_1.division * this.anInt5646 / AudioChannel.sampleRate;
+		if (this.aClass84_1.isPlaying()) {
+			@Pc(18) int local18 = this.aClass84_1.timeDivision * this.anInt5646 / AudioChannel.sampleRate;
 			do {
 				@Pc(28) long local28 = this.aLong189 + (long) arg2 * (long) local18;
 				if (this.aLong188 - local28 >= 0L) {
@@ -519,7 +517,7 @@ public final class MidiPcmStream extends PcmStream {
 				arg2 -= local59;
 				arg1 += local59;
 				this.method4435();
-			} while (this.aClass84_1.isValid());
+			} while (this.aClass84_1.isPlaying());
 		}
 		this.noteStream.read(arg0, arg1, arg2);
 	}
@@ -644,13 +642,13 @@ public final class MidiPcmStream extends PcmStream {
 			return;
 		}
 		while (this.anInt5674 == local11) {
-			while (local11 == this.aClass84_1.times[local8]) {
-				this.aClass84_1.loadTrackPosition(local8);
-				@Pc(64) int local64 = this.aClass84_1.getNextEvent(local8);
+			while (local11 == this.aClass84_1.trackDeltas[local8]) {
+				this.aClass84_1.switchTrack(local8);
+				@Pc(64) int local64 = this.aClass84_1.nextEvent(local8);
 				if (local64 == 1) {
-					this.aClass84_1.loadEndOfTrackPosition();
-					this.aClass84_1.saveTrackPosition(local8);
-					if (this.aClass84_1.hasNextTrack()) {
+					this.aClass84_1.endTrack();
+					this.aClass84_1.updatePosition(local8);
+					if (this.aClass84_1.isComplete()) {
 						if (this.aClass3_Sub29_2 != null) {
 							this.method4431(this.aBoolean293, this.aClass3_Sub29_2);
 							this.method4435();
@@ -658,22 +656,22 @@ public final class MidiPcmStream extends PcmStream {
 						}
 						if (!this.aBoolean293 || local11 == 0) {
 							this.reset(true);
-							this.aClass84_1.release();
+							this.aClass84_1.finish();
 							return;
 						}
-						this.aClass84_1.setStartMillis(local20);
+						this.aClass84_1.reset(local20);
 					}
 					break;
 				}
 				if ((local64 & 0x80) != 0) {
 					this.processMessage(local64);
 				}
-				this.aClass84_1.addDeltaTime(local8);
-				this.aClass84_1.saveTrackPosition(local8);
+				this.aClass84_1.step(local8);
+				this.aClass84_1.updatePosition(local8);
 			}
-			local8 = this.aClass84_1.getNextTrack();
-			local11 = this.aClass84_1.times[local8];
-			local20 = this.aClass84_1.getTimeMillis(local11);
+			local8 = this.aClass84_1.activeTrack();
+			local11 = this.aClass84_1.trackDeltas[local8];
+			local20 = this.aClass84_1.delayForDelta(local11);
 		}
 		this.anInt5675 = local8;
 		this.aLong188 = local20;
@@ -681,7 +679,7 @@ public final class MidiPcmStream extends PcmStream {
 		if (this.aClass3_Sub29_2 != null && local11 > this.anInt5676) {
 			this.anInt5675 = -1;
 			this.anInt5674 = this.anInt5676;
-			this.aLong188 = this.aClass84_1.getTimeMillis(this.anInt5674);
+			this.aLong188 = this.aClass84_1.delayForDelta(this.anInt5674);
 		}
 	}
 
@@ -698,8 +696,8 @@ public final class MidiPcmStream extends PcmStream {
 	@OriginalMember(owner = "client!va", name = "c", descriptor = "(I)V")
 	@Override
 	public synchronized void skip(@OriginalArg(0) int arg0) {
-		if (this.aClass84_1.isValid()) {
-			@Pc(15) int local15 = this.aClass84_1.division * this.anInt5646 / AudioChannel.sampleRate;
+		if (this.aClass84_1.isPlaying()) {
+			@Pc(15) int local15 = this.aClass84_1.timeDivision * this.anInt5646 / AudioChannel.sampleRate;
 			do {
 				@Pc(25) long local25 = this.aLong189 + (long) arg0 * (long) local15;
 				if (this.aLong188 - local25 >= 0L) {
@@ -711,7 +709,7 @@ public final class MidiPcmStream extends PcmStream {
 				this.aLong189 += (long) local57 * (long) local15;
 				this.noteStream.skip(local57);
 				this.method4435();
-			} while (this.aClass84_1.isValid());
+			} while (this.aClass84_1.isPlaying());
 		}
 		this.noteStream.skip(arg0);
 	}
@@ -826,7 +824,7 @@ public final class MidiPcmStream extends PcmStream {
 
 	@OriginalMember(owner = "client!va", name = "b", descriptor = "(ZB)V")
 	private synchronized void method4448(@OriginalArg(0) boolean arg0) {
-		this.aClass84_1.release();
+		this.aClass84_1.finish();
 		this.aClass3_Sub29_2 = null;
 		this.reset(arg0);
 	}

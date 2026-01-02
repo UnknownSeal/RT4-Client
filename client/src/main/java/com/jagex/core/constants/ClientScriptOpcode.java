@@ -22,6 +22,20 @@ public final class ClientScriptOpcode {
 	// Load variable onto stack 
 	public static final int LOAD_VAR = 5;
 
+	public static final int BRANCH = 6;
+
+	public static final int BRANCH_NOT = 7;
+
+	public static final int BRANCH_EQUALS = 8;
+
+	public static final int BRANCH_LESS_THAN = 9;
+
+	public static final int BRANCH_GREATER_THAN = 10;
+
+
+
+
+
 	// Get XP required for next level
 	public static final int LOAD_NEXT_LEVEL_XP = 6;
 
@@ -37,44 +51,44 @@ public final class ClientScriptOpcode {
 	// Check if inventory contains item
 	public static final int LOAD_INV_CONTAINS = 10;
 
-	// Get run energy percentage 
+	// Get run energy percentage
 	public static final int LOAD_ENERGY = 11;
 
-	// Get weight carried by player 
+	// Get weight carried by player
 	public static final int LOAD_WEIGHT = 12;
 
-	// Extract bit from VarP as boolean 
+	// Extract bit from VarP as boolean
 	public static final int LOAD_BOOL = 13;
 
-	// Get VarBit value 
+	// Get VarBit value
 	public static final int LOAD_VARBIT = 14;
 
-	// Set accumulator mode to subtract 
+	// Set accumulator mode to subtract
 	public static final int OP_SUBTRACT = 15;
 
-	// Set accumulator mode to divide 
+	// Set accumulator mode to divide
 	public static final int OP_DIVIDE = 16;
 
-	// Set accumulator mode to multiply 
+	// Set accumulator mode to multiply
 	public static final int OP_MULTIPLY = 17;
 
-	// Get player X coordinate 
+	// Get player X coordinate
 	public static final int COORD_X = 18;
 
-	// Get player Z coordinate 
+	// Get player Z coordinate
 	public static final int COORD_Z = 19;
 
-	// Push constant value 
+	// Push constant value
 	public static final int PUSH_CONSTANT = 20;
 
 	// Return from gosub/proc call 
 	public static final int RETURN = 21;
 
 	// Push VarBit value onto stack 
-	public static final int PUSH_VARBIT = 25;
+	public static final int POP_VARBIT = 25;
 
 	// Set VarBit value from stack 
-	public static final int POP_VARBIT = 27;
+	public static final int PUSH_VARBIT = 27;
 
 	// Branch if value <= comparison 
 	public static final int BRANCH_LESS_THAN_OR_EQUALS = 31;
@@ -116,10 +130,10 @@ public final class ClientScriptOpcode {
 	public static final int DEFINE_ARRAY = 44;
 
 	// Get array element 
-	public static final int ARRAY_GET = 45;
+	public static final int PUSH_ARRAY_INT = 45;
 
 	// Set array element 
-	public static final int ARRAY_SET = 46;
+	public static final int POP_ARRAY_INT = 46;
 
 	// Push VarC string 
 	public static final int PUSH_VARC_STRING = 47;
@@ -150,10 +164,10 @@ public final class ClientScriptOpcode {
 	// PLAYER APPEARANCE (400-499)
 
 	// Set identity kit (body part) 
-	public static final int SETIDKIT = 403;
+	public static final int BASEIDKIT = 403;
 
 	// Set player appearance color 
-	public static final int SETCOLOR = 404;
+	public static final int BASECOLOR = 404;
 
 	// Set player gender 
 	public static final int SETGENDER = 410;
@@ -214,181 +228,181 @@ public final class ClientScriptOpcode {
 	public static final int CC_SETMODELORTHOG = 1111;
 
 	// Set component text 
-	public static final int CC_SETTEXT = 1112;
+	public static final int CC_IF_SETTEXT = 1112;
 
 	// Set text font 
-	public static final int CC_SETTEXTFONT = 1113;
+	public static final int CC_IF_SETTEXTFONT = 1113;
 
 	// Set text alignment (left/center/right) 
-	public static final int CC_SETTEXTALIGN = 1114;
+	public static final int CC_IF_SETTEXTALIGN = 1114;
 
 	// Enable text shadow 
-	public static final int CC_SETTEXTSHADOW = 1115;
+	public static final int CC_IF_SETTEXTSHADOW = 1115;
 
 	// Set text outline thickness 
-	public static final int CC_SETOUTLINE = 1116;
+	public static final int CC_IF_SETOUTLINE = 1116;
 
 	// Set shadow color 
-	public static final int CC_SETSHADOWCOLOR = 1117;
+	public static final int CC_IF_SETGRAPHICSHADOW = 1117;
 
 	// Set vertical flip 
-	public static final int CC_SETVFLIP = 1118;
+	public static final int CC_IF_SETHFLIP = 1118;
 
 	// Set horizontal flip 
-	public static final int CC_SETHFLIP = 1119;
+	public static final int CC_IF_SETVFLIP = 1119;
 
 	// Set scroll area size 
-	public static final int CC_SETSCROLLSIZE = 1120;
+	public static final int CC_IF_SETSCROLLSIZE = 1120;
 
 	// Set component shorts (unknown purpose) 
-	public static final int CC_SETCOMPONENTSHORTS = 1121;
+	public static final int CC_IF_SETCOMPONENTSHORTS = 1121;
 
 	// Set alpha channel flag 
-	public static final int CC_SETHASALPHA = 1122;
+	public static final int CC_IF_SETALPHA = 1122;
 
 	// Set model zoom level 
-	public static final int CC_SETZOOM = 1123;
+	public static final int CC_IF_SETMODELZOOM = 1123;
 
 	// COMPONENT PROPERTIES - MODELS/OBJECTS (1200-1299)
 
 	// Display item model with count text 
-	public static final int CC_SETOBJECT = 1200;
+	public static final int CC_IF_SETOBJECT = 1200;
 
 	// Display NPC chathead model 
-	public static final int CC_SETNPCHEAD = 1201;
+	public static final int CC_IF_SETNPCHEAD = 1201;
 
 	// Display player's own chathead 
-	public static final int CC_SETPLAYERHEAD_SELF = 1202;
+	public static final int CC_IF_SETPLAYERHEAD_SELF = 1202;
 
 	// Display full NPC model 
-	public static final int CC_SETNPCMODEL = 1203;
+	public static final int CC_IF_SETNPCMODEL = 1203;
 
 	// Display player model 
-	public static final int CC_SETPLAYERMODEL = 1204;
+	public static final int CC_IF_SETPLAYERMODEL = 1204;
 
 	// Display item model without count text 
-	public static final int CC_SETOBJECT_NONUM = 1205;
+	public static final int CC_IF_SETOBJECT_NONUM = 1205;
 
 	// COMPONENT PROPERTIES - ADVANCED (1300-1399)
 
 	// Set component right-click option text 
-	public static final int CC_SETOP = 1300;
+	public static final int CC_IF_SETOP = 1300;
 
 	// Set component parent container 
 	public static final int CC_SETPARENT = 1301;
 
 	// Set drag render behavior mode 
-	public static final int CC_SETDRAGRENDERBEHAVIOR = 1302;
+	public static final int CC_IF_SETDRAGRENDERBEHAVIOUR = 1302;
 
 	// Set drag dead zone in pixels 
-	public static final int CC_SETDRAGDEADZONE = 1303;
+	public static final int CC_IF_SETDRAGDEADZONE = 1303;
 
 	// Set drag dead time in client ticks 
-	public static final int CC_SETDRAGDEADTIME = 1304;
+	public static final int CC_IF_SETDRAGDEADTIME = 1304;
 
 	// Set option prefix text (e.g., "Use") 
-	public static final int CC_SETOPTIONBASE = 1305;
+	public static final int CC_IF_SETOPBASE = 1305;
 
 	// Set option suffix text 
-	public static final int CC_SETOPTIONCIRCUMFIX = 1306;
+	public static final int CC_IF_SETTARGETVERB = 1306;
 
 	// Clear all right-click options 
-	public static final int CC_CLEAROPS = 1307;
+	public static final int CC_IF_CLEAROPS = 1307;
 
 	// Set component ints (unknown purpose) 
-	public static final int CC_SETCOMPONENTINTS = 1308;
+	public static final int CC_IF_SETTARGETCURSORS = 1308;
 
 	// Set component property (unknown purpose) 
-	public static final int CC_SETCOMPONENTPROPERTY = 1309;
+	public static final int CC_IF_SETOPCURSOR = 1309;
 
 	// COMPONENT EVENT HANDLERS (1400-1499)
 
 	// Set click repeat handler script 
-	public static final int CC_SETONCLICKREPEAT = 1400;
+	public static final int CC_IF_SETONCLICK = 1400;
 
 	// Set hold handler script 
-	public static final int CC_SETONHOLD = 1401;
+	public static final int CC_IF_SETONHOLD = 1401;
 
 	// Set mouse release handler script 
-	public static final int CC_SETONRELEASE = 1402;
+	public static final int CC_IF_SETONRELEASE = 1402;
 
 	// Set mouse over handler script 
-	public static final int CC_SETONMOUSEOVER = 1403;
+	public static final int CC_IF_SETONMOUSEOVER = 1403;
 
 	// Set mouse leave handler script 
-	public static final int CC_SETONMOUSELEAVE = 1404;
+	public static final int CC_IF_SETONMOUSELEAVE = 1404;
 
 	// Set drag start handler script 
-	public static final int CC_SETONDRAGSTART = 1405;
+	public static final int CC_IF_SETONDRAG = 1405;
 
 	// Set use-with handler script 
-	public static final int CC_SETONUSEWITH = 1406;
+	public static final int CC_IF_SETONTARGETLEAVE = 1406;
 
 	// Set VarP transmit handler script 
-	public static final int CC_SETONVARPTRANSMIT = 1407;
+	public static final int CC_IF_SETONVARTRANSMIT = 1407;
 
 	// Set timer handler script 
-	public static final int CC_SETONTIMER = 1408;
+	public static final int CC_IF_SETONTIMER = 1408;
 
 	// Set option click handler script 
-	public static final int CC_SETONOPTIONCLICK = 1409;
+	public static final int CC_IF_SETONOP = 1409;
 
 	// Set drag release handler script 
-	public static final int CC_SETONDRAGRELEASE = 1410;
+	public static final int CC_IF_SETONDRAGCOMPLETE = 1410;
 
 	// Set drag handler script 
-	public static final int CC_SETONDRAG = 1411;
+	public static final int CC_IF_SETONCLICKREPEAT = 1411;
 
 	// Set mouse repeat handler script 
-	public static final int CC_SETONMOUSEREPEAT = 1412;
+	public static final int CC_IF_SETONMOUSEREPEAT = 1412;
 
 	// Set inventory transmit handler script 
-	public static final int CC_SETONINVTRANSMIT = 1414;
+	public static final int CC_IF_SETONINVTRANSMIT = 1414;
 
 	// Set stat transmit handler script 
-	public static final int CC_SETONSTATTRANSMIT = 1415;
+	public static final int CC_IF_SETONSTATTRANSMIT = 1415;
 
 	// Set use handler script 
-	public static final int CC_SETONUSE = 1416;
+	public static final int CC_IF_SETONTARGETENTER = 1416;
 
 	// Set scroll handler script 
-	public static final int CC_SETONSCROLL = 1417;
+	public static final int CC_IF_SETONSCROLLWHEEL = 1417;
 
 	// Set message handler script 
-	public static final int CC_SETONMSG = 1418;
+	public static final int CC_IF_SETONCHATTRANSMIT = 1418;
 
 	// Set key handler script 
-	public static final int CC_SETONKEY = 1419;
+	public static final int CC_IF_SETONKEY = 1419;
 
 	// Set friend transmit handler script 
-	public static final int CC_SETONFRIENDTRANSMIT = 1420;
+	public static final int CC_IF_SETONFRIENDTRANSMIT = 1420;
 
 	// Set clan transmit handler script 
-	public static final int CC_SETONCLANTRANSMIT = 1421;
+	public static final int CC_IF_SETONCLANTRANSMIT = 1421;
 
 	// Set misc transmit handler script 
-	public static final int CC_SETONMISCTRANSMIT = 1422;
+	public static final int CC_IF_SETONMISCTRANSMIT = 1422;
 
 	// Set dialog abort handler script 
-	public static final int CC_SETONDIALOGABORT = 1423;
+	public static final int CC_IF_SETONDIALOGABORT = 1423;
 
 	// Set components open/close handler script 
-	public static final int CC_SETONCOMPONENTSOPENCLOSE = 1424;
+	public static final int CC_IF_SETONSUBCHANGE = 1424;
 
 	// Set stock transmit handler script 
-	public static final int CC_SETONSTOCKTRANSMIT = 1425;
+	public static final int CC_IF_SETONSTOCKTRANSMIT = 1425;
 
 	// Set minimap unlock handler script 
-	public static final int CC_SETONMINIMAPUNLOCK = 1426;
+	public static final int CC_IF_SETONCAMFINISHED = 1426;
 
 	// Set resize handler script 
-	public static final int CC_SETONRESIZE = 1427;
+	public static final int CC_IF_SETONRESIZE = 1427;
 
 	// Set VarC transmit handler script 
-	public static final int CC_SETONVARCTRANSMIT = 1428;
+	public static final int CC_IF_SETONVARCTRANSMIT = 1428;
 
 	// Set VarC string transmit handler script 
-	public static final int CC_SETONVARCSTRTRANSMIT = 1429;
+	public static final int CC_IF_SETONVARCSTRTRANSMIT = 1429;
 
 	// COMPONENT GETTERS (1500-1899)
 
@@ -536,7 +550,11 @@ public final class ClientScriptOpcode {
 	public static final int IF_HASSUB = 2702;
 
 	// Get total sub-components count 
-	public static final int IF_GETTOTALSUBCOMPONENTS = 2703;
+	public static final int IF_GETNEXTSUBID = 2703;
+
+	public static final int IF_HASSUBMODAL = 2704;
+
+	public static final int IF_HASSUBOVERLAY = 2705;
 
 	// Get interface target mask 
 	public static final int IF_GETTARGETMASK = 2800;
@@ -571,7 +589,7 @@ public final class ClientScriptOpcode {
 	public static final int CLICK_PLAYER_OPTION = 3107;
 
 	// Start component drag with component param 
-	public static final int STARTDRAG = 3108;
+	public static final int IF_DRAGPICKUP = 3108;
 
 	// Start component drag with active param 
 	public static final int STARTUSINGDRAG = 3109;

@@ -47,7 +47,7 @@ public class MapList {
     @OriginalMember(owner = "runetek4.client!jk", name = "a", descriptor = "(ILclient!na;)Lclient!bn;")
     public static Map get(@OriginalArg(1) JString arg0) {
         for (@Pc(15) Map local15 = (Map) areas.head(); local15 != null; local15 = (Map) areas.next()) {
-            if (local15.group.strEquals(arg0)) {
+            if (local15.id.strEquals(arg0)) {
                 return local15;
             }
         }
