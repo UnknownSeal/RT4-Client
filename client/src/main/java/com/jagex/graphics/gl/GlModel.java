@@ -156,7 +156,7 @@ public final class GlModel extends Model {
 	private short[] aShortArray86;
 
 	@OriginalMember(owner = "client!td", name = "cb", descriptor = "Lclient!de;")
-	private Class23 aClass23_1;
+	private GlModelNormalCache aGlModelNormalCache_1;
 
 	@OriginalMember(owner = "client!td", name = "db", descriptor = "[I")
 	private int[] vertexBones;
@@ -1225,31 +1225,31 @@ public final class GlModel extends Model {
 		@Pc(44) short[] local44;
 		@Pc(48) short[] local48;
 		@Pc(52) short[] local52;
-		if (this.aClass23_1 == null) {
+		if (this.aGlModelNormalCache_1 == null) {
 			local40 = null;
 			local44 = null;
 			local48 = null;
 			local52 = null;
 		} else {
-			local40 = this.aClass23_1.aShortArray8;
-			local44 = this.aClass23_1.aShortArray10;
-			local48 = this.aClass23_1.aShortArray9;
-			local52 = this.aClass23_1.aShortArray7;
+			local40 = this.aGlModelNormalCache_1.normalX;
+			local44 = this.aGlModelNormalCache_1.normalY;
+			local48 = this.aGlModelNormalCache_1.normalZ;
+			local52 = this.aGlModelNormalCache_1.normalMagnitude;
 		}
 		@Pc(68) short[] local68;
 		@Pc(72) short[] local72;
 		@Pc(76) short[] local76;
 		@Pc(80) short[] local80;
-		if (local2.aClass23_1 == null) {
+		if (local2.aGlModelNormalCache_1 == null) {
 			local68 = null;
 			local72 = null;
 			local76 = null;
 			local80 = null;
 		} else {
-			local68 = local2.aClass23_1.aShortArray8;
-			local72 = local2.aClass23_1.aShortArray10;
-			local76 = local2.aClass23_1.aShortArray9;
-			local80 = local2.aClass23_1.aShortArray7;
+			local68 = local2.aGlModelNormalCache_1.normalX;
+			local72 = local2.aGlModelNormalCache_1.normalY;
+			local76 = local2.aGlModelNormalCache_1.normalZ;
+			local80 = local2.aGlModelNormalCache_1.normalMagnitude;
 		}
 		@Pc(92) int[] local92 = local2.anIntArray462;
 		@Pc(95) short[] local95 = local2.aShortArray81;
@@ -1293,18 +1293,18 @@ public final class GlModel extends Model {
 									}
 									if (local237 != -1) {
 										if (local40 == null) {
-											this.aClass23_1 = new Class23();
-											local40 = this.aClass23_1.aShortArray8 = ArrayUtils.copyOfNullable(this.aShortArray76);
-											local44 = this.aClass23_1.aShortArray10 = ArrayUtils.copyOfNullable(this.aShortArray79);
-											local48 = this.aClass23_1.aShortArray9 = ArrayUtils.copyOfNullable(this.aShortArray85);
-											local52 = this.aClass23_1.aShortArray7 = ArrayUtils.copyOfNullable(this.aShortArray86);
+											this.aGlModelNormalCache_1 = new GlModelNormalCache();
+											local40 = this.aGlModelNormalCache_1.normalX = ArrayUtils.copyOfNullable(this.aShortArray76);
+											local44 = this.aGlModelNormalCache_1.normalY = ArrayUtils.copyOfNullable(this.aShortArray79);
+											local48 = this.aGlModelNormalCache_1.normalZ = ArrayUtils.copyOfNullable(this.aShortArray85);
+											local52 = this.aGlModelNormalCache_1.normalMagnitude = ArrayUtils.copyOfNullable(this.aShortArray86);
 										}
 										if (local68 == null) {
-											@Pc(325) Class23 local325 = local2.aClass23_1 = new Class23();
-											local68 = local325.aShortArray8 = ArrayUtils.copyOfNullable(local24);
-											local72 = local325.aShortArray10 = ArrayUtils.copyOfNullable(local27);
-											local76 = local325.aShortArray9 = ArrayUtils.copyOfNullable(local30);
-											local80 = local325.aShortArray7 = ArrayUtils.copyOfNullable(local33);
+											@Pc(325) GlModelNormalCache local325 = local2.aGlModelNormalCache_1 = new GlModelNormalCache();
+											local68 = local325.normalX = ArrayUtils.copyOfNullable(local24);
+											local72 = local325.normalY = ArrayUtils.copyOfNullable(local27);
+											local76 = local325.normalZ = ArrayUtils.copyOfNullable(local30);
+											local80 = local325.normalMagnitude = ArrayUtils.copyOfNullable(local33);
 										}
 										@Pc(358) short local358 = this.aShortArray76[local175];
 										@Pc(363) short local363 = this.aShortArray79[local175];
@@ -2758,12 +2758,12 @@ public final class GlModel extends Model {
 	@Override
 	public final Entity createModel() {
 		this.aBoolean259 = false;
-		if (this.aClass23_1 != null) {
-			this.aShortArray76 = this.aClass23_1.aShortArray8;
-			this.aShortArray79 = this.aClass23_1.aShortArray10;
-			this.aShortArray85 = this.aClass23_1.aShortArray9;
-			this.aShortArray86 = this.aClass23_1.aShortArray7;
-			this.aClass23_1 = null;
+		if (this.aGlModelNormalCache_1 != null) {
+			this.aShortArray76 = this.aGlModelNormalCache_1.normalX;
+			this.aShortArray79 = this.aGlModelNormalCache_1.normalY;
+			this.aShortArray85 = this.aGlModelNormalCache_1.normalZ;
+			this.aShortArray86 = this.aGlModelNormalCache_1.normalMagnitude;
+			this.aGlModelNormalCache_1 = null;
 		}
 		return this;
 	}

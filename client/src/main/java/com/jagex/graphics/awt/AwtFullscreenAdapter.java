@@ -40,6 +40,7 @@ public final class AwtFullscreenAdapter {
 	private void method5103(@OriginalArg(0) Frame frame) {
 		@Pc(1) boolean wasValid = false;
 		try {
+			// TODO change to java.awt.GraphicsDevice instead of sun.awt.Win32GraphicsDevice ?
 			@Pc(6) Field validField = Class.forName("sun.awt.Win32GraphicsDevice").getDeclaredField("valid");
 			validField.setAccessible(true);
 			@Pc(16) boolean valid = (Boolean) validField.get(this.fullscreenDevice);
@@ -54,6 +55,7 @@ public final class AwtFullscreenAdapter {
 		} finally {
 			if (wasValid) {
 				try {
+					// TODO change to java.awt.GraphicsDevice instead of sun.awt.Win32GraphicsDevice ?
 					@Pc(66) Field validField = Class.forName("sun.awt.Win32GraphicsDevice").getDeclaredField("valid");
 					validField.set(this.fullscreenDevice, Boolean.TRUE);
 				} catch (@Pc(73) Throwable exception) {
