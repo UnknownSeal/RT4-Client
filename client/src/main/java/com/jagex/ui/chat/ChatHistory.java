@@ -44,7 +44,7 @@ public class ChatHistory {
     public static int messageCounter = 0;
 
     @OriginalMember(owner = "client!md", name = "a", descriptor = "(IILclient!na;Lclient!na;BLclient!na;)V")
-    public static void add(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) JString arg2, @OriginalArg(3) JString arg3, @OriginalArg(5) JString arg4) {
+    public static void add(@OriginalArg(0) int quickchatId, @OriginalArg(1) int arg1, @OriginalArg(2) JString message, @OriginalArg(3) JString clan, @OriginalArg(5) JString arg4) {
         for (@Pc(14) int local14 = 99; local14 > 0; local14--) {
             types[local14] = types[local14 - 1];
             names[local14] = names[local14 - 1];
@@ -56,14 +56,14 @@ public class ChatHistory {
         types[0] = arg1;
         names[0] = arg4;
         transmitAt = InterfaceManager.transmitTimer;
-        phraseIds[0] = arg0;
-        messages[0] = arg2;
-        clans[0] = arg3;
+        phraseIds[0] = quickchatId;
+        messages[0] = message;
+        clans[0] = clan;
     }
 
     @OriginalMember(owner = "client!i", name = "a", descriptor = "(Lclient!na;ILclient!na;I)V")
-    public static void addMessage(@OriginalArg(0) JString arg0, @OriginalArg(1) int arg1, @OriginalArg(2) JString arg2) {
-        add(-1, arg1, arg2, null, arg0);
+    public static void addMessage(@OriginalArg(0) JString name, @OriginalArg(1) int arg1, @OriginalArg(2) JString text) {
+        add(-1, arg1, text, null, name);
     }
 
     @OriginalMember(owner = "client!fm", name = "a", descriptor = "(ILclient!na;Lclient!na;Lclient!na;I)V")

@@ -55,13 +55,13 @@ public final class SpotAnim extends Entity {
 	private SeqType aClass144_1;
 
 	@OriginalMember(owner = "runetek4.client!bh", name = "<init>", descriptor = "(IIIIIII)V")
-	public SpotAnim(@OriginalArg(0) int arg0, @OriginalArg(1) int level, @OriginalArg(2) int x, @OriginalArg(3) int z, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6) {
+	public SpotAnim(@OriginalArg(0) int gfxId, @OriginalArg(1) int level, @OriginalArg(2) int x, @OriginalArg(3) int z, @OriginalArg(4) int y, @OriginalArg(5) int delay, @OriginalArg(6) int tick) {
 		this.z = z;
 		this.x = x;
 		this.level = level;
-		this.startCycle = arg6 + arg5;
-		this.anInt596 = arg0;
-		this.y = arg4;
+		this.startCycle = tick + delay;
+		this.anInt596 = gfxId;
+		this.y = y;
 		@Pc(42) int local42 = SpotAnimTypeList.get(this.anInt596).seqId;
 		if (local42 == -1) {
 			this.seqComplete = true;

@@ -127,10 +127,10 @@ public final class DelayedStateChange extends Node2 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!kk", name = "a", descriptor = "(IIB)V")
-	public static void interfaceSetColor(@OriginalArg(0) int color, @OriginalArg(1) int componentId) {
+	public static void interfaceSetColor(@OriginalArg(0) int colour, @OriginalArg(1) int componentId) {
 		@Pc(4) DelayedStateChange change = getOrAdd(TYPE_IF_SETCOLOR, componentId);
 		change.setClientServerUpdate();
-		change.secondaryData = color;
+		change.secondaryData = colour;
 	}
 
 	@OriginalMember(owner = "runetek4.client!wl", name = "a", descriptor = "(IIII)V")

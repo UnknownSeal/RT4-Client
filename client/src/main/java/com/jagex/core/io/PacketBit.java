@@ -39,9 +39,9 @@ public final class PacketBit extends Packet {
 	}
 
 	@OriginalMember(owner = "client!i", name = "a", descriptor = "(BI[BI)V")
-	public void method2237(@OriginalArg(2) byte[] arg0, @OriginalArg(3) int arg1) {
-		for (@Pc(17) int local17 = 0; local17 < arg1; local17++) {
-			arg0[local17] = (byte) (this.data[this.offset++] - this.isaac.getNextKey());
+	public void method2237(@OriginalArg(2) byte[] data, @OriginalArg(3) int packetSize) {
+		for (@Pc(17) int local17 = 0; local17 < packetSize; local17++) {
+			data[local17] = (byte) (this.data[this.offset++] - this.isaac.getNextKey());
 		}
 	}
 

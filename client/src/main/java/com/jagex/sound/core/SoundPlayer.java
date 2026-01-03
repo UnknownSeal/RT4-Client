@@ -68,12 +68,12 @@ public class SoundPlayer {
     }
 
     @OriginalMember(owner = "client!ca", name = "a", descriptor = "(IIII)V")
-    public static void play(@OriginalArg(0) int loops, @OriginalArg(1) int id, @OriginalArg(2) int delay) {
-        if (Preferences.soundEffectVolume == 0 || loops == 0 || size >= 50 || id == -1) {
+    public static void play(@OriginalArg(0) int volume, @OriginalArg(1) int trackId, @OriginalArg(2) int delay) {
+        if (Preferences.soundEffectVolume == 0 || volume == 0 || size >= 50 || trackId == -1) {
             return;
         }
-        ids[size] = id;
-        SoundPlayer.loops[size] = loops;
+        ids[size] = trackId;
+        SoundPlayer.loops[size] = volume;
         delays[size] = delay;
         sounds[size] = null;
         positions[size] = 0;

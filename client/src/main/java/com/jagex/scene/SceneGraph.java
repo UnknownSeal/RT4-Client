@@ -1952,7 +1952,7 @@ public class SceneGraph {
     }
 
     @OriginalMember(owner = "runetek4.client!hd", name = "a", descriptor = "(IIIIIIII)V")
-    public static void attachLocToTile(@OriginalArg(0) int plane, @OriginalArg(2) int rotation, @OriginalArg(3) int shape, @OriginalArg(4) int z, @OriginalArg(5) int layer, @OriginalArg(6) int x, @OriginalArg(7) int height) {
+    public static void attachLocToTile(@OriginalArg(0) int plane, @OriginalArg(2) int rotation, @OriginalArg(3) int shape, @OriginalArg(4) int z, @OriginalArg(5) int layer, @OriginalArg(6) int x, @OriginalArg(7) int seq) {
         if (x < 0 || z < 0 || x >= 103 || z >= 103) {
             return;
         }
@@ -1962,10 +1962,10 @@ public class SceneGraph {
             if (wall != null) {
                 locId = Integer.MAX_VALUE & (int) (wall.key >>> 32);
                 if (shape == 2) {
-                    wall.primary = new Loc(locId, 2, rotation + 4, plane, x, z, height, false, wall.primary);
-                    wall.secondary = new Loc(locId, 2, rotation + 1 & 0x3, plane, x, z, height, false, wall.secondary);
+                    wall.primary = new Loc(locId, 2, rotation + 4, plane, x, z, seq, false, wall.primary);
+                    wall.secondary = new Loc(locId, 2, rotation + 1 & 0x3, plane, x, z, seq, false, wall.secondary);
                 } else {
-                    wall.primary = new Loc(locId, shape, rotation, plane, x, z, height, false, wall.primary);
+                    wall.primary = new Loc(locId, shape, rotation, plane, x, z, seq, false, wall.primary);
                 }
             }
         }
@@ -1974,14 +1974,14 @@ public class SceneGraph {
             if (wallDecor != null) {
                 locId = (int) (wallDecor.key >>> 32) & Integer.MAX_VALUE;
                 if (shape == 4 || shape == 5) {
-                    wallDecor.primary = new Loc(locId, 4, rotation, plane, x, z, height, false, wallDecor.primary);
+                    wallDecor.primary = new Loc(locId, 4, rotation, plane, x, z, seq, false, wallDecor.primary);
                 } else if (shape == 6) {
-                    wallDecor.primary = new Loc(locId, 4, rotation + 4, plane, x, z, height, false, wallDecor.primary);
+                    wallDecor.primary = new Loc(locId, 4, rotation + 4, plane, x, z, seq, false, wallDecor.primary);
                 } else if (shape == 7) {
-                    wallDecor.primary = new Loc(locId, 4, (rotation + 2 & 0x3) + 4, plane, x, z, height, false, wallDecor.primary);
+                    wallDecor.primary = new Loc(locId, 4, (rotation + 2 & 0x3) + 4, plane, x, z, seq, false, wallDecor.primary);
                 } else if (shape == 8) {
-                    wallDecor.primary = new Loc(locId, 4, rotation + 4, plane, x, z, height, false, wallDecor.primary);
-                    wallDecor.secondary = new Loc(locId, 4, (rotation + 2 & 0x3) + 4, plane, x, z, height, false, wallDecor.secondary);
+                    wallDecor.primary = new Loc(locId, 4, rotation + 4, plane, x, z, seq, false, wallDecor.primary);
+                    wallDecor.secondary = new Loc(locId, 4, (rotation + 2 & 0x3) + 4, plane, x, z, seq, false, wallDecor.secondary);
                 }
             }
         }
@@ -1991,13 +1991,13 @@ public class SceneGraph {
             }
             @Pc(255) Scenery scenery = getScenery(plane, x, z);
             if (scenery != null) {
-                scenery.entity = new Loc((int) (scenery.key >>> 32) & Integer.MAX_VALUE, shape, rotation, plane, x, z, height, false, scenery.entity);
+                scenery.entity = new Loc((int) (scenery.key >>> 32) & Integer.MAX_VALUE, shape, rotation, plane, x, z, seq, false, scenery.entity);
             }
         }
         if (layer == 3) {
             @Pc(290) GroundDecor groundDecor = getGroundDecor(plane, x, z);
             if (groundDecor != null) {
-                groundDecor.entity = new Loc(Integer.MAX_VALUE & (int) (groundDecor.key >>> 32), 22, rotation, plane, x, z, height, false, groundDecor.entity);
+                groundDecor.entity = new Loc(Integer.MAX_VALUE & (int) (groundDecor.key >>> 32), 22, rotation, plane, x, z, seq, false, groundDecor.entity);
             }
         }
     }

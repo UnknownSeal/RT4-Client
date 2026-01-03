@@ -156,13 +156,13 @@ public final class JString implements ComponentString {
     }
 
 	@OriginalMember(owner = "client!an", name = "a", descriptor = "([BIII)Lclient!na;")
-	public static JString decodeString(@OriginalArg(0) byte[] arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2) {
+	public static JString decodeString(@OriginalArg(0) byte[] data, @OriginalArg(2) int packetSize, @OriginalArg(3) int arg2) {
 		@Pc(7) JString local7 = new JString();
-		local7.chars = new byte[arg1];
+		local7.chars = new byte[packetSize];
 		local7.length = 0;
-		for (@Pc(22) int local22 = arg2; local22 < arg1 + arg2; local22++) {
-			if (arg0[local22] != 0) {
-				local7.chars[local7.length++] = arg0[local22];
+		for (@Pc(22) int local22 = arg2; local22 < packetSize + arg2; local22++) {
+			if (data[local22] != 0) {
+				local7.chars[local7.length++] = data[local22];
 			}
 		}
 		return local7;

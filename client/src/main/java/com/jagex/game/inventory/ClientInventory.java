@@ -52,11 +52,11 @@ public final class ClientInventory extends Node {
 	public int[] invSlotObjCount = new int[] { 0 };
 
 	@OriginalMember(owner = "client!wl", name = "a", descriptor = "(IIIIB)V")
-	public static void setSlot(@OriginalArg(0) int objectId, @OriginalArg(1) int slotIndex, @OriginalArg(2) int count, @OriginalArg(3) int inventoryId) {
-		@Pc(12) ClientInventory inventory = (ClientInventory) recentUse.get((long) inventoryId);
+	public static void setSlot(@OriginalArg(0) int amount, @OriginalArg(1) int slotIndex, @OriginalArg(2) int id, @OriginalArg(3) int containerId) {
+		@Pc(12) ClientInventory inventory = (ClientInventory) recentUse.get((long) containerId);
 		if (inventory == null) {
 			inventory = new ClientInventory();
-			recentUse.put(inventory, (long) inventoryId);
+			recentUse.put(inventory, (long) containerId);
 		}
 		if (inventory.invSlotObjId.length <= slotIndex) {
 			@Pc(39) int[] newObjectIds = new int[slotIndex + 1];
@@ -72,8 +72,8 @@ public final class ClientInventory extends Node {
 			inventory.invSlotObjId = newObjectIds;
 			inventory.invSlotObjCount = newCounts;
 		}
-		inventory.invSlotObjId[slotIndex] = objectId;
-		inventory.invSlotObjCount[slotIndex] = count;
+		inventory.invSlotObjId[slotIndex] = amount;
+		inventory.invSlotObjCount[slotIndex] = id;
 	}
 
 	@OriginalMember(owner = "client!wj", name = "a", descriptor = "(BII)I")

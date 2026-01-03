@@ -125,8 +125,8 @@ public class VarpDomain {
     }
 
     @OriginalMember(owner = "runetek4.client!wd", name = "a", descriptor = "(BII)V")
-    public static void setVarbitServer(@OriginalArg(1) int value, @OriginalArg(2) int arg1) {
-        @Pc(14) VarbitType type = VarBitTypeList.get(arg1);
+    public static void setVarbitServer(@OriginalArg(1) int value, @OriginalArg(2) int id) {
+        @Pc(14) VarbitType type = VarBitTypeList.get(id);
         @Pc(17) int varp = type.baseVar;
         @Pc(20) int end = type.endBit;
         @Pc(23) int start = type.startBit;

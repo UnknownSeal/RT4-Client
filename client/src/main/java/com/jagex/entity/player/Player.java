@@ -571,8 +571,8 @@ public final class Player extends PathingEntity {
 	}
 
 	@OriginalMember(owner = "client!e", name = "a", descriptor = "(BIZI)V")
-	public void teleport(@OriginalArg(1) int arg0, @OriginalArg(2) boolean arg1, @OriginalArg(3) int arg2) {
-		super.teleport(this.getSize(), arg0, arg2, arg1);
+	public void teleport(@OriginalArg(1) int pos1, @OriginalArg(2) boolean jump, @OriginalArg(3) int pos2) {
+		super.teleport(this.getSize(), pos1, pos2, jump);
 	}
 
 	@OriginalMember(owner = "client!e", name = "finalize", descriptor = "()V")

@@ -371,8 +371,8 @@ public class Protocol {
         if (currentOpcode == VARP_SMALL) {
             // Update a player variable with a small value (< 128)
             int id = inboundBuffer.g2_alt2();
-            @Pc(137) byte varpId = inboundBuffer.g1neg();
-            VarpDomain.setVarp(varpId, id);
+            @Pc(137) byte value = inboundBuffer.g1neg();
+            VarpDomain.setVarp(value, id);
             currentOpcode = -1;
             return true;
         }
@@ -1352,11 +1352,11 @@ public class Protocol {
                             } else if (currentOpcode == NPC_ANIM_SPECIFIC) {
                                 // Play animation on a specific NPC
                                 int npcId = inboundBuffer.g2_al1();
-                                int value = inboundBuffer.g1_alt3();
+                                int delay = inboundBuffer.g1_alt3();
                                 int seqId = inboundBuffer.g2();
                                 @Pc(3766) Npc npc = NpcList.npcs[npcId];
                                 if (npc != null) {
-                                    animateNpc(value, seqId, npc);
+                                    animateNpc(delay, seqId, npc);
                                 }
                                 currentOpcode = -1;
                                 return true;
@@ -1395,11 +1395,11 @@ public class Protocol {
                             } else if (currentOpcode == GENERATE_CHAT_HEAD_FROM_BODY) {
                                 int verifyID = inboundBuffer.g2_alt2();
                                 int id = inboundBuffer.p4rme();
-                                int int1 = inboundBuffer.g2_alt3();
+                                int objData = inboundBuffer.g2_alt3();
                                 int int2 = inboundBuffer.g2_al1();
                                 int int3 = inboundBuffer.g2_alt3();
                                 if (setVerifyID(verifyID)) {
-                                    DelayedStateChange.interfaceSetModel(int1, 7, id, int2 << COMPONENT_UPPER_WORD_SHIFT | int3);
+                                    DelayedStateChange.interfaceSetModel(objData, 7, id, int2 << COMPONENT_UPPER_WORD_SHIFT | int3);
                                 }
                                 currentOpcode = -1;
                                 return true;
@@ -1413,7 +1413,7 @@ public class Protocol {
                             } else if (currentOpcode == IF_OPENTOP) {
                                 // IF_OPENSUB
                                 // Open sub-interface in component slot
-                                int flags = inboundBuffer.g1();
+                                int modalType = inboundBuffer.g1();
                                 int windowID = inboundBuffer.p4rme();
                                 int verifyID = inboundBuffer.g2_alt2();
                                 int interfaceID = inboundBuffer.g2();
@@ -1422,7 +1422,7 @@ public class Protocol {
                                     if (SubInterface != null) {
                                         InterfaceManager.closeInterface(interfaceID != SubInterface.interfaceId, SubInterface);
                                     }
-                                    openSubInterface(interfaceID, windowID, flags);
+                                    openSubInterface(interfaceID, windowID, modalType);
                                 }
                                 currentOpcode = -1;
                                 return true;
@@ -1506,11 +1506,11 @@ public class Protocol {
                                 return true;
                             } else if (currentOpcode == IF_SETPOSITION) {
                                 int verifyID = inboundBuffer.g2_alt2();
-                                int ptr = inboundBuffer.g4me();
+                                int componentId = inboundBuffer.g4me();
                                 int x = inboundBuffer.g2s();
                                 int y = inboundBuffer.g2sadd();
                                 if (setVerifyID(verifyID)) {
-                                    DelayedStateChange.interfaceSetPosition(x, ptr, y);
+                                    DelayedStateChange.interfaceSetPosition(x, componentId, y);
                                 }
                                 currentOpcode = -1;
                                 return true;
@@ -1519,7 +1519,7 @@ public class Protocol {
                                 int slot = inboundBuffer.g1_alt3();
                                 int type = slot >> CoordinateConstants.LOC_SHAPE_SHIFT;
                                 int rotation = slot & ROTATION_MASK;
-                                int type2 = Loc.LAYERS[type];
+                                int layer = Loc.LAYERS[type];
                                 int seqId = inboundBuffer.g2();
                                 int pos = inboundBuffer.g4();
                                 if (seqId == INVALID_ID_U16) {
@@ -1530,7 +1530,7 @@ public class Protocol {
                                 x -= Camera.sceneBaseTileX;
                                 z -= Camera.sceneBaseTileZ;
                                 int plane = pos >> PLANE_SHIFT & PLANE_MASK;
-                                SceneGraph.attachLocToTile(plane, rotation, type, z, type2, x, seqId);
+                                SceneGraph.attachLocToTile(plane, rotation, type, z, layer, x, seqId);
                                 currentOpcode = -1;
                                 return true;
                             } else if (currentOpcode == MESSAGE_PRIVATE) {
@@ -1647,11 +1647,11 @@ public class Protocol {
                                 int verifyID = inboundBuffer.g2_alt3();
                                 int id = inboundBuffer.g4rme();
                                 if (setVerifyID(verifyID)) {
-                                    int set = 0;
+                                    int objType = 0;
                                     if (PlayerList.self.playerModel != null) {
-                                        set = PlayerList.self.playerModel.getHeadModelId();
+                                        objType = PlayerList.self.playerModel.getHeadModelId();
                                     }
-                                    DelayedStateChange.interfaceSetModel(-1, 3, id, set);
+                                    DelayedStateChange.interfaceSetModel(-1, 3, id, objType);
                                 }
                                 currentOpcode = -1;
                                 return true;
@@ -1768,8 +1768,8 @@ public class Protocol {
                                     }
                                     if (setVerifyID(verifyID)) {
                                         for (int i = start; i <= end; i++) {
-                                            long local904 = ((long) pointer << MESSAGE_ID_HIGH_SHIFT) + ((long) i);
-                                            ServerActiveProperties properties = (ServerActiveProperties) InterfaceManager.properties.get(local904);
+                                            long id = ((long) pointer << MESSAGE_ID_HIGH_SHIFT) + ((long) i);
+                                            ServerActiveProperties properties = (ServerActiveProperties) InterfaceManager.properties.get(id);
                                             ServerActiveProperties target;
                                             if (properties != null) {
                                                 target = new ServerActiveProperties(accessMask, properties.targetParam);
@@ -1779,7 +1779,7 @@ public class Protocol {
                                             } else {
                                                 target = new ServerActiveProperties(accessMask, -1);
                                             }
-                                            InterfaceManager.properties.put(target, local904);
+                                            InterfaceManager.properties.put(target, id);
                                         }
                                     }
                                     currentOpcode = -1;
