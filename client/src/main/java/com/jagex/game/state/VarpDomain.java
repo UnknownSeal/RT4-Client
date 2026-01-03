@@ -19,7 +19,7 @@ public class VarpDomain {
     @OriginalMember(owner = "client!gj", name = "q", descriptor = "[I")
     public static final int[] updatedVarps = new int[32];
     @OriginalMember(owner = "runetek4.client!ic", name = "e", descriptor = "[I")
-    public static final int[] serverVarps = new int[2500];
+    public static final int[] varps = new int[2500];
     @OriginalMember(owner = "client!ah", name = "j", descriptor = "[I")
     public static final int[] activeVarps = new int[2500];
     @OriginalMember(owner = "runetek4.client!uj", name = "s", descriptor = "Lclient!na;")
@@ -42,7 +42,7 @@ public class VarpDomain {
         for (@Pc(3) int varpIndex = 0; varpIndex < VarpTypeList.capacity; varpIndex++) {
             @Pc(19) VarpType varpType = VarpTypeList.get(varpIndex);
             if (varpType != null && varpType.clientCode == 0) {
-                serverVarps[varpIndex] = 0;
+                varps[varpIndex] = 0;
                 activeVarps[varpIndex] = 0;
             }
         }
@@ -70,8 +70,8 @@ public class VarpDomain {
     }
 
     @OriginalMember(owner = "runetek4.client!nh", name = "a", descriptor = "(BII)V")
-    public static void setVarpServer(@OriginalArg(1) int value, @OriginalArg(2) int id) {
-        serverVarps[id] = value;
+    public static void setVarp(@OriginalArg(1) int value, @OriginalArg(2) int id) {
+        varps[id] = value;
         @Pc(20) LongNode node = (LongNode) pendingUpdates.get((long) id);
         if (node == null) {
             node = new LongNode(4611686018427387905L);
@@ -102,7 +102,7 @@ public class VarpDomain {
             if ((local28.value & 0x3FFFFFFFFFFFFFFFL) < local4) {
                 if ((local28.value & 0x4000000000000000L) != 0L) {
                     @Pc(58) int local58 = (int) local28.key;
-                    activeVarps[local58] = serverVarps[local58];
+                    activeVarps[local58] = varps[local58];
                     local28.unlink();
                     return local58;
                 }
@@ -135,7 +135,7 @@ public class VarpDomain {
             value = 0;
         }
         mask <<= start;
-        setVarpServer(value << start & mask | ~mask & serverVarps[varp], varp);
+        setVarp(value << start & mask | ~mask & varps[varp], varp);
     }
 
     @OriginalMember(owner = "runetek4.client!me", name = "a", descriptor = "(II)I")

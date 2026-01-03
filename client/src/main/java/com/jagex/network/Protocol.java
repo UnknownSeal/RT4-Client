@@ -322,10 +322,12 @@ public class Protocol {
         if (gameServerSocket == null) {
             return false;
         }
+
         @Pc(14) int available = gameServerSocket.available();
         if (available == 0) {
             return false;
         }
+
         if (currentOpcode == -1) {
             available--;
             gameServerSocket.read(0, 1, inboundBuffer.data);
@@ -333,6 +335,7 @@ public class Protocol {
             currentOpcode = inboundBuffer.gIssac1();
             packetSize = PACKET_LENGTHS[currentOpcode];
         }
+
         if (packetSize == -1) {
             if (available <= 0) {
                 return false;
@@ -341,46 +344,51 @@ public class Protocol {
             available--;
             packetSize = inboundBuffer.data[0] & BYTE_MASK;
         }
+
         if (packetSize == -2) {
             if (available <= 1) {
                 return false;
             }
+
             available -= 2;
             gameServerSocket.read(0, 2, inboundBuffer.data);
             inboundBuffer.offset = 0;
             packetSize = inboundBuffer.g2();
         }
+
         if (packetSize > available) {
             return false;
         }
+
         inboundBuffer.offset = 0;
         gameServerSocket.read(0, packetSize, inboundBuffer.data);
         thirdLastOpcode = secondLastOpcode;
         secondLastOpcode = previousOpcode;
         previousOpcode = currentOpcode;
         LoginManager.idleNetCycles = 0;
-        @Pc(133) int ii;
+
+        //@Pc(133) int ii;
         if (currentOpcode == VARP_SMALL) {
             // Update a player variable with a small value (< 128)
-            ii = inboundBuffer.g2_alt2();
+            int id = inboundBuffer.g2_alt2();
             @Pc(137) byte varpId = inboundBuffer.g1neg();
-            VarpDomain.setVarpServer(varpId, ii);
+            VarpDomain.setVarp(varpId, id);
             currentOpcode = -1;
             return true;
         }
-        @Pc(171) int slot;
-        @Pc(156) JString argTypes;
+        //@Pc(171) int slot;
+        //@Pc(156) JString argTypes;
         if (currentOpcode == CLIENTSCRIPT_RUN) {
             // Execute a ClientScript with arguments passed from the server
             // Server sends Script ID, argument types and values
             int scriptId = inboundBuffer.g2();
-            argTypes = inboundBuffer.gjstr();
-            @Pc(163) Object[] scriptArgs = new Object[argTypes.length() + 1];
-            for (slot = argTypes.length() - 1; slot >= 0; slot--) {
-                if (argTypes.charAt(slot) == 115) { // 115 = string argument
-                    scriptArgs[slot + 1] = inboundBuffer.gjstr();
+            JString name = inboundBuffer.gjstr();
+            @Pc(163) Object[] scriptArgs = new Object[name.length() + 1];
+            for (int i = name.length() - 1; i >= 0; i--) {
+                if (name.charAt(i) == 115) { // 115 = string argument
+                    scriptArgs[i + 1] = inboundBuffer.gjstr();
                 } else {
-                    scriptArgs[slot + 1] = Integer.valueOf(inboundBuffer.g4());
+                    scriptArgs[i + 1] = Integer.valueOf(inboundBuffer.g4());
                 }
             }
             scriptArgs[0] = Integer.valueOf(inboundBuffer.g4());
@@ -392,119 +400,119 @@ public class Protocol {
             currentOpcode = -1;
             return true;
         }
-        @Pc(275) long username;
-        @Pc(262) boolean ignored;
-        @Pc(277) int i;
-        @Pc(506) JString worldName;
+        //@Pc(275) long username;
+        //@Pc(262) boolean ignored;
+        //@Pc(277) int i;
+        //@Pc(506) JString worldName;
         if (currentOpcode == MESSAGE_GAME) {
             // Game messages with special suffixes
             // Ex. :tradereq:
             @Pc(245) JString message = inboundBuffer.gjstr();
             if (message.endsWith(TRADEREQ)) {
-                argTypes = message.substring(message.indexOf(JString.COLON_SIGN), 0);
-                username = argTypes.encode37();
-                ignored = false;
-                for (i = 0; i < IgnoreList.ignoreCount; i++) {
-                    if (IgnoreList.encodedIgnores[i] == username) {
+                JString name = message.substring(message.indexOf(JString.COLON_SIGN), 0);
+                long username37 = name.encode37();
+                boolean ignored = false;
+                for (int i = 0; i < IgnoreList.ignoreCount; i++) {
+                    if (IgnoreList.encodedIgnores[i] == username37) {
                         ignored = true;
                         break;
                     }
                 }
                 if (!ignored && Player.inTutorialIsland == 0) {
-                    ChatHistory.addMessage(argTypes, 4, LocalizedText.TRADEREQ);
+                    ChatHistory.addMessage(name, 4, LocalizedText.TRADEREQ);
                 }
             } else if (message.endsWith(CHALREQ)) {
-                argTypes = message.substring(message.indexOf(JString.COLON_SIGN), 0);
-                username = argTypes.encode37();
-                ignored = false;
-                for (i = 0; i < IgnoreList.ignoreCount; i++) {
-                    if (IgnoreList.encodedIgnores[i] == username) {
+                JString name = message.substring(message.indexOf(JString.COLON_SIGN), 0);
+                long username37 = name.encode37();
+                boolean ignored = false;
+                for (int i = 0; i < IgnoreList.ignoreCount; i++) {
+                    if (IgnoreList.encodedIgnores[i] == username37) {
                         ignored = true;
                         break;
                     }
                 }
                 if (!ignored && Player.inTutorialIsland == 0) {
-                    worldName = message.substring(message.length() - 9, message.indexOf(JString.COLON_SIGN) + 1);
-                    ChatHistory.addMessage(argTypes, 8, worldName);
+                    JString worldName = message.substring(message.length() - 9, message.indexOf(JString.COLON_SIGN) + 1);
+                    ChatHistory.addMessage(name, 8, worldName);
                 }
             } else if (message.endsWith(ASSISTREQ)) {
-                ignored = false;
-                argTypes = message.substring(message.indexOf(JString.COLON_SIGN), 0);
-                username = argTypes.encode37();
-                for (i = 0; i < IgnoreList.ignoreCount; i++) {
-                    if (username == IgnoreList.encodedIgnores[i]) {
+                boolean ignored = false;
+                JString name = message.substring(message.indexOf(JString.COLON_SIGN), 0);
+                long username37 = name.encode37();
+                for (int i = 0; i < IgnoreList.ignoreCount; i++) {
+                    if (username37 == IgnoreList.encodedIgnores[i]) {
                         ignored = true;
                         break;
                     }
                 }
                 if (!ignored && Player.inTutorialIsland == 0) {
-                    ChatHistory.addMessage(argTypes, 10, JString.EMPTY);
+                    ChatHistory.addMessage(name, 10, JString.EMPTY);
                 }
             } else if (message.endsWith(CLAN)) {
-                argTypes = message.substring(message.indexOf(CLAN), 0);
-                ChatHistory.addMessage(JString.EMPTY, 11, argTypes);
+                JString name = message.substring(message.indexOf(CLAN), 0);
+                ChatHistory.addMessage(JString.EMPTY, 11, name);
             } else if (message.endsWith(TRADE)) {
-                argTypes = message.substring(message.indexOf(TRADE), 0);
+                JString name = message.substring(message.indexOf(TRADE), 0);
                 if (Player.inTutorialIsland == 0) {
-                    ChatHistory.addMessage(JString.EMPTY, 12, argTypes);
+                    ChatHistory.addMessage(JString.EMPTY, 12, name);
                 }
             } else if (message.endsWith(ASSIST)) {
-                argTypes = message.substring(message.indexOf(ASSIST), 0);
+                JString name = message.substring(message.indexOf(ASSIST), 0);
                 if (Player.inTutorialIsland == 0) {
-                    ChatHistory.addMessage(JString.EMPTY, 13, argTypes);
+                    ChatHistory.addMessage(JString.EMPTY, 13, name);
                 }
             } else if (message.endsWith(DUELSTAKE)) {
-                ignored = false;
-                argTypes = message.substring(message.indexOf(JString.COLON_SIGN), 0);
-                username = argTypes.encode37();
-                for (i = 0; i < IgnoreList.ignoreCount; i++) {
-                    if (username == IgnoreList.encodedIgnores[i]) {
+                boolean ignored = false;
+                JString name = message.substring(message.indexOf(JString.COLON_SIGN), 0);
+                long username37 = name.encode37();
+                for (int i = 0; i < IgnoreList.ignoreCount; i++) {
+                    if (username37 == IgnoreList.encodedIgnores[i]) {
                         ignored = true;
                         break;
                     }
                 }
                 if (!ignored && Player.inTutorialIsland == 0) {
-                    ChatHistory.addMessage(argTypes, 14, JString.EMPTY);
+                    ChatHistory.addMessage(name, 14, JString.EMPTY);
                 }
             } else if (message.endsWith(DUELFRIEND)) {
-                argTypes = message.substring(message.indexOf(JString.COLON_SIGN), 0);
-                ignored = false;
-                username = argTypes.encode37();
-                for (i = 0; i < IgnoreList.ignoreCount; i++) {
-                    if (IgnoreList.encodedIgnores[i] == username) {
+                JString name = message.substring(message.indexOf(JString.COLON_SIGN), 0);
+                boolean ignored = false;
+                long username37 = name.encode37();
+                for (int i = 0; i < IgnoreList.ignoreCount; i++) {
+                    if (IgnoreList.encodedIgnores[i] == username37) {
                         ignored = true;
                         break;
                     }
                 }
                 if (!ignored && Player.inTutorialIsland == 0) {
-                    ChatHistory.addMessage(argTypes, 15, JString.EMPTY);
+                    ChatHistory.addMessage(name, 15, JString.EMPTY);
                 }
             } else if (message.endsWith(CLANREQ)) {
-                argTypes = message.substring(message.indexOf(JString.COLON_SIGN), 0);
-                username = argTypes.encode37();
-                ignored = false;
-                for (i = 0; i < IgnoreList.ignoreCount; i++) {
-                    if (username == IgnoreList.encodedIgnores[i]) {
+                JString name = message.substring(message.indexOf(JString.COLON_SIGN), 0);
+                long username37 = name.encode37();
+                boolean ignored = false;
+                for (int i = 0; i < IgnoreList.ignoreCount; i++) {
+                    if (username37 == IgnoreList.encodedIgnores[i]) {
                         ignored = true;
                         break;
                     }
                 }
                 if (!ignored && Player.inTutorialIsland == 0) {
-                    ChatHistory.addMessage(argTypes, 16, JString.EMPTY);
+                    ChatHistory.addMessage(name, 16, JString.EMPTY);
                 }
             } else if (message.endsWith(ALLYREQ)) {
-                argTypes = message.substring(message.indexOf(JString.COLON_SIGN), 0);
-                ignored = false;
-                username = argTypes.encode37();
-                for (i = 0; i < IgnoreList.ignoreCount; i++) {
-                    if (IgnoreList.encodedIgnores[i] == username) {
+                JString name = message.substring(message.indexOf(JString.COLON_SIGN), 0);
+                boolean ignored = false;
+                long username37 = name.encode37();
+                for (int i = 0; i < IgnoreList.ignoreCount; i++) {
+                    if (IgnoreList.encodedIgnores[i] == username37) {
                         ignored = true;
                         break;
                     }
                 }
                 if (!ignored && Player.inTutorialIsland == 0) {
-                    worldName = message.substring(message.length() - 9, message.indexOf(JString.COLON_SIGN) + 1);
-                    ChatHistory.addMessage(argTypes, 21, worldName);
+                    JString worldName = message.substring(message.length() - 9, message.indexOf(JString.COLON_SIGN) + 1);
+                    ChatHistory.addMessage(name, 21, worldName);
                 }
             } else {
                 ChatHistory.addMessage(JString.EMPTY, 0, message);
@@ -512,16 +520,16 @@ public class Protocol {
             currentOpcode = -1;
             return true;
         }
-        @Pc(786) int param1;
-        @Pc(790) JString messageText;
+        //@Pc(786) int param1;
+        //@Pc(790) JString messageText;
         if (currentOpcode == IF_SETTEXT) {
             // Set text on a interface component
             // Takes: component, verify_id, text
-            ii = inboundBuffer.g2_al1();
+            int id = inboundBuffer.g2_al1();
             int verifyID = inboundBuffer.g2_alt2();
-            messageText = inboundBuffer.gjstr();
+            JString messageText = inboundBuffer.gjstr();
             if (setVerifyID(verifyID)) {
-                DelayedStateChange.setVarcstr(messageText, ii);
+                DelayedStateChange.setVarcstr(messageText, id);
             }
             currentOpcode = -1;
             return true;
@@ -539,35 +547,37 @@ public class Protocol {
             LoginManager.flagSceneTileX = 0;
             return true;
         } else {
-            @Pc(864) int i2;
+            //@Pc(864) int i2;
             if (currentOpcode == IF_SETSCROLLPOS) {
-                ii = inboundBuffer.p4rme();
-                param1 = inboundBuffer.g2_al1();
+                int id = inboundBuffer.p4rme();
+                int pos = inboundBuffer.g2_al1();
                 int verifyID = inboundBuffer.g2();
                 if (setVerifyID(verifyID)) {
-                    DelayedStateChange.interfaceSetScrollPosition(param1, ii);
+                    DelayedStateChange.interfaceSetScrollPosition(pos, id);
                 }
                 currentOpcode = -1;
                 return true;
             }
-            @Pc(884) long senderName;
-            @Pc(908) int chatType;
-            @Pc(916) int phraseId;
-            @Pc(899) long messageId1;
-            @Pc(904) long messageId2;
+            //@Pc(884) long senderName;
+            //@Pc(908) int chatType;
+            //@Pc(916) int phraseId;
+            //@Pc(899) long messageId1;
+           // @Pc(904) long messageId2;
             if (currentOpcode == MESSAGE_QUICKCHAT_CLAN) {
                 // Quickchat message from friend
-                senderName = inboundBuffer.g8();
+                long name37 = inboundBuffer.g8();
                 inboundBuffer.g1s();
-                username = inboundBuffer.g8();
-                messageId1 = inboundBuffer.g2();
-                messageId2 = inboundBuffer.g3();
-                chatType = inboundBuffer.g1();
+                long clan37 = inboundBuffer.g8();
+                int top = inboundBuffer.g2();
+                int bot = inboundBuffer.g3();
+                int rights = inboundBuffer.g1();
+                int quickchatId = inboundBuffer.g2();
+
                 @Pc(910) boolean isDuplicate = false;
-                phraseId = inboundBuffer.g2();
-                @Pc(922) long combinedMessageId = (messageId1 << MESSAGE_ID_HIGH_SHIFT) + messageId2; // Combine parts into 64-bit unique message ID
+                @Pc(922) long combinedMessageId = (top << MESSAGE_ID_HIGH_SHIFT) + bot; // Combine parts into 64-bit unique message ID
                 @Pc(924) int messageIndex = 0;
-                label1320: while (true) {
+
+                check: while (true) {
                     if (messageIndex < MAX_RECENT_MESSAGES) {
                         if (combinedMessageId != ChatHistory.recentMessages[messageIndex]) {
                             messageIndex++;
@@ -576,11 +586,11 @@ public class Protocol {
                         isDuplicate = true;
                         break;
                     }
-                    if (chatType <= 1) {
+                    if (rights <= 1) {
                         for (messageIndex = 0; messageIndex < IgnoreList.ignoreCount; messageIndex++) {
-                            if (IgnoreList.encodedIgnores[messageIndex] == senderName) {
+                            if (IgnoreList.encodedIgnores[messageIndex] == name37) {
                                 isDuplicate = true;
-                                break label1320;
+                                break check;
                             }
                         }
                     }
@@ -589,26 +599,26 @@ public class Protocol {
                 if (!isDuplicate && Player.inTutorialIsland == 0) {
                     ChatHistory.recentMessages[ChatHistory.messageCounter] = combinedMessageId;
                     ChatHistory.messageCounter = (ChatHistory.messageCounter + 1) % MAX_RECENT_MESSAGES;
-                    @Pc(999) JString decodedMessage = QuickChatPhraseTypeList.get(phraseId).decodeMessage(inboundBuffer);
-                    if (chatType == 2 || chatType == 3) {
-                        ChatHistory.add(phraseId, 20, decodedMessage, Base37.fromBase37(username).toTitleCase(), JString.concatenate(new JString[] { IMG1, Base37.fromBase37(senderName).toTitleCase() }));
-                    } else if (chatType == 1) {
-                        ChatHistory.add(phraseId, 20, decodedMessage, Base37.fromBase37(username).toTitleCase(), JString.concatenate(new JString[] { IMG0, Base37.fromBase37(senderName).toTitleCase() }));
+                    @Pc(999) JString decodedMessage = QuickChatPhraseTypeList.get(quickchatId).decodeMessage(inboundBuffer);
+                    if (rights == 2 || rights == 3) {
+                        ChatHistory.add(quickchatId, 20, decodedMessage, Base37.fromBase37(clan37).toTitleCase(), JString.concatenate(new JString[] { IMG1, Base37.fromBase37(name37).toTitleCase() }));
+                    } else if (rights == 1) {
+                        ChatHistory.add(quickchatId, 20, decodedMessage, Base37.fromBase37(clan37).toTitleCase(), JString.concatenate(new JString[] { IMG0, Base37.fromBase37(name37).toTitleCase() }));
                     } else {
-                        ChatHistory.add(phraseId, 20, decodedMessage, Objects.requireNonNull(Base37.fromBase37(username)).toTitleCase(), Base37.fromBase37(senderName).toTitleCase());
+                        ChatHistory.add(quickchatId, 20, decodedMessage, Objects.requireNonNull(Base37.fromBase37(clan37)).toTitleCase(), Base37.fromBase37(name37).toTitleCase());
                     }
                 }
                 currentOpcode = -1;
                 return true;
             }
-            @Pc(1146) int count;
-            @Pc(1160) int chatFlags;
-            @Pc(1245) boolean isSorted;
+            //@Pc(1146) int count;
+            //@Pc(1160) int chatFlags;
+            //@Pc(1245) boolean isSorted;
             if (currentOpcode == CLANCHAT_JOIN) {
                 // Complete clan chat channel data
                 ClanChat.transmitAt = InterfaceManager.transmitTimer;
-                senderName = inboundBuffer.g8();
-                if (senderName == 0L) {
+                long owner37 = inboundBuffer.g8();
+                if (owner37 == 0L) {
                     ClanChat.owner = null;
                     currentOpcode = -1;
                     ClanChat.name = null;
@@ -616,40 +626,40 @@ public class Protocol {
                     ClanChat.size = 0;
                     return true;
                 }
-                username = inboundBuffer.g8();
-                ClanChat.name = Base37.fromBase37(username);
-                ClanChat.owner = Base37.fromBase37(senderName);
+                long username37 = inboundBuffer.g8();
+                ClanChat.name = Base37.fromBase37(username37);
+                ClanChat.owner = Base37.fromBase37(owner37);
                 ClanChat.minKick = inboundBuffer.g1s();
-                count = inboundBuffer.g1();
-                if (count == EXTENDED_COUNT_MARKER) {
+                int clanSize = inboundBuffer.g1();
+                if (clanSize == EXTENDED_COUNT_MARKER) {
                     // Extended member list follows in separate packet
                     currentOpcode = -1;
                     return true;
                 }
-                ClanChat.size = count;
+                ClanChat.size = clanSize;
                 @Pc(1158) ClanMember[] clanMembers = new ClanMember[MAX_CLAN_MEMBERS];
-                for (chatFlags = 0; chatFlags < ClanChat.size; chatFlags++) {
-                    clanMembers[chatFlags] = new ClanMember();
-                    clanMembers[chatFlags].key = inboundBuffer.g8();
-                    clanMembers[chatFlags].username = Base37.fromBase37(clanMembers[chatFlags].key);
-                    clanMembers[chatFlags].world = inboundBuffer.g2();
-                    clanMembers[chatFlags].rank = inboundBuffer.g1s();
-                    clanMembers[chatFlags].worldName = inboundBuffer.gjstr();
-                    if (Player.name37 == clanMembers[chatFlags].key) {
-                        ClanChat.rank = clanMembers[chatFlags].rank;
+                for (int i = 0; i < ClanChat.size; i++) {
+                    clanMembers[i] = new ClanMember();
+                    clanMembers[i].key = inboundBuffer.g8();
+                    clanMembers[i].username = Base37.fromBase37(clanMembers[i].key);
+                    clanMembers[i].world = inboundBuffer.g2();
+                    clanMembers[i].rank = inboundBuffer.g1s();
+                    clanMembers[i].worldName = inboundBuffer.gjstr();
+                    if (Player.name37 == clanMembers[i].key) {
+                        ClanChat.rank = clanMembers[i].rank;
                     }
                 }
-                chatType = ClanChat.size;
+                int count = ClanChat.size;
                 // Alphabetically sort clan members by name
-                while (chatType > 0) {
-                    isSorted = true;
-                    chatType--;
-                    for (phraseId = 0; phraseId < chatType; phraseId++) {
-                        if (clanMembers[phraseId].username.method3139(clanMembers[phraseId + 1].username) > 0) {
+                while (count > 0) {
+                    boolean isSorted = true;
+                    count--;
+                    for (int i = 0; i < count; i++) {
+                        if (clanMembers[i].username.method3139(clanMembers[i + 1].username) > 0) {
                             isSorted = false;
-                            @Pc(1279) ClanMember clanMember = clanMembers[phraseId];
-                            clanMembers[phraseId] = clanMembers[phraseId + 1];
-                            clanMembers[phraseId + 1] = clanMember;
+                            @Pc(1279) ClanMember clanMember = clanMembers[i];
+                            clanMembers[i] = clanMembers[i + 1];
+                            clanMembers[i + 1] = clanMember;
                         }
                     }
                     if (isSorted) {
@@ -662,8 +672,8 @@ public class Protocol {
             } else if (currentOpcode == LAST_LOGIN_INFO) {
                 // LAST_LOGIN_INFO
                 // Last IP Adress
-                ii = inboundBuffer.g4rme();
-                Player.lastLogAddress = GameShell.signLink.getReverseDns(ii);
+                int ip32 = inboundBuffer.g4rme();
+                Player.lastLogAddress = GameShell.signLink.getReverseDns(ip32);
                 currentOpcode = -1;
                 return true;
             } else if (currentOpcode == PLAYER_INFO) {
@@ -675,10 +685,10 @@ public class Protocol {
             } else if (currentOpcode == IF_SETTEXT_ALT) {
                 // Alternative format for setting text on component
                 int verifyID = inboundBuffer.g2();
-                argTypes = inboundBuffer.gjstr();
-                i2 = inboundBuffer.g2_alt3(); // Player option slot
+                JString text = inboundBuffer.gjstr();
+                int id = inboundBuffer.g2_alt3(); // Player option slot
                 if (setVerifyID(verifyID)) {
-                    DelayedStateChange.setVarcstr(argTypes, i2);
+                    DelayedStateChange.setVarcstr(text, id);
                 }
                 currentOpcode = -1;
                 return true;
@@ -690,39 +700,39 @@ public class Protocol {
                 currentOpcode = -1;
                 return true;
             } else {
-                @Pc(1409) JString message_text;
+                //@Pc(1409) JString message_text;
                 if (currentOpcode == SET_PLAYER_OPTION) {
                     // Sets option text, cursor type, right-click options on players
-                    ii = inboundBuffer.g2_alt3();
-                    if (ii == INVALID_ID_U16) {
-                        ii = -1;
+                    int cursor = inboundBuffer.g2_alt3();
+                    if (cursor == INVALID_ID_U16) {
+                        cursor = -1;
                     }
-                    param1 = inboundBuffer.g1();
-                    i2 = inboundBuffer.g1();
-                    message_text = inboundBuffer.gjstr();
-                    if (i2 >= 1 && i2 <= MAX_PLAYER_OPTIONS) {
-                        if (message_text.equalsIgnoreCase(MiniMenu.NULL)) {
-                            message_text = null;
+                    int top = inboundBuffer.g1();
+                    int optId = inboundBuffer.g1();
+                    JString option = inboundBuffer.gjstr();
+                    if (optId >= 1 && optId <= MAX_PLAYER_OPTIONS) {
+                        if (option.equalsIgnoreCase(MiniMenu.NULL)) {
+                            option = null;
                         }
-                        Player.options[i2 - 1] = message_text;
-                        Player.cursors[i2 - 1] = ii;
-                        Player.secondaryOptions[i2 - 1] = param1 == 0;
+                        Player.options[optId - 1] = option;
+                        Player.cursors[optId - 1] = cursor;
+                        Player.secondaryOptions[optId - 1] = top == 0;
                     }
                     currentOpcode = -1;
                     return true;
                 } else if (currentOpcode == VARP_LARGE) {
                     // Update a player variable with large ID (> 255)
-                    ii = inboundBuffer.g4();
-                    param1 = inboundBuffer.g2_alt2();
-                    VarpDomain.setVarpServer(ii, param1);
+                    int value = inboundBuffer.g4();
+                    int id = inboundBuffer.g2_alt2();
+                    VarpDomain.setVarp(value, id);
                     currentOpcode = -1;
                     return true;
                 } else if (currentOpcode == IF_SETHIDE) {
-                    ii = inboundBuffer.g1_alt2();
+                    int parent = inboundBuffer.g1_alt2();
                     int verifyID = inboundBuffer.g2();
-                    i2 = inboundBuffer.g4me();
+                    int reset = inboundBuffer.g4me();
                     if (setVerifyID(verifyID)) {
-                        DelayedStateChange.interfaceSetHide(i2, ii);
+                        DelayedStateChange.interfaceSetHide(reset, parent);
                     }
                     currentOpcode = -1;
                     return true;
@@ -742,8 +752,8 @@ public class Protocol {
                         InterfaceManager.resetComponentAnimations(parent);
                         InterfaceManager.updateInterfaceLayout(false);
                         ClientScriptRunner.runHooks(InterfaceManager.topLevelInterface);
-                        for (slot = 0; slot < MAX_COMPONENT_REDRAW_SLOTS; slot++) {
-                            InterfaceManager.componentNeedsRedraw[slot] = true;
+                        for (int i = 0; i < MAX_COMPONENT_REDRAW_SLOTS; i++) {
+                            InterfaceManager.componentNeedsRedraw[i] = true;
                         }
                     }
                     currentOpcode = -1;
@@ -751,19 +761,19 @@ public class Protocol {
                 } else if (currentOpcode == CLIENT_SETVARC_LARGE) {
                     // Update client variable
                     int verifyID = inboundBuffer.g2_alt3();
-                    param1 = inboundBuffer.g4();
-                    i2 = inboundBuffer.g2_alt2(); // VarC ID
+                    int value = inboundBuffer.g4();
+                    int id = inboundBuffer.g2_alt2(); // VarC ID
                     if (setVerifyID(verifyID)) {
-                        DelayedStateChange.updateVarC(i2, param1);
+                        DelayedStateChange.updateVarC(id, value);
                     }
                     currentOpcode = -1;
                     return true;
                 } else if (currentOpcode == MESSAGE_QUICKCHAT_PRIVATE_ECHO) {
                     // Quickchat message in clan chat
-                    senderName = inboundBuffer.g8();
-                    i2 = inboundBuffer.g2(); // Quickchat phrase ID
-                    message_text = QuickChatPhraseTypeList.get(i2).decodeMessage(inboundBuffer);
-                    ChatHistory.add(i2, 19, message_text, null, Base37.fromBase37(senderName).toTitleCase());
+                    long name37 = inboundBuffer.g8();
+                    int quickchatId = inboundBuffer.g2(); // Quickchat phrase ID
+                    JString message = QuickChatPhraseTypeList.get(quickchatId).decodeMessage(inboundBuffer);
+                    ChatHistory.add(quickchatId, 19, message, null, Base37.fromBase37(name37).toTitleCase());
                     currentOpcode = -1;
                     return true;
                 } else if (currentOpcode == UPDATE_UID192) {
@@ -781,99 +791,100 @@ public class Protocol {
                 } else if (currentOpcode == CAM_LOOKAT) {
                     // Set camera to look at a specific coordinate
                     int verifyID = inboundBuffer.g2();
-                    param1 = inboundBuffer.g1();
-                    i2 = inboundBuffer.g1();
-                    slot = inboundBuffer.g2();
-                    count = inboundBuffer.g1();
-                    i = inboundBuffer.g1();
+                    int tx = inboundBuffer.g1();
+                    int tz = inboundBuffer.g1();
+                    int cy = inboundBuffer.g2();
+                    int step = inboundBuffer.g1();
+                    int dur = inboundBuffer.g1();
                     if (setVerifyID(verifyID)) {
-                        Camera.setCameraLookAtTarget(slot, i2, count, param1, i);
+                        Camera.setCameraLookAtTarget(cy, tz, step, tx, dur);
                     }
                     currentOpcode = -1;
                     return true;
                 } else if (currentOpcode == IF_SETANIM) {
-                    ii = inboundBuffer.p4rme();
-                    param1 = inboundBuffer.g2les();
+                    int id = inboundBuffer.p4rme();
+                    int value = inboundBuffer.g2les();
                     int verifyID = inboundBuffer.g2_alt2();
                     if (setVerifyID(verifyID)) {
-                        DelayedStateChange.interfaceSetModelAnimation(ii, param1);
+                        DelayedStateChange.interfaceSetModelAnimation(id, value);
                     }
                     currentOpcode = -1;
                     return true;
                 } else {
-                    @Pc(1814) ServerActiveProperties activeProperties1;
-                    @Pc(1804) ServerActiveProperties activeProperties2;
+                    //@Pc(1814) ServerActiveProperties activeProperties1;
+                    //@Pc(1804) ServerActiveProperties activeProperties2;
                     if (currentOpcode == IF_SETEVENTS) {
                         // Set which events a component can recieve
                         // ex. mouse clicks, dragging, key presses
-                        ii = inboundBuffer.g2_alt3();
-                        param1 = inboundBuffer.g4me();
+                        int value = inboundBuffer.g2_alt3();
+                        int parent = inboundBuffer.g4me();
                         int verifyID = inboundBuffer.g2_alt2();
-                        slot = inboundBuffer.g2_al1();
-                        if (slot == INVALID_ID_U16) {
-                            slot = -1;
+                        int end = inboundBuffer.g2_al1();
+                        if (end == INVALID_ID_U16) {
+                            end = -1;
                         }
-                        count = inboundBuffer.g2_alt2();
-                        if (count == INVALID_ID_U16) {
-                            count = -1;
+                        int start = inboundBuffer.g2_alt2();
+                        if (start == INVALID_ID_U16) {
+                            start = -1;
                         }
                         if (setVerifyID(verifyID)) {
-                            for (i = count; i <= slot; i++) {
-                                messageId2 = (long) i + ((long) param1 << MESSAGE_ID_HIGH_SHIFT); // Combine component ID + slot into a unique key
-                                activeProperties2 = (ServerActiveProperties) InterfaceManager.properties.get(messageId2);
-                                if (activeProperties2 != null) {
-                                    activeProperties1 = new ServerActiveProperties(activeProperties2.events, ii);
-                                    activeProperties2.unlink();
-                                } else if (i == -1) {
-                                    activeProperties1 = new ServerActiveProperties(InterfaceList.list(param1).properties.events, ii);
+                            ServerActiveProperties properties;
+                            for (int slot = start; slot <= end; slot++) {
+                                long ptr = (long) slot + ((long) parent << MESSAGE_ID_HIGH_SHIFT); // Combine component ID + slot into a unique key
+                                ServerActiveProperties prev = (ServerActiveProperties) InterfaceManager.properties.get(ptr);
+                                if (prev != null) {
+                                    properties = new ServerActiveProperties(prev.events, value);
+                                    prev.unlink();
+                                } else if (slot == -1) {
+                                    properties = new ServerActiveProperties(InterfaceList.list(parent).properties.events, value);
                                 } else {
-                                    activeProperties1 = new ServerActiveProperties(0, ii);
+                                    properties = new ServerActiveProperties(0, value);
                                 }
-                                InterfaceManager.properties.put(activeProperties1, messageId2);
+                                InterfaceManager.properties.put(properties, ptr);
                             }
                         }
                         currentOpcode = -1;
                         return true;
                     }
-                    @Pc(1986) int j;
+                    //@Pc(1986) int j;
                     if (currentOpcode == SPOTANIM_ENTITY) {
                         // Play a spot animation on entity or coordinate
-                        ii = inboundBuffer.g2();
-                        param1 = inboundBuffer.g2_al1();
-                        i2 = inboundBuffer.g4rme();
-                        slot = inboundBuffer.g2_alt3();
+                        int delay = inboundBuffer.g2();
+                        int height = inboundBuffer.g2_al1();
+                        int target = inboundBuffer.g4rme();
+                        int gfxId = inboundBuffer.g2_alt3();
                         // Check entity type from packedworld coordinate
                         // ENTITY_TYPE_SHIFT_CHECK = 0: Entity
                         // ENTITY_TYPE_SHIFT_CHECK = 1: World coordinate
-                        if (i2 >> ENTITY_TYPE_SHIFT_CHECK == 0) {
+                        if (target >> ENTITY_TYPE_SHIFT_CHECK == 0) {
                             @Pc(1994) SeqType seqType;
                             // ENTITY_TYPE_NPC_SHIFT = NPC
-                            if (i2 >> ENTITY_TYPE_NPC_SHIFT != 0) {
-                                count = i2 & ENTITY_ID_MASK;
-                                @Pc(1894) Npc npc = NpcList.npcs[count];
+                            if (target >> ENTITY_TYPE_NPC_SHIFT != 0) {
+                                int npcId = target & ENTITY_ID_MASK;
+                                @Pc(1894) Npc npc = NpcList.npcs[npcId];
                                 if (npc != null) {
-                                    if (slot == INVALID_ID_U16) {
-                                        slot = -1;
+                                    if (gfxId == INVALID_ID_U16) {
+                                        gfxId = -1;
                                     }
-                                    isSorted = true;
+                                    boolean animated = true;
                                     // Check animation priority
-                                    if (slot != -1 && npc.spotAnimId != -1 && SeqTypeList.get(SpotAnimTypeList.get(slot).seqId).priority < SeqTypeList.get(SpotAnimTypeList.get(npc.spotAnimId).seqId).priority) {
-                                        isSorted = false;
+                                    if (gfxId != -1 && npc.spotAnimId != -1 && SeqTypeList.get(SpotAnimTypeList.get(gfxId).seqId).priority < SeqTypeList.get(SpotAnimTypeList.get(npc.spotAnimId).seqId).priority) {
+                                        animated = false;
                                     }
-                                    if (isSorted) {
+                                    if (animated) {
                                         npc.anInt3361 = 0;
-                                        npc.spotAnimId = slot;
-                                        npc.spotAnimStart = Client.loop + ii;
+                                        npc.spotAnimId = gfxId;
+                                        npc.spotAnimStart = Client.loop + delay;
                                         npc.spotanimId = 0;
                                         if (npc.spotAnimStart > Client.loop) {
                                             npc.spotanimId = -1;
                                         }
-                                        npc.spotAnimY = param1;
+                                        npc.spotAnimY = height;
                                         npc.anInt3418 = 1;
                                         if (npc.spotAnimId != -1 && Client.loop == npc.spotAnimStart) {
-                                            j = SpotAnimTypeList.get(npc.spotAnimId).seqId;
-                                            if (j != -1) {
-                                                seqType = SeqTypeList.get(j);
+                                            int seqId = SpotAnimTypeList.get(npc.spotAnimId).seqId;
+                                            if (seqId != -1) {
+                                                seqType = SeqTypeList.get(seqId);
                                                 if (seqType != null && seqType.frames != null) {
                                                     SoundPlayer.playSeqSound(npc.zFine, seqType, npc.xFine, false, 0);
                                                 }
@@ -882,26 +893,26 @@ public class Protocol {
                                     }
                                 }
                                 // ENTITY_TYPE_PLAYER_SHIFT = Player
-                            } else if (i2 >> ENTITY_TYPE_PLAYER_SHIFT != 0) {
-                                count = i2 & ENTITY_ID_MASK;
+                            } else if (target >> ENTITY_TYPE_PLAYER_SHIFT != 0) {
+                                int playerId = target & ENTITY_ID_MASK;
                                 @Pc(2033) Player player;
-                                if (PlayerList.localPid == count) {
+                                if (PlayerList.localPid == playerId) {
                                     player = PlayerList.self;
                                 } else {
-                                    player = PlayerList.players[count];
+                                    player = PlayerList.players[playerId];
                                 }
                                 if (player != null) {
-                                    if (slot == INVALID_ID_U16) {
-                                        slot = -1;
+                                    if (gfxId == INVALID_ID_U16) {
+                                        gfxId = -1;
                                     }
-                                    isSorted = true;
-                                    if (slot != -1 && player.spotAnimId != -1 && SeqTypeList.get(SpotAnimTypeList.get(slot).seqId).priority < SeqTypeList.get(SpotAnimTypeList.get(player.spotAnimId).seqId).priority) {
-                                        isSorted = false;
+                                    boolean animated = true;
+                                    if (gfxId != -1 && player.spotAnimId != -1 && SeqTypeList.get(SpotAnimTypeList.get(gfxId).seqId).priority < SeqTypeList.get(SpotAnimTypeList.get(player.spotAnimId).seqId).priority) {
+                                        animated = false;
                                     }
-                                    if (isSorted) {
-                                        player.spotAnimStart = ii + Client.loop;
-                                        player.spotAnimY = param1;
-                                        player.spotAnimId = slot;
+                                    if (animated) {
+                                        player.spotAnimStart = delay + Client.loop;
+                                        player.spotAnimY = height;
+                                        player.spotAnimId = gfxId;
                                         if (player.spotAnimId == INVALID_ID_U16) {
                                             player.spotAnimId = -1;
                                         }
@@ -912,9 +923,9 @@ public class Protocol {
                                             player.spotanimId = -1;
                                         }
                                         if (player.spotAnimId != -1 && player.spotAnimStart == Client.loop) {
-                                            j = SpotAnimTypeList.get(player.spotAnimId).seqId;
-                                            if (j != -1) {
-                                                seqType = SeqTypeList.get(j);
+                                            int seqId = SpotAnimTypeList.get(player.spotAnimId).seqId;
+                                            if (seqId != -1) {
+                                                seqType = SeqTypeList.get(seqId);
                                                 if (seqType != null && seqType.frames != null) {
                                                     SoundPlayer.playSeqSound(player.zFine, seqType, player.xFine, player == PlayerList.self, 0);
                                                 }
@@ -925,13 +936,13 @@ public class Protocol {
                             }
                         } else {
                             // Extract coordinate from packed value
-                            count = i2 >> PLANE_SHIFT & PLANE_MASK;
-                            i = (i2 >> COORD_X_SHIFT & COORD_MASK) - Camera.sceneBaseTileX; // X coordinate
-                            chatFlags = (i2 & COORD_MASK) - Camera.sceneBaseTileZ; // Z coordinate
-                            if (i >= 0 && chatFlags >= 0 && i < SIZE && chatFlags < SIZE) {
-                                chatFlags = chatFlags * TILE_SIZE + TILE_CENTER_OFFSET;
-                                i = i * TILE_SIZE + TILE_CENTER_OFFSET;
-                                @Pc(2241) SpotAnim spotAnim = new SpotAnim(slot, count, i, chatFlags, SceneGraph.getTileHeight(count, i, chatFlags) - param1, ii, Client.loop);
+                            int plane = target >> PLANE_SHIFT & PLANE_MASK;
+                            int posX = (target >> COORD_X_SHIFT & COORD_MASK) - Camera.sceneBaseTileX; // X coordinate
+                            int posZ = (target & COORD_MASK) - Camera.sceneBaseTileZ; // Z coordinate
+                            if (posX >= 0 && posZ >= 0 && posX < SIZE && posZ < SIZE) {
+                                posZ = posZ * TILE_SIZE + TILE_CENTER_OFFSET;
+                                posX = posX * TILE_SIZE + TILE_CENTER_OFFSET;
+                                @Pc(2241) SpotAnim spotAnim = new SpotAnim(gfxId, plane, posX, posZ, SceneGraph.getTileHeight(plane, posX, posZ) - height, delay, Client.loop);
                                 SceneGraph.spotanims.push(new SpotAnimEntity(spotAnim));
                             }
                         }
@@ -939,12 +950,12 @@ public class Protocol {
                         return true;
                     } else if (currentOpcode == IF_SETMODELROTATION) {
                         // Set 3D model rotation speed on component
-                        ii = inboundBuffer.p4rme();
+                        int ptr = inboundBuffer.p4rme();
                         int verifyID = inboundBuffer.g2_alt2();
-                        i2 = inboundBuffer.g2();
-                        slot = inboundBuffer.g2_alt2();
+                        int pitchStep = inboundBuffer.g2();
+                        int yawStep = inboundBuffer.g2_alt2();
                         if (setVerifyID(verifyID)) {
-                            DelayedStateChange.interfaceSetModelRotation(slot + (i2 << COMPONENT_UPPER_WORD_SHIFT), ii);
+                            DelayedStateChange.interfaceSetModelRotation(yawStep + (pitchStep << COMPONENT_UPPER_WORD_SHIFT), ptr);
                         }
                         currentOpcode = -1;
                         return true;
@@ -953,19 +964,19 @@ public class Protocol {
                         // Update players skill level and xp
                         // Sends boosted level
                         InterfaceManager.redrawActiveInterfaces();
-                        ii = inboundBuffer.g1_alt1();
-                        param1 = inboundBuffer.g4rme();
-                        i2 = inboundBuffer.g1(); // Skill
-                        PlayerSkillXpTable.experience[i2] = param1;
-                        PlayerSkillXpTable.boostedLevels[i2] = ii;
-                        PlayerSkillXpTable.baseLevels[i2] = 1;
+                        int level = inboundBuffer.g1_alt1();
+                        int xp = inboundBuffer.g4rme();
+                        int skill = inboundBuffer.g1(); // Skill
+                        PlayerSkillXpTable.experience[skill] = xp;
+                        PlayerSkillXpTable.boostedLevels[skill] = level;
+                        PlayerSkillXpTable.baseLevels[skill] = 1;
                         // Calculate base level from xp
-                        for (slot = 0; slot < MAX_SKILL_LEVEL_INDEX; slot++) {
-                            if (PlayerSkillXpTable.xpLevelLookup[slot] <= param1) {
-                                PlayerSkillXpTable.baseLevels[i2] = slot + 2;
+                        for (int i = 0; i < MAX_SKILL_LEVEL_INDEX; i++) {
+                            if (PlayerSkillXpTable.xpLevelLookup[i] <= xp) {
+                                PlayerSkillXpTable.baseLevels[skill] = i + 2;
                             }
                         }
-                        PlayerSkillXpTable.updatedStats[Component.statUpdateCount++ & CIRCULAR_BUFFER_MASK] = i2;
+                        PlayerSkillXpTable.updatedStats[Component.statUpdateCount++ & CIRCULAR_BUFFER_MASK] = skill;
                         currentOpcode = -1;
                         return true;
                     } else if (currentOpcode == MAP_PROJANIM || currentOpcode == MAP_PROJANIM_SMALL || currentOpcode == SOUND_AREA || currentOpcode == OBJ_COUNT || currentOpcode == LOC_ADD_CHANGE || currentOpcode == OBJ_ADD || currentOpcode == SPOTANIM_SPECIFIC || currentOpcode == MAP_PROJANIM_2 || currentOpcode == OBJ_DEL || currentOpcode == OBJ_REVEAL || currentOpcode == LOC_ANIM || currentOpcode == LOC_DEL || currentOpcode == LOC_ADD) {
@@ -976,9 +987,9 @@ public class Protocol {
                     } else if (currentOpcode == IF_CLOSESUB) {
                         // Close sub-interface
                         int verifyID = inboundBuffer.g2();
-                        param1 = inboundBuffer.g4();
+                        int id = inboundBuffer.g4();
                         if (setVerifyID(verifyID)) {
-                            @Pc(2441) SubInterface subInterface = (SubInterface) InterfaceManager.subInterfaces.get((long) param1);
+                            @Pc(2441) SubInterface subInterface = (SubInterface) InterfaceManager.subInterfaces.get((long) id);
                             if (subInterface != null) {
                                 InterfaceManager.closeInterface(true, subInterface);
                             }
@@ -992,12 +1003,12 @@ public class Protocol {
                     } else if (currentOpcode == CAM_FORCEANGLE) {
                         // Set orbital camera angles
                         // Controls yaw and pitch
-                        ii = inboundBuffer.g2_al1();
+                        int yaw = inboundBuffer.g2_al1();
                         int verifyID = inboundBuffer.g2();
-                        i2 = inboundBuffer.g2(); // Camera pitch
+                        int pitch = inboundBuffer.g2(); // Camera pitch
                         if (setVerifyID(verifyID)) {
-                            Camera.orbitCameraYaw = ii;
-                            Camera.orbitCameraPitch = i2;
+                            Camera.orbitCameraYaw = yaw;
+                            Camera.orbitCameraPitch = pitch;
                             if (Camera.mode == MODE_ORBITAL) { // Camera type 2 = orbital camera
                                 Camera.cameraPitch = Camera.orbitCameraPitch;
                                 Camera.cameraYaw = Camera.orbitCameraYaw;
@@ -1008,13 +1019,13 @@ public class Protocol {
                         return true;
                     } else if (currentOpcode == IF_SETANGLE) {
                         // Update interface component view settings
-                        ii = inboundBuffer.g2();
+                        int pitch = inboundBuffer.g2();
                         int verifyID = inboundBuffer.g2_alt2();
-                        i2 = inboundBuffer.g2_alt3();
-                        slot = inboundBuffer.g2_alt3();
-                        count = inboundBuffer.g4();
+                        int scale = inboundBuffer.g2_alt3();
+                        int yaw = inboundBuffer.g2_alt3();
+                        int ptr = inboundBuffer.g4();
                         if (setVerifyID(verifyID)) {
-                            DelayedStateChange.updateView(i2, count, slot, ii);
+                            DelayedStateChange.updateView(scale, ptr, yaw, pitch);
                         }
                         currentOpcode = -1;
                         return true;
@@ -1022,11 +1033,11 @@ public class Protocol {
                         // Clear all ground items in a 8x8 area
                         SceneGraph.currentZoneX = inboundBuffer.g1();
                         SceneGraph.currentZoneZ = inboundBuffer.g1_alt2();
-                        for (ii = SceneGraph.currentZoneX; ii < SceneGraph.currentZoneX + ZONE_SIZE; ii++) {
-                            for (param1 = SceneGraph.currentZoneZ; param1 < SceneGraph.currentZoneZ + ZONE_SIZE; param1++) {
-                                if (SceneGraph.objStacks[Player.currentLevel][ii][param1] != null) {
-                                    SceneGraph.objStacks[Player.currentLevel][ii][param1] = null;
-                                    spawnObjStack(ii, param1);
+                        for (int x = SceneGraph.currentZoneX; x < SceneGraph.currentZoneX + ZONE_SIZE; x++) {
+                            for (int z = SceneGraph.currentZoneZ; z < SceneGraph.currentZoneZ + ZONE_SIZE; z++) {
+                                if (SceneGraph.objStacks[Player.currentLevel][x][z] != null) {
+                                    SceneGraph.objStacks[Player.currentLevel][x][z] = null;
+                                    spawnObjStack(x, z);
                                 }
                             }
                         }
@@ -1039,25 +1050,25 @@ public class Protocol {
                         return true;
                     } else if (currentOpcode == INV_CLEAR) {
                         // Clear all item in interface inventory component
-                        ii = inboundBuffer.p4rme();
-                        @Pc(2666) Component component = InterfaceList.list(ii);
-                        for (i2 = 0; i2 < component.invSlotObjId.length; i2++) {
-                            component.invSlotObjId[i2] = -1;
-                            component.invSlotObjId[i2] = 0;
+                        int id = inboundBuffer.p4rme();
+                        @Pc(2666) Component component = InterfaceList.list(id);
+                        for (int i = 0; i < component.invSlotObjId.length; i++) {
+                            component.invSlotObjId[i] = -1;
+                            component.invSlotObjId[i] = 0;
                         }
                         InterfaceManager.redraw(component);
                         currentOpcode = -1;
                         return true;
                     } else if (currentOpcode == IF_SETMODEL) {
                         // Set 3D model on interface component
-                        ii = inboundBuffer.g4me();
+                        int id = inboundBuffer.g4me();
                         int verifyID = inboundBuffer.g2_alt3();
-                        i2 = inboundBuffer.g2_alt2();
-                        if (i2 == INVALID_ID_U16) {
-                            i2 = -1;
+                        int modelId = inboundBuffer.g2_alt2();
+                        if (modelId == INVALID_ID_U16) {
+                            modelId = -1;
                         }
                         if (setVerifyID(verifyID)) {
-                            DelayedStateChange.interfaceSetModel(-1, 1, ii, i2);
+                            DelayedStateChange.interfaceSetModel(-1, 1, id, modelId);
                         }
                         currentOpcode = -1;
                         return true;
@@ -1068,90 +1079,90 @@ public class Protocol {
                         return true;
                     } else if (currentOpcode == PLAYER_TELEPORT) {
                         // Teleport player to coordinate
-                        ii = inboundBuffer.g1_alt3();
-                        param1 = inboundBuffer.g1_alt1();
-                        i2 = inboundBuffer.g1();
-                        Player.currentLevel = param1 >> LEVEL_SHIFT;
-                        PlayerList.self.teleport(ii, (param1 & TELEPORT_FLAG_MASK) == 1, i2);
+                        int pos1 = inboundBuffer.g1_alt3();
+                        int flags = inboundBuffer.g1_alt1();
+                        int pos2 = inboundBuffer.g1();
+                        Player.currentLevel = flags >> LEVEL_SHIFT;
+                        PlayerList.self.teleport(pos1, (flags & TELEPORT_FLAG_MASK) == 1, pos2);
                         currentOpcode = -1;
                         return true;
                     } else {
-                        @Pc(3002) int friendIndex;
-                        @Pc(3038) JString message_Text;
-                        @Pc(3020) JString quickChatText;
+                        //@Pc(3002) int friendIndex;
+                        //@Pc(3038) JString message_Text;
+                        //@Pc(3020) JString quickChatText;
                         if (currentOpcode == UPDATE_FRIENDLIST) {
                             // Update or add friend to friends list
                             // Sends online status, world, rank, username
                             // Sorted by online on current world
-                            senderName = inboundBuffer.g8();
-                            i2 = inboundBuffer.g2(); // World
-                            slot = inboundBuffer.g1();
-                            ignored = true;
-                            if (senderName < 0L) {
-                                senderName &= Long.MAX_VALUE;
+                            long name37 = inboundBuffer.g8();
+                            int worldId = inboundBuffer.g2(); // World
+                            int x = inboundBuffer.g1();
+                            boolean ignored = true;
+                            if (name37 < 0L) {
+                                name37 &= Long.MAX_VALUE;
                                 ignored = false;
                             }
-                            worldName = JString.EMPTY;
-                            if (i2 > 0) {
+                            JString worldName = JString.EMPTY;
+                            if (worldId > 0) {
                                 worldName = inboundBuffer.gjstr();
                             }
-                            @Pc(2834) JString displayName = Base37.fromBase37(senderName).toTitleCase();
-                            for (j = 0; j < FriendList.friendCount; j++) {
-                                if (senderName == FriendList.encodedUsernames[j]) {
-                                    if (i2 != FriendList.friendWorlds[j]) {
-                                        FriendList.friendWorlds[j] = i2;
-                                        if (i2 > 0) {
+                            @Pc(2834) JString displayName = Base37.fromBase37(name37).toTitleCase();
+                            for (int i = 0; i < FriendList.friendCount; i++) {
+                                if (name37 == FriendList.encodedUsernames[i]) {
+                                    if (worldId != FriendList.friendWorlds[i]) {
+                                        FriendList.friendWorlds[i] = worldId;
+                                        if (worldId > 0) {
                                             ChatHistory.addMessage(JString.EMPTY, 5, JString.concatenate(new JString[] { displayName, LocalizedText.FRIENDLOGIN}));
                                         }
-                                        if (i2 == 0) {
+                                        if (worldId == 0) {
                                             ChatHistory.addMessage(JString.EMPTY, 5, JString.concatenate(new JString[] { displayName, LocalizedText.FRIENDLOGOUT}));
                                         }
                                     }
-                                    FriendList.worldNames[j] = worldName;
-                                    FriendList.ranks[j] = slot;
+                                    FriendList.worldNames[i] = worldName;
+                                    FriendList.ranks[i] = x;
                                     displayName = null;
-                                    FriendList.friendGame[j] = ignored;
+                                    FriendList.friendGame[i] = ignored;
                                     break;
                                 }
                             }
                             if (displayName != null && FriendList.friendCount < MAX_FRIENDS) {
-                                FriendList.encodedUsernames[FriendList.friendCount] = senderName;
+                                FriendList.encodedUsernames[FriendList.friendCount] = name37;
                                 FriendList.friendUsernames[FriendList.friendCount] = displayName;
-                                FriendList.friendWorlds[FriendList.friendCount] = i2;
+                                FriendList.friendWorlds[FriendList.friendCount] = worldId;
                                 FriendList.worldNames[FriendList.friendCount] = worldName;
-                                FriendList.ranks[FriendList.friendCount] = slot;
+                                FriendList.ranks[FriendList.friendCount] = x;
                                 FriendList.friendGame[FriendList.friendCount] = ignored;
                                 FriendList.friendCount++;
                             }
                             FriendList.transmitAt = InterfaceManager.transmitTimer;
-                            chatType = FriendList.friendCount;
-                            while (chatType > 0) {
-                                chatType--;
-                                @Pc(2961) boolean hasSwaps = true;
-                                for (phraseId = 0; phraseId < chatType; phraseId++) {
-                                    if (FriendList.friendWorlds[phraseId] != Player.worldId && Player.worldId == FriendList.friendWorlds[phraseId + 1] || FriendList.friendWorlds[phraseId] == 0 && FriendList.friendWorlds[phraseId + 1] != 0) {
-                                        hasSwaps = false;
-                                        friendIndex = FriendList.friendWorlds[phraseId];
-                                        FriendList.friendWorlds[phraseId] = FriendList.friendWorlds[phraseId + 1];
-                                        FriendList.friendWorlds[phraseId + 1] = friendIndex;
-                                        quickChatText = FriendList.worldNames[phraseId];
-                                        FriendList.worldNames[phraseId] = FriendList.worldNames[phraseId + 1];
-                                        FriendList.worldNames[phraseId + 1] = quickChatText;
-                                        message_Text = FriendList.friendUsernames[phraseId];
-                                        FriendList.friendUsernames[phraseId] = FriendList.friendUsernames[phraseId + 1];
-                                        FriendList.friendUsernames[phraseId + 1] = message_Text;
-                                        @Pc(3056) long encodedUsername = FriendList.encodedUsernames[phraseId];
-                                        FriendList.encodedUsernames[phraseId] = FriendList.encodedUsernames[phraseId + 1];
-                                        FriendList.encodedUsernames[phraseId + 1] = encodedUsername;
-                                        @Pc(3074) int friendRank = FriendList.ranks[phraseId];
-                                        FriendList.ranks[phraseId] = FriendList.ranks[phraseId + 1];
-                                        FriendList.ranks[phraseId + 1] = friendRank;
-                                        @Pc(3092) boolean isInGame = FriendList.friendGame[phraseId];
-                                        FriendList.friendGame[phraseId] = FriendList.friendGame[phraseId + 1];
-                                        FriendList.friendGame[phraseId + 1] = isInGame;
+                            int friendCount = FriendList.friendCount;
+                            while (friendCount > 0) {
+                                friendCount--;
+                                @Pc(2961) boolean sorting = true;
+                                for (int i = 0; i < friendCount; i++) {
+                                    if (FriendList.friendWorlds[i] != Player.worldId && Player.worldId == FriendList.friendWorlds[i + 1] || FriendList.friendWorlds[i] == 0 && FriendList.friendWorlds[i + 1] != 0) {
+                                        sorting = false;
+                                        int friendIndex = FriendList.friendWorlds[i];
+                                        FriendList.friendWorlds[i] = FriendList.friendWorlds[i + 1];
+                                        FriendList.friendWorlds[i + 1] = friendIndex;
+                                        JString quickChatText = FriendList.worldNames[i];
+                                        FriendList.worldNames[i] = FriendList.worldNames[i + 1];
+                                        FriendList.worldNames[i + 1] = quickChatText;
+                                        JString message_Text = FriendList.friendUsernames[i];
+                                        FriendList.friendUsernames[i] = FriendList.friendUsernames[i + 1];
+                                        FriendList.friendUsernames[i + 1] = message_Text;
+                                        @Pc(3056) long encodedUsername = FriendList.encodedUsernames[i];
+                                        FriendList.encodedUsernames[i] = FriendList.encodedUsernames[i + 1];
+                                        FriendList.encodedUsernames[i + 1] = encodedUsername;
+                                        @Pc(3074) int friendRank = FriendList.ranks[i];
+                                        FriendList.ranks[i] = FriendList.ranks[i + 1];
+                                        FriendList.ranks[i + 1] = friendRank;
+                                        @Pc(3092) boolean isInGame = FriendList.friendGame[i];
+                                        FriendList.friendGame[i] = FriendList.friendGame[i + 1];
+                                        FriendList.friendGame[i + 1] = isInGame;
                                     }
                                 }
-                                if (hasSwaps) {
+                                if (sorting) {
                                     break;
                                 }
                             }
@@ -1170,11 +1181,11 @@ public class Protocol {
                         } else if (currentOpcode == FORCE_VARP_REFRESH) {
                             // Synchronize all player variables from server to client
                             // Used after login or major state change
-                            for (ii = 0; ii < VarpDomain.activeVarps.length; ii++) {
-                                if (VarpDomain.serverVarps[ii] != VarpDomain.activeVarps[ii]) {
-                                    VarpDomain.activeVarps[ii] = VarpDomain.serverVarps[ii];
-                                    VarpDomain.refreshMagicVarp(ii);
-                                    VarpDomain.updatedVarps[VarpDomain.varpUpdateCount++ & CIRCULAR_BUFFER_MASK] = ii;
+                            for (int i = 0; i < VarpDomain.activeVarps.length; i++) {
+                                if (VarpDomain.varps[i] != VarpDomain.activeVarps[i]) {
+                                    VarpDomain.activeVarps[i] = VarpDomain.varps[i];
+                                    VarpDomain.refreshMagicVarp(i);
+                                    VarpDomain.updatedVarps[VarpDomain.varpUpdateCount++ & CIRCULAR_BUFFER_MASK] = i;
                                 }
                             }
                             currentOpcode = -1;
@@ -1182,27 +1193,27 @@ public class Protocol {
                         } else if (currentOpcode == CAMERA_DETACH) {
                             // Set camera target position with smoothing
                             int verifyID = inboundBuffer.g2();
-                            param1 = inboundBuffer.g1();
-                            i2 = inboundBuffer.g1();
-                            slot = inboundBuffer.g2();
-                            count = inboundBuffer.g1();
-                            i = inboundBuffer.g1();
+                            int int1 = inboundBuffer.g1();
+                            int int2 = inboundBuffer.g1();
+                            int counter = inboundBuffer.g2();
+                            int int3 = inboundBuffer.g1();
+                            int int4 = inboundBuffer.g1();
                             if (setVerifyID(verifyID)) {
-                                Camera.setCameraTargetPosition(true, count, slot, i, i2, param1);
+                                Camera.setCameraTargetPosition(true, int3, counter, int4, int2, int1);
                             }
                             currentOpcode = -1;
                             return true;
                         } else if (currentOpcode == MESSAGE_QUICKCHAT_PRIVATE) {
                             // Private quickchat message
-                            senderName = inboundBuffer.g8();
-                            username = inboundBuffer.g2();
-                            messageId1 = inboundBuffer.g3();
-                            chatFlags = inboundBuffer.g1();
-                            j = inboundBuffer.g2();
+                            long name37 = inboundBuffer.g8();
+                            int top = inboundBuffer.g2();
+                            int bot = inboundBuffer.g3();
+                            int rights = inboundBuffer.g1();
+                            int chatId = inboundBuffer.g2();
                             @Pc(3263) boolean isIgnored = false;
-                            @Pc(3270) long combinedMessageId = (username << MESSAGE_ID_HIGH_SHIFT) + messageId1;
+                            @Pc(3270) long combinedMessageId = (top << MESSAGE_ID_HIGH_SHIFT) + bot;
                             @Pc(3272) int messageIndex = 0;
-                            label1402: while (true) {
+                            check: while (true) {
                                 if (messageIndex < MAX_RECENT_MESSAGES) {
                                     if (combinedMessageId != ChatHistory.recentMessages[messageIndex]) {
                                         messageIndex++;
@@ -1211,11 +1222,11 @@ public class Protocol {
                                     isIgnored = true;
                                     break;
                                 }
-                                if (chatFlags <= 1) {
+                                if (rights <= 1) {
                                     for (messageIndex = 0; messageIndex < IgnoreList.ignoreCount; messageIndex++) {
-                                        if (senderName == IgnoreList.encodedIgnores[messageIndex]) {
+                                        if (name37 == IgnoreList.encodedIgnores[messageIndex]) {
                                             isIgnored = true;
-                                            break label1402;
+                                            break check;
                                         }
                                     }
                                 }
@@ -1224,39 +1235,39 @@ public class Protocol {
                             if (!isIgnored && Player.inTutorialIsland == 0) {
                                 ChatHistory.recentMessages[ChatHistory.messageCounter] = combinedMessageId;
                                 ChatHistory.messageCounter = (ChatHistory.messageCounter + 1) % MAX_RECENT_MESSAGES;
-                                quickChatText = QuickChatPhraseTypeList.get(j).decodeMessage(inboundBuffer);
-                                if (chatFlags == 2) {
-                                    ChatHistory.add(j, 18, quickChatText, null, JString.concatenate(new JString[] { IMG1, Base37.fromBase37(senderName).toTitleCase() }));
-                                } else if (chatFlags == 1) {
-                                    ChatHistory.add(j, 18, quickChatText, null, JString.concatenate(new JString[] { IMG0, Base37.fromBase37(senderName).toTitleCase() }));
+                                JString quickChatText = QuickChatPhraseTypeList.get(chatId).decodeMessage(inboundBuffer);
+                                if (rights == 2) {
+                                    ChatHistory.add(chatId, 18, quickChatText, null, JString.concatenate(new JString[] { IMG1, Base37.fromBase37(name37).toTitleCase() }));
+                                } else if (rights == 1) {
+                                    ChatHistory.add(chatId, 18, quickChatText, null, JString.concatenate(new JString[] { IMG0, Base37.fromBase37(name37).toTitleCase() }));
                                 } else {
-                                    ChatHistory.add(j, 18, quickChatText, null, Base37.fromBase37(senderName).toTitleCase());
+                                    ChatHistory.add(chatId, 18, quickChatText, null, Base37.fromBase37(name37).toTitleCase());
                                 }
                             }
                             currentOpcode = -1;
                             return true;
                         } else {
-                            @Pc(3456) SubInterface oldSubInterface;
+                            //@Pc(3456) SubInterface oldSubInterface;
                             if (currentOpcode == IF_MOVESUB) {
                                 // Move a sub-interface from one component slot to another
-                                ii = inboundBuffer.g4rme();
+                                int source = inboundBuffer.g4rme();
                                 int verifyID = inboundBuffer.g2_alt2();
-                                i2 = inboundBuffer.g4rme();
+                                int target = inboundBuffer.g4rme();
                                 if (setVerifyID(verifyID)) {
-                                    @Pc(3449) SubInterface newSubInterface = (SubInterface) InterfaceManager.subInterfaces.get((long) ii);
-                                    oldSubInterface = (SubInterface) InterfaceManager.subInterfaces.get((long) i2);
-                                    if (oldSubInterface != null) {
-                                        InterfaceManager.closeInterface(newSubInterface == null || oldSubInterface.interfaceId != newSubInterface.interfaceId, oldSubInterface);
+                                    @Pc(3449) SubInterface src = (SubInterface) InterfaceManager.subInterfaces.get((long) source);
+                                    SubInterface tgt = (SubInterface) InterfaceManager.subInterfaces.get((long) target);
+                                    if (tgt != null) {
+                                        InterfaceManager.closeInterface(src == null || tgt.interfaceId != src.interfaceId, tgt);
                                     }
-                                    if (newSubInterface != null) {
-                                        newSubInterface.unlink();
-                                        InterfaceManager.subInterfaces.put(newSubInterface, (long) i2);
+                                    if (src != null) {
+                                        src.unlink();
+                                        InterfaceManager.subInterfaces.put(src, (long) target);
                                     }
-                                    @Pc(3490) Component component = InterfaceList.list(ii);
+                                    @Pc(3490) Component component = InterfaceList.list(source);
                                     if (component != null) {
                                         InterfaceManager.redraw(component);
                                     }
-                                    component = InterfaceList.list(i2);
+                                    component = InterfaceList.list(target);
                                     if (component != null) {
                                         InterfaceManager.redraw(component);
                                         InterfaceManager.calculateLayerDimensions(component, true);
@@ -1270,27 +1281,27 @@ public class Protocol {
                             } else if (currentOpcode == CAM_SHAKE) {
                                 // Triggers camera shake effect
                                 int verifyID = inboundBuffer.g2();
-                                param1 = inboundBuffer.g1();
-                                i2 = inboundBuffer.g1();
-                                slot = inboundBuffer.g1();
-                                count = inboundBuffer.g1();
-                                i = inboundBuffer.g2();
+                                int cameraId = inboundBuffer.g1();
+                                int jitter = inboundBuffer.g1();
+                                int amplitude = inboundBuffer.g1();
+                                int frequency = inboundBuffer.g1();
+                                int shake4 = inboundBuffer.g2();
                                 if (setVerifyID(verifyID)) {
-                                    Camera.cameraModifierEnabled[param1] = true;
-                                    Camera.cameraModifierJitter[param1] = i2;
-                                    Camera.cameraAmplitude[param1] = slot;
-                                    Camera.cameraFrequency[param1] = count;
-                                    cameraModifierCycle[param1] = i;
+                                    Camera.cameraModifierEnabled[cameraId] = true;
+                                    Camera.cameraModifierJitter[cameraId] = jitter;
+                                    Camera.cameraAmplitude[cameraId] = amplitude;
+                                    Camera.cameraFrequency[cameraId] = frequency;
+                                    cameraModifierCycle[cameraId] = shake4;
                                 }
                                 currentOpcode = -1;
                                 return true;
                             } else if (currentOpcode == IF_SETCOLOUR) {
                                 // Set component color in RGB
-                                ii = inboundBuffer.g4rme();
+                                int id = inboundBuffer.g4rme();
                                 int verifyID = inboundBuffer.g2_alt2();
-                                i2 = inboundBuffer.g2_alt3();
+                                int colour = inboundBuffer.g2_alt3();
                                 if (setVerifyID(verifyID)) {
-                                    DelayedStateChange.interfaceSetColor(i2, ii);
+                                    DelayedStateChange.interfaceSetColor(colour, id);
                                 }
                                 currentOpcode = -1;
                                 return true;
@@ -1309,10 +1320,10 @@ public class Protocol {
                             } else if (currentOpcode == CLIENT_SETVARC_SMALL) {
                                 // Legacy format for client variable updates
                                 int verifyID = inboundBuffer.g2_al1();
-                                param1 = inboundBuffer.g1_alt2();
-                                i2 = inboundBuffer.g2_alt3();
+                                int value = inboundBuffer.g1_alt2();
+                                int id = inboundBuffer.g2_alt3();
                                 if (setVerifyID(verifyID)) {
-                                    DelayedStateChange.updateVarC(i2, param1);
+                                    DelayedStateChange.updateVarC(id, value);
                                 }
                                 currentOpcode = -1;
                                 return true;
@@ -1333,19 +1344,19 @@ public class Protocol {
                                 return true;
                             } else if (currentOpcode == INV_DELETE) {
                                 // remove item from inventory
-                                ii = inboundBuffer.g2_al1();
-                                ClientInventory.delete(ii);
-                                ClientInventory.updates[ClientInventory.updateCount++ & CIRCULAR_BUFFER_MASK] = ii & INVENTORY_ID_MASK;
+                                int id = inboundBuffer.g2_al1();
+                                ClientInventory.delete(id);
+                                ClientInventory.updates[ClientInventory.updateCount++ & CIRCULAR_BUFFER_MASK] = id & INVENTORY_ID_MASK;
                                 currentOpcode = -1;
                                 return true;
                             } else if (currentOpcode == NPC_ANIM_SPECIFIC) {
                                 // Play animation on a specific NPC
-                                ii = inboundBuffer.g2_al1();
-                                param1 = inboundBuffer.g1_alt3();
-                                i2 = inboundBuffer.g2();
-                                @Pc(3766) Npc npc = NpcList.npcs[ii];
+                                int npcId = inboundBuffer.g2_al1();
+                                int value = inboundBuffer.g1_alt3();
+                                int seqId = inboundBuffer.g2();
+                                @Pc(3766) Npc npc = NpcList.npcs[npcId];
                                 if (npc != null) {
-                                    animateNpc(param1, i2, npc);
+                                    animateNpc(value, seqId, npc);
                                 }
                                 currentOpcode = -1;
                                 return true;
@@ -1359,9 +1370,9 @@ public class Protocol {
                                 return true;
                             } else if (currentOpcode == MESSAGE_PRIVATE_ECHO) {
                                 // Server wide broadcast message
-                                senderName = inboundBuffer.g8();
-                                messageText = Font.escape(formatChatMessage(inboundBuffer).encodeMessage());
-                                ChatHistory.addMessage(Base37.fromBase37(senderName).toTitleCase(), 6, messageText);
+                                long username37 = inboundBuffer.g8();
+                                JString messageText = Font.escape(formatChatMessage(inboundBuffer).encodeMessage());
+                                ChatHistory.addMessage(Base37.fromBase37(username37).toTitleCase(), 6, messageText);
                                 currentOpcode = -1;
                                 return true;
                             } else if (currentOpcode == URL_OPEN) {
@@ -1371,32 +1382,32 @@ public class Protocol {
                                 }
                                 @Pc(3848) byte[] mapData = new byte[packetSize];
                                 inboundBuffer.method2237(mapData, packetSize);
-                                argTypes = JString.decodeString(mapData, packetSize, 0);
+                                JString url = JString.decodeString(mapData, packetSize, 0);
                                 if (GameShell.frame == null && (SignLink.anInt5928 == 3 || !SignLink.osName.startsWith("win") || Client.haveIe6)) {
-                                    ClientScriptRunner.openUrl(argTypes, true);
+                                    ClientScriptRunner.openUrl(url, true);
                                 } else {
-                                    ClientScriptRunner.url = argTypes;
+                                    ClientScriptRunner.url = url;
                                     newTab = true;
-                                    openUrlRequest = GameShell.signLink.openUrl(new String(argTypes.encode(), "ISO-8859-1"));
+                                    openUrlRequest = GameShell.signLink.openUrl(new String(url.encode(), "ISO-8859-1"));
                                 }
                                 currentOpcode = -1;
                                 return true;
                             } else if (currentOpcode == GENERATE_CHAT_HEAD_FROM_BODY) {
                                 int verifyID = inboundBuffer.g2_alt2();
-                                param1 = inboundBuffer.p4rme();
-                                i2 = inboundBuffer.g2_alt3();
-                                slot = inboundBuffer.g2_al1();
-                                count = inboundBuffer.g2_alt3();
+                                int id = inboundBuffer.p4rme();
+                                int int1 = inboundBuffer.g2_alt3();
+                                int int2 = inboundBuffer.g2_al1();
+                                int int3 = inboundBuffer.g2_alt3();
                                 if (setVerifyID(verifyID)) {
-                                    DelayedStateChange.interfaceSetModel(i2, 7, param1, slot << COMPONENT_UPPER_WORD_SHIFT | count);
+                                    DelayedStateChange.interfaceSetModel(int1, 7, id, int2 << COMPONENT_UPPER_WORD_SHIFT | int3);
                                 }
                                 currentOpcode = -1;
                                 return true;
                             } else if (currentOpcode == VARBIT_SMALL) {
                                 // Update varbit (bit-packed variables within a player variable)
-                                ii = inboundBuffer.g1_alt1();
-                                param1 = inboundBuffer.g2_al1();
-                                VarpDomain.setVarbitServer(ii, param1);
+                                int value = inboundBuffer.g1_alt1();
+                                int id = inboundBuffer.g2_al1();
+                                VarpDomain.setVarbitServer(value, id);
                                 currentOpcode = -1;
                                 return true;
                             } else if (currentOpcode == IF_OPENTOP) {
@@ -1419,14 +1430,14 @@ public class Protocol {
                                 // RESET_ANIMS
                                 // Reset all entity animations
                                 // Clears animations for all players and NPCs
-                                for (ii = 0; ii < PlayerList.players.length; ii++) {
-                                    if (PlayerList.players[ii] != null) {
-                                        PlayerList.players[ii].primarySeqId = -1;
+                                for (int i = 0; i < PlayerList.players.length; i++) {
+                                    if (PlayerList.players[i] != null) {
+                                        PlayerList.players[i].primarySeqId = -1;
                                     }
                                 }
-                                for (ii = 0; ii < NpcList.npcs.length; ii++) {
-                                    if (NpcList.npcs[ii] != null) {
-                                        NpcList.npcs[ii].primarySeqId = -1;
+                                for (int i = 0; i < NpcList.npcs.length; i++) {
+                                    if (NpcList.npcs[i] != null) {
+                                        NpcList.npcs[i].primarySeqId = -1;
                                     }
                                 }
                                 currentOpcode = -1;
@@ -1434,10 +1445,10 @@ public class Protocol {
                             } else if (currentOpcode == HINT_ARROW) {
                                 // Dsiplay hint arrow poiting on location/entity
                                 // Can target entities, players and coordinates
-                                ii = inboundBuffer.g1();
+                                int flags = inboundBuffer.g1();
                                 @Pc(4084) MapMarker marker = new MapMarker();
-                                param1 = ii >> MAP_MARKER_PARAM_SHIFT;
-                                marker.type = ii & MAP_MARKER_TYPE_MASK;
+                                int slot = flags >> MAP_MARKER_PARAM_SHIFT;
+                                marker.type = flags & MAP_MARKER_TYPE_MASK;
                                 marker.anInt4048 = inboundBuffer.g1();
                                 if (marker.anInt4048 >= 0 && marker.anInt4048 < Sprites.headhints.length) {
                                     if (marker.type == MAP_MARKER_NPC || marker.type == MAP_MARKER_PLAYER) {
@@ -1473,7 +1484,7 @@ public class Protocol {
                                     if (marker.playerModelId == INVALID_ID_U16) {
                                         marker.playerModelId = -1;
                                     }
-                                    MiniMap.hintMapMarkers[param1] = marker;
+                                    MiniMap.hintMapMarkers[slot] = marker;
                                 }
                                 currentOpcode = -1;
                                 return true;
@@ -1481,9 +1492,9 @@ public class Protocol {
                                 // UPDATE_IGNORELIST
                                 // Add or update ignored players
                                 IgnoreList.ignoreCount = packetSize / IGNORE_LIST_ENTRY_SIZE;
-                                for (ii = 0; ii < IgnoreList.ignoreCount; ii++) {
-                                    IgnoreList.encodedIgnores[ii] = inboundBuffer.g8();
-                                    IgnoreList.ignoreName37[ii] = Base37.fromBase37(IgnoreList.encodedIgnores[ii]);
+                                for (int i = 0; i < IgnoreList.ignoreCount; i++) {
+                                    IgnoreList.encodedIgnores[i] = inboundBuffer.g8();
+                                    IgnoreList.ignoreName37[i] = Base37.fromBase37(IgnoreList.encodedIgnores[i]);
                                 }
                                 FriendList.transmitAt = InterfaceManager.transmitTimer;
                                 currentOpcode = -1;
@@ -1495,50 +1506,50 @@ public class Protocol {
                                 return true;
                             } else if (currentOpcode == IF_SETPOSITION) {
                                 int verifyID = inboundBuffer.g2_alt2();
-                                param1 = inboundBuffer.g4me();
-                                i2 = inboundBuffer.g2s();
-                                slot = inboundBuffer.g2sadd();
+                                int ptr = inboundBuffer.g4me();
+                                int x = inboundBuffer.g2s();
+                                int y = inboundBuffer.g2sadd();
                                 if (setVerifyID(verifyID)) {
-                                    DelayedStateChange.interfaceSetPosition(i2, param1, slot);
+                                    DelayedStateChange.interfaceSetPosition(x, ptr, y);
                                 }
                                 currentOpcode = -1;
                                 return true;
                             } else if (currentOpcode == LOC_ANIM_SPECIFIC) {
                                 // Attach location to tile
-                                ii = inboundBuffer.g1_alt3();
-                                param1 = ii >> CoordinateConstants.LOC_SHAPE_SHIFT;
-                                i2 = ii & ROTATION_MASK;
-                                slot = Loc.LAYERS[param1];
-                                count = inboundBuffer.g2();
-                                i = inboundBuffer.g4();
-                                if (count == INVALID_ID_U16) {
-                                    count = -1;
+                                int slot = inboundBuffer.g1_alt3();
+                                int type = slot >> CoordinateConstants.LOC_SHAPE_SHIFT;
+                                int rotation = slot & ROTATION_MASK;
+                                int type2 = Loc.LAYERS[type];
+                                int seqId = inboundBuffer.g2();
+                                int pos = inboundBuffer.g4();
+                                if (seqId == INVALID_ID_U16) {
+                                    seqId = -1;
                                 }
-                                chatType = i & COORD_MASK;
-                                j = i >> COORD_X_SHIFT & COORD_MASK;
-                                j -= Camera.sceneBaseTileX;
-                                chatType -= Camera.sceneBaseTileZ;
-                                chatFlags = i >> PLANE_SHIFT & PLANE_MASK;
-                                SceneGraph.attachLocToTile(chatFlags, i2, param1, chatType, slot, j, count);
+                                int z = pos & COORD_MASK;
+                                int x = pos >> COORD_X_SHIFT & COORD_MASK;
+                                x -= Camera.sceneBaseTileX;
+                                z -= Camera.sceneBaseTileZ;
+                                int plane = pos >> PLANE_SHIFT & PLANE_MASK;
+                                SceneGraph.attachLocToTile(plane, rotation, type, z, type2, x, seqId);
                                 currentOpcode = -1;
                                 return true;
                             } else if (currentOpcode == MESSAGE_PRIVATE) {
                                 // Private chat from friend
-                                senderName = inboundBuffer.g8();
-                                username = inboundBuffer.g2();
-                                messageId1 = inboundBuffer.g3();
-                                chatFlags = inboundBuffer.g1();
+                                long username37 = inboundBuffer.g8();
+                                int top = inboundBuffer.g2();
+                                int bot = inboundBuffer.g3();
+                                int rights = inboundBuffer.g1();
                                 @Pc(4425) boolean isIgnored = false;
-                                @Pc(4431) long combinedMessageId = messageId1 + (username << MESSAGE_ID_HIGH_SHIFT);
-                                friendIndex = 0;
+                                @Pc(4431) long combinedMessageId = bot + (top << MESSAGE_ID_HIGH_SHIFT);
+                                int friendIndex = 0;
                                 label1450: while (true) {
                                     if (friendIndex >= MAX_RECENT_MESSAGES) {
-                                        if (chatFlags <= 1) {
+                                        if (rights <= 1) {
                                             if (LoginManager.playerUnderage && !LoginManager.parentalChatConsent || LoginManager.worldQuickChat) {
                                                 isIgnored = true;
                                             } else {
                                                 for (friendIndex = 0; friendIndex < IgnoreList.ignoreCount; friendIndex++) {
-                                                    if (senderName == IgnoreList.encodedIgnores[friendIndex]) {
+                                                    if (username37 == IgnoreList.encodedIgnores[friendIndex]) {
                                                         isIgnored = true;
                                                         break label1450;
                                                     }
@@ -1557,37 +1568,37 @@ public class Protocol {
                                     ChatHistory.recentMessages[ChatHistory.messageCounter] = combinedMessageId;
                                     ChatHistory.messageCounter = (ChatHistory.messageCounter + 1) % MAX_RECENT_MESSAGES;
                                     @Pc(4518) JString formattedMessage = Font.escape(formatChatMessage(inboundBuffer).encodeMessage());
-                                    if (chatFlags == 2 || chatFlags == 3) {
-                                        ChatHistory.addMessage(JString.concatenate(new JString[] { IMG1, Base37.fromBase37(senderName).toTitleCase() }), 7, formattedMessage);
-                                    } else if (chatFlags == 1) {
-                                        ChatHistory.addMessage(JString.concatenate(new JString[] { IMG0, Base37.fromBase37(senderName).toTitleCase() }), 7, formattedMessage);
+                                    if (rights == 2 || rights == 3) {
+                                        ChatHistory.addMessage(JString.concatenate(new JString[] { IMG1, Base37.fromBase37(username37).toTitleCase() }), 7, formattedMessage);
+                                    } else if (rights == 1) {
+                                        ChatHistory.addMessage(JString.concatenate(new JString[] { IMG0, Base37.fromBase37(username37).toTitleCase() }), 7, formattedMessage);
                                     } else {
-                                        ChatHistory.addMessage(Base37.fromBase37(senderName).toTitleCase(), 3, formattedMessage);
+                                        ChatHistory.addMessage(Base37.fromBase37(username37).toTitleCase(), 3, formattedMessage);
                                     }
                                 }
                                 currentOpcode = -1;
                                 return true;
                             } else if (currentOpcode == MESSAGE_CLANCHANNEL) {
                                 // Echo of sent private message
-                                senderName = inboundBuffer.g8();
+                                long username37 = inboundBuffer.g8();
                                 inboundBuffer.g1s();
-                                username = inboundBuffer.g8();
-                                messageId1 = inboundBuffer.g2();
-                                messageId2 = inboundBuffer.g3();
-                                @Pc(4626) long combinedMessageId = (messageId1 << MESSAGE_ID_HIGH_SHIFT) + messageId2;
-                                chatType = inboundBuffer.g1();
+                                long chat37 = inboundBuffer.g8();
+                                int top = inboundBuffer.g2();
+                                int bot = inboundBuffer.g3();
+                                @Pc(4626) long combinedMessageId = (top << MESSAGE_ID_HIGH_SHIFT) + bot;
+                                int rights = inboundBuffer.g1();
                                 @Pc(4632) boolean isIgnored = false;
                                 @Pc(4634) int messageIndex = 0;
-                                label1575: while (true) {
+                                check: while (true) {
                                     if (messageIndex >= MAX_RECENT_MESSAGES) {
-                                        if (chatType <= 1) {
+                                        if (rights <= 1) {
                                             if (LoginManager.playerUnderage && !LoginManager.parentalChatConsent || LoginManager.worldQuickChat) {
                                                 isIgnored = true;
                                             } else {
                                                 for (messageIndex = 0; messageIndex < IgnoreList.ignoreCount; messageIndex++) {
-                                                    if (IgnoreList.encodedIgnores[messageIndex] == senderName) {
+                                                    if (IgnoreList.encodedIgnores[messageIndex] == username37) {
                                                         isIgnored = true;
-                                                        break label1575;
+                                                        break check;
                                                     }
                                                 }
                                             }
@@ -1603,13 +1614,13 @@ public class Protocol {
                                 if (!isIgnored && Player.inTutorialIsland == 0) {
                                     ChatHistory.recentMessages[ChatHistory.messageCounter] = combinedMessageId;
                                     ChatHistory.messageCounter = (ChatHistory.messageCounter + 1) % MAX_RECENT_MESSAGES;
-                                    message_Text = Font.escape(formatChatMessage(inboundBuffer).encodeMessage());
-                                    if (chatType == 2 || chatType == 3) {
-                                        ChatHistory.method1598(message_Text, JString.concatenate(new JString[] { IMG1, Base37.fromBase37(senderName).toTitleCase() }), Base37.fromBase37(username).toTitleCase());
-                                    } else if (chatType == 1) {
-                                        ChatHistory.method1598(message_Text, JString.concatenate(new JString[] { IMG0, Base37.fromBase37(senderName).toTitleCase() }), Base37.fromBase37(username).toTitleCase());
+                                    JString message_Text = Font.escape(formatChatMessage(inboundBuffer).encodeMessage());
+                                    if (rights == 2 || rights == 3) {
+                                        ChatHistory.method1598(message_Text, JString.concatenate(new JString[] { IMG1, Base37.fromBase37(username37).toTitleCase() }), Base37.fromBase37(chat37).toTitleCase());
+                                    } else if (rights == 1) {
+                                        ChatHistory.method1598(message_Text, JString.concatenate(new JString[] { IMG0, Base37.fromBase37(username37).toTitleCase() }), Base37.fromBase37(chat37).toTitleCase());
                                     } else {
-                                        ChatHistory.method1598(message_Text, Base37.fromBase37(senderName).toTitleCase(), Base37.fromBase37(username).toTitleCase());
+                                        ChatHistory.method1598(message_Text, Base37.fromBase37(username37).toTitleCase(), Base37.fromBase37(chat37).toTitleCase());
                                     }
                                 }
                                 currentOpcode = -1;
@@ -1622,43 +1633,43 @@ public class Protocol {
                                 return true;
                             } else if (currentOpcode == SYNTH_SOUND) {
                                 // Play sound effect at location
-                                ii = inboundBuffer.g2();
-                                param1 = inboundBuffer.g1();
-                                if (ii == INVALID_ID_U16) {
-                                    ii = -1;
+                                int trackId = inboundBuffer.g2();
+                                int volume = inboundBuffer.g1();
+                                if (trackId == INVALID_ID_U16) {
+                                    trackId = -1;
                                 }
-                                i2 = inboundBuffer.g2();
-                                SoundPlayer.play(param1, ii, i2);
+                                int delay = inboundBuffer.g2();
+                                SoundPlayer.play(volume, trackId, delay);
                                 currentOpcode = -1;
                                 return true;
                             } else if (currentOpcode == IF_SETPLAYERHEAD) {
                                 // Set NPC head model on component
                                 int verifyID = inboundBuffer.g2_alt3();
-                                param1 = inboundBuffer.g4rme();
+                                int id = inboundBuffer.g4rme();
                                 if (setVerifyID(verifyID)) {
-                                    i2 = 0;
+                                    int set = 0;
                                     if (PlayerList.self.playerModel != null) {
-                                        i2 = PlayerList.self.playerModel.getHeadModelId();
+                                        set = PlayerList.self.playerModel.getHeadModelId();
                                     }
-                                    DelayedStateChange.interfaceSetModel(-1, 3, param1, i2);
+                                    DelayedStateChange.interfaceSetModel(-1, 3, id, set);
                                 }
                                 currentOpcode = -1;
                                 return true;
                             } else if (currentOpcode == IF_SETTEXT1) {
                                 // Show or hide a interface component
-                                ii = inboundBuffer.p4rme();
-                                argTypes = inboundBuffer.gjstr();
+                                int id = inboundBuffer.p4rme();
+                                JString text = inboundBuffer.gjstr();
                                 int verifyID = inboundBuffer.g2_alt2();
                                 if (setVerifyID(verifyID)) {
-                                    DelayedStateChange.interfaceSetText(argTypes, ii);
+                                    DelayedStateChange.interfaceSetText(text, id);
                                 }
                                 currentOpcode = -1;
                                 return true;
                             } else if (currentOpcode == VARBIT_LARGE) {
                                 // Update VarBit with large ID (> 65535)
-                                ii = inboundBuffer.g4me();
-                                param1 = inboundBuffer.g2_alt3();
-                                VarpDomain.setVarbitServer(ii, param1);
+                                int value = inboundBuffer.g4me();
+                                int id = inboundBuffer.g2_alt3();
+                                VarpDomain.setVarbitServer(value, id);
                                 currentOpcode = -1;
                                 return true;
                             } else {
@@ -1666,37 +1677,37 @@ public class Protocol {
                                 if (currentOpcode == UPDATE_INV_PARTIAL) {
                                     // Sen partial inventory update
                                     // Updates specific changed slots
-                                    ii = inboundBuffer.g4();
-                                    param1 = inboundBuffer.g2();
-                                    if (ii < INVENTORY_COMPONENT_OFFSET) {
-                                        param1 += INVENTORY_PARAM_OFFSET;
+                                    int componentHash = inboundBuffer.g4();
+                                    int containerId = inboundBuffer.g2();
+                                    if (componentHash < INVENTORY_COMPONENT_OFFSET) {
+                                        containerId += INVENTORY_PARAM_OFFSET;
                                     }
-                                    if (ii < 0) {
+                                    if (componentHash < 0) {
                                         component = null;
                                     } else {
-                                        component = InterfaceList.list(ii);
+                                        component = InterfaceList.list(componentHash);
                                     }
                                     while (inboundBuffer.offset < packetSize) {
-                                        slot = inboundBuffer.gSmart1or2();
-                                        count = inboundBuffer.g2();
-                                        i = 0;
-                                        if (count != 0) {
-                                            i = inboundBuffer.g1();
-                                            if (i == EXTENDED_COUNT_MARKER) {
-                                                i = inboundBuffer.g4();
+                                        int slot = inboundBuffer.gSmart1or2();
+                                        int amount = inboundBuffer.g2();
+                                        int id = 0;
+                                        if (amount != 0) {
+                                            id = inboundBuffer.g1();
+                                            if (id == EXTENDED_COUNT_MARKER) {
+                                                id = inboundBuffer.g4();
                                             }
                                         }
                                         if (component != null && slot >= 0 && component.invSlotObjId.length > slot) {
-                                            component.invSlotObjId[slot] = count;
-                                            component.invSlotObjCount[slot] = i;
+                                            component.invSlotObjId[slot] = amount;
+                                            component.invSlotObjCount[slot] = id;
                                         }
-                                        ClientInventory.setSlot(count - 1, slot, i, param1);
+                                        ClientInventory.setSlot(amount - 1, slot, id, containerId);
                                     }
                                     if (component != null) {
                                         InterfaceManager.redraw(component);
                                     }
                                     InterfaceManager.redrawActiveInterfaces();
-                                    ClientInventory.updates[ClientInventory.updateCount++ & CIRCULAR_BUFFER_MASK] = param1 & INVENTORY_ID_MASK;
+                                    ClientInventory.updates[ClientInventory.updateCount++ & CIRCULAR_BUFFER_MASK] = containerId & INVENTORY_ID_MASK;
                                     currentOpcode = -1;
                                     return true;
                                 } else if (currentOpcode == CAM_RESET) {
@@ -1715,25 +1726,25 @@ public class Protocol {
                                     return false;
                                 } else if (currentOpcode == GE_OFFER_UPDATE) {
                                     // GE offer status changed
-                                    ii = inboundBuffer.g1();
+                                    int offer = inboundBuffer.g1();
                                     if (inboundBuffer.g1() == 0) {
-                                        StockMarketManager.offers[ii] = new StockMarketOffer();
+                                        StockMarketManager.offers[offer] = new StockMarketOffer();
                                     } else {
                                         inboundBuffer.offset--;
-                                        StockMarketManager.offers[ii] = new StockMarketOffer(inboundBuffer);
+                                        StockMarketManager.offers[offer] = new StockMarketOffer(inboundBuffer);
                                     }
                                     currentOpcode = -1;
                                     StockMarketManager.transmitAt = InterfaceManager.transmitTimer;
                                     return true;
                                 } else if (currentOpcode == IF_SETNPCHEAD) {
-                                    ii = inboundBuffer.g2_alt2();
-                                    param1 = inboundBuffer.g4me();
-                                    if (ii == INVALID_ID_U16) {
-                                        ii = -1;
+                                    int npcId = inboundBuffer.g2_alt2();
+                                    int id = inboundBuffer.g4me();
+                                    if (npcId == INVALID_ID_U16) {
+                                        npcId = -1;
                                     }
                                     int verifyID = inboundBuffer.g2_al1();
                                     if (setVerifyID(verifyID)) {
-                                        DelayedStateChange.interfaceSetModel(-1, 2, param1, ii);
+                                        DelayedStateChange.interfaceSetModel(-1, 2, id, npcId);
                                     }
                                     currentOpcode = -1;
                                     return true;
@@ -1745,29 +1756,30 @@ public class Protocol {
                                 } else if (currentOpcode == SET_INTERFACE_SETTINGS) {
                                     // Dsiplay object/item on a component
                                     int verifyID = inboundBuffer.g2_al1();
-                                    param1 = inboundBuffer.g2_al1();
-                                    if (param1 == INVALID_ID_U16) {
-                                        param1 = -1;
+                                    int end = inboundBuffer.g2_al1();
+                                    if (end == INVALID_ID_U16) {
+                                        end = -1;
                                     }
-                                    i2 = inboundBuffer.g4();
-                                    slot = inboundBuffer.g2_alt2();
-                                    count = inboundBuffer.g4rme();
-                                    if (slot == INVALID_ID_U16) {
-                                        slot = -1;
+                                    int pointer = inboundBuffer.g4();
+                                    int start = inboundBuffer.g2_alt2();
+                                    int accessMask = inboundBuffer.g4rme();
+                                    if (start == INVALID_ID_U16) {
+                                        start = -1;
                                     }
                                     if (setVerifyID(verifyID)) {
-                                        for (i = slot; i <= param1; i++) {
-                                            messageId2 = ((long) i2 << MESSAGE_ID_HIGH_SHIFT) + ((long) i);
-                                            activeProperties2 = (ServerActiveProperties) InterfaceManager.properties.get(messageId2);
-                                            if (activeProperties2 != null) {
-                                                activeProperties1 = new ServerActiveProperties(count, activeProperties2.targetParam);
-                                                activeProperties2.unlink();
+                                        for (int i = start; i <= end; i++) {
+                                            long local904 = ((long) pointer << MESSAGE_ID_HIGH_SHIFT) + ((long) i);
+                                            ServerActiveProperties properties = (ServerActiveProperties) InterfaceManager.properties.get(local904);
+                                            ServerActiveProperties target;
+                                            if (properties != null) {
+                                                target = new ServerActiveProperties(accessMask, properties.targetParam);
+                                                properties.unlink();
                                             } else if (i == -1) {
-                                                activeProperties1 = new ServerActiveProperties(count, InterfaceList.list(i2).properties.targetParam);
+                                                target = new ServerActiveProperties(accessMask, InterfaceList.list(pointer).properties.targetParam);
                                             } else {
-                                                activeProperties1 = new ServerActiveProperties(count, -1);
+                                                target = new ServerActiveProperties(accessMask, -1);
                                             }
-                                            InterfaceManager.properties.put(activeProperties1, messageId2);
+                                            InterfaceManager.properties.put(target, local904);
                                         }
                                     }
                                     currentOpcode = -1;
@@ -1780,11 +1792,11 @@ public class Protocol {
                                     return true;
                                 } else if (currentOpcode == CLANCHAT_MEMBER_UPDATE) {
                                     // Single clan chat member update
-                                    senderName = inboundBuffer.g8();
-                                    i2 = inboundBuffer.g2();
+                                    long username37 = inboundBuffer.g8();
+                                    int worldId = inboundBuffer.g2();
                                     @Pc(5325) byte memberRank = inboundBuffer.g1s();
-                                    ignored = false;
-                                    if ((Long.MIN_VALUE & senderName) != 0L) {
+                                    boolean ignored = false;
+                                    if ((Long.MIN_VALUE & username37) != 0L) {
                                         ignored = true;
                                     }
                                     if (ignored) {
@@ -1792,8 +1804,9 @@ public class Protocol {
                                             currentOpcode = -1;
                                             return true;
                                         }
-                                        senderName &= Long.MAX_VALUE;
-                                        for (i = 0; ClanChat.size > i && (senderName != ClanChat.members[i].key || i2 != ClanChat.members[i].world); i++) {
+                                        username37 &= Long.MAX_VALUE;
+                                        int i;
+                                        for (i = 0; ClanChat.size > i && (username37 != ClanChat.members[i].key || worldId != ClanChat.members[i].world); i++) {
                                             // TODO why is this here?
                                         }
                                         if (i < ClanChat.size) {
@@ -1805,27 +1818,28 @@ public class Protocol {
                                             ClanChat.members[ClanChat.size] = null;
                                         }
                                     } else {
-                                        worldName = inboundBuffer.gjstr();
+                                        JString worldName = inboundBuffer.gjstr();
                                         @Pc(5347) ClanMember clanMember = new ClanMember();
-                                        clanMember.key = senderName;
+                                        clanMember.key = username37;
                                         clanMember.username = Base37.fromBase37(clanMember.key);
                                         clanMember.rank = memberRank;
                                         clanMember.worldName = worldName;
-                                        clanMember.world = i2;
-                                        for (j = ClanChat.size - 1; j >= 0; j--) {
-                                            chatType = ClanChat.members[j].username.method3139(clanMember.username);
-                                            if (chatType == 0) {
-                                                ClanChat.members[j].world = i2;
-                                                ClanChat.members[j].rank = memberRank;
-                                                ClanChat.members[j].worldName = worldName;
-                                                if (senderName == Player.name37) {
+                                        clanMember.world = worldId;
+                                        int n;
+                                        for (n = ClanChat.size - 1; n >= 0; n--) {
+                                            int m = ClanChat.members[n].username.method3139(clanMember.username);
+                                            if (m == 0) {
+                                                ClanChat.members[n].world = worldId;
+                                                ClanChat.members[n].rank = memberRank;
+                                                ClanChat.members[n].worldName = worldName;
+                                                if (username37 == Player.name37) {
                                                     ClanChat.rank = memberRank;
                                                 }
                                                 ClanChat.transmitAt = InterfaceManager.transmitTimer;
                                                 currentOpcode = -1;
                                                 return true;
                                             }
-                                            if (chatType < 0) {
+                                            if (m < 0) {
                                                 break;
                                             }
                                         }
@@ -1833,14 +1847,14 @@ public class Protocol {
                                             currentOpcode = -1;
                                             return true;
                                         }
-                                        for (chatType = ClanChat.size - 1; chatType > j; chatType--) {
-                                            ClanChat.members[chatType + 1] = ClanChat.members[chatType];
+                                        for (int i = ClanChat.size - 1; i > n; i--) {
+                                            ClanChat.members[i + 1] = ClanChat.members[i];
                                         }
                                         if (ClanChat.size == 0) {
                                             ClanChat.members = new ClanMember[MAX_CLAN_MEMBERS];
                                         }
-                                        ClanChat.members[j + 1] = clanMember;
-                                        if (Player.name37 == senderName) {
+                                        ClanChat.members[n + 1] = clanMember;
+                                        if (Player.name37 == username37) {
                                             ClanChat.rank = memberRank;
                                         }
                                         ClanChat.size++;
@@ -1850,31 +1864,31 @@ public class Protocol {
                                     return true;
                                 } else if (currentOpcode == IF_SETOBJECT) {
                                     // Set object/item model on component
-                                    ii = inboundBuffer.g4();
-                                    param1 = inboundBuffer.p4rme();
-                                    i2 = inboundBuffer.g2_alt3();
-                                    if (i2 == INVALID_ID_U16) {
-                                        i2 = -1;
+                                    int slot = inboundBuffer.g4();
+                                    int id = inboundBuffer.p4rme();
+                                    int itemId = inboundBuffer.g2_alt3();
+                                    if (itemId == INVALID_ID_U16) {
+                                        itemId = -1;
                                     }
                                     int verifyID = inboundBuffer.g2_al1();
                                     if (setVerifyID(verifyID)) {
-                                        @Pc(5603) Component com = InterfaceList.list(param1);
+                                        @Pc(5603) Component com = InterfaceList.list(id);
                                         @Pc(5615) ObjType obj;
                                         if (com.hasOpKey) {
-                                            DelayedStateChange.interfaceSetObject(param1, ii, i2);
-                                            obj = ObjTypeList.get(i2);
-                                            DelayedStateChange.updateView(obj.zoom2d, param1, obj.yan2d, obj.xan2d);
-                                            DelayedStateChange.interfaceSetModelOffset(param1, obj.zAngle2D, obj.yof2d, obj.xof2d);
-                                        } else if (i2 == -1) {
+                                            DelayedStateChange.interfaceSetObject(id, slot, itemId);
+                                            obj = ObjTypeList.get(itemId);
+                                            DelayedStateChange.updateView(obj.zoom2d, id, obj.yan2d, obj.xan2d);
+                                            DelayedStateChange.interfaceSetModelOffset(id, obj.zAngle2D, obj.yof2d, obj.xof2d);
+                                        } else if (itemId == -1) {
                                             com.modelType = 0;
                                             currentOpcode = -1;
                                             return true;
                                         } else {
-                                            obj = ObjTypeList.get(i2);
+                                            obj = ObjTypeList.get(itemId);
                                             com.modelXAngle = obj.xan2d;
-                                            com.modelZoom = obj.zoom2d * ZOOM_PERCENTAGE / ii;
+                                            com.modelZoom = obj.zoom2d * ZOOM_PERCENTAGE / slot;
                                             com.modelType = 4;
-                                            com.modelId = i2;
+                                            com.modelId = itemId;
                                             com.modelYAngle = obj.yan2d;
                                             InterfaceManager.redraw(com);
                                         }
@@ -1883,41 +1897,41 @@ public class Protocol {
                                     return true;
                                 } else if (currentOpcode == UPDATE_INV_FULL) {
                                     // Send complete inventory content
-                                    ii = inboundBuffer.g4();
-                                    param1 = inboundBuffer.g2();
-                                    if (ii < INVENTORY_COMPONENT_OFFSET) {
-                                        param1 += INVENTORY_PARAM_OFFSET;
+                                    int componentHash = inboundBuffer.g4();
+                                    int containerId = inboundBuffer.g2();
+                                    if (componentHash < INVENTORY_COMPONENT_OFFSET) {
+                                        containerId += INVENTORY_PARAM_OFFSET;
                                     }
-                                    if (ii >= 0) {
-                                        component = InterfaceList.list(ii);
+                                    if (componentHash >= 0) {
+                                        component = InterfaceList.list(componentHash);
                                     } else {
                                         component = null;
                                     }
                                     if (component != null) {
-                                        for (slot = 0; slot < component.invSlotObjId.length; slot++) {
-                                            component.invSlotObjId[slot] = 0;
-                                            component.invSlotObjCount[slot] = 0;
+                                        for (int i = 0; i < component.invSlotObjId.length; i++) {
+                                            component.invSlotObjId[i] = 0;
+                                            component.invSlotObjCount[i] = 0;
                                         }
                                     }
-                                    ClientInventory.clearInventory(param1);
-                                    slot = inboundBuffer.g2();
-                                    for (count = 0; count < slot; count++) {
-                                        i = inboundBuffer.g1_alt3();
-                                        if (i == EXTENDED_COUNT_MARKER) {
-                                            i = inboundBuffer.g4();
+                                    ClientInventory.clearInventory(containerId);
+                                    int total = inboundBuffer.g2();
+                                    for (int slot = 0; slot < total; slot++) {
+                                        int amount = inboundBuffer.g1_alt3();
+                                        if (amount == EXTENDED_COUNT_MARKER) {
+                                            amount = inboundBuffer.g4();
                                         }
-                                        chatFlags = inboundBuffer.g2();
-                                        if (component != null && count < component.invSlotObjId.length) {
-                                            component.invSlotObjId[count] = chatFlags;
-                                            component.invSlotObjCount[count] = i;
+                                        int itemId = inboundBuffer.g2();
+                                        if (component != null && slot < component.invSlotObjId.length) {
+                                            component.invSlotObjId[slot] = itemId;
+                                            component.invSlotObjCount[slot] = amount;
                                         }
-                                        ClientInventory.setSlot(chatFlags - 1, count, i, param1);
+                                        ClientInventory.setSlot(itemId - 1, slot, amount, containerId);
                                     }
                                     if (component != null) {
                                         InterfaceManager.redraw(component);
                                     }
                                     InterfaceManager.redrawActiveInterfaces();
-                                    ClientInventory.updates[ClientInventory.updateCount++ & CIRCULAR_BUFFER_MASK] = param1 & INVENTORY_ID_MASK;
+                                    ClientInventory.updates[ClientInventory.updateCount++ & CIRCULAR_BUFFER_MASK] = containerId & INVENTORY_ID_MASK;
                                     currentOpcode = -1;
                                     return true;
                                 } else if (currentOpcode == COOKIE_STORE) {
@@ -1934,21 +1948,21 @@ public class Protocol {
                                 } else if (currentOpcode == MIDI_SONG) {
                                     // Play music
                                     // Starts looping by track ID
-                                    ii = inboundBuffer.g2_alt3();
-                                    if (ii == INVALID_ID_U16) {
-                                        ii = -1;
+                                    int id = inboundBuffer.g2_alt3();
+                                    if (id == INVALID_ID_U16) {
+                                        id = -1;
                                     }
-                                    MusicPlayer.playSong(ii);
+                                    MusicPlayer.playSong(id);
                                     currentOpcode = -1;
                                     return true;
                                 } else if (currentOpcode == MIDI_JINGLE) {
                                     // Play short jingle (non-looping)
-                                    ii = inboundBuffer.g3le();
-                                    param1 = inboundBuffer.g2_al1();
-                                    if (param1 == INVALID_ID_U16) {
-                                        param1 = -1;
+                                    int volume = inboundBuffer.g3le();
+                                    int id = inboundBuffer.g2_al1();
+                                    if (id == INVALID_ID_U16) {
+                                        id = -1;
                                     }
-                                    MusicPlayer.playJingle(ii, param1);
+                                    MusicPlayer.playJingle(volume, id);
                                     currentOpcode = -1;
                                     return true;
                                 } else {
