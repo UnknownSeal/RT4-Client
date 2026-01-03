@@ -25,7 +25,7 @@ public class CoordinateConstants {
 
     // Rotation/Orientation
     public static final int ROTATION_MASK = 0x3;
-    public static final int LOC_PARAM_SHIFT = 2;
+    public static final int LOC_SHAPE_SHIFT = 2;
 
     // Zone coordinate packing
     public static final int ZONE_COORD_SHIFT = 4;

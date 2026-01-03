@@ -91,7 +91,7 @@ public final class Component {
 	public Object[] onSubChange;
 
 	@OriginalMember(owner = "client!be", name = "x", descriptor = "Z")
-	public boolean horizontalFlip;
+	public boolean vFlip;
 
 	@OriginalMember(owner = "client!be", name = "z", descriptor = "[Ljava/lang/Object;")
 	public Object[] onHold;
@@ -109,7 +109,7 @@ public final class Component {
 	public int[] invSprite;
 
 	@OriginalMember(owner = "client!be", name = "X", descriptor = "Z")
-	public boolean verticalFlip;
+	public boolean hFlip;
 
 	@OriginalMember(owner = "client!be", name = "Z", descriptor = "I")
 	public int modelId;
@@ -1009,7 +1009,7 @@ public final class Component {
 		if (local12 == -1) {
 			return null;
 		}
-		@Pc(66) long local66 = ((this.horizontalFlip ? 1L : 0L) << 38) + ((this.alpha ? 1L : 0L) << 35) + (long) local12 + ((long) this.outlineThickness << 36) + ((this.verticalFlip ? 1L : 0L) << 39) + ((long) this.graphicShadow << 40);
+		@Pc(66) long local66 = ((this.vFlip ? 1L : 0L) << 38) + ((this.alpha ? 1L : 0L) << 35) + (long) local12 + ((long) this.outlineThickness << 36) + ((this.hFlip ? 1L : 0L) << 39) + ((long) this.graphicShadow << 40);
 		@Pc(72) Sprite local72 = (Sprite) sprites.get(local66);
 		if (local72 != null) {
 			return local72;
@@ -1024,10 +1024,10 @@ public final class Component {
 			aBoolean72 = true;
 			return null;
 		}
-		if (this.horizontalFlip) {
+		if (this.vFlip) {
 			local85.method309();
 		}
-		if (this.verticalFlip) {
+		if (this.hFlip) {
 			local85.method299();
 		}
 		if (this.outlineThickness > 0) {
@@ -1093,8 +1093,8 @@ public final class Component {
 			this.transparency = packet.g1();
 			this.outlineThickness = packet.g1();
 			this.graphicShadow = packet.g4();
-			this.horizontalFlip = packet.g1() == 1;
-			this.verticalFlip = packet.g1() == 1;
+			this.vFlip = packet.g1() == 1;
+			this.hFlip = packet.g1() == 1;
 		}
 		if (this.type == 6) {
 			this.modelType = 1;

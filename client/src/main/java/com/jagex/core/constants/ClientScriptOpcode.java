@@ -181,13 +181,13 @@ public final class ClientScriptOpcode {
 	public static final int CC_SETSIZE = 1001;
 
 	// Show/hide component 
-	public static final int CC_SETHIDE = 1003;
+	public static final int CC_SETHIDDEN = 1003;
 
 	// Set component aspect ratio 
 	public static final int CC_SETASPECT = 1004;
 
 	// Set click-through behavior 
-	public static final int CC_SETNOCLICK = 1005;
+	public static final int CC_SETNOCLICKTHROUGH = 1005;
 
 	// COMPONENT PROPERTIES - VISUAL (1100-1199)
 
@@ -210,16 +210,16 @@ public final class ClientScriptOpcode {
 	public static final int CC_SETGRAPHIC = 1105;
 
 	// Set 2D rotation angle 
-	public static final int CC_SETANGLE = 1106;
+	public static final int CC_SET2DANGLE = 1106;
 
 	// Set sprite tiling mode 
-	public static final int CC_SETTILING = 1107;
+	public static final int CC_SETSPRITETILING = 1107;
 
 	// Set 3D model 
 	public static final int CC_SETMODEL = 1108;
 
 	// Set 3D model rotation and position 
-	public static final int CC_SETMODELANGLE = 1109;
+	public static final int CC_SET3DMODELANGLE = 1109;
 
 	// Set model animation sequence 
 	public static final int CC_SETMODELANIM = 1110;
@@ -246,13 +246,13 @@ public final class ClientScriptOpcode {
 	public static final int CC_IF_SETGRAPHICSHADOW = 1117;
 
 	// Set vertical flip 
-	public static final int CC_IF_SETHFLIP = 1118;
+	public static final int CC_IF_SETVFLIP = 1118;
 
 	// Set horizontal flip 
-	public static final int CC_IF_SETVFLIP = 1119;
+	public static final int CC_IF_SETHFLIP = 1119;
 
 	// Set scroll area size 
-	public static final int CC_IF_SETSCROLLSIZE = 1120;
+	public static final int CC_IF_SETSCROLLMAX = 1120;
 
 	// Set component shorts (unknown purpose) 
 	public static final int CC_IF_SETCOMPONENTSHORTS = 1121;
@@ -286,10 +286,10 @@ public final class ClientScriptOpcode {
 	// COMPONENT PROPERTIES - ADVANCED (1300-1399)
 
 	// Set component right-click option text 
-	public static final int CC_IF_SETOP = 1300;
+	public static final int CC_IF_SETCONTEXTMENUOP = 1300;
 
 	// Set component parent container 
-	public static final int CC_SETPARENT = 1301;
+	public static final int CC_SETDRAGGABLE = 1301;
 
 	// Set drag render behavior mode 
 	public static final int CC_IF_SETDRAGRENDERBEHAVIOUR = 1302;
@@ -318,91 +318,91 @@ public final class ClientScriptOpcode {
 	// COMPONENT EVENT HANDLERS (1400-1499)
 
 	// Set click repeat handler script 
-	public static final int CC_IF_SETONCLICK = 1400;
+	public static final int CC_IF_HOOK_MOUSEPRESS = 1400;
 
 	// Set hold handler script 
-	public static final int CC_IF_SETONHOLD = 1401;
+	public static final int CC_IF_HOOK_DRAGGEDOVER = 1401;
 
 	// Set mouse release handler script 
-	public static final int CC_IF_SETONRELEASE = 1402;
+	public static final int CC_IF_HOOK_MOUSERELEASE = 1402;
 
 	// Set mouse over handler script 
-	public static final int CC_IF_SETONMOUSEOVER = 1403;
+	public static final int CC_IF_HOOK_MOUSEENTER = 1403;
 
 	// Set mouse leave handler script 
-	public static final int CC_IF_SETONMOUSELEAVE = 1404;
+	public static final int CC_IF_HOOK_MOUSEEXIT = 1404;
 
 	// Set drag start handler script 
-	public static final int CC_IF_SETONDRAG = 1405;
+	public static final int CC_IF_HOOK_DRAGSTART = 1405;
 
 	// Set use-with handler script 
-	public static final int CC_IF_SETONTARGETLEAVE = 1406;
+	public static final int CC_IF_HOOK_USEWITH = 1406;
 
 	// Set VarP transmit handler script 
-	public static final int CC_IF_SETONVARTRANSMIT = 1407;
+	public static final int CC_IF_HOOK_VARP = 1407;
 
 	// Set timer handler script 
-	public static final int CC_IF_SETONTIMER = 1408;
+	public static final int CC_IF_HOOK_FRAME = 1408;
 
 	// Set option click handler script 
-	public static final int CC_IF_SETONOP = 1409;
+	public static final int CC_IF_HOOK_OPTIONCLICK = 1409;
 
 	// Set drag release handler script 
-	public static final int CC_IF_SETONDRAGCOMPLETE = 1410;
+	public static final int CC_IF_HOOK_DRAGRELEASE = 1410;
 
 	// Set drag handler script 
-	public static final int CC_IF_SETONCLICKREPEAT = 1411;
+	public static final int CC_IF_HOOK_DRAG = 1411;
 
 	// Set mouse repeat handler script 
-	public static final int CC_IF_SETONMOUSEREPEAT = 1412;
+	public static final int CC_IF_HOOK_MOUSEOVER = 1412;
 
 	// Set inventory transmit handler script 
-	public static final int CC_IF_SETONINVTRANSMIT = 1414;
+	public static final int CC_IF_HOOK_CONTAINER = 1414;
 
 	// Set stat transmit handler script 
-	public static final int CC_IF_SETONSTATTRANSMIT = 1415;
+	public static final int CC_IF_HOOK_SKILL = 1415;
 
 	// Set use handler script 
-	public static final int CC_IF_SETONTARGETENTER = 1416;
+	public static final int CC_IF_HOOK_ONUSE = 1416;
 
 	// Set scroll handler script 
-	public static final int CC_IF_SETONSCROLLWHEEL = 1417;
+	public static final int CC_IF_HOOKSCROLL = 1417;
 
 	// Set message handler script 
-	public static final int CC_IF_SETONCHATTRANSMIT = 1418;
+	public static final int CC_IF_HOOK_MSG = 1418;
 
 	// Set key handler script 
-	public static final int CC_IF_SETONKEY = 1419;
+	public static final int CC_IF_HOOK_KEY = 1419;
 
 	// Set friend transmit handler script 
-	public static final int CC_IF_SETONFRIENDTRANSMIT = 1420;
+	public static final int CC_IF_HOOK_FRIENDLIST = 1420;
 
 	// Set clan transmit handler script 
-	public static final int CC_IF_SETONCLANTRANSMIT = 1421;
+	public static final int CC_IF_HOOK_CLANLIST = 1421;
 
 	// Set misc transmit handler script 
-	public static final int CC_IF_SETONMISCTRANSMIT = 1422;
+	public static final int CC_IF_HOOK_MISCDATA = 1422;
 
 	// Set dialog abort handler script 
-	public static final int CC_IF_SETONDIALOGABORT = 1423;
+	public static final int CC_IF_HOOK_DIALOGABORT = 1423;
 
 	// Set components open/close handler script 
-	public static final int CC_IF_SETONSUBCHANGE = 1424;
+	public static final int CC_IF_HOOK_WIDGETSOPENCLOSE = 1424;
 
 	// Set stock transmit handler script 
-	public static final int CC_IF_SETONSTOCKTRANSMIT = 1425;
+	public static final int CC_IF_HOOK_GEUPDATE = 1425;
 
 	// Set minimap unlock handler script 
-	public static final int CC_IF_SETONCAMFINISHED = 1426;
+	public static final int CC_IF_HOOK_MINIMAPUNLOCK = 1426;
 
 	// Set resize handler script 
-	public static final int CC_IF_SETONRESIZE = 1427;
+	public static final int CC_IF_HOOK_RESIZE = 1427;
 
 	// Set VarC transmit handler script 
-	public static final int CC_IF_SETONVARCTRANSMIT = 1428;
+	public static final int CC_IF_HOOK_VARC = 1428;
 
 	// Set VarC string transmit handler script 
-	public static final int CC_IF_SETONVARCSTRTRANSMIT = 1429;
+	public static final int CC_IF_HOOK_VARCSTRING = 1429;
 
 	// COMPONENT GETTERS (1500-1899)
 
@@ -419,7 +419,7 @@ public final class ClientScriptOpcode {
 	public static final int CC_GETHEIGHT = 1503;
 
 	// Get component hidden state 
-	public static final int CC_GETHIDE = 1504;
+	public static final int CC_GETHIDDEN = 1504;
 
 	// Get component layer/parent ID 
 	public static final int CC_GETLAYER = 1505;
@@ -443,13 +443,13 @@ public final class ClientScriptOpcode {
 	public static final int CC_GETZOOM = 1605;
 
 	// Get model X angle rotation 
-	public static final int CC_GETMODELXANGLE = 1606;
+	public static final int CC_GETROTATEX = 1606;
 
-	// Get model Y offset 
-	public static final int CC_GETMODELYOFFSET = 1607;
+	// Get model Z angle rotation
+	public static final int CC_GETROTATEZ = 1607;
 
 	// Get model Y angle rotation 
-	public static final int CC_GETMODELYANGLE = 1608;
+	public static final int CC_GETROTATEY = 1608;
 
 	// Get transparency/alpha value 
 	public static final int CC_GETTRANS = 1609;
@@ -457,8 +457,8 @@ public final class ClientScriptOpcode {
 	// Get model X offset 
 	public static final int CC_GETMODELXOFFSET = 1610;
 
-	// Get model Z offset 
-	public static final int CC_GETMODELZOFFSET = 1611;
+	// Get model Y offset
+	public static final int CC_GETMODELYOFFSET = 1611;
 
 	// Get sprite graphic ID 
 	public static final int CC_GETGRAPHIC = 1612;
@@ -520,13 +520,13 @@ public final class ClientScriptOpcode {
 	public static final int IF_GETZOOM = 2605;
 
 	// Get interface model X angle 
-	public static final int IF_GETMODELXANGLE = 2606;
+	public static final int IF_GETMODELROTATEX = 2606;
 
 	// Get interface model Y offset 
-	public static final int IF_GETMODELYOFFSET = 2607;
+	public static final int IF_GETMODELROTATEZ = 2607;
 
 	// Get interface model Y angle 
-	public static final int IF_GETMODELYANGLE = 2608;
+	public static final int IF_GETMODELROTATEY = 2608;
 
 	// Get interface transparency 
 	public static final int IF_GETTRANS = 2609;
@@ -535,7 +535,7 @@ public final class ClientScriptOpcode {
 	public static final int IF_GETMODELXOFFSET = 2610;
 
 	// Get interface model Z offset 
-	public static final int IF_GETMODELZOFFSET = 2611;
+	public static final int IF_GETMODELYOFFSET = 2611;
 
 	// Get interface graphic 
 	public static final int IF_GETGRAPHIC = 2612;
@@ -571,19 +571,19 @@ public final class ClientScriptOpcode {
 	public static final int MESSAGE = 3100;
 
 	// Play player animation sequence 
-	public static final int ANIM = 3101;
+	public static final int ANIMSELF = 3101;
 
 	// Close current interface 
 	public static final int IF_CLOSE = 3103;
 
 	// Send component trigger to server (int param) 
-	public static final int IF_ON_COMPONENT = 3104;
+	public static final int IF_SENDINTPARAM = 3104;
 
 	// Send component trigger to server (long param) 
-	public static final int IF_ON_COMPONENT2 = 3105;
+	public static final int IF_SENDNAMEPARAM = 3105;
 
 	// Send component trigger to server (string param) 
-	public static final int IF_ON_COMPONENT3 = 3106;
+	public static final int IF_SENDSTRINGPARAM = 3106;
 
 	// Click player option (unknown exact use) 
 	public static final int CLICK_PLAYER_OPTION = 3107;
@@ -600,7 +600,7 @@ public final class ClientScriptOpcode {
 	// SOUND/MUSIC (3200-3299)
 
 	// Play synthesized sound effect 
-	public static final int SOUND_SYNTH = 3200;
+	public static final int SOUND_EFFECT = 3200;
 
 	// Play music track 
 	public static final int SOUND_SONG = 3201;
@@ -650,33 +650,31 @@ public final class ClientScriptOpcode {
 	public static final int ISMEMBER = 3312;
 
 	// Get inventory object (with offset variant) 
-	public static final int INV_GETOBJ_OFFSET = 3313;
+	public static final int INV_GETOBJ_INPECTINGSLOT = 3313;
 
 	// Get inventory count (with offset variant) 
-	public static final int INV_GETNUM_OFFSET = 3314;
+	public static final int INV_GETCOUNT_INSPECTINGSLOT = 3314;
 
 	// Get inventory total (with offset variant) 
-	public static final int INV_TOTAL_OFFSET = 3315;
+	public static final int INV_TOTAL_INSPECTINGCONTAINER = 3315;
 
 	// Get staff mod level (0-2: none/mod/admin) 
 	public static final int MODLEVEL = 3316;
 
 	// Get system update timer (seconds until reboot) 
-	public static final int RUNTIMER = 3317;
+	public static final int SYSTEMUPDATETIMER = 3317;
 
 	// Get world ID 
-	public static final int WORLD = 3318;
+	public static final int WORLDID = 3318;
 
 	// Get run energy percentage 
 	public static final int ENERGYSTAT = 3321;
 
 	// Get weight carried 
-	public static final int WEIGHT = 3322;
+	public static final int PLAYERWEIGHT = 3322;
 
-	// Check if player mod (returns 0 or 1) 
 	public static final int PLAYERMOD = 3323;
 
-	// Get player mod level (5-9 range) 
 	public static final int PLAYERMODLEVEL = 3324;
 
 	// Check if player is member 
@@ -710,7 +708,7 @@ public final class ClientScriptOpcode {
 	public static final int LANGUAGE = 3335;
 
 	// Build packed coordinate from X, Z, level components 
-	public static final int BUILDCOORD = 3336;
+	public static final int MOVECOORD = 3336;
 
 	// Get affiliate ID 
 	public static final int AFFILIATE = 3337;
@@ -960,7 +958,7 @@ public final class ClientScriptOpcode {
 	public static final int CHAR_ISVALID = 4113;
 
 	// Check character type (other) 
-	public static final int CHAR_ISOTHER = 4114;
+	public static final int CHAR_ALPHANUMERIC = 4114;
 
 	// Check if character is letter 
 	public static final int CHAR_ISLETTER = 4115;
@@ -1184,13 +1182,13 @@ public final class ClientScriptOpcode {
 	public static final int WORLDMAP_METHOD923 = 5204;
 
 	// Unknown world map operation 
-	public static final int WORLDMAP_METHOD1853 = 5205;
+	public static final int WORLDMAP_LOADDUNGEON = 5205;
 
 	// Get map name for coordinate 
-	public static final int WORLDMAP_GETMAPNAME = 5206;
+	public static final int WORLDMAP_GETDUNGEONMAP = 5206;
 
 	// Get map display name 
-	public static final int WORLDMAP_GETDISPLAYNAME = 5207;
+	public static final int WORLDMAP_GETDUNGEONMAPNAME = 5207;
 
 	// Get current map position 
 	public static final int WORLDMAP_GETCURRENTPOS = 5208;
@@ -1199,7 +1197,7 @@ public final class ClientScriptOpcode {
 	public static final int WORLDMAP_GETDISPLAYBOUNDS = 5209;
 
 	// Get current map origin 
-	public static final int WORLDMAP_GETCURRENTMAPORIGIN = 5210;
+	public static final int WORLDMAP_DUNGEONMAPCENTER = 5210;
 
 	// Get current map size 
 	public static final int WORLDMAP_GETCURRENTMAPSIZE = 5211;
@@ -1211,10 +1209,10 @@ public final class ClientScriptOpcode {
 	public static final int WORLDMAP_GETCLICKEDLABEL = 5213;
 
 	// Jump to display coordinate 
-	public static final int WORLDMAP_JUMPTODISPLAYCOORD = 5214;
+	public static final int WORLDMAP_SETPOSITIONINMAP = 5214;
 
 	// Check if coord has map with group 
-	public static final int WORLDMAP_COORDHASMAP = 5215;
+	public static final int WORLDMAP_DUNGEONMAPCONTAINS = 5215;
 
 	// Flash map element 
 	public static final int WORLDMAP_FLASHELEMENT = 5216;

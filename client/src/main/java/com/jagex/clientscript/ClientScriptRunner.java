@@ -112,9 +112,9 @@ import org.openrs2.deob.annotation.Pc;
 import static com.jagex.game.camera.CameraMode.*;
 import static com.jagex.core.constants.ClientScriptOpcode.*;
 import static com.jagex.core.constants.ClientScriptOpcode.CLIENTSCRIPT_117;
-import static com.jagex.core.constants.ClientScriptOpcode.IF_ON_COMPONENT;
-import static com.jagex.core.constants.ClientScriptOpcode.IF_ON_COMPONENT2;
-import static com.jagex.core.constants.ClientScriptOpcode.IF_ON_COMPONENT3;
+import static com.jagex.core.constants.ClientScriptOpcode.IF_SENDINTPARAM;
+import static com.jagex.core.constants.ClientScriptOpcode.IF_SENDNAMEPARAM;
+import static com.jagex.core.constants.ClientScriptOpcode.IF_SENDSTRINGPARAM;
 import static com.jagex.core.constants.ClientScriptOpcode.IF_ON_COMPONENT4;
 import static com.jagex.network.ClientProt.*;
 
@@ -1240,13 +1240,13 @@ public final class ClientScriptRunner {
 									InterfaceManager.redraw(createdComponent);
 									continue;
 								}
-								if (opcode == CC_SETANGLE) {
+								if (opcode == CC_SET2DANGLE) {
 									intStackPointer--; // Decrement then read
 									createdComponent.angle2d = intStack[intStackPointer];
 									InterfaceManager.redraw(createdComponent);
 									continue;
 								}
-								if (opcode == CC_SETTILING) {
+								if (opcode == CC_SETSPRITETILING) {
 									// settiling
 									intStackPointer--; // Decrement then read
 									createdComponent.spriteTiling = intStack[intStackPointer] == 1;
@@ -1264,7 +1264,7 @@ public final class ClientScriptRunner {
 									}
 									continue;
 								}
-								if (opcode == CC_SETMODELANGLE) {
+								if (opcode == CC_SET3DMODELANGLE) {
 									// setmodelangle
 									intStackPointer -= 6;
 									createdComponent.modelXOffset = intStack[intStackPointer];
@@ -1351,19 +1351,19 @@ public final class ClientScriptRunner {
 									InterfaceManager.redraw(createdComponent);
 									continue;
 								}
-								if (opcode == CC_IF_SETHFLIP) {
-									intStackPointer--; // Decrement then read
-									createdComponent.horizontalFlip = intStack[intStackPointer] == 1;
-									InterfaceManager.redraw(createdComponent);
-									continue;
-								}
 								if (opcode == CC_IF_SETVFLIP) {
 									intStackPointer--; // Decrement then read
-									createdComponent.verticalFlip = intStack[intStackPointer] == 1;
+									createdComponent.vFlip = intStack[intStackPointer] == 1;
 									InterfaceManager.redraw(createdComponent);
 									continue;
 								}
-								if (opcode == CC_IF_SETSCROLLSIZE) {
+								if (opcode == CC_IF_SETHFLIP) {
+									intStackPointer--; // Decrement then read
+									createdComponent.hFlip = intStack[intStackPointer] == 1;
+									InterfaceManager.redraw(createdComponent);
+									continue;
+								}
+								if (opcode == CC_IF_SETSCROLLMAX) {
 									intStackPointer -= 2;
 									createdComponent.scrollWidth = intStack[intStackPointer];
 									createdComponent.scrollHeight = intStack[intStackPointer + 1];
@@ -1501,7 +1501,7 @@ public final class ClientScriptRunner {
 									// cc_
 									createdComponent = secondary ? secondaryActiveComponent : primaryActiveComponent;
 								}
-								if (opcode == CC_IF_SETOP) {
+								if (opcode == CC_IF_SETCONTEXTMENUOP) {
 									intStackPointer--; // Decrement then read
 									tempInt1 = intStack[intStackPointer] - 1;
 									if (tempInt1 >= 0 && tempInt1 <= 9) {
@@ -1512,7 +1512,7 @@ public final class ClientScriptRunner {
 									ssp--;
 									continue;
 								}
-								if (opcode == CC_SETPARENT) {
+								if (opcode == CC_SETDRAGGABLE) {
 									intStackPointer -= 2;
 									j = intStack[intStackPointer + 1];
 									tempInt1 = intStack[intStackPointer];
@@ -1610,67 +1610,67 @@ public final class ClientScriptRunner {
 										arguments[0] = Integer.valueOf(start);
 									}
 									createdComponent.interactive = true;
-									if (opcode == CC_IF_SETONCLICK) {
+									if (opcode == CC_IF_HOOK_MOUSEPRESS) {
 										createdComponent.onClick = arguments;
-									} else if (opcode == CC_IF_SETONHOLD) {
+									} else if (opcode == CC_IF_HOOK_DRAGGEDOVER) {
 										createdComponent.onHold = arguments;
-									} else if (opcode == CC_IF_SETONRELEASE) {
+									} else if (opcode == CC_IF_HOOK_MOUSERELEASE) {
 										createdComponent.onRelease = arguments;
-									} else if (opcode == CC_IF_SETONMOUSEOVER) {
+									} else if (opcode == CC_IF_HOOK_MOUSEENTER) {
 										createdComponent.onMouseOver = arguments;
-									} else if (opcode == CC_IF_SETONMOUSELEAVE) {
+									} else if (opcode == CC_IF_HOOK_MOUSEEXIT) {
 										createdComponent.onMouseLeave = arguments;
-									} else if (opcode == CC_IF_SETONDRAG) {
+									} else if (opcode == CC_IF_HOOK_DRAGSTART) {
 										createdComponent.onDragStart = arguments;
-									} else if (opcode == CC_IF_SETONTARGETLEAVE) {
+									} else if (opcode == CC_IF_HOOK_USEWITH) {
 										createdComponent.onTargetLeave = arguments;
-									} else if (opcode == CC_IF_SETONVARTRANSMIT) {
+									} else if (opcode == CC_IF_HOOK_VARP) {
 										createdComponent.varpTriggers = triggers;
 										createdComponent.onVarpTransmit = arguments;
-									} else if (opcode == CC_IF_SETONTIMER) {
+									} else if (opcode == CC_IF_HOOK_FRAME) {
 										createdComponent.onTimer = arguments;
-									} else if (opcode == CC_IF_SETONOP) {
+									} else if (opcode == CC_IF_HOOK_OPTIONCLICK) {
 										createdComponent.onOp = arguments;
-									} else if (opcode == CC_IF_SETONDRAGCOMPLETE) {
+									} else if (opcode == CC_IF_HOOK_DRAGRELEASE) {
 										createdComponent.onDragComplete = arguments;
-									} else if (opcode == CC_IF_SETONCLICKREPEAT) {
+									} else if (opcode == CC_IF_HOOK_DRAG) {
 										createdComponent.onClickRepeat = arguments;
-									} else if (opcode == CC_IF_SETONMOUSEREPEAT) {
+									} else if (opcode == CC_IF_HOOK_MOUSEOVER) {
 										createdComponent.onMouseRepeat = arguments;
-									} else if (opcode == CC_IF_SETONINVTRANSMIT) {
+									} else if (opcode == CC_IF_HOOK_CONTAINER) {
 										createdComponent.inventoryTriggers = triggers;
 										createdComponent.onInvTransmit = arguments;
-									} else if (opcode == CC_IF_SETONSTATTRANSMIT) {
+									} else if (opcode == CC_IF_HOOK_SKILL) {
 										createdComponent.statTriggers = triggers;
 										createdComponent.onStatTransmit = arguments;
-									} else if (opcode == CC_IF_SETONTARGETENTER) {
+									} else if (opcode == CC_IF_HOOK_ONUSE) {
 										createdComponent.onTargetEnter = arguments;
-									} else if (opcode == CC_IF_SETONSCROLLWHEEL) {
+									} else if (opcode == CC_IF_HOOKSCROLL) {
 										createdComponent.onScrollWheel = arguments;
-									} else if (opcode == CC_IF_SETONCHATTRANSMIT) {
+									} else if (opcode == CC_IF_HOOK_MSG) {
 										createdComponent.onChatTransmit = arguments;
-									} else if (opcode == CC_IF_SETONKEY) {
+									} else if (opcode == CC_IF_HOOK_KEY) {
 										createdComponent.onKey = arguments;
-									} else if (opcode == CC_IF_SETONFRIENDTRANSMIT) {
+									} else if (opcode == CC_IF_HOOK_FRIENDLIST) {
 										createdComponent.onFriendTransmit = arguments;
-									} else if (opcode == CC_IF_SETONCLANTRANSMIT) {
+									} else if (opcode == CC_IF_HOOK_CLANLIST) {
 										createdComponent.onClanTransmit = arguments;
-									} else if (opcode == CC_IF_SETONMISCTRANSMIT) {
+									} else if (opcode == CC_IF_HOOK_MISCDATA) {
 										createdComponent.onMiscTransmit = arguments;
-									} else if (opcode == CC_IF_SETONDIALOGABORT) {
+									} else if (opcode == CC_IF_HOOK_DIALOGABORT) {
 										createdComponent.onDialogAbort = arguments;
-									} else if (opcode == CC_IF_SETONSUBCHANGE) {
+									} else if (opcode == CC_IF_HOOK_WIDGETSOPENCLOSE) {
 										createdComponent.onSubChange = arguments;
-									} else if (opcode == CC_IF_SETONSTOCKTRANSMIT) {
+									} else if (opcode == CC_IF_HOOK_GEUPDATE) {
 										createdComponent.onStockTransmit = arguments;
-									} else if (opcode == CC_IF_SETONCAMFINISHED) {
+									} else if (opcode == CC_IF_HOOK_MINIMAPUNLOCK) {
 										createdComponent.onCamFinished = arguments;
-									} else if (opcode == CC_IF_SETONRESIZE) {
+									} else if (opcode == CC_IF_HOOK_RESIZE) {
 										createdComponent.onResize = arguments;
-									} else if (opcode == CC_IF_SETONVARCTRANSMIT) {
+									} else if (opcode == CC_IF_HOOK_VARC) {
 										createdComponent.onVarcTransmit = arguments;
 										createdComponent.varcTriggers = triggers;
-									} else if (opcode == CC_IF_SETONVARCSTRTRANSMIT) {
+									} else if (opcode == CC_IF_HOOK_VARCSTRING) {
 										createdComponent.varcstrTriggers = triggers;
 										createdComponent.onVarcstrTransmit = arguments;
 									}
@@ -1698,7 +1698,7 @@ public final class ClientScriptRunner {
 										intStack[intStackPointer++] = createdComponent.height;
 										continue;
 									}
-									if (opcode == CC_GETHIDE) {
+									if (opcode == CC_GETHIDDEN) {
 										// cc_gethide
 										intStack[intStackPointer++] = createdComponent.hidden ? 1 : 0;
 										continue;
@@ -1736,15 +1736,15 @@ public final class ClientScriptRunner {
 										intStack[intStackPointer++] = createdComponent.modelZoom;
 										continue;
 									}
-									if (opcode == CC_GETMODELXANGLE) {
+									if (opcode == CC_GETROTATEX) {
 										intStack[intStackPointer++] = createdComponent.modelXAngle;
 										continue;
 									}
-									if (opcode == CC_GETMODELYOFFSET) {
+									if (opcode == CC_GETROTATEZ) {
 										intStack[intStackPointer++] = createdComponent.modelYOffset;
 										continue;
 									}
-									if (opcode == CC_GETMODELYANGLE) {
+									if (opcode == CC_GETROTATEY) {
 										intStack[intStackPointer++] = createdComponent.modelYAngle;
 										continue;
 									}
@@ -1756,7 +1756,7 @@ public final class ClientScriptRunner {
 										intStack[intStackPointer++] = createdComponent.modelXOffset;
 										continue;
 									}
-									if (opcode == CC_GETMODELZOFFSET) {
+									if (opcode == CC_GETMODELYOFFSET) {
 										intStack[intStackPointer++] = createdComponent.modelZOffset;
 										continue;
 									}
@@ -1869,15 +1869,15 @@ public final class ClientScriptRunner {
 										intStack[intStackPointer++] = createdComponent.modelZoom;
 										continue;
 									}
-									if (opcode == IF_GETMODELXANGLE) {
+									if (opcode == IF_GETMODELROTATEX) {
 										intStack[intStackPointer++] = createdComponent.modelXAngle;
 										continue;
 									}
-									if (opcode == IF_GETMODELYOFFSET) {
+									if (opcode == IF_GETMODELROTATEZ) {
 										intStack[intStackPointer++] = createdComponent.modelYOffset;
 										continue;
 									}
-									if (opcode == IF_GETMODELYANGLE) {
+									if (opcode == IF_GETMODELROTATEY) {
 										intStack[intStackPointer++] = createdComponent.modelYAngle;
 										continue;
 									}
@@ -1889,7 +1889,7 @@ public final class ClientScriptRunner {
 										intStack[intStackPointer++] = createdComponent.modelXOffset;
 										continue;
 									}
-									if (opcode == IF_GETMODELZOFFSET) {
+									if (opcode == IF_GETMODELYOFFSET) {
 										intStack[intStackPointer++] = createdComponent.modelZOffset;
 										continue;
 									}
@@ -1988,7 +1988,7 @@ public final class ClientScriptRunner {
 										ChatHistory.addMessage(EMPTY_STRING, 0, tempString1);
 										continue;
 									}
-									if (opcode == ANIM) {
+									if (opcode == ANIMSELF) {
 										// anim
 										intStackPointer -= 2;
 										Player.animate(intStack[intStackPointer + 1], intStack[intStackPointer], PlayerList.self);
@@ -1998,7 +1998,7 @@ public final class ClientScriptRunner {
 										InterfaceManager.closeModal();
 										continue;
 									}
-									if (opcode == IF_ON_COMPONENT) {
+									if (opcode == IF_SENDINTPARAM) {
 										ssp--;
 										tempString1 = scriptStringValues[ssp];
 										tempInt1 = 0;
@@ -2009,14 +2009,14 @@ public final class ClientScriptRunner {
 										Protocol.outboundBuffer.p4(tempInt1);
 										continue;
 									}
-									if (opcode == IF_ON_COMPONENT2) {
+									if (opcode == IF_SENDNAMEPARAM) {
 										ssp--;
 										tempString1 = scriptStringValues[ssp];
 										Protocol.outboundBuffer.pIsaac1(ClientProt.IF_ON_COMPONENT2);
 										Protocol.outboundBuffer.p8(tempString1.encode37());
 										continue;
 									}
-									if (opcode == IF_ON_COMPONENT3) {
+									if (opcode == IF_SENDSTRINGPARAM) {
 										ssp--;
 										tempString1 = scriptStringValues[ssp];
 										Protocol.outboundBuffer.pIsaac1(ClientProt.IF_ON_COMPONENT3);
@@ -2057,7 +2057,7 @@ public final class ClientScriptRunner {
 										continue;
 									}
 								} else if (opcode < 3300) {
-									if (opcode == SOUND_SYNTH) {
+									if (opcode == SOUND_EFFECT) {
 										// sound_synth
 										intStackPointer -= 3;
 										SoundPlayer.play(intStack[intStackPointer + 1], intStack[intStackPointer], intStack[intStackPointer + 2]);
@@ -2155,7 +2155,7 @@ public final class ClientScriptRunner {
 										intStack[intStackPointer++] = LoginManager.membersWorld ? 1 : 0;
 										continue;
 									}
-									if (opcode == INV_GETOBJ_OFFSET) {
+									if (opcode == INV_GETOBJ_INPECTINGSLOT) {
                                         // inv_getobj
 										intStackPointer -= 2;
 										tempInt2 = intStack[intStackPointer] + 32768; // Add 32768 for bank inventory offset
@@ -2163,7 +2163,7 @@ public final class ClientScriptRunner {
 										intStack[intStackPointer++] = ClientInventory.getItemType(tempInt2, tempInt1);
 										continue;
 									}
-									if (opcode == INV_GETNUM_OFFSET) {
+									if (opcode == INV_GETCOUNT_INSPECTINGSLOT) {
                                         // inv_getnum
 										intStackPointer -= 2;
 										tempInt2 = intStack[intStackPointer] + 32768; // Add 32768 for bank inventory offset
@@ -2171,7 +2171,7 @@ public final class ClientScriptRunner {
 										intStack[intStackPointer++] = ClientInventory.getItemCount(tempInt2, tempInt1);
 										continue;
 									}
-									if (opcode == INV_TOTAL_OFFSET) {
+									if (opcode == INV_TOTAL_INSPECTINGCONTAINER) {
                                         // inv_total
 										intStackPointer -= 2;
 										tempInt2 = intStack[intStackPointer] + 32768; // Add 32768 for bank inventory offset
@@ -2188,11 +2188,11 @@ public final class ClientScriptRunner {
 										}
 										continue;
 									}
-									if (opcode == RUNTIMER) {
+									if (opcode == SYSTEMUPDATETIMER) {
 										intStack[intStackPointer++] = Player.systemUpdateTimer;
 										continue;
 									}
-									if (opcode == WORLD) {
+									if (opcode == WORLDID) {
 										intStack[intStackPointer++] = Player.worldId;
 										continue;
 									}
@@ -2200,7 +2200,7 @@ public final class ClientScriptRunner {
 										intStack[intStackPointer++] = Player.runEnergy;
 										continue;
 									}
-									if (opcode == WEIGHT) {
+									if (opcode == PLAYERWEIGHT) {
 										intStack[intStackPointer++] = Player.weightCarried;
 										continue;
 									}
@@ -2272,7 +2272,7 @@ public final class ClientScriptRunner {
 										intStack[intStackPointer++] = Client.language;
 										continue;
 									}
-									if (opcode == BUILDCOORD) {
+									if (opcode == MOVECOORD) {
 										intStackPointer -= 4;
 										tempInt1 = intStack[intStackPointer + 1]; // X tile coordinate
 										tempInt2 = intStack[intStackPointer]; // Z tile coordinate
@@ -3487,12 +3487,12 @@ public final class ClientScriptRunner {
 														scriptStringValues[ssp - 1] = WorldMap.method923(scriptStringValues[ssp - 1]);
 														continue;
 													}
-													if (opcode == WORLDMAP_METHOD1853) {
+													if (opcode == WORLDMAP_LOADDUNGEON) {
 														ssp--;
 														WorldMap.loadAreaByName(scriptStringValues[ssp]);
 														continue;
 													}
-													if (opcode == WORLDMAP_GETMAPNAME) {
+													if (opcode == WORLDMAP_GETDUNGEONMAP) {
 														intStackPointer--; // Decrement then read
 														tempInt2 = intStack[intStackPointer];
 														@Pc(7264) Map sourceMap = MapList.getContainingSource(tempInt2 >> 14 & 0x3FFF, tempInt2 & 0x3FFF);
@@ -3504,7 +3504,7 @@ public final class ClientScriptRunner {
 														continue;
 													}
 													@Pc(7293) Map worldMap;
-													if (opcode == WORLDMAP_GETDISPLAYNAME) {
+													if (opcode == WORLDMAP_GETDUNGEONMAPNAME) {
 														ssp--;
 														worldMap = MapList.get(scriptStringValues[ssp]);
 														if (worldMap != null && worldMap.name != null) {
@@ -3524,7 +3524,7 @@ public final class ClientScriptRunner {
 														intStack[intStackPointer++] = WorldMap.originZ + WorldMap.areaHeight - WorldMap.displayZ - 1;
 														continue;
 													}
-													if (opcode == WORLDMAP_GETCURRENTMAPORIGIN) {
+													if (opcode == WORLDMAP_DUNGEONMAPCENTER) {
 														worldMap = WorldMap.getCurrentMap();
 														if (worldMap == null) {
 															intStack[intStackPointer++] = 0;
@@ -3574,13 +3574,13 @@ public final class ClientScriptRunner {
 														intStack[intStackPointer++] = j;
 														continue;
 													}
-													if (opcode == WORLDMAP_JUMPTODISPLAYCOORD) {
+													if (opcode == WORLDMAP_SETPOSITIONINMAP) {
 														intStackPointer--; // Decrement then read
 														tempInt2 = intStack[intStackPointer];
 														WorldMap.setMapCenterPosition(tempInt2 >> 14 & 0x3FFF, tempInt2 & 0x3FFF);
 														continue;
 													}
-													if (opcode == WORLDMAP_COORDHASMAP) {
+													if (opcode == WORLDMAP_DUNGEONMAPCONTAINS) {
 														intStackPointer--; // Decrement then read
 														tempInt2 = intStack[intStackPointer];
 														ssp--;
@@ -4806,7 +4806,7 @@ public final class ClientScriptRunner {
 										intStack[intStackPointer++] = CharUtils.isValidChar(tempInt2) ? 1 : 0;
 										continue;
 									}
-									if (opcode == CHAR_ISOTHER) {
+									if (opcode == CHAR_ALPHANUMERIC) {
 										intStackPointer--; // Decrement then read
 										tempInt2 = intStack[intStackPointer];
 										intStack[intStackPointer++] = CharUtils.method433(tempInt2) ? 1 : 0;
@@ -4968,7 +4968,7 @@ public final class ClientScriptRunner {
 								}
 								continue;
 							}
-							if (opcode == CC_SETHIDE) {
+							if (opcode == CC_SETHIDDEN) {
 								// sethide
 								intStackPointer--; // Decrement then read
 								local1552 = intStack[intStackPointer] == 1;
@@ -4993,7 +4993,7 @@ public final class ClientScriptRunner {
 								}
 								continue;
 							}
-							if (opcode == CC_SETNOCLICK) {
+							if (opcode == CC_SETNOCLICKTHROUGH) {
 								intStackPointer--; // Decrement then read
 								createdComponent.noClickThrough = intStack[intStackPointer] == 1;
 								continue;

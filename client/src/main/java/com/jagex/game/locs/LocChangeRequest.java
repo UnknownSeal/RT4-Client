@@ -67,7 +67,7 @@ public final class LocChangeRequest extends Node {
 	public int setLoops = 0;
 
 	@OriginalMember(owner = "client!ce", name = "a", descriptor = "(IIIIIIIIII)V")
-	public static void push(@OriginalArg(0) int level, @OriginalArg(1) int z, @OriginalArg(3) int id, @OriginalArg(4) int x, @OriginalArg(5) int resetLoops, @OriginalArg(6) int rotation, @OriginalArg(7) int layer, @OriginalArg(8) int type, @OriginalArg(9) int setLoops) {
+	public static void push(@OriginalArg(0) int level, @OriginalArg(1) int z, @OriginalArg(3) int newId, @OriginalArg(4) int x, @OriginalArg(5) int resetLoops, @OriginalArg(6) int angle, @OriginalArg(7) int layer, @OriginalArg(8) int shape, @OriginalArg(9) int setLoops) {
 		@Pc(9) LocChangeRequest loc = null;
 
 		// Check if a request already exists for this position and layer
@@ -90,11 +90,11 @@ public final class LocChangeRequest extends Node {
 		}
 
 		// Update request with new change parameters
-		loc.newShape = type;
+		loc.newShape = shape;
 		loc.setLoops = setLoops;
 		loc.resetLoops = resetLoops;
-		loc.newId = rotation;
-		loc.newAngle = id;
+		loc.newId = angle;
+		loc.newAngle = newId;
 	}
 
 	@OriginalMember(owner = "runetek4.client!ug", name = "a", descriptor = "(B)V")

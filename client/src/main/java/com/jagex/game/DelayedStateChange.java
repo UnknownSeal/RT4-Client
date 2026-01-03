@@ -118,7 +118,7 @@ public final class DelayedStateChange extends Node2 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!ve", name = "a", descriptor = "(BIIII)V")
-	public static void interfaceSetModelAngle(@OriginalArg(1) int viewX, @OriginalArg(2) int componentId, @OriginalArg(3) int viewY, @OriginalArg(4) int viewZ) {
+	public static void updateView(@OriginalArg(1) int viewX, @OriginalArg(2) int componentId, @OriginalArg(3) int viewY, @OriginalArg(4) int viewZ) {
 		@Pc(8) DelayedStateChange change = getOrAdd(TYPE_IF_SETMODELANGLE, componentId);
 		change.setClientServerUpdate();
 		change.tertiaryData = viewX;

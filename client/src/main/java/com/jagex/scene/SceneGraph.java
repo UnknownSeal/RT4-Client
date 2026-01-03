@@ -175,10 +175,10 @@ public class SceneGraph {
     public static GlTile[][] surfaceHdTiles;
 
     @OriginalMember(owner = "runetek4.client!ja", name = "q", descriptor = "I")
-    public static int currentChunkX;
+    public static int currentZoneX;
 
     @OriginalMember(owner = "runetek4.client!og", name = "b", descriptor = "I")
-    public static int currentChunkZ;
+    public static int currentZoneZ;
 
     @OriginalMember(owner = "runetek4.client!tg", name = "g", descriptor = "[[[B")
     public static byte[][][] tileOverlays;
@@ -1791,7 +1791,7 @@ public class SceneGraph {
     }
 
     @OriginalMember(owner = "runetek4.client!pb", name = "b", descriptor = "(III)Lclient!jj;")
-    public static ObjStackEntity removeGroundObjects(@OriginalArg(0) int plane, @OriginalArg(1) int x, @OriginalArg(2) int z) {
+    public static ObjStackEntity removeObjStack(@OriginalArg(0) int plane, @OriginalArg(1) int x, @OriginalArg(2) int z) {
         @Pc(7) Tile tile = tiles[plane][x][z];
         if (tile == null) {
             return null;

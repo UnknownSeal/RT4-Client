@@ -707,7 +707,7 @@ public class WorldLoader {
         }
         for (chunkX = 0; chunkX < 104; chunkX++) {
             for (chunkZ = 0; chunkZ < 104; chunkZ++) {
-                Protocol.spawnGroundObject(chunkX, chunkZ);
+                Protocol.spawnObjStack(chunkX, chunkZ);
             }
         }
         ClientScriptRunner.method2218();
