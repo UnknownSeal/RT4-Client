@@ -1,0 +1,3392 @@
+package com.jagex.network;
+
+import com.jagex.client.Client;
+import com.jagex.client.Game;
+import com.jagex.client.Preferences;
+import com.jagex.game.runetek4.client.GameShell;
+import com.jagex.client.auth.LoginManager;
+import com.jagex.entity.PathingEntity;
+import com.jagex.entity.PathingEntityAnimation;
+import com.jagex.entity.npc.Npc;
+import com.jagex.entity.npc.NpcList;
+import com.jagex.entity.player.Player;
+import com.jagex.entity.player.PlayerList;
+import com.jagex.entity.player.PlayerSkillXpTable;
+import com.jagex.game.logic.CollisionConstants;
+import com.jagex.game.world.CoordinateConstants;
+import com.jagex.game.world.WorldLoader;
+import com.jagex.graphics.animation.ProjAnimNode;
+import com.jagex.graphics.animation.ProjectileAnimation;
+import com.jagex.graphics.animation.SpotAnim;
+import com.jagex.graphics.animation.SpotAnimEntity;
+import com.jagex.sound.core.SoundPlayer;
+import com.jagex.sound.spatial.AreaSoundManager;
+import com.jagex.sound.streaming.MusicPlayer;
+import com.jagex.scene.Camera;
+import com.jagex.ui.chat.ChatHistory;
+import com.jagex.ui.chat.ClanChat;
+import com.jagex.ui.chat.QuickChatPhrase;
+import com.jagex.game.DelayedStateChange;
+import com.jagex.game.runetek4.config.objtype.ObjType;
+import com.jagex.cache.media.Font;
+import com.jagex.game.runetek4.config.seqtype.SeqType;
+import com.jagex.ui.component.*;
+import com.jagex.game.runetek4.config.npctype.NpcTypeList;
+import com.jagex.game.runetek4.config.objtype.ObjTypeList;
+import com.jagex.game.runetek4.config.quickchatcattype.QuickChatPhraseTypeList;
+import com.jagex.game.runetek4.config.seqtype.SeqTypeList;
+import com.jagex.game.runetek4.config.spotanim.SpotAnimTypeList;
+import com.jagex.core.datastruct.LinkedList;
+import com.jagex.core.exceptions.TracingException;
+import com.jagex.core.io.Packet;
+import com.jagex.core.io.PacketBit;
+import com.jagex.game.runetek4.config.bastype.BasType;
+import com.jagex.game.runetek4.config.quickchatcattype.QuickChatPhraseType;
+import com.jagex.game.inventory.ClientInventory;
+import com.jagex.game.locs.LocToEntityAttachment;
+import com.jagex.game.locs.LocChangeRequest;
+import com.jagex.game.state.VarpDomain;
+import com.jagex.graphics.gl.GlRenderer;
+import com.jagex.graphics.core.DisplayMode;
+import com.jagex.graphics.font.Fonts;
+import com.jagex.input.Mouse;
+import com.jagex.ui.social.ClanMember;
+import com.jagex.core.utils.string.JString;
+import com.jagex.core.utils.string.LocalizedText;
+import com.jagex.game.compression.huffman.WordPack;
+import com.jagex.game.map.MapMarker;
+import com.jagex.network.security.ReflectionCheck;
+import com.jagex.entity.loc.Loc;
+import com.jagex.entity.loc.ObjStack;
+import com.jagex.entity.loc.ClientObj;
+import com.jagex.scene.SceneCamera;
+import com.jagex.scene.SceneGraph;
+import com.jagex.clientscript.ClientScriptRunner;
+import com.jagex.ui.social.FriendList;
+import com.jagex.ui.social.IgnoreList;
+import com.jagex.ui.sprite.Sprites;
+import com.jagex.game.stockmarket.StockMarketManager;
+import com.jagex.game.stockmarket.StockMarketOffer;
+import com.jagex.ui.events.HookRequest;
+import com.jagex.core.utils.data.Base37;
+import com.jagex.core.utils.math.MathUtils;
+import com.jagex.sign.SignLink;
+import com.jagex.game.world.WorldMap;
+import com.jagex.sign.SignedResource;
+import org.openrs2.deob.annotation.OriginalArg;
+import org.openrs2.deob.annotation.OriginalMember;
+import org.openrs2.deob.annotation.Pc;
+
+import java.io.IOException;
+import java.util.Objects;
+
+import static com.jagex.game.camera.CameraMode.MODE_ORBITAL;
+import static com.jagex.core.constants.GameConstants.*;
+import static com.jagex.game.logic.CollisionConstants.SIZE;
+import static com.jagex.game.logic.CollisionConstants.ZONE_SIZE;
+import static com.jagex.game.world.CoordinateConstants.*;
+import static com.jagex.network.ClientProt.TRANSMITVAR_VERIFYID;
+import static com.jagex.network.ProtocolConstants.*;
+import static com.jagex.network.ProtocolConstants.DYNAMIC_REGION_BITS;
+import static com.jagex.network.ProtocolConstants.LOC_SHAPE_SHIFT;
+import static com.jagex.network.ServerProt.*;
+
+public class Protocol {
+
+    @OriginalMember(owner = "client!ag", name = "P", descriptor = "Lclient!i;")
+    public static final PacketBit outboundBuffer = new PacketBit(OUTBOUND_BUFFER_SIZE);
+
+    @OriginalMember(owner = "runetek4.client!eg", name = "e", descriptor = "Lclient!i;")
+    public static final PacketBit inboundBuffer = new PacketBit(INBOUND_BUFFER_SIZE);
+
+    @OriginalMember(owner = "runetek4.client!ef", name = "f", descriptor = "Lclient!na;")
+    public static final JString DUELSTAKE = JString.parse(":duelstake:");
+
+    @OriginalMember(owner = "client!en", name = "h", descriptor = "Lclient!na;")
+    public static final JString CHALREQ = JString.parse(":chalreq:");
+
+    @OriginalMember(owner = "runetek4.client!wb", name = "f", descriptor = "Lclient!wa;")
+    public static final Packet CHAT_PACKET = new Packet(new byte[CHAT_PACKET_SIZE]);
+
+    @OriginalMember(owner = "client!eb", name = "p", descriptor = "[I")
+    public static final int[] removedIds = new int[MAX_REMOVED_IDS];
+
+    @OriginalMember(owner = "client!dh", name = "d", descriptor = "[I")
+    public static final int[] extendedIds = new int[MAX_EXTENDED_IDS];
+
+    @OriginalMember(owner = "runetek4.client!ta", name = "z", descriptor = "[I")
+    public static final int[] PACKET_LENGTHS = new int[] { -1, 0, 8, 0, 2, 0, 0, 0, 0, 12, 0, 1, 0, 3, 7, 0, 15, 6, 0, 0, 4, 7, -2, -1, 2, 0, 2, 8, 0, 0, 0, 0, -2, 5, 0, 0, 8, 3, 6, 0, 0, 0, -1, 0, -1, 0, 0, 6, -2, 0, 12, 0, 0, 0, -1, -2, 10, 0, 0, 0, 3, 0, -1, 0, 0, 5, 6, 0, 0, 8, -1, -1, 0, 8, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 6, 2, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 5, 0, 0, -2, 0, 0, 0, 0, 0, 12, 2, 0, -2, -2, 20, 0, 0, 10, 0, 15, 0, -1, 0, 8, -2, 0, 0, 0, 8, 0, 12, 0, 0, 7, 0, 0, 0, 0, 0, -1, -1, 0, 4, 5, 0, 0, 0, 6, 0, 0, 0, 0, 8, 9, 0, 0, 0, 2, -1, 0, -2, 0, 4, 14, 0, 0, 0, 24, 0, -2, 5, 0, 0, 0, 10, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 6, 0, 0, 0, 2, 1, 0, 0, 2, -1, 1, 0, 0, 0, 0, 14, 0, 0, 0, 0, 10, 5, 0, 0, 0, 0, 0, -2, 0, 0, 9, 0, 0, 8, 0, 0, 0, 0, -2, 6, 0, 0, 0, -2, 0, 3, 0, 1, 7, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 3, 0, 0 };
+
+    @OriginalMember(owner = "runetek4.client!tl", name = "f", descriptor = "Lclient!na;")
+    public static final JString ASSIST = JString.parse(":assist:");
+
+    @OriginalMember(owner = "runetek4.client!pl", name = "f", descriptor = "Lclient!na;")
+    public static final JString TRADEREQ = JString.parse(":tradereq:");
+
+    @OriginalMember(owner = "runetek4.client!lb", name = "s", descriptor = "Lclient!na;")
+    public static final JString CLAN = JString.parse(":clan:");
+
+    @OriginalMember(owner = "runetek4.client!ij", name = "a", descriptor = "Lclient!na;")
+    public static final JString DUELFRIEND = JString.parse(":duelfriend:");
+
+    @OriginalMember(owner = "runetek4.client!km", name = "Sc", descriptor = "Lclient!na;")
+    public static final JString TRADE = JString.parse(":trade:");
+
+    @OriginalMember(owner = "runetek4.client!pb", name = "x", descriptor = "[[[I")
+    public static final int[][][] dynamicRegionData = new int[CollisionConstants.LEVELS][ProtocolConstants.BUILD_AREA_SIZE][ProtocolConstants.BUILD_AREA_SIZE];
+
+    @OriginalMember(owner = "client!fc", name = "f", descriptor = "Lclient!na;")
+    public static final JString IMG0 = JString.parse("<img=0>");
+
+    @OriginalMember(owner = "client!ch", name = "z", descriptor = "[I")
+    public static final int[] cameraModifierCycle = new int[CAMERA_MODIFIER_COUNT];
+
+    @OriginalMember(owner = "runetek4.client!pg", name = "db", descriptor = "Lclient!na;")
+    public static final JString ASSISTREQ = JString.parse(":assistreq:");
+
+    @OriginalMember(owner = "runetek4.client!rj", name = "ab", descriptor = "Lclient!na;")
+    public static final JString CLANREQ = JString.parse(":clanreq:");
+
+    @OriginalMember(owner = "runetek4.client!na", name = "cb", descriptor = "Lclient!na;")
+    public static final JString ALLYREQ = JString.parse(":allyreq:");
+
+    @OriginalMember(owner = "client!dh", name = "i", descriptor = "Lclient!na;")
+    public static final JString IMG1 = JString.parse("<img=1>");
+
+    @OriginalMember(owner = "runetek4.client!qi", name = "t", descriptor = "I")
+    public static int mouseIdleFrameCount = 0;
+
+    @OriginalMember(owner = "runetek4.client!fe", name = "R", descriptor = "Z")
+    public static boolean prevFocus = true;
+
+    @OriginalMember(owner = "runetek4.client!dm", name = "q", descriptor = "I")
+    public static int thirdLastOpcode = 0;
+
+    @OriginalMember(owner = "runetek4.client!af", name = "k", descriptor = "I")
+    public static int secondLastOpcode = 0;
+
+    @OriginalMember(owner = "runetek4.client!na", name = "l", descriptor = "I")
+    public static int currentOpcode = 0;
+
+    @OriginalMember(owner = "runetek4.client!sj", name = "t", descriptor = "I")
+    public static int previousOpcode = 0;
+
+    @OriginalMember(owner = "runetek4.client!pm", name = "ab", descriptor = "Z")
+    public static boolean shouldSendCameraPosition = true;
+
+    @OriginalMember(owner = "runetek4.client!pe", name = "a", descriptor = "I")
+	public static int verifyId = 0;
+
+    @OriginalMember(owner = "runetek4.client!od", name = "i", descriptor = "I")
+    public static int sceneDelta = 0;
+
+    @OriginalMember(owner = "runetek4.client!cj", name = "n", descriptor = "Lsignlink!im;")
+    public static SignedResource openUrlRequest;
+
+    @OriginalMember(owner = "runetek4.client!na", name = "W", descriptor = "Z")
+    public static boolean newTab;
+
+    @OriginalMember(owner = "client!ck", name = "eb", descriptor = "Z")
+    public static boolean verifyIdChanged = false;
+
+    @OriginalMember(owner = "runetek4.client!kd", name = "ob", descriptor = "I")
+    public static int noTimeoutCycle = 0;
+
+    @OriginalMember(owner = "runetek4.client!jk", name = "B", descriptor = "Lclient!ma;")
+    public static BufferedSocket gameServerSocket;
+
+    @OriginalMember(owner = "runetek4.client!dg", name = "h", descriptor = "Lclient!be;")
+    public static Component dragHoverComponent;
+
+    @OriginalMember(owner = "runetek4.client!kf", name = "l", descriptor = "I")
+    public static int dragHoverAnimationProgress = 0;
+
+    @OriginalMember(owner = "runetek4.client!t", name = "l", descriptor = "Lclient!ma;")
+    public static BufferedSocket previousSocket;
+
+    @OriginalMember(owner = "runetek4.client!sc", name = "o", descriptor = "I")
+    public static int packetSize = 0;
+
+    @OriginalMember(owner = "runetek4.client!pb", name = "ab", descriptor = "I")
+	public static int walkRequestState = 0;
+
+    @OriginalMember(owner = "client!fl", name = "C", descriptor = "Lsignlink!im;")
+    public static SignedResource socketRequest;
+
+    @OriginalMember(owner = "runetek4.client!jb", name = "m", descriptor = "I")
+    public static int extendedCount = 0;
+
+    @OriginalMember(owner = "runetek4.client!tg", name = "h", descriptor = "I")
+    public static int removedCount = 0;
+
+    @OriginalMember(owner = "client!bj", name = "r", descriptor = "I")
+    public static int cameraOffsetZModifier = 2;
+
+    @OriginalMember(owner = "runetek4.client!ld", name = "i", descriptor = "I")
+    public static int cameraOffsetCycle = 0;
+
+    @OriginalMember(owner = "client!vl", name = "k", descriptor = "I")
+    public static int idleTimeout = 0;
+
+    @OriginalMember(owner = "client!bf", name = "G", descriptor = "I")
+    public static int cameraPositionUpdateCooldown = 0;
+
+    @OriginalMember(owner = "runetek4.client!rm", name = "c", descriptor = "I")
+    public static int cameraOffsetYawModifier = 1;
+
+
+    @OriginalMember(owner = "runetek4.client!dc", name = "b", descriptor = "(Z)V")
+    public static void readPlayerInfo() {
+        @Pc(6) int newPlayerCount = inboundBuffer.gBit(8);
+
+        if (PlayerList.playerCount > newPlayerCount) {
+            for (int index = newPlayerCount; index < PlayerList.playerCount; index++) {
+                removedIds[removedCount++] = PlayerList.playerIds[index];
+            }
+        }
+        if (newPlayerCount > PlayerList.playerCount) {
+            throw new RuntimeException("gppov1");
+        }
+
+        PlayerList.playerCount = 0;
+
+        for (int index = 0; index < newPlayerCount; index++) {
+            @Pc(75) int playerId = PlayerList.playerIds[index];
+            @Pc(79) Player player = PlayerList.players[playerId];
+            @Pc(84) int hasUpdate = inboundBuffer.gBit(1);
+            if (hasUpdate == 0) {
+                PlayerList.playerIds[PlayerList.playerCount++] = playerId;
+                player.lastSeenLoop = Client.loop;
+            } else {
+                @Pc(107) int updateType = inboundBuffer.gBit(2);
+                if (updateType == 0) {
+                    PlayerList.playerIds[PlayerList.playerCount++] = playerId;
+                    player.lastSeenLoop = Client.loop;
+                    extendedIds[extendedCount++] = playerId;
+                } else {
+                    @Pc(153) int direction;
+                    @Pc(163) int hasExtendedInfo;
+                    if (updateType == 1) {
+                        PlayerList.playerIds[PlayerList.playerCount++] = playerId;
+                        player.lastSeenLoop = Client.loop;
+                        direction = inboundBuffer.gBit(3);
+                        player.move(1, direction);
+                        hasExtendedInfo = inboundBuffer.gBit(1);
+                        if (hasExtendedInfo == 1) {
+                            extendedIds[extendedCount++] = playerId;
+                        }
+                    } else if (updateType == 2) {
+                        PlayerList.playerIds[PlayerList.playerCount++] = playerId;
+                        player.lastSeenLoop = Client.loop;
+                        if (inboundBuffer.gBit(1) == 1) {
+                            direction = inboundBuffer.gBit(3);
+                            player.move(2, direction);
+                            hasExtendedInfo = inboundBuffer.gBit(3);
+                            player.move(2, hasExtendedInfo);
+                        } else {
+                            direction = inboundBuffer.gBit(3);
+                            player.move(0, direction);
+                        }
+                        direction = inboundBuffer.gBit(1);
+                        if (direction == 1) {
+                            extendedIds[extendedCount++] = playerId;
+                        }
+                    } else if (updateType == 3) {
+                        removedIds[removedCount++] = playerId;
+                    }
+                }
+            }
+        }
+    }
+
+    @OriginalMember(owner = "client!an", name = "h", descriptor = "(I)Z")
+    public static boolean readPacket() {
+        try {
+            return readPacketInternal();
+        } catch (@Pc(14) IOException ioException) {
+            Game.tryReconnect();
+            return true;
+        } catch (@Pc(19) Exception exception) {
+            @Pc(61) String message = "T2 - " + currentOpcode + "," + secondLastOpcode + "," + thirdLastOpcode + " - " + packetSize + "," + (Camera.sceneBaseTileX + PlayerList.self.movementQueueX[0]) + "," + (PlayerList.self.movementQueueZ[0] + Camera.sceneBaseTileZ) + " - ";
+            for (@Pc(63) int byteIndex = 0; byteIndex < packetSize && byteIndex < 50; byteIndex++) {
+                message = message + inboundBuffer.data[byteIndex] + ",";
+            }
+            TracingException.report(message, exception);
+            Game.processLogout();
+            return true;
+        }
+    }
+
+    @OriginalMember(owner = "client!ac", name = "a", descriptor = "(B)Z")
+    public static boolean readPacketInternal() throws IOException {
+        if (gameServerSocket == null) {
+            return false;
+        }
+
+        @Pc(14) int available = gameServerSocket.available();
+        if (available == 0) {
+            return false;
+        }
+
+        if (currentOpcode == -1) {
+            available--;
+            gameServerSocket.read(0, 1, inboundBuffer.data);
+            inboundBuffer.offset = 0;
+            currentOpcode = inboundBuffer.gIssac1();
+            packetSize = PACKET_LENGTHS[currentOpcode];
+        }
+
+        if (packetSize == -1) {
+            if (available <= 0) {
+                return false;
+            }
+            gameServerSocket.read(0, 1, inboundBuffer.data);
+            available--;
+            packetSize = inboundBuffer.data[0] & BYTE_MASK;
+        }
+
+        if (packetSize == -2) {
+            if (available <= 1) {
+                return false;
+            }
+
+            available -= 2;
+            gameServerSocket.read(0, 2, inboundBuffer.data);
+            inboundBuffer.offset = 0;
+            packetSize = inboundBuffer.g2();
+        }
+
+        if (packetSize > available) {
+            return false;
+        }
+
+        inboundBuffer.offset = 0;
+        gameServerSocket.read(0, packetSize, inboundBuffer.data);
+        thirdLastOpcode = secondLastOpcode;
+        secondLastOpcode = previousOpcode;
+        previousOpcode = currentOpcode;
+        LoginManager.idleNetCycles = 0;
+
+        //@Pc(133) int ii;
+        if (currentOpcode == VARP_SMALL) {
+            // Update a player variable with a small value (< 128)
+            int id = inboundBuffer.g2_alt2();
+            @Pc(137) byte value = inboundBuffer.g1neg();
+            VarpDomain.setVarp(value, id);
+            currentOpcode = -1;
+            return true;
+        }
+        //@Pc(171) int slot;
+        //@Pc(156) JString argTypes;
+        if (currentOpcode == CLIENTSCRIPT_RUN) {
+            // Execute a ClientScript with arguments passed from the server
+            // Server sends Script ID, argument types and values
+            int scriptId = inboundBuffer.g2();
+            JString name = inboundBuffer.gjstr();
+            @Pc(163) Object[] scriptArgs = new Object[name.length() + 1];
+            for (int i = name.length() - 1; i >= 0; i--) {
+                if (name.charAt(i) == 115) { // 115 = string argument
+                    scriptArgs[i + 1] = inboundBuffer.gjstr();
+                } else {
+                    scriptArgs[i + 1] = Integer.valueOf(inboundBuffer.g4());
+                }
+            }
+            scriptArgs[0] = Integer.valueOf(inboundBuffer.g4());
+            if (setVerifyID(scriptId)) {
+                @Pc(226) HookRequest request = new HookRequest();
+                request.arguments = scriptArgs;
+                ClientScriptRunner.executeScript(request);
+            }
+            currentOpcode = -1;
+            return true;
+        }
+        //@Pc(275) long username;
+        //@Pc(262) boolean ignored;
+        //@Pc(277) int i;
+        //@Pc(506) JString worldName;
+        if (currentOpcode == MESSAGE_GAME) {
+            // Game messages with special suffixes
+            // Ex. :tradereq:
+            @Pc(245) JString message = inboundBuffer.gjstr();
+            if (message.endsWith(TRADEREQ)) {
+                JString name = message.substring(message.indexOf(JString.COLON_SIGN), 0);
+                long username37 = name.encode37();
+                boolean ignored = false;
+                for (int i = 0; i < IgnoreList.ignoreCount; i++) {
+                    if (IgnoreList.encodedIgnores[i] == username37) {
+                        ignored = true;
+                        break;
+                    }
+                }
+                if (!ignored && Player.inTutorialIsland == 0) {
+                    ChatHistory.addMessage(name, 4, LocalizedText.TRADEREQ);
+                }
+            } else if (message.endsWith(CHALREQ)) {
+                JString name = message.substring(message.indexOf(JString.COLON_SIGN), 0);
+                long username37 = name.encode37();
+                boolean ignored = false;
+                for (int i = 0; i < IgnoreList.ignoreCount; i++) {
+                    if (IgnoreList.encodedIgnores[i] == username37) {
+                        ignored = true;
+                        break;
+                    }
+                }
+                if (!ignored && Player.inTutorialIsland == 0) {
+                    JString worldName = message.substring(message.length() - 9, message.indexOf(JString.COLON_SIGN) + 1);
+                    ChatHistory.addMessage(name, 8, worldName);
+                }
+            } else if (message.endsWith(ASSISTREQ)) {
+                boolean ignored = false;
+                JString name = message.substring(message.indexOf(JString.COLON_SIGN), 0);
+                long username37 = name.encode37();
+                for (int i = 0; i < IgnoreList.ignoreCount; i++) {
+                    if (username37 == IgnoreList.encodedIgnores[i]) {
+                        ignored = true;
+                        break;
+                    }
+                }
+                if (!ignored && Player.inTutorialIsland == 0) {
+                    ChatHistory.addMessage(name, 10, JString.EMPTY);
+                }
+            } else if (message.endsWith(CLAN)) {
+                JString name = message.substring(message.indexOf(CLAN), 0);
+                ChatHistory.addMessage(JString.EMPTY, 11, name);
+            } else if (message.endsWith(TRADE)) {
+                JString name = message.substring(message.indexOf(TRADE), 0);
+                if (Player.inTutorialIsland == 0) {
+                    ChatHistory.addMessage(JString.EMPTY, 12, name);
+                }
+            } else if (message.endsWith(ASSIST)) {
+                JString name = message.substring(message.indexOf(ASSIST), 0);
+                if (Player.inTutorialIsland == 0) {
+                    ChatHistory.addMessage(JString.EMPTY, 13, name);
+                }
+            } else if (message.endsWith(DUELSTAKE)) {
+                boolean ignored = false;
+                JString name = message.substring(message.indexOf(JString.COLON_SIGN), 0);
+                long username37 = name.encode37();
+                for (int i = 0; i < IgnoreList.ignoreCount; i++) {
+                    if (username37 == IgnoreList.encodedIgnores[i]) {
+                        ignored = true;
+                        break;
+                    }
+                }
+                if (!ignored && Player.inTutorialIsland == 0) {
+                    ChatHistory.addMessage(name, 14, JString.EMPTY);
+                }
+            } else if (message.endsWith(DUELFRIEND)) {
+                JString name = message.substring(message.indexOf(JString.COLON_SIGN), 0);
+                boolean ignored = false;
+                long username37 = name.encode37();
+                for (int i = 0; i < IgnoreList.ignoreCount; i++) {
+                    if (IgnoreList.encodedIgnores[i] == username37) {
+                        ignored = true;
+                        break;
+                    }
+                }
+                if (!ignored && Player.inTutorialIsland == 0) {
+                    ChatHistory.addMessage(name, 15, JString.EMPTY);
+                }
+            } else if (message.endsWith(CLANREQ)) {
+                JString name = message.substring(message.indexOf(JString.COLON_SIGN), 0);
+                long username37 = name.encode37();
+                boolean ignored = false;
+                for (int i = 0; i < IgnoreList.ignoreCount; i++) {
+                    if (username37 == IgnoreList.encodedIgnores[i]) {
+                        ignored = true;
+                        break;
+                    }
+                }
+                if (!ignored && Player.inTutorialIsland == 0) {
+                    ChatHistory.addMessage(name, 16, JString.EMPTY);
+                }
+            } else if (message.endsWith(ALLYREQ)) {
+                JString name = message.substring(message.indexOf(JString.COLON_SIGN), 0);
+                boolean ignored = false;
+                long username37 = name.encode37();
+                for (int i = 0; i < IgnoreList.ignoreCount; i++) {
+                    if (IgnoreList.encodedIgnores[i] == username37) {
+                        ignored = true;
+                        break;
+                    }
+                }
+                if (!ignored && Player.inTutorialIsland == 0) {
+                    JString worldName = message.substring(message.length() - 9, message.indexOf(JString.COLON_SIGN) + 1);
+                    ChatHistory.addMessage(name, 21, worldName);
+                }
+            } else {
+                ChatHistory.addMessage(JString.EMPTY, 0, message);
+            }
+            currentOpcode = -1;
+            return true;
+        }
+        //@Pc(786) int param1;
+        //@Pc(790) JString messageText;
+        if (currentOpcode == IF_SETTEXT) {
+            // Set text on a interface component
+            // Takes: component, verify_id, text
+            int id = inboundBuffer.g2_al1();
+            int verifyID = inboundBuffer.g2_alt2();
+            JString messageText = inboundBuffer.gjstr();
+            if (setVerifyID(verifyID)) {
+                DelayedStateChange.setVarcstr(messageText, id);
+            }
+            currentOpcode = -1;
+            return true;
+        } else if (currentOpcode == UPDATE_ZONE_PARTIAL_ENCLOSED) {
+            SceneGraph.currentZoneZ = inboundBuffer.g1_alt1();
+            SceneGraph.currentZoneX = inboundBuffer.g1_alt3();
+            while (packetSize > inboundBuffer.offset) {
+                currentOpcode = inboundBuffer.g1();
+                readZonePacket();
+            }
+            currentOpcode = -1;
+            return true;
+        } else if (currentOpcode == CLEAR_MINIMAP_FLAG) {
+            currentOpcode = -1;
+            LoginManager.flagSceneTileX = 0;
+            return true;
+        } else {
+            //@Pc(864) int i2;
+            if (currentOpcode == IF_SETSCROLLPOS) {
+                int id = inboundBuffer.p4rme();
+                int pos = inboundBuffer.g2_al1();
+                int verifyID = inboundBuffer.g2();
+                if (setVerifyID(verifyID)) {
+                    DelayedStateChange.interfaceSetScrollPosition(pos, id);
+                }
+                currentOpcode = -1;
+                return true;
+            }
+            //@Pc(884) long senderName;
+            //@Pc(908) int chatType;
+            //@Pc(916) int phraseId;
+            //@Pc(899) long messageId1;
+           // @Pc(904) long messageId2;
+            if (currentOpcode == MESSAGE_QUICKCHAT_CLAN) {
+                // Quickchat message from friend
+                long name37 = inboundBuffer.g8();
+                inboundBuffer.g1s();
+                long clan37 = inboundBuffer.g8();
+                int top = inboundBuffer.g2();
+                int bot = inboundBuffer.g3();
+                int rights = inboundBuffer.g1();
+                int quickchatId = inboundBuffer.g2();
+
+                @Pc(910) boolean isDuplicate = false;
+                @Pc(922) long combinedMessageId = (top << MESSAGE_ID_HIGH_SHIFT) + bot; // Combine parts into 64-bit unique message ID
+                @Pc(924) int messageIndex = 0;
+
+                check: while (true) {
+                    if (messageIndex < MAX_RECENT_MESSAGES) {
+                        if (combinedMessageId != ChatHistory.recentMessages[messageIndex]) {
+                            messageIndex++;
+                            continue;
+                        }
+                        isDuplicate = true;
+                        break;
+                    }
+                    if (rights <= 1) {
+                        for (messageIndex = 0; messageIndex < IgnoreList.ignoreCount; messageIndex++) {
+                            if (IgnoreList.encodedIgnores[messageIndex] == name37) {
+                                isDuplicate = true;
+                                break check;
+                            }
+                        }
+                    }
+                    break;
+                }
+                if (!isDuplicate && Player.inTutorialIsland == 0) {
+                    ChatHistory.recentMessages[ChatHistory.messageCounter] = combinedMessageId;
+                    ChatHistory.messageCounter = (ChatHistory.messageCounter + 1) % MAX_RECENT_MESSAGES;
+                    @Pc(999) JString decodedMessage = QuickChatPhraseTypeList.get(quickchatId).decodeMessage(inboundBuffer);
+                    if (rights == 2 || rights == 3) {
+                        ChatHistory.add(quickchatId, 20, decodedMessage, Base37.fromBase37(clan37).toTitleCase(), JString.concatenate(new JString[] { IMG1, Base37.fromBase37(name37).toTitleCase() }));
+                    } else if (rights == 1) {
+                        ChatHistory.add(quickchatId, 20, decodedMessage, Base37.fromBase37(clan37).toTitleCase(), JString.concatenate(new JString[] { IMG0, Base37.fromBase37(name37).toTitleCase() }));
+                    } else {
+                        ChatHistory.add(quickchatId, 20, decodedMessage, Objects.requireNonNull(Base37.fromBase37(clan37)).toTitleCase(), Base37.fromBase37(name37).toTitleCase());
+                    }
+                }
+                currentOpcode = -1;
+                return true;
+            }
+            //@Pc(1146) int count;
+            //@Pc(1160) int chatFlags;
+            //@Pc(1245) boolean isSorted;
+            if (currentOpcode == CLANCHAT_JOIN) {
+                // Complete clan chat channel data
+                ClanChat.transmitAt = InterfaceManager.transmitTimer;
+                long owner37 = inboundBuffer.g8();
+                if (owner37 == 0L) {
+                    ClanChat.owner = null;
+                    currentOpcode = -1;
+                    ClanChat.name = null;
+                    ClanChat.members = null;
+                    ClanChat.size = 0;
+                    return true;
+                }
+                long username37 = inboundBuffer.g8();
+                ClanChat.name = Base37.fromBase37(username37);
+                ClanChat.owner = Base37.fromBase37(owner37);
+                ClanChat.minKick = inboundBuffer.g1s();
+                int clanSize = inboundBuffer.g1();
+                if (clanSize == EXTENDED_COUNT_MARKER) {
+                    // Extended member list follows in separate packet
+                    currentOpcode = -1;
+                    return true;
+                }
+                ClanChat.size = clanSize;
+                @Pc(1158) ClanMember[] clanMembers = new ClanMember[MAX_CLAN_MEMBERS];
+                for (int i = 0; i < ClanChat.size; i++) {
+                    clanMembers[i] = new ClanMember();
+                    clanMembers[i].key = inboundBuffer.g8();
+                    clanMembers[i].username = Base37.fromBase37(clanMembers[i].key);
+                    clanMembers[i].world = inboundBuffer.g2();
+                    clanMembers[i].rank = inboundBuffer.g1s();
+                    clanMembers[i].worldName = inboundBuffer.gjstr();
+                    if (Player.name37 == clanMembers[i].key) {
+                        ClanChat.rank = clanMembers[i].rank;
+                    }
+                }
+                int count = ClanChat.size;
+                // Alphabetically sort clan members by name
+                while (count > 0) {
+                    boolean isSorted = true;
+                    count--;
+                    for (int i = 0; i < count; i++) {
+                        if (clanMembers[i].username.method3139(clanMembers[i + 1].username) > 0) {
+                            isSorted = false;
+                            @Pc(1279) ClanMember clanMember = clanMembers[i];
+                            clanMembers[i] = clanMembers[i + 1];
+                            clanMembers[i + 1] = clanMember;
+                        }
+                    }
+                    if (isSorted) {
+                        break;
+                    }
+                }
+                ClanChat.members = clanMembers;
+                currentOpcode = -1;
+                return true;
+            } else if (currentOpcode == LAST_LOGIN_INFO) {
+                // LAST_LOGIN_INFO
+                // Last IP Adress
+                int ip32 = inboundBuffer.g4rme();
+                Player.lastLogAddress = GameShell.signLink.getReverseDns(ip32);
+                currentOpcode = -1;
+                return true;
+            } else if (currentOpcode == PLAYER_INFO) {
+                // PLAYER_INFO
+                // Player entity updates
+                readPlayerInfoPacket();
+                currentOpcode = -1;
+                return true;
+            } else if (currentOpcode == IF_SETTEXT_ALT) {
+                // Alternative format for setting text on component
+                int verifyID = inboundBuffer.g2();
+                JString text = inboundBuffer.gjstr();
+                int id = inboundBuffer.g2_alt3(); // Player option slot
+                if (setVerifyID(verifyID)) {
+                    DelayedStateChange.setVarcstr(text, id);
+                }
+                currentOpcode = -1;
+                return true;
+            } else if (currentOpcode == CHAT_FILTER_SETTINGS) {
+                // Update chat filter settings
+                ChatHistory.publicFilter = inboundBuffer.g1();
+                ChatHistory.privateFilter = inboundBuffer.g1();
+                ChatHistory.tradeFilter = inboundBuffer.g1();
+                currentOpcode = -1;
+                return true;
+            } else {
+                //@Pc(1409) JString message_text;
+                if (currentOpcode == SET_PLAYER_OPTION) {
+                    // Sets option text, cursor type, right-click options on players
+                    int cursor = inboundBuffer.g2_alt3();
+                    if (cursor == INVALID_ID_U16) {
+                        cursor = -1;
+                    }
+                    int top = inboundBuffer.g1();
+                    int optId = inboundBuffer.g1();
+                    JString option = inboundBuffer.gjstr();
+                    if (optId >= 1 && optId <= MAX_PLAYER_OPTIONS) {
+                        if (option.equalsIgnoreCase(MiniMenu.NULL)) {
+                            option = null;
+                        }
+                        Player.options[optId - 1] = option;
+                        Player.cursors[optId - 1] = cursor;
+                        Player.secondaryOptions[optId - 1] = top == 0;
+                    }
+                    currentOpcode = -1;
+                    return true;
+                } else if (currentOpcode == VARP_LARGE) {
+                    // Update a player variable with large ID (> 255)
+                    int value = inboundBuffer.g4();
+                    int id = inboundBuffer.g2_alt2();
+                    VarpDomain.setVarp(value, id);
+                    currentOpcode = -1;
+                    return true;
+                } else if (currentOpcode == IF_SETHIDE) {
+                    int parent = inboundBuffer.g1_alt2();
+                    int verifyID = inboundBuffer.g2();
+                    int reset = inboundBuffer.g4me();
+                    if (setVerifyID(verifyID)) {
+                        DelayedStateChange.interfaceSetHide(reset, parent);
+                    }
+                    currentOpcode = -1;
+                    return true;
+                } else if (currentOpcode == IF_OPENSUB) {
+                    // IF_OPENTOP
+                    // Open a modal
+                    // Replaces current main interface
+                    // Optionally reset world map
+                    int parent = inboundBuffer.g2_alt3();
+                    int reset = inboundBuffer.g1_alt1();
+                    int verifyID = inboundBuffer.g2_alt3();
+                    if (setVerifyID(verifyID)) {
+                        if (reset == 2) {
+                            WorldMap.reset();
+                        }
+                        InterfaceManager.topLevelInterface = parent;
+                        InterfaceManager.resetComponentAnimations(parent);
+                        InterfaceManager.updateInterfaceLayout(false);
+                        ClientScriptRunner.runHooks(InterfaceManager.topLevelInterface);
+                        for (int i = 0; i < MAX_COMPONENT_REDRAW_SLOTS; i++) {
+                            InterfaceManager.componentNeedsRedraw[i] = true;
+                        }
+                    }
+                    currentOpcode = -1;
+                    return true;
+                } else if (currentOpcode == CLIENT_SETVARC_LARGE) {
+                    // Update client variable
+                    int verifyID = inboundBuffer.g2_alt3();
+                    int value = inboundBuffer.g4();
+                    int id = inboundBuffer.g2_alt2(); // VarC ID
+                    if (setVerifyID(verifyID)) {
+                        DelayedStateChange.updateVarC(id, value);
+                    }
+                    currentOpcode = -1;
+                    return true;
+                } else if (currentOpcode == MESSAGE_QUICKCHAT_PRIVATE_ECHO) {
+                    // Quickchat message in clan chat
+                    long name37 = inboundBuffer.g8();
+                    int quickchatId = inboundBuffer.g2(); // Quickchat phrase ID
+                    JString message = QuickChatPhraseTypeList.get(quickchatId).decodeMessage(inboundBuffer);
+                    ChatHistory.add(quickchatId, 19, message, null, Base37.fromBase37(name37).toTitleCase());
+                    currentOpcode = -1;
+                    return true;
+                } else if (currentOpcode == UPDATE_UID192) {
+                    // Anti botting verification
+                    writeRandom(inboundBuffer);
+                    currentOpcode = -1;
+                    return true;
+                } else if (currentOpcode == RESET_CLIENT_VARCACHE) {
+                    // Reset varbits and trigger interface redraw
+                    VarpDomain.resetVarBits();
+                    InterfaceManager.redrawActiveInterfaces();
+                    VarpDomain.varpUpdateCount += 32;
+                    currentOpcode = -1;
+                    return true;
+                } else if (currentOpcode == CAM_LOOKAT) {
+                    // Set camera to look at a specific coordinate
+                    int verifyID = inboundBuffer.g2();
+                    int tx = inboundBuffer.g1();
+                    int tz = inboundBuffer.g1();
+                    int cy = inboundBuffer.g2();
+                    int step = inboundBuffer.g1();
+                    int dur = inboundBuffer.g1();
+                    if (setVerifyID(verifyID)) {
+                        Camera.setCameraLookAtTarget(cy, tz, step, tx, dur);
+                    }
+                    currentOpcode = -1;
+                    return true;
+                } else if (currentOpcode == IF_SETANIM) {
+                    int id = inboundBuffer.p4rme();
+                    int value = inboundBuffer.g2les();
+                    int verifyID = inboundBuffer.g2_alt2();
+                    if (setVerifyID(verifyID)) {
+                        DelayedStateChange.interfaceSetModelAnimation(id, value);
+                    }
+                    currentOpcode = -1;
+                    return true;
+                } else {
+                    //@Pc(1814) ServerActiveProperties activeProperties1;
+                    //@Pc(1804) ServerActiveProperties activeProperties2;
+                    if (currentOpcode == IF_SETEVENTS) {
+                        // Set which events a component can recieve
+                        // ex. mouse clicks, dragging, key presses
+                        int value = inboundBuffer.g2_alt3();
+                        int parent = inboundBuffer.g4me();
+                        int verifyID = inboundBuffer.g2_alt2();
+                        int end = inboundBuffer.g2_al1();
+                        if (end == INVALID_ID_U16) {
+                            end = -1;
+                        }
+                        int start = inboundBuffer.g2_alt2();
+                        if (start == INVALID_ID_U16) {
+                            start = -1;
+                        }
+                        if (setVerifyID(verifyID)) {
+                            ServerActiveProperties properties;
+                            for (int slot = start; slot <= end; slot++) {
+                                long ptr = (long) slot + ((long) parent << MESSAGE_ID_HIGH_SHIFT); // Combine component ID + slot into a unique key
+                                ServerActiveProperties prev = (ServerActiveProperties) InterfaceManager.properties.get(ptr);
+                                if (prev != null) {
+                                    properties = new ServerActiveProperties(prev.events, value);
+                                    prev.unlink();
+                                } else if (slot == -1) {
+                                    properties = new ServerActiveProperties(InterfaceList.list(parent).properties.events, value);
+                                } else {
+                                    properties = new ServerActiveProperties(0, value);
+                                }
+                                InterfaceManager.properties.put(properties, ptr);
+                            }
+                        }
+                        currentOpcode = -1;
+                        return true;
+                    }
+                    //@Pc(1986) int j;
+                    if (currentOpcode == SPOTANIM_ENTITY) {
+                        // Play a spot animation on entity or coordinate
+                        int delay = inboundBuffer.g2();
+                        int height = inboundBuffer.g2_al1();
+                        int target = inboundBuffer.g4rme();
+                        int gfxId = inboundBuffer.g2_alt3();
+                        // Check entity type from packedworld coordinate
+                        // ENTITY_TYPE_SHIFT_CHECK = 0: Entity
+                        // ENTITY_TYPE_SHIFT_CHECK = 1: World coordinate
+                        if (target >> ENTITY_TYPE_SHIFT_CHECK == 0) {
+                            @Pc(1994) SeqType seqType;
+                            // ENTITY_TYPE_NPC_SHIFT = NPC
+                            if (target >> ENTITY_TYPE_NPC_SHIFT != 0) {
+                                int npcId = target & ENTITY_ID_MASK;
+                                @Pc(1894) Npc npc = NpcList.npcs[npcId];
+                                if (npc != null) {
+                                    if (gfxId == INVALID_ID_U16) {
+                                        gfxId = -1;
+                                    }
+                                    boolean animated = true;
+                                    // Check animation priority
+                                    if (gfxId != -1 && npc.spotAnimId != -1 && SeqTypeList.get(SpotAnimTypeList.get(gfxId).seqId).priority < SeqTypeList.get(SpotAnimTypeList.get(npc.spotAnimId).seqId).priority) {
+                                        animated = false;
+                                    }
+                                    if (animated) {
+                                        npc.anInt3361 = 0;
+                                        npc.spotAnimId = gfxId;
+                                        npc.spotAnimStart = Client.loop + delay;
+                                        npc.spotanimId = 0;
+                                        if (npc.spotAnimStart > Client.loop) {
+                                            npc.spotanimId = -1;
+                                        }
+                                        npc.spotAnimY = height;
+                                        npc.anInt3418 = 1;
+                                        if (npc.spotAnimId != -1 && Client.loop == npc.spotAnimStart) {
+                                            int seqId = SpotAnimTypeList.get(npc.spotAnimId).seqId;
+                                            if (seqId != -1) {
+                                                seqType = SeqTypeList.get(seqId);
+                                                if (seqType != null && seqType.frames != null) {
+                                                    SoundPlayer.playSeqSound(npc.zFine, seqType, npc.xFine, false, 0);
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                // ENTITY_TYPE_PLAYER_SHIFT = Player
+                            } else if (target >> ENTITY_TYPE_PLAYER_SHIFT != 0) {
+                                int playerId = target & ENTITY_ID_MASK;
+                                @Pc(2033) Player player;
+                                if (PlayerList.localPid == playerId) {
+                                    player = PlayerList.self;
+                                } else {
+                                    player = PlayerList.players[playerId];
+                                }
+                                if (player != null) {
+                                    if (gfxId == INVALID_ID_U16) {
+                                        gfxId = -1;
+                                    }
+                                    boolean animated = true;
+                                    if (gfxId != -1 && player.spotAnimId != -1 && SeqTypeList.get(SpotAnimTypeList.get(gfxId).seqId).priority < SeqTypeList.get(SpotAnimTypeList.get(player.spotAnimId).seqId).priority) {
+                                        animated = false;
+                                    }
+                                    if (animated) {
+                                        player.spotAnimStart = delay + Client.loop;
+                                        player.spotAnimY = height;
+                                        player.spotAnimId = gfxId;
+                                        if (player.spotAnimId == INVALID_ID_U16) {
+                                            player.spotAnimId = -1;
+                                        }
+                                        player.anInt3418 = 1;
+                                        player.anInt3361 = 0;
+                                        player.spotanimId = 0;
+                                        if (player.spotAnimStart > Client.loop) {
+                                            player.spotanimId = -1;
+                                        }
+                                        if (player.spotAnimId != -1 && player.spotAnimStart == Client.loop) {
+                                            int seqId = SpotAnimTypeList.get(player.spotAnimId).seqId;
+                                            if (seqId != -1) {
+                                                seqType = SeqTypeList.get(seqId);
+                                                if (seqType != null && seqType.frames != null) {
+                                                    SoundPlayer.playSeqSound(player.zFine, seqType, player.xFine, player == PlayerList.self, 0);
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        } else {
+                            // Extract coordinate from packed value
+                            int plane = target >> PLANE_SHIFT & PLANE_MASK;
+                            int posX = (target >> COORD_X_SHIFT & COORD_MASK) - Camera.sceneBaseTileX; // X coordinate
+                            int posZ = (target & COORD_MASK) - Camera.sceneBaseTileZ; // Z coordinate
+                            if (posX >= 0 && posZ >= 0 && posX < SIZE && posZ < SIZE) {
+                                posZ = posZ * TILE_SIZE + TILE_CENTER_OFFSET;
+                                posX = posX * TILE_SIZE + TILE_CENTER_OFFSET;
+                                @Pc(2241) SpotAnim spotAnim = new SpotAnim(gfxId, plane, posX, posZ, SceneGraph.getTileHeight(plane, posX, posZ) - height, delay, Client.loop);
+                                SceneGraph.spotanims.push(new SpotAnimEntity(spotAnim));
+                            }
+                        }
+                        currentOpcode = -1;
+                        return true;
+                    } else if (currentOpcode == IF_SETMODELROTATION) {
+                        // Set 3D model rotation speed on component
+                        int ptr = inboundBuffer.p4rme();
+                        int verifyID = inboundBuffer.g2_alt2();
+                        int pitchStep = inboundBuffer.g2();
+                        int yawStep = inboundBuffer.g2_alt2();
+                        if (setVerifyID(verifyID)) {
+                            DelayedStateChange.interfaceSetModelRotation(yawStep + (pitchStep << COMPONENT_UPPER_WORD_SHIFT), ptr);
+                        }
+                        currentOpcode = -1;
+                        return true;
+                    } else if (currentOpcode == UPDATE_STAT) {
+                        // UPDATE_STAT
+                        // Update players skill level and xp
+                        // Sends boosted level
+                        InterfaceManager.redrawActiveInterfaces();
+                        int level = inboundBuffer.g1_alt1();
+                        int xp = inboundBuffer.g4rme();
+                        int skill = inboundBuffer.g1(); // Skill
+                        PlayerSkillXpTable.experience[skill] = xp;
+                        PlayerSkillXpTable.boostedLevels[skill] = level;
+                        PlayerSkillXpTable.baseLevels[skill] = 1;
+                        // Calculate base level from xp
+                        for (int i = 0; i < MAX_SKILL_LEVEL_INDEX; i++) {
+                            if (PlayerSkillXpTable.xpLevelLookup[i] <= xp) {
+                                PlayerSkillXpTable.baseLevels[skill] = i + 2;
+                            }
+                        }
+                        PlayerSkillXpTable.updatedStats[Component.statUpdateCount++ & CIRCULAR_BUFFER_MASK] = skill;
+                        currentOpcode = -1;
+                        return true;
+                    } else if (currentOpcode == MAP_PROJANIM || currentOpcode == MAP_PROJANIM_SMALL || currentOpcode == SOUND_AREA || currentOpcode == OBJ_COUNT || currentOpcode == LOC_ADD_CHANGE || currentOpcode == OBJ_ADD || currentOpcode == SPOTANIM_SPECIFIC || currentOpcode == MAP_PROJANIM_2 || currentOpcode == OBJ_DEL || currentOpcode == OBJ_REVEAL || currentOpcode == LOC_ANIM || currentOpcode == LOC_DEL || currentOpcode == LOC_ADD) {
+                        // Zone update packet
+                        readZonePacket();
+                        currentOpcode = -1;
+                        return true;
+                    } else if (currentOpcode == IF_CLOSESUB) {
+                        // Close sub-interface
+                        int verifyID = inboundBuffer.g2();
+                        int id = inboundBuffer.g4();
+                        if (setVerifyID(verifyID)) {
+                            @Pc(2441) SubInterface subInterface = (SubInterface) InterfaceManager.subInterfaces.get((long) id);
+                            if (subInterface != null) {
+                                InterfaceManager.closeInterface(true, subInterface);
+                            }
+                            if (ClientScriptRunner.modalBackgroundComponent != null) {
+                                InterfaceManager.redraw(ClientScriptRunner.modalBackgroundComponent);
+                                ClientScriptRunner.modalBackgroundComponent = null;
+                            }
+                        }
+                        currentOpcode = -1;
+                        return true;
+                    } else if (currentOpcode == CAM_FORCEANGLE) {
+                        // Set orbital camera angles
+                        // Controls yaw and pitch
+                        int yaw = inboundBuffer.g2_al1();
+                        int verifyID = inboundBuffer.g2();
+                        int pitch = inboundBuffer.g2(); // Camera pitch
+                        if (setVerifyID(verifyID)) {
+                            Camera.orbitCameraYaw = yaw;
+                            Camera.orbitCameraPitch = pitch;
+                            if (Camera.mode == MODE_ORBITAL) { // Camera type 2 = orbital camera
+                                Camera.cameraPitch = Camera.orbitCameraPitch;
+                                Camera.cameraYaw = Camera.orbitCameraYaw;
+                            }
+                            SceneCamera.clampCameraAngle();
+                        }
+                        currentOpcode = -1;
+                        return true;
+                    } else if (currentOpcode == IF_SETANGLE) {
+                        // Update interface component view settings
+                        int pitch = inboundBuffer.g2();
+                        int verifyID = inboundBuffer.g2_alt2();
+                        int scale = inboundBuffer.g2_alt3();
+                        int yaw = inboundBuffer.g2_alt3();
+                        int ptr = inboundBuffer.g4();
+                        if (setVerifyID(verifyID)) {
+                            DelayedStateChange.updateView(scale, ptr, yaw, pitch);
+                        }
+                        currentOpcode = -1;
+                        return true;
+                    } else if (currentOpcode == UPDATE_ZONE_FULL_FOLLOWS) {
+                        // Clear all ground items in a 8x8 area
+                        SceneGraph.currentZoneX = inboundBuffer.g1();
+                        SceneGraph.currentZoneZ = inboundBuffer.g1_alt2();
+                        for (int x = SceneGraph.currentZoneX; x < SceneGraph.currentZoneX + ZONE_SIZE; x++) {
+                            for (int z = SceneGraph.currentZoneZ; z < SceneGraph.currentZoneZ + ZONE_SIZE; z++) {
+                                if (SceneGraph.objStacks[Player.currentLevel][x][z] != null) {
+                                    SceneGraph.objStacks[Player.currentLevel][x][z] = null;
+                                    spawnObjStack(x, z);
+                                }
+                            }
+                        }
+                        for (@Pc(2604) LocChangeRequest locRequest = (LocChangeRequest) LocChangeRequest.queue.head(); locRequest != null; locRequest = (LocChangeRequest) LocChangeRequest.queue.next()) {
+                            if (locRequest.x >= SceneGraph.currentZoneX && SceneGraph.currentZoneX + ZONE_SIZE > locRequest.x && locRequest.z >= SceneGraph.currentZoneZ && locRequest.z < SceneGraph.currentZoneZ + ZONE_SIZE && locRequest.level == Player.currentLevel) {
+                                locRequest.resetLoops = 0;
+                            }
+                        }
+                        currentOpcode = -1;
+                        return true;
+                    } else if (currentOpcode == INV_CLEAR) {
+                        // Clear all item in interface inventory component
+                        int id = inboundBuffer.p4rme();
+                        @Pc(2666) Component component = InterfaceList.list(id);
+                        for (int i = 0; i < component.invSlotObjId.length; i++) {
+                            component.invSlotObjId[i] = -1;
+                            component.invSlotObjId[i] = 0;
+                        }
+                        InterfaceManager.redraw(component);
+                        currentOpcode = -1;
+                        return true;
+                    } else if (currentOpcode == IF_SETMODEL) {
+                        // Set 3D model on interface component
+                        int id = inboundBuffer.g4me();
+                        int verifyID = inboundBuffer.g2_alt3();
+                        int modelId = inboundBuffer.g2_alt2();
+                        if (modelId == INVALID_ID_U16) {
+                            modelId = -1;
+                        }
+                        if (setVerifyID(verifyID)) {
+                            DelayedStateChange.interfaceSetModel(-1, 1, id, modelId);
+                        }
+                        currentOpcode = -1;
+                        return true;
+                    } else if (currentOpcode == SET_MINIMAP_STATE) {
+                        // Set minimap visibility state
+                        MiniMap.toggle = inboundBuffer.g1();
+                        currentOpcode = -1;
+                        return true;
+                    } else if (currentOpcode == PLAYER_TELEPORT) {
+                        // Teleport player to coordinate
+                        int pos1 = inboundBuffer.g1_alt3();
+                        int flags = inboundBuffer.g1_alt1();
+                        int pos2 = inboundBuffer.g1();
+                        Player.currentLevel = flags >> LEVEL_SHIFT;
+                        PlayerList.self.teleport(pos1, (flags & TELEPORT_FLAG_MASK) == 1, pos2);
+                        currentOpcode = -1;
+                        return true;
+                    } else {
+                        //@Pc(3002) int friendIndex;
+                        //@Pc(3038) JString message_Text;
+                        //@Pc(3020) JString quickChatText;
+                        if (currentOpcode == UPDATE_FRIENDLIST) {
+                            // Update or add friend to friends list
+                            // Sends online status, world, rank, username
+                            // Sorted by online on current world
+                            long name37 = inboundBuffer.g8();
+                            int worldId = inboundBuffer.g2(); // World
+                            int x = inboundBuffer.g1();
+                            boolean ignored = true;
+                            if (name37 < 0L) {
+                                name37 &= Long.MAX_VALUE;
+                                ignored = false;
+                            }
+                            JString worldName = JString.EMPTY;
+                            if (worldId > 0) {
+                                worldName = inboundBuffer.gjstr();
+                            }
+                            @Pc(2834) JString displayName = Base37.fromBase37(name37).toTitleCase();
+                            for (int i = 0; i < FriendList.friendCount; i++) {
+                                if (name37 == FriendList.encodedUsernames[i]) {
+                                    if (worldId != FriendList.friendWorlds[i]) {
+                                        FriendList.friendWorlds[i] = worldId;
+                                        if (worldId > 0) {
+                                            ChatHistory.addMessage(JString.EMPTY, 5, JString.concatenate(new JString[] { displayName, LocalizedText.FRIENDLOGIN}));
+                                        }
+                                        if (worldId == 0) {
+                                            ChatHistory.addMessage(JString.EMPTY, 5, JString.concatenate(new JString[] { displayName, LocalizedText.FRIENDLOGOUT}));
+                                        }
+                                    }
+                                    FriendList.worldNames[i] = worldName;
+                                    FriendList.ranks[i] = x;
+                                    displayName = null;
+                                    FriendList.friendGame[i] = ignored;
+                                    break;
+                                }
+                            }
+                            if (displayName != null && FriendList.friendCount < MAX_FRIENDS) {
+                                FriendList.encodedUsernames[FriendList.friendCount] = name37;
+                                FriendList.friendUsernames[FriendList.friendCount] = displayName;
+                                FriendList.friendWorlds[FriendList.friendCount] = worldId;
+                                FriendList.worldNames[FriendList.friendCount] = worldName;
+                                FriendList.ranks[FriendList.friendCount] = x;
+                                FriendList.friendGame[FriendList.friendCount] = ignored;
+                                FriendList.friendCount++;
+                            }
+                            FriendList.transmitAt = InterfaceManager.transmitTimer;
+                            int friendCount = FriendList.friendCount;
+                            while (friendCount > 0) {
+                                friendCount--;
+                                @Pc(2961) boolean sorting = true;
+                                for (int i = 0; i < friendCount; i++) {
+                                    if (FriendList.friendWorlds[i] != Player.worldId && Player.worldId == FriendList.friendWorlds[i + 1] || FriendList.friendWorlds[i] == 0 && FriendList.friendWorlds[i + 1] != 0) {
+                                        sorting = false;
+                                        int friendIndex = FriendList.friendWorlds[i];
+                                        FriendList.friendWorlds[i] = FriendList.friendWorlds[i + 1];
+                                        FriendList.friendWorlds[i + 1] = friendIndex;
+                                        JString quickChatText = FriendList.worldNames[i];
+                                        FriendList.worldNames[i] = FriendList.worldNames[i + 1];
+                                        FriendList.worldNames[i + 1] = quickChatText;
+                                        JString message_Text = FriendList.friendUsernames[i];
+                                        FriendList.friendUsernames[i] = FriendList.friendUsernames[i + 1];
+                                        FriendList.friendUsernames[i + 1] = message_Text;
+                                        @Pc(3056) long encodedUsername = FriendList.encodedUsernames[i];
+                                        FriendList.encodedUsernames[i] = FriendList.encodedUsernames[i + 1];
+                                        FriendList.encodedUsernames[i + 1] = encodedUsername;
+                                        @Pc(3074) int friendRank = FriendList.ranks[i];
+                                        FriendList.ranks[i] = FriendList.ranks[i + 1];
+                                        FriendList.ranks[i + 1] = friendRank;
+                                        @Pc(3092) boolean isInGame = FriendList.friendGame[i];
+                                        FriendList.friendGame[i] = FriendList.friendGame[i + 1];
+                                        FriendList.friendGame[i + 1] = isInGame;
+                                    }
+                                }
+                                if (sorting) {
+                                    break;
+                                }
+                            }
+                            currentOpcode = -1;
+                            return true;
+                        } else if (currentOpcode == WALK_TEXT) {
+                            // Set custom "Walk here" text
+                            // Empty = use default
+                            if (packetSize == 0) {
+                                MiniMenu.walkText = LocalizedText.WALKHERE;
+                            } else {
+                                MiniMenu.walkText = inboundBuffer.gjstr();
+                            }
+                            currentOpcode = -1;
+                            return true;
+                        } else if (currentOpcode == FORCE_VARP_REFRESH) {
+                            // Synchronize all player variables from server to client
+                            // Used after login or major state change
+                            for (int i = 0; i < VarpDomain.activeVarps.length; i++) {
+                                if (VarpDomain.varps[i] != VarpDomain.activeVarps[i]) {
+                                    VarpDomain.activeVarps[i] = VarpDomain.varps[i];
+                                    VarpDomain.refreshMagicVarp(i);
+                                    VarpDomain.updatedVarps[VarpDomain.varpUpdateCount++ & CIRCULAR_BUFFER_MASK] = i;
+                                }
+                            }
+                            currentOpcode = -1;
+                            return true;
+                        } else if (currentOpcode == CAMERA_DETACH) {
+                            // Set camera target position with smoothing
+                            int verifyID = inboundBuffer.g2();
+                            int int1 = inboundBuffer.g1();
+                            int int2 = inboundBuffer.g1();
+                            int counter = inboundBuffer.g2();
+                            int int3 = inboundBuffer.g1();
+                            int int4 = inboundBuffer.g1();
+                            if (setVerifyID(verifyID)) {
+                                Camera.setCameraTargetPosition(true, int3, counter, int4, int2, int1);
+                            }
+                            currentOpcode = -1;
+                            return true;
+                        } else if (currentOpcode == MESSAGE_QUICKCHAT_PRIVATE) {
+                            // Private quickchat message
+                            long name37 = inboundBuffer.g8();
+                            int top = inboundBuffer.g2();
+                            int bot = inboundBuffer.g3();
+                            int rights = inboundBuffer.g1();
+                            int chatId = inboundBuffer.g2();
+                            @Pc(3263) boolean isIgnored = false;
+                            @Pc(3270) long combinedMessageId = (top << MESSAGE_ID_HIGH_SHIFT) + bot;
+                            @Pc(3272) int messageIndex = 0;
+                            check: while (true) {
+                                if (messageIndex < MAX_RECENT_MESSAGES) {
+                                    if (combinedMessageId != ChatHistory.recentMessages[messageIndex]) {
+                                        messageIndex++;
+                                        continue;
+                                    }
+                                    isIgnored = true;
+                                    break;
+                                }
+                                if (rights <= 1) {
+                                    for (messageIndex = 0; messageIndex < IgnoreList.ignoreCount; messageIndex++) {
+                                        if (name37 == IgnoreList.encodedIgnores[messageIndex]) {
+                                            isIgnored = true;
+                                            break check;
+                                        }
+                                    }
+                                }
+                                break;
+                            }
+                            if (!isIgnored && Player.inTutorialIsland == 0) {
+                                ChatHistory.recentMessages[ChatHistory.messageCounter] = combinedMessageId;
+                                ChatHistory.messageCounter = (ChatHistory.messageCounter + 1) % MAX_RECENT_MESSAGES;
+                                JString quickChatText = QuickChatPhraseTypeList.get(chatId).decodeMessage(inboundBuffer);
+                                if (rights == 2) {
+                                    ChatHistory.add(chatId, 18, quickChatText, null, JString.concatenate(new JString[] { IMG1, Base37.fromBase37(name37).toTitleCase() }));
+                                } else if (rights == 1) {
+                                    ChatHistory.add(chatId, 18, quickChatText, null, JString.concatenate(new JString[] { IMG0, Base37.fromBase37(name37).toTitleCase() }));
+                                } else {
+                                    ChatHistory.add(chatId, 18, quickChatText, null, Base37.fromBase37(name37).toTitleCase());
+                                }
+                            }
+                            currentOpcode = -1;
+                            return true;
+                        } else {
+                            //@Pc(3456) SubInterface oldSubInterface;
+                            if (currentOpcode == IF_MOVESUB) {
+                                // Move a sub-interface from one component slot to another
+                                int source = inboundBuffer.g4rme();
+                                int verifyID = inboundBuffer.g2_alt2();
+                                int target = inboundBuffer.g4rme();
+                                if (setVerifyID(verifyID)) {
+                                    @Pc(3449) SubInterface src = (SubInterface) InterfaceManager.subInterfaces.get((long) source);
+                                    SubInterface tgt = (SubInterface) InterfaceManager.subInterfaces.get((long) target);
+                                    if (tgt != null) {
+                                        InterfaceManager.closeInterface(src == null || tgt.interfaceId != src.interfaceId, tgt);
+                                    }
+                                    if (src != null) {
+                                        src.unlink();
+                                        InterfaceManager.subInterfaces.put(src, (long) target);
+                                    }
+                                    @Pc(3490) Component component = InterfaceList.list(source);
+                                    if (component != null) {
+                                        InterfaceManager.redraw(component);
+                                    }
+                                    component = InterfaceList.list(target);
+                                    if (component != null) {
+                                        InterfaceManager.redraw(component);
+                                        InterfaceManager.calculateLayerDimensions(component, true);
+                                    }
+                                    if (InterfaceManager.topLevelInterface != -1) {
+                                        InterfaceManager.runScripts(1, InterfaceManager.topLevelInterface);
+                                    }
+                                }
+                                currentOpcode = -1;
+                                return true;
+                            } else if (currentOpcode == CAM_SHAKE) {
+                                // Triggers camera shake effect
+                                int verifyID = inboundBuffer.g2();
+                                int cameraId = inboundBuffer.g1();
+                                int jitter = inboundBuffer.g1();
+                                int amplitude = inboundBuffer.g1();
+                                int frequency = inboundBuffer.g1();
+                                int shake4 = inboundBuffer.g2();
+                                if (setVerifyID(verifyID)) {
+                                    Camera.cameraModifierEnabled[cameraId] = true;
+                                    Camera.cameraModifierJitter[cameraId] = jitter;
+                                    Camera.cameraAmplitude[cameraId] = amplitude;
+                                    Camera.cameraFrequency[cameraId] = frequency;
+                                    cameraModifierCycle[cameraId] = shake4;
+                                }
+                                currentOpcode = -1;
+                                return true;
+                            } else if (currentOpcode == IF_SETCOLOUR) {
+                                // Set component color in RGB
+                                int id = inboundBuffer.g4rme();
+                                int verifyID = inboundBuffer.g2_alt2();
+                                int colour = inboundBuffer.g2_alt3();
+                                if (setVerifyID(verifyID)) {
+                                    DelayedStateChange.interfaceSetColor(colour, id);
+                                }
+                                currentOpcode = -1;
+                                return true;
+                            } else if (currentOpcode == UPDATE_REBOOT_TIMER) {
+                                // Starts server update countdown
+                                Player.systemUpdateTimer = inboundBuffer.g2() * SYSTEM_UPDATE_TICK_MULTIPLIER;
+                                currentOpcode = -1;
+                                InterfaceManager.miscTransmitAt = InterfaceManager.transmitTimer;
+                                return true;
+                            } else if (currentOpcode == REFLECTION_CHECK) {
+                                // Anti botting reflection check
+                                // Server asks client to inspect it's own code via reflection
+                                ReflectionCheck.push(GameShell.signLink, inboundBuffer, packetSize);
+                                currentOpcode = -1;
+                                return true;
+                            } else if (currentOpcode == CLIENT_SETVARC_SMALL) {
+                                // Legacy format for client variable updates
+                                int verifyID = inboundBuffer.g2_al1();
+                                int value = inboundBuffer.g1_alt2();
+                                int id = inboundBuffer.g2_alt3();
+                                if (setVerifyID(verifyID)) {
+                                    DelayedStateChange.updateVarC(id, value);
+                                }
+                                currentOpcode = -1;
+                                return true;
+                            } else if (currentOpcode == UPDATE_RUNENERGY) {
+                                // UPDATE_RUNENERGY
+                                // update player run energy percentage
+                                InterfaceManager.redrawActiveInterfaces();
+                                Player.runEnergy = inboundBuffer.g1();
+                                InterfaceManager.miscTransmitAt = InterfaceManager.transmitTimer;
+                                currentOpcode = -1;
+                                return true;
+                            } else if (currentOpcode == IF_RUNSCRIPT) {
+                                // Execute ClientScript on specific component
+                                if (InterfaceManager.topLevelInterface != -1) {
+                                    InterfaceManager.runScripts(0, InterfaceManager.topLevelInterface);
+                                }
+                                currentOpcode = -1;
+                                return true;
+                            } else if (currentOpcode == INV_DELETE) {
+                                // remove item from inventory
+                                int id = inboundBuffer.g2_al1();
+                                ClientInventory.delete(id);
+                                ClientInventory.updates[ClientInventory.updateCount++ & CIRCULAR_BUFFER_MASK] = id & INVENTORY_ID_MASK;
+                                currentOpcode = -1;
+                                return true;
+                            } else if (currentOpcode == NPC_ANIM_SPECIFIC) {
+                                // Play animation on a specific NPC
+                                int npcId = inboundBuffer.g2_al1();
+                                int delay = inboundBuffer.g1_alt3();
+                                int seqId = inboundBuffer.g2();
+                                @Pc(3766) Npc npc = NpcList.npcs[npcId];
+                                if (npc != null) {
+                                    animateNpc(delay, seqId, npc);
+                                }
+                                currentOpcode = -1;
+                                return true;
+                            } else if (currentOpcode == UPDATE_RUNWEIGHT) {
+                                // UPDATE_RUNWEIGHT
+                                // Update player's weight
+                                InterfaceManager.redrawActiveInterfaces();
+                                Player.weightCarried = inboundBuffer.g2s();
+                                InterfaceManager.miscTransmitAt = InterfaceManager.transmitTimer;
+                                currentOpcode = -1;
+                                return true;
+                            } else if (currentOpcode == MESSAGE_PRIVATE_ECHO) {
+                                // Server wide broadcast message
+                                long username37 = inboundBuffer.g8();
+                                JString messageText = Font.escape(formatChatMessage(inboundBuffer).encodeMessage());
+                                ChatHistory.addMessage(Base37.fromBase37(username37).toTitleCase(), 6, messageText);
+                                currentOpcode = -1;
+                                return true;
+                            } else if (currentOpcode == URL_OPEN) {
+                                // Open URL in browser
+                                if (GameShell.fullScreenFrame != null) {
+                                    DisplayMode.setWindowMode(false, Preferences.favoriteWorlds, -1, -1);
+                                }
+                                @Pc(3848) byte[] mapData = new byte[packetSize];
+                                inboundBuffer.method2237(mapData, packetSize);
+                                JString url = JString.decodeString(mapData, packetSize, 0);
+                                if (GameShell.frame == null && (SignLink.anInt5928 == 3 || !SignLink.osName.startsWith("win") || Client.haveIe6)) {
+                                    ClientScriptRunner.openUrl(url, true);
+                                } else {
+                                    ClientScriptRunner.url = url;
+                                    newTab = true;
+                                    openUrlRequest = GameShell.signLink.openUrl(new String(url.encode(), "ISO-8859-1"));
+                                }
+                                currentOpcode = -1;
+                                return true;
+                            } else if (currentOpcode == GENERATE_CHAT_HEAD_FROM_BODY) {
+                                int verifyID = inboundBuffer.g2_alt2();
+                                int id = inboundBuffer.p4rme();
+                                int objData = inboundBuffer.g2_alt3();
+                                int int2 = inboundBuffer.g2_al1();
+                                int int3 = inboundBuffer.g2_alt3();
+                                if (setVerifyID(verifyID)) {
+                                    DelayedStateChange.interfaceSetModel(objData, 7, id, int2 << COMPONENT_UPPER_WORD_SHIFT | int3);
+                                }
+                                currentOpcode = -1;
+                                return true;
+                            } else if (currentOpcode == VARBIT_SMALL) {
+                                // Update varbit (bit-packed variables within a player variable)
+                                int value = inboundBuffer.g1_alt1();
+                                int id = inboundBuffer.g2_al1();
+                                VarpDomain.setVarbitServer(value, id);
+                                currentOpcode = -1;
+                                return true;
+                            } else if (currentOpcode == IF_OPENTOP) {
+                                // IF_OPENSUB
+                                // Open sub-interface in component slot
+                                int modalType = inboundBuffer.g1();
+                                int windowID = inboundBuffer.p4rme();
+                                int verifyID = inboundBuffer.g2_alt2();
+                                int interfaceID = inboundBuffer.g2();
+                                if (setVerifyID(verifyID)) {
+                                    SubInterface SubInterface = (SubInterface) InterfaceManager.subInterfaces.get(windowID);
+                                    if (SubInterface != null) {
+                                        InterfaceManager.closeInterface(interfaceID != SubInterface.interfaceId, SubInterface);
+                                    }
+                                    openSubInterface(interfaceID, windowID, modalType);
+                                }
+                                currentOpcode = -1;
+                                return true;
+                            } else if (currentOpcode == RESET_ANIMS) {
+                                // RESET_ANIMS
+                                // Reset all entity animations
+                                // Clears animations for all players and NPCs
+                                for (int i = 0; i < PlayerList.players.length; i++) {
+                                    if (PlayerList.players[i] != null) {
+                                        PlayerList.players[i].primarySeqId = -1;
+                                    }
+                                }
+                                for (int i = 0; i < NpcList.npcs.length; i++) {
+                                    if (NpcList.npcs[i] != null) {
+                                        NpcList.npcs[i].primarySeqId = -1;
+                                    }
+                                }
+                                currentOpcode = -1;
+                                return true;
+                            } else if (currentOpcode == HINT_ARROW) {
+                                // Dsiplay hint arrow poiting on location/entity
+                                // Can target entities, players and coordinates
+                                int flags = inboundBuffer.g1();
+                                @Pc(4084) MapMarker marker = new MapMarker();
+                                int slot = flags >> MAP_MARKER_PARAM_SHIFT;
+                                marker.type = flags & MAP_MARKER_TYPE_MASK;
+                                marker.anInt4048 = inboundBuffer.g1();
+                                if (marker.anInt4048 >= 0 && marker.anInt4048 < Sprites.headhints.length) {
+                                    if (marker.type == MAP_MARKER_NPC || marker.type == MAP_MARKER_PLAYER) {
+                                        marker.entity = inboundBuffer.g2();
+                                        inboundBuffer.offset += 3;
+                                    } else if (marker.type >= MAP_MARKER_COORD_MIN && marker.type <= MAP_MARKER_COORD_MAX) {
+                                        if (marker.type == 2) {
+                                            marker.anInt4045 = TILE_CENTER_OFFSET;
+                                            marker.anInt4047 = TILE_CENTER_OFFSET;
+                                        }
+                                        if (marker.type == 3) {
+                                            marker.anInt4045 = 0;
+                                            marker.anInt4047 = TILE_CENTER_OFFSET;
+                                        }
+                                        if (marker.type == 4) {
+                                            marker.anInt4045 = TILE_SIZE;
+                                            marker.anInt4047 = TILE_CENTER_OFFSET;
+                                        }
+                                        if (marker.type == 5) {
+                                            marker.anInt4045 = TILE_CENTER_OFFSET;
+                                            marker.anInt4047 = 0;
+                                        }
+                                        if (marker.type == 6) {
+                                            marker.anInt4045 = TILE_CENTER_OFFSET;
+                                            marker.anInt4047 = TILE_SIZE;
+                                        }
+                                        marker.type = 2;
+                                        marker.targetX = inboundBuffer.g2();
+                                        marker.anInt4046 = inboundBuffer.g2();
+                                        marker.anInt4050 = inboundBuffer.g1();
+                                    }
+                                    marker.playerModelId = inboundBuffer.g2();
+                                    if (marker.playerModelId == INVALID_ID_U16) {
+                                        marker.playerModelId = -1;
+                                    }
+                                    MiniMap.hintMapMarkers[slot] = marker;
+                                }
+                                currentOpcode = -1;
+                                return true;
+                            } else if (currentOpcode == UPDATE_IGNORELIST) {
+                                // UPDATE_IGNORELIST
+                                // Add or update ignored players
+                                IgnoreList.ignoreCount = packetSize / IGNORE_LIST_ENTRY_SIZE;
+                                for (int i = 0; i < IgnoreList.ignoreCount; i++) {
+                                    IgnoreList.encodedIgnores[i] = inboundBuffer.g8();
+                                    IgnoreList.ignoreName37[i] = Base37.fromBase37(IgnoreList.encodedIgnores[i]);
+                                }
+                                FriendList.transmitAt = InterfaceManager.transmitTimer;
+                                currentOpcode = -1;
+                                return true;
+                            } else if (currentOpcode == NPC_INFO) {
+                                // NPC entity updates
+                                readNpcPacket();
+                                currentOpcode = -1;
+                                return true;
+                            } else if (currentOpcode == IF_SETPOSITION) {
+                                int verifyID = inboundBuffer.g2_alt2();
+                                int componentId = inboundBuffer.g4me();
+                                int x = inboundBuffer.g2s();
+                                int y = inboundBuffer.g2sadd();
+                                if (setVerifyID(verifyID)) {
+                                    DelayedStateChange.interfaceSetPosition(x, componentId, y);
+                                }
+                                currentOpcode = -1;
+                                return true;
+                            } else if (currentOpcode == LOC_ANIM_SPECIFIC) {
+                                // Attach location to tile
+                                int slot = inboundBuffer.g1_alt3();
+                                int type = slot >> CoordinateConstants.LOC_SHAPE_SHIFT;
+                                int rotation = slot & ROTATION_MASK;
+                                int layer = Loc.LAYERS[type];
+                                int seqId = inboundBuffer.g2();
+                                int pos = inboundBuffer.g4();
+                                if (seqId == INVALID_ID_U16) {
+                                    seqId = -1;
+                                }
+                                int z = pos & COORD_MASK;
+                                int x = pos >> COORD_X_SHIFT & COORD_MASK;
+                                x -= Camera.sceneBaseTileX;
+                                z -= Camera.sceneBaseTileZ;
+                                int plane = pos >> PLANE_SHIFT & PLANE_MASK;
+                                SceneGraph.attachLocToTile(plane, rotation, type, z, layer, x, seqId);
+                                currentOpcode = -1;
+                                return true;
+                            } else if (currentOpcode == MESSAGE_PRIVATE) {
+                                // Private chat from friend
+                                long username37 = inboundBuffer.g8();
+                                int top = inboundBuffer.g2();
+                                int bot = inboundBuffer.g3();
+                                int rights = inboundBuffer.g1();
+                                @Pc(4425) boolean isIgnored = false;
+                                @Pc(4431) long combinedMessageId = bot + (top << MESSAGE_ID_HIGH_SHIFT);
+                                int friendIndex = 0;
+                                label1450: while (true) {
+                                    if (friendIndex >= MAX_RECENT_MESSAGES) {
+                                        if (rights <= 1) {
+                                            if (LoginManager.playerUnderage && !LoginManager.parentalChatConsent || LoginManager.worldQuickChat) {
+                                                isIgnored = true;
+                                            } else {
+                                                for (friendIndex = 0; friendIndex < IgnoreList.ignoreCount; friendIndex++) {
+                                                    if (username37 == IgnoreList.encodedIgnores[friendIndex]) {
+                                                        isIgnored = true;
+                                                        break label1450;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        break;
+                                    }
+                                    if (combinedMessageId == ChatHistory.recentMessages[friendIndex]) {
+                                        isIgnored = true;
+                                        break;
+                                    }
+                                    friendIndex++;
+                                }
+                                if (!isIgnored && Player.inTutorialIsland == 0) {
+                                    ChatHistory.recentMessages[ChatHistory.messageCounter] = combinedMessageId;
+                                    ChatHistory.messageCounter = (ChatHistory.messageCounter + 1) % MAX_RECENT_MESSAGES;
+                                    @Pc(4518) JString formattedMessage = Font.escape(formatChatMessage(inboundBuffer).encodeMessage());
+                                    if (rights == 2 || rights == 3) {
+                                        ChatHistory.addMessage(JString.concatenate(new JString[] { IMG1, Base37.fromBase37(username37).toTitleCase() }), 7, formattedMessage);
+                                    } else if (rights == 1) {
+                                        ChatHistory.addMessage(JString.concatenate(new JString[] { IMG0, Base37.fromBase37(username37).toTitleCase() }), 7, formattedMessage);
+                                    } else {
+                                        ChatHistory.addMessage(Base37.fromBase37(username37).toTitleCase(), 3, formattedMessage);
+                                    }
+                                }
+                                currentOpcode = -1;
+                                return true;
+                            } else if (currentOpcode == MESSAGE_CLANCHANNEL) {
+                                // Echo of sent private message
+                                long username37 = inboundBuffer.g8();
+                                inboundBuffer.g1s();
+                                long chat37 = inboundBuffer.g8();
+                                int top = inboundBuffer.g2();
+                                int bot = inboundBuffer.g3();
+                                @Pc(4626) long combinedMessageId = (top << MESSAGE_ID_HIGH_SHIFT) + bot;
+                                int rights = inboundBuffer.g1();
+                                @Pc(4632) boolean isIgnored = false;
+                                @Pc(4634) int messageIndex = 0;
+                                check: while (true) {
+                                    if (messageIndex >= MAX_RECENT_MESSAGES) {
+                                        if (rights <= 1) {
+                                            if (LoginManager.playerUnderage && !LoginManager.parentalChatConsent || LoginManager.worldQuickChat) {
+                                                isIgnored = true;
+                                            } else {
+                                                for (messageIndex = 0; messageIndex < IgnoreList.ignoreCount; messageIndex++) {
+                                                    if (IgnoreList.encodedIgnores[messageIndex] == username37) {
+                                                        isIgnored = true;
+                                                        break check;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        break;
+                                    }
+                                    if (ChatHistory.recentMessages[messageIndex] == combinedMessageId) {
+                                        isIgnored = true;
+                                        break;
+                                    }
+                                    messageIndex++;
+                                }
+                                if (!isIgnored && Player.inTutorialIsland == 0) {
+                                    ChatHistory.recentMessages[ChatHistory.messageCounter] = combinedMessageId;
+                                    ChatHistory.messageCounter = (ChatHistory.messageCounter + 1) % MAX_RECENT_MESSAGES;
+                                    JString message_Text = Font.escape(formatChatMessage(inboundBuffer).encodeMessage());
+                                    if (rights == 2 || rights == 3) {
+                                        ChatHistory.method1598(message_Text, JString.concatenate(new JString[] { IMG1, Base37.fromBase37(username37).toTitleCase() }), Base37.fromBase37(chat37).toTitleCase());
+                                    } else if (rights == 1) {
+                                        ChatHistory.method1598(message_Text, JString.concatenate(new JString[] { IMG0, Base37.fromBase37(username37).toTitleCase() }), Base37.fromBase37(chat37).toTitleCase());
+                                    } else {
+                                        ChatHistory.method1598(message_Text, Base37.fromBase37(username37).toTitleCase(), Base37.fromBase37(chat37).toTitleCase());
+                                    }
+                                }
+                                currentOpcode = -1;
+                                return true;
+                            } else if (currentOpcode == MAP_REBUILD_REGION) {
+                                // Full dynamic map region rebuild
+                                // Used for dynamic regions
+                                readRebuildPacket(true);
+                                currentOpcode = -1;
+                                return true;
+                            } else if (currentOpcode == SYNTH_SOUND) {
+                                // Play sound effect at location
+                                int trackId = inboundBuffer.g2();
+                                int volume = inboundBuffer.g1();
+                                if (trackId == INVALID_ID_U16) {
+                                    trackId = -1;
+                                }
+                                int delay = inboundBuffer.g2();
+                                SoundPlayer.play(volume, trackId, delay);
+                                currentOpcode = -1;
+                                return true;
+                            } else if (currentOpcode == IF_SETPLAYERHEAD) {
+                                // Set NPC head model on component
+                                int verifyID = inboundBuffer.g2_alt3();
+                                int id = inboundBuffer.g4rme();
+                                if (setVerifyID(verifyID)) {
+                                    int objType = 0;
+                                    if (PlayerList.self.playerModel != null) {
+                                        objType = PlayerList.self.playerModel.getHeadModelId();
+                                    }
+                                    DelayedStateChange.interfaceSetModel(-1, 3, id, objType);
+                                }
+                                currentOpcode = -1;
+                                return true;
+                            } else if (currentOpcode == IF_SETTEXT1) {
+                                // Show or hide a interface component
+                                int id = inboundBuffer.p4rme();
+                                JString text = inboundBuffer.gjstr();
+                                int verifyID = inboundBuffer.g2_alt2();
+                                if (setVerifyID(verifyID)) {
+                                    DelayedStateChange.interfaceSetText(text, id);
+                                }
+                                currentOpcode = -1;
+                                return true;
+                            } else if (currentOpcode == VARBIT_LARGE) {
+                                // Update VarBit with large ID (> 65535)
+                                int value = inboundBuffer.g4me();
+                                int id = inboundBuffer.g2_alt3();
+                                VarpDomain.setVarbitServer(value, id);
+                                currentOpcode = -1;
+                                return true;
+                            } else {
+                                @Pc(4956) Component component;
+                                if (currentOpcode == UPDATE_INV_PARTIAL) {
+                                    // Sen partial inventory update
+                                    // Updates specific changed slots
+                                    int componentHash = inboundBuffer.g4();
+                                    int containerId = inboundBuffer.g2();
+                                    if (componentHash < INVENTORY_COMPONENT_OFFSET) {
+                                        containerId += INVENTORY_PARAM_OFFSET;
+                                    }
+                                    if (componentHash < 0) {
+                                        component = null;
+                                    } else {
+                                        component = InterfaceList.list(componentHash);
+                                    }
+                                    while (inboundBuffer.offset < packetSize) {
+                                        int slot = inboundBuffer.gSmart1or2();
+                                        int amount = inboundBuffer.g2();
+                                        int id = 0;
+                                        if (amount != 0) {
+                                            id = inboundBuffer.g1();
+                                            if (id == EXTENDED_COUNT_MARKER) {
+                                                id = inboundBuffer.g4();
+                                            }
+                                        }
+                                        if (component != null && slot >= 0 && component.invSlotObjId.length > slot) {
+                                            component.invSlotObjId[slot] = amount;
+                                            component.invSlotObjCount[slot] = id;
+                                        }
+                                        ClientInventory.setSlot(amount - 1, slot, id, containerId);
+                                    }
+                                    if (component != null) {
+                                        InterfaceManager.redraw(component);
+                                    }
+                                    InterfaceManager.redrawActiveInterfaces();
+                                    ClientInventory.updates[ClientInventory.updateCount++ & CIRCULAR_BUFFER_MASK] = containerId & INVENTORY_ID_MASK;
+                                    currentOpcode = -1;
+                                    return true;
+                                } else if (currentOpcode == CAM_RESET) {
+                                    // Reset camera to default player-following mode
+                                    // Clear scripted movement
+                                    int verifyID = inboundBuffer.g2();
+                                    if (setVerifyID(verifyID)) {
+                                        Camera.resetCameraEffects();
+                                    }
+                                    currentOpcode = -1;
+                                    return true;
+                                } else if (currentOpcode == LOGOUT) {
+                                    // Server initiated logout
+                                    Game.processLogout();
+                                    currentOpcode = -1;
+                                    return false;
+                                } else if (currentOpcode == GE_OFFER_UPDATE) {
+                                    // GE offer status changed
+                                    int offer = inboundBuffer.g1();
+                                    if (inboundBuffer.g1() == 0) {
+                                        StockMarketManager.offers[offer] = new StockMarketOffer();
+                                    } else {
+                                        inboundBuffer.offset--;
+                                        StockMarketManager.offers[offer] = new StockMarketOffer(inboundBuffer);
+                                    }
+                                    currentOpcode = -1;
+                                    StockMarketManager.transmitAt = InterfaceManager.transmitTimer;
+                                    return true;
+                                } else if (currentOpcode == IF_SETNPCHEAD) {
+                                    int npcId = inboundBuffer.g2_alt2();
+                                    int id = inboundBuffer.g4me();
+                                    if (npcId == INVALID_ID_U16) {
+                                        npcId = -1;
+                                    }
+                                    int verifyID = inboundBuffer.g2_al1();
+                                    if (setVerifyID(verifyID)) {
+                                        DelayedStateChange.interfaceSetModel(-1, 2, id, npcId);
+                                    }
+                                    currentOpcode = -1;
+                                    return true;
+                                } else if (currentOpcode == MAP_REBUILD_NORMAL) {
+                                    // Static map region load
+                                    readRebuildPacket(false);
+                                    currentOpcode = -1;
+                                    return true;
+                                } else if (currentOpcode == SET_INTERFACE_SETTINGS) {
+                                    // Dsiplay object/item on a component
+                                    int verifyID = inboundBuffer.g2_al1();
+                                    int end = inboundBuffer.g2_al1();
+                                    if (end == INVALID_ID_U16) {
+                                        end = -1;
+                                    }
+                                    int pointer = inboundBuffer.g4();
+                                    int start = inboundBuffer.g2_alt2();
+                                    int accessMask = inboundBuffer.g4rme();
+                                    if (start == INVALID_ID_U16) {
+                                        start = -1;
+                                    }
+                                    if (setVerifyID(verifyID)) {
+                                        for (int i = start; i <= end; i++) {
+                                            long id = ((long) pointer << MESSAGE_ID_HIGH_SHIFT) + ((long) i);
+                                            ServerActiveProperties properties = (ServerActiveProperties) InterfaceManager.properties.get(id);
+                                            ServerActiveProperties target;
+                                            if (properties != null) {
+                                                target = new ServerActiveProperties(accessMask, properties.targetParam);
+                                                properties.unlink();
+                                            } else if (i == -1) {
+                                                target = new ServerActiveProperties(accessMask, InterfaceList.list(pointer).properties.targetParam);
+                                            } else {
+                                                target = new ServerActiveProperties(accessMask, -1);
+                                            }
+                                            InterfaceManager.properties.put(target, id);
+                                        }
+                                    }
+                                    currentOpcode = -1;
+                                    return true;
+                                } else if (currentOpcode == FRIENDLIST_LOADED) {
+                                    // Initialize friends list loading state
+                                    FriendList.state = inboundBuffer.g1();
+                                    FriendList.transmitAt = InterfaceManager.transmitTimer;
+                                    currentOpcode = -1;
+                                    return true;
+                                } else if (currentOpcode == CLANCHAT_MEMBER_UPDATE) {
+                                    // Single clan chat member update
+                                    long username37 = inboundBuffer.g8();
+                                    int worldId = inboundBuffer.g2();
+                                    @Pc(5325) byte memberRank = inboundBuffer.g1s();
+                                    boolean ignored = false;
+                                    if ((Long.MIN_VALUE & username37) != 0L) {
+                                        ignored = true;
+                                    }
+                                    if (ignored) {
+                                        if (ClanChat.size == 0) {
+                                            currentOpcode = -1;
+                                            return true;
+                                        }
+                                        username37 &= Long.MAX_VALUE;
+                                        int i;
+                                        for (i = 0; ClanChat.size > i && (username37 != ClanChat.members[i].key || worldId != ClanChat.members[i].world); i++) {
+                                            // TODO why is this here?
+                                        }
+                                        if (i < ClanChat.size) {
+                                            while (ClanChat.size - 1 > i) {
+                                                ClanChat.members[i] = ClanChat.members[i + 1];
+                                                i++;
+                                            }
+                                            ClanChat.size--;
+                                            ClanChat.members[ClanChat.size] = null;
+                                        }
+                                    } else {
+                                        JString worldName = inboundBuffer.gjstr();
+                                        @Pc(5347) ClanMember clanMember = new ClanMember();
+                                        clanMember.key = username37;
+                                        clanMember.username = Base37.fromBase37(clanMember.key);
+                                        clanMember.rank = memberRank;
+                                        clanMember.worldName = worldName;
+                                        clanMember.world = worldId;
+                                        int n;
+                                        for (n = ClanChat.size - 1; n >= 0; n--) {
+                                            int m = ClanChat.members[n].username.method3139(clanMember.username);
+                                            if (m == 0) {
+                                                ClanChat.members[n].world = worldId;
+                                                ClanChat.members[n].rank = memberRank;
+                                                ClanChat.members[n].worldName = worldName;
+                                                if (username37 == Player.name37) {
+                                                    ClanChat.rank = memberRank;
+                                                }
+                                                ClanChat.transmitAt = InterfaceManager.transmitTimer;
+                                                currentOpcode = -1;
+                                                return true;
+                                            }
+                                            if (m < 0) {
+                                                break;
+                                            }
+                                        }
+                                        if (ClanChat.members.length <= ClanChat.size) {
+                                            currentOpcode = -1;
+                                            return true;
+                                        }
+                                        for (int i = ClanChat.size - 1; i > n; i--) {
+                                            ClanChat.members[i + 1] = ClanChat.members[i];
+                                        }
+                                        if (ClanChat.size == 0) {
+                                            ClanChat.members = new ClanMember[MAX_CLAN_MEMBERS];
+                                        }
+                                        ClanChat.members[n + 1] = clanMember;
+                                        if (Player.name37 == username37) {
+                                            ClanChat.rank = memberRank;
+                                        }
+                                        ClanChat.size++;
+                                    }
+                                    currentOpcode = -1;
+                                    ClanChat.transmitAt = InterfaceManager.transmitTimer;
+                                    return true;
+                                } else if (currentOpcode == IF_SETOBJECT) {
+                                    // Set object/item model on component
+                                    int slot = inboundBuffer.g4();
+                                    int id = inboundBuffer.p4rme();
+                                    int itemId = inboundBuffer.g2_alt3();
+                                    if (itemId == INVALID_ID_U16) {
+                                        itemId = -1;
+                                    }
+                                    int verifyID = inboundBuffer.g2_al1();
+                                    if (setVerifyID(verifyID)) {
+                                        @Pc(5603) Component com = InterfaceList.list(id);
+                                        @Pc(5615) ObjType obj;
+                                        if (com.hasOpKey) {
+                                            DelayedStateChange.interfaceSetObject(id, slot, itemId);
+                                            obj = ObjTypeList.get(itemId);
+                                            DelayedStateChange.updateView(obj.zoom2d, id, obj.yan2d, obj.xan2d);
+                                            DelayedStateChange.interfaceSetModelOffset(id, obj.zAngle2D, obj.yof2d, obj.xof2d);
+                                        } else if (itemId == -1) {
+                                            com.modelType = 0;
+                                            currentOpcode = -1;
+                                            return true;
+                                        } else {
+                                            obj = ObjTypeList.get(itemId);
+                                            com.modelXAngle = obj.xan2d;
+                                            com.modelZoom = obj.zoom2d * ZOOM_PERCENTAGE / slot;
+                                            com.modelType = 4;
+                                            com.modelId = itemId;
+                                            com.modelYAngle = obj.yan2d;
+                                            InterfaceManager.redraw(com);
+                                        }
+                                    }
+                                    currentOpcode = -1;
+                                    return true;
+                                } else if (currentOpcode == UPDATE_INV_FULL) {
+                                    // Send complete inventory content
+                                    int componentHash = inboundBuffer.g4();
+                                    int containerId = inboundBuffer.g2();
+                                    if (componentHash < INVENTORY_COMPONENT_OFFSET) {
+                                        containerId += INVENTORY_PARAM_OFFSET;
+                                    }
+                                    if (componentHash >= 0) {
+                                        component = InterfaceList.list(componentHash);
+                                    } else {
+                                        component = null;
+                                    }
+                                    if (component != null) {
+                                        for (int i = 0; i < component.invSlotObjId.length; i++) {
+                                            component.invSlotObjId[i] = 0;
+                                            component.invSlotObjCount[i] = 0;
+                                        }
+                                    }
+                                    ClientInventory.clearInventory(containerId);
+                                    int total = inboundBuffer.g2();
+                                    for (int slot = 0; slot < total; slot++) {
+                                        int amount = inboundBuffer.g1_alt3();
+                                        if (amount == EXTENDED_COUNT_MARKER) {
+                                            amount = inboundBuffer.g4();
+                                        }
+                                        int itemId = inboundBuffer.g2();
+                                        if (component != null && slot < component.invSlotObjId.length) {
+                                            component.invSlotObjId[slot] = itemId;
+                                            component.invSlotObjCount[slot] = amount;
+                                        }
+                                        ClientInventory.setSlot(itemId - 1, slot, amount, containerId);
+                                    }
+                                    if (component != null) {
+                                        InterfaceManager.redraw(component);
+                                    }
+                                    InterfaceManager.redrawActiveInterfaces();
+                                    ClientInventory.updates[ClientInventory.updateCount++ & CIRCULAR_BUFFER_MASK] = containerId & INVENTORY_ID_MASK;
+                                    currentOpcode = -1;
+                                    return true;
+                                } else if (currentOpcode == COOKIE_STORE) {
+                                    // Called removed method3954, stored username to cookie
+                                    //method3954(inboundBuffer.gjstr());
+                                    currentOpcode = -1;
+                                    return true;
+                                } else if (currentOpcode == UPDATE_ZONE_PARTIAL_FOLLOWS) {
+                                    // Update base map coordinates
+                                    SceneGraph.currentZoneX = inboundBuffer.g1_alt2();
+                                    SceneGraph.currentZoneZ = inboundBuffer.g1();
+                                    currentOpcode = -1;
+                                    return true;
+                                } else if (currentOpcode == MIDI_SONG) {
+                                    // Play music
+                                    // Starts looping by track ID
+                                    int id = inboundBuffer.g2_alt3();
+                                    if (id == INVALID_ID_U16) {
+                                        id = -1;
+                                    }
+                                    MusicPlayer.playSong(id);
+                                    currentOpcode = -1;
+                                    return true;
+                                } else if (currentOpcode == MIDI_JINGLE) {
+                                    // Play short jingle (non-looping)
+                                    int volume = inboundBuffer.g3le();
+                                    int id = inboundBuffer.g2_al1();
+                                    if (id == INVALID_ID_U16) {
+                                        id = -1;
+                                    }
+                                    MusicPlayer.playJingle(volume, id);
+                                    currentOpcode = -1;
+                                    return true;
+                                } else {
+                                    TracingException.report("T1 - " + currentOpcode + "," + secondLastOpcode + "," + thirdLastOpcode + " - " + packetSize, null);
+                                    Game.processLogout();
+                                    return true;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @OriginalMember(owner = "client!uc", name = "a", descriptor = "(IB)Z")
+    public static boolean setVerifyID(@OriginalArg(0) int verifyID) {
+        verifyId = verifyID + 1 & U16_MASK;
+        verifyIdChanged = true;
+        return true;
+    }
+
+    @OriginalMember(owner = "client!dm", name = "a", descriptor = "(B)V")
+    public static void clearAreaNPCs() {
+        inboundBuffer.accessBits();
+        @Pc(13) int npcsInArea = inboundBuffer.gBit(NPC_COUNT_BITS);
+        @Pc(22) int i;
+        if (NpcList.npcCount > npcsInArea) {
+            for (i = npcsInArea; i < NpcList.npcCount; i++) {
+                removedIds[removedCount++] = NpcList.npcIds[i];
+            }
+        }
+        if (NpcList.npcCount < npcsInArea) {
+            throw new RuntimeException("gnpov1");
+        }
+        NpcList.npcCount = 0;
+        for (i = 0; i < npcsInArea; i++) {
+            @Pc(61) int id = NpcList.npcIds[i];
+            @Pc(65) Npc npc = NpcList.npcs[id];
+            @Pc(70) int hasUpdate = inboundBuffer.gBit(1);
+            if (hasUpdate == 0) {
+                NpcList.npcIds[NpcList.npcCount++] = id;
+                npc.lastSeenLoop = Client.loop;
+            } else {
+                @Pc(92) int updateType = inboundBuffer.gBit(2);
+                if (updateType == 0) {
+                    NpcList.npcIds[NpcList.npcCount++] = id;
+                    npc.lastSeenLoop = Client.loop;
+                    extendedIds[extendedCount++] = id;
+                } else {
+                    @Pc(139) int direction;
+                    @Pc(149) int hasExtendedInfo;
+                    if (updateType == 1) {
+                        NpcList.npcIds[NpcList.npcCount++] = id;
+                        npc.lastSeenLoop = Client.loop;
+                        direction = inboundBuffer.gBit(3);
+                        npc.move(1, direction);
+                        hasExtendedInfo = inboundBuffer.gBit(1);
+                        if (hasExtendedInfo == 1) {
+                            extendedIds[extendedCount++] = id;
+                        }
+                    } else if (updateType == 2) {
+                        NpcList.npcIds[NpcList.npcCount++] = id;
+                        npc.lastSeenLoop = Client.loop;
+                        if (inboundBuffer.gBit(1) == 1) {
+                            direction = inboundBuffer.gBit(3);
+                            npc.move(2, direction);
+                            hasExtendedInfo = inboundBuffer.gBit(3);
+                            npc.move(2, hasExtendedInfo);
+                        } else {
+                            direction = inboundBuffer.gBit(3);
+                            npc.move(0, direction);
+                        }
+                        direction = inboundBuffer.gBit(1);
+                        if (direction == 1) {
+                            extendedIds[extendedCount++] = id;
+                        }
+                    } else if (updateType == 3) {
+                        removedIds[removedCount++] = id;
+                    }
+                }
+            }
+        }
+    }
+
+    @OriginalMember(owner = "client!gm", name = "h", descriptor = "(I)V")
+    public static void readNpcPacket() {
+        extendedCount = 0;
+        removedCount = 0;
+        clearAreaNPCs();
+        loadAreaNPCs();
+        npcCombat();
+        @Pc(19) int i;
+        for (i = 0; i < removedCount; i++) {
+            @Pc(30) int removedId = removedIds[i];
+            if (NpcList.npcs[removedId].lastSeenLoop != Client.loop) {
+                if (NpcList.npcs[removedId].type.hasAreaSound()) {
+                    AreaSoundManager.remove(NpcList.npcs[removedId]);
+                }
+                NpcList.npcs[removedId].setNpcType(null);
+                NpcList.npcs[removedId] = null;
+            }
+        }
+        if (packetSize != inboundBuffer.offset) {
+            throw new RuntimeException("gnp1 pos:" + inboundBuffer.offset + " psize:" + packetSize);
+        }
+        for (i = 0; i < NpcList.npcCount; i++) {
+            if (NpcList.npcs[NpcList.npcIds[i]] == null) {
+                throw new RuntimeException("gnp2 pos:" + i + " size:" + NpcList.npcCount);
+            }
+        }
+    }
+
+    @OriginalMember(owner = "client!rm", name = "a", descriptor = "(IBI)V")
+    public static void spawnObjStack(@OriginalArg(2) int x, @OriginalArg(0) int z) {
+        @Pc(9) LinkedList objStacks = SceneGraph.objStacks[Player.currentLevel][x][z];
+
+        if (objStacks == null) {
+            SceneGraph.removeObjStack(Player.currentLevel, x, z);
+            return;
+        }
+        @Pc(28) int cheapestCost = MIN_COST_VALUE;
+        @Pc(30) ClientObj cheapestObj = null;
+
+        @Pc(35) ClientObj obj;
+        for (obj = (ClientObj) objStacks.head(); obj != null; obj = (ClientObj) objStacks.next()) {
+            @Pc(44) ObjType objType = ObjTypeList.get(obj.value.id);
+            @Pc(47) int cost = objType.cost;
+            if (objType.stackable == STACKABLE_FLAG) {
+                cost *= obj.value.count + 1;
+            }
+            if (cheapestCost < cost) {
+                cheapestCost = cost;
+                cheapestObj = obj;
+            }
+        }
+        if (cheapestObj == null) {
+            SceneGraph.removeObjStack(Player.currentLevel, x, z);
+            return;
+        }
+        objStacks.add(cheapestObj);
+        @Pc(89) ObjStack secondStack = null;
+        @Pc(91) ObjStack thirdStack = null;
+        for (obj = (ClientObj) objStacks.head(); obj != null; obj = (ClientObj) objStacks.next()) {
+            @Pc(103) ObjStack objStack = obj.value;
+            if (objStack.id != cheapestObj.value.id) {
+                if (secondStack == null) {
+                    secondStack = objStack;
+                }
+                if (objStack.id != secondStack.id && thirdStack == null) {
+                    thirdStack = objStack;
+                }
+            }
+        }
+        @Pc(152) long coordHash = (long) ((z << COORD_HASH_SHIFT) + x + COORD_HASH_OFFSET);
+        SceneGraph.setObjStack(Player.currentLevel, x, z, SceneGraph.getTileHeight(Player.currentLevel, x * TILE_SIZE + TILE_CENTER_OFFSET, z * TILE_SIZE + TILE_CENTER_OFFSET), cheapestObj.value, coordHash, secondStack, thirdStack);
+    }
+
+    @OriginalMember(owner = "client!g", name = "b", descriptor = "(B)V")
+    public static void readZonePacket() {
+        @Pc(15) int packedData;
+        @Pc(23) int local23;
+        @Pc(19) int local19;
+        @Pc(27) int local27;
+        @Pc(31) int local31;
+        @Pc(39) int local39;
+        @Pc(45) int local45;
+        if (currentOpcode == LOC_DEL) {
+            // LOC_DEL
+            // Delete a location from the zone
+            // Used for ex. removing doors
+
+            packedData = inboundBuffer.g1_alt2(); // Shape + angle packed
+            local19 = packedData & ROTATION_MASK; // Angle
+            local23 = packedData >> LOC_SHAPE_SHIFT; // Shape type (wall, ground etc)
+            local27 = Loc.LAYERS[local23]; // Get layer for this shape
+
+            local31 = inboundBuffer.g1(); // Zone coordinates
+            local39 = (local31 >> ZONE_COORD_SHIFT & ZONE_COORD_MASK) + SceneGraph.currentZoneX; // Absolute X
+            local45 = (local31 & ZONE_COORD_MASK) + SceneGraph.currentZoneZ; // Absolute Z
+
+            if (local39 >= 0 && local45 >= 0 && local39 < 104 && local45 < 104) {
+                // Delete the location ath this position
+                LocChangeRequest.push(Player.currentLevel, local45, local19, local39, -1, -1, local27, local23, 0);
+            }
+        } else if (currentOpcode == OBJ_REVEAL) {
+            // OBJ_REVEAL - Add public ground items (visible to all players)
+            packedData = inboundBuffer.g2_al1(); // Object type ID
+            local23 = inboundBuffer.g1(); // Zone coordinates (packed)
+
+            local27 = (local23 & ZONE_COORD_MASK) + SceneGraph.currentZoneZ; // Absolute Z
+            local19 = (local23 >> ZONE_COORD_SHIFT & ZONE_COORD_MASK) + SceneGraph.currentZoneX; // Absolute X
+
+            local31 = inboundBuffer.g2_alt2(); // Item count
+
+            if (local19 >= 0 && local27 >= 0 && local19 < SIZE && local27 < SIZE) {
+                @Pc(122) ObjStack objStack = new ObjStack();
+                objStack.count = local31; // Stack size
+                objStack.id = packedData; // Item ID
+
+                // Create obj stack if not existing
+                if (SceneGraph.objStacks[Player.currentLevel][local19][local27] == null) {
+                    SceneGraph.objStacks[Player.currentLevel][local19][local27] = new LinkedList();
+                }
+
+                SceneGraph.objStacks[Player.currentLevel][local19][local27].push(new ClientObj(objStack));
+                spawnObjStack(local19, local27); // Render the object
+            }
+        } else {
+            @Pc(218) int startHeight;
+            @Pc(228) int startCycle;
+            @Pc(232) int endCycle;
+            @Pc(247) int arc;
+            @Pc(224) int endHeight;
+            @Pc(236) int Angle;
+            @Pc(317) ProjectileAnimation projectile;
+            if (currentOpcode == MAP_PROJANIM_SMALL) {
+                // ZONE_MAP_PROJANIM_SMALL
+                // Simple projectile
+                packedData = inboundBuffer.g1(); // Starting coordinate
+                local23 = SceneGraph.currentZoneX * 2 + (packedData >> ZONE_COORD_SHIFT & ZONE_COORD_MASK_4BIT); // projectile start X
+                local19 = (packedData & ZONE_COORD_MASK_4BIT) + SceneGraph.currentZoneZ * 2; // projectile Start Z
+                local27 = local23 + inboundBuffer.g1s(); // Target X offset
+                local31 = inboundBuffer.g1s() + local19; // Target Z offset
+                local39 = inboundBuffer.g2s(); // Source entity
+                local45 = inboundBuffer.g2(); // Projectile spotanim ID
+                startHeight = inboundBuffer.g1() * HEIGHT_SCALE_FACTOR; // Start height
+                endHeight = inboundBuffer.g1() * HEIGHT_SCALE_FACTOR; // End height
+                startCycle = inboundBuffer.g2(); // Start cycle
+                endCycle = inboundBuffer.g2(); // End cycle
+                Angle = inboundBuffer.g1(); // Angle
+
+                if (Angle == NO_ANGLE_SPECIFIED) {
+                    Angle = -1;
+                }
+
+                arc = inboundBuffer.g1(); // Arc
+
+                if (local23 >= 0 && local19 >= 0 && local23 < BUILD_AREA_HALF_TILES && local19 < BUILD_AREA_HALF_TILES && local27 >= 0 && local31 >= 0 && local27 < BUILD_AREA_HALF_TILES && local31 < BUILD_AREA_HALF_TILES && local45 != INVALID_ID_U16) {
+                    local31 *= HALF_TILE_SIZE;
+
+                    // Convert to world coordinates
+                    local27 = local27 * HALF_TILE_SIZE;
+                    local19 = local19 * HALF_TILE_SIZE;
+                    local23 = local23 * HALF_TILE_SIZE;
+
+                    projectile = new ProjectileAnimation(local45, Player.currentLevel, local23, local19, SceneGraph.getTileHeight(Player.currentLevel, local23, local19) - startHeight, Client.loop + startCycle, endCycle + Client.loop, Angle, arc, local39, endHeight);
+                    projectile.setTarget(local31, Client.loop + startCycle, -endHeight + SceneGraph.getTileHeight(Player.currentLevel, local27, local31), local27);
+                    SceneGraph.projectiles.push(new ProjAnimNode(projectile));
+                }
+            } else if (currentOpcode == SPOTANIM_SPECIFIC) {
+                // ZONE_MAP_ANIM
+                // Spot animation
+                packedData = inboundBuffer.g1(); // Zone coordinate
+                local23 = SceneGraph.currentZoneX + (packedData >> ZONE_COORD_SHIFT & ZONE_COORD_MASK); // Spot anim X
+                local19 = SceneGraph.currentZoneZ + (packedData & ZONE_COORD_MASK); // Spot anim Z
+                local27 = inboundBuffer.g2(); // Spotanim type ID
+                local31 = inboundBuffer.g1(); // Height offset
+                local39 = inboundBuffer.g2(); // Duration/cycle
+
+                if (local23 >= 0 && local19 >= 0 && local23 < SIZE && local19 < SIZE) {
+                    // Convert to world coodinates
+                    local23 = local23 * TILE_SIZE + TILE_CENTER_OFFSET;
+                    local19 = local19 * TILE_SIZE + TILE_CENTER_OFFSET;
+
+                    // Create spot anim at position
+                    @Pc(427) SpotAnim spotAnim = new SpotAnim(
+                            local27, // Spotanim ID
+                            Player.currentLevel, // Height level
+                            local23, local19, // Position
+                            SceneGraph.getTileHeight(Player.currentLevel, local23, local19) - local31, // Height
+                            local39, // Duration
+                            Client.loop // Start cycle
+                    );
+                    SceneGraph.spotanims.push(new SpotAnimEntity(spotAnim));
+                }
+            } else if (currentOpcode == LOC_ADD) {
+                // LOC_ADD
+                //  Standard location add/change without animation
+                packedData = inboundBuffer.g1_alt1(); // Shape + rotation
+                local23 = packedData >> CoordinateConstants.LOC_SHAPE_SHIFT; // Shape type
+                local19 = packedData & ROTATION_MASK; // Rotation
+                local27 = Loc.LAYERS[local23]; // Layer for rendering order
+                local31 = inboundBuffer.g1(); // Zone coordinates
+                local39 = SceneGraph.currentZoneX + (local31 >> ZONE_COORD_SHIFT & ZONE_COORD_MASK); // Zone X
+                local45 = (local31 & ZONE_COORD_MASK) + SceneGraph.currentZoneZ; // Zone Z
+                startHeight = inboundBuffer.g2_alt2(); // Location Type ID
+                if (local39 >= 0 && local45 >= 0 && local39 < SIZE && local45 < SIZE) {
+                    LocChangeRequest.push(Player.currentLevel, local45, local19, local39, -1, startHeight, local27, local23, 0);
+                }
+            } else if (currentOpcode == LOC_ANIM) {
+                // LOC_ANIM - Attach location with animation
+                // Attach location directly to tile (used for transitions)
+                packedData = inboundBuffer.g1_alt3(); // Zone coordinates
+                int x = SceneGraph.currentZoneX + (packedData >> ZONE_COORD_SHIFT & ZONE_COORD_MASK); // Zone X
+                int z = SceneGraph.currentZoneZ + (packedData & ZONE_COORD_MASK); // Zone Z
+                int info = inboundBuffer.g1_alt3(); // Shape + rotation
+                int shape = info >> LOC_SHAPE_SHIFT; // Shape type
+                int angle = info & ROTATION_MASK; // Angle
+                local45 = Loc.LAYERS[shape]; // Rendering layer
+                startHeight = inboundBuffer.g2_al1(); // Location type ID
+
+                if (startHeight == INVALID_ID_U16) {
+                    startHeight = -1; // -1 = remove
+                }
+
+                // Attach directly to scene graph tile
+                SceneGraph.attachLocToTile(Player.currentLevel, angle, shape, z, local45, x, startHeight);
+            } else {
+                @Pc(633) int transformValue3;
+                if (currentOpcode == LOC_ADD_CHANGE) {
+                    // LOC_ADD_CHANGE - Location change with OpenGL transformations
+                    // Complex location attachment with transformation matrices
+                    // Used for agility obstacles and smooth animations
+                    // Skipped in software renderer
+
+                    packedData = inboundBuffer.g1(); // Shape + rotation packed
+                    local23 = packedData >> LOC_SHAPE_SHIFT; // Location shape
+                    local19 = packedData & ROTATION_MASK; // Rotation (0-3, 0/90/180/270 degrees)
+                    local27 = inboundBuffer.g1(); // Zone coordnates packed
+                    local31 = SceneGraph.currentZoneX + (local27 >> ZONE_COORD_SHIFT & ZONE_COORD_MASK); // Extract zone X
+                    local39 = SceneGraph.currentZoneZ + (local27 & ZONE_COORD_MASK); // Extract Zone Z
+
+                    // Read transformation parameters OpenGL specific
+                    @Pc(605) byte transformParam1 = inboundBuffer.g1b_alt3();
+                    @Pc(609) byte transformParam2 = inboundBuffer.g1b_alt3();
+                    @Pc(613) byte transformParam3 = inboundBuffer.g1sub();
+                    startCycle = inboundBuffer.g2_alt2(); // Tranform value 1
+                    endCycle = inboundBuffer.g2_al1(); // Transform value 2
+                    @Pc(625) byte transformParam4 = inboundBuffer.g1s();
+                    arc = inboundBuffer.g2(); // Location type ID
+                    transformValue3 = inboundBuffer.g2lesadd(); // Transform value 3
+
+                    if (!GlRenderer.enabled) {
+                        // OpenGL-only packet, push to attach queue for processing
+                        LocToEntityAttachment.push(
+                                transformParam4,
+                                arc,
+                                transformValue3,
+                                endCycle,
+                                local39,
+                                transformParam3,
+                                local19,
+                                transformParam1,
+                                local31,
+                                local23,
+                                transformParam2,
+                                startCycle);
+                    }
+                }
+                if (currentOpcode == OBJ_COUNT) {
+                    // OBJ_COUNT - Update ground item stack count
+                    packedData = inboundBuffer.g1(); // Zone coordinate
+                    int z = SceneGraph.currentZoneZ + (packedData & ZONE_COORD_MASK); // Zone Z
+                    int x = SceneGraph.currentZoneX + (packedData >> ZONE_COORD_SHIFT & ZONE_COORD_MASK); // Zone X
+
+                    int id = inboundBuffer.g2(); // Object type ID
+                    int oldCount = inboundBuffer.g2(); // Old count
+                    int newCount = inboundBuffer.g2(); // New count
+
+                    if (x >= 0 && z >= 0 && x < SIZE && z < SIZE) {
+                        @Pc(710) LinkedList list = SceneGraph.objStacks[Player.currentLevel][x][z];
+
+                        if (list != null) {
+                            // Find the matching object stack
+                            for (@Pc(718) ClientObj obj = (ClientObj) list.head(); obj != null; obj = (ClientObj) list.next()) {
+                                @Pc(723) ObjStack objStack = obj.value;
+
+                                // Match by type and old count
+                                if ((id & INVENTORY_ID_MASK) == objStack.id && oldCount == objStack.count) {
+                                    objStack.count = newCount; // Update to new count
+                                    break;
+                                }
+                            }
+                            spawnObjStack(x, z);
+                        }
+                    }
+                } else if (currentOpcode == OBJ_ADD) {
+                    // OBJ_ADD - Add private ground items
+                    // Only visible to specific player (receiver)
+                    // Private items create separate stacks from public items
+                    int receiverPid = inboundBuffer.g2_alt3(); // Player ID
+                    local23 = inboundBuffer.g1_alt2(); // Zone coordinates
+
+                    int z = SceneGraph.currentZoneZ + (local23 & ZONE_COORD_MASK); // Zone Z
+                    int x = SceneGraph.currentZoneX + (local23 >> ZONE_COORD_SHIFT & ZONE_COORD_MASK); // Zone X
+
+                    int count = inboundBuffer.g2_al1(); // Item count
+                    int objId = inboundBuffer.g2_al1(); // Object type ID
+
+                    if (x >= 0 && z >= 0 && x < SIZE && z < SIZE && receiverPid != PlayerList.localPid) {
+                        @Pc(812) ObjStack objStack = new ObjStack();
+                        objStack.count = count; // Stack size
+                        objStack.id = objId; // Item ID
+
+                        // Create obj stack if not existing
+                        if (SceneGraph.objStacks[Player.currentLevel][x][z] == null) {
+                            SceneGraph.objStacks[Player.currentLevel][x][z] = new LinkedList();
+                        }
+
+                        SceneGraph.objStacks[Player.currentLevel][x][z].push(new ClientObj(objStack));
+                        spawnObjStack(x, z); // Render the object
+                    }
+                } else if (currentOpcode == MAP_PROJANIM_2) {
+                    // Zone_MAP_PROJANIM
+                    // Projectile animation
+                    packedData = inboundBuffer.g1(); // Starting zone coordinate
+                    local23 = SceneGraph.currentZoneX + (packedData >> ZONE_COORD_SHIFT & ZONE_COORD_MASK); // Start zone X
+                    local19 = (packedData & ZONE_COORD_MASK) + SceneGraph.currentZoneZ; // Start zone Z
+                    local27 = local23 + inboundBuffer.g1s(); // Target tile X (offset)
+                    local31 = inboundBuffer.g1s() + local19; // Target tile Z (offset)
+                    local39 = inboundBuffer.g2s(); // Source entity
+                    local45 = inboundBuffer.g2(); // Projectile spotanim ID
+                    startHeight = inboundBuffer.g1() * HEIGHT_SCALE_FACTOR; // Start height offset
+                    endHeight = inboundBuffer.g1() * HEIGHT_SCALE_FACTOR; // End height offset
+                    startCycle = inboundBuffer.g2(); // Start cycle (delay before showing)
+                    endCycle = inboundBuffer.g2(); // End cycle
+                    Angle = inboundBuffer.g1(); // Angle/slope
+                    arc = inboundBuffer.g1(); // Arc height
+
+                    if (Angle == NO_ANGLE_SPECIFIED) {
+                        Angle = -1; // No angle specified
+                    }
+
+                    // Validate coordinates are in bounds
+                    if (local23 >= 0 && local19 >= 0 && local23 < SIZE && local19 < SIZE && local27 >= 0 && local31 >= 0 && local27 < SIZE && local31 < SIZE && local45 != INVALID_ID_U16) {
+                        //Convert tile coords to world coordinates
+                        local31 = local31 * TILE_SIZE + TILE_CENTER_OFFSET;
+                        local19 = local19 * TILE_SIZE + TILE_CENTER_OFFSET;
+                        local23 = local23 * TILE_SIZE + TILE_CENTER_OFFSET;
+                        local27 = local27 * TILE_SIZE + TILE_CENTER_OFFSET;
+
+                        // Create projectile animation
+                        projectile = new ProjectileAnimation(
+                                local45, // Spotanim ID
+                                Player.currentLevel, // Height level
+                                local23, local19, // Start position
+                                SceneGraph.getTileHeight(Player.currentLevel, local23, local19) - startHeight, // Start height
+                                startCycle + Client.loop, // Start cycle
+                                endCycle + Client.loop, // End cycle
+                                Angle, // Angle
+                                arc, //Arc
+                                local39, // Source entity
+                                endHeight // End height offset
+                        );
+
+                        //Set target position
+                        projectile.setTarget(local31, Client.loop + startCycle, SceneGraph.getTileHeight(Player.currentLevel, local27, local31) - endHeight, local27);
+                        SceneGraph.projectiles.push(new ProjAnimNode(projectile));
+                    }
+                } else if (currentOpcode == MAP_PROJANIM) {
+                    // ZONE_MAP_PROJANIM_SPECIFIC
+                    // Entity-specific projectile with source tracking
+                    // Used for ex. projectiles fired from specific entities
+                    packedData = inboundBuffer.g1(); // Starting coordinate
+                    local19 = SceneGraph.currentZoneZ * 2 + (packedData & ZONE_COORD_MASK_4BIT); // Start Z (doubled)
+                    local23 = SceneGraph.currentZoneX * 2 + (packedData >> ZONE_COORD_SHIFT & ZONE_COORD_MASK_4BIT); // Start X (doubled)
+                    local27 = inboundBuffer.g1s() + local23; // Target X
+                    local31 = inboundBuffer.g1s() + local19; // Target Z
+                    local39 = inboundBuffer.g2s(); // Source entity ID (packed)
+                    local45 = inboundBuffer.g2s(); // Target entity ID (packed)
+                    startHeight = inboundBuffer.g2(); // Projectile spotanim ID
+                    endHeight = inboundBuffer.g1s(); // Vertical offset
+                    startCycle = inboundBuffer.g1() * HEIGHT_SCALE_FACTOR; // Height offset at target
+                    endCycle = inboundBuffer.g2(); // Start cycle
+                    Angle = inboundBuffer.g2(); // End cycle
+                    arc = inboundBuffer.g1(); // Angle
+                    transformValue3 = inboundBuffer.g1(); // Arc height
+
+                    if (arc == NO_ANGLE_SPECIFIED) {
+                        arc = -1;
+                    }
+
+                    if (local23 >= 0 && local19 >= 0 && local23 < BUILD_AREA_HALF_TILES && local19 < BUILD_AREA_HALF_TILES && local27 >= 0 && local31 >= 0 && local27 < BUILD_AREA_HALF_TILES && local31 < BUILD_AREA_HALF_TILES && startHeight != INVALID_ID_U16) {
+                        // Convert 4x4 coords to world coords
+                        local27 = local27 * HALF_TILE_SIZE;
+                        local23 *= HALF_TILE_SIZE;
+                        local31 *= HALF_TILE_SIZE;
+                        local19 *= HALF_TILE_SIZE;
+
+                        // If source entity specified, apply model attachment offset
+                        if (local39 != 0) {
+                            @Pc(1194) int bodySlot;
+                            @Pc(1198) PathingEntity sourceEntity;
+                            @Pc(1184) int packedEntityId;
+                            @Pc(1188) int entityIndex;
+                            if (local39 >= 0) {
+                                // Positive = NPC
+                                packedEntityId = local39 - 1;
+                                entityIndex = packedEntityId & ENTITY_INDEX_MASK; // Bottom 11 bits = NPC Index
+                                bodySlot = packedEntityId >> ENTITY_SLOT_SHIFT & ENTITY_SLOT_MASK; // Top 4 bits = body part/slot
+                                sourceEntity = NpcList.npcs[entityIndex];
+                            } else {
+                                // Negative = Player
+                                packedEntityId = -local39 - 1;
+                                bodySlot = packedEntityId >> ENTITY_SLOT_SHIFT & ENTITY_SLOT_MASK;
+                                entityIndex = packedEntityId & ENTITY_INDEX_MASK;
+                                if (PlayerList.localPid == entityIndex) {
+                                    sourceEntity = PlayerList.self;
+                                } else {
+                                    sourceEntity = PlayerList.players[entityIndex];
+                                }
+                            }
+
+                            // Apply model transformation for projectile source point
+                            if (sourceEntity != null) {
+                                @Pc(1232) BasType basType = sourceEntity.getBasType();
+
+                                // Check if this body part has transformation data
+                                if (basType.modelRotateTranslate != null && basType.modelRotateTranslate[bodySlot] != null) {
+                                    entityIndex = basType.modelRotateTranslate[bodySlot][0]; // X offset
+                                    endHeight -= basType.modelRotateTranslate[bodySlot][1]; // Y offset
+                                    @Pc(1264) int zOffset = basType.modelRotateTranslate[bodySlot][2]; // Z offset
+
+                                    // Rotate offset based on entity orientation
+                                    @Pc(1269) int sinValue = MathUtils.sin[sourceEntity.orientation];
+                                    @Pc(1274) int cosValue = MathUtils.cos[sourceEntity.orientation];
+
+                                    // Apply rotation matrix
+                                    @Pc(1284) int rotatedXOffset = entityIndex * cosValue + zOffset * sinValue >> FIXED_POINT_SHIFT;
+                                    @Pc(1295) int rotatedZOffset = cosValue * zOffset - entityIndex * sinValue >> FIXED_POINT_SHIFT;
+
+                                    local19 += rotatedZOffset;
+                                    local23 += rotatedXOffset;
+                                }
+                            }
+                        }
+
+                        // Create projectile wiht adjusted source position
+                        @Pc(1331) ProjectileAnimation proj = new ProjectileAnimation(startHeight, Player.currentLevel, local23, local19, SceneGraph.getTileHeight(Player.currentLevel, local23, local19) - endHeight, endCycle + Client.loop, Angle + Client.loop, arc, transformValue3, local45, startCycle);
+                        proj.setTarget(local31, endCycle + Client.loop, -startCycle + SceneGraph.getTileHeight(Player.currentLevel, local27, local31), local27);
+                        SceneGraph.projectiles.push(new ProjAnimNode(proj));
+                    }
+                } else if (currentOpcode == SOUND_AREA) {
+                    // ZONE_SOUND_AREA
+                    // Area sound effect
+                    packedData = inboundBuffer.g1(); // Zone coordinate
+                    local23 = SceneGraph.currentZoneX + (packedData >> ZONE_COORD_SHIFT & ZONE_COORD_MASK); // Zone X
+                    local19 = SceneGraph.currentZoneZ + (packedData & ZONE_COORD_MASK); // Zone Z
+                    local27 = inboundBuffer.g2(); // Sound effect ID
+
+                    if (local27 == INVALID_ID_U16) {
+                        local27 = -1; // No sound
+                    }
+
+                    local31 = inboundBuffer.g1(); // Sound parameters packed
+                    local39 = local31 >> SOUND_RADIUS_SHIFT & SOUND_RADIUS_MASK; // Sound radius (tile distance)
+                    startHeight = inboundBuffer.g1(); // Delay before playing
+                    local45 = local31 & SOUND_LOOP_MASK; // Loop count
+                    if (local23 >= 0 && local19 >= 0 && local23 < SIZE && local19 < SIZE) {
+                        endHeight = local39 + 1; // Radius
+
+                        //Only play if player is within range
+                        if (PlayerList.self.movementQueueX[0] >= local23 - endHeight
+                                && endHeight + local23 >= PlayerList.self.movementQueueX[0]
+                                && PlayerList.self.movementQueueZ[0] >= local19 - endHeight
+                                && PlayerList.self.movementQueueZ[0] <= endHeight + local19
+                                && Preferences.ambientSoundsVolume != 0 // Volume enabled
+                                && local45 > 0 // Has loop count
+                                && SoundPlayer.size < MAX_SOUND_QUEUE_SIZE // Sound queue not full
+                                && local27 != -1) { // Valid sound ID
+
+                            // Add sound to player queue
+                            SoundPlayer.ids[SoundPlayer.size] = local27;
+                            SoundPlayer.loops[SoundPlayer.size] = local45; // Loop count
+                            SoundPlayer.delays[SoundPlayer.size] = startHeight; // Delay
+                            SoundPlayer.sounds[SoundPlayer.size] = null;
+                            SoundPlayer.positions[SoundPlayer.size] = local39 + (local23 << POSITION_X_SHIFT) + (local19 << POSITION_Y_SHIFT); // Pack position + radius
+                            SoundPlayer.size++;
+                        }
+                    }
+                } else if (currentOpcode == OBJ_DEL) {
+                    // OBJ_DEL - Delete ground item from zone
+                    packedData = inboundBuffer.g1_alt3(); // Zone coordinates
+                    local19 = SceneGraph.currentZoneZ + (packedData & ZONE_COORD_MASK); // Zone Z
+                    local23 = (packedData >> ZONE_COORD_SHIFT & ZONE_COORD_MASK) + SceneGraph.currentZoneX; // Zone X
+                    local27 = inboundBuffer.g2(); // Object type ID
+
+                    if (local23 >= 0 && local19 >= 0 && local23 < SIZE && local19 < SIZE) {
+                        @Pc(1565) LinkedList objStackList = SceneGraph.objStacks[Player.currentLevel][local23][local19];
+
+                        if (objStackList != null) {
+                            // Find and remove the matching object
+                            for (@Pc(1572) ClientObj objIterator = (ClientObj) objStackList.head(); objIterator != null; objIterator = (ClientObj) objStackList.next()) {
+                                if (objIterator.value.id == (local27 & INVENTORY_ID_MASK)) {
+                                    objIterator.unlink(); // Remove from list
+                                    break;
+                                }
+                            }
+
+                            // Clean up empty list
+                            if (objStackList.head() == null) {
+                                SceneGraph.objStacks[Player.currentLevel][local23][local19] = null;
+                            }
+                            spawnObjStack(local23, local19);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @OriginalMember(owner = "client!g", name = "a", descriptor = "(IZ)V")
+    public static void readRebuildPacket(@OriginalArg(1) boolean isDynamic) {
+        SceneGraph.dynamicMapRegion = isDynamic;
+        @Pc(13) int playerPlane;
+        @Pc(20) int regionCount;
+        @Pc(26) int baseChunkX;
+        @Pc(31) int baseChunkZ;
+        @Pc(60) int playerZ;
+        @Pc(64) int chunkSizeX;
+        @Pc(138) int chunkX;
+        @Pc(151) int chunkZ;
+        @Pc(169) int regionId;
+        if (!SceneGraph.dynamicMapRegion) {
+            playerPlane = inboundBuffer.g2_alt2();
+            regionCount = (packetSize - inboundBuffer.offset) /  XTEA_ENTRY_SIZE_BYTES;
+            WorldLoader.regionsXteaKeys = new int[regionCount][XTEA_KEY_SIZE];
+            for (baseChunkX = 0; baseChunkX < regionCount; baseChunkX++) {
+                for (baseChunkZ = 0; baseChunkZ < XTEA_KEY_SIZE; baseChunkZ++) {
+                    WorldLoader.regionsXteaKeys[baseChunkX][baseChunkZ] = inboundBuffer.p4rme();
+                }
+            }
+            baseChunkX = inboundBuffer.g1_alt3();
+            baseChunkZ = inboundBuffer.g2();
+            playerZ = inboundBuffer.g2_alt2();
+            chunkSizeX = inboundBuffer.g2_alt2();
+            WorldLoader.regionBitPacked = new int[regionCount];
+            WorldLoader.mapFilesBuffer = new byte[regionCount][];
+            WorldLoader.npcSpawnsFilesBuffer = null;
+            WorldLoader.underWaterMapFileIds = new int[regionCount];
+            WorldLoader.locationMapFilesBuffer = new byte[regionCount][];
+            WorldLoader.underWaterLocationsMapFilesBuffer = new byte[regionCount][];
+            WorldLoader.npcSpawnsFileIds = null;
+            WorldLoader.mapFileIds = new int[regionCount];
+            WorldLoader.underWaterMapFilesBuffer = new byte[regionCount][];
+            WorldLoader.locationsMapFileIds = new int[regionCount];
+            WorldLoader.underWaterLocationsMapFileIds = new int[regionCount];
+            regionCount = 0;
+            @Pc(100) boolean isTutorialIsland = false;
+            if ((baseChunkZ / MAP_SQUARE_SIZE == TUTORIAL_ISLAND_X1 || baseChunkZ / MAP_SQUARE_SIZE == TUTORIAL_ISLAND_X2) && playerZ / MAP_SQUARE_SIZE == TUTORIAL_ISLAND_Z2) {
+                isTutorialIsland = true;
+            }
+            if (baseChunkZ / MAP_SQUARE_SIZE == TUTORIAL_ISLAND_X1 && playerZ / MAP_SQUARE_SIZE == TUTORIAL_ISLAND_Z5) {
+                isTutorialIsland = true;
+            }
+            for (chunkX = (baseChunkZ - MAP_LOAD_RADIUS) / MAP_SQUARE_SIZE; chunkX <= (baseChunkZ + MAP_LOAD_RADIUS) / MAP_SQUARE_SIZE; chunkX++) {
+                for (chunkZ = (playerZ - MAP_LOAD_RADIUS) / MAP_SQUARE_SIZE; chunkZ <= (playerZ + MAP_LOAD_RADIUS) / MAP_SQUARE_SIZE; chunkZ++) {
+                    regionId = (chunkX << REGION_ID_SHIFT) + chunkZ;
+                    if (isTutorialIsland && (chunkZ == TUTORIAL_ISLAND_Z3 || chunkZ == TUTORIAL_ISLAND_Z6 || chunkZ == TUTORIAL_ISLAND_Z4 || chunkX == TUTORIAL_ISLAND_X3 || chunkX == TUTORIAL_ISLAND_X2 && chunkZ == TUTORIAL_ISLAND_Z1)) {
+                        WorldLoader.regionBitPacked[regionCount] = regionId;
+                        WorldLoader.mapFileIds[regionCount] = -1;
+                        WorldLoader.locationsMapFileIds[regionCount] = -1;
+                        WorldLoader.underWaterMapFileIds[regionCount] = -1;
+                        WorldLoader.underWaterLocationsMapFileIds[regionCount] = -1;
+                    } else {
+                        WorldLoader.regionBitPacked[regionCount] = regionId;
+                        WorldLoader.mapFileIds[regionCount] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { WorldLoader.m, JString.parseInt(chunkX), WorldLoader.UNDERSCORE, JString.parseInt(chunkZ) }));
+                        WorldLoader.locationsMapFileIds[regionCount] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { WorldLoader.l, JString.parseInt(chunkX), WorldLoader.UNDERSCORE, JString.parseInt(chunkZ) }));
+                        WorldLoader.underWaterMapFileIds[regionCount] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { LoginManager.um, JString.parseInt(chunkX), WorldLoader.UNDERSCORE, JString.parseInt(chunkZ) }));
+                        WorldLoader.underWaterLocationsMapFileIds[regionCount] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { LoginManager.ul, JString.parseInt(chunkX), WorldLoader.UNDERSCORE, JString.parseInt(chunkZ) }));
+                    }
+                    regionCount++;
+                }
+            }
+            WorldLoader.initializeMapRegion(baseChunkX, playerZ, baseChunkZ, chunkSizeX, false, playerPlane);
+            return;
+        }
+        playerPlane = inboundBuffer.g2_alt3();
+        regionCount = inboundBuffer.g2_alt3();
+        baseChunkX = inboundBuffer.g1_alt3();
+        baseChunkZ = inboundBuffer.g2_alt3();
+        inboundBuffer.accessBits();
+        @Pc(391) int plane;
+        for (playerZ = 0; playerZ < CollisionConstants.LEVELS; playerZ++) {
+            for (chunkSizeX = 0; chunkSizeX < BUILD_AREA_SIZE; chunkSizeX++) {
+                for (plane = 0; plane < BUILD_AREA_SIZE; plane++) {
+                    chunkX = inboundBuffer.gBit(1);
+                    if (chunkX == 1) {
+                        dynamicRegionData[playerZ][chunkSizeX][plane] = inboundBuffer.gBit(DYNAMIC_REGION_BITS);
+                    } else {
+                        dynamicRegionData[playerZ][chunkSizeX][plane] = -1;
+                    }
+                }
+            }
+        }
+        inboundBuffer.accessBytes();
+        playerZ = (packetSize - inboundBuffer.offset) / XTEA_ENTRY_SIZE_BYTES;
+        WorldLoader.regionsXteaKeys = new int[playerZ][XTEA_KEY_SIZE];
+        for (chunkSizeX = 0; chunkSizeX < playerZ; chunkSizeX++) {
+            for (plane = 0; plane < XTEA_KEY_SIZE; plane++) {
+                WorldLoader.regionsXteaKeys[chunkSizeX][plane] = inboundBuffer.p4rme();
+            }
+        }
+        chunkSizeX = inboundBuffer.g2();
+        WorldLoader.underWaterLocationsMapFileIds = new int[playerZ];
+        WorldLoader.locationsMapFileIds = new int[playerZ];
+        WorldLoader.mapFileIds = new int[playerZ];
+        WorldLoader.underWaterLocationsMapFilesBuffer = new byte[playerZ][];
+        WorldLoader.npcSpawnsFileIds = null;
+        WorldLoader.underWaterMapFileIds = new int[playerZ];
+        WorldLoader.locationMapFilesBuffer = new byte[playerZ][];
+        WorldLoader.mapFilesBuffer = new byte[playerZ][];
+        WorldLoader.regionBitPacked = new int[playerZ];
+        WorldLoader.npcSpawnsFilesBuffer = null;
+        WorldLoader.underWaterMapFilesBuffer = new byte[playerZ][];
+        playerZ = 0;
+        for (plane = 0; plane < CollisionConstants.LEVELS; plane++) {
+            for (chunkX = 0; chunkX < BUILD_AREA_SIZE; chunkX++) {
+                for (chunkZ = 0; chunkZ < BUILD_AREA_SIZE; chunkZ++) {
+                    regionId = dynamicRegionData[plane][chunkX][chunkZ];
+                    if (regionId != -1) {
+                        @Pc(555) int regionX = regionId >>  REGION_X_SHIFT & REGION_X_MASK;
+                        @Pc(561) int regionZ = regionId >> REGION_Z_SHIFT & REGION_Z_MASK;
+                        @Pc(571) int packedRegionId = regionZ / MAP_SQUARE_SIZE + (regionX / MAP_SQUARE_SIZE << REGION_ID_SHIFT);
+                        @Pc(573) int regionIndex;
+                        for (regionIndex = 0; regionIndex < playerZ; regionIndex++) {
+                            if (packedRegionId == WorldLoader.regionBitPacked[regionIndex]) {
+                                packedRegionId = -1;
+                                break;
+                            }
+                        }
+                        if (packedRegionId != -1) {
+                            WorldLoader.regionBitPacked[playerZ] = packedRegionId;
+                            @Pc(609) int regionZUnpacked = packedRegionId & BYTE_MASK;
+                            regionIndex = packedRegionId >> REGION_ID_SHIFT & BYTE_MASK;
+                            WorldLoader.mapFileIds[playerZ] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { WorldLoader.m, JString.parseInt(regionIndex), WorldLoader.UNDERSCORE, JString.parseInt(regionZUnpacked) }));
+                            WorldLoader.locationsMapFileIds[playerZ] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { WorldLoader.l, JString.parseInt(regionIndex), WorldLoader.UNDERSCORE, JString.parseInt(regionZUnpacked) }));
+                            WorldLoader.underWaterMapFileIds[playerZ] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { LoginManager.um, JString.parseInt(regionIndex), WorldLoader.UNDERSCORE, JString.parseInt(regionZUnpacked) }));
+                            WorldLoader.underWaterLocationsMapFileIds[playerZ] = Client.js5Archive5.getGroupId(JString.concatenate(new JString[] { LoginManager.ul, JString.parseInt(regionIndex), WorldLoader.UNDERSCORE, JString.parseInt(regionZUnpacked) }));
+                            playerZ++;
+                        }
+                    }
+                }
+            }
+        }
+        WorldLoader.initializeMapRegion(baseChunkX, chunkSizeX, regionCount, baseChunkZ, false, playerPlane);
+    }
+
+    @OriginalMember(owner = "client!gk", name = "a", descriptor = "(IIBLclient!e;)V")
+    public static void readExtendedPlayerInfo(@OriginalArg(0) int flags, @OriginalArg(1) int playerId, @OriginalArg(3) Player player) {
+        @Pc(13) int chatFlags;
+        @Pc(17) int staffModLevel;
+        @Pc(24) int regionCount;
+        if ((flags & PLAYER_UPDATE_FLAG_CHAT) != 0) {
+
+            chatFlags = inboundBuffer.g2_al1();
+            staffModLevel = inboundBuffer.g1();
+            @Pc(21) int len = inboundBuffer.g1();
+            regionCount = inboundBuffer.offset;
+
+            @Pc(35) boolean quickChat = (chatFlags & QUICKCHAT_FLAG) != 0;
+
+            if (player.username != null && player.playerModel != null) {
+                @Pc(48) long encodedUsername = player.username.encode37();
+                @Pc(50) boolean ignored = false;
+                if (staffModLevel <= 1) {
+                    if (!quickChat && (LoginManager.playerUnderage && !LoginManager.parentalChatConsent || LoginManager.worldQuickChat)) {
+                        ignored = true;
+                    } else {
+                        for (@Pc(69) int i = 0; i < IgnoreList.ignoreCount; i++) {
+                            if (IgnoreList.encodedIgnores[i] == encodedUsername) {
+                                ignored = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (!ignored && Player.inTutorialIsland == 0) {
+                    CHAT_PACKET.offset = 0;
+                    inboundBuffer.gBytesRev(CHAT_PACKET.data, len);
+                    CHAT_PACKET.offset = 0;
+
+                    @Pc(106) int phraseId = -1;
+
+                    @Pc(127) JString message;
+                    if (quickChat) {
+                        @Pc(112) QuickChatPhrase quickChatPhrase = QuickChatPhraseType.method3568(CHAT_PACKET);
+                        chatFlags &= QUICKCHAT_FLAG_MASK;
+                        phraseId = quickChatPhrase.id;
+                        message = quickChatPhrase.type.decodeMessage(CHAT_PACKET);
+                    } else {
+                        message = Font.escape(formatChatMessage(CHAT_PACKET).encodeMessage());
+                    }
+                    player.chatMessage = message.trim();
+                    player.chatEffect = chatFlags & CHAT_EFFECT_MASK;
+                    player.chatLoops = CHAT_DURATION_LOOPS;
+                    player.chatColor = chatFlags >> CHAT_COLOR_SHIFT;
+                    if (staffModLevel == STAFF_MOD_LEVEL_JMOD) {
+                        ChatHistory.add(phraseId, quickChat ? CHAT_TYPE_QUICKCHAT : CHAT_TYPE_PUBLIC, message, null, JString.concatenate(new JString[] {IMG1, player.getUsername() }));
+                    } else if (staffModLevel == STAFF_MOD_LEVEL_PMOD) {
+                        ChatHistory.add(phraseId, quickChat ? CHAT_TYPE_QUICKCHAT : CHAT_TYPE_PUBLIC, message, null, JString.concatenate(new JString[] {IMG0, player.getUsername() }));
+                    } else {
+                        ChatHistory.add(phraseId, quickChat ? CHAT_TYPE_QUICKCHAT : CHAT_TYPE_NORMAL, message, null, player.getUsername());
+                    }
+                }
+            }
+            inboundBuffer.offset = regionCount + len;
+        }
+        if ((flags & PLAYER_UPDATE_FLAG_HIT_PRIMARY) != 0) {
+            chatFlags = inboundBuffer.gSmart1or2();
+            staffModLevel = inboundBuffer.g1_alt1();
+            player.hit(staffModLevel, Client.loop, chatFlags);
+            player.hitpointsBarVisibleUntil = Client.loop + HITPOINTS_BAR_DURATION;
+            player.hitpointsBar = inboundBuffer.g1_alt3();
+        }
+        if ((flags & PLAYER_UPDATE_FLAG_ANIM) != 0) {
+            chatFlags = inboundBuffer.g2();
+            if (chatFlags == INVALID_ID_U16) {
+                chatFlags = -1;
+            }
+            staffModLevel = inboundBuffer.g1();
+            Player.animate(staffModLevel, chatFlags, player);
+        }
+        if ((flags & PLAYER_UPDATE_FLAG_APPEARANCE) != 0) {
+            chatFlags = inboundBuffer.g1_alt1();
+            @Pc(309) byte[] appearanceData = new byte[chatFlags];
+            @Pc(314) Packet appearanceBuffer = new Packet(appearanceData);
+            inboundBuffer.gdata(chatFlags, appearanceData);
+            PlayerList.appearanceCache[playerId] = appearanceBuffer;
+            player.decodeAppearance(appearanceBuffer);
+        }
+        if ((flags & PLAYER_UPDATE_FLAG_FACE_ENTITY) != 0) {
+            player.faceEntity = inboundBuffer.g2_alt2();
+            if (player.faceEntity == INVALID_ID_U16) {
+                player.faceEntity = -1;
+            }
+        }
+        if ((flags & PLAYER_UPDATE_FLAG_FORCE_MOVE) != 0) {
+            player.anInt3380 = inboundBuffer.g1_alt2();
+            player.anInt3428 = inboundBuffer.g1();
+            player.anInt3416 = inboundBuffer.g1_alt1();
+            player.anInt3392 = inboundBuffer.g1();
+            player.anInt3395 = inboundBuffer.g2_al1() + Client.loop;
+            player.anInt3386 = inboundBuffer.g2_al1() + Client.loop;
+            player.anInt3431 = inboundBuffer.g1_alt2();
+            player.movementQueueSize = 1;
+            player.movementQueueSnapshot = 0;
+        }
+        if ((flags & PLAYER_UPDATE_FLAG_OVERHEAD_CHAT) != 0) {
+            player.chatMessage = inboundBuffer.gjstr();
+            if (player.chatMessage.charAt(0) == TILDE_CHAR) {
+                player.chatMessage = player.chatMessage.substring(1);
+                ChatHistory.addMessage(player.getUsername(), 2, player.chatMessage);
+            } else if (player == PlayerList.self) {
+                ChatHistory.addMessage(player.getUsername(), 2, player.chatMessage);
+            }
+            player.chatEffect = 0;
+            player.chatColor = 0;
+            player.chatLoops = CHAT_DURATION_LOOPS;
+        }
+        if ((flags & PLAYER_UPDATE_FLAG_HIT_SECONDARY) != 0) {
+            chatFlags = inboundBuffer.gSmart1or2();
+            staffModLevel = inboundBuffer.g1_alt3();
+            player.hit(staffModLevel, Client.loop, chatFlags);
+        }
+        if ((flags & PLAYER_UPDATE_FLAG_SPOTANIM) != 0) {
+            chatFlags = inboundBuffer.g1_alt2();
+            @Pc(502) int[] spotAnimIds = new int[chatFlags];
+            @Pc(505) int[] spotAnimSlots = new int[chatFlags];
+            @Pc(508) int[] spotAnimDelays = new int[chatFlags];
+            for (@Pc(510) int animIndex = 0; animIndex < chatFlags; animIndex++) {
+                @Pc(521) int spotAnimId = inboundBuffer.g2_al1();
+                if (spotAnimId == INVALID_ID_U16) {
+                    spotAnimId = -1;
+                }
+                spotAnimIds[animIndex] = spotAnimId;
+                spotAnimSlots[animIndex] = inboundBuffer.g1_alt1();
+                spotAnimDelays[animIndex] = inboundBuffer.g2();
+            }
+            Player.updateLayeredAnimations(spotAnimSlots, spotAnimIds, player, spotAnimDelays);
+        }
+        if ((flags & PLAYER_UPDATE_FLAG_SPOTANIM_EXTENDED) != 0) {
+            chatFlags = inboundBuffer.g2_al1();
+            if (chatFlags == INVALID_ID_U16) {
+                chatFlags = -1;
+            }
+            staffModLevel = inboundBuffer.p4rme();
+            @Pc(573) boolean shouldReplace = true;
+            if (chatFlags != -1 && player.spotAnimId != -1 && SeqTypeList.get(SpotAnimTypeList.get(chatFlags).seqId).priority < SeqTypeList.get(SpotAnimTypeList.get(player.spotAnimId).seqId).priority) {
+                shouldReplace = false;
+            }
+            if (shouldReplace) {
+                player.spotAnimStart = (staffModLevel & U16_MASK) + Client.loop;
+                player.anInt3361 = 0;
+                player.spotanimId = 0;
+                player.spotAnimId = chatFlags;
+                if (player.spotAnimStart > Client.loop) {
+                    player.spotanimId = -1;
+                }
+                player.spotAnimY = staffModLevel >> UPPER_WORD_SHIFT;
+                player.anInt3418 = 1;
+                if (player.spotAnimId != -1 && Client.loop == player.spotAnimStart) {
+                    regionCount = SpotAnimTypeList.get(player.spotAnimId).seqId;
+                    if (regionCount != -1) {
+                        @Pc(663) SeqType seqType = SeqTypeList.get(regionCount);
+                        if (seqType != null && seqType.frames != null) {
+                            SoundPlayer.playSeqSound(player.zFine, seqType, player.xFine, player == PlayerList.self, 0);
+                        }
+                    }
+                }
+            }
+        }
+        if ((flags & PLAYER_UPDATE_FLAG_FACE_COORD) != 0) {
+            player.faceX = inboundBuffer.g2();
+            player.faceY = inboundBuffer.g2_alt3();
+        }
+    }
+
+    @OriginalMember(owner = "client!fb", name = "b", descriptor = "(B)V")
+    public static void readPlayerInfoPacket() {
+        extendedCount = 0;
+        removedCount = 0;
+        readSelfPlayerInfo();
+        readPlayerInfo();
+        readNewPlayerInfo();
+        readExtendedPlayerInfo();
+        @Pc(23) int i;
+        for (i = 0; i < removedCount; i++) {
+            @Pc(30) int index = removedIds[i];
+            if (Client.loop != PlayerList.players[index].lastSeenLoop) {
+                if (PlayerList.players[index].soundRadius > 0) {
+                    AreaSoundManager.remove(PlayerList.players[index]);
+                }
+                PlayerList.players[index] = null;
+            }
+        }
+        if (packetSize != inboundBuffer.offset) {
+            throw new RuntimeException("gpp1 pos:" + inboundBuffer.offset + " psize:" + packetSize);
+        }
+        for (i = 0; i < PlayerList.playerCount; i++) {
+            if (PlayerList.players[PlayerList.playerIds[i]] == null) {
+                throw new RuntimeException("gpp2 pos:" + i + " size:" + PlayerList.playerCount);
+            }
+        }
+    }
+
+    @OriginalMember(owner = "client!bg", name = "a", descriptor = "(B)V")
+    public static void readSelfPlayerInfo() {
+        inboundBuffer.accessBits();
+        @Pc(11) int hasUpdate = inboundBuffer.gBit(1);
+        if (hasUpdate == 0) {
+            return;
+        }
+        @Pc(23) int updateType = inboundBuffer.gBit(2);
+        if (updateType == 0) {
+            extendedIds[extendedCount++] = LOCAL_PLAYER_INDEX;
+            return;
+        }
+        @Pc(54) int direction;
+        @Pc(64) int hasExtendedInfo;
+        if (updateType == 1) {
+            direction = inboundBuffer.gBit(3);
+            PlayerList.self.move(1, direction);
+            hasExtendedInfo = inboundBuffer.gBit(1);
+            if (hasExtendedInfo == 1) {
+                extendedIds[extendedCount++] = LOCAL_PLAYER_INDEX;
+            }
+        } else if (updateType == 2) {
+            if (inboundBuffer.gBit(1) == 1) {
+                direction = inboundBuffer.gBit(3);
+                PlayerList.self.move(2, direction);
+                hasExtendedInfo = inboundBuffer.gBit(3);
+                PlayerList.self.move(2, hasExtendedInfo);
+            } else {
+                direction = inboundBuffer.gBit(3);
+                PlayerList.self.move(0, direction);
+            }
+            direction = inboundBuffer.gBit(1);
+            if (direction == 1) {
+                extendedIds[extendedCount++] = LOCAL_PLAYER_INDEX;
+            }
+        } else if (updateType == 3) {
+            direction = inboundBuffer.gBit(PLAYER_COORD_BITS);
+            hasExtendedInfo = inboundBuffer.gBit(1);
+            Player.currentLevel = inboundBuffer.gBit(PLAYER_LEVEL_BITS);
+            @Pc(163) int needsExtendedUpdate = inboundBuffer.gBit(1);
+            if (needsExtendedUpdate == 1) {
+                extendedIds[extendedCount++] = LOCAL_PLAYER_INDEX;
+            }
+            @Pc(181) int coordZ = inboundBuffer.gBit(PLAYER_COORD_BITS);
+            PlayerList.self.teleport(coordZ, hasExtendedInfo == 1, direction);
+        }
+    }
+
+    @OriginalMember(owner = "runetek4.client!se", name = "a", descriptor = "(I)V")
+    public static void readNewPlayerInfo() {
+        while (true) {
+            if (inboundBuffer.bitsAvailable(packetSize) >= PLAYER_INFO_BITS_REQUIRED) {
+                @Pc(20) int index = inboundBuffer.gBit(PLAYER_INDEX_BITS);
+                if (index != LOCAL_PLAYER_INDEX) {
+                    @Pc(27) boolean isNewPlayer = false;
+                    if (PlayerList.players[index] == null) {
+                        PlayerList.players[index] = new Player();
+                        isNewPlayer = true;
+                        if (PlayerList.appearanceCache[index] != null) {
+                            PlayerList.players[index].decodeAppearance(PlayerList.appearanceCache[index]);
+                        }
+                    }
+                    PlayerList.playerIds[PlayerList.playerCount++] = index;
+                    @Pc(65) Player player = PlayerList.players[index];
+                    player.lastSeenLoop = Client.loop;
+                    @Pc(73) int hasExtendedInfo = inboundBuffer.gBit(1);
+                    if (hasExtendedInfo == 1) {
+                        extendedIds[extendedCount++] = index;
+                    }
+                    @Pc(92) int dx = inboundBuffer.gBit(PLAYER_DELTA_BITS);
+                    @Pc(99) int orientation = PathingEntity.ANGLES[inboundBuffer.gBit(PLAYER_ANGLE_BITS)];
+                    if (dx > PLAYER_DELTA_THRESHOLD) {
+                        dx -= PLAYER_DELTA_OFFSET;
+                    }
+                    if (isNewPlayer) {
+                        player.dstYaw = player.orientation = orientation;
+                    }
+                    @Pc(116) int jump = inboundBuffer.gBit(1);
+                    @Pc(121) int dz = inboundBuffer.gBit(PLAYER_DELTA_BITS);
+                    if (dz > PLAYER_DELTA_THRESHOLD) {
+                        dz -= PLAYER_DELTA_OFFSET;
+                    }
+                    player.teleport(dx + PlayerList.self.movementQueueX[0], jump == 1, PlayerList.self.movementQueueZ[0] + dz);
+                    continue;
+                }
+            }
+            inboundBuffer.accessBytes();
+            return;
+        }
+    }
+
+    @OriginalMember(owner = "runetek4.client!tm", name = "a", descriptor = "(I)V")
+    public static void readExtendedPlayerInfo() {
+        for (@Pc(7) int i = 0; i < extendedCount; i++) {
+            @Pc(31) int id = extendedIds[i];
+            @Pc(35) Player player = PlayerList.players[id];
+            @Pc(39) int flags = inboundBuffer.g1();
+            if ((flags & PLAYER_UPDATE_FLAG_EXTENDED) != 0) {
+                flags += inboundBuffer.g1() << REGION_ID_SHIFT;
+            }
+            readExtendedPlayerInfo(flags, id, player);
+        }
+    }
+
+    @OriginalMember(owner = "runetek4.client!ta", name = "a", descriptor = "(I)V")
+    public static void npcCombat() {
+        for (@Pc(3) int i = 0; i < extendedCount; i++) {
+            @Pc(10) int extendedId = extendedIds[i];
+            @Pc(14) Npc npc = NpcList.npcs[extendedId];
+            @Pc(18) int updateFlags = inboundBuffer.g1();
+            if ((updateFlags & NPC_UPDATE_FLAG_EXTENDED) != 0) {
+                updateFlags += inboundBuffer.g1() << REGION_ID_SHIFT;
+            }
+            @Pc(43) int value;
+            @Pc(47) int info;
+            if ((updateFlags & NPC_UPDATE_FLAG_HIT_PRIMARY) != 0) {
+                value = inboundBuffer.g1(); // Hit value
+                info = inboundBuffer.g1_alt2(); // Color
+                npc.hit(info, Client.loop, value);
+                npc.hitpointsBarVisibleUntil = Client.loop + HITPOINTS_BAR_DURATION;
+                npc.hitpointsBar = inboundBuffer.g1_alt3();
+            }
+            if ((updateFlags & NPC_UPDATE_FLAG_HIT_SECONDARY) != 0) {
+                value = inboundBuffer.g1_alt2(); // Hit value
+                info = inboundBuffer.g1_alt3(); // Color
+                npc.hit(info, Client.loop, value);
+            }
+            if ((updateFlags & NPC_UPDATE_FLAG_ANIM) != 0) {
+                value = inboundBuffer.g2(); // Animation ID
+                info = inboundBuffer.g1(); // Sequence
+                if (value == INVALID_ID_U16) {
+                    value = -1;
+                }
+                animateNpc(info, value, npc);
+            }
+            if ((updateFlags & NPC_UPDATE_FLAG_FACE_ENTITY) != 0) {
+                npc.faceEntity = inboundBuffer.g2_alt2();
+                if (npc.faceEntity == INVALID_ID_U16) {
+                    npc.faceEntity = -1;
+                }
+            }
+            if ((updateFlags & NPC_UPDATE_FLAG_SPOTANIM) != 0) {
+                value = inboundBuffer.g2_alt2();
+                if (value == INVALID_ID_U16) {
+                    value = -1;
+                }
+                info = inboundBuffer.g4me();
+                @Pc(147) boolean shouldReplace = true;
+                if (value != -1 && npc.spotAnimId != -1 && SeqTypeList.get(SpotAnimTypeList.get(value).seqId).priority < SeqTypeList.get(SpotAnimTypeList.get(npc.spotAnimId).seqId).priority) {
+                    shouldReplace = false;
+                }
+                if (shouldReplace) {
+                    npc.spotAnimId = value;
+                    npc.spotAnimStart = (info & U16_MASK) + Client.loop;
+                    npc.anInt3361 = 0;
+                    npc.spotanimId = 0;
+                    npc.spotAnimY = info >> UPPER_WORD_SHIFT;
+                    npc.anInt3418 = 1;
+                    if (npc.spotAnimStart > Client.loop) {
+                        npc.spotanimId = -1;
+                    }
+                    if (npc.spotAnimId != -1 && npc.spotAnimStart == Client.loop) {
+                        @Pc(227) int seqId = SpotAnimTypeList.get(npc.spotAnimId).seqId;
+                        if (seqId != -1) {
+                            @Pc(236) SeqType seqType = SeqTypeList.get(seqId);
+                            if (seqType != null && seqType.frames != null) {
+                                SoundPlayer.playSeqSound(npc.zFine, seqType, npc.xFine, false, 0);
+                            }
+                        }
+                    }
+                }
+            }
+            if ((updateFlags & NPC_UPDATE_FLAG_TRANSFORM) != 0) {
+                if (npc.type.hasAreaSound()) {
+                    AreaSoundManager.remove(npc);
+                }
+                npc.setNpcType(NpcTypeList.get(inboundBuffer.g2_al1()));
+                npc.setSize(npc.type.size);
+                npc.anInt3365 = npc.type.nas;
+                if (npc.type.hasAreaSound()) {
+                    AreaSoundManager.add(npc.movementQueueZ[0], null, 0, npc, npc.movementQueueX[0], Player.currentLevel, null);
+                }
+            }
+            if ((updateFlags & NPC_UPDATE_FLAG_OVERHEAD_CHAT) != 0) {
+                npc.chatMessage = inboundBuffer.gjstr();
+                npc.chatLoops = NPC_CHAT_DURATION_LOOPS;
+            }
+            if ((updateFlags & NPC_UPDATE_FLAG_LAYERED_ANIM) != 0) {
+                value = inboundBuffer.g1_alt2();
+                @Pc(331) int[] animIds = new int[value];
+                @Pc(334) int[] animSlots = new int[value];
+                @Pc(337) int[] animDelays = new int[value];
+                for (@Pc(339) int animIndex = 0; animIndex < value; animIndex++) {
+                    @Pc(350) int animId = inboundBuffer.g2_al1();
+                    if (animId == INVALID_ID_U16) {
+                        animId = -1;
+                    }
+                    animIds[animIndex] = animId;
+                    animSlots[animIndex] = inboundBuffer.g1_alt3();
+                    animDelays[animIndex] = inboundBuffer.g2();
+                }
+                updateNpcLayeredAnimations(animDelays, npc, animSlots, animIds);
+            }
+            if ((updateFlags & NPC_UPDATE_FLAG_FACE_COORD) != 0) {
+                npc.faceX = inboundBuffer.g2_alt2();
+                npc.faceY = inboundBuffer.g2();
+            }
+        }
+    }
+
+    @OriginalMember(owner = "runetek4.client!wj", name = "a", descriptor = "(I)V")
+    public static void loadAreaNPCs() {
+        while (true) {
+            if (inboundBuffer.bitsAvailable(packetSize) >= NPC_INFO_BITS_REQUIRED) {
+                @Pc(14) int npcIndex = inboundBuffer.gBit(NPC_INDEX_BITS);
+                if (npcIndex != NPC_END_MARKER) {
+                    @Pc(19) boolean isNewNpc = false;
+                    if (NpcList.npcs[npcIndex] == null) {
+                        isNewNpc = true;
+                        NpcList.npcs[npcIndex] = new Npc();
+                    }
+                    @Pc(37) Npc npc = NpcList.npcs[npcIndex];
+                    NpcList.npcIds[NpcList.npcCount++] = npcIndex;
+                    npc.lastSeenLoop = Client.loop;
+                    if (npc.type != null && npc.type.hasAreaSound()) {
+                        AreaSoundManager.remove(npc);
+                    }
+                    @Pc(66) int jump = inboundBuffer.gBit(1);
+                    @Pc(73) int angle = PathingEntity.ANGLES[inboundBuffer.gBit(NPC_ANGLE_BITS)];
+                    if (isNewNpc) {
+                        npc.dstYaw = npc.orientation = angle;
+                    }
+                    @Pc(86) int hasExtendedInfo = inboundBuffer.gBit(1);
+                    if (hasExtendedInfo == 1) {
+                        extendedIds[extendedCount++] = npcIndex;
+                    }
+                    @Pc(105) int deltaZ = inboundBuffer.gBit(5);
+                    npc.setNpcType(NpcTypeList.get(inboundBuffer.gBit(NPC_TYPE_BITS)));
+                    if (deltaZ > NPC_DELTA_THRESHOLD) {
+                        deltaZ -= NPC_DELTA_OFFSET;
+                    }
+                    @Pc(124) int deltaX = inboundBuffer.gBit(NPC_DELTA_BITS);
+                    if (deltaX > NPC_DELTA_THRESHOLD) {
+                        deltaX -= NPC_DELTA_OFFSET;
+                    }
+                    npc.setSize(npc.type.size);
+                    npc.anInt3365 = npc.type.nas;
+                    npc.anInt3376 = npc.type.turnspeed;
+                    if (npc.anInt3376 == 0) {
+                        npc.orientation = 0;
+                    }
+                    npc.teleport(npc.getSize(), PlayerList.self.movementQueueX[0] + deltaX, deltaZ + PlayerList.self.movementQueueZ[0], jump == 1);
+                    if (npc.type.hasAreaSound()) {
+                        AreaSoundManager.add(npc.movementQueueZ[0], null, 0, npc, npc.movementQueueX[0], Player.currentLevel, null);
+                    }
+                    continue;
+                }
+            }
+            inboundBuffer.accessBytes();
+            return;
+        }
+    }
+
+    @OriginalMember(owner = "client!fk", name = "c", descriptor = "(I)V")
+    public static void transmitVerifyId() {
+        outboundBuffer.pIsaac1(TRANSMITVAR_VERIFYID);
+        outboundBuffer.p2(verifyId);
+    }
+
+    @OriginalMember(owner = "runetek4.client!wc", name = "a", descriptor = "(Lclient!wa;I)V")
+    public static void writeRandom(@OriginalArg(0) Packet buffer) {
+        if (Client.uid != null) {
+            try {
+                Client.uid.seek(0L);
+                Client.uid.write(buffer.data, buffer.offset, RANDOM_DATA_SIZE);
+            } catch (@Pc(16) Exception ignored) {
+            }
+        }
+        buffer.offset += RANDOM_DATA_SIZE;
+    }
+
+    @OriginalMember(owner = "client!fc", name = "a", descriptor = "(Lclient!wa;I)Lclient!na;")
+    public static JString formatChatMessage(@OriginalArg(0) Packet buffer) {
+        return WordPack.decode(buffer);
+    }
+
+    @OriginalMember(owner = "runetek4.client!mi", name = "a", descriptor = "([IBLclient!km;[I[I)V")
+    public static void updateNpcLayeredAnimations(@OriginalArg(0) int[] slotMasks, @OriginalArg(2) Npc npc, @OriginalArg(3) int[] delays, @OriginalArg(4) int[] animIds) {
+        for (@Pc(3) int animIndex = 0; animIndex < animIds.length; animIndex++) {
+            @Pc(15) int animId = animIds[animIndex];
+            @Pc(19) int slotMask = slotMasks[animIndex];
+            @Pc(23) int delay = delays[animIndex];
+            for (@Pc(25) int slotIndex = 0; slotMask != 0 && npc.layeredAnimations.length > slotIndex; slotIndex++) {
+                if ((slotMask & BIT_SHIFT_1) != 0) {
+                    if (animId == -1) {
+                        npc.layeredAnimations[slotIndex] = null;
+                    } else {
+                        @Pc(60) SeqType seqType = SeqTypeList.get(animId);
+                        @Pc(65) PathingEntityAnimation animation = npc.layeredAnimations[slotIndex];
+                        @Pc(68) int exactMove = seqType.exactmove;
+                        if (animation != null) {
+                            if (animId == animation.sequenceId) {
+                                if (exactMove == EXACTMOVE_RESTART) {
+                                    animation = npc.layeredAnimations[slotIndex] = null;
+                                } else if (exactMove == EXACTMOVE_RESET) {
+                                    animation.frameIndex = 0;
+                                    animation.frameTime = 0;
+                                    animation.direction = 1;
+                                    animation.loopCount = 0;
+                                    animation.delay = delay;
+                                    SoundPlayer.playSeqSound(npc.zFine, seqType, npc.xFine, false, 0);
+                                } else if (exactMove == EXACTMOVE_CONTINUE) {
+                                    animation.frameTime = 0;
+                                }
+                            } else if (seqType.priority >= SeqTypeList.get(animation.sequenceId).priority) {
+                                animation = npc.layeredAnimations[slotIndex] = null;
+                            }
+                        }
+                        if (animation == null) {
+                            animation = npc.layeredAnimations[slotIndex] = new PathingEntityAnimation();
+                            animation.direction = 1;
+                            animation.loopCount = 0;
+                            animation.delay = delay;
+                            animation.sequenceId = animId;
+                            animation.frameTime = 0;
+                            animation.frameIndex = 0;
+                            SoundPlayer.playSeqSound(npc.zFine, seqType, npc.xFine, false, 0);
+                        }
+                    }
+                }
+                slotMask >>>= BIT_SHIFT_1;
+            }
+        }
+    }
+
+    @OriginalMember(owner = "runetek4.client!sc", name = "a", descriptor = "(IIILclient!km;)V")
+    public static void animateNpc(@OriginalArg(0) int delay, @OriginalArg(1) int animationId, @OriginalArg(3) Npc npc) {
+        if (npc.primarySeqId == animationId && animationId != -1) {
+            @Pc(10) SeqType seqType = SeqTypeList.get(animationId);
+            @Pc(13) int exactMove = seqType.exactmove;
+            if (exactMove == EXACTMOVE_RESET) {
+                npc.animationDirection = 1;
+                npc.animationFrameDelay = 0;
+                npc.animationFrame = 0;
+                npc.animationLoopCounter = 0;
+                npc.animationDelay = delay;
+                SoundPlayer.playSeqSound(npc.zFine, seqType, npc.xFine, false, npc.animationFrameDelay);
+            }
+            if (exactMove == EXACTMOVE_CONTINUE) {
+                npc.animationLoopCounter = 0;
+            }
+        } else if (animationId == -1 || npc.primarySeqId == -1 || SeqTypeList.get(animationId).priority >= SeqTypeList.get(npc.primarySeqId).priority) {
+            npc.animationFrame = 0;
+            npc.primarySeqId = animationId;
+            npc.animationDirection = 1;
+            npc.animationLoopCounter = 0;
+            npc.animationDelay = delay;
+            npc.movementQueueSnapshot = npc.movementQueueSize;
+            npc.animationFrameDelay = 0;
+            if (npc.primarySeqId != -1) {
+                SoundPlayer.playSeqSound(npc.zFine, SeqTypeList.get(npc.primarySeqId), npc.xFine, false, npc.animationFrameDelay);
+            }
+        }
+    }
+
+    @OriginalMember(owner = "client!dh", name = "a", descriptor = "(IIII)Lclient!wk;")
+    public static SubInterface openSubInterface(@OriginalArg(1) int interfaceId, @OriginalArg(2) int windowId, @OriginalArg(3) int modalType) {
+        @Pc(9) SubInterface subInterface = new SubInterface();
+        subInterface.modalType = modalType;
+        subInterface.interfaceId = interfaceId;
+        InterfaceManager.subInterfaces.put(subInterface, windowId);
+        InterfaceManager.resetComponentAnimations(interfaceId);
+        @Pc(28) Component component = InterfaceList.list(windowId);
+        if (component != null) {
+            InterfaceManager.redraw(component);
+        }
+        if (ClientScriptRunner.modalBackgroundComponent != null) {
+            InterfaceManager.redraw(ClientScriptRunner.modalBackgroundComponent);
+            ClientScriptRunner.modalBackgroundComponent = null;
+        }
+        @Pc(45) int initialMenuSize = MiniMenu.menuActionRow;
+        @Pc(53) int menuIndex;
+        for (menuIndex = 0; menuIndex < initialMenuSize; menuIndex++) {
+            if (InterfaceManager.shouldRemoveMenuAction(InterfaceManager.actions[menuIndex])) {
+                MiniMenu.removeActionRow(menuIndex);
+            }
+        }
+        if (MiniMenu.menuActionRow == MOUSE_BUTTON_LEFT) {
+            MiniMenu.open = false;
+            InterfaceManager.redrawScreen(InterfaceManager.menuX, InterfaceManager.menuWidth, InterfaceManager.menuY, InterfaceManager.menuHeight);
+        } else {
+            InterfaceManager.redrawScreen(InterfaceManager.menuX, InterfaceManager.menuWidth, InterfaceManager.menuY, InterfaceManager.menuHeight);
+            menuIndex = Fonts.b12Full.getStringWidth(LocalizedText.CHOOSE_OPTION);
+            for (@Pc(95) int menu_index = 0; menu_index < MiniMenu.menuActionRow; menu_index++) {
+                @Pc(104) int optionWidth = Fonts.b12Full.getStringWidth(MiniMenu.getOp(menu_index));
+                if (optionWidth > menuIndex) {
+                    menuIndex = optionWidth;
+                }
+            }
+            InterfaceManager.menuWidth = menuIndex + MENU_WIDTH_PADDING;
+            InterfaceManager.menuHeight = MiniMenu.menuActionRow * MENU_OPTION_ROW_HEIGHT + (InterfaceManager.hasScrollbar ? MENU_HEIGHT_WITH_SCROLLBAR : MENU_HEIGHT_NO_SCROLLBAR);
+        }
+        if (component != null) {
+            InterfaceManager.calculateLayerDimensions(component, false);
+        }
+        ClientScriptRunner.runHooks(interfaceId);
+        if (InterfaceManager.topLevelInterface != -1) {
+            InterfaceManager.runScripts(1, InterfaceManager.topLevelInterface);
+        }
+        return subInterface;
+    }
+
+    @OriginalMember(owner = "client!ah", name = "b", descriptor = "(I)V")
+    public static void handleMenuClick() {
+        if (InterfaceManager.clickedInventoryComponent != null || InterfaceManager.dragSource != null) {
+            return;
+        }
+        @Pc(20) int clickButton = Mouse.clickButton;
+        @Pc(93) int componentSlot;
+        @Pc(99) int componentId;
+        if (!MiniMenu.open) {
+            if (clickButton == 1 && MiniMenu.menuActionRow > 0) {
+                @Pc(37) short actionType = InterfaceManager.actions[MiniMenu.menuActionRow - 1];
+                if (actionType == MENU_ACTION_EXAMINE_ITEM || actionType == MENU_ACTION_ITEM_OPT_1 || actionType == MENU_ACTION_ITEM_OPT_2 || actionType == MENU_ACTION_ITEM_OPT_3 || actionType == MENU_ACTION_ITEM_OPT_4 || actionType == MENU_ACTION_ITEM_OPT_5 || actionType == MENU_ACTION_USE_ITEM || actionType == MENU_ACTION_43 || actionType == MENU_ACTION_35 || actionType == MENU_ACTION_58 || actionType == MENU_ACTION_CANCEL || actionType == MENU_ACTION_CONTINUE) {
+                    componentSlot = InterfaceManager.intArgs1[MiniMenu.menuActionRow - 1];
+                    componentId = InterfaceManager.intArgs2[MiniMenu.menuActionRow - 1];
+                    @Pc(103) Component component = InterfaceList.list(componentId);
+                    @Pc(106) ServerActiveProperties activeProperties = InterfaceManager.getServerActiveProperties(component);
+                    if (activeProperties.isObjSwapEnabled() || activeProperties.isObjReplaceEnabled()) {
+                        InterfaceManager.lastItemDragTime = 0;
+                        InterfaceManager.draggingClickedInventoryObject = false;
+                        if (InterfaceManager.clickedInventoryComponent != null) {
+                            InterfaceManager.redraw(InterfaceManager.clickedInventoryComponent);
+                        }
+                        InterfaceManager.clickedInventoryComponent = InterfaceList.list(componentId);
+                        InterfaceManager.clickedInventoryComponentX = Mouse.clickX;
+                        InterfaceManager.clickedInventoryComponentY = Mouse.clickY;
+                        InterfaceManager.selectedInventorySlot = componentSlot;
+                        InterfaceManager.redraw(InterfaceManager.clickedInventoryComponent);
+                        return;
+                    }
+                }
+            }
+            if (clickButton == MOUSE_BUTTON_LEFT && (VarpDomain.oneMouseButton == 1 && MiniMenu.menuActionRow > 2 || MiniMenu.isComponentAction(MiniMenu.menuActionRow - 1))) {
+                clickButton = MOUSE_BUTTON_RIGHT;
+            }
+            if (clickButton == MOUSE_BUTTON_RIGHT && MiniMenu.menuActionRow > 0 || MiniMenu.menuState == MENU_STATE_OPEN) {
+                ClientScriptRunner.determineMenuSize();
+            }
+            if (clickButton == MOUSE_BUTTON_LEFT && MiniMenu.menuActionRow > 0 || MiniMenu.menuState == MENU_STATE_EXECUTE) {
+                MiniMenu.processMenuActions();
+            }
+            return;
+        }
+        @Pc(204) int menuX;
+        if (clickButton != MOUSE_BUTTON_LEFT) {
+            componentSlot = Mouse.lastMouseY;
+            menuX = Mouse.lastMouseX;
+            if (menuX < InterfaceManager.menuX - MENU_BOUNDS_PADDING || menuX > InterfaceManager.menuWidth + InterfaceManager.menuX + MENU_BOUNDS_PADDING || InterfaceManager.menuY - MENU_BOUNDS_PADDING > componentSlot || componentSlot > InterfaceManager.menuHeight + InterfaceManager.menuY + MENU_BOUNDS_PADDING) {
+                MiniMenu.open = false;
+                InterfaceManager.redrawScreen(InterfaceManager.menuX, InterfaceManager.menuWidth, InterfaceManager.menuY, InterfaceManager.menuHeight);
+            }
+        }
+        if (clickButton != MOUSE_BUTTON_LEFT) {
+            return;
+        }
+        menuX = InterfaceManager.menuX;
+        componentSlot = InterfaceManager.menuY;
+        componentId = InterfaceManager.menuWidth;
+        @Pc(265) int mouseClickX = Mouse.clickX;
+        @Pc(267) int mouseClickY = Mouse.clickY;
+        @Pc(269) int selectedRow = -1;
+        for (@Pc(271) int rowIndex = 0; rowIndex < MiniMenu.menuActionRow; rowIndex++) {
+            @Pc(289) int rowYPosition;
+            if (InterfaceManager.hasScrollbar) {
+                rowYPosition = (MiniMenu.menuActionRow - rowIndex - 1) * MENU_OPTION_ROW_HEIGHT + componentSlot + MENU_Y_OFFSET_SCROLLBAR;
+            } else {
+                rowYPosition = (MiniMenu.menuActionRow - rowIndex - 1) * MENU_OPTION_ROW_HEIGHT + componentSlot + MENU_Y_OFFSET_NO_SCROLLBAR;
+            }
+            if (mouseClickX > menuX && menuX + componentId > mouseClickX && rowYPosition - MENU_HIT_AREA_TOP < mouseClickY && rowYPosition + MENU_HIT_AREA_BOTTOM > mouseClickY) {
+                selectedRow = rowIndex;
+            }
+        }
+        if (selectedRow != -1) {
+            MiniMenu.doAction(selectedRow);
+        }
+        MiniMenu.open = false;
+        InterfaceManager.redrawScreen(InterfaceManager.menuX, InterfaceManager.menuWidth, InterfaceManager.menuY, InterfaceManager.menuHeight);
+    }
+}

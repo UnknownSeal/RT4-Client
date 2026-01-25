@@ -1,0 +1,146 @@
+package com.jagex.game.runetek4.config.objtype;
+
+import com.jagex.core.utils.string.JString;
+import com.jagex.core.utils.string.LocalizedText;
+import com.jagex.graphics.font.SoftwareFont;
+import com.jagex.core.io.Packet;
+import com.jagex.js5.Js5;
+import com.jagex.core.node.SoftLruHashTable;
+import org.openrs2.deob.annotation.OriginalArg;
+import org.openrs2.deob.annotation.OriginalMember;
+import org.openrs2.deob.annotation.Pc;
+
+public final class ObjTypeList {
+
+	@OriginalMember(owner = "client!jd", name = "c", descriptor = "Lclient!n;")
+	public static final SoftLruHashTable objectSpriteCache = new SoftLruHashTable(100);
+
+	@OriginalMember(owner = "client!tl", name = "c", descriptor = "Lclient!n;")
+	public static final SoftLruHashTable models = new SoftLruHashTable(50);
+
+	@OriginalMember(owner = "client!cb", name = "Y", descriptor = "Lclient!n;")
+	public static final SoftLruHashTable types = new SoftLruHashTable(64);
+
+	@OriginalMember(owner = "client!nh", name = "eb", descriptor = "I")
+	public static int capacity;
+
+	@OriginalMember(owner = "client!fk", name = "j", descriptor = "[[I")
+	public static int[][] anIntArrayArray10;
+
+	@OriginalMember(owner = "client!um", name = "U", descriptor = "Lclient!dd;")
+	public static SoftwareFont font;
+
+	@OriginalMember(owner = "client!sj", name = "r", descriptor = "Lclient!ve;")
+	public static Js5 modelArchive;
+
+	@OriginalMember(owner = "client!tg", name = "f", descriptor = "Z")
+	public static boolean allowMembers;
+
+	@OriginalMember(owner = "client!wa", name = "X", descriptor = "[Lclient!na;")
+	public static JString[] defaultOps = null;
+
+	@OriginalMember(owner = "client!ld", name = "g", descriptor = "[Lclient!na;")
+	public static JString[] defaultIops = null;
+
+	@OriginalMember(owner = "client!nd", name = "n", descriptor = "Lclient!ve;")
+	public static Js5 archive;
+
+	@OriginalMember(owner = "client!fk", name = "a", descriptor = "(IB)Lclient!h;")
+    public static ObjType get(@OriginalArg(0) int id) {
+		// Get from memory cache, if present
+        @Pc(6) ObjType objType = (ObjType) types.get(id);
+        if (objType != null) {
+            return objType;
+        }
+
+		// Otherwise, load from file cache
+        @Pc(25) byte[] bytes = archive.getfile(getGroupId(id), getFileId(id));
+        objType = new ObjType();
+        objType.id = id;
+        if (bytes != null) {
+            objType.decode(new Packet(bytes));
+        }
+        objType.postDecode();
+
+        if (objType.certTemplate != -1) {
+            objType.generateCertificate(get(objType.certTemplate), get(objType.certLink));
+        }
+        if (objType.lentTemplate != -1) {
+            objType.generateLent(get(objType.lentTemplate), get(objType.lentLink));
+        }
+
+		// Override object with "Members Item" template if needed
+        if (!allowMembers && objType.members) {
+            objType.name = LocalizedText.MEMBERS_OBJECT;
+            objType.team = 0;
+            objType.iop = defaultIops;
+            objType.stockMarket = false;
+            objType.op = defaultOps;
+        }
+
+		// Persist to memory cache for later use
+        types.put(objType, id);
+        return objType;
+    }
+
+	@OriginalMember(owner = "client!th", name = "a", descriptor = "(ZBLclient!ve;Lclient!dd;Lclient!ve;)V")
+	public static void init(@OriginalArg(2) Js5 arg0, @OriginalArg(3) SoftwareFont arg1, @OriginalArg(4) Js5 arg2) {
+		allowMembers = true;
+		modelArchive = arg2;
+		archive = arg0;
+		@Pc(23) int local23 = archive.capacity() - 1;
+		capacity = archive.getGroupCapacity(local23) + local23 * 256;
+		defaultIops = new JString[] { null, null, null, null, LocalizedText.DROP};
+		defaultOps = new JString[] { null, null, LocalizedText.TAKE, null, null };
+		font = arg1;
+	}
+
+	@OriginalMember(owner = "client!i", name = "r", descriptor = "(I)V")
+	public static void removeSoft() {
+		types.removeSoft();
+		models.removeSoft();
+		objectSpriteCache.removeSoft();
+	}
+
+	@OriginalMember(owner = "client!ob", name = "a", descriptor = "(B)V")
+	public static void clear() {
+		types.clean();
+		models.clean();
+		objectSpriteCache.clean();
+	}
+
+	@OriginalMember(owner = "client!pf", name = "c", descriptor = "(II)V")
+	public static void clean() {
+		types.clean(5);
+		models.clean(5);
+		objectSpriteCache.clean(5);
+	}
+
+	@OriginalMember(owner = "client!al", name = "a", descriptor = "(ZI)V")
+	public static void setAllowMembers(@OriginalArg(0) boolean arg0) {
+		if (arg0 != allowMembers) {
+			allowMembers = arg0;
+			clear();
+		}
+	}
+
+	@OriginalMember(owner = "client!rc", name = "a", descriptor = "(Z)V")
+	public static void clearModels() {
+		models.clean();
+	}
+
+	@OriginalMember(owner = "client!wa", name = "e", descriptor = "(B)V")
+	public static void clearSprites() {
+		objectSpriteCache.clean();
+	}
+
+	@OriginalMember(owner = "client!ub", name = "a", descriptor = "(IB)I")
+	public static int getFileId(@OriginalArg(0) int arg0) {
+		return arg0 & 0xFF;
+	}
+
+	@OriginalMember(owner = "client!bh", name = "a", descriptor = "(IB)I")
+	public static int getGroupId(@OriginalArg(0) int arg0) {
+		return arg0 >>> 8;
+	}
+}

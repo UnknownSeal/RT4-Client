@@ -1,0 +1,7 @@
+package com.jagex.ui.component;
+
+import org.openrs2.deob.annotation.OriginalClass;
+
+@OriginalClass("runetek4.client!oa")
+public interface ComponentString {
+}
