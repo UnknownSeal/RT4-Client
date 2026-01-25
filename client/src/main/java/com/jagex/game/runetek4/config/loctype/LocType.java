@@ -357,11 +357,11 @@ public final class LocType {
 		} else if (opcode == 69) {
 			this.blocksides = packet.g1();
 		} else if (opcode == 70) {
-			this.xoff = packet.g2s();
+			this.xoff = packet.g2b();
 		} else if (opcode == 71) {
-			this.yoff = packet.g2s();
+			this.yoff = packet.g2b();
 		} else if (opcode == 72) {
-			this.zoff = packet.g2s();
+			this.zoff = packet.g2b();
 		} else if (opcode == 73) {
 			this.forcedecor = true;
 		} else if (opcode == 74) {

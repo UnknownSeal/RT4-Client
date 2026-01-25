@@ -23,7 +23,7 @@ public class WordPack {
     public static int encode(@OriginalArg(1) Packet packet, @OriginalArg(2) JString word) {
         @Pc(6) int posBefore = packet.offset;
         @Pc(14) byte[] encoded = word.encode();
-        packet.pSmart1or2(encoded.length);
+        packet.psmart(encoded.length);
         packet.offset += huffman.encode(encoded.length, packet.data, encoded, 0, packet.offset);
         return packet.offset - posBefore;
     }

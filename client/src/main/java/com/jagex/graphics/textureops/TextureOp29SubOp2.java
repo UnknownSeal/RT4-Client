@@ -302,7 +302,7 @@ public final class TextureOp29SubOp2 extends TextureOp29SubOp {
 
 	@OriginalMember(owner = "runetek4.client!kl", name = "a", descriptor = "(Lclient!wa;B)Lclient!kc;")
 	public static TextureOp29SubOp2 method2664(@OriginalArg(0) Packet arg0) {
-		return new TextureOp29SubOp2(arg0.g2s(), arg0.g2s(), arg0.g2s(), arg0.g2s(), arg0.g3(), arg0.g3(), arg0.g1());
+		return new TextureOp29SubOp2(arg0.g2b(), arg0.g2b(), arg0.g2b(), arg0.g2b(), arg0.g3(), arg0.g3(), arg0.g1());
 	}
 
 	@OriginalMember(owner = "runetek4.client!ma", name = "a", descriptor = "(IIBIIII)V")

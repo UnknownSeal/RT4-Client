@@ -149,7 +149,7 @@ public final class BasType {
 				 * 4 - Translate Y
 				 * 5 - Translate Z
 				 */
-				this.modelRotateTranslate[bodyId][type] = packet.g2s();
+				this.modelRotateTranslate[bodyId][type] = packet.g2b();
 			}
 		} else if (opcode == 29) {
 			this.yawAcceleration = packet.g1();
@@ -160,13 +160,13 @@ public final class BasType {
 		} else if (opcode == 32) {
 			this.rollMaxSpeed = packet.g2();
 		} else if (opcode == 33) {
-			this.rollTargetAngle = packet.g2s();
+			this.rollTargetAngle = packet.g2b();
 		} else if (opcode == 34) {
 			this.pitchAcceleration = packet.g1();
 		} else if (opcode == 35) {
 			this.pitchMaxSpeed = packet.g2();
 		} else if (opcode == 36) {
-			this.pitchTargetAngle = packet.g2s();
+			this.pitchTargetAngle = packet.g2b();
 		} else if (opcode == 37) {
 			this.movementAcceleration = packet.g1();
 		} else if (opcode == 38) {

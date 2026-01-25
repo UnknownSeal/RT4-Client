@@ -46,7 +46,7 @@ public final class TextureOpHslAdjust extends TextureOp {
 	@Override
 	public final void decode(@OriginalArg(1) Packet packet, @OriginalArg(0) int code) {
 		if (code == 0) {
-			this.anInt2546 = packet.g2s();
+			this.anInt2546 = packet.g2b();
 		} else if (code == 1) {
 			this.anInt2549 = (packet.g1s() << 12) / 100;
 		} else if (code == 2) {

@@ -188,7 +188,7 @@ public final class ReflectionCheck extends Node {
 					buffer.p1(reflectionCheck.errorCodes[j]);
 				}
 			}
-			buffer.pCrc32(checkIndex);
+			buffer.putcrc(checkIndex);
 			buffer.p1len(buffer.offset - checkIndex);
 			reflectionCheck.unlink();
 		}

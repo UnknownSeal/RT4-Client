@@ -159,7 +159,7 @@ public class MiniMenu {
     public static final int LOC_ACTION_3 = 49;
     public static final int LOC_ACTION_4 = 46;
     public static final int LOC_ACTION_5 = 1001;
-    public static final int LOC_ACTION_EXAMINE = 1004;
+    public static final int LOC_ACTION_6 = 1004;
     /* Components */
     public static final int COMPONENT_ACTION_CLOSE = 28;
     public static final int COMPONENT_OBJSTACK_ACTION = 39;
@@ -720,7 +720,7 @@ public class MiniMenu {
             Protocol.outboundBuffer.pIsaac1(ClientProt.OPOBJ_EQUIP);
             Protocol.outboundBuffer.p2_alt1(keyInt);
             Protocol.outboundBuffer.p2_alt2(param1);
-            Protocol.outboundBuffer.p4rme(param2);
+            Protocol.outboundBuffer.p4_alt2(param2);
             inventoryPressTimer = 0;
             pressedInventoryComponent = InterfaceList.list(param2);
             anInt5444 = param1;
@@ -740,8 +740,8 @@ public class MiniMenu {
             Crosshair.y = Mouse.clickY;
             Protocol.outboundBuffer.pIsaac1(ClientProt.OPOBJ2);
             Protocol.outboundBuffer.p2(keyInt);
-            Protocol.outboundBuffer.p2_alt1(Camera.sceneBaseTileX + param1);
-            Protocol.outboundBuffer.p2_alt3(Camera.sceneBaseTileZ + param2);
+            Protocol.outboundBuffer.p2_alt1(param1 + Camera.sceneBaseTileX);
+            Protocol.outboundBuffer.p2_alt3(param2 + Camera.sceneBaseTileZ);
         }
         if (actionCode == NPC_ACTION_3) {
             npc = NpcList.npcs[keyInt];
@@ -831,7 +831,7 @@ public class MiniMenu {
             Protocol.outboundBuffer.pIsaac1(ClientProt.OPOBJ1);
             Protocol.outboundBuffer.p2_alt2(param1);
             Protocol.outboundBuffer.p2(keyInt);
-            Protocol.outboundBuffer.p4rme(param2);
+            Protocol.outboundBuffer.p4_alt2(param2);
             inventoryPressTimer = 0;
             pressedInventoryComponent = InterfaceList.list(param2);
             anInt5444 = param1;
@@ -900,13 +900,13 @@ public class MiniMenu {
             Protocol.outboundBuffer.p2_alt1(InterfaceManager.anInt4370);
             Protocol.outboundBuffer.p2_alt1(anInt4997);
             Protocol.outboundBuffer.p2_alt1(keyInt);
-            Protocol.outboundBuffer.p2_alt3(Camera.sceneBaseTileZ + param2);
+            Protocol.outboundBuffer.p2_alt3(param2 + Camera.sceneBaseTileZ);
             Protocol.outboundBuffer.p4_alt3(MiniMap.anInt5062);
         }
-        if (actionCode == LOC_ACTION_EXAMINE) {
+        if (actionCode == LOC_ACTION_6) {
             Crosshair.CrosshairCycle = 0;
-            Crosshair.x = Mouse.clickX;
             Crosshair.CrosshairMode = 2;
+            Crosshair.x = Mouse.clickX;
             Crosshair.y = Mouse.clickY;
             Protocol.outboundBuffer.pIsaac1(ClientProt.OPLOC6);
             Protocol.outboundBuffer.p2_alt3(keyInt);
@@ -918,7 +918,7 @@ public class MiniMenu {
             } else if (keyInt == 1) {
                 Protocol.outboundBuffer.pIsaac1(ClientProt.OPOBJT);
                 Protocol.outboundBuffer.p4_alt3(useWithComponentId);
-                Protocol.outboundBuffer.p2_alt2(Camera.sceneBaseTileX + param1);
+                Protocol.outboundBuffer.p2_alt2(param1 + Camera.sceneBaseTileX);
                 Protocol.outboundBuffer.p2_alt3(useWithSlot);
                 Protocol.outboundBuffer.p2_alt2(param2 + Camera.sceneBaseTileZ);
             }
@@ -951,7 +951,7 @@ public class MiniMenu {
         }
         if (actionCode == OBJ_ACTION_3) {
             Protocol.outboundBuffer.pIsaac1(ClientProt.OPOBJ3);
-            Protocol.outboundBuffer.p4rme(param2);
+            Protocol.outboundBuffer.p4_alt2(param2);
             Protocol.outboundBuffer.p2(param1);
             Protocol.outboundBuffer.p2_alt2(keyInt);
             inventoryPressTimer = 0;
@@ -981,7 +981,7 @@ public class MiniMenu {
             Protocol.outboundBuffer.p2_alt3(param2 + Camera.sceneBaseTileZ);
             Protocol.outboundBuffer.p2_alt2(Camera.sceneBaseTileX + param1);
             Protocol.outboundBuffer.p2_alt3(useWithSlot);
-            Protocol.outboundBuffer.p4rme(useWithComponentId);
+            Protocol.outboundBuffer.p4_alt2(useWithComponentId);
             Protocol.outboundBuffer.p2_alt2((int) (key >>> 32) & Integer.MAX_VALUE);
         }
         if (actionCode == UNKNOWN_13) {
@@ -1021,7 +1021,7 @@ public class MiniMenu {
         }
         if (actionCode == LOC_ACTION_2) {
             PathFinder.findPathToLoc(key, param2, param1);
-            Protocol.outboundBuffer.pIsaac1(ClientProt.RESUME_NAMEDIALOG);
+            Protocol.outboundBuffer.pIsaac1(ClientProt.OPLOC2);
             Protocol.outboundBuffer.p2_alt3(param2 + Camera.sceneBaseTileZ);
             Protocol.outboundBuffer.p2_alt1(Camera.sceneBaseTileX + param1);
             Protocol.outboundBuffer.p2((int) (key >>> 32) & Integer.MAX_VALUE);
@@ -1029,7 +1029,7 @@ public class MiniMenu {
         if (actionCode == RESUME_STRINGDIALOG) {
             Protocol.outboundBuffer.pIsaac1(ClientProt.RESUME_STRINGDIALOG);
             Protocol.outboundBuffer.p2_alt1(param1);
-            Protocol.outboundBuffer.p4rme(param2);
+            Protocol.outboundBuffer.p4_alt2(param2);
             Protocol.outboundBuffer.p2_alt3(keyInt);
             inventoryPressTimer = 0;
             pressedInventoryComponent = InterfaceList.list(param2);
@@ -1066,7 +1066,7 @@ public class MiniMenu {
             Crosshair.CrosshairMode = 2;
             Crosshair.CrosshairCycle = 0;
             Protocol.outboundBuffer.pIsaac1(ClientProt.RESUME_COUNTDIALOG);
-            Protocol.outboundBuffer.p4rme(useWithComponentId);
+            Protocol.outboundBuffer.p4_alt2(useWithComponentId);
             Protocol.outboundBuffer.p2(Camera.sceneBaseTileZ + param2);
             Protocol.outboundBuffer.p2_alt3(keyInt);
             Protocol.outboundBuffer.p2_alt3(param1 + Camera.sceneBaseTileX);
@@ -1075,7 +1075,7 @@ public class MiniMenu {
         if (actionCode == RESUME_OBJDIALOG) {
             Protocol.outboundBuffer.pIsaac1(ClientProt.RESUME_OBJDIALOG);
             Protocol.outboundBuffer.p2(useWithSlot);
-            Protocol.outboundBuffer.p4rme(param2);
+            Protocol.outboundBuffer.p4_alt2(param2);
             Protocol.outboundBuffer.p4(useWithComponentId);
             Protocol.outboundBuffer.p2_alt3(param1);
         }
@@ -1610,7 +1610,7 @@ public class MiniMenu {
     @OriginalMember(owner = "runetek4.client!aa", name = "a", descriptor = "(IZI)V")
     public static void sendComponentContinue(@OriginalArg(0) int componentId, @OriginalArg(2) int widgetId) {
         Protocol.outboundBuffer.pIsaac1(132);
-        Protocol.outboundBuffer.p4rme(widgetId);
+        Protocol.outboundBuffer.p4_alt2(widgetId);
         Protocol.outboundBuffer.p2_alt1(componentId);
     }
 

@@ -167,11 +167,11 @@ public final class TextureOpPerlinNoise extends TextureOp {
 		} else if (code == 1) {
 			this.anInt642 = packet.g1();
 		} else if (code == 2) {
-			this.anInt648 = packet.g2s();
+			this.anInt648 = packet.g2b();
 			if (this.anInt648 < 0) {
 				this.aShortArray4 = new short[this.anInt642];
 				for (@Pc(93) int local93 = 0; local93 < this.anInt642; local93++) {
-					this.aShortArray4[local93] = (short) packet.g2s();
+					this.aShortArray4[local93] = (short) packet.g2b();
 				}
 			}
 		} else if (code == 3) {

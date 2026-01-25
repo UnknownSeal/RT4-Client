@@ -78,9 +78,9 @@ public final class Environment {
 			this.lightX = -50;
 			this.lightY = -60;
 		} else {
-			this.lightX = packet.g2s();
-			this.lightY = packet.g2s();
-			this.lightZ = packet.g2s();
+			this.lightX = packet.g2b();
+			this.lightY = packet.g2b();
+			this.lightZ = packet.g2b();
 		}
 		if ((flag & 0x20) == 0) {
 			this.fogColorRgb = FogManager.defaulFogColorRgb;

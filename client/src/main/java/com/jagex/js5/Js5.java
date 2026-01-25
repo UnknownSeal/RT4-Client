@@ -294,7 +294,7 @@ public final class Js5 {
 			} else {
 				compressed = ByteArray.unwrap(this.packed[group], true);
 				@Pc(128) Packet packet = new Packet(compressed);
-				packet.decryptXtea(key, packet.data.length);
+				packet.tinydec(key, packet.data.length);
 			}
 
 			@Pc(140) byte[] uncompressed;

@@ -629,8 +629,8 @@ public final class Component {
 		this.type = packet.g1();
 		this.buttonType = packet.g1();
 		this.clientcode = packet.g2();
-		this.baseX = packet.g2s();
-		this.baseY = packet.g2s();
+		this.baseX = packet.g2b();
+		this.baseY = packet.g2b();
 		this.baseWidth = packet.g2();
 		this.baseHeight = packet.g2();
 		this.dynamicWidthValue = 0;
@@ -714,8 +714,8 @@ public final class Component {
 			for (local364 = 0; local364 < 20; local364++) {
 				@Pc(371) int local371 = packet.g1();
 				if (local371 == 1) {
-					this.invOffsetX[local364] = packet.g2s();
-					this.invOffsetY[local364] = packet.g2s();
+					this.invOffsetX[local364] = packet.g2b();
+					this.invOffsetY[local364] = packet.g2b();
 					this.invSprite[local364] = packet.g4();
 				} else {
 					this.invSprite[local364] = -1;
@@ -794,8 +794,8 @@ public final class Component {
 			}
 			this.textShadow = packet.g1() == 1;
 			this.color = packet.g4();
-			this.invMarginX = packet.g2s();
-			this.invMarginY = packet.g2s();
+			this.invMarginX = packet.g2b();
+			this.invMarginY = packet.g2b();
 			local175 = packet.g1();
 			if (local175 == 1) {
 				local164 |= 0x40000000;
@@ -1063,8 +1063,8 @@ public final class Component {
 			packet.gjstr();
 		}
 		this.clientcode = packet.g2();
-		this.baseX = packet.g2s();
-		this.baseY = packet.g2s();
+		this.baseX = packet.g2b();
+		this.baseY = packet.g2b();
 		this.baseWidth = packet.g2();
 		this.baseHeight = packet.g2();
 		this.dynamicWidthValue = packet.g1s();
@@ -1102,8 +1102,8 @@ public final class Component {
 			if (this.modelId == 65535) {
 				this.modelId = -1;
 			}
-			this.anInt495 = packet.g2s();
-			this.anInt481 = packet.g2s();
+			this.anInt495 = packet.g2b();
+			this.anInt481 = packet.g2b();
 			this.modelXAngle = packet.g2();
 			this.modelYAngle = packet.g2();
 			this.modelYOffset = packet.g2();

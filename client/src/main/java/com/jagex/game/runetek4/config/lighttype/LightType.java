@@ -41,7 +41,7 @@ public final class LightType {
 		} else if (code == 3) {
 			this.alphaMin = packet.g2();
 		} else if (code == 4) {
-			this.alphaMax = packet.g2s();
+			this.alphaMax = packet.g2b();
 		}
 	}
 }

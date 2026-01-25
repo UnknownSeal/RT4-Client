@@ -195,7 +195,7 @@ public final class MidiSong extends Node {
 			while (true) {
 				while (true) {
 					@Pc(571) int deltaTime = packet.gVarInt();
-					midiPacket.pVarInt(deltaTime);
+					midiPacket.pMidiVarLen(deltaTime);
 					@Pc(583) int event2 = packet.data[i++] & 0xFF;
 					@Pc(590) boolean distinct = event2 != lo;
 					lo = event2 & CHANNEL_MASK;

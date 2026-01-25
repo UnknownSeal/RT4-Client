@@ -525,7 +525,7 @@ public class Protocol {
         if (currentOpcode == IF_SETTEXT) {
             // Set text on a interface component
             // Takes: component, verify_id, text
-            int id = inboundBuffer.g2_al1();
+            int id = inboundBuffer.g2_alt1();
             int verifyID = inboundBuffer.g2_alt2();
             JString messageText = inboundBuffer.gjstr();
             if (setVerifyID(verifyID)) {
@@ -549,8 +549,8 @@ public class Protocol {
         } else {
             //@Pc(864) int i2;
             if (currentOpcode == IF_SETSCROLLPOS) {
-                int id = inboundBuffer.p4rme();
-                int pos = inboundBuffer.g2_al1();
+                int id = inboundBuffer.g4s_alt3();
+                int pos = inboundBuffer.g2_alt1();
                 int verifyID = inboundBuffer.g2();
                 if (setVerifyID(verifyID)) {
                     DelayedStateChange.interfaceSetScrollPosition(pos, id);
@@ -672,7 +672,7 @@ public class Protocol {
             } else if (currentOpcode == LAST_LOGIN_INFO) {
                 // LAST_LOGIN_INFO
                 // Last IP Adress
-                int ip32 = inboundBuffer.g4rme();
+                int ip32 = inboundBuffer.g4_alt2();
                 Player.lastLogAddress = GameShell.signLink.getReverseDns(ip32);
                 currentOpcode = -1;
                 return true;
@@ -730,7 +730,7 @@ public class Protocol {
                 } else if (currentOpcode == IF_SETHIDE) {
                     int parent = inboundBuffer.g1_alt2();
                     int verifyID = inboundBuffer.g2();
-                    int reset = inboundBuffer.g4me();
+                    int reset = inboundBuffer.g4_alt1();
                     if (setVerifyID(verifyID)) {
                         DelayedStateChange.interfaceSetHide(reset, parent);
                     }
@@ -802,8 +802,8 @@ public class Protocol {
                     currentOpcode = -1;
                     return true;
                 } else if (currentOpcode == IF_SETANIM) {
-                    int id = inboundBuffer.p4rme();
-                    int value = inboundBuffer.g2les();
+                    int id = inboundBuffer.g4s_alt3();
+                    int value = inboundBuffer.g2b_alt1();
                     int verifyID = inboundBuffer.g2_alt2();
                     if (setVerifyID(verifyID)) {
                         DelayedStateChange.interfaceSetModelAnimation(id, value);
@@ -817,9 +817,9 @@ public class Protocol {
                         // Set which events a component can recieve
                         // ex. mouse clicks, dragging, key presses
                         int value = inboundBuffer.g2_alt3();
-                        int parent = inboundBuffer.g4me();
+                        int parent = inboundBuffer.g4_alt1();
                         int verifyID = inboundBuffer.g2_alt2();
-                        int end = inboundBuffer.g2_al1();
+                        int end = inboundBuffer.g2_alt1();
                         if (end == INVALID_ID_U16) {
                             end = -1;
                         }
@@ -850,8 +850,8 @@ public class Protocol {
                     if (currentOpcode == SPOTANIM_ENTITY) {
                         // Play a spot animation on entity or coordinate
                         int delay = inboundBuffer.g2();
-                        int height = inboundBuffer.g2_al1();
-                        int target = inboundBuffer.g4rme();
+                        int height = inboundBuffer.g2_alt1();
+                        int target = inboundBuffer.g4_alt2();
                         int gfxId = inboundBuffer.g2_alt3();
                         // Check entity type from packedworld coordinate
                         // ENTITY_TYPE_SHIFT_CHECK = 0: Entity
@@ -950,7 +950,7 @@ public class Protocol {
                         return true;
                     } else if (currentOpcode == IF_SETMODELROTATION) {
                         // Set 3D model rotation speed on component
-                        int ptr = inboundBuffer.p4rme();
+                        int ptr = inboundBuffer.g4s_alt3();
                         int verifyID = inboundBuffer.g2_alt2();
                         int pitchStep = inboundBuffer.g2();
                         int yawStep = inboundBuffer.g2_alt2();
@@ -965,7 +965,7 @@ public class Protocol {
                         // Sends boosted level
                         InterfaceManager.redrawActiveInterfaces();
                         int level = inboundBuffer.g1_alt1();
-                        int xp = inboundBuffer.g4rme();
+                        int xp = inboundBuffer.g4_alt2();
                         int skill = inboundBuffer.g1(); // Skill
                         PlayerSkillXpTable.experience[skill] = xp;
                         PlayerSkillXpTable.boostedLevels[skill] = level;
@@ -1003,7 +1003,7 @@ public class Protocol {
                     } else if (currentOpcode == CAM_FORCEANGLE) {
                         // Set orbital camera angles
                         // Controls yaw and pitch
-                        int yaw = inboundBuffer.g2_al1();
+                        int yaw = inboundBuffer.g2_alt1();
                         int verifyID = inboundBuffer.g2();
                         int pitch = inboundBuffer.g2(); // Camera pitch
                         if (setVerifyID(verifyID)) {
@@ -1050,7 +1050,7 @@ public class Protocol {
                         return true;
                     } else if (currentOpcode == INV_CLEAR) {
                         // Clear all item in interface inventory component
-                        int id = inboundBuffer.p4rme();
+                        int id = inboundBuffer.g4s_alt3();
                         @Pc(2666) Component component = InterfaceList.list(id);
                         for (int i = 0; i < component.invSlotObjId.length; i++) {
                             component.invSlotObjId[i] = -1;
@@ -1061,7 +1061,7 @@ public class Protocol {
                         return true;
                     } else if (currentOpcode == IF_SETMODEL) {
                         // Set 3D model on interface component
-                        int id = inboundBuffer.g4me();
+                        int id = inboundBuffer.g4_alt1();
                         int verifyID = inboundBuffer.g2_alt3();
                         int modelId = inboundBuffer.g2_alt2();
                         if (modelId == INVALID_ID_U16) {
@@ -1250,9 +1250,9 @@ public class Protocol {
                             //@Pc(3456) SubInterface oldSubInterface;
                             if (currentOpcode == IF_MOVESUB) {
                                 // Move a sub-interface from one component slot to another
-                                int source = inboundBuffer.g4rme();
+                                int source = inboundBuffer.g4_alt2();
                                 int verifyID = inboundBuffer.g2_alt2();
-                                int target = inboundBuffer.g4rme();
+                                int target = inboundBuffer.g4_alt2();
                                 if (setVerifyID(verifyID)) {
                                     @Pc(3449) SubInterface src = (SubInterface) InterfaceManager.subInterfaces.get((long) source);
                                     SubInterface tgt = (SubInterface) InterfaceManager.subInterfaces.get((long) target);
@@ -1297,7 +1297,7 @@ public class Protocol {
                                 return true;
                             } else if (currentOpcode == IF_SETCOLOUR) {
                                 // Set component color in RGB
-                                int id = inboundBuffer.g4rme();
+                                int id = inboundBuffer.g4_alt2();
                                 int verifyID = inboundBuffer.g2_alt2();
                                 int colour = inboundBuffer.g2_alt3();
                                 if (setVerifyID(verifyID)) {
@@ -1319,7 +1319,7 @@ public class Protocol {
                                 return true;
                             } else if (currentOpcode == CLIENT_SETVARC_SMALL) {
                                 // Legacy format for client variable updates
-                                int verifyID = inboundBuffer.g2_al1();
+                                int verifyID = inboundBuffer.g2_alt1();
                                 int value = inboundBuffer.g1_alt2();
                                 int id = inboundBuffer.g2_alt3();
                                 if (setVerifyID(verifyID)) {
@@ -1344,14 +1344,14 @@ public class Protocol {
                                 return true;
                             } else if (currentOpcode == INV_DELETE) {
                                 // remove item from inventory
-                                int id = inboundBuffer.g2_al1();
+                                int id = inboundBuffer.g2_alt1();
                                 ClientInventory.delete(id);
                                 ClientInventory.updates[ClientInventory.updateCount++ & CIRCULAR_BUFFER_MASK] = id & INVENTORY_ID_MASK;
                                 currentOpcode = -1;
                                 return true;
                             } else if (currentOpcode == NPC_ANIM_SPECIFIC) {
                                 // Play animation on a specific NPC
-                                int npcId = inboundBuffer.g2_al1();
+                                int npcId = inboundBuffer.g2_alt1();
                                 int delay = inboundBuffer.g1_alt3();
                                 int seqId = inboundBuffer.g2();
                                 @Pc(3766) Npc npc = NpcList.npcs[npcId];
@@ -1364,7 +1364,7 @@ public class Protocol {
                                 // UPDATE_RUNWEIGHT
                                 // Update player's weight
                                 InterfaceManager.redrawActiveInterfaces();
-                                Player.weightCarried = inboundBuffer.g2s();
+                                Player.weightCarried = inboundBuffer.g2b();
                                 InterfaceManager.miscTransmitAt = InterfaceManager.transmitTimer;
                                 currentOpcode = -1;
                                 return true;
@@ -1394,9 +1394,9 @@ public class Protocol {
                                 return true;
                             } else if (currentOpcode == GENERATE_CHAT_HEAD_FROM_BODY) {
                                 int verifyID = inboundBuffer.g2_alt2();
-                                int id = inboundBuffer.p4rme();
+                                int id = inboundBuffer.g4s_alt3();
                                 int objData = inboundBuffer.g2_alt3();
-                                int int2 = inboundBuffer.g2_al1();
+                                int int2 = inboundBuffer.g2_alt1();
                                 int int3 = inboundBuffer.g2_alt3();
                                 if (setVerifyID(verifyID)) {
                                     DelayedStateChange.interfaceSetModel(objData, 7, id, int2 << COMPONENT_UPPER_WORD_SHIFT | int3);
@@ -1406,7 +1406,7 @@ public class Protocol {
                             } else if (currentOpcode == VARBIT_SMALL) {
                                 // Update varbit (bit-packed variables within a player variable)
                                 int value = inboundBuffer.g1_alt1();
-                                int id = inboundBuffer.g2_al1();
+                                int id = inboundBuffer.g2_alt1();
                                 VarpDomain.setVarbitServer(value, id);
                                 currentOpcode = -1;
                                 return true;
@@ -1414,7 +1414,7 @@ public class Protocol {
                                 // IF_OPENSUB
                                 // Open sub-interface in component slot
                                 int modalType = inboundBuffer.g1();
-                                int windowID = inboundBuffer.p4rme();
+                                int windowID = inboundBuffer.g4s_alt3();
                                 int verifyID = inboundBuffer.g2_alt2();
                                 int interfaceID = inboundBuffer.g2();
                                 if (setVerifyID(verifyID)) {
@@ -1506,8 +1506,8 @@ public class Protocol {
                                 return true;
                             } else if (currentOpcode == IF_SETPOSITION) {
                                 int verifyID = inboundBuffer.g2_alt2();
-                                int componentId = inboundBuffer.g4me();
-                                int x = inboundBuffer.g2s();
+                                int componentId = inboundBuffer.g4_alt1();
+                                int x = inboundBuffer.g2b();
                                 int y = inboundBuffer.g2sadd();
                                 if (setVerifyID(verifyID)) {
                                     DelayedStateChange.interfaceSetPosition(x, componentId, y);
@@ -1645,7 +1645,7 @@ public class Protocol {
                             } else if (currentOpcode == IF_SETPLAYERHEAD) {
                                 // Set NPC head model on component
                                 int verifyID = inboundBuffer.g2_alt3();
-                                int id = inboundBuffer.g4rme();
+                                int id = inboundBuffer.g4_alt2();
                                 if (setVerifyID(verifyID)) {
                                     int objType = 0;
                                     if (PlayerList.self.playerModel != null) {
@@ -1657,7 +1657,7 @@ public class Protocol {
                                 return true;
                             } else if (currentOpcode == IF_SETTEXT1) {
                                 // Show or hide a interface component
-                                int id = inboundBuffer.p4rme();
+                                int id = inboundBuffer.g4s_alt3();
                                 JString text = inboundBuffer.gjstr();
                                 int verifyID = inboundBuffer.g2_alt2();
                                 if (setVerifyID(verifyID)) {
@@ -1667,7 +1667,7 @@ public class Protocol {
                                 return true;
                             } else if (currentOpcode == VARBIT_LARGE) {
                                 // Update VarBit with large ID (> 65535)
-                                int value = inboundBuffer.g4me();
+                                int value = inboundBuffer.g4_alt1();
                                 int id = inboundBuffer.g2_alt3();
                                 VarpDomain.setVarbitServer(value, id);
                                 currentOpcode = -1;
@@ -1738,11 +1738,11 @@ public class Protocol {
                                     return true;
                                 } else if (currentOpcode == IF_SETNPCHEAD) {
                                     int npcId = inboundBuffer.g2_alt2();
-                                    int id = inboundBuffer.g4me();
+                                    int id = inboundBuffer.g4_alt1();
                                     if (npcId == INVALID_ID_U16) {
                                         npcId = -1;
                                     }
-                                    int verifyID = inboundBuffer.g2_al1();
+                                    int verifyID = inboundBuffer.g2_alt1();
                                     if (setVerifyID(verifyID)) {
                                         DelayedStateChange.interfaceSetModel(-1, 2, id, npcId);
                                     }
@@ -1755,14 +1755,14 @@ public class Protocol {
                                     return true;
                                 } else if (currentOpcode == SET_INTERFACE_SETTINGS) {
                                     // Dsiplay object/item on a component
-                                    int verifyID = inboundBuffer.g2_al1();
-                                    int end = inboundBuffer.g2_al1();
+                                    int verifyID = inboundBuffer.g2_alt1();
+                                    int end = inboundBuffer.g2_alt1();
                                     if (end == INVALID_ID_U16) {
                                         end = -1;
                                     }
                                     int pointer = inboundBuffer.g4();
                                     int start = inboundBuffer.g2_alt2();
-                                    int accessMask = inboundBuffer.g4rme();
+                                    int accessMask = inboundBuffer.g4_alt2();
                                     if (start == INVALID_ID_U16) {
                                         start = -1;
                                     }
@@ -1865,12 +1865,12 @@ public class Protocol {
                                 } else if (currentOpcode == IF_SETOBJECT) {
                                     // Set object/item model on component
                                     int slot = inboundBuffer.g4();
-                                    int id = inboundBuffer.p4rme();
+                                    int id = inboundBuffer.g4s_alt3();
                                     int itemId = inboundBuffer.g2_alt3();
                                     if (itemId == INVALID_ID_U16) {
                                         itemId = -1;
                                     }
-                                    int verifyID = inboundBuffer.g2_al1();
+                                    int verifyID = inboundBuffer.g2_alt1();
                                     if (setVerifyID(verifyID)) {
                                         @Pc(5603) Component com = InterfaceList.list(id);
                                         @Pc(5615) ObjType obj;
@@ -1957,8 +1957,8 @@ public class Protocol {
                                     return true;
                                 } else if (currentOpcode == MIDI_JINGLE) {
                                     // Play short jingle (non-looping)
-                                    int volume = inboundBuffer.g3le();
-                                    int id = inboundBuffer.g2_al1();
+                                    int volume = inboundBuffer.g3_alt2();
+                                    int id = inboundBuffer.g2_alt1();
                                     if (id == INVALID_ID_U16) {
                                         id = -1;
                                     }
@@ -2150,7 +2150,7 @@ public class Protocol {
             }
         } else if (currentOpcode == OBJ_REVEAL) {
             // OBJ_REVEAL - Add public ground items (visible to all players)
-            packedData = inboundBuffer.g2_al1(); // Object type ID
+            packedData = inboundBuffer.g2_alt1(); // Object type ID
             local23 = inboundBuffer.g1(); // Zone coordinates (packed)
 
             local27 = (local23 & ZONE_COORD_MASK) + SceneGraph.currentZoneZ; // Absolute Z
@@ -2187,7 +2187,7 @@ public class Protocol {
                 local19 = (packedData & ZONE_COORD_MASK_4BIT) + SceneGraph.currentZoneZ * 2; // projectile Start Z
                 local27 = local23 + inboundBuffer.g1s(); // Target X offset
                 local31 = inboundBuffer.g1s() + local19; // Target Z offset
-                local39 = inboundBuffer.g2s(); // Source entity
+                local39 = inboundBuffer.g2b(); // Source entity
                 local45 = inboundBuffer.g2(); // Projectile spotanim ID
                 startHeight = inboundBuffer.g1() * HEIGHT_SCALE_FACTOR; // Start height
                 endHeight = inboundBuffer.g1() * HEIGHT_SCALE_FACTOR; // End height
@@ -2263,7 +2263,7 @@ public class Protocol {
                 int shape = info >> LOC_SHAPE_SHIFT; // Shape type
                 int angle = info & ROTATION_MASK; // Angle
                 local45 = Loc.LAYERS[shape]; // Rendering layer
-                startHeight = inboundBuffer.g2_al1(); // Location type ID
+                startHeight = inboundBuffer.g2_alt1(); // Location type ID
 
                 if (startHeight == INVALID_ID_U16) {
                     startHeight = -1; // -1 = remove
@@ -2291,10 +2291,10 @@ public class Protocol {
                     @Pc(609) byte transformParam2 = inboundBuffer.g1b_alt3();
                     @Pc(613) byte transformParam3 = inboundBuffer.g1sub();
                     startCycle = inboundBuffer.g2_alt2(); // Tranform value 1
-                    endCycle = inboundBuffer.g2_al1(); // Transform value 2
+                    endCycle = inboundBuffer.g2_alt1(); // Transform value 2
                     @Pc(625) byte transformParam4 = inboundBuffer.g1s();
                     arc = inboundBuffer.g2(); // Location type ID
-                    transformValue3 = inboundBuffer.g2lesadd(); // Transform value 3
+                    transformValue3 = inboundBuffer.g2b_alt3(); // Transform value 3
 
                     if (!GlRenderer.enabled) {
                         // OpenGL-only packet, push to attach queue for processing
@@ -2350,8 +2350,8 @@ public class Protocol {
                     int z = SceneGraph.currentZoneZ + (local23 & ZONE_COORD_MASK); // Zone Z
                     int x = SceneGraph.currentZoneX + (local23 >> ZONE_COORD_SHIFT & ZONE_COORD_MASK); // Zone X
 
-                    int count = inboundBuffer.g2_al1(); // Item count
-                    int objId = inboundBuffer.g2_al1(); // Object type ID
+                    int count = inboundBuffer.g2_alt1(); // Item count
+                    int objId = inboundBuffer.g2_alt1(); // Object type ID
 
                     if (x >= 0 && z >= 0 && x < SIZE && z < SIZE && receiverPid != PlayerList.localPid) {
                         @Pc(812) ObjStack objStack = new ObjStack();
@@ -2374,7 +2374,7 @@ public class Protocol {
                     local19 = (packedData & ZONE_COORD_MASK) + SceneGraph.currentZoneZ; // Start zone Z
                     local27 = local23 + inboundBuffer.g1s(); // Target tile X (offset)
                     local31 = inboundBuffer.g1s() + local19; // Target tile Z (offset)
-                    local39 = inboundBuffer.g2s(); // Source entity
+                    local39 = inboundBuffer.g2b(); // Source entity
                     local45 = inboundBuffer.g2(); // Projectile spotanim ID
                     startHeight = inboundBuffer.g1() * HEIGHT_SCALE_FACTOR; // Start height offset
                     endHeight = inboundBuffer.g1() * HEIGHT_SCALE_FACTOR; // End height offset
@@ -2422,8 +2422,8 @@ public class Protocol {
                     local23 = SceneGraph.currentZoneX * 2 + (packedData >> ZONE_COORD_SHIFT & ZONE_COORD_MASK_4BIT); // Start X (doubled)
                     local27 = inboundBuffer.g1s() + local23; // Target X
                     local31 = inboundBuffer.g1s() + local19; // Target Z
-                    local39 = inboundBuffer.g2s(); // Source entity ID (packed)
-                    local45 = inboundBuffer.g2s(); // Target entity ID (packed)
+                    local39 = inboundBuffer.g2b(); // Source entity ID (packed)
+                    local45 = inboundBuffer.g2b(); // Target entity ID (packed)
                     startHeight = inboundBuffer.g2(); // Projectile spotanim ID
                     endHeight = inboundBuffer.g1s(); // Vertical offset
                     startCycle = inboundBuffer.g1() * HEIGHT_SCALE_FACTOR; // Height offset at target
@@ -2583,7 +2583,7 @@ public class Protocol {
             WorldLoader.regionsXteaKeys = new int[regionCount][XTEA_KEY_SIZE];
             for (baseChunkX = 0; baseChunkX < regionCount; baseChunkX++) {
                 for (baseChunkZ = 0; baseChunkZ < XTEA_KEY_SIZE; baseChunkZ++) {
-                    WorldLoader.regionsXteaKeys[baseChunkX][baseChunkZ] = inboundBuffer.p4rme();
+                    WorldLoader.regionsXteaKeys[baseChunkX][baseChunkZ] = inboundBuffer.g4s_alt3();
                 }
             }
             baseChunkX = inboundBuffer.g1_alt3();
@@ -2654,7 +2654,7 @@ public class Protocol {
         WorldLoader.regionsXteaKeys = new int[playerZ][XTEA_KEY_SIZE];
         for (chunkSizeX = 0; chunkSizeX < playerZ; chunkSizeX++) {
             for (plane = 0; plane < XTEA_KEY_SIZE; plane++) {
-                WorldLoader.regionsXteaKeys[chunkSizeX][plane] = inboundBuffer.p4rme();
+                WorldLoader.regionsXteaKeys[chunkSizeX][plane] = inboundBuffer.g4s_alt3();
             }
         }
         chunkSizeX = inboundBuffer.g2();
@@ -2709,7 +2709,7 @@ public class Protocol {
         @Pc(24) int regionCount;
         if ((flags & PLAYER_UPDATE_FLAG_CHAT) != 0) {
 
-            chatFlags = inboundBuffer.g2_al1();
+            chatFlags = inboundBuffer.g2_alt1();
             staffModLevel = inboundBuffer.g1();
             @Pc(21) int len = inboundBuffer.g1();
             regionCount = inboundBuffer.offset;
@@ -2796,8 +2796,8 @@ public class Protocol {
             player.anInt3428 = inboundBuffer.g1();
             player.anInt3416 = inboundBuffer.g1_alt1();
             player.anInt3392 = inboundBuffer.g1();
-            player.anInt3395 = inboundBuffer.g2_al1() + Client.loop;
-            player.anInt3386 = inboundBuffer.g2_al1() + Client.loop;
+            player.anInt3395 = inboundBuffer.g2_alt1() + Client.loop;
+            player.anInt3386 = inboundBuffer.g2_alt1() + Client.loop;
             player.anInt3431 = inboundBuffer.g1_alt2();
             player.movementQueueSize = 1;
             player.movementQueueSnapshot = 0;
@@ -2825,7 +2825,7 @@ public class Protocol {
             @Pc(505) int[] spotAnimSlots = new int[chatFlags];
             @Pc(508) int[] spotAnimDelays = new int[chatFlags];
             for (@Pc(510) int animIndex = 0; animIndex < chatFlags; animIndex++) {
-                @Pc(521) int spotAnimId = inboundBuffer.g2_al1();
+                @Pc(521) int spotAnimId = inboundBuffer.g2_alt1();
                 if (spotAnimId == INVALID_ID_U16) {
                     spotAnimId = -1;
                 }
@@ -2836,11 +2836,11 @@ public class Protocol {
             Player.updateLayeredAnimations(spotAnimSlots, spotAnimIds, player, spotAnimDelays);
         }
         if ((flags & PLAYER_UPDATE_FLAG_SPOTANIM_EXTENDED) != 0) {
-            chatFlags = inboundBuffer.g2_al1();
+            chatFlags = inboundBuffer.g2_alt1();
             if (chatFlags == INVALID_ID_U16) {
                 chatFlags = -1;
             }
-            staffModLevel = inboundBuffer.p4rme();
+            staffModLevel = inboundBuffer.g4s_alt3();
             @Pc(573) boolean shouldReplace = true;
             if (chatFlags != -1 && player.spotAnimId != -1 && SeqTypeList.get(SpotAnimTypeList.get(chatFlags).seqId).priority < SeqTypeList.get(SpotAnimTypeList.get(player.spotAnimId).seqId).priority) {
                 shouldReplace = false;
@@ -3046,7 +3046,7 @@ public class Protocol {
                 if (value == INVALID_ID_U16) {
                     value = -1;
                 }
-                info = inboundBuffer.g4me();
+                info = inboundBuffer.g4_alt1();
                 @Pc(147) boolean shouldReplace = true;
                 if (value != -1 && npc.spotAnimId != -1 && SeqTypeList.get(SpotAnimTypeList.get(value).seqId).priority < SeqTypeList.get(SpotAnimTypeList.get(npc.spotAnimId).seqId).priority) {
                     shouldReplace = false;
@@ -3076,7 +3076,7 @@ public class Protocol {
                 if (npc.type.hasAreaSound()) {
                     AreaSoundManager.remove(npc);
                 }
-                npc.setNpcType(NpcTypeList.get(inboundBuffer.g2_al1()));
+                npc.setNpcType(NpcTypeList.get(inboundBuffer.g2_alt1()));
                 npc.setSize(npc.type.size);
                 npc.anInt3365 = npc.type.nas;
                 if (npc.type.hasAreaSound()) {
@@ -3093,7 +3093,7 @@ public class Protocol {
                 @Pc(334) int[] animSlots = new int[value];
                 @Pc(337) int[] animDelays = new int[value];
                 for (@Pc(339) int animIndex = 0; animIndex < value; animIndex++) {
-                    @Pc(350) int animId = inboundBuffer.g2_al1();
+                    @Pc(350) int animId = inboundBuffer.g2_alt1();
                     if (animId == INVALID_ID_U16) {
                         animId = -1;
                     }
