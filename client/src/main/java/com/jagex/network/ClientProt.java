@@ -72,7 +72,7 @@ public class ClientProt {
     public static int OPLOC3 = 84;
     public static int OPLOC4 = 247;
     public static int OPLOC5 = 170;
-    public static int OPLOC6 = 94;
+    public static int OPLOCE = 94;
     public static int OPLOCT = 233;
 
     // Ground item actions
@@ -91,7 +91,7 @@ public class ClientProt {
     public static int OPOBJ4 = 161;
     public static int OPOBJ5 = 135;
     public static int OPOBJ_EQUIP = 55;
-    public static int OPOBJ_EXAMINE = 92;
+    public static int OPOBJE = 92;
     public static int OPOBJ_ON_OBJ = 27;
     public static int OPOBJ_ON_GROUND = 206;
     public static int OPOBJT = 131;

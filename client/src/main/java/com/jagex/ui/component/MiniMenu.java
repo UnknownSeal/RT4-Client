@@ -144,7 +144,7 @@ public class MiniMenu {
     public static final int OBJ_ACTION_4 = 35;
     public static final int OBJ_OPERATE_ACTION = 23;
     public static final int OBJ_ACTION_5 = 58;
-    public static final int OBJ_EXAMINE = 1002;
+    public static final int OBJ_ACTION_6 = 1002;
     public static final int OBJ_PLAYER_ACTION = 1;
     public static final int OBJ_OBJSTACK_ACTION = 33;
     public static final int OBJ_NPC_ACTION = 26;
@@ -580,19 +580,19 @@ public class MiniMenu {
             Protocol.outboundBuffer.p2_alt3(param1 + Camera.sceneBaseTileX);
             Protocol.outboundBuffer.p2_alt3(param2 + Camera.sceneBaseTileZ);
         }
-        if (actionCode == OBJ_EXAMINE) {
+        if (actionCode == OBJ_ACTION_6) {
             Crosshair.CrosshairMode = 2;
             Crosshair.x = Mouse.clickX;
             Crosshair.y = Mouse.clickY;
             Crosshair.CrosshairCycle = 0;
-            Protocol.outboundBuffer.pIsaac1(ClientProt.OPOBJ_EXAMINE);
+            Protocol.outboundBuffer.pIsaac1(ClientProt.OPOBJE);
             Protocol.outboundBuffer.p2_alt3(keyInt);
         }
         @Pc(693) Component component;
         if (actionCode == OBJ_EXAMINE_IN_COMPONENT) {
             component = InterfaceList.list(param2);
             if (component == null || component.invSlotObjCount[param1] < 100000) {
-                Protocol.outboundBuffer.pIsaac1(ClientProt.OPOBJ_EXAMINE);
+                Protocol.outboundBuffer.pIsaac1(ClientProt.OPOBJE);
                 Protocol.outboundBuffer.p2_alt3(keyInt);
             } else {
                 ChatHistory.addMessage(JString.EMPTY, 0, JString.concatenate(new JString[] { JString.parseInt(component.invSlotObjCount[param1]), MULTIPLY_SYMBOL, ObjTypeList.get(keyInt).name}));
@@ -908,7 +908,7 @@ public class MiniMenu {
             Crosshair.CrosshairMode = 2;
             Crosshair.x = Mouse.clickX;
             Crosshair.y = Mouse.clickY;
-            Protocol.outboundBuffer.pIsaac1(ClientProt.OPLOC6);
+            Protocol.outboundBuffer.pIsaac1(ClientProt.OPLOCE);
             Protocol.outboundBuffer.p2_alt3(keyInt);
         }
         if (actionCode == COMPONENT_ACTION) {
@@ -1048,6 +1048,7 @@ public class MiniMenu {
             }
         }
         if (actionCode == OBJ_IN_COMPONENT_ACTION_4) {
+            // OPHELDT
             Protocol.outboundBuffer.pIsaac1(ClientProt.RESUME_P_COUNTDIALOG);
             Protocol.outboundBuffer.p4_alt1(param2);
             Protocol.outboundBuffer.p2_alt1(param1);
